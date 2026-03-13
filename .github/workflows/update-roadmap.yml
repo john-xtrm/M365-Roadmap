@@ -2,8 +2,8 @@ name: Ververs Microsoft 365 Roadmap
 
 on:
   schedule:
-    - cron: '0 6 * * 1'   # Elke maandag om 06:00 UTC (= 07:00 of 08:00 NL)
-  workflow_dispatch:        # Ook handmatig te starten via GitHub
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
 
 jobs:
   update-roadmap:
@@ -13,86 +13,20 @@ jobs:
       - name: Repository ophalen
         uses: actions/checkout@v4
 
-      - name: Microsoft 365 Roadmap CSV ophalen en filteren
+      - name: CSV ophalen via curl
         run: |
-          python3 << 'PYEOF'
-          import urllib.request, csv, json, io, datetime
+          curl -s -L \
+            -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" \
+            -H "Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8" \
+            -H "Accept-Language: nl-NL,nl;q=0.9,en;q=0.8" \
+            -H "Referer: https://www.microsoft.com/en-us/microsoft-365/roadmap" \
+            "https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv" \
+            -o roadmap.csv
+          echo "Bestandsgrootte: $(wc -c < roadmap.csv) bytes"
+          head -1 roadmap.csv
 
-          URL = "https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv"
-
-          APP_LABELS = {
-              "copilot":    "Copilot",
-              "teams":      "Teams",
-              "outlook":    "Outlook",
-              "excel":      "Excel",
-              "word":       "Word",
-              "powerpoint": "PowerPoint",
-              "sharepoint": "SharePoint",
-              "purview":    "Purview",
-              "other":      "Overig"
-          }
-
-          def app_key(p):
-              p = p.lower()
-              if "copilot"    in p: return "copilot"
-              if "teams"      in p: return "teams"
-              if "outlook"    in p: return "outlook"
-              if "excel"      in p: return "excel"
-              if "word"       in p: return "word"
-              if "powerpoint" in p: return "powerpoint"
-              if "sharepoint" in p: return "sharepoint"
-              if "purview"    in p: return "purview"
-              return "other"
-
-          def make_label(product, key):
-              label = product.split(",")[0].strip()
-              label = label.replace("Microsoft ", "").split("(")[0].strip()
-              if not label or len(label) > 30:
-                  label = APP_LABELS.get(key, "Overig")
-              return label
-
-          req = urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0"})
-          with urllib.request.urlopen(req, timeout=30) as resp:
-              raw = resp.read().decode("utf-8-sig")
-
-          reader = csv.DictReader(io.StringIO(raw))
-          items = []
-          for row in reader:
-              status = row.get("Status", "").strip().lower()
-              cloud  = row.get("Tags - Cloud instance", "")
-
-              if status not in ("in development", "rolling out"):
-                  continue
-              if "Worldwide (Standard Multi-Tenant)" not in cloud:
-                  continue
-
-              product = row.get("Tags - Product", "")
-              key     = app_key(product)
-
-              items.append({
-                  "id":        int(row.get("Feature ID", 0) or 0),
-                  "title":     row.get("Description", "").strip(),
-                  "desc":      row.get("Details", "").strip(),
-                  "status":    "rolling" if "rolling" in status else "dev",
-                  "app":       key,
-                  "prodLabel": make_label(product, key),
-                  "added":     row.get("Added to Roadmap", "").strip(),
-                  "modified":  row.get("Last Modified", "").strip(),
-                  "release":   row.get("Release", "").strip(),
-                  "preview":   row.get("Preview", "").strip(),
-              })
-
-          result = {
-              "generated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
-              "count": len(items),
-              "items": items
-          }
-
-          with open("data.json", "w", encoding="utf-8") as f:
-              json.dump(result, f, ensure_ascii=False, indent=2)
-
-          print("Klaar: " + str(len(items)) + " items opgeslagen in data.json")
-          PYEOF
+      - name: Data verwerken
+        run: python3 fetch_roadmap.py
 
       - name: data.json committen
         run: |
