@@ -13,16 +13,16 @@
     --green-bg: #e6f4eb; --green-text: #1a6130;
     --amber-bg: #fef3dc; --amber-text: #7a4f00;
     --purple-bg: #eeebfd; --purple-text: #4a3aaa;
-    --gray-bg: #ebebeb; --gray-text: #4a4a4a;
-    --blue-bg: #e6f0fd; --blue-text: #1a4fa0;
-    --red-bg: #fdecea; --red-text: #a02020;
+    --gray-bg: #ebebeb;  --gray-text: #4a4a4a;
+    --blue-bg: #e6f0fd;  --blue-text: #1a4fa0;
+    --red-bg: #fdecea;   --red-text: #a02020;
     --orange-bg: #fff0e6; --orange-text: #8c4300;
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
   .header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; position: sticky; top: 0; z-index: 10; }
   .header h1 { font-size: 18px; font-weight: 600; }
-  .header p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .header p  { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
   .header-date { font-size: 12px; color: var(--text-faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; }
 
   .main { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
@@ -30,7 +30,7 @@
   .filter-section { margin-bottom: 1.25rem; }
   .filter-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-faint); margin-bottom: 8px; }
   .filter-bar { display: flex; flex-wrap: wrap; gap: 8px; }
-  .filter-btn { padding: 6px 16px; border-radius: 100px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-muted); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; }
+  .filter-btn { padding: 6px 16px; border-radius: 100px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text-muted); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.12s; }
   .filter-btn:hover { background: var(--surface2); }
   .filter-btn.on { background: var(--text); color: #fff; border-color: transparent; }
   .filter-btn.app-on-copilot    { background: var(--purple-bg); color: var(--purple-text); border-color: transparent; }
@@ -48,13 +48,10 @@
   .legend-item { display: flex; align-items: center; gap: 6px; }
   .legend-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-  .section-group { display: block; }
-  .section-group.gone { display: none; }
   .section-header { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); margin: 2rem 0 0.75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color 0.15s; }
   .card:hover { border-color: var(--border-strong); }
-  .card.gone { display: none; }
 
   .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
   .card-left { display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 0; }
@@ -67,21 +64,33 @@
   .p-powerpoint { background: var(--orange-bg); color: var(--orange-text); }
   .p-sharepoint { background: var(--amber-bg);  color: var(--amber-text); }
   .p-purview    { background: var(--red-bg);    color: var(--red-text); }
-  .p-live       { background: var(--green-bg);  color: var(--green-text); }
-  .p-rolling    { background: var(--amber-bg);  color: var(--amber-text); }
-  .p-soon       { background: var(--gray-bg);   color: var(--gray-text); }
-  .p-new        { background: var(--purple-bg); color: var(--purple-text); }
+  .p-live    { background: var(--green-bg);  color: var(--green-text); }
+  .p-rolling { background: var(--amber-bg);  color: var(--amber-text); }
+  .p-soon    { background: var(--gray-bg);   color: var(--gray-text); }
+  .p-new     { background: var(--purple-bg); color: var(--purple-text); }
 
   .card-title { font-size: 15px; font-weight: 500; color: var(--text); line-height: 1.4; }
   .card-benefit { font-size: 13px; color: var(--text-muted); line-height: 1.65; margin-bottom: 12px; }
+
   .card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .card-footer-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
   .rollout-date { font-size: 12px; color: var(--text-faint); }
   .action-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; }
   .action-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
   .a-none  .action-dot { background: #2d9e5f; }
-  .a-none  span        { color: var(--green-text); }
+  .a-none  span { color: var(--green-text); }
   .a-admin .action-dot { background: #e09b00; }
-  .a-admin span        { color: var(--amber-text); }
+  .a-admin span { color: var(--amber-text); }
+  .a-user  .action-dot { background: #3a7bd5; }
+  .a-user  span { color: var(--blue-text); }
+
+  .ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue-text); text-decoration: none; padding: 4px 10px; border: 1px solid var(--blue-bg); border-radius: 100px; background: var(--blue-bg); transition: opacity 0.12s; white-space: nowrap; }
+  .ms-link:hover { opacity: 0.75; }
+  .ms-link svg { flex-shrink: 0; }
+
+  .section-group { display: block; }
+  .section-group.gone { display: none; }
+  .card.gone { display: none; }
 
   .empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 14px; }
   .empty-msg.show { display: block; }
@@ -134,143 +143,171 @@
   </div>
 
   <div id="empty-msg" class="empty-msg">Geen updates gevonden voor deze combinatie van filters.</div>
-
-  <!-- NU BESCHIKBAAR -->
-  <div class="section-group" data-g="live">
-    <div class="section-header">Nu beschikbaar</div>
-
-    <div class="card" data-s="live" data-a="teams">
-      <div class="card-top"><div class="card-left"><span class="pill p-teams">Teams</span><span class="card-title">Facilitator: uw vergadering automatisch begeleid</span></div><span class="pill p-live">Nu beschikbaar</span></div>
-      <p class="card-benefit">Facilitator maakt een agenda aan, houdt de tijd bij, schrijft notities mee en maakt een actielijst in Planner — volledig automatisch tijdens de vergadering. Zo hoeft niemand meer handmatig te notuleren en gaan afspraken niet verloren.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Nu beschikbaar</span><div class="action-badge a-none"><div class="action-dot"></div><span>Direct beschikbaar voor Copilot-gebruikers</span></div></div>
-    </div>
-
-    <div class="card" data-s="live" data-a="excel">
-      <div class="card-top"><div class="card-left"><span class="pill p-excel">Excel</span><span class="card-title">Agent Mode: laat Copilot uw spreadsheet verbeteren</span></div><span class="pill p-live">Nu beschikbaar</span></div>
-      <p class="card-benefit">Vraag Copilot in Excel om uw tabel op te ruimen, een grafiek te maken of berekeningen uit te voeren. Elke stap is zichtbaar en aanpasbaar. Geen Excel-kennis meer nodig voor routinetaken.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Nu beschikbaar</span><div class="action-badge a-none"><div class="action-dot"></div><span>Direct beschikbaar voor Copilot-gebruikers</span></div></div>
-    </div>
-
-    <div class="card" data-s="live" data-a="word">
-      <div class="card-top"><div class="card-left"><span class="pill p-word">Word</span><span class="card-title">Agent Mode: Copilot schrijft en verbetert mee</span></div><span class="pill p-live">Nu beschikbaar</span></div>
-      <p class="card-benefit">Vraag Copilot om een sectie te schrijven, feedback samen te vatten of een concept bij te schaven. De AI stelt voor, vraagt om toelichting en wacht op uw goedkeuring. Ideaal voor rapporten, beleidsdocumenten of offertes.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Nu beschikbaar</span><div class="action-badge a-none"><div class="action-dot"></div><span>Direct beschikbaar voor Copilot-gebruikers</span></div></div>
-    </div>
-  </div>
-
-  <!-- IN UITROL -->
-  <div class="section-group" data-g="rolling">
-    <div class="section-header">Wordt nu uitgerold</div>
-
-    <div class="card" data-s="rolling" data-a="teams">
-      <div class="card-top"><div class="card-left"><span class="pill p-teams">Teams</span><span class="card-title">Viva Engage-communities zichtbaar in Teams</span></div><span class="pill p-rolling">In uitrol</span></div>
-      <p class="card-benefit">Organisatiebrede communities (bijv. voor HR-nieuws of vakgroepen) zijn nu direct zichtbaar naast uw gewone Teams-kanalen. Medewerkers hoeven niet meer te wisselen tussen apps.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Maart 2026</span><div class="action-badge a-none"><div class="action-dot"></div><span>Geen actie nodig, verschijnt automatisch</span></div></div>
-    </div>
-
-    <div class="card" data-s="rolling" data-a="sharepoint">
-      <div class="card-top"><div class="card-left"><span class="pill p-sharepoint">SharePoint</span><span class="card-title">31 nieuwe paginasjablonen met verbeterd zoeken</span></div><span class="pill p-rolling">In uitrol</span></div>
-      <p class="card-benefit">Medewerkers die een nieuwe intranetpagina aanmaken, krijgen direct een galerij met 31 professionele sjablonen te zien. Pagina's maken gaat sneller en ziet er verzorgd uit, zonder grafisch ontwerper.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Maart–April 2026</span><div class="action-badge a-none"><div class="action-dot"></div><span>Verschijnt automatisch bij aanmaken van nieuwe pagina's</span></div></div>
-    </div>
-
-    <div class="card" data-s="rolling" data-a="purview">
-      <div class="card-top"><div class="card-left"><span class="pill p-purview">Purview</span><span class="card-title">Waarschuwingen bij gevoelige informatie op mobiel</span></div><span class="pill p-rolling">In uitrol</span></div>
-      <p class="card-benefit">Medewerkers die via de Outlook-app gevoelige gegevens (zoals persoonsgegevens of financiële info) dreigen te delen, krijgen voortaan een melding. Dit helpt datalekken voorkomen zonder handmatig ingrijpen van de IT-afdeling.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Maart 2026</span><div class="action-badge a-admin"><div class="action-dot"></div><span>IT-beheerder moet DLP-beleid activeren in Purview</span></div></div>
-    </div>
-  </div>
-
-  <!-- NIEUW AANGEKONDIGD -->
-  <div class="section-group" data-g="new">
-    <div class="section-header">Nieuw aangekondigd</div>
-
-    <div class="card" data-s="new" data-a="copilot">
-      <div class="card-top"><div class="card-left"><span class="pill p-copilot">Copilot</span><span class="card-title">GPT-5.4 en GPT-5.3: slimmere en snellere AI-assistent</span></div><span class="pill p-new">Nieuw aangekondigd</span></div>
-      <p class="card-benefit">De AI-assistent in Microsoft 365 werkt nu met twee nieuwe modellen. GPT-5.4 denkt dieper na bij complexe vragen, GPT-5.3 geeft sneller antwoord bij eenvoudige taken. Medewerkers merken dat Copilot betere en meer bruikbare antwoorden geeft.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Maart 2026</span><div class="action-badge a-none"><div class="action-dot"></div><span>Automatisch beschikbaar voor alle Copilot-gebruikers</span></div></div>
-    </div>
-
-    <div class="card" data-s="new" data-a="copilot">
-      <div class="card-top"><div class="card-left"><span class="pill p-copilot">Copilot</span><span class="card-title">Wave 3: Copilot werkt zelfstandig in al uw apps</span></div><span class="pill p-new">Nieuw aangekondigd</span></div>
-      <p class="card-benefit">Copilot voert meerdere stappen achter elkaar uit in Word, Excel, PowerPoint, Outlook en de chat — zonder dat u elke stap apart aanstuurt. Denk aan: automatisch een rapport opstellen én versturen op basis van één opdracht.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Maart 2026</span><div class="action-badge a-none"><div class="action-dot"></div><span>Automatisch beschikbaar voor M365 Copilot-licenties</span></div></div>
-    </div>
-  </div>
-
-  <!-- BINNENKORT -->
-  <div class="section-group" data-g="soon">
-    <div class="section-header">Binnenkort beschikbaar</div>
-
-    <div class="card" data-s="soon" data-a="teams">
-      <div class="card-top"><div class="card-left"><span class="pill p-teams">Teams</span><span class="card-title">Werklocatie automatisch bijwerken via wifi</span></div><span class="pill p-soon">Binnenkort</span></div>
-      <p class="card-benefit">Teams detecteert op basis van het wifi-netwerk of iemand op kantoor of thuis werkt en past de werklocatie automatisch aan. Handig voor hybride roosters en aanwezigheidsregistratie.</p>
-      <div class="card-footer"><span class="rollout-date">📅 April 2026</span><div class="action-badge a-admin"><div class="action-dot"></div><span>IT-beheerder moet deze functie inschakelen</span></div></div>
-    </div>
-
-    <div class="card" data-s="soon" data-a="excel">
-      <div class="card-top"><div class="card-left"><span class="pill p-excel">Excel</span><span class="card-title">=COPILOT-formule: AI rechtstreeks in uw cel</span></div><span class="pill p-soon">Binnenkort</span></div>
-      <p class="card-benefit">Typ een gewone zin als formule, zoals 'Vat de aantekeningen in kolom B samen'. Excel voert dit uit en herberekent automatisch als de data wijzigt. Analysewerk dat vroeger uren kostte, is straks minuten werk.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Binnenkort</span><div class="action-badge a-none"><div class="action-dot"></div><span>Automatisch beschikbaar voor Copilot-gebruikers</span></div></div>
-    </div>
-
-    <div class="card" data-s="soon" data-a="powerpoint">
-      <div class="card-top"><div class="card-left"><span class="pill p-powerpoint">PowerPoint</span><span class="card-title">Agent Mode: presentaties aanpassen via chat</span></div><span class="pill p-soon">Binnenkort</span></div>
-      <p class="card-benefit">Stuur Copilot opdrachten zoals 'vereenvoudig deze slide' of 'voeg bedrijfsdata toe aan de inleiding'. De presentatie past zich aan terwijl de opmaak en stijl van uw deck behouden blijven.</p>
-      <div class="card-footer"><span class="rollout-date">📅 Binnenkort</span><div class="action-badge a-none"><div class="action-dot"></div><span>Automatisch beschikbaar voor Copilot-gebruikers</span></div></div>
-    </div>
-
-    <div class="card" data-s="soon" data-a="sharepoint">
-      <div class="card-top"><div class="card-left"><span class="pill p-sharepoint">SharePoint</span><span class="card-title">Vernieuwde startpagina met nieuws en resources</span></div><span class="pill p-soon">Binnenkort</span></div>
-      <p class="card-benefit">De SharePoint-startpagina krijgt een fris ontwerp met een verbeterd nieuws-overzicht en een duidelijk resources-gedeelte. Medewerkers vinden relevante informatie sneller.</p>
-      <div class="card-footer"><span class="rollout-date">📅 April 2026</span><div class="action-badge a-admin"><div class="action-dot"></div><span>IT-beheerder kan lay-out en inhoud configureren</span></div></div>
-    </div>
-  </div>
+  <div id="cards-root"></div>
 
 </div>
 
 <script>
-(function(){
-  var as='all', aa='all';
-
-  function applyFilters(){
-    var cards=document.querySelectorAll('.card');
-    var groups=document.querySelectorAll('.section-group');
-    var any=false;
-    for(var i=0;i<cards.length;i++){
-      var c=cards[i];
-      var sok=as==='all'||c.getAttribute('data-s')===as;
-      var aok=aa==='all'||c.getAttribute('data-a')===aa;
-      if(sok&&aok){c.classList.remove('gone');any=true;}
-      else c.classList.add('gone');
-    }
-    for(var j=0;j<groups.length;j++){
-      var g=groups[j];
-      g.classList[g.querySelectorAll('.card:not(.gone)').length===0?'add':'remove']('gone');
-    }
-    document.getElementById('empty-msg').classList[any?'remove':'add']('show');
+var ITEMS = [
+  {
+    app:"teams", status:"live",
+    title:"Facilitator: uw vergadering automatisch begeleid",
+    benefit:"Facilitator maakt een agenda aan, houdt de tijd bij, schrijft notities mee en maakt een actielijst in Planner — volledig automatisch tijdens de vergadering. Zo hoeft niemand meer handmatig te notuleren en gaan afspraken niet verloren.",
+    date:"Nu beschikbaar", action:"none", actionLabel:"Direct beschikbaar voor Copilot-gebruikers",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=facilitator"
+  },
+  {
+    app:"excel", status:"live",
+    title:"Agent Mode: laat Copilot uw spreadsheet verbeteren",
+    benefit:"Vraag Copilot in Excel om uw tabel op te ruimen, een grafiek te maken of berekeningen uit te voeren. Elke stap is zichtbaar en aanpasbaar. Geen Excel-kennis meer nodig voor routinetaken.",
+    date:"Nu beschikbaar", action:"none", actionLabel:"Direct beschikbaar voor Copilot-gebruikers",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=agent+mode+excel"
+  },
+  {
+    app:"word", status:"live",
+    title:"Agent Mode: Copilot schrijft en verbetert mee",
+    benefit:"Vraag Copilot om een sectie te schrijven, feedback samen te vatten of een concept bij te schaven. De AI stelt voor, vraagt om toelichting en wacht op uw goedkeuring. Ideaal voor rapporten, beleidsdocumenten of offertes.",
+    date:"Nu beschikbaar", action:"none", actionLabel:"Direct beschikbaar voor Copilot-gebruikers",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=agent+mode+word"
+  },
+  {
+    app:"teams", status:"rolling",
+    title:"Viva Engage-communities zichtbaar in Teams",
+    benefit:"Organisatiebrede communities (bijv. voor HR-nieuws of vakgroepen) zijn nu direct zichtbaar naast uw gewone Teams-kanalen. Medewerkers hoeven niet meer te wisselen tussen apps.",
+    date:"Maart 2026", action:"none", actionLabel:"Geen actie nodig, verschijnt automatisch",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=viva+engage+teams"
+  },
+  {
+    app:"sharepoint", status:"rolling",
+    title:"31 nieuwe paginasjablonen met verbeterd zoeken",
+    benefit:"Medewerkers die een nieuwe intranetpagina aanmaken, krijgen direct een galerij met 31 professionele sjablonen te zien. Pagina's maken gaat sneller en ziet er verzorgd uit, zonder grafisch ontwerper.",
+    date:"Maart–April 2026", action:"none", actionLabel:"Verschijnt automatisch bij aanmaken van nieuwe pagina's",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=sharepoint+page+templates"
+  },
+  {
+    app:"purview", status:"rolling",
+    title:"Waarschuwingen bij gevoelige informatie op mobiel",
+    benefit:"Medewerkers die via de Outlook-app gevoelige gegevens (zoals persoonsgegevens of financiële info) dreigen te delen, krijgen voortaan een melding. Dit helpt datalekken voorkomen zonder handmatig ingrijpen van de IT-afdeling.",
+    date:"Maart 2026", action:"admin", actionLabel:"IT-beheerder moet DLP-beleid activeren in Purview",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=DLP+outlook+mobile"
+  },
+  {
+    app:"copilot", status:"new",
+    title:"GPT-5.4 en GPT-5.3: slimmere en snellere AI-assistent",
+    benefit:"De AI-assistent in Microsoft 365 werkt nu met twee nieuwe modellen. GPT-5.4 denkt dieper na bij complexe vragen, GPT-5.3 geeft sneller antwoord bij eenvoudige taken. Medewerkers merken dat Copilot betere en meer bruikbare antwoorden geeft.",
+    date:"Maart 2026", action:"none", actionLabel:"Automatisch beschikbaar voor alle Copilot-gebruikers",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=GPT"
+  },
+  {
+    app:"copilot", status:"new",
+    title:"Wave 3: Copilot werkt zelfstandig in al uw apps",
+    benefit:"Copilot voert meerdere stappen achter elkaar uit in Word, Excel, PowerPoint, Outlook en de chat — zonder dat u elke stap apart aanstuurt. Denk aan: automatisch een rapport opstellen én versturen op basis van één opdracht.",
+    date:"Maart 2026", action:"none", actionLabel:"Automatisch beschikbaar voor M365 Copilot-licenties",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=copilot+wave"
+  },
+  {
+    app:"teams", status:"soon",
+    title:"Werklocatie automatisch bijwerken via wifi",
+    benefit:"Teams detecteert op basis van het wifi-netwerk of iemand op kantoor of thuis werkt en past de werklocatie automatisch aan. Handig voor hybride roosters en aanwezigheidsregistratie.",
+    date:"April 2026", action:"admin", actionLabel:"IT-beheerder moet deze functie inschakelen",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=work+location+wifi"
+  },
+  {
+    app:"excel", status:"soon",
+    title:"=COPILOT-formule: AI rechtstreeks in uw cel",
+    benefit:"Typ een gewone zin als formule, zoals 'Vat de aantekeningen in kolom B samen'. Excel voert dit uit en herberekent automatisch als de data wijzigt. Analysewerk dat vroeger uren kostte, is straks minuten werk.",
+    date:"Binnenkort", action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=COPILOT+function+excel"
+  },
+  {
+    app:"powerpoint", status:"soon",
+    title:"Agent Mode: presentaties aanpassen via chat",
+    benefit:"Stuur Copilot opdrachten zoals 'vereenvoudig deze slide' of 'voeg bedrijfsdata toe aan de inleiding'. De presentatie past zich aan terwijl de opmaak en stijl van uw deck behouden blijven.",
+    date:"Binnenkort", action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=agent+mode+powerpoint"
+  },
+  {
+    app:"sharepoint", status:"soon",
+    title:"Vernieuwde startpagina met nieuws en resources",
+    benefit:"De SharePoint-startpagina krijgt een fris ontwerp met een verbeterd nieuws-overzicht en een duidelijk resources-gedeelte. Medewerkers vinden relevante informatie sneller.",
+    date:"April 2026", action:"admin", actionLabel:"IT-beheerder kan lay-out en inhoud configureren",
+    link:"https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=sharepoint+home+site"
   }
+];
 
-  document.getElementById('sb').addEventListener('click',function(e){
-    if(!e.target.getAttribute('data-s'))return;
-    document.querySelectorAll('#sb .filter-btn').forEach(function(b){b.classList.remove('on');});
-    e.target.classList.add('on');
-    as=e.target.getAttribute('data-s');
-    applyFilters();
+var ORDER  = { live:0, rolling:1, new:2, soon:3 };
+var CONFIG = {
+  live:    { label:"Nu beschikbaar",     cls:"p-live",    heading:"Nu beschikbaar" },
+  rolling: { label:"In uitrol",          cls:"p-rolling", heading:"Wordt nu uitgerold" },
+  new:     { label:"Nieuw aangekondigd", cls:"p-new",     heading:"Nieuw aangekondigd" },
+  soon:    { label:"Binnenkort",         cls:"p-soon",    heading:"Binnenkort beschikbaar" }
+};
+var APP_LABELS = { copilot:"Copilot", teams:"Teams", excel:"Excel", word:"Word", powerpoint:"PowerPoint", sharepoint:"SharePoint", purview:"Purview" };
+
+var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+
+var as = 'all', aa = 'all';
+
+function render() {
+  var filtered = ITEMS.filter(function(i){ return (as==='all'||i.status===as) && (aa==='all'||i.app===aa); });
+  var sorted   = filtered.slice().sort(function(a,b){ return (ORDER[a.status]||9)-(ORDER[b.status]||9); });
+  var root     = document.getElementById('cards-root');
+  var empty    = document.getElementById('empty-msg');
+
+  if (sorted.length === 0) { root.innerHTML = ''; empty.classList.add('show'); return; }
+  empty.classList.remove('show');
+
+  var html = '', lastStatus = null;
+  sorted.forEach(function(item){
+    if (item.status !== lastStatus) {
+      html += '<div class="section-group"><div class="section-header">' + CONFIG[item.status].heading + '</div>';
+      lastStatus = item.status;
+    }
+    html += '<div class="card">'
+      + '<div class="card-top">'
+        + '<div class="card-left">'
+          + '<span class="pill p-' + item.app + '">' + APP_LABELS[item.app] + '</span>'
+          + '<span class="card-title">' + item.title + '</span>'
+        + '</div>'
+        + '<span class="pill ' + CONFIG[item.status].cls + '">' + CONFIG[item.status].label + '</span>'
+      + '</div>'
+      + '<p class="card-benefit">' + item.benefit + '</p>'
+      + '<div class="card-footer">'
+        + '<div class="card-footer-left">'
+          + '<span class="rollout-date">📅 ' + item.date + '</span>'
+          + '<div class="action-badge a-' + item.action + '"><div class="action-dot"></div><span>' + item.actionLabel + '</span></div>'
+        + '</div>'
+        + '<a class="ms-link" href="' + item.link + '" target="_blank" rel="noopener">' + LINK_ICON + ' Microsoft Roadmap</a>'
+      + '</div>'
+    + '</div>';
   });
 
-  document.getElementById('ab').addEventListener('click',function(e){
-    if(!e.target.getAttribute('data-a'))return;
-    document.querySelectorAll('#ab .filter-btn').forEach(function(b){
-      b.className=b.className.replace(/\s*(on|app-on-\w+)/g,'');
-    });
-    var a=e.target.getAttribute('data-a');
-    e.target.classList.add('on');
-    if(a!=='all')e.target.classList.add('app-on-'+a);
-    aa=a;
-    applyFilters();
+  // close open section-group divs — add closing tag per status group
+  html += '</div>';
+  root.innerHTML = html;
+}
+
+document.getElementById('sb').addEventListener('click', function(e){
+  if (!e.target.getAttribute('data-s')) return;
+  document.querySelectorAll('#sb .filter-btn').forEach(function(b){ b.classList.remove('on'); });
+  e.target.classList.add('on');
+  as = e.target.getAttribute('data-s');
+  render();
+});
+
+document.getElementById('ab').addEventListener('click', function(e){
+  if (!e.target.getAttribute('data-a')) return;
+  document.querySelectorAll('#ab .filter-btn').forEach(function(b){
+    b.className = b.className.replace(/\s*(on|app-on-\w+)/g, '');
   });
-})();
+  var a = e.target.getAttribute('data-a');
+  e.target.classList.add('on');
+  if (a !== 'all') e.target.classList.add('app-on-' + a);
+  aa = a;
+  render();
+});
+
+render();
 </script>
 </body>
 </html>
