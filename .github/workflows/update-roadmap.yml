@@ -15,61 +15,71 @@ jobs:
 
       - name: Microsoft 365 Roadmap CSV ophalen en filteren
         run: |
-          python3 - <<'EOF'
+          python3 << 'PYEOF'
           import urllib.request, csv, json, io, datetime
 
           URL = "https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv"
 
-          # Ophalen
+          APP_LABELS = {
+              "copilot":    "Copilot",
+              "teams":      "Teams",
+              "outlook":    "Outlook",
+              "excel":      "Excel",
+              "word":       "Word",
+              "powerpoint": "PowerPoint",
+              "sharepoint": "SharePoint",
+              "purview":    "Purview",
+              "other":      "Overig"
+          }
+
+          def app_key(p):
+              p = p.lower()
+              if "copilot"    in p: return "copilot"
+              if "teams"      in p: return "teams"
+              if "outlook"    in p: return "outlook"
+              if "excel"      in p: return "excel"
+              if "word"       in p: return "word"
+              if "powerpoint" in p: return "powerpoint"
+              if "sharepoint" in p: return "sharepoint"
+              if "purview"    in p: return "purview"
+              return "other"
+
+          def make_label(product, key):
+              label = product.split(",")[0].strip()
+              label = label.replace("Microsoft ", "").split("(")[0].strip()
+              if not label or len(label) > 30:
+                  label = APP_LABELS.get(key, "Overig")
+              return label
+
           req = urllib.request.Request(URL, headers={"User-Agent": "Mozilla/5.0"})
           with urllib.request.urlopen(req, timeout=30) as resp:
               raw = resp.read().decode("utf-8-sig")
 
-          # Parsen
           reader = csv.DictReader(io.StringIO(raw))
           items = []
           for row in reader:
               status = row.get("Status", "").strip().lower()
               cloud  = row.get("Tags - Cloud instance", "")
-              # Alleen Worldwide + In Development of Rolling Out
+
               if status not in ("in development", "rolling out"):
                   continue
               if "Worldwide (Standard Multi-Tenant)" not in cloud:
                   continue
 
               product = row.get("Tags - Product", "")
-              def app_key(p):
-                  p = p.lower()
-                  if "copilot" in p: return "copilot"
-                  if "teams"   in p: return "teams"
-                  if "outlook" in p: return "outlook"
-                  if "excel"   in p: return "excel"
-                  if "word"    in p: return "word"
-                  if "powerpoint" in p: return "powerpoint"
-                  if "sharepoint" in p: return "sharepoint"
-                  if "purview"    in p: return "purview"
-                  return "other"
-
-              # Kortere productnaam
-              prod_label = product.split(",")[0].strip()
-              prod_label = prod_label.replace("Microsoft ", "").split("(")[0].strip()
-              if len(prod_label) > 30:
-                  from {app_key(product)} import *  # fallback via labels below
-                  prod_label = {"copilot":"Copilot","teams":"Teams","outlook":"Outlook",
-                                "excel":"Excel","word":"Word","powerpoint":"PowerPoint",
-                                "sharepoint":"SharePoint","purview":"Purview"}.get(app_key(product),"Overig")
+              key     = app_key(product)
 
               items.append({
-                  "id":       int(row.get("Feature ID", 0) or 0),
-                  "title":    row.get("Description", "").strip(),
-                  "desc":     row.get("Details", "").strip(),
-                  "status":   "rolling" if "rolling" in status else "dev",
-                  "app":      app_key(product),
-                  "prodLabel": prod_label,
-                  "added":    row.get("Added to Roadmap", "").strip(),
-                  "modified": row.get("Last Modified", "").strip(),
-                  "release":  row.get("Release", "").strip(),
-                  "preview":  row.get("Preview", "").strip(),
+                  "id":        int(row.get("Feature ID", 0) or 0),
+                  "title":     row.get("Description", "").strip(),
+                  "desc":      row.get("Details", "").strip(),
+                  "status":    "rolling" if "rolling" in status else "dev",
+                  "app":       key,
+                  "prodLabel": make_label(product, key),
+                  "added":     row.get("Added to Roadmap", "").strip(),
+                  "modified":  row.get("Last Modified", "").strip(),
+                  "release":   row.get("Release", "").strip(),
+                  "preview":   row.get("Preview", "").strip(),
               })
 
           result = {
@@ -81,13 +91,13 @@ jobs:
           with open("data.json", "w", encoding="utf-8") as f:
               json.dump(result, f, ensure_ascii=False, indent=2)
 
-          print(f"✅ {len(items)} items opgeslagen in data.json")
-          EOF
+          print("Klaar: " + str(len(items)) + " items opgeslagen in data.json")
+          PYEOF
 
       - name: data.json committen
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git diff --cached --quiet || git commit -m "🔄 Roadmap bijgewerkt: $(date -u +'%Y-%m-%d')"
+          git diff --cached --quiet || git commit -m "Roadmap bijgewerkt: $(date -u +'%Y-%m-%d')"
           git push
