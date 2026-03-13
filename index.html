@@ -21,7 +21,6 @@
 }
 body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
 
-/* HEADER */
 .hdr { background:var(--surface); border-bottom:1px solid var(--border); padding:1.1rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; position:sticky; top:0; z-index:20; }
 .hdr h1 { font-size:17px; font-weight:600; }
 .hdr p  { font-size:12px; color:var(--muted); margin-top:2px; }
@@ -33,22 +32,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 #refresh-btn.loading svg { animation:spin 1s linear infinite; }
 @keyframes spin { to { transform:rotate(360deg); } }
 
-/* MAIN */
 .main { max-width:960px; margin:0 auto; padding:1.75rem 1.5rem 4rem; }
 
-/* FILTERS */
 .filter-row { display:flex; align-items:flex-start; gap:1.5rem; flex-wrap:wrap; margin-bottom:1rem; }
 .filter-group { flex:1; min-width:200px; }
 .filter-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--faint); margin-bottom:7px; }
 .filter-bar { display:flex; flex-wrap:wrap; gap:6px; }
 .fb { padding:5px 13px; border-radius:100px; border:1px solid var(--border-s); background:var(--surface); color:var(--muted); font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; transition:all .12s; }
 .fb:hover { background:var(--surface2); }
-.fb.on  { background:var(--text); color:#fff; border-color:transparent; }
-.fb.on-new   { background:var(--new-bg);    color:var(--new-t);    border-color:transparent; }
-.fb.on-roll  { background:var(--amber-bg);  color:var(--amber-t);  border-color:transparent; }
-.fb.on-dev   { background:var(--blue-bg);   color:var(--blue-t);   border-color:transparent; }
-
-/* APP filter ON colors */
+.fb.on { background:var(--text); color:#fff; border-color:transparent; }
 .fb.ao-copilot    { background:var(--purple-bg); color:var(--purple-t); border-color:transparent; }
 .fb.ao-teams      { background:var(--blue-bg);   color:var(--blue-t);   border-color:transparent; }
 .fb.ao-excel      { background:var(--green-bg);  color:var(--green-t);  border-color:transparent; }
@@ -60,32 +52,26 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 
 .divider { height:1px; background:var(--border); margin:1.25rem 0; }
 
-/* STATS BAR */
-.stats-bar { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:1.5rem; }
+.stats-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:1.5rem; align-items:center; }
 .stat-pill { font-size:12px; padding:4px 12px; border-radius:100px; }
-.stat-total   { background:var(--surface2);   color:var(--muted); }
-.stat-rolling { background:var(--amber-bg);   color:var(--amber-t); }
-.stat-dev     { background:var(--blue-bg);    color:var(--blue-t); }
-.stat-new     { background:var(--new-bg);     color:var(--new-t); }
+.stat-total   { background:var(--surface2); color:var(--muted); }
+.stat-rolling { background:var(--amber-bg); color:var(--amber-t); }
+.stat-dev     { background:var(--blue-bg);  color:var(--blue-t); }
+.stat-new     { background:var(--new-bg);   color:var(--new-t); }
 
-/* SECTION */
 .sec-hdr { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin:1.75rem 0 .75rem; padding-bottom:7px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
-.sec-count { font-size:11px; font-weight:500; color:var(--faint); background:var(--surface2); padding:2px 8px; border-radius:100px; }
+.sec-count { font-size:11px; font-weight:500; background:var(--surface2); color:var(--faint); padding:2px 8px; border-radius:100px; }
 
-/* CARD */
 .card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; margin-bottom:8px; transition:border-color .15s; }
 .card:hover { border-color:var(--border-s); }
-.card.gone { display:none; }
-.card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; margin-bottom:8px; }
-.card-head-left { display:flex; align-items:flex-start; gap:8px; flex:1; min-width:0; flex-wrap:wrap; }
-.card-title { font-size:14px; font-weight:500; line-height:1.4; flex:1; min-width:180px; }
+.card-pills { display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:8px; }
+.card-title { font-size:14px; font-weight:500; line-height:1.4; margin-bottom:7px; }
 .card-desc  { font-size:12px; color:var(--muted); line-height:1.65; margin-bottom:10px; }
 .card-foot  { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-.card-foot-left { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.card-dates { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
 .date-info  { font-size:11px; color:var(--faint); }
 
-/* PILLS */
-.pill { font-size:11px; font-weight:600; padding:3px 9px; border-radius:100px; white-space:nowrap; flex-shrink:0; }
+.pill { font-size:11px; font-weight:600; padding:3px 9px; border-radius:100px; white-space:nowrap; }
 .p-copilot    { background:var(--purple-bg); color:var(--purple-t); }
 .p-teams      { background:var(--blue-bg);   color:var(--blue-t); }
 .p-excel      { background:var(--green-bg);  color:var(--green-t); }
@@ -98,22 +84,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 .p-rolling    { background:var(--amber-bg);  color:var(--amber-t); }
 .p-dev        { background:var(--blue-bg);   color:var(--blue-t); }
 
-/* NEW BADGE */
-.new-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; background:var(--new-bg); color:var(--new-t); padding:3px 8px; border-radius:100px; white-space:nowrap; flex-shrink:0; }
-.new-badge svg { flex-shrink:0; }
+.new-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; background:var(--new-bg); color:var(--new-t); padding:3px 8px; border-radius:100px; }
 
-/* MS LINK */
-.ms-link { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--blue-t); text-decoration:none; padding:3px 9px; border:1px solid var(--blue-bg); border-radius:100px; background:var(--blue-bg); transition:opacity .12s; white-space:nowrap; }
+.ms-link { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--blue-t); text-decoration:none; padding:3px 9px; border-radius:100px; background:var(--blue-bg); transition:opacity .12s; white-space:nowrap; }
 .ms-link:hover { opacity:.75; }
 
-/* LOADING / ERROR */
 .state-box { text-align:center; padding:3.5rem 1rem; color:var(--muted); font-size:14px; }
 .state-box .icon { font-size:36px; margin-bottom:.75rem; }
 .state-box h3 { font-size:15px; font-weight:600; color:var(--text); margin-bottom:.5rem; }
-.state-box code { font-size:11px; background:var(--surface2); padding:2px 6px; border-radius:4px; }
 .spinner { width:28px; height:28px; border:3px solid var(--border); border-top-color:var(--blue-t); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 1rem; }
-
-.section-group.gone { display:none; }
 </style>
 </head>
 <body>
@@ -133,8 +112,6 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 </div>
 
 <div class="main">
-
-  <!-- STATUS FILTER -->
   <div class="filter-row">
     <div class="filter-group">
       <div class="filter-label">Status</div>
@@ -144,9 +121,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
         <button class="fb" data-s="dev">In development</button>
       </div>
     </div>
-
     <div class="filter-group">
-      <div class="filter-label">Nieuw / Bekend</div>
+      <div class="filter-label">Nieuw / Al bekend</div>
       <div class="filter-bar" id="nf">
         <button class="fb on" data-n="all">Alles</button>
         <button class="fb" data-n="new">⭐ Nieuw in lijst</button>
@@ -154,19 +130,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
       </div>
     </div>
   </div>
-
   <div class="filter-row">
     <div class="filter-group">
-      <div class="filter-label">Toegevoegd</div>
+      <div class="filter-label">Toegevoegd aan roadmap</div>
       <div class="filter-bar" id="af">
         <button class="fb on" data-a="all">Alle</button>
         <button class="fb" data-a="aw">Deze week</button>
         <button class="fb" data-a="am">Deze maand</button>
       </div>
     </div>
-
     <div class="filter-group">
-      <div class="filter-label">Gewijzigd</div>
+      <div class="filter-label">Laatst gewijzigd</div>
       <div class="filter-bar" id="mf">
         <button class="fb on" data-m="all">Alle</button>
         <button class="fb" data-m="mw">Deze week</button>
@@ -174,9 +148,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
       </div>
     </div>
   </div>
-
   <div class="filter-row">
-    <div class="filter-group" style="max-width:100%;">
+    <div class="filter-group" style="max-width:100%">
       <div class="filter-label">Applicatie</div>
       <div class="filter-bar" id="apf">
         <button class="fb on" data-p="all">Alle apps</button>
@@ -196,230 +169,225 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
   <div class="divider"></div>
   <div id="stats-bar" class="stats-bar"></div>
   <div id="root"></div>
-
 </div>
 
 <script>
-// ── Known IDs from previous dashboard version ───────────────────────────────
-var PREV_IDS = new Set([478611,542182,499428,513274,490565,491016,557276,499659,557983,488800]);
+var BASE_IDS = [478611,542182,499428,513274,490565,491016,557276,499659,557983,488800];
 
-// ── State ─────────────────────────────────────────────────────────────────────
-var ALL = [];
-var fS = 'all', fN = 'all', fA = 'all', fM = 'all', fP = 'all';
-
-// Track which IDs were seen last session via localStorage
-function getStoredIds() {
-  try { var v = localStorage.getItem('m365_seen_ids'); return v ? new Set(JSON.parse(v)) : new Set(PREV_IDS); }
-  catch(e) { return new Set(PREV_IDS); }
+function getSeenIds() {
+  try { var v = localStorage.getItem('m365_seen_v2'); return v ? new Set(JSON.parse(v)) : new Set(BASE_IDS); }
+  catch(e) { return new Set(BASE_IDS); }
 }
-function storeIds(ids) {
-  try { localStorage.setItem('m365_seen_ids', JSON.stringify([...ids])); } catch(e){}
+function saveSeenIds(s) {
+  try { localStorage.setItem('m365_seen_v2', JSON.stringify([...s])); } catch(e) {}
 }
-var SEEN_IDS = getStoredIds();
+var SEEN = getSeenIds();
+var ALL  = [];
+var fS='all', fN='all', fA='all', fM='all', fP='all';
 
-// ── Product → key mapping ──────────────────────────────────────────────────
-function appKey(products) {
-  if (!products || !products.length) return 'other';
-  var names = products.map(function(p){ return (p.tagName||'').toLowerCase(); }).join(' ');
-  if (names.includes('copilot')) return 'copilot';
-  if (names.includes('teams'))   return 'teams';
-  if (names.includes('outlook')) return 'outlook';
-  if (names.includes('excel'))   return 'excel';
-  if (names.includes('word'))    return 'word';
-  if (names.includes('powerpoint')) return 'powerpoint';
-  if (names.includes('sharepoint')) return 'sharepoint';
-  if (names.includes('purview')) return 'purview';
+// Minimal CSV parser — handles quoted fields with embedded commas/newlines
+function parseCSV(txt) {
+  var rows=[], row=[], field='', inQ=false;
+  for (var i=0; i<txt.length; i++) {
+    var c=txt[i], nc=txt[i+1];
+    if (inQ) {
+      if (c==='"' && nc==='"') { field+='"'; i++; }
+      else if (c==='"') { inQ=false; }
+      else { field+=c; }
+    } else {
+      if (c==='"') { inQ=true; }
+      else if (c===',') { row.push(field); field=''; }
+      else if (c==='\n') { row.push(field); rows.push(row); row=[]; field=''; }
+      else if (c!=='\r') { field+=c; }
+    }
+  }
+  if (field || row.length) { row.push(field); rows.push(row); }
+  return rows;
+}
+
+function appKey(prod) {
+  var p=(prod||'').toLowerCase();
+  if (p.includes('copilot'))    return 'copilot';
+  if (p.includes('teams'))      return 'teams';
+  if (p.includes('outlook'))    return 'outlook';
+  if (p.includes('excel'))      return 'excel';
+  if (p.includes('word'))       return 'word';
+  if (p.includes('powerpoint')) return 'powerpoint';
+  if (p.includes('sharepoint')) return 'sharepoint';
+  if (p.includes('purview'))    return 'purview';
   return 'other';
 }
-var APP_LABELS = { copilot:'Copilot', teams:'Teams', outlook:'Outlook', excel:'Excel', word:'Word', powerpoint:'PowerPoint', sharepoint:'SharePoint', purview:'Purview', other:'Overig' };
+var APLBL = {copilot:'Copilot',teams:'Teams',outlook:'Outlook',excel:'Excel',word:'Word',powerpoint:'PowerPoint',sharepoint:'SharePoint',purview:'Purview',other:'Overig'};
+var APCLS = {copilot:'p-copilot',teams:'p-teams',outlook:'p-outlook',excel:'p-excel',word:'p-word',powerpoint:'p-powerpoint',sharepoint:'p-sharepoint',purview:'p-purview',other:'p-other'};
 
-// ── Date helpers ───────────────────────────────────────────────────────────
-function daysAgo(d) { return (Date.now() - new Date(d).getTime()) / 86400000; }
-var LINK_ICON = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
-var STAR_ICON = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>';
+function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/864e5 : 9999; }
+function fmtD(d)    { return d ? new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}) : ''; }
+function esc(s)     { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-function fmt(d) {
-  if (!d) return '—';
-  return new Date(d).toLocaleDateString('nl-NL', {day:'numeric', month:'short', year:'numeric'});
-}
+var LINK = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-// ── Fetch ──────────────────────────────────────────────────────────────────
-var API = 'https://www.microsoft.com/releasecommunications/api/v1/m365';
-var PROXY = 'https://corsproxy.io/?' + encodeURIComponent(API);
+var CSVURL   = 'https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv';
+var PROXYURL = 'https://corsproxy.io/?url=' + encodeURIComponent(CSVURL);
 
 function loadData() {
-  var btn = document.getElementById('refresh-btn');
+  var btn=document.getElementById('refresh-btn');
   btn.classList.add('loading');
-  document.getElementById('root').innerHTML = '<div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3><p style="font-size:12px;margin-top:.5rem;">Live data van Microsoft</p></div>';
-  document.getElementById('stats-bar').innerHTML = '';
+  document.getElementById('root').innerHTML='<div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3><p style="font-size:12px;margin-top:.5rem;color:var(--faint)">Live data van Microsoft</p></div>';
+  document.getElementById('stats-bar').innerHTML='';
 
-  // Try direct first, then proxy
-  fetch(API, {mode:'cors'})
-    .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
-    .catch(function(){ return fetch(PROXY).then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); }); })
-    .then(handleData)
+  fetch(CSVURL,{mode:'cors'})
+    .then(function(r){ if(!r.ok) throw 0; return r.text(); })
+    .catch(function(){
+      return fetch(PROXYURL).then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); });
+    })
+    .then(handleCSV)
     .catch(showError)
     .finally(function(){ btn.classList.remove('loading'); });
 }
 
-function handleData(raw) {
-  var now = new Date().toLocaleString('nl-NL', {day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
-  document.getElementById('last-updated').textContent = 'Bijgewerkt: ' + now;
+function handleCSV(txt) {
+  var rows=parseCSV(txt);
+  if (rows.length<2) { showError(new Error('Lege respons')); return; }
 
-  ALL = raw.filter(function(f){
-    var s = (f.status||'').toLowerCase();
-    return s === 'rolling out' || s === 'in development';
-  }).map(function(f){
-    var products = (f.tagFiltersV2 || f.TagsContainer || {}).products || f.products || [];
-    // Normalize products array
-    if (Array.isArray(f.tagFiltersV2)) {
-      products = f.tagFiltersV2.filter(function(t){ return t.filterType === 'Product'; });
-    } else if (f.TagsContainer && Array.isArray(f.TagsContainer.products)) {
-      products = f.TagsContainer.products;
-    }
+  // Build header index
+  var hdr=rows[0], idx={};
+  hdr.forEach(function(h,i){ idx[h.trim().replace(/^\uFEFF/,'')]=i; });
+  var iId   = idx['Feature ID']??0;
+  var iDesc = idx['Description']??1;
+  var iDet  = idx['Details']??2;
+  var iStat = idx['Status']??3;
+  var iProd = idx['Tags - Product']??5;
+  var iAdd  = idx['Added to Roadmap']??9;
+  var iMod  = idx['Last Modified']??10;
+  var iRel  = idx['Release']??12;
+
+  ALL = rows.slice(1).filter(function(r){
+    if (r.length<4) return false;
+    var s=(r[iStat]||'').trim().toLowerCase();
+    return s==='rolling out'||s==='in development';
+  }).map(function(r){
+    var id  = parseInt(r[iId])||0;
+    var st  = (r[iStat]||'').toLowerCase().includes('rolling')?'rolling':'dev';
+    var app = appKey(r[iProd]||'');
+    var pl  = (r[iProd]||'').split(',')[0].trim().replace(/^Microsoft\s+/i,'').replace(/\s*\(.*\)$/,'').trim();
+    if (!pl||pl.length>28) pl=APLBL[app];
     return {
-      id:         f.id || f.Id || 0,
-      title:      f.title || f.Title || '(geen titel)',
-      desc:       f.description || f.Description || '',
-      status:     (f.status||'').toLowerCase().includes('rolling') ? 'rolling' : 'dev',
-      created:    f.publicDisclosureAvailabilityDate || f.created || f.Created || null,
-      modified:   f.modified || f.Modified || null,
-      products:   products,
-      app:        appKey(products),
-      isNew:      !SEEN_IDS.has(f.id || f.Id || 0),
+      id:id, title:(r[iDesc]||'').trim(), desc:(r[iDet]||'').trim(),
+      status:st, app:app, prodLabel:pl,
+      created:(r[iAdd]||'').trim(), modified:(r[iMod]||'').trim(), release:(r[iRel]||'').trim(),
+      isNew:!SEEN.has(id)
     };
   });
 
-  // Mark all current IDs as seen
-  var currentIds = ALL.map(function(f){ return f.id; });
-  storeIds(new Set(currentIds));
+  ALL.forEach(function(f){ SEEN.add(f.id); });
+  saveSeenIds(SEEN);
 
+  var now=new Date().toLocaleString('nl-NL',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('last-updated').textContent='Bijgewerkt: '+now;
   render();
 }
 
 function showError(err) {
-  document.getElementById('root').innerHTML =
-    '<div class="state-box">' +
-    '<div class="icon">⚠️</div>' +
-    '<h3>Kon geen verbinding maken</h3>' +
-    '<p>De Microsoft API kon niet bereikt worden (mogelijk geblokkeerd door netwerk of browser).<br>' +
-    'Probeer de pagina te vernieuwen of open deze in een andere browser.</p>' +
-    '<p style="margin-top:.75rem;font-size:11px;color:var(--faint);">API: <code>releasecommunications/api/v1/m365</code></p>' +
+  document.getElementById('root').innerHTML=
+    '<div class="state-box">'+
+    '<div class="icon">⚠️</div>'+
+    '<h3>Kon geen verbinding maken</h3>'+
+    '<p style="max-width:440px;margin:.5rem auto 0;line-height:1.6">'+
+    'De Microsoft roadmap-API is niet bereikbaar vanuit deze browser.<br>'+
+    '<strong>Mogelijke oorzaken:</strong><br>'+
+    '• CORS-beveiliging in de browser blokkeert het verzoek<br>'+
+    '• Bedrijfsnetwerk of firewall blokkeert de API<br><br>'+
+    '<strong>Oplossingen:</strong><br>'+
+    '• Probeer een andere browser (Chrome of Edge)<br>'+
+    '• Open de pagina buiten het bedrijfsnetwerk<br>'+
+    '• Of bekijk de data direct op <a href="https://www.microsoft.com/nl-nl/microsoft-365/roadmap" target="_blank" style="color:var(--blue-t)">microsoft.com/roadmap</a>'+
+    '</p>'+
+    '<p style="margin-top:1rem;font-size:11px;color:var(--faint)">'+esc(String(err))+'</p>'+
     '</div>';
 }
 
-// ── Render ─────────────────────────────────────────────────────────────────
 function render() {
-  var now = Date.now();
-  var week = 7, month = 31;
-
-  var filtered = ALL.filter(function(f){
-    if (fS !== 'all' && f.status !== fS) return false;
-    if (fN === 'new'   && !f.isNew) return false;
-    if (fN === 'known' &&  f.isNew) return false;
-    if (fA === 'aw' && daysAgo(f.created) > week)  return false;
-    if (fA === 'am' && daysAgo(f.created) > month) return false;
-    if (fM === 'mw' && daysAgo(f.modified) > week)  return false;
-    if (fM === 'mm' && daysAgo(f.modified) > month) return false;
-    if (fP !== 'all' && f.app !== fP) return false;
+  var f=ALL.filter(function(item){
+    if (fS!=='all' && item.status!==fS)          return false;
+    if (fN==='new'   && !item.isNew)             return false;
+    if (fN==='known' &&  item.isNew)             return false;
+    if (fA==='aw' && daysAgo(item.created)>7)    return false;
+    if (fA==='am' && daysAgo(item.created)>31)   return false;
+    if (fM==='mw' && daysAgo(item.modified)>7)   return false;
+    if (fM==='mm' && daysAgo(item.modified)>31)  return false;
+    if (fP!=='all' && item.app!==fP)             return false;
     return true;
   });
 
-  var rolling = filtered.filter(function(f){ return f.status==='rolling'; });
-  var dev     = filtered.filter(function(f){ return f.status==='dev'; });
-  var newCount= filtered.filter(function(f){ return f.isNew; }).length;
+  var rolling=f.filter(function(i){return i.status==='rolling';});
+  var dev=f.filter(function(i){return i.status==='dev';});
+  var nc=f.filter(function(i){return i.isNew;}).length;
 
-  // Stats bar
-  document.getElementById('stats-bar').innerHTML =
-    '<span class="stat-pill stat-total">' + filtered.length + ' items</span>' +
-    '<span class="stat-pill stat-rolling">' + rolling.length + ' rolling out</span>' +
-    '<span class="stat-pill stat-dev">'     + dev.length     + ' in development</span>' +
-    (newCount > 0 ? '<span class="stat-pill stat-new">⭐ ' + newCount + ' nieuw</span>' : '');
+  document.getElementById('stats-bar').innerHTML=
+    '<span class="stat-pill stat-total">'+f.length+' items</span>'+
+    '<span class="stat-pill stat-rolling">'+rolling.length+' rolling out</span>'+
+    '<span class="stat-pill stat-dev">'+dev.length+' in development</span>'+
+    (nc>0?'<span class="stat-pill stat-new">⭐ '+nc+' nieuw</span>':'');
 
-  if (filtered.length === 0) {
-    document.getElementById('root').innerHTML = '<div class="state-box"><div class="icon">🔍</div><h3>Geen resultaten</h3><p>Pas de filters aan om items te zien.</p></div>';
+  if (!f.length) {
+    document.getElementById('root').innerHTML='<div class="state-box"><div class="icon">🔍</div><h3>Geen resultaten</h3><p>Pas de filters aan.</p></div>';
     return;
   }
 
-  function renderSection(items, statusKey, label) {
+  function sec(items, emoji, lbl) {
     if (!items.length) return '';
-    var cards = items.map(function(f){
-      var appCls  = 'p-' + f.app;
-      var statCls = f.status === 'rolling' ? 'p-rolling' : 'p-dev';
-      var statLbl = f.status === 'rolling' ? 'Rolling out' : 'In development';
-      var newBadge = f.isNew
-        ? '<span class="new-badge">' + STAR_ICON + ' Nieuw</span>'
-        : '';
-      var productNames = [];
-      if (Array.isArray(f.products)) {
-        f.products.forEach(function(p){ if(p.tagName) productNames.push(p.tagName); });
-      }
-      var productLabel = productNames.length ? productNames[0].replace('Microsoft ','') : APP_LABELS[f.app];
-
-      var createdStr  = f.created  ? 'Toegevoegd: ' + fmt(f.created)  : '';
-      var modifiedStr = f.modified ? 'Gewijzigd: '  + fmt(f.modified) : '';
-
-      return '<div class="card">' +
-        '<div class="card-head">' +
-          '<div class="card-head-left">' +
-            '<span class="pill ' + appCls  + '">' + productLabel + '</span>' +
-            '<span class="pill ' + statCls + '">' + statLbl + '</span>' +
-            (newBadge) +
-          '</div>' +
-        '</div>' +
-        '<div class="card-title" style="margin-bottom:8px;">' + esc(f.title) + '</div>' +
-        '<div class="card-desc">' + esc(f.desc).substring(0,400) + (f.desc.length>400?'…':'') + '</div>' +
-        '<div class="card-foot">' +
-          '<div class="card-foot-left">' +
-            (createdStr  ? '<span class="date-info">📅 ' + createdStr  + '</span>' : '') +
-            (modifiedStr ? '<span class="date-info">✏️ ' + modifiedStr + '</span>' : '') +
-          '</div>' +
-          '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + f.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + f.id + '</a>' +
-        '</div>' +
+    var cards=items.map(function(item){
+      var d=item.desc.length>360?item.desc.slice(0,360)+'…':item.desc;
+      var dates=[];
+      if (item.created)  dates.push('<span class="date-info">📅 Toegevoegd: '+fmtD(item.created)+'</span>');
+      if (item.modified) dates.push('<span class="date-info">✏️ Gewijzigd: '+fmtD(item.modified)+'</span>');
+      if (item.release)  dates.push('<span class="date-info">🚀 Release: '+esc(item.release)+'</span>');
+      return '<div class="card">'+
+        '<div class="card-pills">'+
+          '<span class="pill '+APCLS[item.app]+'">'+esc(item.prodLabel)+'</span>'+
+          '<span class="pill '+(item.status==='rolling'?'p-rolling':'p-dev')+'">'+(item.status==='rolling'?'Rolling out':'In development')+'</span>'+
+          (item.isNew?'<span class="new-badge">⭐ Nieuw</span>':'')+
+        '</div>'+
+        '<div class="card-title">'+esc(item.title)+'</div>'+
+        (d?'<div class="card-desc">'+esc(d)+'</div>':'')+
+        '<div class="card-foot">'+
+          '<div class="card-dates">'+dates.join('')+'</div>'+
+          '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener">'+LINK+' ID '+item.id+'</a>'+
+        '</div>'+
       '</div>';
     }).join('');
-
-    return '<div class="section-group">' +
-      '<div class="sec-hdr"><span>' + label + '</span><span class="sec-count">' + items.length + '</span></div>' +
-      cards +
+    return '<div>'+
+      '<div class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></div>'+
+      cards+
     '</div>';
   }
 
-  document.getElementById('root').innerHTML =
-    renderSection(rolling, 'rolling', '🟡 Rolling out — nu in uitrol') +
-    renderSection(dev,     'dev',     '🔵 In development — in ontwikkeling');
+  document.getElementById('root').innerHTML=
+    sec(rolling,'🟡','Rolling out — nu in uitrol')+
+    sec(dev,'🔵','In development — in ontwikkeling');
 }
 
-function esc(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
-
-// ── Filter wiring ──────────────────────────────────────────────────────────
-function wire(barId, key, valAttr, onClass) {
-  document.getElementById(barId).addEventListener('click', function(e){
-    if (!e.target.hasAttribute(valAttr)) return;
-    var v = e.target.getAttribute(valAttr);
-    document.querySelectorAll('#'+barId+' .fb').forEach(function(b){
-      b.className = 'fb';
-    });
-    e.target.classList.add('on');
-    if (onClass && v !== 'all') e.target.classList.add(onClass + v);
-    if (key==='fS') fS=v;
-    else if (key==='fN') fN=v;
-    else if (key==='fA') fA=v;
-    else if (key==='fM') fM=v;
-    else if (key==='fP') fP=v;
+function wire(id, prop, attr, cls) {
+  document.getElementById(id).addEventListener('click',function(e){
+    var t=e.target.closest('['+attr+']'); if (!t) return;
+    document.querySelectorAll('#'+id+' .fb').forEach(function(b){b.className='fb';});
+    var v=t.getAttribute(attr);
+    t.classList.add('on');
+    if (cls && v!=='all') t.classList.add(cls+v);
+    if      (prop==='fS') fS=v;
+    else if (prop==='fN') fN=v;
+    else if (prop==='fA') fA=v;
+    else if (prop==='fM') fM=v;
+    else if (prop==='fP') fP=v;
     render();
   });
 }
+wire('sf','fS','data-s');
+wire('nf','fN','data-n');
+wire('af','fA','data-a');
+wire('mf','fM','data-m');
+wire('apf','fP','data-p','ao-');
 
-wire('sf',  'fS', 'data-s');
-wire('nf',  'fN', 'data-n');
-wire('af',  'fA', 'data-a');
-wire('mf',  'fM', 'data-m');
-wire('apf', 'fP', 'data-p', 'ao-');
-
-// ── Auto-load on open ──────────────────────────────────────────────────────
 loadData();
 </script>
 </body>
