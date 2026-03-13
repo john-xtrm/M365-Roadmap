@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Microsoft 365 Roadmap — Week 12 maart 2026</title>
+<title>Microsoft 365 Roadmap</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -22,9 +22,10 @@
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
   .hdr { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
-  .hdr h1 { font-size: 18px; font-weight: 600; }
-  .hdr p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .hdr-date { font-size: 12px; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
+  .hdr-left h1 { font-size: 18px; font-weight: 600; }
+  .hdr-left p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .hdr-right { display: flex; align-items: center; gap: 10px; }
+  #last-updated { font-size: 12px; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
 
   .main { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
@@ -68,9 +69,6 @@
 
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color .15s; }
   .card:hover { border-color: var(--border-s); }
-  .card.gone { display: none; }
-  .section-group.gone { display: none; }
-
   .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
   .card-title { font-size: 15px; font-weight: 500; line-height: 1.4; margin-bottom: 7px; }
   .card-desc  { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
@@ -94,6 +92,11 @@
   .ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue-t); text-decoration: none; padding: 4px 10px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; }
   .ms-link:hover { opacity: .75; }
 
+  .state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
+  .state-box h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
+  .spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
   #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
   #empty-msg.show { display: block; }
 </style>
@@ -101,11 +104,13 @@
 <body>
 
 <div class="hdr">
-  <div>
+  <div class="hdr-left">
     <h1>Microsoft 365 Roadmap</h1>
-    <p>In ontwikkeling &amp; Wordt uitgerold — week van 12 maart 2026</p>
+    <p>In ontwikkeling &amp; Wordt uitgerold — live via Microsoft</p>
   </div>
-  <span class="hdr-date">Bron: microsoft.com/microsoft-365/roadmap</span>
+  <div class="hdr-right">
+    <span id="last-updated">Laden…</span>
+  </div>
 </div>
 
 <div class="main">
@@ -122,11 +127,12 @@
       <div class="filter-label">Nieuw / Al bekend</div>
       <div class="filter-bar" id="nf">
         <button class="fb on" data-n="all">Alles</button>
-        <button class="fb" data-n="new">⭐ Nieuw in lijst</button>
+        <button class="fb" data-n="new">⭐ Nieuw deze week</button>
         <button class="fb" data-n="known">Al bekend</button>
       </div>
     </div>
   </div>
+
   <div class="filter-row">
     <div class="filter-group">
       <div class="filter-label">Toegevoegd aan roadmap</div>
@@ -145,6 +151,7 @@
       </div>
     </div>
   </div>
+
   <div class="filter-bottom">
     <div>
       <div class="filter-label">Applicatie</div>
@@ -164,6 +171,7 @@
       <select id="sort-select" onchange="render()">
         <option value="release-asc">Releasedatum: nieuw → oud</option>
         <option value="release-desc">Releasedatum: oud → nieuw</option>
+        <option value="modified-desc">Laatst gewijzigd</option>
         <option value="status">Status</option>
       </select>
     </div>
@@ -182,197 +190,23 @@
   </div>
 
   <div id="stats-bar" class="stats-bar"></div>
-  <div id="empty-msg">Geen updates gevonden voor deze filters.</div>
-  <div id="cards-root"></div>
+  <div id="root"><div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3></div></div>
+  <div id="empty-msg">Geen items gevonden voor deze filters.</div>
 </div>
 
 <script>
-// Datums: added + modified zijn officiële Microsoft-datums (uit releasecommunications/api/v2/m365)
-// isNew: true = toegevoegd ná de vorige editie (week van 5 maart 2026)
-var ITEMS = [
+var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-  // ── WORDT UITGEROLD ─────────────────────────────────────────────────────
-  { id:548643, status:"rolling", app:"copilot",
-    title:"AI-vaardigheidsinferencing voor Microsoft 365 E3/E5-gebruikers",
-    desc:"People Skills breidt AI-gestuurde vaardigheidsherkenning uit naar Microsoft 365 E3- en E5-gebruikers. Eerder was dit alleen beschikbaar voor Copilot- en Viva-licenties. Beheerders kunnen dit inschakelen via het M365-beheercentrum.",
-    release:"Februari 2026", added:"2026-01-16", modified:"2026-02-03", isNew:false,
-    action:"admin", actionLabel:"IT-beheerder schakelt in via M365 Admin Center" },
-
-  { id:547825, status:"rolling", app:"teams",
-    title:"Historische rapportage in Queues-app ondersteunt 45 dagen",
-    desc:"Historische rapportage in de Queues-app ondersteunt nu 45 dagen aan data. Standaard 7 dagen, aanpasbaar tot 45 dagen. Handig voor bredere trendanalyses van wachtrijen.",
-    release:"Februari 2026", added:"2026-01-15", modified:"2026-02-05", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:545895, status:"rolling", app:"outlook",
-    title:"Vergaderverzoek opslaan als concept op iOS",
-    desc:"Gebruikers kunnen een vergaderverzoek beginnen en later verder invullen zonder het direct te versturen. Zo blijft plannen flexibel ook onderweg.",
-    release:"Januari 2026", added:"2026-01-13", modified:"2026-01-28", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  // ── IN ONTWIKKELING ──────────────────────────────────────────────────────
-  { id:555857, status:"dev", app:"teams",
-    title:"Gevoeligheidslabels automatisch overnemen in Loop-vergadernotities",
-    desc:"Loop-vergadernotities nemen automatisch het gevoeligheidslabel van de vergadering over. Zo zijn encryptie, toegangscontrole en gegevensverwerking direct van toepassing op de notities — inclusief Copilot-antwoorden.",
-    release:"April 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"admin", actionLabel:"IT-beheerder schakelt labelovererving in via beleid" },
-
-  { id:555856, status:"dev", app:"teams",
-    title:"Nieuwe instellingen voor snelweergaven in de chatlijst",
-    desc:"Gebruikers kunnen instellen wanneer snelweergaven (mentions, gevolgde threads) boven in de chat- en kanalenlijst worden getoond: altijd, nooit, of alleen bij ongelezen berichten.",
-    release:"April 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"user", actionLabel:"Gebruiker past instelling aan in Teams" },
-
-  { id:555239, status:"dev", app:"teams",
-    title:"Annotaties op gedeeld applicatievenster in Teams",
-    desc:"Presentatoren kunnen één applicatievenster delen en deelnemers direct op die inhoud laten annoteren — zonder het volledige bureaublad te tonen. Ideaal voor trainingen, workshops en klantgesprekken.",
-    release:"Maart 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:555233, status:"dev", app:"outlook",
-    title:"Beantwoorden en doorsturen vanuit .eml-bijlagen op iOS",
-    desc:"Gebruikers zien nu Beantwoorden, Allen Beantwoorden en Doorsturen wanneer ze een .eml-bijlage openen in Outlook op iOS.",
-    release:"Maart 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:554927, status:"dev", app:"teams",
-    title:"Recentelijk gebruikte emoji's synchroniseren tussen apparaten",
-    desc:"Recentelijk gebruikte emoji's en reacties synchroniseren tussen Teams op desktop en mobiel. Zo zijn favoriete reacties altijd en overal direct beschikbaar.",
-    release:"Maart 2026", added:"2026-02-05", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:554926, status:"dev", app:"teams",
-    title:"Audio Recap ondersteunt 8 nieuwe talen",
-    desc:"Audio Recap in Teams ondersteunt nu Chinees, Engels, Frans, Duits, Italiaans, Japans, Portugees en Spaans. Meer medewerkers lezen vergadersamenvattingen in hun eigen taal.",
-    release:"Maart 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:554924, status:"dev", app:"teams",
-    title:"Verbeterde afbeeldingsviewer: scrollen en terug naar origineel bericht",
-    desc:"Gebruikers kunnen scrollen door alle eerder gedeelde afbeeldingen in een gesprek en direct naar het originele bericht springen via een koptekstoptie.",
-    release:"Maart 2026", added:"2026-02-05", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:554936, status:"dev", app:"outlook",
-    title:"Copilot Chat beschikbaar in gedeelde en gedelegeerde postvakken",
-    desc:"Gebruikers van gedeelde postvakken en gedelegeerden met volledige toegang kunnen nu Copilot Chat gebruiken vanuit het gedeelde of gedelegeerde postvak in de nieuwe Outlook.",
-    release:"Maart 2026", added:"2026-02-05", modified:"2026-02-05", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers" },
-
-  { id:553220, status:"dev", app:"sharepoint",
-    title:"Beheerbeleid voor vervaldatum van 'Mensen in uw organisatie'-links",
-    desc:"Beheerders kunnen organisatiebrede regels instellen om interne deellinks automatisch te laten verlopen na een ingestelde periode. Zo behoudt de organisatie meer controle over wie toegang heeft tot gedeelde inhoud.",
-    release:"Juni 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"admin", actionLabel:"IT-beheerder configureert vervalbeleid in SharePoint" },
-
-  { id:553225, status:"dev", app:"other",
-    title:"Nieuwe kaartweergave voor ruimte reserveren in Places Finder",
-    desc:"De ruimtereserveringservaring in Outlook voor Windows, Outlook voor het web en Teams krijgt een kaartweergave in Places Finder. Hiermee vinden medewerkers sneller de juiste ruimte op de juiste locatie.",
-    release:"Augustus 2026", added:"2026-01-30", modified:"2026-01-30", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:552589, status:"dev", app:"copilot",
-    title:"M365 Copilot Tuning: aangepaste agents via sjablonen",
-    desc:"Copilot Tuning introduceert nieuwe sjablonen in Agent Builder voor taken zoals het opstellen van complexe documenten, valideren tegen richtlijnen en bewerken in een specifieke schrijfstijl. Organisaties kunnen agents verder afstemmen op eigen data en processen.",
-    release:"Juni 2026", added:"2026-01-30", modified:"2026-01-30", isNew:true,
-    action:"admin", actionLabel:"IT-beheerder activeert Copilot Tuning in de tenant" },
-
-  { id:552588, status:"dev", app:"teams",
-    title:"Vaardigheden van collega's zichtbaar op profielkaart in Teams",
-    desc:"Via de Microsoft 365-profielkaart in Teams kunnen medewerkers elkaars vaardigheden bekijken en hun eigen vaardigheidsprofiel beheren — vanuit de dagelijkse werkstroom.",
-    release:"Maart 2026", added:"2026-01-30", modified:"2026-02-03", isNew:false,
-    action:"user", actionLabel:"Gebruiker beheert eigen vaardigheidsprofiel" },
-
-  { id:551195, status:"dev", app:"copilot",
-    title:"Verbeterd Copilot-geheugen op basis van werkdata",
-    desc:"Copilot gebruikt Microsoft Graph-data voor relevantere en contextbewuste antwoorden. Nieuwe instellingen maken het eenvoudiger om te beheren wat Copilot onthoudt en welke personalisatievoorkeuren gelden.",
-    release:"Maart 2026", added:"2026-01-27", modified:"2026-01-27", isNew:false,
-    action:"user", actionLabel:"Gebruiker beheert voorkeuren in Copilot-instellingen" },
-
-  { id:551147, status:"dev", app:"purview",
-    title:"Nieuwe RBAC-rol: Purview Agent Deployment",
-    desc:"Een nieuwe rol in Purview stelt analisten in staat Security Copilot-agents te deployen zonder extra beheerdersrollen. Organisaties die deze bevoegdheid willen beperken, kunnen een aangepaste rolgroep aanmaken.",
-    release:"Februari 2026", added:"2026-02-04", modified:"2026-02-04", isNew:true,
-    action:"admin", actionLabel:"IT-beheerder beoordeelt en past rolgroepen aan in Purview" },
-
-  { id:550513, status:"dev", app:"copilot",
-    title:"Verbeterde audio voor Copilot AI-videoprojecten in Clipchamp",
-    desc:"AI-gegenereerde videoprojecten via Clipchamp krijgen verbeterde audio: realistische AI-voiceover, professionele geluidseffecten en verbeterde audiomixing. Vereist een Microsoft 365 Copilot-licentie.",
-    release:"Juni 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers" },
-
-  { id:548648, status:"dev", app:"teams",
-    title:"Vergaderruimte direct reserveren via Teams Rooms op Windows",
-    desc:"Via het Teams Rooms-console op Windows kunnen medewerkers direct een ruimte reserveren voor onmiddellijk gebruik. Zo worden spontane vergaderingen beter georganiseerd. Vereist Teams Rooms Pro-licentie.",
-    release:"April 2026", added:"2026-01-22", modified:"2026-02-05", isNew:false,
-    action:"admin", actionLabel:"Vereist Teams Rooms Pro-licentie" },
-
-  { id:548647, status:"dev", app:"teams",
-    title:"Digitale signage in Teams Rooms op Android",
-    desc:"IT-beheerders kunnen Teams Rooms op Android instellen om dynamische signagedisplays te tonen wanneer de ruimte niet in gebruik is. Ondersteunt Appspace en XOGO. Vereist Teams Rooms Pro.",
-    release:"Maart 2026", added:"2026-01-23", modified:"2026-01-23", isNew:false,
-    action:"admin", actionLabel:"IT-beheerder configureert via Pro Management-portal" },
-
-  { id:548646, status:"dev", app:"copilot",
-    title:"Agent Mode in PowerPoint (Microsoft 365-gebruikers)",
-    desc:"Agent Mode in PowerPoint stelt gebruikers in staat presentaties te maken en bewerken via een gesprek — rechtstreeks in de presentatie. Beschikbaar voor Microsoft 365-gebruikers (zonder Copilot-licentie).",
-    release:"Februari 2026", added:"2026-01-16", modified:"2026-02-05", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar voor Microsoft 365-gebruikers" },
-
-  { id:548520, status:"dev", app:"copilot",
-    title:"Agent Mode in PowerPoint (Microsoft 365 Copilot-licentie)",
-    desc:"Copilot gebruikt uw bestanden, vergaderingen, e-mails en brand kit om presentaties te maken en verbeteren via een gesprek. Inclusief merksjablonen, merkgekeurde afbeeldingen en merkcontrole.",
-    release:"Februari 2026", added:"2026-01-15", modified:"2026-02-05", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-licentiehouders" },
-
-  { id:547834, status:"dev", app:"teams",
-    title:"Evenementen ontdekken via Meet-app in Teams",
-    desc:"Gebruikers kunnen via de Teams Meet-app organisatiebrede evenementen ontdekken, bijhouden welke evenementen eraan komen, en hun eigen professionele evenementen plannen en organiseren.",
-    release:"Februari 2026", added:"2026-02-04", modified:"2026-02-04", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:547831, status:"dev", app:"copilot",
-    title:"Watermerken voor AI-gegenereerde content in Copilot",
-    desc:"Watermerken worden automatisch toegevoegd aan AI-gegenereerde video, audio en afbeeldingen via Microsoft 365 Copilot. Dit helpt bij het identificeren van AI-gegenereerde inhoud.",
-    release:"Februari 2026", added:"2026-01-21", modified:"2026-01-21", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers" },
-
-  { id:545013, status:"dev", app:"word",
-    title:"Handmatig model kiezen in Agent Mode in Word",
-    desc:"Bij het gebruik van Agent Mode in Word kunnen gebruikers handmatig kiezen welk AI-model zij willen inzetten, afhankelijk van de complexiteit van de taak.",
-    release:"Februari 2026", added:"2026-01-13", modified:"2026-01-13", isNew:false,
-    action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers" },
-
-  { id:532734, status:"dev", app:"teams",
-    title:"Werkbalk verbergen tijdens vergaderingen in Teams",
-    desc:"Gebruikers kunnen de volledige vergaderwerkbalk verbergen voor meer ruimte of een opgeruimder werkblad. De balk blijft bereikbaar via hoveren of tab, sneltoetsen blijven altijd actief.",
-    release:"April 2026", added:"2026-02-05", modified:"2026-02-06", isNew:true,
-    action:"none", actionLabel:"Automatisch beschikbaar" },
-
-  { id:508526, status:"dev", app:"copilot",
-    title:"Copilot Search zoekt op aangepaste SharePoint-profieleigenschappen",
-    desc:"Medewerkers kunnen via Microsoft 365 Copilot Search collega's vinden op basis van aangepaste profieleigenschappen vanuit SharePoint Online, zoals afdelingsspecifieke velden.",
-    release:"December 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"admin", actionLabel:"Vereist aangepaste SharePoint-profieleigenschappen" },
-
-  { id:501584, status:"dev", app:"copilot",
-    title:"Beheer van federated Copilot-connectors via M365 Admin Center",
-    desc:"Beheerders kunnen federated Copilot-connectors beheren en besturen vanuit het Microsoft 365-beheercentrum. Dit maakt centraal beleid en overzicht over externe data-integraties mogelijk.",
-    release:"Februari 2026", added:"2026-02-06", modified:"2026-02-06", isNew:true,
-    action:"admin", actionLabel:"Beschikbaar voor beheerders in M365 Admin Center" }
-];
-
-var STATUS_CFG = {
-  rolling: { label:"Wordt uitgerold", cls:"p-rolling", heading:"🟡 Wordt uitgerold" },
-  dev:     { label:"In ontwikkeling", cls:"p-dev",     heading:"🔵 In ontwikkeling" }
-};
 var APP_LABELS = { copilot:"Copilot", teams:"Teams", outlook:"Outlook", sharepoint:"SharePoint", purview:"Purview", word:"Word", other:"Overig" };
 var APP_CLS    = { copilot:"p-copilot", teams:"p-teams", outlook:"p-outlook", sharepoint:"p-sharepoint", purview:"p-purview", word:"p-word", other:"p-other" };
 
-var fS="all", fN="all", fA="aw", fM="mw", fP="all";
+// Welke IDs waren er vorige week al?
+// Dit wordt elke week bijgewerkt door de webbeheerder of kan automatisch via localStorage.
+var SEEN_IDS = JSON.parse(localStorage.getItem("m365_seen_ids") || "[]");
+var SEEN_SET = new Set(SEEN_IDS);
 
-function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/86400000 : 9999; }
-function fmtDate(d) { return d ? new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}) : ""; }
+var ALL_ITEMS = [];
+var fS="all", fN="all", fA="aw", fM="mw", fP="all";
 
 var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,
               january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
@@ -384,33 +218,82 @@ function parseRelease(s) {
   return new Date(9999,0,1);
 }
 
+function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/86400000 : 9999; }
+function fmtDate(d) { return d ? new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}) : ""; }
+
+// Actie afleiden uit productnaam + beschrijving
+function inferAction(item) {
+  var t = (item.title + " " + item.desc).toLowerCase();
+  if (/admin|beheerder|tenant|policy|beleid|configure|instellen|powershell|governance/.test(t)) return ["admin", "IT-beheerder actie vereist"];
+  if (/user|gebruiker|opt.in|instelling|voorkeur|choose|select|manage your/.test(t)) return ["user", "Gebruiker kan instellen"];
+  return ["none", "Automatisch beschikbaar"];
+}
+
+// Fetch data.json (gegenereerd door GitHub Actions)
+fetch("data.json")
+  .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(function(data) {
+    // Sla huidige IDs op als "gezien", markeer nieuwe items
+    var currentIds = data.items.map(function(i) { return i.id; });
+    ALL_ITEMS = data.items.map(function(item) {
+      var actionInfo = inferAction(item);
+      return Object.assign({}, item, {
+        isNew:       !SEEN_SET.has(item.id),
+        action:      actionInfo[0],
+        actionLabel: actionInfo[1]
+      });
+    });
+
+    // Na het laden: sla huidige IDs op voor volgende week
+    localStorage.setItem("m365_seen_ids", JSON.stringify(currentIds));
+
+    var generated = new Date(data.generated);
+    document.getElementById("last-updated").textContent =
+      "Bijgewerkt: " + generated.toLocaleDateString("nl-NL", {day:"numeric", month:"long"}) +
+      " · " + data.count + " items";
+
+    render();
+  })
+  .catch(function(err) {
+    document.getElementById("root").innerHTML =
+      '<div class="state-box"><h3>Kon data.json niet laden</h3>' +
+      '<p style="margin-top:.5rem;font-size:13px">Zorg dat de GitHub Actions workflow succesvol is gedraaid<br>zodat data.json aanwezig is in de repository.</p>' +
+      '<p style="margin-top:.75rem;font-size:11px;color:var(--faint)">' + err + '</p></div>';
+  });
+
 function cardHTML(item) {
-  var cfg = STATUS_CFG[item.status];
+  var cfg = { rolling:{label:"Wordt uitgerold",cls:"p-rolling"}, dev:{label:"In ontwikkeling",cls:"p-dev"} }[item.status];
   var dateRow = "";
-  if (item.added)    dateRow += '<span class="date-info">📅 ' + fmtDate(item.added) + "</span>";
-  if (item.modified && item.modified !== item.added) dateRow += '<span class="date-info" style="margin-left:10px">✏️ ' + fmtDate(item.modified) + "</span>";
+  if (item.added)    dateRow += '<span class="date-info">📅 ' + fmtDate(item.added) + '</span>';
+  if (item.modified && item.modified !== item.added)
+    dateRow += '<span class="date-info" style="margin-left:10px">✏️ ' + fmtDate(item.modified) + '</span>';
+  var shortDesc = item.desc.length > 300 ? item.desc.slice(0, 300) + "…" : item.desc;
   return '<div class="card">' +
     '<div class="card-pills">' +
-      '<span class="pill ' + APP_CLS[item.app] + '">' + APP_LABELS[item.app] + '</span>' +
+      '<span class="pill ' + APP_CLS[item.app] + '">' + (item.prodLabel || APP_LABELS[item.app]) + '</span>' +
       '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
       (item.isNew ? '<span class="new-badge">⭐ Nieuw</span>' : '') +
     '</div>' +
-    '<div class="card-title">' + item.title + '</div>' +
-    '<p class="card-desc">' + item.desc + '</p>' +
+    '<div class="card-title">' + esc(item.title) + '</div>' +
+    (shortDesc ? '<p class="card-desc">' + esc(shortDesc) + '</p>' : '') +
     '<div class="card-foot">' +
       '<div class="card-foot-left">' +
-        '<span class="release-badge">🚀 ' + item.release + '</span>' +
+        '<span class="release-badge">🚀 ' + esc(item.release || "–") + '</span>' +
         '<span class="action-badge a-' + item.action + '"><span class="action-dot"></span><span class="action-lbl">' + item.actionLabel + '</span></span>' +
         (dateRow ? '<span style="display:flex;align-items:center;gap:4px">' + dateRow + '</span>' : '') +
       '</div>' +
-      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '" target="_blank" rel="noopener"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> ID ' + item.id + '</a>' +
+      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + item.id + '</a>' +
     '</div>' +
   '</div>';
 }
 
+function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
 function render() {
+  if (!ALL_ITEMS.length) return;
   var sort = document.getElementById("sort-select").value;
-  var filtered = ITEMS.filter(function(i) {
+
+  var filtered = ALL_ITEMS.filter(function(i) {
     if (fS !== "all" && i.status !== fS) return false;
     if (fN === "new"   && !i.isNew)      return false;
     if (fN === "known" &&  i.isNew)      return false;
@@ -425,14 +308,15 @@ function render() {
   });
 
   filtered = filtered.slice().sort(function(a, b) {
-    if (sort === "status") return (a.status === "rolling" ? 0 : 1) - (b.status === "rolling" ? 0 : 1);
+    if (sort === "status")        return (a.status==="rolling"?0:1) - (b.status==="rolling"?0:1);
+    if (sort === "modified-desc") return new Date(b.modified||0) - new Date(a.modified||0);
     var da = parseRelease(a.release), db = parseRelease(b.release);
     return sort === "release-desc" ? da - db : db - da;
   });
 
-  var rolling  = filtered.filter(function(i) { return i.status === "rolling"; });
-  var dev      = filtered.filter(function(i) { return i.status === "dev"; });
-  var newCount = filtered.filter(function(i) { return i.isNew; }).length;
+  var rolling  = filtered.filter(function(i){return i.status==="rolling";});
+  var dev      = filtered.filter(function(i){return i.status==="dev";});
+  var newCount = filtered.filter(function(i){return i.isNew;}).length;
 
   document.getElementById("stats-bar").innerHTML =
     '<span class="stat-pill s-total">'   + filtered.length + " items</span>" +
@@ -441,41 +325,40 @@ function render() {
     (newCount ? '<span class="stat-pill s-new">⭐ ' + newCount + " nieuw</span>" : "");
 
   var emptyEl = document.getElementById("empty-msg");
-  var rootEl  = document.getElementById("cards-root");
-  if (!filtered.length) { rootEl.innerHTML = ""; emptyEl.classList.add("show"); return; }
+  var rootEl  = document.getElementById("root");
+
+  if (!filtered.length) { rootEl.innerHTML=""; emptyEl.classList.add("show"); return; }
   emptyEl.classList.remove("show");
 
   if (sort === "status") {
-    function sec(items, key) {
+    function sec(items, key, emoji, lbl) {
       if (!items.length) return "";
-      return '<div class="section-group"><div class="sec-hdr"><span>' + STATUS_CFG[key].heading +
-        '</span><span class="sec-count">' + items.length + '</span></div>' + items.map(cardHTML).join("") + '</div>';
+      return '<div><div class="sec-hdr"><span>' + emoji + ' ' + lbl + '</span><span class="sec-count">' + items.length + '</span></div>' +
+        items.map(cardHTML).join("") + '</div>';
     }
-    rootEl.innerHTML = sec(rolling, "rolling") + sec(dev, "dev");
+    rootEl.innerHTML = sec(rolling,"rolling","🟡","Wordt uitgerold") + sec(dev,"dev","🔵","In ontwikkeling");
   } else {
-    rootEl.innerHTML = '<div class="section-group"><div class="sec-hdr"><span>Gesorteerd op releasedatum</span>' +
-      '<span class="sec-count">' + filtered.length + '</span></div>' + filtered.map(cardHTML).join("") + '</div>';
+    rootEl.innerHTML = '<div><div class="sec-hdr"><span>' + filtered.length + ' items</span></div>' +
+      filtered.map(cardHTML).join("") + '</div>';
   }
 }
 
-function wire(barId, prop, attr, colorCls) {
+function wire(barId, prop, attr, cls) {
   document.getElementById(barId).addEventListener("click", function(e) {
     var t = e.target.closest("[" + attr + "]"); if (!t) return;
-    document.querySelectorAll("#" + barId + " .fb").forEach(function(b) { b.className = "fb"; });
+    document.querySelectorAll("#" + barId + " .fb").forEach(function(b) { b.className="fb"; });
     var v = t.getAttribute(attr);
     t.classList.add("on");
-    if (colorCls && v !== "all") t.classList.add(colorCls + v);
-    if      (prop === "fS") fS = v; else if (prop === "fN") fN = v;
-    else if (prop === "fA") fA = v; else if (prop === "fM") fM = v;
-    else if (prop === "fP") fP = v;
+    if (cls && v !== "all") t.classList.add(cls + v);
+    if      (prop==="fS") fS=v; else if (prop==="fN") fN=v;
+    else if (prop==="fA") fA=v; else if (prop==="fM") fM=v;
+    else if (prop==="fP") fP=v;
     render();
   });
 }
 wire("sf","fS","data-s"); wire("nf","fN","data-n");
 wire("af","fA","data-a"); wire("mf","fM","data-m");
 wire("apf","fP","data-p","ao-");
-
-render();
 </script>
 </body>
 </html>
