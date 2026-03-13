@@ -3,96 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Microsoft 365 Roadmap — Live</title>
+<title>Microsoft 365 Roadmap — Week 13 maart 2026</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg:#f5f4f0; --surface:#ffffff; --surface2:#f0ede8;
-  --text:#1a1916; --muted:#6b6860; --faint:#a09d97;
-  --border:rgba(0,0,0,0.08); --border-s:rgba(0,0,0,0.15);
-  --green-bg:#e6f4eb; --green-t:#1a6130;
-  --amber-bg:#fef3dc; --amber-t:#7a4f00;
-  --purple-bg:#eeebfd; --purple-t:#4a3aaa;
-  --gray-bg:#ebebeb;  --gray-t:#4a4a4a;
-  --blue-bg:#e6f0fd;  --blue-t:#1a4fa0;
-  --red-bg:#fdecea;   --red-t:#a02020;
-  --orange-bg:#fff0e6;--orange-t:#8c4300;
-  --new-bg:#fff7e0;   --new-t:#7a5000;
-}
-body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0ede8;
+    --text: #1a1916; --muted: #6b6860; --faint: #a09d97;
+    --border: rgba(0,0,0,0.08); --border-s: rgba(0,0,0,0.15);
+    --green-bg: #e6f4eb; --green-t: #1a6130;
+    --amber-bg: #fef3dc; --amber-t: #7a4f00;
+    --purple-bg: #eeebfd; --purple-t: #4a3aaa;
+    --gray-bg: #ebebeb;  --gray-t: #4a4a4a;
+    --blue-bg: #e6f0fd;  --blue-t: #1a4fa0;
+    --red-bg: #fdecea;   --red-t: #a02020;
+    --orange-bg: #fff0e6;--orange-t: #8c4300;
+    --new-bg: #fff7e0;   --new-t: #7a5000;
+  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-.hdr { background:var(--surface); border-bottom:1px solid var(--border); padding:1.1rem 2rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:.75rem; position:sticky; top:0; z-index:20; }
-.hdr h1 { font-size:17px; font-weight:600; }
-.hdr p  { font-size:12px; color:var(--muted); margin-top:2px; }
-.hdr-right { display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
-#last-updated { font-size:11px; color:var(--faint); background:var(--surface2); padding:4px 11px; border-radius:100px; }
-#refresh-btn { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:500; color:var(--blue-t); background:var(--blue-bg); border:1px solid rgba(26,79,160,0.18); border-radius:100px; padding:5px 13px; cursor:pointer; font-family:inherit; transition:opacity .12s; }
-#refresh-btn:hover { opacity:.75; }
-#refresh-btn svg { flex-shrink:0; }
-#refresh-btn.loading svg { animation:spin 1s linear infinite; }
-@keyframes spin { to { transform:rotate(360deg); } }
+  /* HEADER */
+  .hdr { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
+  .hdr h1 { font-size: 18px; font-weight: 600; }
+  .hdr p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .hdr-date { font-size: 12px; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
 
-.main { max-width:960px; margin:0 auto; padding:1.75rem 1.5rem 4rem; }
+  /* MAIN */
+  .main { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
-.filter-row { display:flex; align-items:flex-start; gap:1.5rem; flex-wrap:wrap; margin-bottom:1rem; }
-.filter-group { flex:1; min-width:200px; }
-.filter-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.07em; color:var(--faint); margin-bottom:7px; }
-.filter-bar { display:flex; flex-wrap:wrap; gap:6px; }
-.fb { padding:5px 13px; border-radius:100px; border:1px solid var(--border-s); background:var(--surface); color:var(--muted); font-family:inherit; font-size:12px; font-weight:500; cursor:pointer; transition:all .12s; }
-.fb:hover { background:var(--surface2); }
-.fb.on { background:var(--text); color:#fff; border-color:transparent; }
-.fb.ao-copilot    { background:var(--purple-bg); color:var(--purple-t); border-color:transparent; }
-.fb.ao-teams      { background:var(--blue-bg);   color:var(--blue-t);   border-color:transparent; }
-.fb.ao-excel      { background:var(--green-bg);  color:var(--green-t);  border-color:transparent; }
-.fb.ao-word       { background:var(--blue-bg);   color:var(--blue-t);   border-color:transparent; }
-.fb.ao-powerpoint { background:var(--orange-bg); color:var(--orange-t); border-color:transparent; }
-.fb.ao-sharepoint { background:var(--amber-bg);  color:var(--amber-t);  border-color:transparent; }
-.fb.ao-purview    { background:var(--red-bg);    color:var(--red-t);    border-color:transparent; }
-.fb.ao-outlook    { background:var(--blue-bg);   color:var(--blue-t);   border-color:transparent; }
+  /* FILTERS */
+  .filter-section { margin-bottom: 1rem; }
+  .filter-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .filter-group { flex: 1; min-width: 180px; }
+  .filter-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 8px; }
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
+  .fb { padding: 6px 15px; border-radius: 100px; border: 1px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .12s; }
+  .fb:hover { background: var(--surface2); }
+  .fb.on { background: var(--text); color: #fff; border-color: transparent; }
 
-.divider { height:1px; background:var(--border); margin:1.25rem 0; }
+  /* App filter active colours */
+  .fb.ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: transparent; }
+  .fb.ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
+  .fb.ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: transparent; }
+  .fb.ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: transparent; }
+  .fb.ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: transparent; }
 
-.stats-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:1.5rem; align-items:center; }
-.stat-pill { font-size:12px; padding:4px 12px; border-radius:100px; }
-.stat-total   { background:var(--surface2); color:var(--muted); }
-.stat-rolling { background:var(--amber-bg); color:var(--amber-t); }
-.stat-dev     { background:var(--blue-bg);  color:var(--blue-t); }
-.stat-new     { background:var(--new-bg);   color:var(--new-t); }
+  .divider { height: 1px; background: var(--border); margin: 1.25rem 0 1.5rem; }
 
-.sec-hdr { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:.08em; color:var(--faint); margin:1.75rem 0 .75rem; padding-bottom:7px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
-.sec-count { font-size:11px; font-weight:500; background:var(--surface2); color:var(--faint); padding:2px 8px; border-radius:100px; }
+  /* LEGEND */
+  .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 1.75rem; padding: 11px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; font-size: 12px; color: var(--muted); }
+  .legend strong { font-weight: 600; color: var(--text); }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .ldot { width: 8px; height: 8px; border-radius: 50%; }
 
-.card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; margin-bottom:8px; transition:border-color .15s; }
-.card:hover { border-color:var(--border-s); }
-.card-pills { display:flex; align-items:center; gap:7px; flex-wrap:wrap; margin-bottom:8px; }
-.card-title { font-size:14px; font-weight:500; line-height:1.4; margin-bottom:7px; }
-.card-desc  { font-size:12px; color:var(--muted); line-height:1.65; margin-bottom:10px; }
-.card-foot  { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
-.card-dates { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
-.date-info  { font-size:11px; color:var(--faint); }
+  /* SECTION */
+  .sec-hdr { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .sec-count { font-size: 11px; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
 
-.pill { font-size:11px; font-weight:600; padding:3px 9px; border-radius:100px; white-space:nowrap; }
-.p-copilot    { background:var(--purple-bg); color:var(--purple-t); }
-.p-teams      { background:var(--blue-bg);   color:var(--blue-t); }
-.p-excel      { background:var(--green-bg);  color:var(--green-t); }
-.p-word       { background:var(--blue-bg);   color:var(--blue-t); }
-.p-powerpoint { background:var(--orange-bg); color:var(--orange-t); }
-.p-sharepoint { background:var(--amber-bg);  color:var(--amber-t); }
-.p-purview    { background:var(--red-bg);    color:var(--red-t); }
-.p-outlook    { background:var(--blue-bg);   color:var(--blue-t); }
-.p-other      { background:var(--gray-bg);   color:var(--gray-t); }
-.p-rolling    { background:var(--amber-bg);  color:var(--amber-t); }
-.p-dev        { background:var(--blue-bg);   color:var(--blue-t); }
+  /* CARD */
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color .15s; }
+  .card:hover { border-color: var(--border-s); }
+  .card.gone { display: none; }
 
-.new-badge { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; background:var(--new-bg); color:var(--new-t); padding:3px 8px; border-radius:100px; }
+  .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
+  .card-title { font-size: 15px; font-weight: 500; line-height: 1.4; margin-bottom: 8px; }
+  .card-benefit { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
+  .card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .card-foot-left { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .date-info { font-size: 12px; color: var(--faint); }
+  .action-badge { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+  .action-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .a-none  .action-dot { background: #2d9e5f; } .a-none  span { color: var(--green-t); }
+  .a-admin .action-dot { background: #e09b00; } .a-admin span { color: var(--amber-t); }
+  .a-user  .action-dot { background: #3a7bd5; } .a-user  span { color: var(--blue-t); }
 
-.ms-link { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--blue-t); text-decoration:none; padding:3px 9px; border-radius:100px; background:var(--blue-bg); transition:opacity .12s; white-space:nowrap; }
-.ms-link:hover { opacity:.75; }
+  /* PILLS */
+  .pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+  .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
+  .p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-excel      { background: var(--green-bg);  color: var(--green-t); }
+  .p-word       { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
+  .p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
+  .p-purview    { background: var(--red-bg);    color: var(--red-t); }
+  .p-live    { background: var(--green-bg);  color: var(--green-t); }
+  .p-rolling { background: var(--amber-bg);  color: var(--amber-t); }
+  .p-soon    { background: var(--gray-bg);   color: var(--gray-t); }
+  .p-new     { background: var(--purple-bg); color: var(--purple-t); }
 
-.state-box { text-align:center; padding:3.5rem 1rem; color:var(--muted); font-size:14px; }
-.state-box .icon { font-size:36px; margin-bottom:.75rem; }
-.state-box h3 { font-size:15px; font-weight:600; color:var(--text); margin-bottom:.5rem; }
-.spinner { width:28px; height:28px; border:3px solid var(--border); border-top-color:var(--blue-t); border-radius:50%; animation:spin 1s linear infinite; margin:0 auto 1rem; }
+  /* NEW BADGE */
+  .new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; background: var(--new-bg); color: var(--new-t); padding: 3px 9px; border-radius: 100px; white-space: nowrap; }
+
+  /* MS LINK */
+  .ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue-t); text-decoration: none; padding: 4px 10px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; }
+  .ms-link:hover { opacity: .75; }
+
+  /* SECTION GROUP */
+  .section-group.gone { display: none; }
+
+  /* EMPTY */
+  #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
+  #empty-msg.show { display: block; }
+
+  /* STATS BAR */
+  .stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+  .stat-pill { font-size: 12px; padding: 4px 12px; border-radius: 100px; }
+  .stat-total   { background: var(--surface2); color: var(--muted); }
+  .stat-live    { background: var(--green-bg);  color: var(--green-t); }
+  .stat-rolling { background: var(--amber-bg);  color: var(--amber-t); }
+  .stat-new     { background: var(--new-bg);    color: var(--new-t); }
 </style>
 </head>
 <body>
@@ -100,25 +120,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
 <div class="hdr">
   <div>
     <h1>Microsoft 365 Roadmap</h1>
-    <p>Live data · In development &amp; Rolling out</p>
+    <p>Actuele updates — begrijpelijk voor iedereen</p>
   </div>
-  <div class="hdr-right">
-    <span id="last-updated">Nog niet geladen</span>
-    <button id="refresh-btn" onclick="loadData()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
-      Vernieuwen
-    </button>
-  </div>
+  <span class="hdr-date">Week van 9–13 maart 2026</span>
 </div>
 
 <div class="main">
+
+  <!-- ROW 1: Status + Nieuw/Bekend -->
   <div class="filter-row">
     <div class="filter-group">
       <div class="filter-label">Status</div>
       <div class="filter-bar" id="sf">
-        <button class="fb on" data-s="all">Alles</button>
-        <button class="fb" data-s="rolling">Rolling out</button>
-        <button class="fb" data-s="dev">In development</button>
+        <button class="fb on" data-s="all">Alle statussen</button>
+        <button class="fb" data-s="live">Nu beschikbaar</button>
+        <button class="fb" data-s="rolling">In uitrol</button>
+        <button class="fb" data-s="new">Nieuw aangekondigd</button>
+        <button class="fb" data-s="soon">Binnenkort</button>
       </div>
     </div>
     <div class="filter-group">
@@ -130,6 +148,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
       </div>
     </div>
   </div>
+
+  <!-- ROW 2: Toegevoegd + Gewijzigd -->
   <div class="filter-row">
     <div class="filter-group">
       <div class="filter-label">Toegevoegd aan roadmap</div>
@@ -148,247 +168,272 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; backg
       </div>
     </div>
   </div>
-  <div class="filter-row">
-    <div class="filter-group" style="max-width:100%">
-      <div class="filter-label">Applicatie</div>
-      <div class="filter-bar" id="apf">
-        <button class="fb on" data-p="all">Alle apps</button>
-        <button class="fb" data-p="copilot">Copilot</button>
-        <button class="fb" data-p="teams">Teams</button>
-        <button class="fb" data-p="outlook">Outlook</button>
-        <button class="fb" data-p="excel">Excel</button>
-        <button class="fb" data-p="word">Word</button>
-        <button class="fb" data-p="powerpoint">PowerPoint</button>
-        <button class="fb" data-p="sharepoint">SharePoint</button>
-        <button class="fb" data-p="purview">Purview</button>
-        <button class="fb" data-p="other">Overig</button>
-      </div>
+
+  <!-- ROW 3: Applicatie -->
+  <div class="filter-section">
+    <div class="filter-label">Applicatie</div>
+    <div class="filter-bar" id="apf">
+      <button class="fb on" data-p="all">Alle apps</button>
+      <button class="fb" data-p="copilot">Copilot</button>
+      <button class="fb" data-p="teams">Teams</button>
+      <button class="fb" data-p="excel">Excel</button>
+      <button class="fb" data-p="word">Word</button>
+      <button class="fb" data-p="powerpoint">PowerPoint</button>
+      <button class="fb" data-p="sharepoint">SharePoint</button>
+      <button class="fb" data-p="purview">Purview</button>
     </div>
   </div>
 
   <div class="divider"></div>
-  <div id="stats-bar" class="stats-bar"></div>
-  <div id="root"></div>
+
+  <!-- LEGEND -->
+  <div class="legend">
+    <strong>Actie vereist?</strong>
+    <div class="legend-item"><div class="ldot" style="background:#2d9e5f"></div>Geen actie nodig</div>
+    <div class="legend-item"><div class="ldot" style="background:#e09b00"></div>IT-beheerder moet instellen</div>
+    <div class="legend-item"><div class="ldot" style="background:#3a7bd5"></div>Gebruiker kan zelf instellen</div>
+    <div class="legend-item"><span class="new-badge">⭐ Nieuw</span> = nieuw t.o.v. vorige week</div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-bar" id="stats-bar"></div>
+
+  <div id="empty-msg">Geen updates gevonden voor deze combinatie van filters.</div>
+  <div id="cards-root"></div>
+
 </div>
 
 <script>
-var BASE_IDS = [478611,542182,499428,513274,490565,491016,557276,499659,557983,488800];
+var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-function getSeenIds() {
-  try { var v = localStorage.getItem('m365_seen_v2'); return v ? new Set(JSON.parse(v)) : new Set(BASE_IDS); }
-  catch(e) { return new Set(BASE_IDS); }
-}
-function saveSeenIds(s) {
-  try { localStorage.setItem('m365_seen_v2', JSON.stringify([...s])); } catch(e) {}
-}
-var SEEN = getSeenIds();
-var ALL  = [];
-var fS='all', fN='all', fA='all', fM='all', fP='all';
-
-// Minimal CSV parser — handles quoted fields with embedded commas/newlines
-function parseCSV(txt) {
-  var rows=[], row=[], field='', inQ=false;
-  for (var i=0; i<txt.length; i++) {
-    var c=txt[i], nc=txt[i+1];
-    if (inQ) {
-      if (c==='"' && nc==='"') { field+='"'; i++; }
-      else if (c==='"') { inQ=false; }
-      else { field+=c; }
-    } else {
-      if (c==='"') { inQ=true; }
-      else if (c===',') { row.push(field); field=''; }
-      else if (c==='\n') { row.push(field); rows.push(row); row=[]; field=''; }
-      else if (c!=='\r') { field+=c; }
-    }
+// ─── DATA ──────────────────────────────────────────────────────────────────
+// added:    datum toegevoegd aan roadmap  (YYYY-MM-DD)
+// modified: datum laatste wijziging       (YYYY-MM-DD)
+// isNew:    true = nieuw t.o.v. vorige week
+var ITEMS = [
+  {
+    app:"teams", status:"live",
+    title:"Facilitator: uw vergadering automatisch begeleid",
+    benefit:"Facilitator maakt een agenda aan, houdt de tijd bij, schrijft notities mee en maakt een actielijst in Planner — volledig automatisch tijdens de vergadering. Zo hoeft niemand meer handmatig te notuleren en gaan afspraken niet verloren.",
+    date:"Nu beschikbaar", action:"none", actionLabel:"Direct beschikbaar voor Copilot-gebruikers",
+    added:"2025-10-01", modified:"2026-03-03", isNew:false,
+    id:478611
+  },
+  {
+    app:"excel", status:"live",
+    title:"Agent Mode: laat Copilot uw spreadsheet verbeteren",
+    benefit:"Vraag Copilot in Excel om uw tabel op te ruimen, een grafiek te maken of berekeningen uit te voeren. Elke stap is zichtbaar en aanpasbaar. Geen Excel-kennis meer nodig voor routinetaken.",
+    date:"Nu beschikbaar", action:"none", actionLabel:"Direct beschikbaar voor Copilot-gebruikers",
+    added:"2025-11-15", modified:"2026-03-01", isNew:false,
+    id:542182
+  },
+  {
+    app:"word", status:"live",
+    title:"Agent Mode: Copilot schrijft en verbetert mee",
+    benefit:"Vraag Copilot om een sectie te schrijven, feedback samen te vatten of een concept bij te schaven. De AI stelt voor, vraagt om toelichting en wacht op uw goedkeuring. Ideaal voor rapporten, beleidsdocumenten of offertes.",
+    date:"Nu beschikbaar", action:"none", actionLabel:"Direct beschikbaar voor Copilot-gebruikers",
+    added:"2025-11-15", modified:"2026-03-01", isNew:false,
+    id:499428
+  },
+  {
+    app:"teams", status:"rolling",
+    title:"Viva Engage-communities zichtbaar in Teams",
+    benefit:"Organisatiebrede communities (bijv. voor HR-nieuws of vakgroepen) zijn nu direct zichtbaar naast uw gewone Teams-kanalen. Medewerkers hoeven niet meer te wisselen tussen apps.",
+    date:"Maart 2026", action:"none", actionLabel:"Geen actie nodig, verschijnt automatisch",
+    added:"2025-09-10", modified:"2026-03-05", isNew:false,
+    id:513274
+  },
+  {
+    app:"sharepoint", status:"rolling",
+    title:"31 nieuwe paginasjablonen met verbeterd zoeken",
+    benefit:"Medewerkers die een nieuwe intranetpagina aanmaken, krijgen direct een galerij met 31 professionele sjablonen te zien. Pagina's maken gaat sneller en ziet er verzorgd uit, zonder grafisch ontwerper.",
+    date:"Maart–April 2026", action:"none", actionLabel:"Verschijnt automatisch bij aanmaken van nieuwe pagina's",
+    added:"2025-12-01", modified:"2026-02-20", isNew:false,
+    id:490565
+  },
+  {
+    app:"purview", status:"rolling",
+    title:"Waarschuwingen bij gevoelige informatie op mobiel",
+    benefit:"Medewerkers die via de Outlook-app gevoelige gegevens (zoals persoonsgegevens of financiële info) dreigen te delen, krijgen voortaan een melding. Dit helpt datalekken voorkomen zonder handmatig ingrijpen van de IT-afdeling.",
+    date:"Maart 2026", action:"admin", actionLabel:"IT-beheerder moet DLP-beleid activeren in Purview",
+    added:"2025-12-10", modified:"2026-03-07", isNew:false,
+    id:491016
+  },
+  {
+    app:"copilot", status:"new",
+    title:"GPT-5.4 en GPT-5.3: slimmere en snellere AI-assistent",
+    benefit:"De AI-assistent in Microsoft 365 werkt nu met twee nieuwe modellen. GPT-5.4 denkt dieper na bij complexe vragen, GPT-5.3 geeft sneller antwoord bij eenvoudige taken. Medewerkers merken dat Copilot betere en meer bruikbare antwoorden geeft.",
+    date:"Maart 2026", action:"none", actionLabel:"Automatisch beschikbaar voor alle Copilot-gebruikers",
+    added:"2026-03-10", modified:"2026-03-10", isNew:true,
+    link:"https://techcommunity.microsoft.com/blog/microsoft365copilotblog/available-today-gpt-5-4-thinking-in-microsoft-365-copilot/4499746"
+  },
+  {
+    app:"copilot", status:"new",
+    title:"Wave 3: Copilot werkt zelfstandig in al uw apps",
+    benefit:"Copilot voert meerdere stappen achter elkaar uit in Word, Excel, PowerPoint, Outlook en de chat — zonder dat u elke stap apart aanstuurt. Denk aan: automatisch een rapport opstellen én versturen op basis van één opdracht.",
+    date:"Maart 2026", action:"none", actionLabel:"Automatisch beschikbaar voor M365 Copilot-licenties",
+    added:"2026-03-09", modified:"2026-03-09", isNew:true,
+    link:"https://www.microsoft.com/en-us/microsoft-365/blog/2026/03/09/powering-frontier-transformation-with-copilot-and-agents/"
+  },
+  {
+    app:"teams", status:"soon",
+    title:"Werklocatie automatisch bijwerken via wifi",
+    benefit:"Teams detecteert op basis van het wifi-netwerk of iemand op kantoor of thuis werkt en past de werklocatie automatisch aan. Handig voor hybride roosters en aanwezigheidsregistratie.",
+    date:"April 2026", action:"admin", actionLabel:"IT-beheerder moet deze functie inschakelen",
+    added:"2026-03-05", modified:"2026-03-05", isNew:true,
+    id:488800
+  },
+  {
+    app:"excel", status:"soon",
+    title:"=COPILOT-formule: AI rechtstreeks in uw cel",
+    benefit:"Typ een gewone zin als formule, zoals 'Vat de aantekeningen in kolom B samen'. Excel voert dit uit en herberekent automatisch als de data wijzigt. Analysewerk dat vroeger uren kostte, is straks minuten werk.",
+    date:"Binnenkort", action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers",
+    added:"2025-10-20", modified:"2026-02-15", isNew:false,
+    id:499659
+  },
+  {
+    app:"powerpoint", status:"soon",
+    title:"Agent Mode: presentaties aanpassen via chat",
+    benefit:"Stuur Copilot opdrachten zoals 'vereenvoudig deze slide' of 'voeg bedrijfsdata toe aan de inleiding'. De presentatie past zich aan terwijl de opmaak en stijl van uw deck behouden blijven.",
+    date:"Binnenkort", action:"none", actionLabel:"Automatisch beschikbaar voor Copilot-gebruikers",
+    added:"2026-03-05", modified:"2026-03-05", isNew:true,
+    id:557276
+  },
+  {
+    app:"sharepoint", status:"soon",
+    title:"Vernieuwde startpagina met nieuws en resources",
+    benefit:"De SharePoint-startpagina krijgt een fris ontwerp met een verbeterd nieuws-overzicht en een duidelijk resources-gedeelte. Medewerkers vinden relevante informatie sneller.",
+    date:"April 2026", action:"admin", actionLabel:"IT-beheerder kan lay-out en inhoud configureren",
+    added:"2026-03-05", modified:"2026-03-05", isNew:true,
+    id:557983
   }
-  if (field || row.length) { row.push(field); rows.push(row); }
-  return rows;
+];
+
+var STATUS_ORDER = { live:0, rolling:1, new:2, soon:3 };
+var STATUS_CFG = {
+  live:    { label:"Nu beschikbaar",     cls:"p-live",    heading:"Nu beschikbaar" },
+  rolling: { label:"In uitrol",          cls:"p-rolling", heading:"Wordt nu uitgerold" },
+  new:     { label:"Nieuw aangekondigd", cls:"p-new",     heading:"Nieuw aangekondigd" },
+  soon:    { label:"Binnenkort",         cls:"p-soon",    heading:"Binnenkort beschikbaar" }
+};
+var APP_LABELS = { copilot:"Copilot", teams:"Teams", excel:"Excel", word:"Word", powerpoint:"PowerPoint", sharepoint:"SharePoint", purview:"Purview" };
+
+// ─── FILTER STATE ──────────────────────────────────────────────────────────
+var fS="all", fN="all", fA="all", fM="all", fP="all";
+
+function daysAgo(dateStr) {
+  if (!dateStr) return 9999;
+  return (Date.now() - new Date(dateStr).getTime()) / 86400000;
 }
 
-function appKey(prod) {
-  var p=(prod||'').toLowerCase();
-  if (p.includes('copilot'))    return 'copilot';
-  if (p.includes('teams'))      return 'teams';
-  if (p.includes('outlook'))    return 'outlook';
-  if (p.includes('excel'))      return 'excel';
-  if (p.includes('word'))       return 'word';
-  if (p.includes('powerpoint')) return 'powerpoint';
-  if (p.includes('sharepoint')) return 'sharepoint';
-  if (p.includes('purview'))    return 'purview';
-  return 'other';
-}
-var APLBL = {copilot:'Copilot',teams:'Teams',outlook:'Outlook',excel:'Excel',word:'Word',powerpoint:'PowerPoint',sharepoint:'SharePoint',purview:'Purview',other:'Overig'};
-var APCLS = {copilot:'p-copilot',teams:'p-teams',outlook:'p-outlook',excel:'p-excel',word:'p-word',powerpoint:'p-powerpoint',sharepoint:'p-sharepoint',purview:'p-purview',other:'p-other'};
-
-function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/864e5 : 9999; }
-function fmtD(d)    { return d ? new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}) : ''; }
-function esc(s)     { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-var LINK = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
-
-var CSVURL   = 'https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv';
-var PROXYURL = 'https://corsproxy.io/?url=' + encodeURIComponent(CSVURL);
-
-function loadData() {
-  var btn=document.getElementById('refresh-btn');
-  btn.classList.add('loading');
-  document.getElementById('root').innerHTML='<div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3><p style="font-size:12px;margin-top:.5rem;color:var(--faint)">Live data van Microsoft</p></div>';
-  document.getElementById('stats-bar').innerHTML='';
-
-  fetch(CSVURL,{mode:'cors'})
-    .then(function(r){ if(!r.ok) throw 0; return r.text(); })
-    .catch(function(){
-      return fetch(PROXYURL).then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); });
-    })
-    .then(handleCSV)
-    .catch(showError)
-    .finally(function(){ btn.classList.remove('loading'); });
+function fmtDate(dateStr) {
+  if (!dateStr) return "";
+  return new Date(dateStr).toLocaleDateString("nl-NL", {day:"numeric", month:"short", year:"numeric"});
 }
 
-function handleCSV(txt) {
-  var rows=parseCSV(txt);
-  if (rows.length<2) { showError(new Error('Lege respons')); return; }
-
-  // Build header index
-  var hdr=rows[0], idx={};
-  hdr.forEach(function(h,i){ idx[h.trim().replace(/^\uFEFF/,'')]=i; });
-  var iId   = idx['Feature ID']??0;
-  var iDesc = idx['Description']??1;
-  var iDet  = idx['Details']??2;
-  var iStat = idx['Status']??3;
-  var iProd = idx['Tags - Product']??5;
-  var iAdd  = idx['Added to Roadmap']??9;
-  var iMod  = idx['Last Modified']??10;
-  var iRel  = idx['Release']??12;
-
-  ALL = rows.slice(1).filter(function(r){
-    if (r.length<4) return false;
-    var s=(r[iStat]||'').trim().toLowerCase();
-    return s==='rolling out'||s==='in development';
-  }).map(function(r){
-    var id  = parseInt(r[iId])||0;
-    var st  = (r[iStat]||'').toLowerCase().includes('rolling')?'rolling':'dev';
-    var app = appKey(r[iProd]||'');
-    var pl  = (r[iProd]||'').split(',')[0].trim().replace(/^Microsoft\s+/i,'').replace(/\s*\(.*\)$/,'').trim();
-    if (!pl||pl.length>28) pl=APLBL[app];
-    return {
-      id:id, title:(r[iDesc]||'').trim(), desc:(r[iDet]||'').trim(),
-      status:st, app:app, prodLabel:pl,
-      created:(r[iAdd]||'').trim(), modified:(r[iMod]||'').trim(), release:(r[iRel]||'').trim(),
-      isNew:!SEEN.has(id)
-    };
-  });
-
-  ALL.forEach(function(f){ SEEN.add(f.id); });
-  saveSeenIds(SEEN);
-
-  var now=new Date().toLocaleString('nl-NL',{day:'numeric',month:'long',hour:'2-digit',minute:'2-digit'});
-  document.getElementById('last-updated').textContent='Bijgewerkt: '+now;
-  render();
-}
-
-function showError(err) {
-  document.getElementById('root').innerHTML=
-    '<div class="state-box">'+
-    '<div class="icon">⚠️</div>'+
-    '<h3>Kon geen verbinding maken</h3>'+
-    '<p style="max-width:440px;margin:.5rem auto 0;line-height:1.6">'+
-    'De Microsoft roadmap-API is niet bereikbaar vanuit deze browser.<br>'+
-    '<strong>Mogelijke oorzaken:</strong><br>'+
-    '• CORS-beveiliging in de browser blokkeert het verzoek<br>'+
-    '• Bedrijfsnetwerk of firewall blokkeert de API<br><br>'+
-    '<strong>Oplossingen:</strong><br>'+
-    '• Probeer een andere browser (Chrome of Edge)<br>'+
-    '• Open de pagina buiten het bedrijfsnetwerk<br>'+
-    '• Of bekijk de data direct op <a href="https://www.microsoft.com/nl-nl/microsoft-365/roadmap" target="_blank" style="color:var(--blue-t)">microsoft.com/roadmap</a>'+
-    '</p>'+
-    '<p style="margin-top:1rem;font-size:11px;color:var(--faint)">'+esc(String(err))+'</p>'+
-    '</div>';
-}
-
+// ─── RENDER ────────────────────────────────────────────────────────────────
 function render() {
-  var f=ALL.filter(function(item){
-    if (fS!=='all' && item.status!==fS)          return false;
-    if (fN==='new'   && !item.isNew)             return false;
-    if (fN==='known' &&  item.isNew)             return false;
-    if (fA==='aw' && daysAgo(item.created)>7)    return false;
-    if (fA==='am' && daysAgo(item.created)>31)   return false;
-    if (fM==='mw' && daysAgo(item.modified)>7)   return false;
-    if (fM==='mm' && daysAgo(item.modified)>31)  return false;
-    if (fP!=='all' && item.app!==fP)             return false;
+  var filtered = ITEMS.filter(function(item) {
+    if (fS !== "all" && item.status !== fS) return false;
+    if (fN === "new"   && !item.isNew)      return false;
+    if (fN === "known" &&  item.isNew)      return false;
+    if (fA === "aw" && daysAgo(item.added)    > 7)  return false;
+    if (fA === "am" && daysAgo(item.added)    > 31) return false;
+    if (fM === "mw" && daysAgo(item.modified) > 7)  return false;
+    if (fM === "mm" && daysAgo(item.modified) > 31) return false;
+    if (fP !== "all" && item.app !== fP)    return false;
     return true;
   });
 
-  var rolling=f.filter(function(i){return i.status==='rolling';});
-  var dev=f.filter(function(i){return i.status==='dev';});
-  var nc=f.filter(function(i){return i.isNew;}).length;
+  var sorted = filtered.slice().sort(function(a,b) {
+    return (STATUS_ORDER[a.status]||9) - (STATUS_ORDER[b.status]||9);
+  });
 
-  document.getElementById('stats-bar').innerHTML=
-    '<span class="stat-pill stat-total">'+f.length+' items</span>'+
-    '<span class="stat-pill stat-rolling">'+rolling.length+' rolling out</span>'+
-    '<span class="stat-pill stat-dev">'+dev.length+' in development</span>'+
-    (nc>0?'<span class="stat-pill stat-new">⭐ '+nc+' nieuw</span>':'');
+  // Stats bar
+  var newCount = filtered.filter(function(i){ return i.isNew; }).length;
+  var liveCount    = filtered.filter(function(i){ return i.status==="live"; }).length;
+  var rollingCount = filtered.filter(function(i){ return i.status==="rolling"; }).length;
+  document.getElementById("stats-bar").innerHTML =
+    '<span class="stat-pill stat-total">' + filtered.length + ' items</span>' +
+    (liveCount    ? '<span class="stat-pill stat-live">'    + liveCount    + ' beschikbaar</span>' : '') +
+    (rollingCount ? '<span class="stat-pill stat-rolling">' + rollingCount + ' in uitrol</span>'   : '') +
+    (newCount     ? '<span class="stat-pill stat-new">⭐ '  + newCount     + ' nieuw</span>'        : '');
 
-  if (!f.length) {
-    document.getElementById('root').innerHTML='<div class="state-box"><div class="icon">🔍</div><h3>Geen resultaten</h3><p>Pas de filters aan.</p></div>';
+  var emptyEl = document.getElementById("empty-msg");
+  var rootEl  = document.getElementById("cards-root");
+
+  if (!sorted.length) {
+    rootEl.innerHTML = "";
+    emptyEl.classList.add("show");
     return;
   }
+  emptyEl.classList.remove("show");
 
-  function sec(items, emoji, lbl) {
-    if (!items.length) return '';
-    var cards=items.map(function(item){
-      var d=item.desc.length>360?item.desc.slice(0,360)+'…':item.desc;
-      var dates=[];
-      if (item.created)  dates.push('<span class="date-info">📅 Toegevoegd: '+fmtD(item.created)+'</span>');
-      if (item.modified) dates.push('<span class="date-info">✏️ Gewijzigd: '+fmtD(item.modified)+'</span>');
-      if (item.release)  dates.push('<span class="date-info">🚀 Release: '+esc(item.release)+'</span>');
-      return '<div class="card">'+
-        '<div class="card-pills">'+
-          '<span class="pill '+APCLS[item.app]+'">'+esc(item.prodLabel)+'</span>'+
-          '<span class="pill '+(item.status==='rolling'?'p-rolling':'p-dev')+'">'+(item.status==='rolling'?'Rolling out':'In development')+'</span>'+
-          (item.isNew?'<span class="new-badge">⭐ Nieuw</span>':'')+
-        '</div>'+
-        '<div class="card-title">'+esc(item.title)+'</div>'+
-        (d?'<div class="card-desc">'+esc(d)+'</div>':'')+
-        '<div class="card-foot">'+
-          '<div class="card-dates">'+dates.join('')+'</div>'+
-          '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener">'+LINK+' ID '+item.id+'</a>'+
-        '</div>'+
+  var html = "";
+  var lastStatus = null;
+
+  sorted.forEach(function(item) {
+    if (item.status !== lastStatus) {
+      if (lastStatus !== null) html += "</div>"; // close previous section-group
+      html += '<div class="section-group">';
+      html += '<div class="sec-hdr"><span>' + STATUS_CFG[item.status].heading + '</span></div>';
+      lastStatus = item.status;
+    }
+
+    var linkUrl = item.link || ("https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=" + item.id);
+
+    var dateRow = "";
+    if (item.added)    dateRow += '<span class="date-info">📅 Toegevoegd: '  + fmtDate(item.added)    + '</span>';
+    if (item.modified) dateRow += '<span class="date-info" style="margin-left:12px">✏️ Gewijzigd: ' + fmtDate(item.modified) + '</span>';
+
+    html +=
+      '<div class="card">' +
+        '<div class="card-pills">' +
+          '<span class="pill p-' + item.app + '">'  + APP_LABELS[item.app] + '</span>' +
+          '<span class="pill ' + STATUS_CFG[item.status].cls + '">' + STATUS_CFG[item.status].label + '</span>' +
+          (item.isNew ? '<span class="new-badge">⭐ Nieuw</span>' : '') +
+        '</div>' +
+        '<div class="card-title">' + item.title + '</div>' +
+        '<p class="card-benefit">' + item.benefit + '</p>' +
+        '<div class="card-foot">' +
+          '<div class="card-foot-left">' +
+            (dateRow ? '<span style="display:flex;align-items:center;flex-wrap:wrap;gap:4px">' + dateRow + '</span>' : '') +
+            '<div class="action-badge a-' + item.action + '"><div class="action-dot"></div><span>' + item.actionLabel + '</span></div>' +
+          '</div>' +
+          '<a class="ms-link" href="' + linkUrl + '" target="_blank" rel="noopener">' + LINK_ICON + (item.id ? " ID " + item.id : " Meer info") + '</a>' +
+        '</div>' +
       '</div>';
-    }).join('');
-    return '<div>'+
-      '<div class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></div>'+
-      cards+
-    '</div>';
-  }
+  });
 
-  document.getElementById('root').innerHTML=
-    sec(rolling,'🟡','Rolling out — nu in uitrol')+
-    sec(dev,'🔵','In development — in ontwikkeling');
+  if (lastStatus !== null) html += "</div>"; // close last section-group
+  rootEl.innerHTML = html;
 }
 
-function wire(id, prop, attr, cls) {
-  document.getElementById(id).addEventListener('click',function(e){
-    var t=e.target.closest('['+attr+']'); if (!t) return;
-    document.querySelectorAll('#'+id+' .fb').forEach(function(b){b.className='fb';});
-    var v=t.getAttribute(attr);
-    t.classList.add('on');
-    if (cls && v!=='all') t.classList.add(cls+v);
-    if      (prop==='fS') fS=v;
-    else if (prop==='fN') fN=v;
-    else if (prop==='fA') fA=v;
-    else if (prop==='fM') fM=v;
-    else if (prop==='fP') fP=v;
+// ─── FILTER WIRING ─────────────────────────────────────────────────────────
+function wire(barId, prop, attr, colorCls) {
+  document.getElementById(barId).addEventListener("click", function(e) {
+    var t = e.target.closest("[" + attr + "]");
+    if (!t) return;
+    document.querySelectorAll("#" + barId + " .fb").forEach(function(b) { b.className = "fb"; });
+    var v = t.getAttribute(attr);
+    t.classList.add("on");
+    if (colorCls && v !== "all") t.classList.add(colorCls + v);
+    if      (prop === "fS") fS = v;
+    else if (prop === "fN") fN = v;
+    else if (prop === "fA") fA = v;
+    else if (prop === "fM") fM = v;
+    else if (prop === "fP") fP = v;
     render();
   });
 }
-wire('sf','fS','data-s');
-wire('nf','fN','data-n');
-wire('af','fA','data-a');
-wire('mf','fM','data-m');
-wire('apf','fP','data-p','ao-');
 
-loadData();
+wire("sf",  "fS", "data-s");
+wire("nf",  "fN", "data-n");
+wire("af",  "fA", "data-a");
+wire("mf",  "fM", "data-m");
+wire("apf", "fP", "data-p", "ao-");
+
+render();
 </script>
 </body>
 </html>
