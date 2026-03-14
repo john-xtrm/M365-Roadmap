@@ -24,10 +24,9 @@
   .hdr { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
   .hdr-left h1 { font-size: 18px; font-weight: 600; }
   .hdr-left p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  .hdr-right { display: flex; align-items: center; gap: 10px; }
   #last-updated { font-size: 12px; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
 
-  .main { max-width: 920px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
 
   .filter-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
   .filter-group { flex: 1; min-width: 180px; }
@@ -69,10 +68,23 @@
 
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color .15s; }
   .card:hover { border-color: var(--border-s); }
+
   .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
-  .card-title { font-size: 15px; font-weight: 500; line-height: 1.4; margin-bottom: 7px; }
-  .card-desc  { font-size: 13px; color: var(--muted); line-height: 1.65; margin-bottom: 12px; }
-  .card-foot  { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  .card-title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
+
+  /* Voordeel — meest prominent */
+  .card-benefit { font-size: 13px; color: var(--text); line-height: 1.65; margin-bottom: 10px; padding: 10px 13px; background: var(--surface2); border-radius: 8px; border-left: 3px solid var(--border-s); }
+  .card-benefit-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 4px; }
+
+  /* Technische beschrijving — inklapbaar */
+  details { margin-bottom: 12px; }
+  summary { font-size: 12px; color: var(--faint); cursor: pointer; user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: '▶'; font-size: 9px; transition: transform .15s; }
+  details[open] summary::before { transform: rotate(90deg); }
+  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
+
+  .card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
   .card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; background: var(--surface2); color: var(--text); padding: 4px 11px; border-radius: 100px; }
   .date-info { font-size: 11px; color: var(--faint); }
@@ -108,9 +120,7 @@
     <h1>Microsoft 365 Roadmap</h1>
     <p>In ontwikkeling &amp; Wordt uitgerold — live via Microsoft</p>
   </div>
-  <div class="hdr-right">
-    <span id="last-updated">Laden…</span>
-  </div>
+  <span id="last-updated">Laden…</span>
 </div>
 
 <div class="main">
@@ -200,11 +210,7 @@ var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" str
 var APP_LABELS = { copilot:"Copilot", teams:"Teams", outlook:"Outlook", sharepoint:"SharePoint", purview:"Purview", word:"Word", other:"Overig" };
 var APP_CLS    = { copilot:"p-copilot", teams:"p-teams", outlook:"p-outlook", sharepoint:"p-sharepoint", purview:"p-purview", word:"p-word", other:"p-other" };
 
-// Welke IDs waren er vorige week al?
-// Dit wordt elke week bijgewerkt door de webbeheerder of kan automatisch via localStorage.
-var SEEN_IDS = JSON.parse(localStorage.getItem("m365_seen_ids") || "[]");
-var SEEN_SET = new Set(SEEN_IDS);
-
+var SEEN_SET = new Set(JSON.parse(localStorage.getItem("m365_seen_ids") || "[]"));
 var ALL_ITEMS = [];
 var fS="all", fN="all", fA="aw", fM="mw", fP="all";
 
@@ -217,39 +223,22 @@ function parseRelease(s) {
   if (m && MONTHS[m[1]] !== undefined) return new Date(parseInt(m[2]), MONTHS[m[1]], 1);
   return new Date(9999,0,1);
 }
-
 function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/86400000 : 9999; }
 function fmtDate(d) { return d ? new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}) : ""; }
+function esc(s)     { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
-// Actie afleiden uit productnaam + beschrijving
-function inferAction(item) {
-  var t = (item.title + " " + item.desc).toLowerCase();
-  if (/admin|beheerder|tenant|policy|beleid|configure|instellen|powershell|governance/.test(t)) return ["admin", "IT-beheerder actie vereist"];
-  if (/user|gebruiker|opt.in|instelling|voorkeur|choose|select|manage your/.test(t)) return ["user", "Gebruiker kan instellen"];
-  return ["none", "Automatisch beschikbaar"];
-}
-
-// Fetch data.json (gegenereerd door GitHub Actions)
 fetch("data.json")
   .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(function(data) {
-    // Sla huidige IDs op als "gezien", markeer nieuwe items
     var currentIds = data.items.map(function(i) { return i.id; });
     ALL_ITEMS = data.items.map(function(item) {
-      var actionInfo = inferAction(item);
-      return Object.assign({}, item, {
-        isNew:       !SEEN_SET.has(item.id),
-        action:      actionInfo[0],
-        actionLabel: actionInfo[1]
-      });
+      return Object.assign({}, item, { isNew: !SEEN_SET.has(item.id) });
     });
-
-    // Na het laden: sla huidige IDs op voor volgende week
     localStorage.setItem("m365_seen_ids", JSON.stringify(currentIds));
 
     var generated = new Date(data.generated);
     document.getElementById("last-updated").textContent =
-      "Bijgewerkt: " + generated.toLocaleDateString("nl-NL", {day:"numeric", month:"long"}) +
+      "Bijgewerkt: " + generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"}) +
       " · " + data.count + " items";
 
     render();
@@ -257,37 +246,48 @@ fetch("data.json")
   .catch(function(err) {
     document.getElementById("root").innerHTML =
       '<div class="state-box"><h3>Kon data.json niet laden</h3>' +
-      '<p style="margin-top:.5rem;font-size:13px">Zorg dat de GitHub Actions workflow succesvol is gedraaid<br>zodat data.json aanwezig is in de repository.</p>' +
-      '<p style="margin-top:.75rem;font-size:11px;color:var(--faint)">' + err + '</p></div>';
+      '<p style="margin-top:.5rem;font-size:13px">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
+      '<p style="margin-top:.75rem;font-size:11px;color:var(--faint)">' + esc(String(err)) + '</p></div>';
   });
 
 function cardHTML(item) {
-  var cfg = { rolling:{label:"Wordt uitgerold",cls:"p-rolling"}, dev:{label:"In ontwikkeling",cls:"p-dev"} }[item.status];
+  var cfg = {
+    rolling: { label:"Wordt uitgerold", cls:"p-rolling" },
+    dev:     { label:"In ontwikkeling", cls:"p-dev" }
+  }[item.status];
+
   var dateRow = "";
   if (item.added)    dateRow += '<span class="date-info">📅 ' + fmtDate(item.added) + '</span>';
   if (item.modified && item.modified !== item.added)
     dateRow += '<span class="date-info" style="margin-left:10px">✏️ ' + fmtDate(item.modified) + '</span>';
-  var shortDesc = item.desc.length > 300 ? item.desc.slice(0, 300) + "…" : item.desc;
+
   return '<div class="card">' +
     '<div class="card-pills">' +
-      '<span class="pill ' + APP_CLS[item.app] + '">' + (item.prodLabel || APP_LABELS[item.app]) + '</span>' +
+      '<span class="pill ' + APP_CLS[item.app] + '">' + esc(item.prodLabel || APP_LABELS[item.app]) + '</span>' +
       '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
       (item.isNew ? '<span class="new-badge">⭐ Nieuw</span>' : '') +
     '</div>' +
     '<div class="card-title">' + esc(item.title) + '</div>' +
-    (shortDesc ? '<p class="card-desc">' + esc(shortDesc) + '</p>' : '') +
+
+    // Voordeel voor de organisatie — altijd zichtbaar
+    '<div class="card-benefit">' +
+      '<div class="card-benefit-label">Voordeel voor de organisatie</div>' +
+      esc(item.benefit) +
+    '</div>' +
+
+    // Technische beschrijving — ingeklapt
+    (item.desc ? '<details><summary>Technische details</summary><div class="card-desc">' + esc(item.desc) + '</div></details>' : '') +
+
     '<div class="card-foot">' +
       '<div class="card-foot-left">' +
         '<span class="release-badge">🚀 ' + esc(item.release || "–") + '</span>' +
-        '<span class="action-badge a-' + item.action + '"><span class="action-dot"></span><span class="action-lbl">' + item.actionLabel + '</span></span>' +
+        '<span class="action-badge a-' + item.action + '"><span class="action-dot"></span><span class="action-lbl">' + esc(item.actionLabel) + '</span></span>' +
         (dateRow ? '<span style="display:flex;align-items:center;gap:4px">' + dateRow + '</span>' : '') +
       '</div>' +
       '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + item.id + '</a>' +
     '</div>' +
   '</div>';
 }
-
-function esc(s) { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 function render() {
   if (!ALL_ITEMS.length) return;
@@ -326,19 +326,20 @@ function render() {
 
   var emptyEl = document.getElementById("empty-msg");
   var rootEl  = document.getElementById("root");
-
   if (!filtered.length) { rootEl.innerHTML=""; emptyEl.classList.add("show"); return; }
   emptyEl.classList.remove("show");
 
   if (sort === "status") {
-    function sec(items, key, emoji, lbl) {
+    function sec(items, emoji, lbl) {
       if (!items.length) return "";
-      return '<div><div class="sec-hdr"><span>' + emoji + ' ' + lbl + '</span><span class="sec-count">' + items.length + '</span></div>' +
+      return '<div><div class="sec-hdr"><span>' + emoji + ' ' + lbl +
+        '</span><span class="sec-count">' + items.length + '</span></div>' +
         items.map(cardHTML).join("") + '</div>';
     }
-    rootEl.innerHTML = sec(rolling,"rolling","🟡","Wordt uitgerold") + sec(dev,"dev","🔵","In ontwikkeling");
+    rootEl.innerHTML = sec(rolling,"🟡","Wordt uitgerold") + sec(dev,"🔵","In ontwikkeling");
   } else {
-    rootEl.innerHTML = '<div><div class="sec-hdr"><span>' + filtered.length + ' items</span></div>' +
+    rootEl.innerHTML = '<div><div class="sec-hdr"><span>' +
+      filtered.length + ' items</span><span class="sec-count">' + filtered.length + '</span></div>' +
       filtered.map(cardHTML).join("") + '</div>';
   }
 }
