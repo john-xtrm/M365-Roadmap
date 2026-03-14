@@ -2,7 +2,7 @@ name: Ververs Microsoft 365 Roadmap
 
 on:
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: '0 6 * * 1'   # Elke maandag om 06:00 UTC (07:00 NL wintertijd)
   workflow_dispatch:
 
 permissions:
@@ -16,6 +16,9 @@ jobs:
       - name: Repository ophalen
         uses: actions/checkout@v4
 
+      - name: Python-afhankelijkheden installeren
+        run: pip install deep-translator
+
       - name: CSV ophalen via curl
         run: |
           curl -s -L \
@@ -25,10 +28,9 @@ jobs:
             -H "Referer: https://www.microsoft.com/en-us/microsoft-365/roadmap" \
             "https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv" \
             -o roadmap.csv
-          echo "Bestandsgrootte: $(wc -c < roadmap.csv) bytes"
-          head -1 roadmap.csv
+          echo "Opgehaald: $(wc -l < roadmap.csv) regels"
 
-      - name: Data verwerken
+      - name: Data verwerken en vertalen
         run: python3 fetch_roadmap.py
 
       - name: data.json committen
