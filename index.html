@@ -71,12 +71,9 @@
 
   .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
   .card-title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
-
-  /* Voordeel — meest prominent */
   .card-benefit { font-size: 13px; color: var(--text); line-height: 1.65; margin-bottom: 10px; padding: 10px 13px; background: var(--surface2); border-radius: 8px; border-left: 3px solid var(--border-s); }
   .card-benefit-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 4px; }
 
-  /* Technische beschrijving — inklapbaar */
   details { margin-bottom: 12px; }
   summary { font-size: 12px; color: var(--faint); cursor: pointer; user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; }
   summary::-webkit-details-marker { display: none; }
@@ -179,8 +176,8 @@
     <div class="sort-group">
       <div class="filter-label">Sorteren op</div>
       <select id="sort-select" onchange="render()">
-        <option value="release-asc">Releasedatum: nieuw → oud</option>
-        <option value="release-desc">Releasedatum: oud → nieuw</option>
+        <option value="release-asc">Verwachte release: nieuw → oud</option>
+        <option value="release-desc">Verwachte release: oud → nieuw</option>
         <option value="modified-desc">Laatst gewijzigd</option>
         <option value="status">Status</option>
       </select>
@@ -194,9 +191,9 @@
     <span class="pill p-dev">In ontwikkeling</span>
     <span class="new-badge">⭐ Nieuw</span>
     &nbsp;·&nbsp;
-    <span class="action-badge a-none"><span class="action-dot"></span><span class="action-lbl">Geen actie</span></span>
-    <span class="action-badge a-admin"><span class="action-dot"></span><span class="action-lbl">IT-beheerder</span></span>
-    <span class="action-badge a-user"><span class="action-dot"></span><span class="action-lbl">Gebruiker</span></span>
+    <span class="action-badge a-none"><span class="action-dot"></span><span class="action-lbl">Geen actie nodig</span></span>
+    <span class="action-badge a-admin"><span class="action-dot"></span><span class="action-lbl">IT-beheerder actie vereist</span></span>
+    <span class="action-badge a-user"><span class="action-dot"></span><span class="action-lbl">Gebruiker kan instellen</span></span>
   </div>
 
   <div id="stats-bar" class="stats-bar"></div>
@@ -209,6 +206,20 @@ var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" str
 
 var APP_LABELS = { copilot:"Copilot", teams:"Teams", outlook:"Outlook", sharepoint:"SharePoint", purview:"Purview", word:"Word", other:"Overig" };
 var APP_CLS    = { copilot:"p-copilot", teams:"p-teams", outlook:"p-outlook", sharepoint:"p-sharepoint", purview:"p-purview", word:"p-word", other:"p-other" };
+
+// Engelse maandnamen → Nederlands (voor de Microsoft release-datums)
+var MAANDEN = {
+  "january":"januari","february":"februari","march":"maart","april":"april",
+  "may":"mei","june":"juni","july":"juli","august":"augustus",
+  "september":"september","october":"oktober","november":"november","december":"december"
+};
+
+function nlRelease(s) {
+  if (!s) return "–";
+  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
+    function(m) { return MAANDEN[m.toLowerCase()] || m; })
+    .replace(/\bCY(\d{4})\b/, "$1");
+}
 
 var SEEN_SET = new Set(JSON.parse(localStorage.getItem("m365_seen_ids") || "[]"));
 var ALL_ITEMS = [];
@@ -257,9 +268,9 @@ function cardHTML(item) {
   }[item.status];
 
   var dateRow = "";
-  if (item.added)    dateRow += '<span class="date-info">📅 ' + fmtDate(item.added) + '</span>';
+  if (item.added)    dateRow += '<span class="date-info">📅 Toegevoegd: ' + fmtDate(item.added) + '</span>';
   if (item.modified && item.modified !== item.added)
-    dateRow += '<span class="date-info" style="margin-left:10px">✏️ ' + fmtDate(item.modified) + '</span>';
+    dateRow += '<span class="date-info" style="margin-left:10px">✏️ Gewijzigd: ' + fmtDate(item.modified) + '</span>';
 
   return '<div class="card">' +
     '<div class="card-pills">' +
@@ -268,19 +279,14 @@ function cardHTML(item) {
       (item.isNew ? '<span class="new-badge">⭐ Nieuw</span>' : '') +
     '</div>' +
     '<div class="card-title">' + esc(item.title) + '</div>' +
-
-    // Voordeel voor de organisatie — altijd zichtbaar
     '<div class="card-benefit">' +
       '<div class="card-benefit-label">Voordeel voor de organisatie</div>' +
       esc(item.benefit) +
     '</div>' +
-
-    // Technische beschrijving — ingeklapt
     (item.desc ? '<details><summary>Technische details</summary><div class="card-desc">' + esc(item.desc) + '</div></details>' : '') +
-
     '<div class="card-foot">' +
       '<div class="card-foot-left">' +
-        '<span class="release-badge">🚀 ' + esc(item.release || "–") + '</span>' +
+        '<span class="release-badge">🚀 ' + esc(nlRelease(item.release)) + '</span>' +
         '<span class="action-badge a-' + item.action + '"><span class="action-dot"></span><span class="action-lbl">' + esc(item.actionLabel) + '</span></span>' +
         (dateRow ? '<span style="display:flex;align-items:center;gap:4px">' + dateRow + '</span>' : '') +
       '</div>' +
@@ -338,8 +344,8 @@ function render() {
     }
     rootEl.innerHTML = sec(rolling,"🟡","Wordt uitgerold") + sec(dev,"🔵","In ontwikkeling");
   } else {
-    rootEl.innerHTML = '<div><div class="sec-hdr"><span>' +
-      filtered.length + ' items</span><span class="sec-count">' + filtered.length + '</span></div>' +
+    rootEl.innerHTML = '<div><div class="sec-hdr"><span>' + filtered.length +
+      ' items</span><span class="sec-count">' + filtered.length + '</span></div>' +
       filtered.map(cardHTML).join("") + '</div>';
   }
 }
