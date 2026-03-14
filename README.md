@@ -1,6 +1,6 @@
-# 📋 Microsoft 365 Roadmap Dashboard
+# Microsoft 365 Roadmap Dashboard
 
-Een automatisch bijgewerkt overzicht van Microsoft 365-updates voor niet-technische medewerkers. De pagina toont alle items met status **"In ontwikkeling"** en **"Wordt uitgerold"**, rechtstreeks opgehaald van de officiële Microsoft-roadmap.
+Een automatisch bijgewerkt dashboard dat Microsoft 365-updates begrijpelijk presenteert voor niet-technische medewerkers. De pagina toont items met status **"In ontwikkeling"** en **"Wordt uitgerold"**, rechtstreeks opgehaald van de officiële Microsoft-roadmap en vertaald naar het Nederlands.
 
 🔗 **Live pagina:** `https://[jouw-gebruikersnaam].github.io/M365-Roadmap`
 
@@ -9,87 +9,107 @@ Een automatisch bijgewerkt overzicht van Microsoft 365-updates voor niet-technis
 ## Hoe het werkt
 
 ```
-Microsoft (officiele roadmap CSV)
-        ↓  elke maandag automatisch
-GitHub Actions (fetch_roadmap.py)
-        ↓  schrijft naar
-data.json  (in deze repository)
-        ↓  leest bij elk bezoek
-index.html (de pagina die collega's zien)
+Microsoft (officiële roadmap CSV — gratis, publiek)
+        ↓  elke maandag automatisch via GitHub Actions
+fetch_roadmap.py
+  → filtert op Worldwide + In Development / Rolling Out
+  → vertaalt titels en beschrijvingen naar Nederlands (Google Translate, gratis)
+  → classificeert wie actie moet ondernemen (IT-beheerder / gebruiker / niemand)
+  → genereert een voordeel-omschrijving per item op basis van trefwoorden
+        ↓  slaat op als
+data.json  (in deze repository, elke maandag overschreven)
+        ↓  wordt gelezen door
+index.html → de pagina die collega's zien via GitHub Pages
 ```
 
-**Elke maandag om 07:00 NL-tijd** draait GitHub automatisch een script dat:
-1. De officiële Microsoft roadmap ophaalt via de publieke Microsoft API
-2. Filtert op Worldwide-items met status "In development" of "Rolling out"
-3. Het resultaat opslaat als `data.json` in deze repository
-4. De pagina toont bij het volgende bezoek automatisch de nieuwe data
-
-Niemand hoeft hier iets voor te doen — het werkt volledig automatisch.
+**Elke maandag om 07:00 NL-tijd** (06:00 UTC) draait GitHub Actions automatisch. Daarna is de pagina bijgewerkt zonder dat iemand iets hoeft te doen.
 
 ---
 
-## Bestanden in deze repository
+## Bestanden
 
-| Bestand | Waarvoor |
+| Bestand | Omschrijving |
 |---|---|
-| `index.html` | De pagina die collega's zien (via GitHub Pages) |
-| `data.json` | Automatisch gegenereerd — bevat de actuele roadmap-items |
-| `fetch_roadmap.py` | Het Python-script dat de Microsoft API uitleest en `data.json` aanmaakt |
-| `.github/workflows/update-roadmap.yml` | De automatische planning (elke maandag) |
+| `index.html` | De dashboard-pagina. Leest `data.json` en toont de kaarten met filters. |
+| `data.json` | Automatisch gegenereerd door de workflow. Bevat alle vertaalde roadmap-items. Handmatige aanpassingen worden elke maandag overschreven. |
+| `fetch_roadmap.py` | Python-script dat de Microsoft CSV verwerkt: filteren, vertalen, classificeren en opslaan als `data.json`. |
+| `.github/workflows/update-roadmap.yml` | GitHub Actions workflow: haalt wekelijks de CSV op en voert `fetch_roadmap.py` uit. |
+
+---
+
+## Wat de pagina toont per item
+
+- **Titel** — vertaald naar Nederlands
+- **Voordeel voor de organisatie** — automatisch gegenereerd op basis van trefwoorden (app + onderwerp)
+- **Technische details** — ingeklapt, voor wie dat wil lezen; vertaald naar Nederlands
+- **Status** — Wordt uitgerold / In ontwikkeling
+- **Verwachte releasedatum** — in het Nederlands
+- **Actie-indicator** — groen (geen actie), geel (IT-beheerder), blauw (gebruiker)
+- **⭐ Nieuw** — items die er vorige week nog niet in stonden, bijgehouden via de browser
+- **Link naar Microsoft Roadmap** — rechtstreeks naar het officiële item via het roadmap-ID
+
+### Beschikbare filters
+- Status (wordt uitgerold / in ontwikkeling)
+- Nieuw / al bekend
+- Toegevoegd aan roadmap (deze week / deze maand / alle)
+- Gewijzigd (deze week / deze maand / alle)
+- Applicatie (Copilot, Teams, Outlook, SharePoint, Purview, Word, Overig)
+- Sortering (verwachte release, laatst gewijzigd, status)
 
 ---
 
 ## Onderhoud
 
-### De pagina werkt niet meer / data is verouderd
+### De workflow handmatig starten
 
-1. Ga naar het tabblad **Actions** in deze repository
+1. Ga naar **Actions** in deze repository
 2. Klik op **"Ververs Microsoft 365 Roadmap"**
 3. Klik op **"Run workflow"** → **"Run workflow"**
-4. Wacht 30 seconden — bij groen vinkje is `data.json` bijgewerkt
+4. Wacht ~3–5 minuten (inclusief vertaling van alle items)
 
-### De workflow geeft een fout
+### Veelvoorkomende fouten
 
-Klik op de rode workflow-run en open de logs. Veelvoorkomende oorzaken:
+| Fout in de logs | Oorzaak | Oplossing |
+|---|---|---|
+| `403 Forbidden` bij curl | Microsoft blokkeert tijdelijk het IP van GitHub | Probeer het een dag later opnieuw |
+| `Permission denied` bij git push | Workflow heeft geen schrijfrechten | Ga naar **Settings → Actions → General → Workflow permissions** → zet op "Read and write" |
+| `data.json not found` op de pagina | Workflow heeft nog nooit gedraaid | Start de workflow handmatig via Actions |
+| Vertaling mislukt voor een item | Google Translate tijdelijk onbereikbaar | Het script behoudt automatisch de Engelse tekst en probeert het de volgende keer opnieuw |
 
-| Fout | Oplossing |
-|---|---|
-| `403 Forbidden` bij ophalen CSV | Microsoft blokkeert tijdelijk — probeer het een dag later opnieuw |
-| `Permission denied` bij git push | Ga naar **Settings → Actions → General** en zet "Workflow permissions" op "Read and write" |
-| `data.json not found` op de pagina | Workflow is nog nooit gedraaid — start hem handmatig via Actions |
+### Actie-classificatie aanpassen
 
-### Handmatig items toevoegen of aanpassen
+De actie-badges (IT-beheerder / gebruiker / geen actie) worden automatisch bepaald op basis van trefwoorden in de Engelse originele tekst. Dit werkt goed voor de meeste items maar is niet altijd perfect. De trefwoorden staan bovenaan in `fetch_roadmap.py` in de lijsten `ADMIN_PATTERNS` en `USER_PATTERNS`. Die kun je uitbreiden als classificatie structureel onjuist is voor bepaalde typen items.
 
-Items in `data.json` worden elke maandag overschreven door de workflow — handmatige aanpassingen daarin gaan verloren. Als je een item wil aanpassen (bijv. een betere Nederlandse beschrijving of actielabel), doe dit dan in `index.html` via de `OVERRIDES`-tabel bovenaan het script. *(Nog niet aanwezig — vraag de beheerder dit toe te voegen als dat nodig is.)*
+### Voordeel-omschrijvingen aanpassen
 
-### De pagina aanpassen (opmaak, filters, tekst)
+Voordeel-omschrijvingen staan in de `BENEFIT_TEMPLATES`-woordenboek in `fetch_roadmap.py`. Per combinatie van applicatie en trefwoord is er een vaste Nederlandse zin. Ontbreekt er een combinatie, dan valt het script terug op een generieke zin per app uit `GENERIC_BENEFIT`. Beide woordenboeken zijn eenvoudig uit te breiden.
 
-Bewerk `index.html` en commit de wijziging. GitHub Pages toont de nieuwe versie binnen 1–2 minuten.
+### Pagina-opmaak aanpassen
 
-### Iemand anders toegang geven
-
-Ga naar **Settings → Collaborators** en voeg de persoon toe. Zij kunnen dan ook de workflow handmatig starten of bestanden bewerken.
+Bewerk `index.html` direct in GitHub (potlood-icoon) en commit de wijziging. GitHub Pages toont de nieuwe versie binnen 1–2 minuten. De data komt altijd uit `data.json` — de opmaak en de data staan volledig los van elkaar.
 
 ---
 
-## Teams-tabblad instellen of vervangen
+## Teams-tabblad instellen
 
 1. Ga naar het gewenste Teams-kanaal
-2. Klik op **+** naast de tabbladen → **Website**
-3. Vul de GitHub Pages-URL in: `https://[jouw-gebruikersnaam].github.io/M365-Roadmap`
-4. Geef het tabblad een naam, bijv. *M365 Roadmap*
-5. Klik op **Opslaan**
+2. Klik op **+** → **Website**
+3. Vul in: `https://[jouw-gebruikersnaam].github.io/M365-Roadmap`
+4. Naam: *M365 Roadmap* → **Opslaan**
 
-Het tabblad laadt altijd de meest recente versie — je hoeft het nooit opnieuw in te stellen.
+Het tabblad toont altijd de meest recente versie. Je hoeft het nooit opnieuw in te stellen.
 
 ---
 
 ## Kosten
 
-Niets. GitHub Pages en GitHub Actions zijn gratis voor publieke repositories. Microsoft's roadmap-API is gratis en publiek toegankelijk. Er zijn geen abonnementen of API-sleutels nodig.
+Alles is gratis:
 
----
+| Onderdeel | Kosten |
+|---|---|
+| GitHub Pages | Gratis voor publieke repositories |
+| GitHub Actions | Gratis (2.000 minuten/maand — de workflow gebruikt ~3–5 minuten per week) |
+| Microsoft Roadmap CSV | Gratis, publiek toegankelijk via `microsoft.com/releasecommunications/api/v2/m365` |
+| Vertaling via Google Translate | Gratis via de `deep_translator` Python-bibliotheek (geen API-sleutel vereist) |
 
-## Vragen of problemen?
-
-Maak een **Issue** aan in deze repository of neem contact op met de IT-afdeling.
+Er zijn geen abonnementen, API-sleutels of betaalaccounts nodig.
