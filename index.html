@@ -17,6 +17,7 @@
     --blue-bg: #e6f0fd;  --blue-t: #1a4fa0;
     --red-bg: #fdecea;   --red-t: #a02020;
     --orange-bg: #fff0e6;--orange-t: #8c4300;
+    --teal-bg: #e0f4f1;  --teal-t: #0e6b5e;
     --new-bg: #fff7e0;   --new-t: #7a5000;
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
@@ -32,15 +33,28 @@
   .filter-group { flex: 1; min-width: 180px; }
   .filter-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 8px; }
   .filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
+
   .fb { padding: 6px 15px; border-radius: 100px; border: 1px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .12s; }
   .fb:hover { background: var(--surface2); }
   .fb.on { background: var(--text); color: #fff; border-color: transparent; }
+
+  /* App-filterkleur als actief */
   .fb.ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: transparent; }
   .fb.ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
   .fb.ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
+  .fb.ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: transparent; }
   .fb.ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: transparent; }
   .fb.ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: transparent; }
-  .fb.ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-viva       { background: var(--purple-bg); color: var(--purple-t); border-color: transparent; }
+  .fb.ao-edge       { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-exchange   { background: var(--teal-bg);   color: var(--teal-t);   border-color: transparent; }
+  .fb.ao-forms      { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
+  .fb.ao-intune     { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
+  .fb.ao-entra      { background: var(--teal-bg);   color: var(--teal-t);   border-color: transparent; }
+  .fb.ao-planner    { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
   .fb.ao-other      { background: var(--gray-bg);   color: var(--gray-t);   border-color: transparent; }
 
   .filter-bottom { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
@@ -58,15 +72,14 @@
 
   .stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
   .stat-pill { font-size: 12px; padding: 4px 12px; border-radius: 100px; }
-  .s-total    { background: var(--surface2); color: var(--muted); }
-  .s-rolling  { background: var(--amber-bg); color: var(--amber-t); }
-  .s-dev      { background: var(--blue-bg);  color: var(--blue-t); }
-  .s-new      { background: var(--new-bg);   color: var(--new-t); }
+  .s-total   { background: var(--surface2); color: var(--muted); }
+  .s-rolling { background: var(--amber-bg); color: var(--amber-t); }
+  .s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
+  .s-new     { background: var(--new-bg);   color: var(--new-t); }
 
   .sec-hdr { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .sec-count { font-size: 11px; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
 
-  /* Actieve kaarten */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color .15s; }
   .card:hover { border-color: var(--border-s); }
   .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
@@ -94,20 +107,29 @@
   .changes-inner { display: none; padding: 0 1.25rem 1.25rem; background: var(--surface); }
   .changes-inner.open { display: block; }
   .changes-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); }
-
-  /* Kleine statuskaart in wijzigingen */
-  .rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; }
+  .rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; flex-wrap: wrap; }
   .rcard:last-child { margin-bottom: 0; }
-  .rcard-title { font-size: 13px; font-weight: 500; flex: 1; min-width: 0; }
+  .rcard-title { font-size: 13px; font-weight: 500; flex: 1; min-width: 180px; }
   .rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
+  /* Pills */
   .pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
   .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
   .p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
   .p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-excel      { background: var(--green-bg);  color: var(--green-t); }
+  .p-word       { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
   .p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
   .p-purview    { background: var(--red-bg);    color: var(--red-t); }
-  .p-word       { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-viva       { background: var(--purple-bg); color: var(--purple-t); }
+  .p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
+  .p-forms      { background: var(--green-bg);  color: var(--green-t); }
+  .p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
+  .p-planner    { background: var(--green-bg);  color: var(--green-t); }
   .p-other      { background: var(--gray-bg);   color: var(--gray-t); }
   .p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
   .p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
@@ -123,7 +145,6 @@
   .state-box h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
   .spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
   #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
   #empty-msg.show { display: block; }
 </style>
@@ -178,17 +199,11 @@
   </div>
 
   <div class="filter-bottom">
-    <div>
+    <div style="flex:1">
       <div class="filter-label">Applicatie</div>
+      <!-- Dynamisch gevuld op basis van aanwezige apps in data.json -->
       <div class="filter-bar" id="apf">
         <button class="fb on" data-p="all">Alle apps</button>
-        <button class="fb" data-p="copilot">Copilot</button>
-        <button class="fb" data-p="teams">Teams</button>
-        <button class="fb" data-p="outlook">Outlook</button>
-        <button class="fb" data-p="sharepoint">SharePoint</button>
-        <button class="fb" data-p="purview">Purview</button>
-        <button class="fb" data-p="word">Word</button>
-        <button class="fb" data-p="other">Overig</button>
       </div>
     </div>
     <div class="sort-group">
@@ -218,7 +233,6 @@
   <div id="root"><div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3></div></div>
   <div id="empty-msg">Geen items gevonden voor deze filters.</div>
 
-  <!-- Wijzigingen deze week -->
   <div id="changes-block" class="changes-block" style="display:none">
     <button class="changes-toggle" onclick="toggleChanges()">
       <div class="changes-toggle-left">
@@ -237,8 +251,29 @@
 <script>
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-var APP_LABELS = { copilot:"Copilot", teams:"Teams", outlook:"Outlook", sharepoint:"SharePoint", purview:"Purview", word:"Word", other:"Overig" };
-var APP_CLS    = { copilot:"p-copilot", teams:"p-teams", outlook:"p-outlook", sharepoint:"p-sharepoint", purview:"p-purview", word:"p-word", other:"p-other" };
+// Alle bekende apps met label en klasse
+var APP_META = {
+  copilot:    { label:"Copilot",     cls:"p-copilot" },
+  teams:      { label:"Teams",       cls:"p-teams" },
+  outlook:    { label:"Outlook",     cls:"p-outlook" },
+  excel:      { label:"Excel",       cls:"p-excel" },
+  word:       { label:"Word",        cls:"p-word" },
+  powerpoint: { label:"PowerPoint",  cls:"p-powerpoint" },
+  sharepoint: { label:"SharePoint",  cls:"p-sharepoint" },
+  purview:    { label:"Purview",     cls:"p-purview" },
+  viva:       { label:"Viva",        cls:"p-viva" },
+  edge:       { label:"Edge",        cls:"p-edge" },
+  onedrive:   { label:"OneDrive",    cls:"p-onedrive" },
+  exchange:   { label:"Exchange",    cls:"p-exchange" },
+  forms:      { label:"Forms",       cls:"p-forms" },
+  intune:     { label:"Intune",      cls:"p-intune" },
+  entra:      { label:"Entra",       cls:"p-entra" },
+  planner:    { label:"Planner",     cls:"p-planner" },
+  other:      { label:"Overig",      cls:"p-other" },
+};
+
+// Gewenste volgorde van app-knoppen
+var APP_ORDER = ["copilot","teams","outlook","excel","word","powerpoint","sharepoint","purview","viva","edge","onedrive","exchange","forms","intune","entra","planner","other"];
 
 var MAANDEN = {
   "january":"januari","february":"februari","march":"maart","april":"april",
@@ -271,9 +306,39 @@ function esc(s)     { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&
 function toggleChanges() {
   var inner   = document.getElementById("changes-inner");
   var chevron = document.getElementById("changes-chevron");
-  var isOpen  = inner.classList.contains("open");
-  inner.classList.toggle("open", !isOpen);
-  chevron.classList.toggle("open", !isOpen);
+  inner.classList.toggle("open");
+  chevron.classList.toggle("open");
+}
+
+// Bouw app-filterbalke dynamisch op basis van welke apps er echt in de data zitten
+function buildAppFilter(items) {
+  var presentApps = new Set(items.map(function(i){ return i.app; }));
+  var bar = document.getElementById("apf");
+
+  // Verwijder alles behalve "Alle apps"
+  while (bar.children.length > 1) bar.removeChild(bar.lastChild);
+
+  APP_ORDER.forEach(function(key) {
+    if (!presentApps.has(key)) return;
+    var meta = APP_META[key];
+    var count = items.filter(function(i){ return i.app === key; }).length;
+    var btn = document.createElement("button");
+    btn.className = "fb";
+    btn.setAttribute("data-p", key);
+    btn.textContent = meta.label + " (" + count + ")";
+    bar.appendChild(btn);
+  });
+
+  // Herverbind click-handler
+  bar.addEventListener("click", function(e){
+    var t = e.target.closest("[data-p]"); if (!t) return;
+    document.querySelectorAll("#apf .fb").forEach(function(b){ b.className="fb"; });
+    var v = t.getAttribute("data-p");
+    t.classList.add("on");
+    if (v !== "all") t.classList.add("ao-" + v);
+    fP = v;
+    render();
+  });
 }
 
 fetch("data.json")
@@ -290,37 +355,29 @@ fetch("data.json")
       "Bijgewerkt: " + generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"}) +
       " · " + data.count + " items";
 
-    // Wijzigingen-blok vullen
+    // App-filter dynamisch opbouwen
+    buildAppFilter(ALL_ITEMS);
+
+    // Wijzigingen-blok
     var removed = data.removed || [];
     if (removed.length > 0) {
-      var block = document.getElementById("changes-block");
-      block.style.display = "block";
-
-      var launched  = removed.filter(function(r){ return r.status === "launched"; });
-      var cancelled = removed.filter(function(r){ return r.status === "cancelled"; });
-      var unknown   = removed.filter(function(r){ return r.status === "unknown"; });
-
+      document.getElementById("changes-block").style.display = "block";
       document.getElementById("changes-title").textContent =
         "Wijzigingen deze week (" + removed.length + " item" + (removed.length !== 1 ? "s" : "") + ")";
       document.getElementById("changes-icon").textContent =
-        launched.length > 0 ? "✅" : "⚑";
-
-      var cards = removed.map(function(r){
-        var appCls  = APP_CLS[r.app] || "p-other";
-        var appLbl  = r.prodLabel || APP_LABELS[r.app] || "Overig";
-        var stCls   = "p-" + r.status;
-        var stLbl   = r.statusNl || r.status;
+        removed.some(function(r){ return r.status === "launched"; }) ? "✅" : "⚑";
+      document.getElementById("changes-cards").innerHTML = removed.map(function(r){
+        var meta   = APP_META[r.app] || APP_META.other;
+        var stCls  = "p-" + r.status;
         return '<div class="rcard">' +
-          '<span class="pill ' + appCls + '">' + esc(appLbl) + '</span>' +
+          '<span class="pill ' + meta.cls + '">' + esc(r.prodLabel || meta.label) + '</span>' +
           '<span class="rcard-title">' + esc(r.title) + '</span>' +
           '<div class="rcard-right">' +
-            '<span class="pill ' + stCls + '">' + esc(stLbl) + '</span>' +
+            '<span class="pill ' + stCls + '">' + esc(r.statusNl) + '</span>' +
             '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + r.id + '</a>' +
           '</div>' +
         '</div>';
       }).join("");
-
-      document.getElementById("changes-cards").innerHTML = cards;
     }
 
     render();
@@ -333,25 +390,20 @@ fetch("data.json")
   });
 
 function cardHTML(item) {
-  var cfg = {
-    rolling: { label:"Wordt uitgerold", cls:"p-rolling" },
-    dev:     { label:"In ontwikkeling", cls:"p-dev" }
-  }[item.status];
+  var cfg = { rolling:{label:"Wordt uitgerold",cls:"p-rolling"}, dev:{label:"In ontwikkeling",cls:"p-dev"} }[item.status];
+  var meta = APP_META[item.app] || APP_META.other;
   var dateRow = "";
   if (item.added)    dateRow += '<span class="date-info">📅 Toegevoegd: ' + fmtDate(item.added) + '</span>';
   if (item.modified && item.modified !== item.added)
     dateRow += '<span class="date-info" style="margin-left:10px">✏️ Gewijzigd: ' + fmtDate(item.modified) + '</span>';
   return '<div class="card">' +
     '<div class="card-pills">' +
-      '<span class="pill ' + APP_CLS[item.app] + '">' + esc(item.prodLabel || APP_LABELS[item.app]) + '</span>' +
+      '<span class="pill ' + meta.cls + '">' + esc(item.prodLabel || meta.label) + '</span>' +
       '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
       (item.isNew ? '<span class="new-badge">⭐ Nieuw</span>' : '') +
     '</div>' +
     '<div class="card-title">' + esc(item.title) + '</div>' +
-    '<div class="card-benefit">' +
-      '<div class="card-benefit-label">Voordeel voor de organisatie</div>' +
-      esc(item.benefit) +
-    '</div>' +
+    '<div class="card-benefit"><div class="card-benefit-label">Voordeel voor de organisatie</div>' + esc(item.benefit) + '</div>' +
     (item.desc ? '<details><summary>Technische details</summary><div class="card-desc">' + esc(item.desc) + '</div></details>' : '') +
     '<div class="card-foot">' +
       '<div class="card-foot-left">' +
@@ -381,16 +433,16 @@ function render() {
     return true;
   });
 
-  filtered = filtered.slice().sort(function(a, b){
-    if (sort === "status")        return (a.status==="rolling"?0:1) - (b.status==="rolling"?0:1);
-    if (sort === "modified-desc") return new Date(b.modified||0) - new Date(a.modified||0);
+  filtered = filtered.slice().sort(function(a,b){
+    if (sort === "status")        return (a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
+    if (sort === "modified-desc") return new Date(b.modified||0)-new Date(a.modified||0);
     var da = parseRelease(a.release), db = parseRelease(b.release);
-    return sort === "release-desc" ? da - db : db - da;
+    return sort === "release-desc" ? da-db : db-da;
   });
 
-  var rolling  = filtered.filter(function(i){ return i.status==="rolling"; });
-  var dev      = filtered.filter(function(i){ return i.status==="dev"; });
-  var newCount = filtered.filter(function(i){ return i.isNew; }).length;
+  var rolling  = filtered.filter(function(i){return i.status==="rolling";});
+  var dev      = filtered.filter(function(i){return i.status==="dev";});
+  var newCount = filtered.filter(function(i){return i.isNew;}).length;
 
   document.getElementById("stats-bar").innerHTML =
     '<span class="stat-pill s-total">'   + filtered.length + " items</span>" +
@@ -420,20 +472,18 @@ function render() {
 
 function wire(barId, prop, attr, cls) {
   document.getElementById(barId).addEventListener("click", function(e){
-    var t = e.target.closest("["+attr+"]"); if (!t) return;
-    document.querySelectorAll("#"+barId+" .fb").forEach(function(b){ b.className="fb"; });
+    var t = e.target.closest("["+attr+"]"); if(!t) return;
+    document.querySelectorAll("#"+barId+" .fb").forEach(function(b){b.className="fb";});
     var v = t.getAttribute(attr);
     t.classList.add("on");
     if (cls && v !== "all") t.classList.add(cls+v);
     if      (prop==="fS") fS=v; else if (prop==="fN") fN=v;
     else if (prop==="fA") fA=v; else if (prop==="fM") fM=v;
-    else if (prop==="fP") fP=v;
     render();
   });
 }
 wire("sf","fS","data-s"); wire("nf","fN","data-n");
 wire("af","fA","data-a"); wire("mf","fM","data-m");
-wire("apf","fP","data-p","ao-");
 </script>
 </body>
 </html>
