@@ -9,7 +9,6 @@
 <style>
 /* ── Pagina-specifieke stijlen ────────────────────────────────────────── */
 
-/* Filters */
 .filters { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
 .filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
 .filter-group label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
@@ -17,63 +16,34 @@
 .filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .filter-row-2 .filter-group { flex: 1; min-width: 160px; }
 
-/* Meer filters toggle */
-.more-toggle {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: none; border: none;
-  font: inherit; font-size: 0.8125rem;
-  color: var(--blue-t); cursor: pointer; padding: 2px 4px;
-  border-radius: var(--radius-sm);
-  text-decoration: underline; text-decoration-color: transparent;
-  /* WCAG 2.5.8: min 24px, wij gebruiken 44px voor goede bruikbaarheid */
-  min-height: 2.75rem;
-}
+.more-toggle { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; font: inherit; font-size: 0.8125rem; color: var(--blue-t); cursor: pointer; padding: 2px 4px; border-radius: var(--radius-sm); text-decoration: underline; text-decoration-color: transparent; min-height: 2.75rem; }
 .more-toggle:hover { text-decoration-color: var(--blue-t); }
 .more-toggle .chevron { font-size: 0.625rem; transition: transform 0.15s; display: inline-block; }
 .more-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
 .more-section { display: none; }
 .more-section.open { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 0.25rem; }
 
-/* Sorteer-rij */
 .sort-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
 .sort-row label { font-size: 0.8125rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
-select {
-  padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill);
-  border: 1.5px solid var(--border-s); background: var(--surface);
-  color: var(--text); font-family: var(--font); font-size: 0.875rem;
-  cursor: pointer; min-height: 2.75rem;
-}
+select { padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: var(--font); font-size: 0.875rem; cursor: pointer; min-height: 2.75rem; }
 select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
-/* Zoekbalk */
 .search-wrap { position: relative; margin-bottom: 1.25rem; }
-.search-wrap .search-icon {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  color: var(--faint); pointer-events: none;
-}
-#search-input {
-  width: 100%; padding: 0.75rem 1rem 0.75rem 2.625rem;
-  font-size: 1rem; font-family: var(--font);
-  border: 1.5px solid var(--border-s); border-radius: var(--radius-md);
-  background: var(--surface); color: var(--text);
-  transition: border-color 0.15s;
-  /* WCAG 3.3.2: autocomplete helpt gebruikers, niet blokkeren */
-}
+.search-wrap .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
+#search-input { width: 100%; padding: 0.75rem 1rem 0.75rem 2.625rem; font-size: 1rem; font-family: var(--font); border: 1.5px solid var(--border-s); border-radius: var(--radius-md); background: var(--surface); color: var(--text); transition: border-color 0.15s; }
 #search-input:focus { border-color: var(--blue-t); outline: none; box-shadow: 0 0 0 3px rgba(20,61,130,0.15); }
 #search-input::placeholder { color: var(--faint); }
-.search-clear {
-  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
-  background: none; border: none; cursor: pointer;
-  color: var(--faint); font-size: 1rem; border-radius: 50%;
-  /* min-height/width via shared.css .search-clear */
-  display: none; align-items: center; justify-content: center;
-}
+.search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--faint); font-size: 1rem; border-radius: 50%; display: none; align-items: center; justify-content: center; }
 .search-clear:hover { background: var(--surface2); color: var(--text); }
 .search-clear.show { display: flex; }
 
-/* Leeg-melding */
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
 #empty-msg.show { display: block; }
+
+/* Zoektreffer-melding */
+.search-origin-note { display: none; font-size: 0.8125rem; color: var(--muted); background: var(--surface2); border-radius: var(--radius-sm); padding: 8px 14px; margin-bottom: 1rem; align-items: center; gap: 8px; }
+.search-origin-note.show { display: flex; }
+.search-origin-note button { background: none; border: none; color: var(--blue-t); cursor: pointer; font: inherit; font-size: 0.8125rem; padding: 0; text-decoration: underline; }
 </style>
 </head>
 <body>
@@ -93,6 +63,10 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       <p class="hdr-sub">Wat staat er aan te komen en wat betekent dat voor uw organisatie?</p>
     </div>
     <div class="hdr-right">
+      <a href="kalender.html" class="hdr-archive-link" aria-label="Bekijk de releasekalender">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Kalender
+      </a>
       <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van vorige weken">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
         Archief
@@ -112,8 +86,16 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
            aria-label="Zoek in roadmap-updates"
            autocomplete="search"
            oninput="debouncedSearch(this.value)">
-    <button class="search-clear" id="search-clear"
-            aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
+    <button class="search-clear" id="search-clear" aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
+  </div>
+
+  <!-- Melding wanneer zoekopdracht via URL is ingevuld (vanuit kalender) -->
+  <div class="search-origin-note" id="search-origin-note" role="note">
+    <span aria-hidden="true">📅</span>
+    <span>U bekijkt details vanuit de releasekalender.</span>
+    <button onclick="clearSearch()" aria-label="Zoekopdracht wissen en alle items tonen">Wis filter</button>
+    <span>of</span>
+    <a href="kalender.html" style="color:var(--blue-t);font-size:.8125rem">terug naar kalender</a>
   </div>
 
   <section class="filters" aria-label="Filters">
@@ -231,7 +213,6 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 <script>
 'use strict';
 
-/* ── Constanten ─────────────────────────────────────────────────────────── */
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 var APP_META = {
@@ -245,303 +226,272 @@ var APP_META = {
   entra:{label:'Entra',cls:'p-entra'},           planner:{label:'Planner',cls:'p-planner'},
   other:{label:'Overig',cls:'p-other'}
 };
-var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview','viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
+var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview',
+                 'viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
 var ACTION_LABEL = {none:'Gaat automatisch',admin:'IT-beheerder actie vereist',user:'Medewerker kan zelf instellen'};
 var ACTION_ICON  = {none:'🟢',admin:'🟡',user:'🔵'};
-var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
-var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april',may:'mei',june:'juni',july:'juli',august:'augustus',september:'september',october:'oktober',november:'november',december:'december'};
+var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,
+              oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,
+              june:5,july:6,august:7,september:8,october:9,november:10,december:11};
+var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april',may:'mei',
+               june:'juni',july:'juli',august:'augustus',september:'september',
+               october:'oktober',november:'november',december:'december'};
 var CACHE_KEY = 'm365_data_v1';
 var SEEN_KEY  = 'm365_seen_ids';
 
-/* ── State ──────────────────────────────────────────────────────────────── */
 var ALL_ITEMS = [];
 var fS='all', fN='all', fA='aw', fM='mw', fP='all', fAct='all', fQ='';
 var searchTimer = null;
+var fromKalender = false;  /* true als ?zoek= via URL meegekomen is */
 
-/* ── Hulpfuncties ────────────────────────────────────────────────────────── */
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/864e5 : 9999; }
-function fmtDate(d) { return d ? new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}) : ''; }
-function nlRelease(s) {
-  if (!s) return '–';
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
+function fmtDate(d){ return d?new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}):''; }
+function nlRelease(s){
+  if(!s)return'–';
   return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
     function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,'$1');
 }
-function parseRelease(s) {
-  if (!s) return new Date(9999,0,1);
-  var m = s.toLowerCase().match(/(\w+)\s+(\d{4})/);
-  return (m && MONTHS[m[1]]!==undefined) ? new Date(parseInt(m[2]),MONTHS[m[1]],1) : new Date(9999,0,1);
+function parseRelease(s){
+  if(!s)return new Date(9999,0,1);
+  var m=s.toLowerCase().match(/(\w+)\s+(\d{4})/);
+  return(m&&MONTHS[m[1]]!==undefined)?new Date(parseInt(m[2]),MONTHS[m[1]],1):new Date(9999,0,1);
 }
-function highlight(text, query) {
-  if (!query) return esc(text);
+function highlight(text,query){
+  if(!query)return esc(text);
   return esc(text).replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
 }
 
-/* ── Fetch met timeout en sessionStorage-cache ────────────────────────── */
-function fetchWithTimeout(url, timeoutMs) {
-  timeoutMs = timeoutMs || 10000;
-  var ctrl = new AbortController();
-  var timer = setTimeout(function(){ ctrl.abort(); }, timeoutMs);
-  return fetch(url, {signal: ctrl.signal}).finally(function(){ clearTimeout(timer); });
-}
+/* ── URL-parameter ?zoek= verwerken ────────────────────────────────────── */
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var zoek   = params.get('zoek');
+  if (zoek) {
+    fQ = zoek.trim().toLowerCase();
+    fromKalender = true;
+    /* Zoekveld vullen zodra DOM beschikbaar is */
+    document.addEventListener('DOMContentLoaded', function(){
+      var inp = document.getElementById('search-input');
+      if (inp) {
+        inp.value = zoek;
+        document.getElementById('search-clear').classList.add('show');
+        document.getElementById('search-origin-note').classList.add('show');
+      }
+    });
+  }
+})();
 
+/* ── Fetch met timeout + sessionStorage cache ───────────────────────────── */
 function loadData() {
-  // Probeer eerst sessionStorage voor snelle herlaad (max 30 min oud)
   try {
     var cached = sessionStorage.getItem(CACHE_KEY);
     if (cached) {
-      var parsed = JSON.parse(cached);
-      if (Date.now() - parsed._ts < 30 * 60 * 1000) {
-        handleData(parsed);
-        return;
-      }
+      var p = JSON.parse(cached);
+      if (Date.now()-p._ts < 30*60*1000) { handleData(p); return; }
     }
-  } catch(e) { /* sessionStorage niet beschikbaar — geen probleem */ }
-
-  // Voeg cache-buster toe zodat stale GitHub Pages-cache geen verouderde data toont
-  var url = 'data.json?v=' + Date.now();
-  fetchWithTimeout(url, 12000)
-    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(function(data) {
-      try { data._ts = Date.now(); sessionStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch(e){}
+  } catch(e){}
+  var ctrl=new AbortController();
+  var timer=setTimeout(function(){ctrl.abort();},12000);
+  fetch('data.json?v='+Date.now(),{signal:ctrl.signal})
+    .finally(function(){clearTimeout(timer);})
+    .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+    .then(function(data){
+      try{data._ts=Date.now();sessionStorage.setItem(CACHE_KEY,JSON.stringify(data));}catch(e){}
       handleData(data);
     })
-    .catch(function(err) {
-      var msg = err.name === 'AbortError' ? 'Tijdslimiet overschreden — controleer uw internetverbinding.' : String(err);
+    .catch(function(err){
+      var msg=err.name==='AbortError'?'Tijdslimiet overschreden.':String(err);
       document.getElementById('root').setAttribute('aria-busy','false');
-      document.getElementById('root').innerHTML =
-        '<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2>' +
-        '<p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
+      document.getElementById('root').innerHTML=
+        '<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2>'+
+        '<p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>'+
         '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(msg)+'</p></div>';
     });
 }
 
-function handleData(data) {
-  var SEEN_SET = new Set(JSON.parse(localStorage.getItem(SEEN_KEY)||'[]'));
-  var currentIds = data.items.map(function(i){return i.id;});
-  ALL_ITEMS = data.items.map(function(item){
-    return Object.assign({}, item, {isNew: !SEEN_SET.has(item.id)});
-  });
-  localStorage.setItem(SEEN_KEY, JSON.stringify(currentIds));
-
-  var generated = new Date(data.generated);
-  document.getElementById('last-updated').textContent =
-    'Bijgewerkt: ' + generated.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + ' · ' + data.count + ' items';
+function handleData(data){
+  var SEEN=new Set(JSON.parse(localStorage.getItem(SEEN_KEY)||'[]'));
+  ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew:!SEEN.has(i.id)});});
+  localStorage.setItem(SEEN_KEY,JSON.stringify(data.items.map(function(i){return i.id;})));
+  var gen=new Date(data.generated);
+  document.getElementById('last-updated').textContent=
+    'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' · '+data.count+' items';
   document.getElementById('root').setAttribute('aria-busy','false');
-
   buildAppFilter(ALL_ITEMS);
-
-  var removed = data.removed || [];
-  if (removed.length > 0) {
-    document.getElementById('changes-block').style.display = 'block';
-    document.getElementById('changes-title').textContent =
-      'Wijzigingen deze week (' + removed.length + ' item' + (removed.length!==1?'s':'') + ')';
-    document.getElementById('changes-icon').textContent =
-      removed.some(function(r){return r.status==='launched';}) ? '✅' : '⚑';
-    document.getElementById('changes-cards').innerHTML = removed.map(function(r) {
-      var meta = APP_META[r.app] || APP_META.other;
-      return '<div class="rcard">' +
-        '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>' +
-        '<span class="rcard-title">'+esc(r.title)+'</span>' +
-        '<div class="rcard-right">' +
-          '<span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>' +
-          '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">' +
-            LINK_ICON + '<span class="sr-only"> ID '+r.id+' op Microsoft roadmap</span> ID '+r.id+'</a>' +
-        '</div></div>';
+  var removed=data.removed||[];
+  if(removed.length>0){
+    document.getElementById('changes-block').style.display='block';
+    document.getElementById('changes-title').textContent='Wijzigingen deze week ('+removed.length+' item'+(removed.length!==1?'s':'')+')';
+    document.getElementById('changes-icon').textContent=removed.some(function(r){return r.status==='launched';})?' ✅':'⚑';
+    document.getElementById('changes-cards').innerHTML=removed.map(function(r){
+      var meta=APP_META[r.app]||APP_META.other;
+      return '<div class="rcard"><span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>'+
+        '<span class="rcard-title">'+esc(r.title)+'</span>'+
+        '<div class="rcard-right"><span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>'+
+        '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+' ID '+r.id+'</a></div></div>';
     }).join('');
   }
   render();
 }
 
-/* ── App-filter ────────────────────────────────────────────────────────── */
-function buildAppFilter(items) {
-  var presentApps = new Set(items.map(function(i){return i.app;}));
-  var bar = document.getElementById('apf');
-  while (bar.children.length > 1) bar.removeChild(bar.lastChild);
-  APP_ORDER.forEach(function(key) {
-    if (!presentApps.has(key)) return;
-    var btn = document.createElement('button');
-    btn.className = 'fb';
-    btn.setAttribute('data-p', key);
-    btn.setAttribute('aria-pressed', 'false');
-    btn.textContent = APP_META[key].label + ' (0)';
-    bar.appendChild(btn);
+/* ── App-filter ─────────────────────────────────────────────────────────── */
+function buildAppFilter(items){
+  var present=new Set(items.map(function(i){return i.app;}));
+  var bar=document.getElementById('apf');
+  while(bar.children.length>1)bar.removeChild(bar.lastChild);
+  APP_ORDER.forEach(function(key){
+    if(!present.has(key))return;
+    var btn=document.createElement('button');
+    btn.className='fb';btn.setAttribute('data-p',key);btn.setAttribute('aria-pressed','false');
+    btn.textContent=APP_META[key].label+' (0)';bar.appendChild(btn);
   });
-  bar.addEventListener('click', function(e) {
-    var t = e.target.closest('[data-p]'); if (!t) return;
-    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false'); b.className='fb';});
-    var v = t.getAttribute('data-p');
-    t.setAttribute('aria-pressed','true');
-    if (v !== 'all') t.classList.add('ao-'+v);
-    fP = v; render();
+  bar.addEventListener('click',function(e){
+    var t=e.target.closest('[data-p]');if(!t)return;
+    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false');b.className='fb';});
+    var v=t.getAttribute('data-p');t.setAttribute('aria-pressed','true');
+    if(v!=='all')t.classList.add('ao-'+v);
+    fP=v;render();
   });
 }
 
-function updateAppCounts(items) {
-  var counts = {};
-  items.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;});
-  var allBtn = document.querySelector('#apf [data-p="all"]');
-  if (allBtn) allBtn.textContent = 'Alle producten (' + items.length + ')';
-  document.querySelectorAll('#apf [data-p]').forEach(function(btn) {
-    var key = btn.getAttribute('data-p'); if (key==='all') return;
-    var n = counts[key]||0;
-    btn.textContent = APP_META[key].label + ' (' + n + ')';
-    btn.style.display = (n===0 && fP!==key) ? 'none' : '';
+function updateAppCounts(items){
+  var counts={};items.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;});
+  var allBtn=document.querySelector('#apf [data-p="all"]');
+  if(allBtn)allBtn.textContent='Alle producten ('+items.length+')';
+  document.querySelectorAll('#apf [data-p]').forEach(function(btn){
+    var key=btn.getAttribute('data-p');if(key==='all')return;
+    var n=counts[key]||0;
+    btn.textContent=APP_META[key].label+' ('+n+')';
+    btn.style.display=(n===0&&fP!==key)?'none':'';
   });
 }
 
 /* ── UI-helpers ─────────────────────────────────────────────────────────── */
-function toggleSection(btn, panelId) {
-  var open = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-  document.getElementById(panelId).classList.toggle('open', !open);
+function toggleSection(btn,panelId){
+  var open=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',open?'false':'true');
+  document.getElementById(panelId).classList.toggle('open',!open);
 }
-function toggleCollapsible(btn, panelId) {
-  var open = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-  var panel = document.getElementById(panelId);
-  var chevron = btn.querySelector('.collapsible-chevron');
-  panel.classList.toggle('open', !open);
-  if (chevron) chevron.classList.toggle('open', !open);
+function toggleCollapsible(btn,panelId){
+  var open=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',open?'false':'true');
+  var panel=document.getElementById(panelId);
+  var chevron=btn.querySelector('.collapsible-chevron');
+  panel.classList.toggle('open',!open);
+  if(chevron)chevron.classList.toggle('open',!open);
 }
-function debouncedSearch(val) { clearTimeout(searchTimer); searchTimer = setTimeout(function(){onSearch(val);}, 200); }
-function onSearch(val) {
-  fQ = val.trim().toLowerCase();
-  document.getElementById('search-clear').classList.toggle('show', fQ.length > 0);
+function debouncedSearch(val){clearTimeout(searchTimer);searchTimer=setTimeout(function(){onSearch(val);},200);}
+function onSearch(val){
+  fQ=val.trim().toLowerCase();
+  document.getElementById('search-clear').classList.toggle('show',fQ.length>0);
+  /* Verberg de "vanuit kalender"-melding zodra de gebruiker zelf iets typt */
+  if(fromKalender&&fQ.length===0){document.getElementById('search-origin-note').classList.remove('show');}
   render();
 }
-function clearSearch() {
-  document.getElementById('search-input').value = '';
+function clearSearch(){
+  document.getElementById('search-input').value='';
   document.getElementById('search-clear').classList.remove('show');
-  fQ = ''; render();
+  document.getElementById('search-origin-note').classList.remove('show');
+  fQ='';fromKalender=false;render();
   document.getElementById('search-input').focus();
 }
 
 /* ── Kaart HTML ─────────────────────────────────────────────────────────── */
-function cardHTML(item, query) {
-  var cfg = {rolling:{label:'Wordt uitgerold',cls:'p-rolling'},dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status];
-  var meta = APP_META[item.app] || APP_META.other;
-  var dateRow = '';
-  if (item.added) dateRow += '<span class="date-info"><span class="sr-only">Toegevoegd:</span> 📅 '+fmtDate(item.added)+'</span>';
-  if (item.modified && item.modified!==item.added)
-    dateRow += '<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
+function cardHTML(item,query){
+  var cfg={rolling:{label:'Wordt uitgerold',cls:'p-rolling'},dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status];
+  var meta=APP_META[item.app]||APP_META.other;
+  var dateRow='';
+  if(item.added)dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> 📅 '+fmtDate(item.added)+'</span>';
+  if(item.modified&&item.modified!==item.added)
+    dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
   return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">' +
-    '<div class="card-pills">' +
-      '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
-      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>' +
-      (item.isNew ? '<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>' : '') +
+    '<div class="card-pills"><span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
+    '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>' +
+    (item.isNew?'<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>':'')+
     '</div>' +
-    '<h3 class="card-title">'+highlight(item.title, query)+'</h3>' +
-    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit, query)+'</div>' +
+    '<h3 class="card-title">'+highlight(item.title,query)+'</h3>' +
+    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit,query)+'</div>' +
     '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'">' +
       '<span aria-hidden="true">'+ACTION_ICON[item.action]+'</span>' +
       '<span>'+esc(item.actionLabel)+'</span>' +
     '</div>' +
-    (item.desc ? '<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>' : '') +
-    '<div class="card-foot">' +
-      '<div class="card-foot-left">' +
-        '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>' +
-        (dateRow ? '<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>' : '') +
-      '</div>' +
-      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
+    (item.desc?'<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>':'')+
+    '<div class="card-foot"><div class="card-foot-left">' +
+      '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>' +
+      (dateRow?'<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>':'')+
     '</div>' +
-  '</article>';
+    '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
+    '</div></article>';
 }
 
 /* ── Render ─────────────────────────────────────────────────────────────── */
-function render() {
-  if (!ALL_ITEMS.length) return;
-  var sort  = document.getElementById('sort-select').value;
-  var query = fQ;
-
-  // Filter zonder app-filter voor aantallen per knop
-  var withoutApp = ALL_ITEMS.filter(function(i) {
-    if (fS !== 'all' && i.status !== fS) return false;
-    if (fN === 'new'   && !i.isNew) return false;
-    if (fN === 'known' &&  i.isNew) return false;
-    if (fAct !== 'all' && i.action !== fAct) return false;
-    if (fA !== 'all' || fM !== 'all') {
-      var days = (fA==='aw'||fM==='mw') ? 7 : 31;
-      if (!(fA!=='all' && daysAgo(i.added)<=days) && !(fM!=='all' && daysAgo(i.modified)<=days)) return false;
+function render(){
+  if(!ALL_ITEMS.length)return;
+  var sort=document.getElementById('sort-select').value;
+  var query=fQ;
+  var withoutApp=ALL_ITEMS.filter(function(i){
+    if(fS!=='all'&&i.status!==fS)return false;
+    if(fN==='new'&&!i.isNew)return false;
+    if(fN==='known'&&i.isNew)return false;
+    if(fAct!=='all'&&i.action!==fAct)return false;
+    if(fA!=='all'||fM!=='all'){
+      var days=(fA==='aw'||fM==='mw')?7:31;
+      if(!(fA!=='all'&&daysAgo(i.added)<=days)&&!(fM!=='all'&&daysAgo(i.modified)<=days))return false;
     }
-    if (query && !(i.title.toLowerCase().includes(query) || i.benefit.toLowerCase().includes(query))) return false;
+    if(query&&!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query)))return false;
     return true;
   });
   updateAppCounts(withoutApp);
-
-  var filtered = withoutApp.filter(function(i){ return fP==='all' || i.app===fP; });
-
-  filtered = filtered.slice().sort(function(a,b) {
-    if (sort==='status')        return (a.status==='rolling'?0:1)-(b.status==='rolling'?0:1);
-    if (sort==='added-desc')    return new Date(b.added||0)-new Date(a.added||0);
-    if (sort==='modified-desc') return new Date(b.modified||0)-new Date(a.modified||0);
-    var da = parseRelease(a.release), db = parseRelease(b.release);
-    return sort==='release-desc' ? da-db : db-da;
+  var filtered=withoutApp.filter(function(i){return fP==='all'||i.app===fP;});
+  filtered=filtered.slice().sort(function(a,b){
+    if(sort==='status')return(a.status==='rolling'?0:1)-(b.status==='rolling'?0:1);
+    if(sort==='added-desc')return new Date(b.added||0)-new Date(a.added||0);
+    if(sort==='modified-desc')return new Date(b.modified||0)-new Date(a.modified||0);
+    var da=parseRelease(a.release),db=parseRelease(b.release);
+    return sort==='release-desc'?da-db:db-da;
   });
-
-  var rolling  = filtered.filter(function(i){return i.status==='rolling';});
-  var dev      = filtered.filter(function(i){return i.status==='dev';});
-  var newCount = filtered.filter(function(i){return i.isNew;}).length;
-
-  document.getElementById('stats-bar').innerHTML =
+  var rolling=filtered.filter(function(i){return i.status==='rolling';});
+  var dev=filtered.filter(function(i){return i.status==='dev';});
+  var newCount=filtered.filter(function(i){return i.isNew;}).length;
+  document.getElementById('stats-bar').innerHTML=
     '<span class="stat-pill s-total">'+filtered.length+' updates</span>' +
     '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>' +
     '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>' +
-    (newCount ? '<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>' : '') +
-    (query ? '<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>' : '');
-
-  var emptyEl = document.getElementById('empty-msg');
-  var rootEl  = document.getElementById('root');
-  if (!filtered.length) { rootEl.innerHTML=''; emptyEl.classList.add('show'); return; }
+    (newCount?'<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>':'')+
+    (query?'<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>':'');
+  var emptyEl=document.getElementById('empty-msg');
+  var rootEl=document.getElementById('root');
+  if(!filtered.length){rootEl.innerHTML='';emptyEl.classList.add('show');return;}
   emptyEl.classList.remove('show');
-
-  function sec(items, emoji, lbl) {
-    if (!items.length) return '';
-    return '<section aria-label="'+lbl+'">' +
-      '<h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>' +
-      items.map(function(i){return cardHTML(i,query);}).join('') +
-    '</section>';
+  function sec(items,emoji,lbl){
+    if(!items.length)return'';
+    return'<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
   }
-
-  if (sort==='status') {
-    rootEl.innerHTML = sec(rolling,'🟡','Wordt uitgerold') + sec(dev,'🔵','In ontwikkeling');
-  } else {
-    rootEl.innerHTML = '<section aria-label="Resultaten">' +
-      '<h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>' +
-      filtered.map(function(i){return cardHTML(i,query);}).join('') +
-    '</section>';
+  if(sort==='status'){
+    rootEl.innerHTML=sec(rolling,'🟡','Wordt uitgerold')+sec(dev,'🔵','In ontwikkeling');
+  }else{
+    rootEl.innerHTML='<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
   }
 }
 
-/* ── Filter-wiring (event delegation) ──────────────────────────────────── */
-function wireBar(barId, stateKey, attr) {
-  var bar = document.getElementById(barId);
-  if (!bar) return;
-  bar.addEventListener('click', function(e) {
-    var t = e.target.closest('['+attr+']'); if (!t) return;
-    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false'); b.className='fb';});
-    var v = t.getAttribute(attr);
-    t.setAttribute('aria-pressed','true');
-    switch(stateKey) {
-      case 'fS': fS=v; break;
-      case 'fN': fN=v; break;
-      case 'fA': fA=v; break;
-      case 'fM': fM=v; break;
-    }
+/* ── Filter-wiring ──────────────────────────────────────────────────────── */
+function wireBar(barId,stateKey,attr){
+  var bar=document.getElementById(barId);if(!bar)return;
+  bar.addEventListener('click',function(e){
+    var t=e.target.closest('['+attr+']');if(!t)return;
+    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false');b.className='fb';});
+    var v=t.getAttribute(attr);t.setAttribute('aria-pressed','true');
+    switch(stateKey){case'fS':fS=v;break;case'fN':fN=v;break;case'fA':fA=v;break;case'fM':fM=v;break;}
     render();
   });
 }
-wireBar('sf','fS','data-s');
-wireBar('nf','fN','data-n');
-wireBar('af','fA','data-a');
-wireBar('mf','fM','data-m');
-
-document.getElementById('act-bar').addEventListener('click', function(e) {
-  var t = e.target.closest('[data-act]'); if (!t) return;
-  document.querySelectorAll('#act-bar .fb').forEach(function(b){b.setAttribute('aria-pressed','false'); b.className='fb';});
+wireBar('sf','fS','data-s'); wireBar('nf','fN','data-n');
+wireBar('af','fA','data-a'); wireBar('mf','fM','data-m');
+document.getElementById('act-bar').addEventListener('click',function(e){
+  var t=e.target.closest('[data-act]');if(!t)return;
+  document.querySelectorAll('#act-bar .fb').forEach(function(b){b.setAttribute('aria-pressed','false');b.className='fb';});
   t.setAttribute('aria-pressed','true');
-  fAct = t.getAttribute('data-act');
-  render();
+  fAct=t.getAttribute('data-act');render();
 });
 
 /* ── Start ──────────────────────────────────────────────────────────────── */

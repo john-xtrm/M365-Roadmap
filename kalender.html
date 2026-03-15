@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Releasekalender — Microsoft 365 Roadmap</title>
+<meta name="description" content="Overzicht van aankomende Microsoft 365-updates per maand of kwartaal. Zie wanneer updates beschikbaar komen voor uw organisatie.">
+<link rel="stylesheet" href="shared.css">
+<style>
+/* ── Pagina-specifieke stijlen ────────────────────────────────────────── */
+
+/* Weergave-schakelaar intro */
+.view-intro {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+
+/* Weergave-schakelaar */
+.view-switch {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+.view-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-s);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all 0.12s;
+  min-height: 2.75rem; /* WCAG 2.5.8 */
+  text-align: left;
+}
+.view-btn:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
+.view-btn[aria-pressed="true"] {
+  background: var(--blue-bg);
+  color: var(--blue-t);
+  border-color: var(--blue-t);
+}
+.view-btn-title { font-size: 0.9375rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.view-btn-sub   { font-size: 0.75rem; color: var(--faint); margin-top: 2px; }
+.view-btn[aria-pressed="true"] .view-btn-sub { color: var(--blue-t); opacity: 0.8; }
+
+@media (prefers-color-scheme: dark) {
+  .view-btn[aria-pressed="true"] { background: var(--blue-bg); color: var(--blue-t); border-color: var(--blue-t); }
+}
+
+/* Filter-blok (product + actie samen) */
+.filter-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.filter-group label {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint);
+}
+.filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
+
+/* Actie-filterkleuren actief */
+.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none);  color: #fff; }
+.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); color: #fff; }
+.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user);  color: #fff; }
+@media (prefers-color-scheme: dark) {
+  .fb[aria-pressed="true"][data-act="none"]  { background: #1a5c38; color: var(--green-t);  border-color: var(--green-t); }
+  .fb[aria-pressed="true"][data-act="admin"] { background: #5c3a00; color: var(--amber-t);  border-color: var(--amber-t); }
+  .fb[aria-pressed="true"][data-act="user"]  { background: #162650; color: var(--blue-t);   border-color: var(--blue-t); }
+}
+
+/* Kalender */
+.calendar { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* Periodeblok */
+.period-block {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+/* Huidig kwartaal/maand: blauwe accentrand */
+.period-block.is-current {
+  border-color: var(--blue-t);
+  border-width: 2px;
+}
+
+/* Lege maand: compact en gedimpt */
+.period-block.is-empty {
+  border-style: dashed;
+  opacity: 0.55;
+}
+.period-block.is-empty .period-hdr {
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border-bottom: none;
+}
+.period-block.is-empty .period-hdr h2 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--faint);
+}
+
+/* Periodeheader */
+.period-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.period-hdr h2 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.period-now {
+  font-size: 0.6875rem; font-weight: 700;
+  background: var(--blue-t); color: #fff;
+  padding: 2px 8px; border-radius: var(--radius-pill);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.period-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.period-count { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+
+/* Mini-actieuitsplitsing in periodeheader */
+.period-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+}
+.pact-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.pact-dot .dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.pact-dot .dot-none  { background: var(--c-none); }
+.pact-dot .dot-admin { background: var(--c-admin); }
+.pact-dot .dot-user  { background: var(--c-user); }
+.pact-dot .cnt-none  { color: var(--c-none); }
+.pact-dot .cnt-admin { color: var(--c-admin); }
+.pact-dot .cnt-user  { color: var(--c-user); }
+
+/* Items */
+.period-items {
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Kalenderkaart */
+.cal-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid transparent;
+  transition: background 0.12s;
+}
+.cal-card:hover { background: var(--surface2); }
+.cal-card.act-none  { border-left-color: var(--c-none); }
+.cal-card.act-admin { border-left-color: var(--c-admin); }
+.cal-card.act-user  { border-left-color: var(--c-user); }
+
+/* Kwartaalitems visueel gedimpt in korte termijn */
+.cal-card.is-uncertain {
+  opacity: 0.75;
+  border-left-style: dashed;
+}
+
+.cal-card-left { flex: 1; min-width: 0; }
+.cal-card-title { font-size: 0.9375rem; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+.cal-card-benefit { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.cal-card-pills { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.cal-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
+
+.action-dot-wrap { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+.action-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.act-none  .action-dot { background: var(--c-none); } .act-none  .action-lbl { color: var(--c-none); }
+.act-admin .action-dot { background: var(--c-admin); } .act-admin .action-lbl { color: var(--c-admin); }
+.act-user  .action-dot { background: var(--c-user); } .act-user  .action-lbl { color: var(--c-user); }
+
+/* Link naar hoofdpagina */
+.main-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  color: var(--blue-t);
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--blue-bg);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: opacity 0.12s;
+}
+.main-link:hover { opacity: 0.8; }
+
+/* Badge: ook in maandweergave */
+.short-term-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.6875rem; font-weight: 700;
+  background: var(--blue-bg); color: var(--blue-t);
+  padding: 3px 8px; border-radius: var(--radius-pill);
+  white-space: nowrap; cursor: default;
+}
+
+/* Uitklapbare blokken (onzeker/geen datum) */
+.no-date-block {
+  border: 1.5px dashed var(--border-s);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.no-date-hdr {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem; font-weight: 600; color: var(--faint);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  cursor: pointer; gap: 0.5rem;
+}
+.no-date-hdr:hover { background: var(--surface2); }
+.no-date-inner { display: none; }
+.no-date-inner.open { display: block; }
+
+/* Disclaimer */
+.disclaimer {
+  font-size: 0.8125rem; color: var(--faint);
+  background: var(--surface2); border-radius: var(--radius-sm);
+  padding: 10px 14px; margin-bottom: 1.5rem;
+  display: flex; align-items: flex-start; gap: 8px; line-height: 1.5;
+}
+
+/* Leeg/laad */
+#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
+#empty-msg.show { display: block; }
+</style>
+</head>
+<body>
+
+<noscript>
+  <div style="padding:2rem;text-align:center;font-family:sans-serif;background:#fef3dc;border-bottom:2px solid #8a5600">
+    <strong>JavaScript is vereist</strong> — Schakel JavaScript in uw browser in om deze pagina te gebruiken.
+  </div>
+</noscript>
+
+<a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
+
+<header role="banner">
+  <div class="hdr">
+    <div class="hdr-right" style="flex:1; gap:0.75rem">
+      <a href="index.html" class="back-link" aria-label="Terug naar de actuele roadmap">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        Terug
+      </a>
+      <div>
+        <h1>Releasekalender</h1>
+        <p class="hdr-sub">Wanneer komen updates beschikbaar voor uw organisatie?</p>
+      </div>
+    </div>
+    <div id="last-updated" aria-live="polite" aria-atomic="true">Laden…</div>
+  </div>
+</header>
+
+<main id="main-content">
+<div class="main">
+
+  <div class="disclaimer" role="note">
+    <span style="flex-shrink:0" aria-hidden="true">ℹ️</span>
+    <span>Releasedatums zijn indicatief — Microsoft verschuift datums regelmatig. Items zonder datum staan apart. De korte-termijn weergave toont alleen items met een exacte maanddatum; de lange-termijn weergave toont alles, inclusief exact-geplande items die ook in de maandweergave verschijnen.</span>
+  </div>
+
+  <!-- Weergave-schakelaar -->
+  <p class="view-intro" id="view-intro-lbl">Kies hoe ver vooruit u wilt kijken:</p>
+  <div role="group" aria-labelledby="view-intro-lbl" class="view-switch">
+    <button class="view-btn" aria-pressed="true" id="btn-short" onclick="setView('short')">
+      <span class="view-btn-title"><span aria-hidden="true">📅</span> Korte termijn</span>
+      <span class="view-btn-sub">Per maand · komende 6 maanden · exacte datums</span>
+    </button>
+    <button class="view-btn" aria-pressed="false" id="btn-long" onclick="setView('long')">
+      <span class="view-btn-title"><span aria-hidden="true">🗓</span> Lange termijn</span>
+      <span class="view-btn-sub">Per kwartaal · alle items inclusief exacte datums</span>
+    </button>
+  </div>
+
+  <!-- Filters: product + actie -->
+  <div class="filter-wrap">
+    <div class="filter-group">
+      <label id="lbl-prod">Product</label>
+      <div class="filter-bar" id="prod-bar" role="group" aria-labelledby="lbl-prod">
+        <button class="fb" data-p="all" aria-pressed="true">Alle producten</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label id="lbl-act">Is er actie nodig?</label>
+      <div class="filter-bar" id="act-bar" role="group" aria-labelledby="lbl-act">
+        <button class="fb" data-act="all"   aria-pressed="true">Alles</button>
+        <button class="fb" data-act="none"  aria-pressed="false"><span aria-hidden="true">🟢</span> Gaat automatisch</button>
+        <button class="fb" data-act="admin" aria-pressed="false"><span aria-hidden="true">🟡</span> IT-beheerder actie</button>
+        <button class="fb" data-act="user"  aria-pressed="false"><span aria-hidden="true">🔵</span> Medewerker instellen</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats-bar" id="stats-bar" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <div id="calendar" aria-label="Releasekalender" aria-live="polite">
+    <div class="state-box">
+      <div class="spinner" role="progressbar" aria-label="Kalender wordt geladen"></div>
+      <h2>Kalender laden…</h2>
+      <p>Even geduld, de actuele roadmap wordt opgehaald.</p>
+    </div>
+  </div>
+
+  <p id="empty-msg" role="status">Geen items gevonden voor deze filterinstellingen.</p>
+
+</div>
+</main>
+
+<script>
+'use strict';
+
+var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+var DETAIL_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>';
+
+var APP_META = {
+  copilot:{label:'Copilot',cls:'p-copilot'},    teams:{label:'Teams',cls:'p-teams'},
+  outlook:{label:'Outlook',cls:'p-outlook'},    excel:{label:'Excel',cls:'p-excel'},
+  word:{label:'Word',cls:'p-word'},              powerpoint:{label:'PowerPoint',cls:'p-powerpoint'},
+  sharepoint:{label:'SharePoint',cls:'p-sharepoint'}, purview:{label:'Purview',cls:'p-purview'},
+  viva:{label:'Viva',cls:'p-viva'},              edge:{label:'Edge',cls:'p-edge'},
+  onedrive:{label:'OneDrive',cls:'p-onedrive'}, exchange:{label:'Exchange',cls:'p-exchange'},
+  forms:{label:'Forms',cls:'p-forms'},           intune:{label:'Intune',cls:'p-intune'},
+  entra:{label:'Entra',cls:'p-entra'},           planner:{label:'Planner',cls:'p-planner'},
+  other:{label:'Overig',cls:'p-other'}
+};
+var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview',
+                 'viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
+var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie', user:'Medewerker instellen'};
+
+var NL_MAANDEN = ['januari','februari','maart','april','mei','juni',
+                  'juli','augustus','september','oktober','november','december'];
+var EN_MONTHS  = {january:0,february:1,march:2,april:3,may:4,june:5,
+                  july:6,august:7,september:8,october:9,november:10,december:11};
+var CACHE_KEY  = 'm365_data_v1';
+
+var ALL_ITEMS   = [];
+var currentView = 'short';
+var filterProd  = 'all';
+var filterAct   = 'all';
+
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function parseRelease(s) {
+  if (!s || !s.trim()) return null;
+  var t = s.trim();
+  var mM = t.match(/([a-z]+)\s+CY(\d{4})/i);
+  if (mM) {
+    var mo = EN_MONTHS[mM[1].toLowerCase()];
+    if (mo !== undefined) return {year:parseInt(mM[2]), month:mo, quarter:Math.floor(mo/3)+1, exact:'month'};
+  }
+  var mQ1 = t.match(/Q([1-4])\s+CY(\d{4})/i);
+  var mQ2 = t.match(/CY(\d{4})\s+Q([1-4])/i);
+  var mQ  = mQ1 || mQ2;
+  if (mQ) {
+    var q = mQ1 ? parseInt(mQ1[1]) : parseInt(mQ2[2]);
+    var y = mQ1 ? parseInt(mQ1[2]) : parseInt(mQ2[1]);
+    return {year:y, quarter:q, month:(q-1)*3, exact:'quarter'};
+  }
+  var mY = t.match(/CY(\d{4})/i);
+  if (mY) return {year:parseInt(mY[1]), quarter:1, month:0, exact:'year'};
+  return null;
+}
+
+function periodKey(parsed, view) {
+  if (!parsed) return null;
+  if (view === 'short') {
+    if (parsed.exact !== 'month') return null;
+    return parsed.year + '-' + String(parsed.month).padStart(2,'0');
+  }
+  return parsed.year + '-Q' + parsed.quarter;
+}
+
+function periodLabel(key, view) {
+  if (view === 'short') {
+    var p = key.split('-');
+    return NL_MAANDEN[parseInt(p[1])] + ' ' + p[0];
+  }
+  var p = key.split('-');
+  return p[1] + ' ' + p[0];
+}
+
+function isCurrentPeriod(key, view, now) {
+  if (view === 'short') {
+    var p = key.split('-');
+    return parseInt(p[0])===now.getFullYear() && parseInt(p[1])===now.getMonth();
+  }
+  var p = key.split('-Q');
+  return parseInt(p[0])===now.getFullYear() && (Math.floor(now.getMonth()/3)+1)===parseInt(p[1]);
+}
+
+/* ── Data laden ─────────────────────────────────────────────────────────── */
+function loadData() {
+  try {
+    var cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      var p = JSON.parse(cached);
+      if (Date.now() - p._ts < 30*60*1000) { handleData(p); return; }
+    }
+  } catch(e) {}
+  var ctrl  = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, 12000);
+  fetch('data.json?v=' + Date.now(), {signal:ctrl.signal})
+    .finally(function(){ clearTimeout(timer); })
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(data){
+      try { data._ts=Date.now(); sessionStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch(e){}
+      handleData(data);
+    })
+    .catch(function(err){
+      var msg = err.name==='AbortError' ? 'Tijdslimiet overschreden.' : String(err);
+      document.getElementById('calendar').innerHTML =
+        '<div class="state-box" role="alert"><h2>Kon de kalender niet laden</h2>' +
+        '<p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
+        '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(msg)+'</p></div>';
+    });
+}
+
+function handleData(data) {
+  ALL_ITEMS = data.items || [];
+  var generated = new Date(data.generated);
+  document.getElementById('last-updated').textContent =
+    'Bijgewerkt: ' + generated.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + ' · ' + data.count + ' items';
+  buildProductFilter();
+  render();
+}
+
+/* ── Productfilter opbouwen ─────────────────────────────────────────────── */
+function buildProductFilter() {
+  var present = new Set(ALL_ITEMS.map(function(i){return i.app;}));
+  var bar = document.getElementById('prod-bar');
+  while (bar.children.length > 1) bar.removeChild(bar.lastChild);
+  APP_ORDER.forEach(function(key){
+    if (!present.has(key)) return;
+    var btn = document.createElement('button');
+    btn.className = 'fb';
+    btn.setAttribute('data-p', key);
+    btn.setAttribute('aria-pressed', 'false');
+    btn.textContent = APP_META[key].label;
+    bar.appendChild(btn);
+  });
+  bar.addEventListener('click', function(e){
+    var t = e.target.closest('[data-p]'); if (!t) return;
+    bar.querySelectorAll('.fb').forEach(function(b){ b.setAttribute('aria-pressed','false'); b.className='fb'; });
+    var v = t.getAttribute('data-p');
+    t.setAttribute('aria-pressed','true');
+    if (v !== 'all') t.classList.add('ao-'+v);
+    filterProd = v; render();
+  });
+}
+
+/* ── Weergave + filters wisselen ────────────────────────────────────────── */
+function setView(v) {
+  currentView = v;
+  document.getElementById('btn-short').setAttribute('aria-pressed', v==='short'?'true':'false');
+  document.getElementById('btn-long').setAttribute('aria-pressed',  v==='long'?'true':'false');
+  render();
+}
+
+document.getElementById('act-bar').addEventListener('click', function(e){
+  var t = e.target.closest('[data-act]'); if (!t) return;
+  document.querySelectorAll('#act-bar .fb').forEach(function(b){ b.setAttribute('aria-pressed','false'); b.className='fb'; });
+  t.setAttribute('aria-pressed','true');
+  filterAct = t.getAttribute('data-act');
+  render();
+});
+
+/* ── Render ─────────────────────────────────────────────────────────────── */
+function render() {
+  var now  = new Date();
+  var shortCutoff = new Date(now.getFullYear(), now.getMonth()+6, 1);
+
+  /* Filter op product + actie */
+  var items = ALL_ITEMS.filter(function(i){
+    if (filterProd !== 'all' && i.app !== filterProd) return false;
+    if (filterAct  !== 'all' && i.action !== filterAct) return false;
+    return true;
+  });
+
+  /* Bepaal short-term IDs (maand-exact, binnen 6 mnd) voor badge in lange termijn */
+  var shortTermIds = new Set();
+  if (currentView === 'long') {
+    items.forEach(function(i){
+      var p = parseRelease(i.release);
+      if (p && p.exact==='month') {
+        var d = new Date(p.year, p.month, 1);
+        if (d >= new Date(now.getFullYear(), now.getMonth(), 1) && d < shortCutoff) shortTermIds.add(i.id);
+      }
+    });
+  }
+
+  var groups = {}, noDate = [], overflow = [];
+  items.forEach(function(item){
+    var parsed = parseRelease(item.release);
+    if (currentView === 'short') {
+      if (!parsed || parsed.exact !== 'month') {
+        if (parsed) overflow.push(item); else noDate.push(item); return;
+      }
+      var d = new Date(parsed.year, parsed.month, 1);
+      if (d < new Date(now.getFullYear(), now.getMonth(), 1) || d >= shortCutoff) { noDate.push(item); return; }
+    } else {
+      if (!parsed) { noDate.push(item); return; }
+    }
+    var key = periodKey(parsed, currentView);
+    if (!key) { noDate.push(item); return; }
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(item);
+  });
+
+  /* Vul lege maanden aan */
+  if (currentView === 'short') {
+    for (var mi = 0; mi < 6; mi++) {
+      var yr = now.getFullYear() + Math.floor((now.getMonth()+mi)/12);
+      var mo = (now.getMonth()+mi) % 12;
+      var k  = yr + '-' + String(mo).padStart(2,'0');
+      if (!groups[k]) groups[k] = [];
+    }
+  }
+
+  var periods = Object.keys(groups).filter(function(k){
+    if (currentView === 'long') return true;
+    var p = k.split('-');
+    var d = new Date(parseInt(p[0]), parseInt(p[1]), 1);
+    return d >= new Date(now.getFullYear(), now.getMonth(), 1) && d < shortCutoff;
+  }).sort();
+
+  var sortItems = function(arr){
+    return arr.slice().sort(function(a,b){
+      return ({admin:0,user:1,none:2}[a.action]||2) - ({admin:0,user:1,none:2}[b.action]||2);
+    });
+  };
+
+  /* Statistieken */
+  var total = Object.values(groups).reduce(function(s,a){return s+a.length;},0);
+  var stCount = shortTermIds.size;
+  var sm = currentView==='short'
+    ? total + ' items in de komende 6 maanden' + (overflow.length ? ' · ' + overflow.length + ' met kwartaaldatum' : '')
+    : total + ' items in ' + periods.length + ' kwartalen' + (stCount ? ' · ' + stCount + ' ook in maandweergave' : '');
+  if (noDate.length) sm += ' · ' + noDate.length + ' zonder datum';
+  document.getElementById('stats-bar').innerHTML = '<span class="stat-pill s-total">'+sm+'</span>';
+
+  var emptyEl = document.getElementById('empty-msg');
+  var calEl   = document.getElementById('calendar');
+  if (periods.length===0 && noDate.length===0 && overflow.length===0) {
+    calEl.innerHTML=''; emptyEl.classList.add('show'); return;
+  }
+  emptyEl.classList.remove('show');
+
+  var html = '<div class="calendar">';
+
+  periods.forEach(function(key){
+    var its      = sortItems(groups[key]||[]);
+    var label    = periodLabel(key, currentView);
+    var isCur    = isCurrentPeriod(key, currentView, now);
+    var isEmpty  = its.length === 0;
+
+    /* Mini-actieuitsplitsing */
+    var cNone  = its.filter(function(i){return i.action==='none';}).length;
+    var cAdmin = its.filter(function(i){return i.action==='admin';}).length;
+    var cUser  = its.filter(function(i){return i.action==='user';}).length;
+    var actSplit = '';
+    if (!isEmpty) {
+      actSplit = '<div class="period-actions" aria-label="Acties: '+cNone+' automatisch, '+cAdmin+' IT-beheerder, '+cUser+' medewerker">';
+      if (cAdmin) actSplit += '<span class="pact-dot"><span class="dot dot-admin" aria-hidden="true"></span><span class="cnt-admin">'+cAdmin+' IT</span></span>';
+      if (cUser)  actSplit += '<span class="pact-dot"><span class="dot dot-user" aria-hidden="true"></span><span class="cnt-user">'+cUser+' mdw</span></span>';
+      if (cNone)  actSplit += '<span class="pact-dot"><span class="dot dot-none" aria-hidden="true"></span><span class="cnt-none">'+cNone+' auto</span></span>';
+      actSplit += '</div>';
+    }
+
+    html += '<div class="period-block'+(isCur?' is-current':'')+(isEmpty?' is-empty':'')+'">';
+    html +=   '<div class="period-hdr">';
+    html +=     '<h2>'+esc(label)+(isCur?' <span class="period-now">Nu</span>':'')+'</h2>';
+    if (!isEmpty) {
+      html += '<div class="period-meta">';
+      html +=   actSplit;
+      html +=   '<span class="period-count">'+its.length+' item'+(its.length!==1?'s':'')+'</span>';
+      html += '</div>';
+    }
+    html +=   '</div>';
+
+    if (isEmpty) {
+      /* Lege maand: alleen header, geen content */
+    } else {
+      html += '<div class="period-items">';
+      its.forEach(function(item){ html += calCardHTML(item, currentView==='long' && shortTermIds.has(item.id)); });
+      html += '</div>';
+    }
+    html += '</div>';
+  });
+
+  /* Kwartaalblok in korte termijn — standaard open, items gedimpt */
+  if (currentView === 'short' && overflow.length > 0) {
+    html += '<div class="no-date-block">';
+    html +=   '<div class="no-date-hdr" role="button" tabindex="0" aria-expanded="true"' +
+              ' onclick="toggleNoDate(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \')toggleNoDate(this)">';
+    html +=     '<span>🗓 Verwacht dit jaar — exacte maand nog niet bevestigd ('+overflow.length+' items)</span>';
+    html +=     '<span class="collapsible-chevron open" aria-hidden="true">▼</span>';
+    html +=   '</div>';
+    html +=   '<div class="no-date-inner period-items open">';
+    sortItems(overflow).forEach(function(item){ html += calCardHTML(item, false, true); });
+    html +=   '</div>';
+    html += '</div>';
+  }
+
+  /* Items zonder datum */
+  if (noDate.length > 0) {
+    html += '<div class="no-date-block">';
+    html +=   '<div class="no-date-hdr" role="button" tabindex="0" aria-expanded="false"' +
+              ' onclick="toggleNoDate(this)" onkeydown="if(event.key===\'Enter\'||event.key===\' \')toggleNoDate(this)">';
+    html +=     '<span>📋 Geen releasedatum bekend ('+noDate.length+' items)</span>';
+    html +=     '<span class="collapsible-chevron" aria-hidden="true">▼</span>';
+    html +=   '</div>';
+    html +=   '<div class="no-date-inner period-items">';
+    sortItems(noDate).forEach(function(item){ html += calCardHTML(item); });
+    html +=   '</div>';
+    html += '</div>';
+  }
+
+  html += '</div>';
+  calEl.innerHTML = html;
+}
+
+/* ── Kalenderkaart HTML ─────────────────────────────────────────────────── */
+function calCardHTML(item, isShortTerm, isUncertain) {
+  var meta = APP_META[item.app] || APP_META.other;
+  var shortBadge = isShortTerm
+    ? '<span class="short-term-badge" title="Heeft exacte maanddatum — ook zichtbaar in korte-termijn weergave">' +
+      '<span aria-hidden="true">📅</span> Ook in maandweergave</span>'
+    : '';
+  /* Link naar hoofdpagina met zoekterm vooringevuld */
+  var searchUrl = 'index.html?zoek=' + encodeURIComponent(item.title.substring(0, 50));
+  return '<div class="cal-card act-'+item.action+(isUncertain?' is-uncertain':'')+'">' +
+    '<div class="cal-card-left">' +
+      '<div class="cal-card-title">'+esc(item.title)+'</div>' +
+      '<div class="cal-card-benefit">'+esc(item.benefit)+'</div>' +
+      '<div class="cal-card-pills">' +
+        '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
+        '<span class="pill '+(item.status==='rolling'?'p-rolling':'p-dev')+'">'+
+          (item.status==='rolling'?'Wordt uitgerold':'In ontwikkeling')+'</span>' +
+        shortBadge +
+      '</div>' +
+    '</div>' +
+    '<div class="cal-card-right">' +
+      '<div class="action-dot-wrap act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||'')+'">' +
+        '<span class="action-dot" aria-hidden="true"></span>' +
+        '<span class="action-lbl">'+esc(ACTION_LABEL[item.action]||item.actionLabel)+'</span>' +
+      '</div>' +
+      '<div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end">' +
+        '<a class="main-link" href="'+searchUrl+'" aria-label="Bekijk details van \''+esc(item.title)+'\' op de hoofdpagina">'+DETAIL_ICON+' Details</a>' +
+        '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
+      '</div>' +
+    '</div>' +
+  '</div>';
+}
+
+function toggleNoDate(hdr) {
+  var inner   = hdr.nextElementSibling;
+  var chevron = hdr.querySelector('.collapsible-chevron');
+  var open    = hdr.getAttribute('aria-expanded') === 'true';
+  hdr.setAttribute('aria-expanded', open?'false':'true');
+  inner.classList.toggle('open', !open);
+  if (chevron) chevron.classList.toggle('open', !open);
+}
+
+loadData();
+</script>
+</body>
+</html>
