@@ -5,184 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Archief — Microsoft 365 Roadmap</title>
 <meta name="description" content="Bekijk eerdere weken van de Microsoft 365 roadmap. Het archief bewaart de laatste 3 maanden.">
+<link rel="stylesheet" href="shared.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0ede8;
-  --text: #1a1916; --muted: #5a5750; --faint: #7a7770;
-  --border: rgba(0,0,0,0.10); --border-s: rgba(0,0,0,0.20);
-  --green-bg: #e6f4eb; --green-t: #145228;
-  --amber-bg: #fef3dc; --amber-t: #5c3a00;
-  --purple-bg: #eeebfd; --purple-t: #3a2a8a;
-  --gray-bg: #e8e8e8;  --gray-t: #383838;
-  --blue-bg: #e6f0fd;  --blue-t: #143d82;
-  --red-bg: #fdecea;   --red-t: #7a1a1a;
-  --orange-bg: #fff0e6;--orange-t: #6b3200;
-  --teal-bg: #e0f4f1;  --teal-t: #0a5248;
-  --new-bg: #fff7e0;   --new-t: #5c3a00;
-  --c-none:  #1a7a45;
-  --c-admin: #8a5600;
-  --c-user:  #1a4fa0;
-}
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.5; }
-
-.skip-link { position: absolute; left: -9999px; top: 1rem; background: var(--text); color: #fff; padding: .5rem 1rem; border-radius: 4px; font-size: 14px; font-weight: 600; z-index: 100; text-decoration: none; }
-.skip-link:focus { left: 1rem; }
-:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; border-radius: 4px; }
-
-/* Header */
-.hdr { background: var(--surface); border-bottom: 2px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
-.hdr-left { display: flex; align-items: center; gap: 12px; }
-.back-link { display: inline-flex; align-items: center; gap: 6px; font-size: .875rem; font-weight: 500; color: var(--blue-t); background: var(--blue-bg); text-decoration: none; padding: 6px 14px; border-radius: 100px; white-space: nowrap; transition: opacity .12s; }
-.back-link:hover { opacity: .8; }
-.hdr h1 { font-size: 1.125rem; font-weight: 700; }
-.hdr-sub { font-size: .8125rem; color: var(--muted); margin-top: 2px; }
-
-.main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+/* ── Pagina-specifieke stijlen ────────────────────────────────────────── */
 
 /* Weekkiezer */
-.week-nav-wrap { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 2rem; }
-.week-nav-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); margin-bottom: .75rem; display: block; }
+.week-nav-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.week-nav-wrap > span {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--faint); display: block; margin-bottom: 0.75rem;
+}
 .week-nav { display: flex; flex-wrap: wrap; gap: 8px; }
-.week-btn { padding: 8px 16px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: .875rem; font-weight: 500; cursor: pointer; transition: all .12s; }
+
+.week-btn {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s);
+  background: var(--surface); color: var(--muted);
+  font-family: var(--font); font-size: 0.875rem; font-weight: 500;
+  cursor: pointer; transition: all 0.12s;
+  min-height: 2.75rem; /* WCAG 2.5.8 */
+  line-height: 1.3;
+}
 .week-btn:hover { background: var(--surface2); color: var(--text); }
 .week-btn.active { background: var(--blue-t); color: #fff; border-color: var(--blue-t); font-weight: 600; }
-.week-btn-date { display: block; font-size: .6875rem; color: inherit; opacity: .75; margin-top: 1px; }
+.week-btn-year { font-size: 0.6875rem; opacity: 0.8; }
 
-/* Archief-inhoud header */
-.archive-hdr { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+/* Donkere modus weekknop */
+@media (prefers-color-scheme: dark) {
+  .week-btn.active { background: var(--blue-t); color: #0a1a38; }
+}
+
+/* Archief-inhoud koptekst */
+.archive-hdr {
+  display: flex; align-items: baseline;
+  justify-content: space-between; flex-wrap: wrap;
+  gap: 0.5rem; margin-bottom: 1.5rem;
+}
 .archive-hdr h2 { font-size: 1.125rem; font-weight: 700; }
-.archive-hdr-meta { font-size: .8125rem; color: var(--muted); }
-
-/* Statistieken */
-.stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-.stat-pill { font-size: .75rem; padding: 4px 12px; border-radius: 100px; font-weight: 500; }
-.s-total   { background: var(--surface2); color: var(--muted); }
-.s-rolling { background: var(--amber-bg); color: var(--amber-t); }
-.s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
+.archive-hdr-meta { font-size: 0.8125rem; color: var(--muted); }
 
 /* Productfilter in archief */
-.arch-filter { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.5rem; }
-.arch-fb { padding: 6px 14px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: .8125rem; font-weight: 500; cursor: pointer; transition: all .12s; }
+.arch-filter {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  margin-bottom: 1.5rem;
+}
+.arch-fb {
+  padding: 0.4375rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s);
+  background: var(--surface); color: var(--muted);
+  font-family: var(--font); font-size: 0.8125rem; font-weight: 500;
+  cursor: pointer; transition: all 0.12s;
+  min-height: 2.75rem; /* WCAG 2.5.8 */
+}
 .arch-fb:hover { background: var(--surface2); color: var(--text); }
-.arch-fb.on { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
+.arch-fb[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
 
-/* Sectie */
-.sec-hdr { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-.sec-count { font-size: .6875rem; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
-
-/* Kaart */
-.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 12px; }
-.card.act-none  { border-left: 4px solid var(--c-none); }
-.card.act-admin { border-left: 4px solid var(--c-admin); }
-.card.act-user  { border-left: 4px solid var(--c-user); }
-.card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
-.card-title { font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 10px; color: var(--text); }
-.card-benefit { font-size: .9375rem; color: var(--text); line-height: 1.7; margin-bottom: 12px; padding: 12px 14px; background: var(--surface2); border-radius: 8px; }
-.card-benefit-label { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 5px; display: block; }
-.card-action { display: inline-flex; align-items: center; gap: 8px; font-size: .875rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; margin-bottom: 12px; }
-.card-action.act-none  { background: #e8f7ee; color: var(--c-none); }
-.card-action.act-admin { background: #fef3dc; color: var(--c-admin); }
-.card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-.card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: .8125rem; font-weight: 600; background: var(--surface2); color: var(--text); padding: 5px 12px; border-radius: 100px; }
+@media (prefers-color-scheme: dark) {
+  .arch-fb[aria-pressed="true"] { background: var(--blue-t); color: #0a1a38; border-color: var(--blue-t); }
+}
 
 /* Gewijzigd-blok */
-.changed-section { margin-top: 2.5rem; border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
-.changed-hdr { padding: 1rem 1.5rem; background: var(--surface2); font-size: .875rem; font-weight: 600; border-bottom: 1px solid var(--border); }
+.changed-block {
+  margin-top: 2.5rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.changed-hdr {
+  padding: 1rem 1.5rem;
+  background: var(--surface2);
+  font-size: 0.875rem; font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
 .changed-inner { padding: 1rem 1.5rem; background: var(--surface); }
-.rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; flex-wrap: wrap; }
-.rcard:last-child { margin-bottom: 0; }
-.rcard-title { font-size: .875rem; font-weight: 500; flex: 1; min-width: 180px; }
-.rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-/* Pills */
-.pill { font-size: .6875rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
-.p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
-.p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
-.p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
-.p-excel      { background: var(--green-bg);  color: var(--green-t); }
-.p-word       { background: var(--blue-bg);   color: var(--blue-t); }
-.p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
-.p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
-.p-purview    { background: var(--red-bg);    color: var(--red-t); }
-.p-viva       { background: var(--purple-bg); color: var(--purple-t); }
-.p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
-.p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
-.p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
-.p-forms      { background: var(--green-bg);  color: var(--green-t); }
-.p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
-.p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
-.p-planner    { background: var(--green-bg);  color: var(--green-t); }
-.p-other      { background: var(--gray-bg);   color: var(--gray-t); }
-.p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
-.p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
-.p-launched   { background: var(--green-bg);  color: var(--green-t); }
-.p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
-.p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
-.ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: .8125rem; color: var(--blue-t); text-decoration: none; padding: 5px 12px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; font-weight: 500; }
-.ms-link:hover { opacity: .8; }
-
-/* Laad/leeg */
-.state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-.state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
-.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-/* ── Dark mode ─────────────────────────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1a1917; --surface: #242220; --surface2: #2e2c2a;
-    --text: #f0ede8; --muted: #b0ada8; --faint: #888480;
-    --border: rgba(255,255,255,0.10); --border-s: rgba(255,255,255,0.20);
-    --green-bg: #1a3d25; --green-t: #7dd9a0;
-    --amber-bg: #3a2800; --amber-t: #f5c97a;
-    --purple-bg:#2a2060; --purple-t: #c4b8f8;
-    --gray-bg:  #333230; --gray-t:  #c8c6c2;
-    --blue-bg:  #162650; --blue-t:  #7ab0f5;
-    --red-bg:   #3a1010; --red-t:   #f5a0a0;
-    --orange-bg:#3a1a00; --orange-t:#f5b880;
-    --teal-bg:  #0e2e2a; --teal-t:  #7dd4cc;
-    --new-bg:   #3a2400; --new-t:   #f5c97a;
-    --c-none:   #5dd48a; --c-admin: #f0a830; --c-user: #7ab0f5;
-  }
-  .week-btn.active { background: var(--blue-t); color: #0a1a38; }
-  .card-action.act-none  { background: #1a3d25; color: var(--c-none); }
-  .card-action.act-admin { background: #3a2800; color: var(--c-admin); }
-  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-  select { color-scheme: dark; }
-}
-
-/* ── Reduced motion ─────────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-  .spinner { animation: none; border: 3px solid var(--blue-t); opacity: .6; }
-}
-
-@media (max-width: 600px) {
-  .hdr { padding: 1rem; }
-  .main { padding: 1.25rem 1rem 4rem; }
-  .card { padding: 1rem 1.1rem; }
-}
+/* Leegmelding */
+.archive-empty { font-size: 0.875rem; color: var(--faint); padding: 1rem 0; }
 </style>
 </head>
 <body>
 
-<noscript><div style="padding:2rem;text-align:center;font-family:sans-serif;background:#fef3dc;border-bottom:2px solid #8a5600"><strong>JavaScript is vereist</strong> — Schakel JavaScript in uw browser in om deze pagina te gebruiken.</div></noscript>
+<noscript>
+  <div style="padding:2rem;text-align:center;font-family:sans-serif;background:#fef3dc;border-bottom:2px solid #8a5600">
+    <strong>JavaScript is vereist</strong> — Schakel JavaScript in uw browser in om deze pagina te gebruiken.
+  </div>
+</noscript>
+
 <a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
 
 <header role="banner">
   <div class="hdr">
-    <div class="hdr-left">
+    <div class="hdr-right" style="flex:1;gap:0.75rem">
       <a href="index.html" class="back-link" aria-label="Terug naar de actuele roadmap">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
         Terug
       </a>
       <div>
         <h1>Archief — vorige weken</h1>
-        <p class="hdr-sub">Bekijk de roadmap-updates van eerdere weken</p>
+        <p class="hdr-sub">Bekijk roadmap-updates van eerdere weken (laatste 3 maanden)</p>
       </div>
     </div>
   </div>
@@ -191,9 +124,8 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 <main id="main-content">
 <div class="main">
 
-  <!-- Weekkiezer -->
   <nav class="week-nav-wrap" aria-label="Kies een week">
-    <span class="week-nav-label" id="week-nav-lbl">Kies een week</span>
+    <span id="week-nav-lbl">Kies een week</span>
     <div class="week-nav" id="week-nav" role="group" aria-labelledby="week-nav-lbl">
       <div class="state-box" style="padding:1rem;width:100%">
         <div class="spinner" role="progressbar" aria-label="Archief laden"></div>
@@ -201,10 +133,14 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
     </div>
   </nav>
 
-  <!-- Inhoud van de gekozen week -->
-  <div id="archive-content" role="region" aria-label="Inhoud van de gekozen week" aria-live="polite">
+  <div id="archive-content"
+       role="region"
+       aria-label="Inhoud van de gekozen week"
+       aria-live="polite">
     <div class="state-box">
-      <p style="color:var(--faint);font-size:.9375rem">Selecteer een week hierboven om de updates van die week te bekijken.</p>
+      <p style="color:var(--faint);font-size:0.9375rem">
+        Selecteer een week hierboven om de updates van die week te bekijken.
+      </p>
     </div>
   </div>
 
@@ -212,173 +148,244 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 </main>
 
 <script>
+'use strict';
+
+/* ── Constanten ─────────────────────────────────────────────────────────── */
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 var APP_META = {
-  copilot:{label:"Copilot",cls:"p-copilot"},teams:{label:"Teams",cls:"p-teams"},
-  outlook:{label:"Outlook",cls:"p-outlook"},excel:{label:"Excel",cls:"p-excel"},
-  word:{label:"Word",cls:"p-word"},powerpoint:{label:"PowerPoint",cls:"p-powerpoint"},
-  sharepoint:{label:"SharePoint",cls:"p-sharepoint"},purview:{label:"Purview",cls:"p-purview"},
-  viva:{label:"Viva",cls:"p-viva"},edge:{label:"Edge",cls:"p-edge"},
-  onedrive:{label:"OneDrive",cls:"p-onedrive"},exchange:{label:"Exchange",cls:"p-exchange"},
-  forms:{label:"Forms",cls:"p-forms"},intune:{label:"Intune",cls:"p-intune"},
-  entra:{label:"Entra",cls:"p-entra"},planner:{label:"Planner",cls:"p-planner"},
-  other:{label:"Overig",cls:"p-other"}
+  copilot:{label:'Copilot',cls:'p-copilot'},    teams:{label:'Teams',cls:'p-teams'},
+  outlook:{label:'Outlook',cls:'p-outlook'},    excel:{label:'Excel',cls:'p-excel'},
+  word:{label:'Word',cls:'p-word'},              powerpoint:{label:'PowerPoint',cls:'p-powerpoint'},
+  sharepoint:{label:'SharePoint',cls:'p-sharepoint'}, purview:{label:'Purview',cls:'p-purview'},
+  viva:{label:'Viva',cls:'p-viva'},              edge:{label:'Edge',cls:'p-edge'},
+  onedrive:{label:'OneDrive',cls:'p-onedrive'}, exchange:{label:'Exchange',cls:'p-exchange'},
+  forms:{label:'Forms',cls:'p-forms'},           intune:{label:'Intune',cls:'p-intune'},
+  entra:{label:'Entra',cls:'p-entra'},           planner:{label:'Planner',cls:'p-planner'},
+  other:{label:'Overig',cls:'p-other'}
 };
-var APP_ORDER = ["copilot","teams","outlook","excel","word","powerpoint","sharepoint","purview","viva","edge","onedrive","exchange","forms","intune","entra","planner","other"];
-var ACTION_LABEL = {none:"Gaat automatisch",admin:"IT-beheerder actie vereist",user:"Medewerker kan zelf instellen"};
-var ACTION_ICON  = {none:"🟢",admin:"🟡",user:"🔵"};
-var MAANDEN = {"january":"januari","february":"februari","march":"maart","april":"april","may":"mei","june":"juni","july":"juli","august":"augustus","september":"september","october":"oktober","november":"november","december":"december"};
+var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview',
+                 'viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
+var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie vereist', user:'Medewerker kan zelf instellen'};
+var ACTION_ICON  = {none:'🟢', admin:'🟡', user:'🔵'};
+var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,
+              oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,
+              june:5,july:6,august:7,september:8,october:9,november:10,december:11};
+var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april',may:'mei',
+               june:'juni',july:'juli',august:'augustus',september:'september',
+               october:'oktober',november:'november',december:'december'};
 
-function nlRelease(s){if(!s)return"–";return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,"$1");}
-function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-function fmtDateLong(s){if(!s)return s;var d=new Date(s);return isNaN(d)?s:d.toLocaleDateString("nl-NL",{weekday:"long",day:"numeric",month:"long",year:"numeric"});}
+/* ── State ──────────────────────────────────────────────────────────────── */
+var currentData   = null;   /* Geladen weekdata */
+var currentDate   = null;   /* ISO datumstring van geladen week */
+var archiveFP     = 'all';  /* Productfilter */
 
-var currentItems = [];
-var archiveFP = "all";
+/* ── Hulpfuncties ────────────────────────────────────────────────────────── */
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function nlRelease(s) {
+  if (!s) return '–';
+  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
+    function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,'$1');
+}
+function fmtDateLong(s) {
+  if (!s) return s;
+  var d = new Date(s);
+  return isNaN(d) ? s : d.toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+}
 
-// ── Archief-index laden en weekknoppen bouwen ────────────────────────────
-fetch("archive/index.json")
-  .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
-  .then(function(idx){
-    var nav = document.getElementById("week-nav");
-    nav.innerHTML = "";
-    if(!idx.dates||idx.dates.length===0){
-      nav.innerHTML='<p style="font-size:.875rem;color:var(--faint);padding:.5rem 0">Nog geen archief beschikbaar. Het archief wordt aangemaakt na de volgende workflow-run.</p>';
+/* Fetch met timeout — voorkomt eindeloos wachten */
+function fetchWithTimeout(url, ms) {
+  ms = ms || 10000;
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, ms);
+  return fetch(url, {signal: ctrl.signal}).finally(function(){ clearTimeout(timer); });
+}
+
+/* ── Archief-index laden ────────────────────────────────────────────────── */
+fetchWithTimeout('archive/index.json', 10000)
+  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+  .then(function(idx) {
+    var nav = document.getElementById('week-nav');
+    nav.innerHTML = '';
+
+    if (!idx.dates || idx.dates.length === 0) {
+      nav.innerHTML = '<p class="archive-empty">Nog geen archief beschikbaar. Na de volgende workflow-run verschijnt het hier automatisch.</p>';
       return;
     }
-    idx.dates.forEach(function(dateStr, i){
-      var d = new Date(dateStr);
-      var btn = document.createElement("button");
-      btn.className = "week-btn";
-      btn.setAttribute("data-date", dateStr);
-      btn.setAttribute("aria-label", "Week van "+fmtDateLong(dateStr)+" bekijken");
-      btn.innerHTML = d.toLocaleDateString("nl-NL",{weekday:"short",day:"numeric",month:"short"})+'<span class="week-btn-date">'+d.getFullYear()+'</span>';
-      btn.onclick = function(){ loadWeek(dateStr, btn); };
+
+    idx.dates.forEach(function(dateStr, i) {
+      var d   = new Date(dateStr);
+      var btn = document.createElement('button');
+      btn.className = 'week-btn';
+      btn.setAttribute('data-date', dateStr);
+      btn.setAttribute('aria-label', 'Week van ' + fmtDateLong(dateStr) + ' bekijken');
+      btn.innerHTML =
+        d.toLocaleDateString('nl-NL',{weekday:'short',day:'numeric',month:'short'}) +
+        '<span class="week-btn-year">' + d.getFullYear() + '</span>';
+      btn.addEventListener('click', function(){ loadWeek(dateStr, btn); });
       nav.appendChild(btn);
-      // Laad automatisch de meest recente week
-      if(i===0) loadWeek(dateStr, btn);
+
+      /* Laad automatisch de meest recente week */
+      if (i === 0) loadWeek(dateStr, btn);
     });
   })
-  .catch(function(err){
-    document.getElementById("week-nav").innerHTML='<p style="font-size:.875rem;color:var(--faint)">Archief kon niet worden geladen: '+esc(String(err))+'</p>';
+  .catch(function(err) {
+    document.getElementById('week-nav').innerHTML =
+      '<p class="archive-empty">Archief kon niet worden geladen: ' + esc(String(err)) + '</p>';
   });
 
-// ── Week laden ────────────────────────────────────────────────────────────
-function loadWeek(dateStr, activeBtn){
-  document.querySelectorAll(".week-btn").forEach(function(b){b.classList.remove("active");});
-  activeBtn.classList.add("active");
-  archiveFP = "all";
+/* ── Week laden ─────────────────────────────────────────────────────────── */
+function loadWeek(dateStr, activeBtn) {
+  document.querySelectorAll('.week-btn').forEach(function(b){ b.classList.remove('active'); });
+  activeBtn.classList.add('active');
+  archiveFP    = 'all';
+  currentDate  = dateStr;
 
-  var content = document.getElementById("archive-content");
-  content.innerHTML = '<div class="state-box"><div class="spinner" role="progressbar" aria-label="Week laden"></div><h2>Week laden…</h2></div>';
+  var content = document.getElementById('archive-content');
+  content.innerHTML =
+    '<div class="state-box"><div class="spinner" role="progressbar" aria-label="Week laden"></div>' +
+    '<h2>Week laden…</h2></div>';
 
-  fetch("archive/"+dateStr+".json")
-    .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
-    .then(function(data){
-      currentItems = data.items || [];
-      renderWeek(data, dateStr);
+  fetchWithTimeout('archive/' + dateStr + '.json', 10000)
+    .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(function(data) {
+      currentData = data;
+      renderWeek();
     })
-    .catch(function(err){
-      content.innerHTML='<div class="state-box" role="alert"><h2>Kon deze week niet laden</h2><p>'+esc(String(err))+'</p></div>';
+    .catch(function(err) {
+      document.getElementById('archive-content').innerHTML =
+        '<div class="state-box" role="alert"><h2>Kon deze week niet laden</h2>' +
+        '<p>' + esc(String(err)) + '</p></div>';
     });
 }
 
-// ── Week renderen ─────────────────────────────────────────────────────────
-function renderWeek(data, dateStr){
-  var items   = currentItems;
-  var removed = data.removed || [];
-  var filtered = archiveFP==="all" ? items : items.filter(function(i){return i.app===archiveFP;});
-  filtered = filtered.slice().sort(function(a,b){return new Date(b.added||0)-new Date(a.added||0);});
-  var rolling = filtered.filter(function(i){return i.status==="rolling";});
-  var dev     = filtered.filter(function(i){return i.status==="dev";});
+/* ── Week renderen ──────────────────────────────────────────────────────── */
+function renderWeek() {
+  if (!currentData || !currentDate) return;
 
-  // Bouw productfilter
-  var presentApps = new Set(items.map(function(i){return i.app;}));
-  var filterHtml = '<div class="arch-filter" role="group" aria-label="Filter op product">';
-  filterHtml += '<button class="arch-fb'+(archiveFP==="all"?" on":"")+'" aria-pressed="'+(archiveFP==="all"?'true':'false')+'" onclick="setArchiveFilter(\'all\',this)">Alle producten</button>';
-  APP_ORDER.forEach(function(key){
-    if(!presentApps.has(key))return;
-    var count = items.filter(function(i){return i.app===key;}).length;
-    filterHtml += '<button class="arch-fb'+(archiveFP===key?" on":"")+'" aria-pressed="'+(archiveFP===key?'true':'false')+'" onclick="setArchiveFilter(\''+key+'\',this)">'+APP_META[key].label+' ('+count+')</button>';
+  var allItems = currentData.items || [];
+  var removed  = currentData.removed || [];
+
+  /* Sorteer op toegevoegddatum, nieuwste eerst */
+  var sorted = allItems.slice().sort(function(a,b){
+    return new Date(b.added||0) - new Date(a.added||0);
+  });
+
+  /* Productfilter */
+  var filtered = archiveFP === 'all'
+    ? sorted
+    : sorted.filter(function(i){ return i.app === archiveFP; });
+
+  var rolling = filtered.filter(function(i){ return i.status === 'rolling'; });
+  var dev     = filtered.filter(function(i){ return i.status === 'dev'; });
+
+  /* ── Productfilter HTML ── */
+  var presentApps = new Set(allItems.map(function(i){ return i.app; }));
+  var filterHtml  = '<div class="arch-filter" role="group" aria-label="Filter op product">';
+  filterHtml += '<button class="arch-fb" aria-pressed="' + (archiveFP==='all'?'true':'false') + '" data-fp="all">Alle producten</button>';
+  APP_ORDER.forEach(function(key) {
+    if (!presentApps.has(key)) return;
+    var count = allItems.filter(function(i){ return i.app===key; }).length;
+    filterHtml +=
+      '<button class="arch-fb" aria-pressed="' + (archiveFP===key?'true':'false') + '" data-fp="' + key + '">' +
+      APP_META[key].label + ' (' + count + ')</button>';
   });
   filterHtml += '</div>';
 
-  // Statistieken
+  /* ── Statistieken ── */
   var statsHtml =
-    '<div class="stats-bar">'+
-    '<span class="stat-pill s-total">'+filtered.length+' updates</span>'+
-    '<span class="stat-pill s-rolling">'+rolling.length+' werd uitgerold</span>'+
-    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>'+
+    '<div class="stats-bar">' +
+    '<span class="stat-pill s-total">' + filtered.length + ' updates</span>' +
+    '<span class="stat-pill s-rolling">' + rolling.length + ' werd uitgerold</span>' +
+    '<span class="stat-pill s-dev">' + dev.length + ' in ontwikkeling</span>' +
     '</div>';
 
-  // Kaarten
-  function sec(list, emoji, lbl){
-    if(!list.length)return"";
-    return '<section aria-label="'+lbl+'">'+
-      '<h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+list.length+'</span></h2>'+
-      list.map(itemCard).join("")+
+  /* ── Kaarten ── */
+  function sec(items, emoji, lbl) {
+    if (!items.length) return '';
+    return '<section aria-label="' + lbl + '">' +
+      '<h2 class="sec-hdr"><span>' + emoji + ' ' + lbl + '</span>' +
+      '<span class="sec-count">' + items.length + '</span></h2>' +
+      items.map(itemCard).join('') +
     '</section>';
   }
 
-  var cardsHtml = filtered.length===0
-    ? '<p style="color:var(--faint);font-size:.875rem;padding:1rem 0">Geen items voor dit product in deze week.</p>'
-    : sec(rolling,"🟡","Werd uitgerold") + sec(dev,"🔵","In ontwikkeling");
+  var cardsHtml = filtered.length === 0
+    ? '<p class="archive-empty">Geen items voor dit product in deze week.</p>'
+    : sec(rolling, '🟡', 'Werd uitgerold') + sec(dev, '🔵', 'In ontwikkeling');
 
-  // Gewijzigde items
-  var changedHtml = "";
-  if(removed.length>0){
-    changedHtml = '<div class="changed-section">'+
-      '<div class="changed-hdr">⚑ Deze week beschikbaar of geannuleerd ('+removed.length+')</div>'+
-      '<div class="changed-inner">'+
-        removed.map(function(r){
-          var meta=APP_META[r.app]||APP_META.other;
-          return '<div class="rcard">'+
-            '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>'+
-            '<span class="rcard-title">'+esc(r.title)+'</span>'+
-            '<div class="rcard-right">'+
-              '<span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>'+
-              '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+' ID '+r.id+'</a>'+
-            '</div>'+
-          '</div>';
-        }).join("")+
-      '</div>'+
-    '</div>';
+  /* ── Gewijzigde items ── */
+  var changedHtml = '';
+  if (removed.length > 0) {
+    changedHtml =
+      '<div class="changed-block">' +
+      '<div class="changed-hdr">⚑ Deze week beschikbaar of geannuleerd (' + removed.length + ')</div>' +
+      '<div class="changed-inner">' +
+      removed.map(function(r) {
+        var meta = APP_META[r.app] || APP_META.other;
+        return '<div class="rcard">' +
+          '<span class="pill ' + meta.cls + '">' + esc(r.prodLabel||meta.label) + '</span>' +
+          '<span class="rcard-title">' + esc(r.title) + '</span>' +
+          '<div class="rcard-right">' +
+            '<span class="pill p-' + r.status + '">' + esc(r.statusNl) + '</span>' +
+            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID ' + r.id + ' op Microsoft roadmap (opent in nieuw venster)">' +
+              LINK_ICON + ' ID ' + r.id +
+            '</a>' +
+          '</div></div>';
+      }).join('') +
+      '</div></div>';
   }
 
-  document.getElementById("archive-content").innerHTML =
-    '<div class="archive-hdr">'+
-      '<h2>'+fmtDateLong(dateStr)+'</h2>'+
-      '<span class="archive-hdr-meta">'+items.length+' actieve updates'+
-        (removed.length>0?' · '+removed.length+' gewijzigd':'')+
-      '</span>'+
-    '</div>'+
+  /* ── Samenvoegen ── */
+  document.getElementById('archive-content').innerHTML =
+    '<div class="archive-hdr">' +
+      '<h2>' + fmtDateLong(currentDate) + '</h2>' +
+      '<span class="archive-hdr-meta">' + allItems.length + ' actieve updates' +
+        (removed.length > 0 ? ' · ' + removed.length + ' gewijzigd' : '') +
+      '</span>' +
+    '</div>' +
     filterHtml + statsHtml + cardsHtml + changedHtml;
 
-  // Bewaar referentie naar de data voor herfiltering
-  document.getElementById("archive-content")._data = data;
-  document.getElementById("archive-content")._dateStr = dateStr;
+  /* Productfilter knoppen verbinden */
+  document.getElementById('archive-content')
+    .querySelectorAll('.arch-fb[data-fp]')
+    .forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        archiveFP = btn.getAttribute('data-fp');
+        renderWeek();
+      });
+    });
 }
 
-function setArchiveFilter(key, btn){
-  archiveFP = key;
-  var data    = document.getElementById("archive-content")._data;
-  var dateStr = document.getElementById("archive-content")._dateStr;
-  if(data) renderWeek(data, dateStr);
-}
-
-function itemCard(item){
-  var cfg={rolling:{label:"Werd uitgerold",cls:"p-rolling"},dev:{label:"In ontwikkeling",cls:"p-dev"}}[item.status]||{label:item.status,cls:"p-other"};
-  var meta=APP_META[item.app]||APP_META.other;
-  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">'+
-    '<div class="card-pills"><span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span><span class="pill '+cfg.cls+'">'+cfg.label+'</span></div>'+
-    '<h3 class="card-title">'+esc(item.title)+'</h3>'+
-    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+esc(item.benefit)+'</div>'+
-    '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'"><span aria-hidden="true">'+ACTION_ICON[item.action]+'</span><span>'+esc(item.actionLabel)+'</span></div>'+
-    '<div class="card-foot">'+
-      '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>'+
-      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>'+
-    '</div>'+
+/* ── Kaart HTML ─────────────────────────────────────────────────────────── */
+function itemCard(item) {
+  var cfg  = {rolling:{label:'Werd uitgerold',cls:'p-rolling'}, dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status]
+           || {label:item.status, cls:'p-other'};
+  var meta = APP_META[item.app] || APP_META.other;
+  return '<article class="card act-' + item.action + '" aria-label="' + esc(item.title) + '">' +
+    '<div class="card-pills">' +
+      '<span class="pill ' + meta.cls + '">' + esc(item.prodLabel||meta.label) + '</span>' +
+      '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
+    '</div>' +
+    '<h3 class="card-title">' + esc(item.title) + '</h3>' +
+    '<div class="card-benefit">' +
+      '<span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>' +
+      esc(item.benefit) +
+    '</div>' +
+    '<div class="card-action act-' + item.action + '" aria-label="Actie: ' + (ACTION_LABEL[item.action]||item.actionLabel) + '">' +
+      '<span aria-hidden="true">' + ACTION_ICON[item.action] + '</span>' +
+      '<span>' + esc(item.actionLabel) + '</span>' +
+    '</div>' +
+    '<div class="card-foot">' +
+      '<span class="release-badge">' +
+        '<span aria-hidden="true">🚀</span> ' +
+        '<span class="sr-only">Verwachte release:</span>' +
+        esc(nlRelease(item.release)) +
+      '</span>' +
+      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID ' + item.id + ' op Microsoft roadmap (opent in nieuw venster)">' +
+        LINK_ICON + ' ID ' + item.id +
+      '</a>' +
+    '</div>' +
   '</article>';
 }
 </script>

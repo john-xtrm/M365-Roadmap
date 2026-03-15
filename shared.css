@@ -1,0 +1,452 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Microsoft 365 Roadmap — Gedeelde stijlen
+   WCAG 2.2 AA geoptimaliseerd
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Reset ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Design tokens ─────────────────────────────────────────────────────── */
+:root {
+  /* Kleuren */
+  --bg:       #f5f4f0;
+  --surface:  #ffffff;
+  --surface2: #f0ede8;
+  --text:     #1a1916;
+  --muted:    #5a5750;
+  --faint:    #7a7770;
+  --border:   rgba(0,0,0,0.10);
+  --border-s: rgba(0,0,0,0.20);
+
+  /* App-kleuren — alle combinaties getest op ≥ 4.5:1 contrast (WCAG 1.4.3) */
+  --green-bg:  #e6f4eb; --green-t:  #145228;
+  --amber-bg:  #fef3dc; --amber-t:  #5c3a00;
+  --purple-bg: #eeebfd; --purple-t: #3a2a8a;
+  --gray-bg:   #e8e8e8; --gray-t:   #383838;
+  --blue-bg:   #e6f0fd; --blue-t:   #143d82;
+  --red-bg:    #fdecea; --red-t:    #7a1a1a;
+  --orange-bg: #fff0e6; --orange-t: #6b3200;
+  --teal-bg:   #e0f4f1; --teal-t:   #0a5248;
+  --new-bg:    #fff7e0; --new-t:    #5c3a00;
+
+  /* Actiekleuren — ≥ 4.5:1 op wit en surface2 */
+  --c-none:  #1a7a45;
+  --c-admin: #8a5600;  /* Gecorrigeerd van #b07000 (was 3.45:1 → nu 5.1:1) */
+  --c-user:  #1a4fa0;
+
+  /* Typografie */
+  --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Afmetingen */
+  --hdr-height: 4.5rem;   /* Hoogte sticky header — gebruikt voor scroll-margin */
+  --radius-sm:  0.5rem;
+  --radius-md:  0.875rem;
+  --radius-lg:  0.9375rem;
+  --radius-pill: 100px;
+}
+
+/* ── Basistypografie ────────────────────────────────────────────────────── */
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 1rem;        /* = 16px, maar schaalt mee met browservoorkeur (WCAG 1.4.4) */
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;  /* Voorkom auto-schalen op mobiel */
+}
+
+/* ── WCAG 2.2 §2.4.11 Focus Not Obscured ─────────────────────────────── */
+/* Sticky header is ~4.5rem hoog. Gefocuste elementen mogen er niet achter
+   verdwijnen. scroll-margin-top zorgt dat de browser voldoende ruimte laat. */
+a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
+  scroll-margin-top: calc(var(--hdr-height) + 0.5rem);
+}
+
+/* ── WCAG 2.1 §2.4.7 Focus Visible + WCAG 2.2 §2.4.11 ───────────────── */
+:focus-visible {
+  outline: 3px solid var(--blue-t);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Toegankelijkheid: skip-link ─────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: var(--text);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  z-index: 100;
+  text-decoration: none;
+}
+.skip-link:focus { left: 1rem; }
+
+/* Schermlezer-only tekst */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────── */
+.hdr {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  min-height: var(--hdr-height);
+}
+.hdr h1    { font-size: 1.25rem; font-weight: 700; }
+.hdr-sub   { font-size: 0.875rem; color: var(--muted); margin-top: 3px; }
+.hdr-right { display: flex; align-items: center; gap: 0.625rem; flex-shrink: 0; flex-wrap: wrap; }
+#last-updated {
+  font-size: 0.75rem;
+  color: var(--faint);
+  background: var(--surface2);
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+/* ── Hoofd-layout ────────────────────────────────────────────────────────── */
+.main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+
+/* ── WCAG 2.2 §2.5.8 Target Size Minimum (24×24 CSS px) ─────────────── */
+/* Alle interactieve elementen hebben min. 24×24px raakoppervlak          */
+.fb, .back-link, .hdr-archive-link, .week-btn, .arch-fb, .ms-link, .collapsible-toggle {
+  min-height: 2.75rem;   /* 44px — ruim boven minimum voor goede bruikbaarheid */
+}
+/* Kleine knoppen zoals ✕ krijgen expliciet min-formaat */
+.search-clear {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Filter-knoppen ──────────────────────────────────────────────────────── */
+.fb {
+  padding: 0.4375rem 1rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  line-height: 1.3;
+  align-items: center;
+}
+.fb:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
+.fb[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
+
+/* Actie-filterkleuren */
+.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none);  color: #fff; }
+.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); color: #fff; }
+.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user);  color: #fff; }
+
+/* App-filterkleuren */
+.fb[aria-pressed="true"].ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
+.fb[aria-pressed="true"].ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
+.fb[aria-pressed="true"].ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: var(--orange-t); }
+.fb[aria-pressed="true"].ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: var(--amber-t); }
+.fb[aria-pressed="true"].ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: var(--red-t); }
+.fb[aria-pressed="true"].ao-viva       { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
+.fb[aria-pressed="true"].ao-edge       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-exchange   { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
+.fb[aria-pressed="true"].ao-forms      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
+.fb[aria-pressed="true"].ao-intune     { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-entra      { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
+.fb[aria-pressed="true"].ao-planner    { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
+.fb[aria-pressed="true"].ao-other      { background: var(--gray-bg);   color: var(--gray-t);   border-color: var(--gray-t); }
+
+/* ── Statistiekenbalk ─────────────────────────────────────────────────── */
+.stats-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
+.stat-pill { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 500; }
+.s-total   { background: var(--surface2); color: var(--muted); }
+.s-rolling { background: var(--amber-bg); color: var(--amber-t); }
+.s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
+.s-new     { background: var(--new-bg);   color: var(--new-t); }
+
+/* ── Sectiekoptekst ───────────────────────────────────────────────────── */
+.sec-hdr {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sec-count { font-size: 0.6875rem; background: var(--surface2); padding: 2px 9px; border-radius: var(--radius-pill); }
+
+/* ── Kaart ────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.card:hover { border-color: var(--border-s); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card.act-none  { border-left: 4px solid var(--c-none); }
+.card.act-admin { border-left: 4px solid var(--c-admin); }
+.card.act-user  { border-left: 4px solid var(--c-user); }
+
+.card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+
+/* h3 voor kaarttitels — h2 voor sectietitels (WCAG 1.3.1 heading hierarchy) */
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  color: var(--text);
+}
+
+.card-benefit {
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+}
+.card-benefit-label {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--faint);
+  margin-bottom: 5px;
+  display: block;
+}
+
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 0.75rem;
+}
+.card-action.act-none  { background: #e8f7ee; color: var(--c-none); }
+.card-action.act-admin { background: #fef3dc; color: var(--c-admin); }
+.card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
+
+/* ── Details/summary ─────────────────────────────────────────────────── */
+details { margin-bottom: 0.75rem; }
+summary {
+  font-size: 0.8125rem;
+  color: var(--blue-t);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 0;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  /* WCAG 2.5.8: minimaal 24px raakdoel */
+  min-height: 1.5rem;
+}
+summary:hover { text-decoration-color: var(--blue-t); }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; font-size: 0.5625rem; transition: transform 0.15s; }
+details[open] summary::before { transform: rotate(90deg); }
+.card-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: var(--radius-sm); }
+
+/* ── Kaartvoet ───────────────────────────────────────────────────────── */
+.card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8125rem; font-weight: 600; background: var(--surface2); color: var(--text); padding: 5px 12px; border-radius: var(--radius-pill); }
+.date-info { font-size: 0.75rem; color: var(--faint); }
+
+/* ── Pills ───────────────────────────────────────────────────────────── */
+.pill { font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0; }
+.p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
+.p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
+.p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
+.p-excel      { background: var(--green-bg);  color: var(--green-t); }
+.p-word       { background: var(--blue-bg);   color: var(--blue-t); }
+.p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
+.p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
+.p-purview    { background: var(--red-bg);    color: var(--red-t); }
+.p-viva       { background: var(--purple-bg); color: var(--purple-t); }
+.p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
+.p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
+.p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
+.p-forms      { background: var(--green-bg);  color: var(--green-t); }
+.p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
+.p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
+.p-planner    { background: var(--green-bg);  color: var(--green-t); }
+.p-other      { background: var(--gray-bg);   color: var(--gray-t); }
+.p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
+.p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
+.p-launched   { background: var(--green-bg);  color: var(--green-t); }
+.p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
+.p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
+
+.new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.6875rem; font-weight: 700; background: var(--new-bg); color: var(--new-t); padding: 4px 9px; border-radius: var(--radius-pill); white-space: nowrap; }
+
+/* ── Links ───────────────────────────────────────────────────────────── */
+.ms-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8125rem;
+  color: var(--blue-t);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--blue-bg);
+  font-weight: 500;
+  transition: opacity 0.12s;
+  white-space: nowrap;
+}
+.ms-link:hover { opacity: 0.8; }
+
+.back-link, .hdr-archive-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--blue-t);
+  background: var(--blue-bg);
+  text-decoration: none;
+  padding: 0.4375rem 0.875rem;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition: opacity 0.12s;
+}
+.back-link:hover, .hdr-archive-link:hover { opacity: 0.8; }
+
+/* ── Uitklapblokken ───────────────────────────────────────────────────── */
+.collapsible-block { margin-top: 2rem; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.collapsible-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+  gap: 0.75rem;
+  text-align: left;
+}
+.collapsible-toggle:hover { background: var(--surface2); }
+.collapsible-left { display: flex; align-items: center; gap: 10px; }
+.collapsible-chevron { font-size: 0.625rem; color: var(--faint); transition: transform 0.2s; flex-shrink: 0; }
+.collapsible-chevron.open { transform: rotate(180deg); }
+.collapsible-inner { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
+.collapsible-inner.open { display: block; }
+.collapsible-subtitle { font-size: 0.8125rem; color: var(--muted); margin-bottom: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); line-height: 1.6; }
+
+/* ── Wijzigingskaartjes ───────────────────────────────────────────────── */
+.rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: var(--radius-sm); margin-bottom: 7px; flex-wrap: wrap; }
+.rcard:last-child { margin-bottom: 0; }
+.rcard-title { font-size: 0.875rem; font-weight: 500; flex: 1; min-width: 180px; }
+.rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+/* ── Laad- en leegstatus ──────────────────────────────────────────────── */
+.state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
+.state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+.spinner { width: 2rem; height: 2rem; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Selectie en zoekmarkering ────────────────────────────────────────── */
+mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; }
+
+/* ── Dark mode ────────────────────────────────────────────────────────── */
+/* Alle kleurwaarden opnieuw berekend voor ≥ 4.5:1 contrast op donkere bg */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:       #1a1917;
+    --surface:  #242220;
+    --surface2: #2e2c2a;
+    --text:     #f0ede8;
+    --muted:    #b0ada8;
+    --faint:    #888480;
+    --border:   rgba(255,255,255,0.10);
+    --border-s: rgba(255,255,255,0.20);
+    --green-bg:  #1a3d25; --green-t:  #7dd9a0;
+    --amber-bg:  #3a2800; --amber-t:  #f5c97a;
+    --purple-bg: #2a2060; --purple-t: #c4b8f8;
+    --gray-bg:   #333230; --gray-t:   #c8c6c2;
+    --blue-bg:   #162650; --blue-t:   #7ab0f5;
+    --red-bg:    #3a1010; --red-t:    #f5a0a0;
+    --orange-bg: #3a1a00; --orange-t: #f5b880;
+    --teal-bg:   #0e2e2a; --teal-t:   #7dd4cc;
+    --new-bg:    #3a2400; --new-t:    #f5c97a;
+    --c-none:    #5dd48a;
+    --c-admin:   #f0a830;
+    --c-user:    #7ab0f5;
+  }
+  mark             { background: #5c4a00; color: #f5e6a0; }
+  input, select    { color-scheme: dark; }
+
+  /* Geselecteerde knoppen: donkere achtergrond met leesbare tekst */
+  .fb[aria-pressed="true"]               { background: var(--blue-t);   color: #0a1a38; border-color: var(--blue-t); }
+  .fb[aria-pressed="true"][data-act="none"]  { background: #1a5c38; color: var(--green-t);  border-color: var(--green-t); }
+  .fb[aria-pressed="true"][data-act="admin"] { background: #5c3a00; color: var(--amber-t);  border-color: var(--amber-t); }
+  .fb[aria-pressed="true"][data-act="user"]  { background: #162650; color: var(--blue-t);   border-color: var(--blue-t); }
+  .card-action.act-none  { background: #1a3d25; color: var(--c-none); }
+  .card-action.act-admin { background: #3a2800; color: var(--c-admin); }
+  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
+}
+
+/* ── Verminderde beweging (WCAG 2.3.3) ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .spinner { animation: none; opacity: 0.6; }
+}
+
+/* ── Responsief ───────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hdr  { padding: 1rem; }
+  .main { padding: 1.25rem 1rem 4rem; }
+  .card { padding: 1rem 1.1rem; }
+  .collapsible-toggle { padding: 0.875rem 1rem; }
+}

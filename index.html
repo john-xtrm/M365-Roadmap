@@ -5,246 +5,90 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microsoft 365 Roadmap — Wat staat er aan te komen?</title>
 <meta name="description" content="Overzicht van aankomende Microsoft 365-updates: wat staat er aan te komen, wat betekent het voor uw organisatie en is er actie nodig van IT of medewerkers?">
+<link rel="stylesheet" href="shared.css">
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0ede8;
-  --text: #1a1916; --muted: #5a5750; --faint: #7a7770;
-  --border: rgba(0,0,0,0.10); --border-s: rgba(0,0,0,0.20);
-  --green-bg: #e6f4eb; --green-t: #145228;
-  --amber-bg: #fef3dc; --amber-t: #5c3a00;
-  --purple-bg: #eeebfd; --purple-t: #3a2a8a;
-  --gray-bg: #e8e8e8;  --gray-t: #383838;
-  --blue-bg: #e6f0fd;  --blue-t: #143d82;
-  --red-bg: #fdecea;   --red-t: #7a1a1a;
-  --orange-bg: #fff0e6;--orange-t: #6b3200;
-  --teal-bg: #e0f4f1;  --teal-t: #0a5248;
-  --new-bg: #fff7e0;   --new-t: #5c3a00;
-  --c-none:  #1a7a45;
-  --c-admin: #8a5600;
-  --c-user:  #1a4fa0;
-}
-body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.5; }
+/* ── Pagina-specifieke stijlen ────────────────────────────────────────── */
 
-.skip-link { position: absolute; left: -9999px; top: 1rem; background: var(--text); color: #fff; padding: .5rem 1rem; border-radius: 4px; font-size: 14px; font-weight: 600; z-index: 100; text-decoration: none; }
-.skip-link:focus { left: 1rem; }
-:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; border-radius: 4px; }
-
-.hdr { background: var(--surface); border-bottom: 2px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
-.hdr-left h1 { font-size: 1.25rem; font-weight: 700; }
-.hdr-sub { font-size: .875rem; color: var(--muted); margin-top: 3px; }
-.hdr-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
-#last-updated { font-size: .75rem; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
-.hdr-archive-link { display: inline-flex; align-items: center; gap: 6px; font-size: .8125rem; font-weight: 500; color: var(--blue-t); background: var(--blue-bg); text-decoration: none; padding: 6px 14px; border-radius: 100px; white-space: nowrap; transition: opacity .12s; }
-.hdr-archive-link:hover { opacity: .8; }
-
-.main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
-
-.search-wrap { position: relative; margin-bottom: 1.25rem; }
-.search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
-#search-input { width: 100%; padding: 12px 16px 12px 42px; font-size: 1rem; font-family: inherit; border: 1.5px solid var(--border-s); border-radius: 12px; background: var(--surface); color: var(--text); transition: border-color .15s; }
-#search-input:focus { border-color: var(--blue-t); outline: none; box-shadow: 0 0 0 3px rgba(20,61,130,.15); }
-#search-input::placeholder { color: var(--faint); }
-.search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--faint); font-size: 1.1rem; padding: 4px; border-radius: 50%; display: none; line-height: 1; }
-.search-clear:hover { background: var(--surface2); color: var(--text); }
-.search-clear.show { display: block; }
-
-.filters { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
-.filter-group { display: flex; flex-direction: column; gap: .5rem; }
-.filter-group label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); }
+/* Filters */
+.filters { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.filter-group label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
 .filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
-.fb { padding: 7px 16px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: .875rem; font-weight: 500; cursor: pointer; transition: all .12s; line-height: 1.3; }
-.fb:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
-.fb[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
-.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none);  color: #fff; }
-.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); color: #fff; }
-.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user);  color: #fff; }
-.fb[aria-pressed="true"].ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
-.fb[aria-pressed="true"].ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-.fb[aria-pressed="true"].ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-.fb[aria-pressed="true"].ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
-.fb[aria-pressed="true"].ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-.fb[aria-pressed="true"].ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: var(--orange-t); }
-.fb[aria-pressed="true"].ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: var(--amber-t); }
-.fb[aria-pressed="true"].ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: var(--red-t); }
-.fb[aria-pressed="true"].ao-viva       { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
-.fb[aria-pressed="true"].ao-edge       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-.fb[aria-pressed="true"].ao-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-.fb[aria-pressed="true"].ao-exchange   { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
-.fb[aria-pressed="true"].ao-forms      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
-.fb[aria-pressed="true"].ao-intune     { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-.fb[aria-pressed="true"].ao-entra      { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
-.fb[aria-pressed="true"].ao-planner    { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
-.fb[aria-pressed="true"].ao-other      { background: var(--gray-bg);   color: var(--gray-t);   border-color: var(--gray-t); }
-
 .filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .filter-row-2 .filter-group { flex: 1; min-width: 160px; }
-.more-filters-toggle { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; font: inherit; font-size: .8125rem; color: var(--blue-t); cursor: pointer; padding: 2px 4px; border-radius: 4px; text-decoration: underline; text-decoration-color: transparent; }
-.more-filters-toggle:hover { text-decoration-color: var(--blue-t); }
-.more-filters-toggle .chevron { font-size: .625rem; transition: transform .15s; display: inline-block; }
-.more-filters-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
-.more-filters-section { display: none; }
-.more-filters-section.open { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: .25rem; }
-.sort-row { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
-.sort-row label { font-size: .8125rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
-select { padding: 6px 12px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: inherit; font-size: .875rem; cursor: pointer; }
+
+/* Meer filters toggle */
+.more-toggle {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: none; border: none;
+  font: inherit; font-size: 0.8125rem;
+  color: var(--blue-t); cursor: pointer; padding: 2px 4px;
+  border-radius: var(--radius-sm);
+  text-decoration: underline; text-decoration-color: transparent;
+  /* WCAG 2.5.8: min 24px, wij gebruiken 44px voor goede bruikbaarheid */
+  min-height: 2.75rem;
+}
+.more-toggle:hover { text-decoration-color: var(--blue-t); }
+.more-toggle .chevron { font-size: 0.625rem; transition: transform 0.15s; display: inline-block; }
+.more-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+.more-section { display: none; }
+.more-section.open { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 0.25rem; }
+
+/* Sorteer-rij */
+.sort-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.sort-row label { font-size: 0.8125rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
+select {
+  padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s); background: var(--surface);
+  color: var(--text); font-family: var(--font); font-size: 0.875rem;
+  cursor: pointer; min-height: 2.75rem;
+}
 select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
-.stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
-.stat-pill { font-size: .75rem; padding: 4px 12px; border-radius: 100px; font-weight: 500; }
-.s-total   { background: var(--surface2); color: var(--muted); }
-.s-rolling { background: var(--amber-bg); color: var(--amber-t); }
-.s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
-.s-new     { background: var(--new-bg);   color: var(--new-t); }
+/* Zoekbalk */
+.search-wrap { position: relative; margin-bottom: 1.25rem; }
+.search-wrap .search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--faint); pointer-events: none;
+}
+#search-input {
+  width: 100%; padding: 0.75rem 1rem 0.75rem 2.625rem;
+  font-size: 1rem; font-family: var(--font);
+  border: 1.5px solid var(--border-s); border-radius: var(--radius-md);
+  background: var(--surface); color: var(--text);
+  transition: border-color 0.15s;
+  /* WCAG 3.3.2: autocomplete helpt gebruikers, niet blokkeren */
+}
+#search-input:focus { border-color: var(--blue-t); outline: none; box-shadow: 0 0 0 3px rgba(20,61,130,0.15); }
+#search-input::placeholder { color: var(--faint); }
+.search-clear {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--faint); font-size: 1rem; border-radius: 50%;
+  /* min-height/width via shared.css .search-clear */
+  display: none; align-items: center; justify-content: center;
+}
+.search-clear:hover { background: var(--surface2); color: var(--text); }
+.search-clear.show { display: flex; }
 
-.sec-hdr { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-.sec-count { font-size: .6875rem; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
-
-.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 12px; transition: border-color .15s, box-shadow .15s; }
-.card:hover { border-color: var(--border-s); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-.card.act-none  { border-left: 4px solid var(--c-none); }
-.card.act-admin { border-left: 4px solid var(--c-admin); }
-.card.act-user  { border-left: 4px solid var(--c-user); }
-.card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
-.card-title { font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 10px; color: var(--text); }
-.card-benefit { font-size: .9375rem; color: var(--text); line-height: 1.7; margin-bottom: 12px; padding: 12px 14px; background: var(--surface2); border-radius: 8px; }
-.card-benefit-label { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 5px; display: block; }
-.card-action { display: inline-flex; align-items: center; gap: 8px; font-size: .875rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; margin-bottom: 12px; }
-.card-action.act-none  { background: #e8f7ee; color: var(--c-none); }
-.card-action.act-admin { background: #fef3dc; color: var(--c-admin); }
-.card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-details { margin-bottom: 12px; }
-summary { font-size: .8125rem; color: var(--blue-t); cursor: pointer; user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; padding: 2px 0; text-decoration: underline; text-decoration-color: transparent; }
-summary:hover { text-decoration-color: var(--blue-t); }
-summary::-webkit-details-marker { display: none; }
-summary::before { content: '▶'; font-size: .5625rem; transition: transform .15s; }
-details[open] summary::before { transform: rotate(90deg); }
-.card-desc { font-size: .8125rem; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
-.card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: .8125rem; font-weight: 600; background: var(--surface2); color: var(--text); padding: 5px 12px; border-radius: 100px; }
-.date-info { font-size: .75rem; color: var(--faint); }
-mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; }
-
-.pill { font-size: .6875rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
-.p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
-.p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
-.p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
-.p-excel      { background: var(--green-bg);  color: var(--green-t); }
-.p-word       { background: var(--blue-bg);   color: var(--blue-t); }
-.p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
-.p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
-.p-purview    { background: var(--red-bg);    color: var(--red-t); }
-.p-viva       { background: var(--purple-bg); color: var(--purple-t); }
-.p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
-.p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
-.p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
-.p-forms      { background: var(--green-bg);  color: var(--green-t); }
-.p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
-.p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
-.p-planner    { background: var(--green-bg);  color: var(--green-t); }
-.p-other      { background: var(--gray-bg);   color: var(--gray-t); }
-.p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
-.p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
-.p-launched   { background: var(--green-bg);  color: var(--green-t); }
-.p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
-.p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
-.new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: .6875rem; font-weight: 700; background: var(--new-bg); color: var(--new-t); padding: 4px 9px; border-radius: 100px; white-space: nowrap; }
-.ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: .8125rem; color: var(--blue-t); text-decoration: none; padding: 5px 12px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; font-weight: 500; }
-.ms-link:hover { opacity: .8; }
-
-.collapsible-block { margin-top: 2rem; border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
-.collapsible-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: var(--surface); border: none; cursor: pointer; font-family: inherit; font-size: .9375rem; font-weight: 600; color: var(--text); gap: 12px; }
-.collapsible-toggle:hover { background: var(--surface2); }
-.collapsible-left { display: flex; align-items: center; gap: 10px; }
-.collapsible-chevron { font-size: .625rem; color: var(--faint); transition: transform .2s; flex-shrink: 0; }
-.collapsible-chevron.open { transform: rotate(180deg); }
-.collapsible-inner { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
-.collapsible-inner.open { display: block; }
-.collapsible-subtitle { font-size: .8125rem; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); line-height: 1.6; }
-.rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; flex-wrap: wrap; }
-.rcard:last-child { margin-bottom: 0; }
-.rcard-title { font-size: .875rem; font-weight: 500; flex: 1; min-width: 180px; }
-.rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-
-.state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-.state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
-.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
-@keyframes spin { to { transform: rotate(360deg); } }
-#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: .9375rem; }
+/* Leeg-melding */
+#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
 #empty-msg.show { display: block; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-
-/* ── Dark mode ────────────────────────────────────────────────────────── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #1a1917; --surface: #242220; --surface2: #2e2c2a;
-    --text: #f0ede8; --muted: #b0ada8; --faint: #888480;
-    --border: rgba(255,255,255,0.10); --border-s: rgba(255,255,255,0.20);
-    --green-bg: #1a3d25; --green-t: #7dd9a0;
-    --amber-bg: #3a2800; --amber-t: #f5c97a;
-    --purple-bg:#2a2060; --purple-t: #c4b8f8;
-    --gray-bg:  #333230; --gray-t:  #c8c6c2;
-    --blue-bg:  #162650; --blue-t:  #7ab0f5;
-    --red-bg:   #3a1010; --red-t:   #f5a0a0;
-    --orange-bg:#3a1a00; --orange-t:#f5b880;
-    --teal-bg:  #0e2e2a; --teal-t:  #7dd4cc;
-    --new-bg:   #3a2400; --new-t:   #f5c97a;
-    --c-none:   #5dd48a;
-    --c-admin:  #f0a830;
-    --c-user:   #7ab0f5;
-  }
-  mark { background: #5c4a00; color: #f5e6a0; }
-  #search-input { color-scheme: dark; }
-  select { color-scheme: dark; }
-  .fb[aria-pressed="true"] { background: var(--blue-t); color: #0a1a38; border-color: var(--blue-t); }
-  .fb[aria-pressed="true"][data-act="none"]  { background: #1a5c38; color: var(--green-t);  border-color: var(--green-t); }
-  .fb[aria-pressed="true"][data-act="admin"] { background: #5c3a00; color: var(--amber-t);  border-color: var(--amber-t); }
-  .fb[aria-pressed="true"][data-act="user"]  { background: #162650; color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
-  .fb[aria-pressed="true"].ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
-  .fb[aria-pressed="true"].ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: var(--orange-t); }
-  .fb[aria-pressed="true"].ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: var(--amber-t); }
-  .fb[aria-pressed="true"].ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: var(--red-t); }
-  .fb[aria-pressed="true"].ao-viva       { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
-  .fb[aria-pressed="true"].ao-edge       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-exchange   { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
-  .fb[aria-pressed="true"].ao-forms      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
-  .fb[aria-pressed="true"].ao-intune     { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
-  .fb[aria-pressed="true"].ao-entra      { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
-  .fb[aria-pressed="true"].ao-planner    { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
-  .fb[aria-pressed="true"].ao-other      { background: var(--gray-bg);   color: var(--gray-t);   border-color: var(--gray-t); }
-  .card-action.act-none  { background: #1a3d25; color: var(--c-none); }
-  .card-action.act-admin { background: #3a2800; color: var(--c-admin); }
-  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-}
-
-/* ── Reduced motion ───────────────────────────────────────────────────── */
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-  .spinner { animation: none; border: 3px solid var(--blue-t); opacity: .6; }
-}
-
-@media (max-width: 600px) {
-  .hdr { padding: 1rem; }
-  .main { padding: 1.25rem 1rem 4rem; }
-  .filters { padding: 1.1rem; }
-  .card { padding: 1rem 1.1rem; }
-}
 </style>
 </head>
 <body>
 
-<noscript><div style="padding:2rem;text-align:center;font-family:sans-serif;background:#fef3dc;border-bottom:2px solid #8a5600"><strong>JavaScript is vereist</strong> — Schakel JavaScript in uw browser in om deze pagina te gebruiken.</div></noscript>
+<noscript>
+  <div style="padding:2rem;text-align:center;font-family:sans-serif;background:#fef3dc;border-bottom:2px solid #8a5600">
+    <strong>JavaScript is vereist</strong> — Schakel JavaScript in uw browser in om deze pagina te gebruiken.
+  </div>
+</noscript>
+
 <a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
 
 <header role="banner">
   <div class="hdr">
-    <div class="hdr-left">
+    <div>
       <h1>Microsoft 365 — Aankomende updates</h1>
       <p class="hdr-sub">Wat staat er aan te komen en wat betekent dat voor uw organisatie?</p>
     </div>
@@ -261,17 +105,19 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
 <main id="main-content">
 <div class="main">
 
-  <div class="search-wrap">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <div class="search-wrap" role="search">
+    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="search" id="search-input"
-           placeholder="Zoek op trefwoord, bijv. 'Teams vergadering' of 'SharePoint'"
+           placeholder="Zoek op trefwoord, bijv. 'vergadering' of 'SharePoint'"
            aria-label="Zoek in roadmap-updates"
-           autocomplete="off"
+           autocomplete="search"
            oninput="debouncedSearch(this.value)">
-    <button class="search-clear" id="search-clear" aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
+    <button class="search-clear" id="search-clear"
+            aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
   </div>
 
   <section class="filters" aria-label="Filters">
+
     <div class="filter-group">
       <label id="lbl-app">Kies een product</label>
       <div class="filter-bar" id="apf" role="group" aria-labelledby="lbl-app">
@@ -281,11 +127,11 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
 
     <div class="filter-group">
       <label id="lbl-act">Is er actie nodig?</label>
-      <div class="filter-bar" role="group" aria-labelledby="lbl-act">
-        <button class="fb" id="act-all"   data-act="all"   aria-pressed="true">Alles</button>
-        <button class="fb" id="act-none"  data-act="none"  aria-pressed="false"><span aria-hidden="true">🟢</span> Gaat automatisch</button>
-        <button class="fb" id="act-admin" data-act="admin" aria-pressed="false"><span aria-hidden="true">🟡</span> IT-beheerder moet iets doen</button>
-        <button class="fb" id="act-user"  data-act="user"  aria-pressed="false"><span aria-hidden="true">🔵</span> Medewerker kan zelf instellen</button>
+      <div class="filter-bar" id="act-bar" role="group" aria-labelledby="lbl-act">
+        <button class="fb" data-act="all"   aria-pressed="true">Alles</button>
+        <button class="fb" data-act="none"  aria-pressed="false"><span aria-hidden="true">🟢</span> Gaat automatisch</button>
+        <button class="fb" data-act="admin" aria-pressed="false"><span aria-hidden="true">🟡</span> IT-beheerder moet iets doen</button>
+        <button class="fb" data-act="user"  aria-pressed="false"><span aria-hidden="true">🔵</span> Medewerker kan zelf instellen</button>
       </div>
     </div>
 
@@ -313,10 +159,11 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
     </div>
 
     <div>
-      <button class="more-filters-toggle" aria-expanded="false" aria-controls="more-filters" onclick="toggleSection(this,'more-filters')">
+      <button class="more-toggle" aria-expanded="false" aria-controls="more-filters"
+              onclick="toggleSection(this,'more-filters')">
         Meer filteropties <span class="chevron" aria-hidden="true">▼</span>
       </button>
-      <div id="more-filters" class="more-filters-section" role="group" aria-label="Aanvullende filters">
+      <div id="more-filters" class="more-section" role="group" aria-label="Aanvullende filters">
         <div class="filter-row-2">
           <div class="filter-group">
             <label id="lbl-af">Toegevoegd aan roadmap</label>
@@ -345,6 +192,7 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
         </div>
       </div>
     </div>
+
   </section>
 
   <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"></div>
@@ -356,15 +204,23 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
       <p>Even geduld, de actuele roadmap wordt opgehaald.</p>
     </div>
   </div>
-  <p id="empty-msg" role="status">Geen updates gevonden voor deze filterinstellingen. Probeer een andere combinatie of pas de zoekopdracht aan.</p>
+  <p id="empty-msg" role="status">
+    Geen updates gevonden voor deze filterinstellingen. Probeer een andere combinatie of pas de zoekopdracht aan.
+  </p>
 
   <div id="changes-block" class="collapsible-block" style="display:none">
-    <button class="collapsible-toggle" aria-expanded="false" aria-controls="changes-inner" onclick="toggleCollapsible(this,'changes-inner')">
-      <div class="collapsible-left"><span id="changes-icon" aria-hidden="true">⚑</span><span id="changes-title">Wijzigingen deze week</span></div>
+    <button class="collapsible-toggle" aria-expanded="false" aria-controls="changes-inner"
+            onclick="toggleCollapsible(this,'changes-inner')">
+      <div class="collapsible-left">
+        <span id="changes-icon" aria-hidden="true">⚑</span>
+        <span id="changes-title">Wijzigingen deze week</span>
+      </div>
       <span class="collapsible-chevron" aria-hidden="true">▼</span>
     </button>
     <div id="changes-inner" class="collapsible-inner" role="region" aria-label="Wijzigingen deze week">
-      <p class="collapsible-subtitle">Deze updates stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.</p>
+      <p class="collapsible-subtitle">
+        Deze updates stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.
+      </p>
       <div id="changes-cards"></div>
     </div>
   </div>
@@ -373,177 +229,323 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
 </main>
 
 <script>
+'use strict';
+
+/* ── Constanten ─────────────────────────────────────────────────────────── */
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 var APP_META = {
-  copilot:{label:"Copilot",cls:"p-copilot"},teams:{label:"Teams",cls:"p-teams"},
-  outlook:{label:"Outlook",cls:"p-outlook"},excel:{label:"Excel",cls:"p-excel"},
-  word:{label:"Word",cls:"p-word"},powerpoint:{label:"PowerPoint",cls:"p-powerpoint"},
-  sharepoint:{label:"SharePoint",cls:"p-sharepoint"},purview:{label:"Purview",cls:"p-purview"},
-  viva:{label:"Viva",cls:"p-viva"},edge:{label:"Edge",cls:"p-edge"},
-  onedrive:{label:"OneDrive",cls:"p-onedrive"},exchange:{label:"Exchange",cls:"p-exchange"},
-  forms:{label:"Forms",cls:"p-forms"},intune:{label:"Intune",cls:"p-intune"},
-  entra:{label:"Entra",cls:"p-entra"},planner:{label:"Planner",cls:"p-planner"},
-  other:{label:"Overig",cls:"p-other"}
+  copilot:{label:'Copilot',cls:'p-copilot'},    teams:{label:'Teams',cls:'p-teams'},
+  outlook:{label:'Outlook',cls:'p-outlook'},    excel:{label:'Excel',cls:'p-excel'},
+  word:{label:'Word',cls:'p-word'},              powerpoint:{label:'PowerPoint',cls:'p-powerpoint'},
+  sharepoint:{label:'SharePoint',cls:'p-sharepoint'}, purview:{label:'Purview',cls:'p-purview'},
+  viva:{label:'Viva',cls:'p-viva'},              edge:{label:'Edge',cls:'p-edge'},
+  onedrive:{label:'OneDrive',cls:'p-onedrive'}, exchange:{label:'Exchange',cls:'p-exchange'},
+  forms:{label:'Forms',cls:'p-forms'},           intune:{label:'Intune',cls:'p-intune'},
+  entra:{label:'Entra',cls:'p-entra'},           planner:{label:'Planner',cls:'p-planner'},
+  other:{label:'Overig',cls:'p-other'}
 };
-var APP_ORDER = ["copilot","teams","outlook","excel","word","powerpoint","sharepoint","purview","viva","edge","onedrive","exchange","forms","intune","entra","planner","other"];
-var ACTION_LABEL = {none:"Gaat automatisch",admin:"IT-beheerder actie vereist",user:"Medewerker kan zelf instellen"};
-var ACTION_ICON  = {none:"🟢",admin:"🟡",user:"🔵"};
-var MAANDEN = {"january":"januari","february":"februari","march":"maart","april":"april","may":"mei","june":"juni","july":"juli","august":"augustus","september":"september","october":"oktober","november":"november","december":"december"};
-function nlRelease(s){if(!s)return"–";return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,"$1");}
-var SEEN_SET=new Set(JSON.parse(localStorage.getItem("m365_seen_ids")||"[]"));
-var ALL_ITEMS=[];
-var fS="all",fN="all",fA="aw",fM="mw",fP="all",fAct="all",fQ="";
-var searchTimer=null;
-var MONTHS={januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
-function parseRelease(s){if(!s)return new Date(9999,0,1);var m=s.toLowerCase().match(/(\w+)\s+(\d{4})/);return(m&&MONTHS[m[1]]!==undefined)?new Date(parseInt(m[2]),MONTHS[m[1]],1):new Date(9999,0,1);}
-function daysAgo(d){return d?(Date.now()-new Date(d).getTime())/864e5:9999;}
-function fmtDate(d){return d?new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}):""}
-function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-function highlight(text,query){if(!query)return esc(text);return esc(text).replace(new RegExp("("+query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+")","gi"),"<mark>$1</mark>");}
+var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview','viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
+var ACTION_LABEL = {none:'Gaat automatisch',admin:'IT-beheerder actie vereist',user:'Medewerker kan zelf instellen'};
+var ACTION_ICON  = {none:'🟢',admin:'🟡',user:'🔵'};
+var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
+var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april',may:'mei',june:'juni',july:'juli',august:'augustus',september:'september',october:'oktober',november:'november',december:'december'};
+var CACHE_KEY = 'm365_data_v1';
+var SEEN_KEY  = 'm365_seen_ids';
 
-function debouncedSearch(val){clearTimeout(searchTimer);searchTimer=setTimeout(function(){onSearch(val);},200);}
-function onSearch(val){fQ=val.trim().toLowerCase();document.getElementById("search-clear").classList.toggle("show",fQ.length>0);render();}
-function clearSearch(){document.getElementById("search-input").value="";document.getElementById("search-clear").classList.remove("show");fQ="";render();document.getElementById("search-input").focus();}
-function toggleSection(btn,panelId){var panel=document.getElementById(panelId);var open=btn.getAttribute("aria-expanded")==="true";btn.setAttribute("aria-expanded",open?"false":"true");panel.classList.toggle("open",!open);}
-function toggleCollapsible(btn,panelId){var panel=document.getElementById(panelId);var chevron=btn.querySelector(".collapsible-chevron");var open=btn.getAttribute("aria-expanded")==="true";btn.setAttribute("aria-expanded",open?"false":"true");panel.classList.toggle("open",!open);if(chevron)chevron.classList.toggle("open",!open);}
+/* ── State ──────────────────────────────────────────────────────────────── */
+var ALL_ITEMS = [];
+var fS='all', fN='all', fA='aw', fM='mw', fP='all', fAct='all', fQ='';
+var searchTimer = null;
 
-function buildAppFilter(items){
-  var presentApps=new Set(items.map(function(i){return i.app;}));
-  var bar=document.getElementById("apf");
-  while(bar.children.length>1)bar.removeChild(bar.lastChild);
-  APP_ORDER.forEach(function(key){
-    if(!presentApps.has(key))return;
-    var btn=document.createElement("button");
-    btn.className="fb";btn.setAttribute("data-p",key);btn.setAttribute("aria-pressed","false");
-    btn.textContent=APP_META[key].label+" (0)";
+/* ── Hulpfuncties ────────────────────────────────────────────────────────── */
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/864e5 : 9999; }
+function fmtDate(d) { return d ? new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}) : ''; }
+function nlRelease(s) {
+  if (!s) return '–';
+  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
+    function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,'$1');
+}
+function parseRelease(s) {
+  if (!s) return new Date(9999,0,1);
+  var m = s.toLowerCase().match(/(\w+)\s+(\d{4})/);
+  return (m && MONTHS[m[1]]!==undefined) ? new Date(parseInt(m[2]),MONTHS[m[1]],1) : new Date(9999,0,1);
+}
+function highlight(text, query) {
+  if (!query) return esc(text);
+  return esc(text).replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+}
+
+/* ── Fetch met timeout en sessionStorage-cache ────────────────────────── */
+function fetchWithTimeout(url, timeoutMs) {
+  timeoutMs = timeoutMs || 10000;
+  var ctrl = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, timeoutMs);
+  return fetch(url, {signal: ctrl.signal}).finally(function(){ clearTimeout(timer); });
+}
+
+function loadData() {
+  // Probeer eerst sessionStorage voor snelle herlaad (max 30 min oud)
+  try {
+    var cached = sessionStorage.getItem(CACHE_KEY);
+    if (cached) {
+      var parsed = JSON.parse(cached);
+      if (Date.now() - parsed._ts < 30 * 60 * 1000) {
+        handleData(parsed);
+        return;
+      }
+    }
+  } catch(e) { /* sessionStorage niet beschikbaar — geen probleem */ }
+
+  // Voeg cache-buster toe zodat stale GitHub Pages-cache geen verouderde data toont
+  var url = 'data.json?v=' + Date.now();
+  fetchWithTimeout(url, 12000)
+    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data) {
+      try { data._ts = Date.now(); sessionStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch(e){}
+      handleData(data);
+    })
+    .catch(function(err) {
+      var msg = err.name === 'AbortError' ? 'Tijdslimiet overschreden — controleer uw internetverbinding.' : String(err);
+      document.getElementById('root').setAttribute('aria-busy','false');
+      document.getElementById('root').innerHTML =
+        '<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2>' +
+        '<p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
+        '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(msg)+'</p></div>';
+    });
+}
+
+function handleData(data) {
+  var SEEN_SET = new Set(JSON.parse(localStorage.getItem(SEEN_KEY)||'[]'));
+  var currentIds = data.items.map(function(i){return i.id;});
+  ALL_ITEMS = data.items.map(function(item){
+    return Object.assign({}, item, {isNew: !SEEN_SET.has(item.id)});
+  });
+  localStorage.setItem(SEEN_KEY, JSON.stringify(currentIds));
+
+  var generated = new Date(data.generated);
+  document.getElementById('last-updated').textContent =
+    'Bijgewerkt: ' + generated.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + ' · ' + data.count + ' items';
+  document.getElementById('root').setAttribute('aria-busy','false');
+
+  buildAppFilter(ALL_ITEMS);
+
+  var removed = data.removed || [];
+  if (removed.length > 0) {
+    document.getElementById('changes-block').style.display = 'block';
+    document.getElementById('changes-title').textContent =
+      'Wijzigingen deze week (' + removed.length + ' item' + (removed.length!==1?'s':'') + ')';
+    document.getElementById('changes-icon').textContent =
+      removed.some(function(r){return r.status==='launched';}) ? '✅' : '⚑';
+    document.getElementById('changes-cards').innerHTML = removed.map(function(r) {
+      var meta = APP_META[r.app] || APP_META.other;
+      return '<div class="rcard">' +
+        '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>' +
+        '<span class="rcard-title">'+esc(r.title)+'</span>' +
+        '<div class="rcard-right">' +
+          '<span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>' +
+          '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">' +
+            LINK_ICON + '<span class="sr-only"> ID '+r.id+' op Microsoft roadmap</span> ID '+r.id+'</a>' +
+        '</div></div>';
+    }).join('');
+  }
+  render();
+}
+
+/* ── App-filter ────────────────────────────────────────────────────────── */
+function buildAppFilter(items) {
+  var presentApps = new Set(items.map(function(i){return i.app;}));
+  var bar = document.getElementById('apf');
+  while (bar.children.length > 1) bar.removeChild(bar.lastChild);
+  APP_ORDER.forEach(function(key) {
+    if (!presentApps.has(key)) return;
+    var btn = document.createElement('button');
+    btn.className = 'fb';
+    btn.setAttribute('data-p', key);
+    btn.setAttribute('aria-pressed', 'false');
+    btn.textContent = APP_META[key].label + ' (0)';
     bar.appendChild(btn);
   });
-  bar.addEventListener("click",function(e){
-    var t=e.target.closest("[data-p]");if(!t)return;
-    document.querySelectorAll("#apf .fb").forEach(function(b){b.setAttribute("aria-pressed","false");b.className="fb";});
-    var v=t.getAttribute("data-p");t.setAttribute("aria-pressed","true");
-    if(v!=="all")t.classList.add("ao-"+v);
-    fP=v;render();
+  bar.addEventListener('click', function(e) {
+    var t = e.target.closest('[data-p]'); if (!t) return;
+    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false'); b.className='fb';});
+    var v = t.getAttribute('data-p');
+    t.setAttribute('aria-pressed','true');
+    if (v !== 'all') t.classList.add('ao-'+v);
+    fP = v; render();
   });
 }
 
-function updateAppCounts(items){
-  var counts={};items.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;});
-  var allBtn=document.querySelector("#apf [data-p='all']");
-  if(allBtn)allBtn.textContent="Alle producten ("+items.length+")";
-  document.querySelectorAll("#apf [data-p]").forEach(function(btn){
-    var key=btn.getAttribute("data-p");if(key==="all")return;
-    var n=counts[key]||0;
-    btn.textContent=APP_META[key].label+" ("+n+")";
-    btn.style.display=(n===0&&fP!==key)?"none":"";
+function updateAppCounts(items) {
+  var counts = {};
+  items.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;});
+  var allBtn = document.querySelector('#apf [data-p="all"]');
+  if (allBtn) allBtn.textContent = 'Alle producten (' + items.length + ')';
+  document.querySelectorAll('#apf [data-p]').forEach(function(btn) {
+    var key = btn.getAttribute('data-p'); if (key==='all') return;
+    var n = counts[key]||0;
+    btn.textContent = APP_META[key].label + ' (' + n + ')';
+    btn.style.display = (n===0 && fP!==key) ? 'none' : '';
   });
 }
 
-fetch("data.json")
-  .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
-  .then(function(data){
-    var currentIds=data.items.map(function(i){return i.id;});
-    ALL_ITEMS=data.items.map(function(item){return Object.assign({},item,{isNew:!SEEN_SET.has(item.id)});});
-    localStorage.setItem("m365_seen_ids",JSON.stringify(currentIds));
-    var generated=new Date(data.generated);
-    document.getElementById("last-updated").textContent="Bijgewerkt: "+generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"})+" · "+data.count+" items";
-    document.getElementById("root").setAttribute("aria-busy","false");
-    buildAppFilter(ALL_ITEMS);
-    var removed=data.removed||[];
-    if(removed.length>0){
-      document.getElementById("changes-block").style.display="block";
-      document.getElementById("changes-title").textContent="Wijzigingen deze week ("+removed.length+" item"+(removed.length!==1?"s":"")+")";
-      document.getElementById("changes-icon").textContent=removed.some(function(r){return r.status==="launched";})?"✅":"⚑";
-      document.getElementById("changes-cards").innerHTML=removed.map(function(r){
-        var meta=APP_META[r.app]||APP_META.other;
-        return '<div class="rcard"><span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span><span class="rcard-title">'+esc(r.title)+'</span><div class="rcard-right"><span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span><a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+' ID '+r.id+'</a></div></div>';
-      }).join("");
-    }
-    render();
-  })
-  .catch(function(err){
-    document.getElementById("root").setAttribute("aria-busy","false");
-    document.getElementById("root").innerHTML='<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2><p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p><p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(String(err))+'</p></div>';
-  });
+/* ── UI-helpers ─────────────────────────────────────────────────────────── */
+function toggleSection(btn, panelId) {
+  var open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  document.getElementById(panelId).classList.toggle('open', !open);
+}
+function toggleCollapsible(btn, panelId) {
+  var open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  var panel = document.getElementById(panelId);
+  var chevron = btn.querySelector('.collapsible-chevron');
+  panel.classList.toggle('open', !open);
+  if (chevron) chevron.classList.toggle('open', !open);
+}
+function debouncedSearch(val) { clearTimeout(searchTimer); searchTimer = setTimeout(function(){onSearch(val);}, 200); }
+function onSearch(val) {
+  fQ = val.trim().toLowerCase();
+  document.getElementById('search-clear').classList.toggle('show', fQ.length > 0);
+  render();
+}
+function clearSearch() {
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').classList.remove('show');
+  fQ = ''; render();
+  document.getElementById('search-input').focus();
+}
 
-function cardHTML(item,query){
-  var cfg={rolling:{label:"Wordt uitgerold",cls:"p-rolling"},dev:{label:"In ontwikkeling",cls:"p-dev"}}[item.status];
-  var meta=APP_META[item.app]||APP_META.other;
-  var dateRow="";
-  if(item.added) dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> 📅 '+fmtDate(item.added)+'</span>';
-  if(item.modified&&item.modified!==item.added) dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
-  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">'+
-    '<div class="card-pills"><span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span><span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+(item.isNew?'<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>':'')+' </div>'+
-    '<h3 class="card-title">'+highlight(item.title,query)+'</h3>'+
-    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit,query)+'</div>'+
-    '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'"><span aria-hidden="true">'+ACTION_ICON[item.action]+'</span><span>'+esc(item.actionLabel)+'</span></div>'+
-    (item.desc?'<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>':'')+
-    '<div class="card-foot"><div class="card-foot-left"><span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>'+(dateRow?'<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>':'')+' </div><a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a></div>'+
+/* ── Kaart HTML ─────────────────────────────────────────────────────────── */
+function cardHTML(item, query) {
+  var cfg = {rolling:{label:'Wordt uitgerold',cls:'p-rolling'},dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status];
+  var meta = APP_META[item.app] || APP_META.other;
+  var dateRow = '';
+  if (item.added) dateRow += '<span class="date-info"><span class="sr-only">Toegevoegd:</span> 📅 '+fmtDate(item.added)+'</span>';
+  if (item.modified && item.modified!==item.added)
+    dateRow += '<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
+  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">' +
+    '<div class="card-pills">' +
+      '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
+      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>' +
+      (item.isNew ? '<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>' : '') +
+    '</div>' +
+    '<h3 class="card-title">'+highlight(item.title, query)+'</h3>' +
+    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit, query)+'</div>' +
+    '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'">' +
+      '<span aria-hidden="true">'+ACTION_ICON[item.action]+'</span>' +
+      '<span>'+esc(item.actionLabel)+'</span>' +
+    '</div>' +
+    (item.desc ? '<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>' : '') +
+    '<div class="card-foot">' +
+      '<div class="card-foot-left">' +
+        '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>' +
+        (dateRow ? '<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>' : '') +
+      '</div>' +
+      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
+    '</div>' +
   '</article>';
 }
 
-function render(){
-  if(!ALL_ITEMS.length)return;
-  var sort=document.getElementById("sort-select").value;
-  var query=fQ;
-  var withoutApp=ALL_ITEMS.filter(function(i){
-    if(fS!=="all"&&i.status!==fS)return false;
-    if(fN==="new"&&!i.isNew)return false;
-    if(fN==="known"&&i.isNew)return false;
-    if(fAct!=="all"&&i.action!==fAct)return false;
-    if(fA!=="all"||fM!=="all"){var days=(fA==="aw"||fM==="mw")?7:31;if(!(fA!=="all"&&daysAgo(i.added)<=days)&&!(fM!=="all"&&daysAgo(i.modified)<=days))return false;}
-    if(query&&!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query)))return false;
+/* ── Render ─────────────────────────────────────────────────────────────── */
+function render() {
+  if (!ALL_ITEMS.length) return;
+  var sort  = document.getElementById('sort-select').value;
+  var query = fQ;
+
+  // Filter zonder app-filter voor aantallen per knop
+  var withoutApp = ALL_ITEMS.filter(function(i) {
+    if (fS !== 'all' && i.status !== fS) return false;
+    if (fN === 'new'   && !i.isNew) return false;
+    if (fN === 'known' &&  i.isNew) return false;
+    if (fAct !== 'all' && i.action !== fAct) return false;
+    if (fA !== 'all' || fM !== 'all') {
+      var days = (fA==='aw'||fM==='mw') ? 7 : 31;
+      if (!(fA!=='all' && daysAgo(i.added)<=days) && !(fM!=='all' && daysAgo(i.modified)<=days)) return false;
+    }
+    if (query && !(i.title.toLowerCase().includes(query) || i.benefit.toLowerCase().includes(query))) return false;
     return true;
   });
   updateAppCounts(withoutApp);
-  var filtered=withoutApp.filter(function(i){return fP==="all"||i.app===fP;});
-  filtered=filtered.slice().sort(function(a,b){
-    if(sort==="status")return(a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
-    if(sort==="added-desc")return new Date(b.added||0)-new Date(a.added||0);
-    if(sort==="modified-desc")return new Date(b.modified||0)-new Date(a.modified||0);
-    var da=parseRelease(a.release),db=parseRelease(b.release);
-    return sort==="release-desc"?da-db:db-da;
+
+  var filtered = withoutApp.filter(function(i){ return fP==='all' || i.app===fP; });
+
+  filtered = filtered.slice().sort(function(a,b) {
+    if (sort==='status')        return (a.status==='rolling'?0:1)-(b.status==='rolling'?0:1);
+    if (sort==='added-desc')    return new Date(b.added||0)-new Date(a.added||0);
+    if (sort==='modified-desc') return new Date(b.modified||0)-new Date(a.modified||0);
+    var da = parseRelease(a.release), db = parseRelease(b.release);
+    return sort==='release-desc' ? da-db : db-da;
   });
-  var rolling=filtered.filter(function(i){return i.status==="rolling";});
-  var dev=filtered.filter(function(i){return i.status==="dev";});
-  var newCount=filtered.filter(function(i){return i.isNew;}).length;
-  document.getElementById("stats-bar").innerHTML=
-    '<span class="stat-pill s-total">'+filtered.length+' updates</span>'+
-    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>'+
-    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>'+
-    (newCount?'<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>':'')+
-    (query?'<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>':'');
-  var emptyEl=document.getElementById("empty-msg");
-  var rootEl=document.getElementById("root");
-  if(!filtered.length){rootEl.innerHTML="";emptyEl.classList.add("show");return;}
-  emptyEl.classList.remove("show");
-  if(sort==="status"){
-    function sec(items,emoji,lbl){if(!items.length)return"";return'<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(function(i){return cardHTML(i,query);}).join("")+'</section>';}
-    rootEl.innerHTML=sec(rolling,"🟡","Wordt uitgerold")+sec(dev,"🔵","In ontwikkeling");
-  }else{
-    rootEl.innerHTML='<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(function(i){return cardHTML(i,query);}).join("")+'</section>';
+
+  var rolling  = filtered.filter(function(i){return i.status==='rolling';});
+  var dev      = filtered.filter(function(i){return i.status==='dev';});
+  var newCount = filtered.filter(function(i){return i.isNew;}).length;
+
+  document.getElementById('stats-bar').innerHTML =
+    '<span class="stat-pill s-total">'+filtered.length+' updates</span>' +
+    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>' +
+    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>' +
+    (newCount ? '<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>' : '') +
+    (query ? '<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>' : '');
+
+  var emptyEl = document.getElementById('empty-msg');
+  var rootEl  = document.getElementById('root');
+  if (!filtered.length) { rootEl.innerHTML=''; emptyEl.classList.add('show'); return; }
+  emptyEl.classList.remove('show');
+
+  function sec(items, emoji, lbl) {
+    if (!items.length) return '';
+    return '<section aria-label="'+lbl+'">' +
+      '<h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>' +
+      items.map(function(i){return cardHTML(i,query);}).join('') +
+    '</section>';
+  }
+
+  if (sort==='status') {
+    rootEl.innerHTML = sec(rolling,'🟡','Wordt uitgerold') + sec(dev,'🔵','In ontwikkeling');
+  } else {
+    rootEl.innerHTML = '<section aria-label="Resultaten">' +
+      '<h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>' +
+      filtered.map(function(i){return cardHTML(i,query);}).join('') +
+    '</section>';
   }
 }
 
-function wire(barId,prop,attr){
-  var bar=document.getElementById(barId);if(!bar)return;
-  bar.addEventListener("click",function(e){
-    var t=e.target.closest("["+attr+"]");if(!t)return;
-    bar.querySelectorAll(".fb").forEach(function(b){b.setAttribute("aria-pressed","false");b.className="fb";});
-    var v=t.getAttribute(attr);t.setAttribute("aria-pressed","true");
-    if(prop==="fS")fS=v;else if(prop==="fN")fN=v;else if(prop==="fA")fA=v;else if(prop==="fM")fM=v;
+/* ── Filter-wiring (event delegation) ──────────────────────────────────── */
+function wireBar(barId, stateKey, attr) {
+  var bar = document.getElementById(barId);
+  if (!bar) return;
+  bar.addEventListener('click', function(e) {
+    var t = e.target.closest('['+attr+']'); if (!t) return;
+    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false'); b.className='fb';});
+    var v = t.getAttribute(attr);
+    t.setAttribute('aria-pressed','true');
+    switch(stateKey) {
+      case 'fS': fS=v; break;
+      case 'fN': fN=v; break;
+      case 'fA': fA=v; break;
+      case 'fM': fM=v; break;
+    }
     render();
   });
 }
-wire("sf","fS","data-s");wire("nf","fN","data-n");wire("af","fA","data-a");wire("mf","fM","data-m");
-document.querySelectorAll("[data-act]").forEach(function(btn){
-  btn.addEventListener("click",function(){
-    document.querySelectorAll("[data-act]").forEach(function(b){b.setAttribute("aria-pressed","false");b.className="fb";});
-    btn.setAttribute("aria-pressed","true");
-    fAct=btn.getAttribute("data-act");render();
-  });
+wireBar('sf','fS','data-s');
+wireBar('nf','fN','data-n');
+wireBar('af','fA','data-a');
+wireBar('mf','fM','data-m');
+
+document.getElementById('act-bar').addEventListener('click', function(e) {
+  var t = e.target.closest('[data-act]'); if (!t) return;
+  document.querySelectorAll('#act-bar .fb').forEach(function(b){b.setAttribute('aria-pressed','false'); b.className='fb';});
+  t.setAttribute('aria-pressed','true');
+  fAct = t.getAttribute('data-act');
+  render();
 });
+
+/* ── Start ──────────────────────────────────────────────────────────────── */
+loadData();
 </script>
 </body>
 </html>
