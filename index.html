@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microsoft 365 Roadmap — Wat staat er aan te komen?</title>
 <style>
-/* ── Reset & basisstijlen ─────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0ede8;
@@ -20,109 +19,55 @@
   --orange-bg: #fff0e6;--orange-t: #6b3200;
   --teal-bg: #e0f4f1;  --teal-t: #0a5248;
   --new-bg: #fff7e0;   --new-t: #5c3a00;
-  /* Actiekleur-tokens — ook gebruikt voor focus-ringen */
   --c-none:  #1a7a45;
   --c-admin: #b07000;
   --c-user:  #1a4fa0;
 }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.5; }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-/* ── Toegankelijkheid: skip link ─────────────────────────────────────── */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 1rem;
-  background: var(--text);
-  color: #fff;
-  padding: .5rem 1rem;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 600;
-  z-index: 100;
-  text-decoration: none;
-}
+.skip-link { position: absolute; left: -9999px; top: 1rem; background: var(--text); color: #fff; padding: .5rem 1rem; border-radius: 4px; font-size: 14px; font-weight: 600; z-index: 100; text-decoration: none; }
 .skip-link:focus { left: 1rem; }
+:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; border-radius: 4px; }
 
-/* ── Focusstijlen (WCAG 2.4.7) ───────────────────────────────────────── */
-:focus-visible {
-  outline: 3px solid var(--blue-t);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-/* ── Header ──────────────────────────────────────────────────────────── */
-.hdr {
-  background: var(--surface);
-  border-bottom: 2px solid var(--border);
-  padding: 1.25rem 2rem;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: .75rem;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-.hdr h1 { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+/* Header */
+.hdr { background: var(--surface); border-bottom: 2px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
+.hdr h1 { font-size: 1.25rem; font-weight: 700; }
 .hdr-sub { font-size: .875rem; color: var(--muted); margin-top: 3px; }
-#last-updated {
-  font-size: .75rem;
-  color: var(--faint);
-  background: var(--surface2);
-  padding: 5px 12px;
-  border-radius: 100px;
-  white-space: nowrap;
-  align-self: center;
-}
+#last-updated { font-size: .75rem; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; align-self: center; }
 
-/* ── Hoofd-layout ────────────────────────────────────────────────────── */
 .main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 
-/* ── Filtergebied ────────────────────────────────────────────────────── */
-.filters { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
-
-.filter-group { display: flex; flex-direction: column; gap: .5rem; }
-.filter-group label {
-  font-size: .75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--faint);
-}
-.filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
-
-/* Filterknoppen — role="radio" gedrag via aria-pressed */
-.fb {
-  padding: 7px 16px;
-  border-radius: 100px;
-  border: 1.5px solid var(--border-s);
-  background: var(--surface);
-  color: var(--muted);
+/* Zoekbalk */
+.search-wrap { position: relative; margin-bottom: 1.25rem; }
+.search-wrap svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
+#search-input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  font-size: 1rem;
   font-family: inherit;
-  font-size: .875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: background .12s, color .12s, border-color .12s;
-  line-height: 1.3;
+  border: 1.5px solid var(--border-s);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color .15s;
 }
+#search-input:focus { border-color: var(--blue-t); outline: none; box-shadow: 0 0 0 3px rgba(20,61,130,.15); }
+#search-input::placeholder { color: var(--faint); }
+.search-clear { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--faint); font-size: 1.1rem; padding: 4px; border-radius: 50%; display: none; line-height: 1; }
+.search-clear:hover { background: var(--surface2); color: var(--text); }
+.search-clear.show { display: block; }
+
+/* Filters */
+.filters { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
+.filter-group { display: flex; flex-direction: column; gap: .5rem; }
+.filter-group label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--faint); }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
+.fb { padding: 7px 16px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: .875rem; font-weight: 500; cursor: pointer; transition: all .12s; line-height: 1.3; }
 .fb:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
 .fb[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
-
-/* Actie-filterkleuren actief */
-.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none); }
-.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); }
-.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user); }
-
-/* App-filterkleuren actief */
+.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none); color:#fff; }
+.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); color:#fff; }
+.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user); color:#fff; }
 .fb[aria-pressed="true"].ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
 .fb[aria-pressed="true"].ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
 .fb[aria-pressed="true"].ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
@@ -143,45 +88,18 @@ body {
 
 .filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
 .filter-row-2 .filter-group { flex: 1; min-width: 160px; }
-
-/* Meer filters inklapbaar */
-.more-filters-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  border: none;
-  font: inherit;
-  font-size: .8125rem;
-  color: var(--blue-t);
-  cursor: pointer;
-  padding: 2px 4px;
-  border-radius: 4px;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-}
+.more-filters-toggle { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; font: inherit; font-size: .8125rem; color: var(--blue-t); cursor: pointer; padding: 2px 4px; border-radius: 4px; text-decoration: underline; text-decoration-color: transparent; }
 .more-filters-toggle:hover { text-decoration-color: var(--blue-t); }
 .more-filters-toggle .chevron { font-size: .625rem; transition: transform .15s; display: inline-block; }
 .more-filters-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
 .more-filters-section { display: none; }
 .more-filters-section.open { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: .25rem; }
-
-/* Sorteren */
 .sort-row { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
 .sort-row label { font-size: .8125rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
-select {
-  padding: 6px 12px;
-  border-radius: 100px;
-  border: 1.5px solid var(--border-s);
-  background: var(--surface);
-  color: var(--text);
-  font-family: inherit;
-  font-size: .875rem;
-  cursor: pointer;
-}
+select { padding: 6px 12px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: inherit; font-size: .875rem; cursor: pointer; }
 select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
-/* ── Resultaten-balk (aria-live) ─────────────────────────────────────── */
+/* Stats */
 .stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
 .stat-pill { font-size: .75rem; padding: 4px 12px; border-radius: 100px; font-weight: 500; }
 .s-total   { background: var(--surface2); color: var(--muted); }
@@ -189,115 +107,40 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 .s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
 .s-new     { background: var(--new-bg);   color: var(--new-t); }
 
-/* ── Sectiekoptekst ──────────────────────────────────────────────────── */
-.sec-hdr {
-  font-size: .6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--faint);
-  margin: 2rem 0 .75rem;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+/* Secties */
+.sec-hdr { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
 .sec-count { font-size: .6875rem; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
 
-/* ── Kaart ───────────────────────────────────────────────────────────── */
-.card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: 14px;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 12px;
-  transition: border-color .15s, box-shadow .15s;
-}
+/* Kaart */
+.card { background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 12px; transition: border-color .15s, box-shadow .15s; }
 .card:hover { border-color: var(--border-s); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
-
-/* Actie-accentlijn linksboven */
 .card.act-none  { border-left: 4px solid var(--c-none); }
 .card.act-admin { border-left: 4px solid var(--c-admin); }
 .card.act-user  { border-left: 4px solid var(--c-user); }
-
 .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
 .card-title { font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 10px; color: var(--text); }
-
-/* Voordeel — prominent */
-.card-benefit {
-  font-size: .9375rem;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 12px;
-  padding: 12px 14px;
-  background: var(--surface2);
-  border-radius: 8px;
-}
-.card-benefit-label {
-  font-size: .6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .07em;
-  color: var(--faint);
-  margin-bottom: 5px;
-  display: block;
-}
-
-/* Actie-blok */
-.card-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: .875rem;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 100px;
-  margin-bottom: 12px;
-}
-.card-action .action-icon { font-size: 1rem; line-height: 1; }
+.card-benefit { font-size: .9375rem; color: var(--text); line-height: 1.7; margin-bottom: 12px; padding: 12px 14px; background: var(--surface2); border-radius: 8px; }
+.card-benefit-label { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 5px; display: block; }
+.card-action { display: inline-flex; align-items: center; gap: 8px; font-size: .875rem; font-weight: 600; padding: 6px 14px; border-radius: 100px; margin-bottom: 12px; }
 .card-action.act-none  { background: #e8f7ee; color: var(--c-none); }
 .card-action.act-admin { background: #fef3dc; color: var(--c-admin); }
 .card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-
-/* Technische details inklapbaar */
 details { margin-bottom: 12px; }
-summary {
-  font-size: .8125rem;
-  color: var(--blue-t);
-  cursor: pointer;
-  user-select: none;
-  list-style: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 2px 0;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-}
+summary { font-size: .8125rem; color: var(--blue-t); cursor: pointer; user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; padding: 2px 0; text-decoration: underline; text-decoration-color: transparent; }
 summary:hover { text-decoration-color: var(--blue-t); }
 summary::-webkit-details-marker { display: none; }
 summary::before { content: '▶'; font-size: .5625rem; transition: transform .15s; }
 details[open] summary::before { transform: rotate(90deg); }
 .card-desc { font-size: .8125rem; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
-
-/* Kaartvoetregel */
 .card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 .card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.release-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: .8125rem;
-  font-weight: 600;
-  background: var(--surface2);
-  color: var(--text);
-  padding: 5px 12px;
-  border-radius: 100px;
-}
+.release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: .8125rem; font-weight: 600; background: var(--surface2); color: var(--text); padding: 5px 12px; border-radius: 100px; }
 .date-info { font-size: .75rem; color: var(--faint); }
 
-/* ── Pills ────────────────────────────────────────────────────────────── */
+/* Zoekmarkering */
+mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; }
+
+/* Pills */
 .pill { font-size: .6875rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
 .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
 .p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
@@ -321,67 +164,44 @@ details[open] summary::before { transform: rotate(90deg); }
 .p-launched   { background: var(--green-bg);  color: var(--green-t); }
 .p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
 .p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
-
 .new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: .6875rem; font-weight: 700; background: var(--new-bg); color: var(--new-t); padding: 4px 9px; border-radius: 100px; white-space: nowrap; }
-
-.ms-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: .8125rem;
-  color: var(--blue-t);
-  text-decoration: none;
-  padding: 5px 12px;
-  border-radius: 100px;
-  background: var(--blue-bg);
-  transition: opacity .12s;
-  white-space: nowrap;
-  font-weight: 500;
-}
+.ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: .8125rem; color: var(--blue-t); text-decoration: none; padding: 5px 12px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; font-weight: 500; }
 .ms-link:hover { opacity: .8; }
 
-/* ── Wijzigingen-blok ─────────────────────────────────────────────────── */
-.changes-block { margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
-.changes-toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background: var(--surface);
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: .9375rem;
-  font-weight: 600;
-  color: var(--text);
-  gap: 12px;
-}
-.changes-toggle:hover { background: var(--surface2); }
-.changes-toggle-left { display: flex; align-items: center; gap: 10px; }
-.changes-chevron { font-size: .625rem; color: var(--faint); transition: transform .2s; }
-.changes-chevron.open { transform: rotate(180deg); }
-.changes-inner { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
-.changes-inner.open { display: block; }
-.changes-subtitle { font-size: .8125rem; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); line-height: 1.6; }
+/* Uitklapblok (herbruikbaar) */
+.collapsible-block { margin-top: 2rem; border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.collapsible-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.5rem; background: var(--surface); border: none; cursor: pointer; font-family: inherit; font-size: .9375rem; font-weight: 600; color: var(--text); gap: 12px; }
+.collapsible-toggle:hover { background: var(--surface2); }
+.collapsible-left { display: flex; align-items: center; gap: 10px; }
+.collapsible-chevron { font-size: .625rem; color: var(--faint); transition: transform .2s; flex-shrink: 0; }
+.collapsible-chevron.open { transform: rotate(180deg); }
+.collapsible-inner { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
+.collapsible-inner.open { display: block; }
+.collapsible-subtitle { font-size: .8125rem; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); line-height: 1.6; }
+
+/* Wijzigingen */
 .rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; flex-wrap: wrap; }
 .rcard:last-child { margin-bottom: 0; }
 .rcard-title { font-size: .875rem; font-weight: 500; flex: 1; min-width: 180px; }
 .rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
-/* ── Laad- en leegstatus ─────────────────────────────────────────────── */
+/* Archief */
+.archive-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.25rem; padding-top: .75rem; border-top: 1px solid var(--border); }
+.arch-btn { padding: 6px 14px; border-radius: 100px; border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: .8125rem; font-weight: 500; cursor: pointer; transition: all .12s; }
+.arch-btn:hover { background: var(--surface2); color: var(--text); }
+.arch-btn.active { background: var(--blue-bg); color: var(--blue-t); border-color: var(--blue-t); font-weight: 600; }
+#archive-content .card { opacity: .9; }
+.archive-empty { font-size: .875rem; color: var(--muted); padding: 1rem 0; }
+
+/* Laad/leeg */
 .state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
 .state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
 .spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
 @keyframes spin { to { transform: rotate(360deg); } }
-
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: .9375rem; }
 #empty-msg.show { display: block; }
-
-/* ── Schermlezer hulptekst ───────────────────────────────────────────── */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
-/* ── Responsief ──────────────────────────────────────────────────────── */
 @media (max-width: 600px) {
   .hdr { padding: 1rem; }
   .main { padding: 1.25rem 1rem 4rem; }
@@ -392,7 +212,6 @@ details[open] summary::before { transform: rotate(90deg); }
 </head>
 <body>
 
-<!-- Toegankelijkheid: sla navigatie over naar hoofdinhoud -->
 <a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
 
 <header role="banner">
@@ -408,36 +227,41 @@ details[open] summary::before { transform: rotate(90deg); }
 <main id="main-content">
 <div class="main">
 
-  <!-- ── Filters ──────────────────────────────────────────────────────── -->
+  <!-- Zoekbalk -->
+  <div class="search-wrap">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search"
+           id="search-input"
+           placeholder="Zoek op trefwoord, bijv. 'Teams vergadering' of 'SharePoint'"
+           aria-label="Zoek in roadmap-updates"
+           autocomplete="off"
+           oninput="onSearch(this.value)">
+    <button class="search-clear"
+            id="search-clear"
+            aria-label="Zoekopdracht wissen"
+            onclick="clearSearch()">✕</button>
+  </div>
+
+  <!-- Filters -->
   <section class="filters" aria-label="Filters">
 
-    <!-- 1. Product — meest relevant voor organisaties -->
     <div class="filter-group">
       <label id="lbl-app">Kies een product</label>
       <div class="filter-bar" id="apf" role="group" aria-labelledby="lbl-app">
         <button class="fb" data-p="all" aria-pressed="true">Alle producten</button>
-        <!-- Dynamisch gevuld op basis van data.json -->
       </div>
     </div>
 
-    <!-- 2. Actie nodig — primaire organisatievraag -->
     <div class="filter-group">
       <label id="lbl-act">Is er actie nodig?</label>
       <div class="filter-bar" role="group" aria-labelledby="lbl-act">
         <button class="fb" id="act-all"   data-act="all"   aria-pressed="true">Alles</button>
-        <button class="fb" id="act-none"  data-act="none"  aria-pressed="false">
-          <span aria-hidden="true">🟢</span> Gaat automatisch
-        </button>
-        <button class="fb" id="act-admin" data-act="admin" aria-pressed="false">
-          <span aria-hidden="true">🟡</span> IT-beheerder moet iets doen
-        </button>
-        <button class="fb" id="act-user"  data-act="user"  aria-pressed="false">
-          <span aria-hidden="true">🔵</span> Medewerker kan zelf instellen
-        </button>
+        <button class="fb" id="act-none"  data-act="none"  aria-pressed="false"><span aria-hidden="true">🟢</span> Gaat automatisch</button>
+        <button class="fb" id="act-admin" data-act="admin" aria-pressed="false"><span aria-hidden="true">🟡</span> IT-beheerder moet iets doen</button>
+        <button class="fb" id="act-user"  data-act="user"  aria-pressed="false"><span aria-hidden="true">🔵</span> Medewerker kan zelf instellen</button>
       </div>
     </div>
 
-    <!-- 3. Sorteren + Status inline -->
     <div class="filter-row-2">
       <div class="filter-group">
         <label id="lbl-status">Status</label>
@@ -460,9 +284,8 @@ details[open] summary::before { transform: rotate(90deg); }
       </div>
     </div>
 
-    <!-- 4. Meer filters (ingeklapt) -->
     <div>
-      <button class="more-filters-toggle" aria-expanded="false" aria-controls="more-filters" onclick="toggleMoreFilters(this)">
+      <button class="more-filters-toggle" aria-expanded="false" aria-controls="more-filters" onclick="toggleSection(this,'more-filters')">
         Meer filteropties <span class="chevron" aria-hidden="true">▼</span>
       </button>
       <div id="more-filters" class="more-filters-section" role="group" aria-label="Aanvullende filters">
@@ -497,10 +320,8 @@ details[open] summary::before { transform: rotate(90deg); }
 
   </section>
 
-  <!-- ── Resultaatinformatie (schermlezer + visueel) ─────────────────── -->
   <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"></div>
 
-  <!-- ── Kaarten ────────────────────────────────────────────────────── -->
   <div id="root" role="feed" aria-busy="true" aria-label="Roadmap-updates">
     <div class="state-box">
       <div class="spinner" role="progressbar" aria-label="Updates worden geladen"></div>
@@ -508,25 +329,30 @@ details[open] summary::before { transform: rotate(90deg); }
       <p>Even geduld, de actuele roadmap wordt opgehaald.</p>
     </div>
   </div>
-  <p id="empty-msg" role="status">Geen updates gevonden voor deze filterinstellingen. Probeer een andere combinatie.</p>
+  <p id="empty-msg" role="status">Geen updates gevonden voor deze filterinstellingen. Probeer een andere combinatie of pas de zoekopdracht aan.</p>
 
-  <!-- ── Wijzigingen deze week ──────────────────────────────────────── -->
-  <div id="changes-block" class="changes-block" style="display:none">
-    <button class="changes-toggle"
-            aria-expanded="false"
-            aria-controls="changes-inner"
-            onclick="toggleChanges(this)">
-      <div class="changes-toggle-left">
-        <span id="changes-icon" aria-hidden="true">⚑</span>
-        <span id="changes-title">Wijzigingen deze week</span>
-      </div>
-      <span class="changes-chevron" aria-hidden="true" id="changes-chevron">▼</span>
+  <!-- Wijzigingen deze week -->
+  <div id="changes-block" class="collapsible-block" style="display:none">
+    <button class="collapsible-toggle" aria-expanded="false" aria-controls="changes-inner" onclick="toggleCollapsible(this,'changes-inner')">
+      <div class="collapsible-left"><span id="changes-icon" aria-hidden="true">⚑</span><span id="changes-title">Wijzigingen deze week</span></div>
+      <span class="collapsible-chevron" aria-hidden="true">▼</span>
     </button>
-    <div id="changes-inner" class="changes-inner" role="region" aria-label="Wijzigingen deze week">
-      <p class="changes-subtitle">
-        Deze updates stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.
-      </p>
+    <div id="changes-inner" class="collapsible-inner" role="region" aria-label="Wijzigingen deze week">
+      <p class="collapsible-subtitle">Deze updates stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.</p>
       <div id="changes-cards"></div>
+    </div>
+  </div>
+
+  <!-- Archief -->
+  <div id="archive-block" class="collapsible-block" style="display:none; margin-top:2rem">
+    <button class="collapsible-toggle" aria-expanded="false" aria-controls="archive-inner" onclick="toggleCollapsible(this,'archive-inner'); loadArchiveIndex()">
+      <div class="collapsible-left"><span aria-hidden="true">🗂</span><span>Archief — vorige weken bekijken</span></div>
+      <span class="collapsible-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div id="archive-inner" class="collapsible-inner" role="region" aria-label="Archief van vorige weken">
+      <p class="collapsible-subtitle">Bekijk de roadmap-updates van een eerdere week. Het archief bewaart de laatste 3 maanden.</p>
+      <div id="archive-nav" class="archive-nav" role="group" aria-label="Kies een week"></div>
+      <div id="archive-content"></div>
     </div>
   </div>
 
@@ -537,74 +363,89 @@ details[open] summary::before { transform: rotate(90deg); }
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 var APP_META = {
-  copilot:    { label:"Copilot",     cls:"p-copilot" },
-  teams:      { label:"Teams",       cls:"p-teams" },
-  outlook:    { label:"Outlook",     cls:"p-outlook" },
-  excel:      { label:"Excel",       cls:"p-excel" },
-  word:       { label:"Word",        cls:"p-word" },
-  powerpoint: { label:"PowerPoint",  cls:"p-powerpoint" },
-  sharepoint: { label:"SharePoint",  cls:"p-sharepoint" },
-  purview:    { label:"Purview",     cls:"p-purview" },
-  viva:       { label:"Viva",        cls:"p-viva" },
-  edge:       { label:"Edge",        cls:"p-edge" },
-  onedrive:   { label:"OneDrive",    cls:"p-onedrive" },
-  exchange:   { label:"Exchange",    cls:"p-exchange" },
-  forms:      { label:"Forms",       cls:"p-forms" },
-  intune:     { label:"Intune",      cls:"p-intune" },
-  entra:      { label:"Entra",       cls:"p-entra" },
-  planner:    { label:"Planner",     cls:"p-planner" },
-  other:      { label:"Overig",      cls:"p-other" },
+  copilot:{label:"Copilot",cls:"p-copilot"},teams:{label:"Teams",cls:"p-teams"},
+  outlook:{label:"Outlook",cls:"p-outlook"},excel:{label:"Excel",cls:"p-excel"},
+  word:{label:"Word",cls:"p-word"},powerpoint:{label:"PowerPoint",cls:"p-powerpoint"},
+  sharepoint:{label:"SharePoint",cls:"p-sharepoint"},purview:{label:"Purview",cls:"p-purview"},
+  viva:{label:"Viva",cls:"p-viva"},edge:{label:"Edge",cls:"p-edge"},
+  onedrive:{label:"OneDrive",cls:"p-onedrive"},exchange:{label:"Exchange",cls:"p-exchange"},
+  forms:{label:"Forms",cls:"p-forms"},intune:{label:"Intune",cls:"p-intune"},
+  entra:{label:"Entra",cls:"p-entra"},planner:{label:"Planner",cls:"p-planner"},
+  other:{label:"Overig",cls:"p-other"}
 };
 var APP_ORDER = ["copilot","teams","outlook","excel","word","powerpoint","sharepoint","purview","viva","edge","onedrive","exchange","forms","intune","entra","planner","other"];
+var ACTION_LABEL = {none:"Gaat automatisch",admin:"IT-beheerder actie vereist",user:"Medewerker kan zelf instellen"};
+var ACTION_ICON  = {none:"🟢",admin:"🟡",user:"🔵"};
 
-var ACTION_LABEL = { none:"Gaat automatisch", admin:"IT-beheerder actie", user:"Medewerker instellen" };
-var ACTION_ICON  = { none:"🟢", admin:"🟡", user:"🔵" };
-
-var MAANDEN = { "january":"januari","february":"februari","march":"maart","april":"april","may":"mei","june":"juni","july":"juli","august":"augustus","september":"september","october":"oktober","november":"november","december":"december" };
+var MAANDEN = {"january":"januari","february":"februari","march":"maart","april":"april","may":"mei","june":"juni","july":"juli","august":"augustus","september":"september","october":"oktober","november":"november","december":"december"};
 function nlRelease(s) {
   if (!s) return "–";
-  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
-    function(m){ return MAANDEN[m.toLowerCase()]||m; }).replace(/\bCY(\d{4})\b/,"$1");
+  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,"$1");
+}
+function fmtDateNL(s) {
+  if (!s) return "";
+  var d = new Date(s);
+  return isNaN(d) ? s : d.toLocaleDateString("nl-NL",{day:"numeric",month:"long",year:"numeric"});
 }
 
 var SEEN_SET = new Set(JSON.parse(localStorage.getItem("m365_seen_ids")||"[]"));
 var ALL_ITEMS = [];
-var fS="all", fN="all", fA="aw", fM="mw", fP="all", fAct="all";
+var fS="all",fN="all",fA="aw",fM="mw",fP="all",fAct="all",fQ="";
+var archiveIndexLoaded = false;
 
 var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
-function parseRelease(s) {
-  if (!s) return new Date(9999,0,1);
-  var m = s.toLowerCase().match(/(\w+)\s+(\d{4})/);
-  return (m && MONTHS[m[1]] !== undefined) ? new Date(parseInt(m[2]), MONTHS[m[1]], 1) : new Date(9999,0,1);
+function parseRelease(s){
+  if(!s) return new Date(9999,0,1);
+  var m=s.toLowerCase().match(/(\w+)\s+(\d{4})/);
+  return(m&&MONTHS[m[1]]!==undefined)?new Date(parseInt(m[2]),MONTHS[m[1]],1):new Date(9999,0,1);
 }
-function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/864e5 : 9999; }
-function fmtDate(d) { return d ? new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}) : ""; }
-function esc(s)     { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function daysAgo(d){return d?(Date.now()-new Date(d).getTime())/864e5:9999;}
+function fmtDate(d){return d?new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}):""}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-// ── Meer filters toggle ──────────────────────────────────────────────────
-function toggleMoreFilters(btn) {
-  var panel = document.getElementById("more-filters");
+// Markeer zoektrefwoorden in tekst
+function highlight(text, query) {
+  if (!query) return esc(text);
+  var escaped = query.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  return esc(text).replace(new RegExp("("+escaped+")", "gi"), "<mark>$1</mark>");
+}
+
+// ── Zoeken ───────────────────────────────────────────────────────────────
+function onSearch(val) {
+  fQ = val.trim().toLowerCase();
+  document.getElementById("search-clear").classList.toggle("show", fQ.length > 0);
+  render();
+}
+function clearSearch() {
+  document.getElementById("search-input").value = "";
+  document.getElementById("search-clear").classList.remove("show");
+  fQ = "";
+  render();
+  document.getElementById("search-input").focus();
+}
+
+// ── Inklapbare blokken ────────────────────────────────────────────────────
+function toggleSection(btn, panelId) {
+  var panel = document.getElementById(panelId);
   var open  = btn.getAttribute("aria-expanded") === "true";
   btn.setAttribute("aria-expanded", open ? "false" : "true");
   panel.classList.toggle("open", !open);
 }
-
-// ── Wijzigingen toggle ───────────────────────────────────────────────────
-function toggleChanges(btn) {
-  var panel   = document.getElementById("changes-inner");
-  var chevron = document.getElementById("changes-chevron");
+function toggleCollapsible(btn, panelId) {
+  var panel   = document.getElementById(panelId);
+  var chevron = btn.querySelector(".collapsible-chevron");
   var open    = btn.getAttribute("aria-expanded") === "true";
   btn.setAttribute("aria-expanded", open ? "false" : "true");
   panel.classList.toggle("open", !open);
-  chevron.classList.toggle("open", !open);
+  if (chevron) chevron.classList.toggle("open", !open);
 }
 
 // ── App-filter opbouwen ──────────────────────────────────────────────────
 function buildAppFilter(items) {
-  var presentApps = new Set(items.map(function(i){ return i.app; }));
+  var presentApps = new Set(items.map(function(i){return i.app;}));
   var bar = document.getElementById("apf");
   while (bar.children.length > 1) bar.removeChild(bar.lastChild);
-  APP_ORDER.forEach(function(key) {
+  APP_ORDER.forEach(function(key){
     if (!presentApps.has(key)) return;
     var btn = document.createElement("button");
     btn.className = "fb";
@@ -614,194 +455,274 @@ function buildAppFilter(items) {
     bar.appendChild(btn);
   });
   bar.addEventListener("click", function(e){
-    var t = e.target.closest("[data-p]"); if (!t) return;
-    document.querySelectorAll("#apf .fb").forEach(function(b){ b.setAttribute("aria-pressed","false"); b.className="fb"; });
+    var t = e.target.closest("[data-p]"); if(!t) return;
+    document.querySelectorAll("#apf .fb").forEach(function(b){b.setAttribute("aria-pressed","false");b.className="fb";});
     var v = t.getAttribute("data-p");
     t.setAttribute("aria-pressed","true");
-    if (v !== "all") t.classList.add("ao-"+v);
+    if (v!=="all") t.classList.add("ao-"+v);
     fP = v;
     render();
   });
 }
 
-// ── App-aantallen bijwerken ──────────────────────────────────────────────
 function updateAppCounts(filteredWithoutApp) {
-  var counts = {};
-  filteredWithoutApp.forEach(function(i){ counts[i.app]=(counts[i.app]||0)+1; });
+  var counts={};
+  filteredWithoutApp.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;});
   var allBtn = document.querySelector("#apf [data-p='all']");
-  if (allBtn) allBtn.textContent = "Alle producten (" + filteredWithoutApp.length + ")";
+  if (allBtn) allBtn.textContent = "Alle producten ("+filteredWithoutApp.length+")";
   document.querySelectorAll("#apf [data-p]").forEach(function(btn){
-    var key = btn.getAttribute("data-p"); if (key==="all") return;
-    var n = counts[key]||0;
-    btn.textContent = APP_META[key].label + " (" + n + ")";
-    btn.style.display = (n===0 && fP!==key) ? "none" : "";
+    var key=btn.getAttribute("data-p"); if(key==="all") return;
+    var n=counts[key]||0;
+    btn.textContent=APP_META[key].label+" ("+n+")";
+    btn.style.display=(n===0&&fP!==key)?"none":"";
   });
 }
 
 // ── Data laden ───────────────────────────────────────────────────────────
 fetch("data.json")
-  .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
-  .then(function(data) {
-    var currentIds = data.items.map(function(i){ return i.id; });
-    ALL_ITEMS = data.items.map(function(item){
-      return Object.assign({}, item, { isNew: !SEEN_SET.has(item.id) });
-    });
-    localStorage.setItem("m365_seen_ids", JSON.stringify(currentIds));
+  .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+  .then(function(data){
+    var currentIds=data.items.map(function(i){return i.id;});
+    ALL_ITEMS=data.items.map(function(item){return Object.assign({},item,{isNew:!SEEN_SET.has(item.id)});});
+    localStorage.setItem("m365_seen_ids",JSON.stringify(currentIds));
 
-    var generated = new Date(data.generated);
-    document.getElementById("last-updated").textContent =
-      "Bijgewerkt: " + generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"}) + " · " + data.count + " items";
-
+    var generated=new Date(data.generated);
+    document.getElementById("last-updated").textContent=
+      "Bijgewerkt: "+generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"})+" · "+data.count+" items";
     document.getElementById("root").setAttribute("aria-busy","false");
     buildAppFilter(ALL_ITEMS);
 
+    // Archief-blok altijd tonen
+    document.getElementById("archive-block").style.display="block";
+
     // Wijzigingen
-    var removed = data.removed || [];
-    if (removed.length > 0) {
-      document.getElementById("changes-block").style.display = "block";
-      document.getElementById("changes-title").textContent = "Wijzigingen deze week (" + removed.length + " item" + (removed.length!==1?"s":"") + ")";
-      document.getElementById("changes-icon").textContent = removed.some(function(r){return r.status==="launched";}) ? "✅" : "⚑";
-      document.getElementById("changes-cards").innerHTML = removed.map(function(r){
-        var meta = APP_META[r.app]||APP_META.other;
-        return '<div class="rcard">' +
-          '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>' +
-          '<span class="rcard-title">'+esc(r.title)+'</span>' +
-          '<div class="rcard-right">' +
-            '<span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>' +
-            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+'<span class="sr-only">Bekijk op Microsoft roadmap,</span> ID '+r.id+'</a>' +
+    var removed=data.removed||[];
+    if(removed.length>0){
+      document.getElementById("changes-block").style.display="block";
+      document.getElementById("changes-title").textContent="Wijzigingen deze week ("+removed.length+" item"+(removed.length!==1?"s":"")+")";
+      document.getElementById("changes-icon").textContent=removed.some(function(r){return r.status==="launched";})?"✅":"⚑";
+      document.getElementById("changes-cards").innerHTML=removed.map(function(r){
+        var meta=APP_META[r.app]||APP_META.other;
+        return '<div class="rcard">'+
+          '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>'+
+          '<span class="rcard-title">'+esc(r.title)+'</span>'+
+          '<div class="rcard-right">'+
+            '<span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>'+
+            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+'<span class="sr-only"> ID '+r.id+' op Microsoft roadmap</span> ID '+r.id+'</a>'+
           '</div></div>';
       }).join("");
     }
-
     render();
   })
   .catch(function(err){
     document.getElementById("root").setAttribute("aria-busy","false");
-    document.getElementById("root").innerHTML =
-      '<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2>' +
-      '<p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
-      '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(String(err))+'</p></div>';
+    document.getElementById("root").innerHTML='<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2><p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p><p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(String(err))+'</p></div>';
   });
 
-// ── Kaart HTML ────────────────────────────────────────────────────────────
-function cardHTML(item) {
-  var cfg  = { rolling:{label:"Wordt uitgerold",cls:"p-rolling"}, dev:{label:"In ontwikkeling",cls:"p-dev"} }[item.status];
-  var meta = APP_META[item.app]||APP_META.other;
-  var dateRow = "";
-  if (item.added)    dateRow += '<span class="date-info"><span class="sr-only">Toegevoegd aan roadmap:</span> 📅 '+fmtDate(item.added)+'</span>';
-  if (item.modified && item.modified !== item.added)
-    dateRow += '<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
-  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">' +
-    '<div class="card-pills">' +
-      '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
-      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>' +
-      (item.isNew ? '<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>' : '') +
-    '</div>' +
-    '<h2 class="card-title">'+esc(item.title)+'</h2>' +
-    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+esc(item.benefit)+'</div>' +
-    '<div class="card-action act-'+item.action+'" role="img" aria-label="Actie: '+esc(ACTION_LABEL[item.action]||item.actionLabel)+'">' +
-      '<span class="action-icon" aria-hidden="true">'+ACTION_ICON[item.action]+'</span>' +
-      '<span>'+esc(item.actionLabel)+'</span>' +
-    '</div>' +
-    (item.desc ? '<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>' : '') +
-    '<div class="card-foot">' +
-      '<div class="card-foot-left">' +
-        '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Verwachte release:</span>'+esc(nlRelease(item.release))+'</span>' +
-        (dateRow ? '<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>' : '') +
-      '</div>' +
-      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
-    '</div>' +
+// ── Archief ───────────────────────────────────────────────────────────────
+function loadArchiveIndex() {
+  if (archiveIndexLoaded) return;
+  archiveIndexLoaded = true;
+  var nav = document.getElementById("archive-nav");
+  nav.innerHTML = '<span style="font-size:.8125rem;color:var(--faint)">Archief laden…</span>';
+  fetch("archive/index.json")
+    .then(function(r){if(!r.ok)throw new Error("index niet gevonden");return r.json();})
+    .then(function(idx){
+      nav.innerHTML = "";
+      if (!idx.dates || idx.dates.length === 0) {
+        nav.innerHTML = '<span class="archive-empty">Nog geen archief beschikbaar. Het archief wordt aangemaakt na de volgende workflow-run.</span>';
+        return;
+      }
+      idx.dates.forEach(function(dateStr){
+        var btn = document.createElement("button");
+        btn.className = "arch-btn";
+        btn.setAttribute("data-date", dateStr);
+        btn.setAttribute("aria-label", "Week van "+fmtDateNL(dateStr)+" bekijken");
+        // Toon als "ma 13 mrt"
+        var d = new Date(dateStr);
+        btn.textContent = d.toLocaleDateString("nl-NL",{weekday:"short",day:"numeric",month:"short"});
+        btn.onclick = function(){ loadArchiveWeek(dateStr, btn); };
+        nav.appendChild(btn);
+      });
+    })
+    .catch(function(){
+      nav.innerHTML = '<span class="archive-empty">Archief kon niet worden geladen.</span>';
+    });
+}
+
+function loadArchiveWeek(dateStr, activeBtn) {
+  // Markeer actieve knop
+  document.querySelectorAll(".arch-btn").forEach(function(b){b.classList.remove("active");});
+  activeBtn.classList.add("active");
+
+  var content = document.getElementById("archive-content");
+  content.innerHTML = '<div style="padding:1rem 0;font-size:.875rem;color:var(--faint)">Week laden…</div>';
+
+  fetch("archive/"+dateStr+".json")
+    .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+    .then(function(data){
+      var items = data.items || [];
+      var removed = data.removed || [];
+      var html = '<div style="font-size:.8125rem;color:var(--muted);margin-bottom:1rem">'+
+        '<strong>'+items.length+' actieve items</strong> op '+fmtDateNL(dateStr)+
+        (removed.length>0 ? ' · '+removed.length+' item'+(removed.length!==1?"s":"")+" die week gewijzigd" : "")+
+      '</div>';
+
+      if (items.length === 0) {
+        html += '<p class="archive-empty">Geen items gevonden voor deze week.</p>';
+      } else {
+        html += items.map(function(item){
+          var cfg={rolling:{label:"Wordt uitgerold",cls:"p-rolling"},dev:{label:"In ontwikkeling",cls:"p-dev"}}[item.status];
+          var meta=APP_META[item.app]||APP_META.other;
+          return '<article class="card act-'+item.action+'" style="opacity:.9">'+
+            '<div class="card-pills">'+
+              '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>'+
+              '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+
+            '</div>'+
+            '<h2 class="card-title">'+esc(item.title)+'</h2>'+
+            '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+esc(item.benefit)+'</div>'+
+            '<div class="card-foot">'+
+              '<div class="card-foot-left">'+
+                '<span class="release-badge"><span aria-hidden="true">🚀</span> '+esc(nlRelease(item.release))+'</span>'+
+                '<span class="card-action act-'+item.action+'"><span aria-hidden="true">'+ACTION_ICON[item.action]+'</span> '+esc(item.actionLabel)+'</span>'+
+              '</div>'+
+              '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+' ID '+item.id+'</a>'+
+            '</div>'+
+          '</article>';
+        }).join("");
+      }
+
+      if (removed.length > 0) {
+        html += '<h3 style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--faint);margin:1.5rem 0 .75rem">Die week beschikbaar of geannuleerd</h3>';
+        html += removed.map(function(r){
+          var meta=APP_META[r.app]||APP_META.other;
+          return '<div class="rcard">'+
+            '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>'+
+            '<span class="rcard-title">'+esc(r.title)+'</span>'+
+            '<div class="rcard-right"><span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span></div>'+
+          '</div>';
+        }).join("");
+      }
+
+      content.innerHTML = html;
+    })
+    .catch(function(err){
+      content.innerHTML='<p class="archive-empty">Week kon niet worden geladen: '+esc(String(err))+'</p>';
+    });
+}
+
+// ── Kaart HTML (live-weergave) ────────────────────────────────────────────
+function cardHTML(item, query) {
+  var cfg={rolling:{label:"Wordt uitgerold",cls:"p-rolling"},dev:{label:"In ontwikkeling",cls:"p-dev"}}[item.status];
+  var meta=APP_META[item.app]||APP_META.other;
+  var dateRow="";
+  if(item.added)    dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> 📅 '+fmtDate(item.added)+'</span>';
+  if(item.modified&&item.modified!==item.added) dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
+  var titleHtml   = highlight(item.title,   query);
+  var benefitHtml = highlight(item.benefit, query);
+  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">'+
+    '<div class="card-pills">'+
+      '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>'+
+      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+
+      (item.isNew?'<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>':'')+
+    '</div>'+
+    '<h2 class="card-title">'+titleHtml+'</h2>'+
+    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+benefitHtml+'</div>'+
+    '<div class="card-action act-'+item.action+'" role="img" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'">'+
+      '<span aria-hidden="true">'+ACTION_ICON[item.action]+'</span>'+
+      '<span>'+esc(item.actionLabel)+'</span>'+
+    '</div>'+
+    (item.desc?'<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>':'')+
+    '<div class="card-foot">'+
+      '<div class="card-foot-left">'+
+        '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>'+
+        (dateRow?'<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>':'')+
+      '</div>'+
+      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>'+
+    '</div>'+
   '</article>';
 }
 
 // ── Render ────────────────────────────────────────────────────────────────
 function render() {
   if (!ALL_ITEMS.length) return;
-  var sort = document.getElementById("sort-select").value;
+  var sort=document.getElementById("sort-select").value;
+  var query=fQ;
 
-  // Zonder app-filter voor aantallen per knop
-  var withoutApp = ALL_ITEMS.filter(function(i){
-    if (fS !== "all" && i.status !== fS) return false;
-    if (fN === "new"   && !i.isNew)      return false;
-    if (fN === "known" &&  i.isNew)      return false;
-    if (fAct !== "all" && i.action !== fAct) return false;
-    if (fA !== "all" || fM !== "all") {
-      var days = (fA==="aw"||fM==="mw") ? 7 : 31;
-      if (!(fA!=="all" && daysAgo(i.added)<=days) && !(fM!=="all" && daysAgo(i.modified)<=days)) return false;
+  // Basisfilter (zonder app) voor aantallen per knop
+  var withoutApp=ALL_ITEMS.filter(function(i){
+    if(fS!=="all"&&i.status!==fS) return false;
+    if(fN==="new"&&!i.isNew)      return false;
+    if(fN==="known"&&i.isNew)     return false;
+    if(fAct!=="all"&&i.action!==fAct) return false;
+    if(fA!=="all"||fM!=="all"){
+      var days=(fA==="aw"||fM==="mw")?7:31;
+      if(!(fA!=="all"&&daysAgo(i.added)<=days)&&!(fM!=="all"&&daysAgo(i.modified)<=days)) return false;
     }
+    if(query&&!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query))) return false;
     return true;
   });
   updateAppCounts(withoutApp);
 
-  var filtered = withoutApp.filter(function(i){ return fP==="all" || i.app===fP; });
+  var filtered=withoutApp.filter(function(i){return fP==="all"||i.app===fP;});
 
-  filtered = filtered.slice().sort(function(a,b){
-    if (sort==="status")        return (a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
-    if (sort==="modified-desc") return new Date(b.modified||0)-new Date(a.modified||0);
-    var da=parseRelease(a.release), db=parseRelease(b.release);
-    return sort==="release-desc" ? da-db : db-da;
+  filtered=filtered.slice().sort(function(a,b){
+    if(sort==="status")        return(a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
+    if(sort==="modified-desc") return new Date(b.modified||0)-new Date(a.modified||0);
+    var da=parseRelease(a.release),db=parseRelease(b.release);
+    return sort==="release-desc"?da-db:db-da;
   });
 
-  var rolling  = filtered.filter(function(i){return i.status==="rolling";});
-  var dev      = filtered.filter(function(i){return i.status==="dev";});
-  var newCount = filtered.filter(function(i){return i.isNew;}).length;
+  var rolling=filtered.filter(function(i){return i.status==="rolling";});
+  var dev=filtered.filter(function(i){return i.status==="dev";});
+  var newCount=filtered.filter(function(i){return i.isNew;}).length;
 
-  var statsText = filtered.length + " updates — " +
-    rolling.length + " worden uitgerold, " +
-    dev.length + " in ontwikkeling" +
-    (newCount ? ", " + newCount + " nieuw deze week" : "");
+  document.getElementById("stats-bar").innerHTML=
+    '<span class="stat-pill s-total">'+filtered.length+' updates</span>'+
+    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>'+
+    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>'+
+    (newCount?'<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>':'')+
+    (query?'<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>':'');
 
-  document.getElementById("stats-bar").innerHTML =
-    '<span class="stat-pill s-total">'+filtered.length+' updates</span>' +
-    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>' +
-    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>' +
-    (newCount ? '<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>' : '');
-
-  var emptyEl = document.getElementById("empty-msg");
-  var rootEl  = document.getElementById("root");
-  if (!filtered.length) { rootEl.innerHTML=""; emptyEl.classList.add("show"); return; }
+  var emptyEl=document.getElementById("empty-msg");
+  var rootEl=document.getElementById("root");
+  if(!filtered.length){rootEl.innerHTML="";emptyEl.classList.add("show");return;}
   emptyEl.classList.remove("show");
 
-  if (sort==="status") {
-    function sec(items, emoji, lbl) {
-      if (!items.length) return "";
-      return '<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(cardHTML).join("")+'</section>';
+  if(sort==="status"){
+    function sec(items,emoji,lbl){
+      if(!items.length) return "";
+      return '<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(function(i){return cardHTML(i,query);}).join("")+'</section>';
     }
-    rootEl.innerHTML = sec(rolling,"🟡","Wordt uitgerold") + sec(dev,"🔵","In ontwikkeling");
+    rootEl.innerHTML=sec(rolling,"🟡","Wordt uitgerold")+sec(dev,"🔵","In ontwikkeling");
   } else {
-    rootEl.innerHTML = '<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(cardHTML).join("")+'</section>';
+    rootEl.innerHTML='<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(function(i){return cardHTML(i,query);}).join("")+'</section>';
   }
 }
 
-// ── Generieke filter-wiring (met aria-pressed) ────────────────────────────
-function wire(barId, prop, attr) {
-  var bar = document.getElementById(barId);
-  if (!bar) return;
-  bar.addEventListener("click", function(e){
-    var t = e.target.closest("["+attr+"]"); if(!t) return;
-    bar.querySelectorAll(".fb").forEach(function(b){ b.setAttribute("aria-pressed","false"); b.className="fb"; });
-    var v = t.getAttribute(attr);
+// ── Filter-wiring ──────────────────────────────────────────────────────────
+function wire(barId,prop,attr){
+  var bar=document.getElementById(barId); if(!bar) return;
+  bar.addEventListener("click",function(e){
+    var t=e.target.closest("["+attr+"]"); if(!t) return;
+    bar.querySelectorAll(".fb").forEach(function(b){b.setAttribute("aria-pressed","false");b.className="fb";});
+    var v=t.getAttribute(attr);
     t.setAttribute("aria-pressed","true");
-    if      (prop==="fS")   fS=v;
-    else if (prop==="fN")   fN=v;
-    else if (prop==="fA")   fA=v;
-    else if (prop==="fM")   fM=v;
+    if(prop==="fS") fS=v;
+    else if(prop==="fN") fN=v;
+    else if(prop==="fA") fA=v;
+    else if(prop==="fM") fM=v;
     render();
   });
 }
-wire("sf","fS","data-s");
-wire("nf","fN","data-n");
-wire("af","fA","data-a");
-wire("mf","fM","data-m");
+wire("sf","fS","data-s"); wire("nf","fN","data-n");
+wire("af","fA","data-a"); wire("mf","fM","data-m");
 
-// Actie-filter apart omdat het een extra variabele gebruikt
 document.querySelectorAll("[data-act]").forEach(function(btn){
-  btn.addEventListener("click", function(){
-    document.querySelectorAll("[data-act]").forEach(function(b){ b.setAttribute("aria-pressed","false"); b.className="fb"; });
-    var v = btn.getAttribute("data-act");
+  btn.addEventListener("click",function(){
+    document.querySelectorAll("[data-act]").forEach(function(b){b.setAttribute("aria-pressed","false");b.className="fb";});
     btn.setAttribute("aria-pressed","true");
-    if (v==="none")  btn.classList.add(""); // kleur via data-act in CSS
-    fAct = v;
+    fAct=btn.getAttribute("data-act");
     render();
   });
 });
