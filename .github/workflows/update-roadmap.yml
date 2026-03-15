@@ -3,6 +3,7 @@ name: Ververs Microsoft 365 Roadmap
 on:
   schedule:
     - cron: '0 6 * * 1'   # Elke maandag om 06:00 UTC (07:00 NL wintertijd)
+    - cron: '0 6 * * 3'   # Elke woensdag als fallback bij mislukte maandagrun
   workflow_dispatch:
 
 permissions:
@@ -33,11 +34,16 @@ jobs:
       - name: Data verwerken en vertalen
         run: python3 fetch_roadmap.py
 
-      - name: data.json committen en pushen
+      - name: Archief opruimen (ouder dan 3 maanden)
+        run: |
+          find archive/ -name "*.json" -mtime +92 -delete 2>/dev/null || true
+          echo "Archief opgeruimd"
+
+      - name: Wijzigingen committen en pushen
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
+          git add data.json archive/
           git diff --cached --quiet && echo "Geen wijzigingen" && exit 0
           git commit -m "Roadmap bijgewerkt: $(date -u +'%Y-%m-%d')"
           git pull --rebase origin main
