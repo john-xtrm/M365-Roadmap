@@ -58,33 +58,48 @@
 
   .stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
   .stat-pill { font-size: 12px; padding: 4px 12px; border-radius: 100px; }
-  .s-total   { background: var(--surface2); color: var(--muted); }
-  .s-rolling { background: var(--amber-bg); color: var(--amber-t); }
-  .s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
-  .s-new     { background: var(--new-bg);   color: var(--new-t); }
+  .s-total    { background: var(--surface2); color: var(--muted); }
+  .s-rolling  { background: var(--amber-bg); color: var(--amber-t); }
+  .s-dev      { background: var(--blue-bg);  color: var(--blue-t); }
+  .s-new      { background: var(--new-bg);   color: var(--new-t); }
 
   .sec-hdr { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .sec-count { font-size: 11px; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
 
+  /* Actieve kaarten */
   .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color .15s; }
   .card:hover { border-color: var(--border-s); }
-
   .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
   .card-title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
   .card-benefit { font-size: 13px; color: var(--text); line-height: 1.65; margin-bottom: 10px; padding: 10px 13px; background: var(--surface2); border-radius: 8px; border-left: 3px solid var(--border-s); }
   .card-benefit-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 4px; }
-
   details { margin-bottom: 12px; }
   summary { font-size: 12px; color: var(--faint); cursor: pointer; user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; }
   summary::-webkit-details-marker { display: none; }
   summary::before { content: '▶'; font-size: 9px; transition: transform .15s; }
   details[open] summary::before { transform: rotate(90deg); }
   .card-desc { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
-
   .card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
   .card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
   .release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; background: var(--surface2); color: var(--text); padding: 4px 11px; border-radius: 100px; }
   .date-info { font-size: 11px; color: var(--faint); }
+
+  /* Wijzigingen-blok */
+  .changes-block { margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+  .changes-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--surface); border: none; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text); gap: 12px; }
+  .changes-toggle:hover { background: var(--surface2); }
+  .changes-toggle-left { display: flex; align-items: center; gap: 10px; }
+  .changes-chevron { font-size: 10px; color: var(--faint); transition: transform .2s; }
+  .changes-chevron.open { transform: rotate(180deg); }
+  .changes-inner { display: none; padding: 0 1.25rem 1.25rem; background: var(--surface); }
+  .changes-inner.open { display: block; }
+  .changes-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); }
+
+  /* Kleine statuskaart in wijzigingen */
+  .rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; }
+  .rcard:last-child { margin-bottom: 0; }
+  .rcard-title { font-size: 13px; font-weight: 500; flex: 1; min-width: 0; }
+  .rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
 
   .pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
   .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
@@ -96,6 +111,9 @@
   .p-other      { background: var(--gray-bg);   color: var(--gray-t); }
   .p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
   .p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
+  .p-launched   { background: var(--green-bg);  color: var(--green-t); }
+  .p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
+  .p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
 
   .new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; background: var(--new-bg); color: var(--new-t); padding: 3px 9px; border-radius: 100px; white-space: nowrap; }
   .ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue-t); text-decoration: none; padding: 4px 10px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; }
@@ -199,6 +217,21 @@
   <div id="stats-bar" class="stats-bar"></div>
   <div id="root"><div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3></div></div>
   <div id="empty-msg">Geen items gevonden voor deze filters.</div>
+
+  <!-- Wijzigingen deze week -->
+  <div id="changes-block" class="changes-block" style="display:none">
+    <button class="changes-toggle" onclick="toggleChanges()">
+      <div class="changes-toggle-left">
+        <span id="changes-icon">⚑</span>
+        <span id="changes-title">Wijzigingen deze week</span>
+      </div>
+      <span class="changes-chevron" id="changes-chevron">▼</span>
+    </button>
+    <div class="changes-inner" id="changes-inner">
+      <p class="changes-subtitle">Deze items stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.</p>
+      <div id="changes-cards"></div>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -207,18 +240,15 @@ var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" str
 var APP_LABELS = { copilot:"Copilot", teams:"Teams", outlook:"Outlook", sharepoint:"SharePoint", purview:"Purview", word:"Word", other:"Overig" };
 var APP_CLS    = { copilot:"p-copilot", teams:"p-teams", outlook:"p-outlook", sharepoint:"p-sharepoint", purview:"p-purview", word:"p-word", other:"p-other" };
 
-// Engelse maandnamen → Nederlands (voor de Microsoft release-datums)
 var MAANDEN = {
   "january":"januari","february":"februari","march":"maart","april":"april",
   "may":"mei","june":"juni","july":"juli","august":"augustus",
   "september":"september","october":"oktober","november":"november","december":"december"
 };
-
 function nlRelease(s) {
   if (!s) return "–";
   return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
-    function(m) { return MAANDEN[m.toLowerCase()] || m; })
-    .replace(/\bCY(\d{4})\b/, "$1");
+    function(m){ return MAANDEN[m.toLowerCase()] || m; }).replace(/\bCY(\d{4})\b/, "$1");
 }
 
 var SEEN_SET = new Set(JSON.parse(localStorage.getItem("m365_seen_ids") || "[]"));
@@ -238,11 +268,19 @@ function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/86400000 : 9
 function fmtDate(d) { return d ? new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}) : ""; }
 function esc(s)     { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
+function toggleChanges() {
+  var inner   = document.getElementById("changes-inner");
+  var chevron = document.getElementById("changes-chevron");
+  var isOpen  = inner.classList.contains("open");
+  inner.classList.toggle("open", !isOpen);
+  chevron.classList.toggle("open", !isOpen);
+}
+
 fetch("data.json")
-  .then(function(r) { if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
   .then(function(data) {
-    var currentIds = data.items.map(function(i) { return i.id; });
-    ALL_ITEMS = data.items.map(function(item) {
+    var currentIds = data.items.map(function(i){ return i.id; });
+    ALL_ITEMS = data.items.map(function(item){
       return Object.assign({}, item, { isNew: !SEEN_SET.has(item.id) });
     });
     localStorage.setItem("m365_seen_ids", JSON.stringify(currentIds));
@@ -252,9 +290,42 @@ fetch("data.json")
       "Bijgewerkt: " + generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"}) +
       " · " + data.count + " items";
 
+    // Wijzigingen-blok vullen
+    var removed = data.removed || [];
+    if (removed.length > 0) {
+      var block = document.getElementById("changes-block");
+      block.style.display = "block";
+
+      var launched  = removed.filter(function(r){ return r.status === "launched"; });
+      var cancelled = removed.filter(function(r){ return r.status === "cancelled"; });
+      var unknown   = removed.filter(function(r){ return r.status === "unknown"; });
+
+      document.getElementById("changes-title").textContent =
+        "Wijzigingen deze week (" + removed.length + " item" + (removed.length !== 1 ? "s" : "") + ")";
+      document.getElementById("changes-icon").textContent =
+        launched.length > 0 ? "✅" : "⚑";
+
+      var cards = removed.map(function(r){
+        var appCls  = APP_CLS[r.app] || "p-other";
+        var appLbl  = r.prodLabel || APP_LABELS[r.app] || "Overig";
+        var stCls   = "p-" + r.status;
+        var stLbl   = r.statusNl || r.status;
+        return '<div class="rcard">' +
+          '<span class="pill ' + appCls + '">' + esc(appLbl) + '</span>' +
+          '<span class="rcard-title">' + esc(r.title) + '</span>' +
+          '<div class="rcard-right">' +
+            '<span class="pill ' + stCls + '">' + esc(stLbl) + '</span>' +
+            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + r.id + '</a>' +
+          '</div>' +
+        '</div>';
+      }).join("");
+
+      document.getElementById("changes-cards").innerHTML = cards;
+    }
+
     render();
   })
-  .catch(function(err) {
+  .catch(function(err){
     document.getElementById("root").innerHTML =
       '<div class="state-box"><h3>Kon data.json niet laden</h3>' +
       '<p style="margin-top:.5rem;font-size:13px">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
@@ -266,12 +337,10 @@ function cardHTML(item) {
     rolling: { label:"Wordt uitgerold", cls:"p-rolling" },
     dev:     { label:"In ontwikkeling", cls:"p-dev" }
   }[item.status];
-
   var dateRow = "";
   if (item.added)    dateRow += '<span class="date-info">📅 Toegevoegd: ' + fmtDate(item.added) + '</span>';
   if (item.modified && item.modified !== item.added)
     dateRow += '<span class="date-info" style="margin-left:10px">✏️ Gewijzigd: ' + fmtDate(item.modified) + '</span>';
-
   return '<div class="card">' +
     '<div class="card-pills">' +
       '<span class="pill ' + APP_CLS[item.app] + '">' + esc(item.prodLabel || APP_LABELS[item.app]) + '</span>' +
@@ -298,8 +367,7 @@ function cardHTML(item) {
 function render() {
   if (!ALL_ITEMS.length) return;
   var sort = document.getElementById("sort-select").value;
-
-  var filtered = ALL_ITEMS.filter(function(i) {
+  var filtered = ALL_ITEMS.filter(function(i){
     if (fS !== "all" && i.status !== fS) return false;
     if (fN === "new"   && !i.isNew)      return false;
     if (fN === "known" &&  i.isNew)      return false;
@@ -313,16 +381,16 @@ function render() {
     return true;
   });
 
-  filtered = filtered.slice().sort(function(a, b) {
+  filtered = filtered.slice().sort(function(a, b){
     if (sort === "status")        return (a.status==="rolling"?0:1) - (b.status==="rolling"?0:1);
     if (sort === "modified-desc") return new Date(b.modified||0) - new Date(a.modified||0);
     var da = parseRelease(a.release), db = parseRelease(b.release);
     return sort === "release-desc" ? da - db : db - da;
   });
 
-  var rolling  = filtered.filter(function(i){return i.status==="rolling";});
-  var dev      = filtered.filter(function(i){return i.status==="dev";});
-  var newCount = filtered.filter(function(i){return i.isNew;}).length;
+  var rolling  = filtered.filter(function(i){ return i.status==="rolling"; });
+  var dev      = filtered.filter(function(i){ return i.status==="dev"; });
+  var newCount = filtered.filter(function(i){ return i.isNew; }).length;
 
   document.getElementById("stats-bar").innerHTML =
     '<span class="stat-pill s-total">'   + filtered.length + " items</span>" +
@@ -351,12 +419,12 @@ function render() {
 }
 
 function wire(barId, prop, attr, cls) {
-  document.getElementById(barId).addEventListener("click", function(e) {
-    var t = e.target.closest("[" + attr + "]"); if (!t) return;
-    document.querySelectorAll("#" + barId + " .fb").forEach(function(b) { b.className="fb"; });
+  document.getElementById(barId).addEventListener("click", function(e){
+    var t = e.target.closest("["+attr+"]"); if (!t) return;
+    document.querySelectorAll("#"+barId+" .fb").forEach(function(b){ b.className="fb"; });
     var v = t.getAttribute(attr);
     t.classList.add("on");
-    if (cls && v !== "all") t.classList.add(cls + v);
+    if (cls && v !== "all") t.classList.add(cls+v);
     if      (prop==="fS") fS=v; else if (prop==="fN") fN=v;
     else if (prop==="fA") fA=v; else if (prop==="fM") fM=v;
     else if (prop==="fP") fP=v;
