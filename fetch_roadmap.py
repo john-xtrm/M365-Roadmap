@@ -3,6 +3,7 @@ Microsoft 365 Roadmap - fetch & verwerk
 - Laadt bestaande vertalingen uit data.json als cache
 - Controleert of gecachede items daadwerkelijk Nederlands zijn
 - Vertaalt ALLEEN items die nieuw, gewijzigd, of nog niet correct vertaald zijn
+- Slaat items op die deze week Launched of Cancelled zijn geworden
 """
 
 import csv, json, io, datetime, re, time, os
@@ -15,8 +16,7 @@ def translate(text, retries=3):
         return text
     for attempt in range(retries):
         try:
-            chunk = text[:4800]
-            result = translator.translate(chunk)
+            result = translator.translate(text[:4800])
             return result if result else text
         except Exception as e:
             if attempt < retries - 1:
@@ -26,23 +26,18 @@ def translate(text, retries=3):
                 return text
 
 # ── Nederlandse taaldetectie ──────────────────────────────────────────────
-# Woorden die typisch Nederlands zijn en niet voorkomen in Engels
 NL_INDICATORS = [
     "de ", "het ", "een ", "van ", "voor ", "naar ", "met ", "zijn ", "worden ",
     "kunnen ", "wordt ", "door ", "dat ", "dit ", "ook ", "heeft ", "niet ",
-    "maar ", "meer ", "om ", "als ", "bij ", "ze ", "ze ", "hun ", "over ",
-    "aan ", "er ", "ze ", "nog ", "al ", "uit ", "op ", "nu ", "in het ",
+    "maar ", "meer ", "om ", "als ", "bij ", "over ", "aan ", "uit ", "op ",
     "waardoor", "waarmee", "waarbij", "hierdoor", "hiermee"
 ]
 
 def is_dutch(text):
-    """Controleer of een tekst daadwerkelijk Nederlands is."""
     if not text or len(text) < 10:
         return False
     text_lower = text.lower()
-    hits = sum(1 for word in NL_INDICATORS if word in text_lower)
-    # Minimaal 2 Nederlandse woorden gevonden = beschouwen als Nederlands
-    return hits >= 2
+    return sum(1 for w in NL_INDICATORS if w in text_lower) >= 2
 
 # ── App-detectie ──────────────────────────────────────────────────────────
 APP_LABELS = {
@@ -146,23 +141,30 @@ def generate_benefit(app, title, desc):
             return benefit
     return GENERIC_BENEFIT.get(app, GENERIC_BENEFIT["other"])
 
-# ── Cache laden uit bestaande data.json ───────────────────────────────────
-cache = {}  # key: (id, modified) → {"title": ..., "desc": ...}
+# ── Nederlandse statusvertaling ───────────────────────────────────────────
+STATUS_NL = {
+    "launched":  "Beschikbaar",
+    "cancelled": "Geannuleerd",
+    "unknown":   "Verwijderd uit roadmap",
+}
+
+# ── Bestaande data.json laden ─────────────────────────────────────────────
+prev_items = {}   # id → item (voor cache + vergelijking)
+cache = {}        # (id, modified) → {title, desc}  — alleen als is_dutch
+
 if os.path.exists("data.json"):
     try:
         with open("data.json", encoding="utf-8") as f:
             existing = json.load(f)
-        loaded = 0
-        skipped = 0
+        loaded = skipped = 0
         for item in existing.get("items", []):
-            cached_title = item.get("title", "")
-            cached_desc  = item.get("desc", "")
-            # Alleen in cache opnemen als de titel daadwerkelijk Nederlands is
-            if is_dutch(cached_title):
-                cache_key = (item["id"], item.get("modified", ""))
-                cache[cache_key] = {
-                    "title": cached_title,
-                    "desc":  cached_desc,
+            item_id  = item["id"]
+            modified = item.get("modified", "")
+            prev_items[item_id] = item
+            if is_dutch(item.get("title", "")):
+                cache[(item_id, modified)] = {
+                    "title": item["title"],
+                    "desc":  item.get("desc", ""),
                 }
                 loaded += 1
             else:
@@ -173,31 +175,70 @@ if os.path.exists("data.json"):
 else:
     print("Geen bestaande data.json — alles wordt vertaald")
 
-# ── CSV inlezen ───────────────────────────────────────────────────────────
+# ── Volledige CSV inlezen (alle statussen) ────────────────────────────────
 print("\nCSV inlezen...")
 with open("roadmap.csv", encoding="utf-8-sig") as f:
     raw = f.read()
 
 reader = csv.DictReader(io.StringIO(raw))
-rows = []
-for row in reader:
+all_csv_rows = list(reader)
+
+# Bouw een lookup van alle IDs in de CSV met hun huidige status
+csv_status_by_id = {}
+for row in all_csv_rows:
+    fid = int(row.get("Feature ID", 0) or 0)
+    if fid:
+        csv_status_by_id[fid] = row.get("Status", "").strip()
+
+# Filter op Worldwide + In Development / Rolling Out
+active_rows = []
+for row in all_csv_rows:
     status = row.get("Status", "").strip().lower()
     cloud  = row.get("Tags - Cloud instance", "")
     if status not in ("in development", "rolling out"):
         continue
     if "Worldwide (Standard Multi-Tenant)" not in cloud:
         continue
-    rows.append(row)
+    active_rows.append(row)
 
-print(f"{len(rows)} items gevonden in CSV\n")
+active_ids = {int(r.get("Feature ID", 0) or 0) for r in active_rows}
+print(f"{len(active_rows)} actieve items gevonden (Worldwide, In Development / Rolling Out)")
 
-# ── Verwerken en (indien nodig) vertalen ──────────────────────────────────
+# ── Verwijderde items detecteren ─────────────────────────────────────────
+# Items die vorige week in onze lijst stonden maar nu niet meer actief zijn
+removed = []
+for item_id, prev_item in prev_items.items():
+    if item_id not in active_ids:
+        # Zoek de huidige status op in de volledige CSV
+        raw_status = csv_status_by_id.get(item_id, "unknown").lower()
+        if "launch" in raw_status:
+            new_status = "launched"
+        elif "cancel" in raw_status:
+            new_status = "cancelled"
+        else:
+            new_status = "unknown"
+
+        removed.append({
+            "id":        item_id,
+            "title":     prev_item.get("title", ""),
+            "app":       prev_item.get("app", "other"),
+            "prodLabel": prev_item.get("prodLabel", ""),
+            "status":    new_status,
+            "statusNl":  STATUS_NL[new_status],
+        })
+        print(f"  → Verwijderd [{STATUS_NL[new_status]}]: {prev_item.get('title','')[:70]}")
+
+if removed:
+    print(f"\n{len(removed)} items zijn deze week gewijzigd naar Beschikbaar of Geannuleerd")
+else:
+    print("\nGeen items verwijderd uit de actieve lijst")
+
+# ── Verwerken en (indien nodig) vertalen ─────────────────────────────────
+print(f"\nVerwerken en vertalen...")
 items = []
-cached_count  = 0
-new_count     = 0
-retrans_count = 0
+cached_count = new_count = retrans_count = 0
 
-for i, row in enumerate(rows):
+for i, row in enumerate(active_rows):
     product  = row.get("Tags - Product", "")
     key      = app_key(product)
     title_en = row.get("Description", "").strip()
@@ -207,19 +248,17 @@ for i, row in enumerate(rows):
     cache_key = (item_id, modified)
 
     if cache_key in cache:
-        # In cache én gevalideerd als Nederlands → gebruik cache
         nl_title = cache[cache_key]["title"]
         nl_desc  = cache[cache_key]["desc"]
         cached_count += 1
-        print(f"  [{i+1}/{len(rows)}] ✓ Cache:    {title_en[:65]}")
+        print(f"  [{i+1}/{len(active_rows)}] ✓ Cache:    {title_en[:65]}")
     else:
-        # Nieuw item, gewijzigd item, of eerder niet correct vertaald
         if any(k[0] == item_id for k in cache):
             retrans_count += 1
-            print(f"  [{i+1}/{len(rows)}] ↺ Hertalen: {title_en[:65]}")
+            print(f"  [{i+1}/{len(active_rows)}] ↺ Hertalen: {title_en[:65]}")
         else:
             new_count += 1
-            print(f"  [{i+1}/{len(rows)}] ↻ Nieuw:    {title_en[:65]}")
+            print(f"  [{i+1}/{len(active_rows)}] ↻ Nieuw:    {title_en[:65]}")
         nl_title = translate(title_en)
         nl_desc  = translate(desc_en[:800])
         time.sleep(0.3)
@@ -243,15 +282,17 @@ for i, row in enumerate(rows):
         "actionLabel": action_label,
     })
 
-print(f"\nResultaat: {len(items)} items")
+print(f"\nResultaat: {len(items)} actieve items")
 print(f"  ✓ Uit cache:      {cached_count}")
 print(f"  ↻ Nieuw vertaald: {new_count}")
 print(f"  ↺ Hertaald:       {retrans_count}")
+print(f"  ⚑ Verwijderd:     {len(removed)}")
 
 result = {
     "generated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
     "count":     len(items),
-    "items":     items
+    "items":     items,
+    "removed":   removed,   # leeg array als niets verwijderd, anders lijst van deze week
 }
 
 with open("data.json", "w", encoding="utf-8") as f:
