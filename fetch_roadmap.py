@@ -1,9 +1,8 @@
 """
 Microsoft 365 Roadmap - fetch & verwerk
-- Haalt CSV op (al gedaan door workflow via curl → roadmap.csv)
 - Laadt bestaande vertalingen uit data.json als cache
-- Vertaalt ALLEEN items die nieuw of gewijzigd zijn t.o.v. de cache
-- Slaat alles op in data.json
+- Controleert of gecachede items daadwerkelijk Nederlands zijn
+- Vertaalt ALLEEN items die nieuw, gewijzigd, of nog niet correct vertaald zijn
 """
 
 import csv, json, io, datetime, re, time, os
@@ -25,6 +24,25 @@ def translate(text, retries=3):
             else:
                 print(f"    ⚠ Vertaling mislukt, origineel behouden: {e}")
                 return text
+
+# ── Nederlandse taaldetectie ──────────────────────────────────────────────
+# Woorden die typisch Nederlands zijn en niet voorkomen in Engels
+NL_INDICATORS = [
+    "de ", "het ", "een ", "van ", "voor ", "naar ", "met ", "zijn ", "worden ",
+    "kunnen ", "wordt ", "door ", "dat ", "dit ", "ook ", "heeft ", "niet ",
+    "maar ", "meer ", "om ", "als ", "bij ", "ze ", "ze ", "hun ", "over ",
+    "aan ", "er ", "ze ", "nog ", "al ", "uit ", "op ", "nu ", "in het ",
+    "waardoor", "waarmee", "waarbij", "hierdoor", "hiermee"
+]
+
+def is_dutch(text):
+    """Controleer of een tekst daadwerkelijk Nederlands is."""
+    if not text or len(text) < 10:
+        return False
+    text_lower = text.lower()
+    hits = sum(1 for word in NL_INDICATORS if word in text_lower)
+    # Minimaal 2 Nederlandse woorden gevonden = beschouwen als Nederlands
+    return hits >= 2
 
 # ── App-detectie ──────────────────────────────────────────────────────────
 APP_LABELS = {
@@ -129,25 +147,34 @@ def generate_benefit(app, title, desc):
     return GENERIC_BENEFIT.get(app, GENERIC_BENEFIT["other"])
 
 # ── Cache laden uit bestaande data.json ───────────────────────────────────
-cache = {}   # key: (id, modified) → {"title": ..., "desc": ...}
+cache = {}  # key: (id, modified) → {"title": ..., "desc": ...}
 if os.path.exists("data.json"):
     try:
         with open("data.json", encoding="utf-8") as f:
             existing = json.load(f)
+        loaded = 0
+        skipped = 0
         for item in existing.get("items", []):
-            cache_key = (item["id"], item.get("modified", ""))
-            cache[cache_key] = {
-                "title": item.get("title", ""),
-                "desc":  item.get("desc", ""),
-            }
-        print(f"Cache geladen: {len(cache)} eerder vertaalde items")
+            cached_title = item.get("title", "")
+            cached_desc  = item.get("desc", "")
+            # Alleen in cache opnemen als de titel daadwerkelijk Nederlands is
+            if is_dutch(cached_title):
+                cache_key = (item["id"], item.get("modified", ""))
+                cache[cache_key] = {
+                    "title": cached_title,
+                    "desc":  cached_desc,
+                }
+                loaded += 1
+            else:
+                skipped += 1
+        print(f"Cache geladen: {loaded} Nederlandse items, {skipped} overgeslagen (niet vertaald)")
     except Exception as e:
         print(f"Cache kon niet worden geladen: {e}")
 else:
-    print("Geen bestaande data.json gevonden — alles wordt vertaald")
+    print("Geen bestaande data.json — alles wordt vertaald")
 
 # ── CSV inlezen ───────────────────────────────────────────────────────────
-print("CSV inlezen...")
+print("\nCSV inlezen...")
 with open("roadmap.csv", encoding="utf-8-sig") as f:
     raw = f.read()
 
@@ -162,12 +189,13 @@ for row in reader:
         continue
     rows.append(row)
 
-print(f"{len(rows)} items gevonden in de CSV")
+print(f"{len(rows)} items gevonden in CSV\n")
 
-# ── Verwerken en vertalen ─────────────────────────────────────────────────
+# ── Verwerken en (indien nodig) vertalen ──────────────────────────────────
 items = []
-new_count = 0
-cached_count = 0
+cached_count  = 0
+new_count     = 0
+retrans_count = 0
 
 for i, row in enumerate(rows):
     product  = row.get("Tags - Product", "")
@@ -176,22 +204,25 @@ for i, row in enumerate(rows):
     desc_en  = row.get("Details", "").strip()
     item_id  = int(row.get("Feature ID", 0) or 0)
     modified = row.get("Last Modified", "").strip()
-
     cache_key = (item_id, modified)
 
     if cache_key in cache:
-        # Al vertaald en niet gewijzigd — gebruik de cache
+        # In cache én gevalideerd als Nederlands → gebruik cache
         nl_title = cache[cache_key]["title"]
         nl_desc  = cache[cache_key]["desc"]
         cached_count += 1
-        print(f"  [{i+1}/{len(rows)}] ✓ Cache: {title_en[:60]}")
+        print(f"  [{i+1}/{len(rows)}] ✓ Cache:    {title_en[:65]}")
     else:
-        # Nieuw of gewijzigd — vertalen
-        new_count += 1
-        print(f"  [{i+1}/{len(rows)}] ↻ Vertalen: {title_en[:60]}")
+        # Nieuw item, gewijzigd item, of eerder niet correct vertaald
+        if any(k[0] == item_id for k in cache):
+            retrans_count += 1
+            print(f"  [{i+1}/{len(rows)}] ↺ Hertalen: {title_en[:65]}")
+        else:
+            new_count += 1
+            print(f"  [{i+1}/{len(rows)}] ↻ Nieuw:    {title_en[:65]}")
         nl_title = translate(title_en)
         nl_desc  = translate(desc_en[:800])
-        time.sleep(0.3)   # voorkom rate limiting
+        time.sleep(0.3)
 
     action_key, action_label = classify_action(title_en, desc_en)
     benefit = generate_benefit(key, title_en, desc_en)
@@ -201,7 +232,7 @@ for i, row in enumerate(rows):
         "title":       nl_title,
         "desc":        nl_desc,
         "benefit":     benefit,
-        "status":      "rolling" if "rolling" in row.get("Status","").lower() else "dev",
+        "status":      "rolling" if "rolling" in row.get("Status", "").lower() else "dev",
         "app":         key,
         "prodLabel":   make_label(product, key),
         "added":       row.get("Added to Roadmap", "").strip(),
@@ -212,7 +243,10 @@ for i, row in enumerate(rows):
         "actionLabel": action_label,
     })
 
-print(f"\nKlaar: {len(items)} items — {cached_count} uit cache, {new_count} nieuw vertaald")
+print(f"\nResultaat: {len(items)} items")
+print(f"  ✓ Uit cache:      {cached_count}")
+print(f"  ↻ Nieuw vertaald: {new_count}")
+print(f"  ↺ Hertaald:       {retrans_count}")
 
 result = {
     "generated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -222,3 +256,5 @@ result = {
 
 with open("data.json", "w", encoding="utf-8") as f:
     json.dump(result, f, ensure_ascii=False, indent=2)
+
+print("\ndata.json opgeslagen ✓")
