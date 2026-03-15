@@ -3,255 +3,539 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Microsoft 365 Roadmap</title>
+<title>Microsoft 365 Roadmap — Wat staat er aan te komen?</title>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0ede8;
-    --text: #1a1916; --muted: #6b6860; --faint: #a09d97;
-    --border: rgba(0,0,0,0.08); --border-s: rgba(0,0,0,0.15);
-    --green-bg: #e6f4eb; --green-t: #1a6130;
-    --amber-bg: #fef3dc; --amber-t: #7a4f00;
-    --purple-bg: #eeebfd; --purple-t: #4a3aaa;
-    --gray-bg: #ebebeb;  --gray-t: #4a4a4a;
-    --blue-bg: #e6f0fd;  --blue-t: #1a4fa0;
-    --red-bg: #fdecea;   --red-t: #a02020;
-    --orange-bg: #fff0e6;--orange-t: #8c4300;
-    --teal-bg: #e0f4f1;  --teal-t: #0e6b5e;
-    --new-bg: #fff7e0;   --new-t: #7a5000;
-  }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+/* ── Reset & basisstijlen ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg: #f5f4f0; --surface: #ffffff; --surface2: #f0ede8;
+  --text: #1a1916; --muted: #5a5750; --faint: #7a7770;
+  --border: rgba(0,0,0,0.10); --border-s: rgba(0,0,0,0.20);
+  --green-bg: #e6f4eb; --green-t: #145228;
+  --amber-bg: #fef3dc; --amber-t: #5c3a00;
+  --purple-bg: #eeebfd; --purple-t: #3a2a8a;
+  --gray-bg: #e8e8e8;  --gray-t: #383838;
+  --blue-bg: #e6f0fd;  --blue-t: #143d82;
+  --red-bg: #fdecea;   --red-t: #7a1a1a;
+  --orange-bg: #fff0e6;--orange-t: #6b3200;
+  --teal-bg: #e0f4f1;  --teal-t: #0a5248;
+  --new-bg: #fff7e0;   --new-t: #5c3a00;
+  /* Actiekleur-tokens — ook gebruikt voor focus-ringen */
+  --c-none:  #1a7a45;
+  --c-admin: #b07000;
+  --c-user:  #1a4fa0;
+}
 
-  .hdr { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; position: sticky; top: 0; z-index: 10; }
-  .hdr-left h1 { font-size: 18px; font-weight: 600; }
-  .hdr-left p  { font-size: 13px; color: var(--muted); margin-top: 2px; }
-  #last-updated { font-size: 12px; color: var(--faint); background: var(--surface2); padding: 5px 12px; border-radius: 100px; white-space: nowrap; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.5;
+}
 
-  .main { max-width: 960px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+/* ── Toegankelijkheid: skip link ─────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 1rem;
+  background: var(--text);
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  z-index: 100;
+  text-decoration: none;
+}
+.skip-link:focus { left: 1rem; }
 
-  .filter-row { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  .filter-group { flex: 1; min-width: 180px; }
-  .filter-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 8px; }
-  .filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
+/* ── Focusstijlen (WCAG 2.4.7) ───────────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--blue-t);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
 
-  .fb { padding: 6px 15px; border-radius: 100px; border: 1px solid var(--border-s); background: var(--surface); color: var(--muted); font-family: inherit; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .12s; }
-  .fb:hover { background: var(--surface2); }
-  .fb.on { background: var(--text); color: #fff; border-color: transparent; }
+/* ── Header ──────────────────────────────────────────────────────────── */
+.hdr {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.hdr h1 { font-size: 1.25rem; font-weight: 700; color: var(--text); }
+.hdr-sub { font-size: .875rem; color: var(--muted); margin-top: 3px; }
+#last-updated {
+  font-size: .75rem;
+  color: var(--faint);
+  background: var(--surface2);
+  padding: 5px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  align-self: center;
+}
 
-  /* App-filterkleur als actief */
-  .fb.ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: transparent; }
-  .fb.ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
-  .fb.ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
-  .fb.ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
-  .fb.ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
-  .fb.ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: transparent; }
-  .fb.ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: transparent; }
-  .fb.ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: transparent; }
-  .fb.ao-viva       { background: var(--purple-bg); color: var(--purple-t); border-color: transparent; }
-  .fb.ao-edge       { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
-  .fb.ao-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
-  .fb.ao-exchange   { background: var(--teal-bg);   color: var(--teal-t);   border-color: transparent; }
-  .fb.ao-forms      { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
-  .fb.ao-intune     { background: var(--blue-bg);   color: var(--blue-t);   border-color: transparent; }
-  .fb.ao-entra      { background: var(--teal-bg);   color: var(--teal-t);   border-color: transparent; }
-  .fb.ao-planner    { background: var(--green-bg);  color: var(--green-t);  border-color: transparent; }
-  .fb.ao-other      { background: var(--gray-bg);   color: var(--gray-t);   border-color: transparent; }
+/* ── Hoofd-layout ────────────────────────────────────────────────────── */
+.main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 
-  .filter-bottom { display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem; }
-  .sort-group { display: flex; flex-direction: column; gap: 8px; }
-  select { padding: 6px 12px; border-radius: 100px; border: 1px solid var(--border-s); background: var(--surface); color: var(--text); font-family: inherit; font-size: 13px; cursor: pointer; outline: none; }
+/* ── Filtergebied ────────────────────────────────────────────────────── */
+.filters { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
 
-  .divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+.filter-group { display: flex; flex-direction: column; gap: .5rem; }
+.filter-group label {
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--faint);
+}
+.filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
 
-  .legend { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 1.5rem; font-size: 12px; color: var(--muted); }
-  .action-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
-  .action-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .a-none  .action-dot { background: #2d9e5f; } .a-none  .action-lbl { color: var(--green-t); }
-  .a-admin .action-dot { background: #e09b00; } .a-admin .action-lbl { color: var(--amber-t); }
-  .a-user  .action-dot { background: #3a7bd5; } .a-user  .action-lbl { color: var(--blue-t); }
+/* Filterknoppen — role="radio" gedrag via aria-pressed */
+.fb {
+  padding: 7px 16px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border-s);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background .12s, color .12s, border-color .12s;
+  line-height: 1.3;
+}
+.fb:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
+.fb[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
 
-  .stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
-  .stat-pill { font-size: 12px; padding: 4px 12px; border-radius: 100px; }
-  .s-total   { background: var(--surface2); color: var(--muted); }
-  .s-rolling { background: var(--amber-bg); color: var(--amber-t); }
-  .s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
-  .s-new     { background: var(--new-bg);   color: var(--new-t); }
+/* Actie-filterkleuren actief */
+.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none); }
+.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); }
+.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user); }
 
-  .sec-hdr { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--faint); margin: 2rem 0 .75rem; padding-bottom: 8px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-  .sec-count { font-size: 11px; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
+/* App-filterkleuren actief */
+.fb[aria-pressed="true"].ao-copilot    { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
+.fb[aria-pressed="true"].ao-teams      { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-outlook    { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-excel      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
+.fb[aria-pressed="true"].ao-word       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-powerpoint { background: var(--orange-bg); color: var(--orange-t); border-color: var(--orange-t); }
+.fb[aria-pressed="true"].ao-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  border-color: var(--amber-t); }
+.fb[aria-pressed="true"].ao-purview    { background: var(--red-bg);    color: var(--red-t);    border-color: var(--red-t); }
+.fb[aria-pressed="true"].ao-viva       { background: var(--purple-bg); color: var(--purple-t); border-color: var(--purple-t); }
+.fb[aria-pressed="true"].ao-edge       { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-exchange   { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
+.fb[aria-pressed="true"].ao-forms      { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
+.fb[aria-pressed="true"].ao-intune     { background: var(--blue-bg);   color: var(--blue-t);   border-color: var(--blue-t); }
+.fb[aria-pressed="true"].ao-entra      { background: var(--teal-bg);   color: var(--teal-t);   border-color: var(--teal-t); }
+.fb[aria-pressed="true"].ao-planner    { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t); }
+.fb[aria-pressed="true"].ao-other      { background: var(--gray-bg);   color: var(--gray-t);   border-color: var(--gray-t); }
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 10px; transition: border-color .15s; }
-  .card:hover { border-color: var(--border-s); }
-  .card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 9px; }
-  .card-title { font-size: 15px; font-weight: 600; line-height: 1.4; margin-bottom: 8px; }
-  .card-benefit { font-size: 13px; color: var(--text); line-height: 1.65; margin-bottom: 10px; padding: 10px 13px; background: var(--surface2); border-radius: 8px; border-left: 3px solid var(--border-s); }
-  .card-benefit-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--faint); margin-bottom: 4px; }
-  details { margin-bottom: 12px; }
-  summary { font-size: 12px; color: var(--faint); cursor: pointer; user-select: none; list-style: none; display: inline-flex; align-items: center; gap: 5px; }
-  summary::-webkit-details-marker { display: none; }
-  summary::before { content: '▶'; font-size: 9px; transition: transform .15s; }
-  details[open] summary::before { transform: rotate(90deg); }
-  .card-desc { font-size: 12px; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
-  .card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
-  .card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-  .release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; background: var(--surface2); color: var(--text); padding: 4px 11px; border-radius: 100px; }
-  .date-info { font-size: 11px; color: var(--faint); }
+.filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.filter-row-2 .filter-group { flex: 1; min-width: 160px; }
 
-  /* Wijzigingen-blok */
-  .changes-block { margin-top: 3rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .changes-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; background: var(--surface); border: none; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 600; color: var(--text); gap: 12px; }
-  .changes-toggle:hover { background: var(--surface2); }
-  .changes-toggle-left { display: flex; align-items: center; gap: 10px; }
-  .changes-chevron { font-size: 10px; color: var(--faint); transition: transform .2s; }
-  .changes-chevron.open { transform: rotate(180deg); }
-  .changes-inner { display: none; padding: 0 1.25rem 1.25rem; background: var(--surface); }
-  .changes-inner.open { display: block; }
-  .changes-subtitle { font-size: 12px; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); }
-  .rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; flex-wrap: wrap; }
-  .rcard:last-child { margin-bottom: 0; }
-  .rcard-title { font-size: 13px; font-weight: 500; flex: 1; min-width: 180px; }
-  .rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+/* Meer filters inklapbaar */
+.more-filters-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: .8125rem;
+  color: var(--blue-t);
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+.more-filters-toggle:hover { text-decoration-color: var(--blue-t); }
+.more-filters-toggle .chevron { font-size: .625rem; transition: transform .15s; display: inline-block; }
+.more-filters-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+.more-filters-section { display: none; }
+.more-filters-section.open { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: .25rem; }
 
-  /* Pills */
-  .pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
-  .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
-  .p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-excel      { background: var(--green-bg);  color: var(--green-t); }
-  .p-word       { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
-  .p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
-  .p-purview    { background: var(--red-bg);    color: var(--red-t); }
-  .p-viva       { background: var(--purple-bg); color: var(--purple-t); }
-  .p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
-  .p-forms      { background: var(--green-bg);  color: var(--green-t); }
-  .p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
-  .p-planner    { background: var(--green-bg);  color: var(--green-t); }
-  .p-other      { background: var(--gray-bg);   color: var(--gray-t); }
-  .p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
-  .p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
-  .p-launched   { background: var(--green-bg);  color: var(--green-t); }
-  .p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
-  .p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
+/* Sorteren */
+.sort-row { display: flex; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.sort-row label { font-size: .8125rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
+select {
+  padding: 6px 12px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border-s);
+  background: var(--surface);
+  color: var(--text);
+  font-family: inherit;
+  font-size: .875rem;
+  cursor: pointer;
+}
+select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
-  .new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; background: var(--new-bg); color: var(--new-t); padding: 3px 9px; border-radius: 100px; white-space: nowrap; }
-  .ms-link { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; color: var(--blue-t); text-decoration: none; padding: 4px 10px; border-radius: 100px; background: var(--blue-bg); transition: opacity .12s; white-space: nowrap; }
-  .ms-link:hover { opacity: .75; }
+/* ── Resultaten-balk (aria-live) ─────────────────────────────────────── */
+.stats-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
+.stat-pill { font-size: .75rem; padding: 4px 12px; border-radius: 100px; font-weight: 500; }
+.s-total   { background: var(--surface2); color: var(--muted); }
+.s-rolling { background: var(--amber-bg); color: var(--amber-t); }
+.s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
+.s-new     { background: var(--new-bg);   color: var(--new-t); }
 
-  .state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-  .state-box h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
-  .spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 14px; }
-  #empty-msg.show { display: block; }
+/* ── Sectiekoptekst ──────────────────────────────────────────────────── */
+.sec-hdr {
+  font-size: .6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--faint);
+  margin: 2rem 0 .75rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.sec-count { font-size: .6875rem; background: var(--surface2); padding: 2px 9px; border-radius: 100px; }
+
+/* ── Kaart ───────────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 12px;
+  transition: border-color .15s, box-shadow .15s;
+}
+.card:hover { border-color: var(--border-s); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+
+/* Actie-accentlijn linksboven */
+.card.act-none  { border-left: 4px solid var(--c-none); }
+.card.act-admin { border-left: 4px solid var(--c-admin); }
+.card.act-user  { border-left: 4px solid var(--c-user); }
+
+.card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+.card-title { font-size: 1rem; font-weight: 600; line-height: 1.4; margin-bottom: 10px; color: var(--text); }
+
+/* Voordeel — prominent */
+.card-benefit {
+  font-size: .9375rem;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 12px;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border-radius: 8px;
+}
+.card-benefit-label {
+  font-size: .6875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--faint);
+  margin-bottom: 5px;
+  display: block;
+}
+
+/* Actie-blok */
+.card-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .875rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 12px;
+}
+.card-action .action-icon { font-size: 1rem; line-height: 1; }
+.card-action.act-none  { background: #e8f7ee; color: var(--c-none); }
+.card-action.act-admin { background: #fef3dc; color: var(--c-admin); }
+.card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
+
+/* Technische details inklapbaar */
+details { margin-bottom: 12px; }
+summary {
+  font-size: .8125rem;
+  color: var(--blue-t);
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 0;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+summary:hover { text-decoration-color: var(--blue-t); }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; font-size: .5625rem; transition: transform .15s; }
+details[open] summary::before { transform: rotate(90deg); }
+.card-desc { font-size: .8125rem; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: 6px; }
+
+/* Kaartvoetregel */
+.card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.release-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .8125rem;
+  font-weight: 600;
+  background: var(--surface2);
+  color: var(--text);
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+.date-info { font-size: .75rem; color: var(--faint); }
+
+/* ── Pills ────────────────────────────────────────────────────────────── */
+.pill { font-size: .6875rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; white-space: nowrap; flex-shrink: 0; }
+.p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
+.p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
+.p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
+.p-excel      { background: var(--green-bg);  color: var(--green-t); }
+.p-word       { background: var(--blue-bg);   color: var(--blue-t); }
+.p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
+.p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
+.p-purview    { background: var(--red-bg);    color: var(--red-t); }
+.p-viva       { background: var(--purple-bg); color: var(--purple-t); }
+.p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
+.p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
+.p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
+.p-forms      { background: var(--green-bg);  color: var(--green-t); }
+.p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
+.p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
+.p-planner    { background: var(--green-bg);  color: var(--green-t); }
+.p-other      { background: var(--gray-bg);   color: var(--gray-t); }
+.p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
+.p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
+.p-launched   { background: var(--green-bg);  color: var(--green-t); }
+.p-cancelled  { background: var(--red-bg);    color: var(--red-t); }
+.p-unknown    { background: var(--gray-bg);   color: var(--gray-t); }
+
+.new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: .6875rem; font-weight: 700; background: var(--new-bg); color: var(--new-t); padding: 4px 9px; border-radius: 100px; white-space: nowrap; }
+
+.ms-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: .8125rem;
+  color: var(--blue-t);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--blue-bg);
+  transition: opacity .12s;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.ms-link:hover { opacity: .8; }
+
+/* ── Wijzigingen-blok ─────────────────────────────────────────────────── */
+.changes-block { margin-top: 3rem; border: 1.5px solid var(--border); border-radius: 14px; overflow: hidden; }
+.changes-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: .9375rem;
+  font-weight: 600;
+  color: var(--text);
+  gap: 12px;
+}
+.changes-toggle:hover { background: var(--surface2); }
+.changes-toggle-left { display: flex; align-items: center; gap: 10px; }
+.changes-chevron { font-size: .625rem; color: var(--faint); transition: transform .2s; }
+.changes-chevron.open { transform: rotate(180deg); }
+.changes-inner { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
+.changes-inner.open { display: block; }
+.changes-subtitle { font-size: .8125rem; color: var(--muted); margin-bottom: 1rem; padding-top: .75rem; border-top: 1px solid var(--border); line-height: 1.6; }
+.rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: 8px; margin-bottom: 7px; flex-wrap: wrap; }
+.rcard:last-child { margin-bottom: 0; }
+.rcard-title { font-size: .875rem; font-weight: 500; flex: 1; min-width: 180px; }
+.rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+/* ── Laad- en leegstatus ─────────────────────────────────────────────── */
+.state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
+.state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: .5rem; }
+.spinner { width: 32px; height: 32px; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: .9375rem; }
+#empty-msg.show { display: block; }
+
+/* ── Schermlezer hulptekst ───────────────────────────────────────────── */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ── Responsief ──────────────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hdr { padding: 1rem; }
+  .main { padding: 1.25rem 1rem 4rem; }
+  .filters { padding: 1.1rem; }
+  .card { padding: 1rem 1.1rem; }
+}
 </style>
 </head>
 <body>
 
-<div class="hdr">
-  <div class="hdr-left">
-    <h1>Microsoft 365 Roadmap</h1>
-    <p>In ontwikkeling &amp; Wordt uitgerold — live via Microsoft</p>
-  </div>
-  <span id="last-updated">Laden…</span>
-</div>
+<!-- Toegankelijkheid: sla navigatie over naar hoofdinhoud -->
+<a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
 
+<header role="banner">
+  <div class="hdr">
+    <div>
+      <h1>Microsoft 365 — Aankomende updates</h1>
+      <p class="hdr-sub">Wat staat er aan te komen en wat betekent dat voor uw organisatie?</p>
+    </div>
+    <div id="last-updated" aria-live="polite" aria-atomic="true">Laden…</div>
+  </div>
+</header>
+
+<main id="main-content">
 <div class="main">
-  <div class="filter-row">
+
+  <!-- ── Filters ──────────────────────────────────────────────────────── -->
+  <section class="filters" aria-label="Filters">
+
+    <!-- 1. Product — meest relevant voor organisaties -->
     <div class="filter-group">
-      <div class="filter-label">Status</div>
-      <div class="filter-bar" id="sf">
-        <button class="fb on" data-s="all">Alles</button>
-        <button class="fb" data-s="rolling">🟡 Wordt uitgerold</button>
-        <button class="fb" data-s="dev">🔵 In ontwikkeling</button>
+      <label id="lbl-app">Kies een product</label>
+      <div class="filter-bar" id="apf" role="group" aria-labelledby="lbl-app">
+        <button class="fb" data-p="all" aria-pressed="true">Alle producten</button>
+        <!-- Dynamisch gevuld op basis van data.json -->
       </div>
     </div>
+
+    <!-- 2. Actie nodig — primaire organisatievraag -->
     <div class="filter-group">
-      <div class="filter-label">Nieuw / Al bekend</div>
-      <div class="filter-bar" id="nf">
-        <button class="fb on" data-n="all">Alles</button>
-        <button class="fb" data-n="new">⭐ Nieuw deze week</button>
-        <button class="fb" data-n="known">Al bekend</button>
+      <label id="lbl-act">Is er actie nodig?</label>
+      <div class="filter-bar" role="group" aria-labelledby="lbl-act">
+        <button class="fb" id="act-all"   data-act="all"   aria-pressed="true">Alles</button>
+        <button class="fb" id="act-none"  data-act="none"  aria-pressed="false">
+          <span aria-hidden="true">🟢</span> Gaat automatisch
+        </button>
+        <button class="fb" id="act-admin" data-act="admin" aria-pressed="false">
+          <span aria-hidden="true">🟡</span> IT-beheerder moet iets doen
+        </button>
+        <button class="fb" id="act-user"  data-act="user"  aria-pressed="false">
+          <span aria-hidden="true">🔵</span> Medewerker kan zelf instellen
+        </button>
       </div>
+    </div>
+
+    <!-- 3. Sorteren + Status inline -->
+    <div class="filter-row-2">
+      <div class="filter-group">
+        <label id="lbl-status">Status</label>
+        <div class="filter-bar" id="sf" role="group" aria-labelledby="lbl-status">
+          <button class="fb" data-s="all"     aria-pressed="true">Alles</button>
+          <button class="fb" data-s="rolling" aria-pressed="false">🟡 Wordt uitgerold</button>
+          <button class="fb" data-s="dev"     aria-pressed="false">🔵 In ontwikkeling</button>
+        </div>
+      </div>
+      <div class="filter-group" style="max-width:280px">
+        <label for="sort-select">Sorteren op</label>
+        <div class="sort-row">
+          <select id="sort-select" onchange="render()">
+            <option value="release-asc">Releasedatum: nieuw → oud</option>
+            <option value="release-desc">Releasedatum: oud → nieuw</option>
+            <option value="modified-desc">Laatst gewijzigd</option>
+            <option value="status">Status</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Meer filters (ingeklapt) -->
+    <div>
+      <button class="more-filters-toggle" aria-expanded="false" aria-controls="more-filters" onclick="toggleMoreFilters(this)">
+        Meer filteropties <span class="chevron" aria-hidden="true">▼</span>
+      </button>
+      <div id="more-filters" class="more-filters-section" role="group" aria-label="Aanvullende filters">
+        <div class="filter-row-2">
+          <div class="filter-group">
+            <label id="lbl-af">Toegevoegd aan roadmap</label>
+            <div class="filter-bar" id="af" role="group" aria-labelledby="lbl-af">
+              <button class="fb" data-a="all" aria-pressed="false">Alle</button>
+              <button class="fb" data-a="aw"  aria-pressed="true">Deze week</button>
+              <button class="fb" data-a="am"  aria-pressed="false">Deze maand</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <label id="lbl-mf">Gewijzigd op roadmap</label>
+            <div class="filter-bar" id="mf" role="group" aria-labelledby="lbl-mf">
+              <button class="fb" data-m="all" aria-pressed="false">Alle</button>
+              <button class="fb" data-m="mw"  aria-pressed="true">Deze week</button>
+              <button class="fb" data-m="mm"  aria-pressed="false">Deze maand</button>
+            </div>
+          </div>
+        </div>
+        <div class="filter-group">
+          <label id="lbl-nf">Bekendheid</label>
+          <div class="filter-bar" id="nf" role="group" aria-labelledby="lbl-nf">
+            <button class="fb" data-n="all"   aria-pressed="true">Alles</button>
+            <button class="fb" data-n="new"   aria-pressed="false">⭐ Nieuw deze week</button>
+            <button class="fb" data-n="known" aria-pressed="false">Al bekend</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── Resultaatinformatie (schermlezer + visueel) ─────────────────── -->
+  <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"></div>
+
+  <!-- ── Kaarten ────────────────────────────────────────────────────── -->
+  <div id="root" role="feed" aria-busy="true" aria-label="Roadmap-updates">
+    <div class="state-box">
+      <div class="spinner" role="progressbar" aria-label="Updates worden geladen"></div>
+      <h2>Updates ophalen…</h2>
+      <p>Even geduld, de actuele roadmap wordt opgehaald.</p>
     </div>
   </div>
+  <p id="empty-msg" role="status">Geen updates gevonden voor deze filterinstellingen. Probeer een andere combinatie.</p>
 
-  <div class="filter-row">
-    <div class="filter-group">
-      <div class="filter-label">Toegevoegd aan roadmap</div>
-      <div class="filter-bar" id="af">
-        <button class="fb" data-a="all">Alle</button>
-        <button class="fb on" data-a="aw">Deze week</button>
-        <button class="fb" data-a="am">Deze maand</button>
-      </div>
-    </div>
-    <div class="filter-group">
-      <div class="filter-label">Gewijzigd</div>
-      <div class="filter-bar" id="mf">
-        <button class="fb" data-m="all">Alle</button>
-        <button class="fb on" data-m="mw">Deze week</button>
-        <button class="fb" data-m="mm">Deze maand</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="filter-bottom">
-    <div style="flex:1">
-      <div class="filter-label">Applicatie</div>
-      <!-- Dynamisch gevuld op basis van aanwezige apps in data.json -->
-      <div class="filter-bar" id="apf">
-        <button class="fb on" data-p="all">Alle apps</button>
-      </div>
-    </div>
-    <div class="sort-group">
-      <div class="filter-label">Sorteren op</div>
-      <select id="sort-select" onchange="render()">
-        <option value="release-asc">Verwachte release: nieuw → oud</option>
-        <option value="release-desc">Verwachte release: oud → nieuw</option>
-        <option value="modified-desc">Laatst gewijzigd</option>
-        <option value="status">Status</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <div class="legend">
-    <span class="pill p-rolling">Wordt uitgerold</span>
-    <span class="pill p-dev">In ontwikkeling</span>
-    <span class="new-badge">⭐ Nieuw</span>
-    &nbsp;·&nbsp;
-    <span class="action-badge a-none"><span class="action-dot"></span><span class="action-lbl">Geen actie nodig</span></span>
-    <span class="action-badge a-admin"><span class="action-dot"></span><span class="action-lbl">IT-beheerder actie vereist</span></span>
-    <span class="action-badge a-user"><span class="action-dot"></span><span class="action-lbl">Gebruiker kan instellen</span></span>
-  </div>
-
-  <div id="stats-bar" class="stats-bar"></div>
-  <div id="root"><div class="state-box"><div class="spinner"></div><h3>Roadmap ophalen…</h3></div></div>
-  <div id="empty-msg">Geen items gevonden voor deze filters.</div>
-
+  <!-- ── Wijzigingen deze week ──────────────────────────────────────── -->
   <div id="changes-block" class="changes-block" style="display:none">
-    <button class="changes-toggle" onclick="toggleChanges()">
+    <button class="changes-toggle"
+            aria-expanded="false"
+            aria-controls="changes-inner"
+            onclick="toggleChanges(this)">
       <div class="changes-toggle-left">
-        <span id="changes-icon">⚑</span>
+        <span id="changes-icon" aria-hidden="true">⚑</span>
         <span id="changes-title">Wijzigingen deze week</span>
       </div>
-      <span class="changes-chevron" id="changes-chevron">▼</span>
+      <span class="changes-chevron" aria-hidden="true" id="changes-chevron">▼</span>
     </button>
-    <div class="changes-inner" id="changes-inner">
-      <p class="changes-subtitle">Deze items stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.</p>
+    <div id="changes-inner" class="changes-inner" role="region" aria-label="Wijzigingen deze week">
+      <p class="changes-subtitle">
+        Deze updates stonden vorige week nog in de lijst maar zijn nu beschikbaar gekomen of geannuleerd door Microsoft.
+      </p>
       <div id="changes-cards"></div>
     </div>
   </div>
+
 </div>
+</main>
 
 <script>
-var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-// Alle bekende apps met label en klasse
 var APP_META = {
   copilot:    { label:"Copilot",     cls:"p-copilot" },
   teams:      { label:"Teams",       cls:"p-teams" },
@@ -271,46 +555,51 @@ var APP_META = {
   planner:    { label:"Planner",     cls:"p-planner" },
   other:      { label:"Overig",      cls:"p-other" },
 };
-
-// Gewenste volgorde van app-knoppen
 var APP_ORDER = ["copilot","teams","outlook","excel","word","powerpoint","sharepoint","purview","viva","edge","onedrive","exchange","forms","intune","entra","planner","other"];
 
-var MAANDEN = {
-  "january":"januari","february":"februari","march":"maart","april":"april",
-  "may":"mei","june":"juni","july":"juli","august":"augustus",
-  "september":"september","october":"oktober","november":"november","december":"december"
-};
+var ACTION_LABEL = { none:"Gaat automatisch", admin:"IT-beheerder actie", user:"Medewerker instellen" };
+var ACTION_ICON  = { none:"🟢", admin:"🟡", user:"🔵" };
+
+var MAANDEN = { "january":"januari","february":"februari","march":"maart","april":"april","may":"mei","june":"juni","july":"juli","august":"augustus","september":"september","october":"oktober","november":"november","december":"december" };
 function nlRelease(s) {
   if (!s) return "–";
   return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
-    function(m){ return MAANDEN[m.toLowerCase()] || m; }).replace(/\bCY(\d{4})\b/, "$1");
+    function(m){ return MAANDEN[m.toLowerCase()]||m; }).replace(/\bCY(\d{4})\b/,"$1");
 }
 
-var SEEN_SET = new Set(JSON.parse(localStorage.getItem("m365_seen_ids") || "[]"));
+var SEEN_SET = new Set(JSON.parse(localStorage.getItem("m365_seen_ids")||"[]"));
 var ALL_ITEMS = [];
-var fS="all", fN="all", fA="aw", fM="mw", fP="all";
+var fS="all", fN="all", fA="aw", fM="mw", fP="all", fAct="all";
 
-var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,
-              january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
-
+var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,september:8,october:9,november:10,december:11};
 function parseRelease(s) {
   if (!s) return new Date(9999,0,1);
   var m = s.toLowerCase().match(/(\w+)\s+(\d{4})/);
-  if (m && MONTHS[m[1]] !== undefined) return new Date(parseInt(m[2]), MONTHS[m[1]], 1);
-  return new Date(9999,0,1);
+  return (m && MONTHS[m[1]] !== undefined) ? new Date(parseInt(m[2]), MONTHS[m[1]], 1) : new Date(9999,0,1);
 }
-function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/86400000 : 9999; }
+function daysAgo(d) { return d ? (Date.now()-new Date(d).getTime())/864e5 : 9999; }
 function fmtDate(d) { return d ? new Date(d).toLocaleDateString("nl-NL",{day:"numeric",month:"short",year:"numeric"}) : ""; }
 function esc(s)     { return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
-function toggleChanges() {
-  var inner   = document.getElementById("changes-inner");
-  var chevron = document.getElementById("changes-chevron");
-  inner.classList.toggle("open");
-  chevron.classList.toggle("open");
+// ── Meer filters toggle ──────────────────────────────────────────────────
+function toggleMoreFilters(btn) {
+  var panel = document.getElementById("more-filters");
+  var open  = btn.getAttribute("aria-expanded") === "true";
+  btn.setAttribute("aria-expanded", open ? "false" : "true");
+  panel.classList.toggle("open", !open);
 }
 
-// Eenmalig de app-knoppen aanmaken op basis van alle aanwezige apps
+// ── Wijzigingen toggle ───────────────────────────────────────────────────
+function toggleChanges(btn) {
+  var panel   = document.getElementById("changes-inner");
+  var chevron = document.getElementById("changes-chevron");
+  var open    = btn.getAttribute("aria-expanded") === "true";
+  btn.setAttribute("aria-expanded", open ? "false" : "true");
+  panel.classList.toggle("open", !open);
+  chevron.classList.toggle("open", !open);
+}
+
+// ── App-filter opbouwen ──────────────────────────────────────────────────
 function buildAppFilter(items) {
   var presentApps = new Set(items.map(function(i){ return i.app; }));
   var bar = document.getElementById("apf");
@@ -320,37 +609,38 @@ function buildAppFilter(items) {
     var btn = document.createElement("button");
     btn.className = "fb";
     btn.setAttribute("data-p", key);
+    btn.setAttribute("aria-pressed", "false");
     btn.textContent = APP_META[key].label + " (0)";
     bar.appendChild(btn);
   });
   bar.addEventListener("click", function(e){
     var t = e.target.closest("[data-p]"); if (!t) return;
-    document.querySelectorAll("#apf .fb").forEach(function(b){ b.className="fb"; });
+    document.querySelectorAll("#apf .fb").forEach(function(b){ b.setAttribute("aria-pressed","false"); b.className="fb"; });
     var v = t.getAttribute("data-p");
-    t.classList.add("on");
-    if (v !== "all") t.classList.add("ao-" + v);
+    t.setAttribute("aria-pressed","true");
+    if (v !== "all") t.classList.add("ao-"+v);
     fP = v;
     render();
   });
 }
 
-// Pas aantallen per app-knop aan op basis van actieve filters (zonder app-filter zelf)
+// ── App-aantallen bijwerken ──────────────────────────────────────────────
 function updateAppCounts(filteredWithoutApp) {
   var counts = {};
-  filteredWithoutApp.forEach(function(i){ counts[i.app] = (counts[i.app] || 0) + 1; });
+  filteredWithoutApp.forEach(function(i){ counts[i.app]=(counts[i.app]||0)+1; });
   var allBtn = document.querySelector("#apf [data-p='all']");
-  if (allBtn) allBtn.textContent = "Alle apps (" + filteredWithoutApp.length + ")";
+  if (allBtn) allBtn.textContent = "Alle producten (" + filteredWithoutApp.length + ")";
   document.querySelectorAll("#apf [data-p]").forEach(function(btn){
-    var key = btn.getAttribute("data-p");
-    if (key === "all") return;
-    var n = counts[key] || 0;
+    var key = btn.getAttribute("data-p"); if (key==="all") return;
+    var n = counts[key]||0;
     btn.textContent = APP_META[key].label + " (" + n + ")";
-    btn.style.display = (n === 0 && fP !== key) ? "none" : "";
+    btn.style.display = (n===0 && fP!==key) ? "none" : "";
   });
 }
 
+// ── Data laden ───────────────────────────────────────────────────────────
 fetch("data.json")
-  .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+  .then(function(r){ if(!r.ok) throw new Error("HTTP "+r.status); return r.json(); })
   .then(function(data) {
     var currentIds = data.items.map(function(i){ return i.id; });
     ALL_ITEMS = data.items.map(function(item){
@@ -360,154 +650,161 @@ fetch("data.json")
 
     var generated = new Date(data.generated);
     document.getElementById("last-updated").textContent =
-      "Bijgewerkt: " + generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"}) +
-      " · " + data.count + " items";
+      "Bijgewerkt: " + generated.toLocaleDateString("nl-NL",{day:"numeric",month:"long"}) + " · " + data.count + " items";
 
-    // App-filter dynamisch opbouwen
+    document.getElementById("root").setAttribute("aria-busy","false");
     buildAppFilter(ALL_ITEMS);
 
-    // Wijzigingen-blok
+    // Wijzigingen
     var removed = data.removed || [];
     if (removed.length > 0) {
       document.getElementById("changes-block").style.display = "block";
-      document.getElementById("changes-title").textContent =
-        "Wijzigingen deze week (" + removed.length + " item" + (removed.length !== 1 ? "s" : "") + ")";
-      document.getElementById("changes-icon").textContent =
-        removed.some(function(r){ return r.status === "launched"; }) ? "✅" : "⚑";
+      document.getElementById("changes-title").textContent = "Wijzigingen deze week (" + removed.length + " item" + (removed.length!==1?"s":"") + ")";
+      document.getElementById("changes-icon").textContent = removed.some(function(r){return r.status==="launched";}) ? "✅" : "⚑";
       document.getElementById("changes-cards").innerHTML = removed.map(function(r){
-        var meta   = APP_META[r.app] || APP_META.other;
-        var stCls  = "p-" + r.status;
+        var meta = APP_META[r.app]||APP_META.other;
         return '<div class="rcard">' +
-          '<span class="pill ' + meta.cls + '">' + esc(r.prodLabel || meta.label) + '</span>' +
-          '<span class="rcard-title">' + esc(r.title) + '</span>' +
+          '<span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>' +
+          '<span class="rcard-title">'+esc(r.title)+'</span>' +
           '<div class="rcard-right">' +
-            '<span class="pill ' + stCls + '">' + esc(r.statusNl) + '</span>' +
-            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + r.id + '</a>' +
-          '</div>' +
-        '</div>';
+            '<span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>' +
+            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+'<span class="sr-only">Bekijk op Microsoft roadmap,</span> ID '+r.id+'</a>' +
+          '</div></div>';
       }).join("");
     }
 
     render();
   })
   .catch(function(err){
+    document.getElementById("root").setAttribute("aria-busy","false");
     document.getElementById("root").innerHTML =
-      '<div class="state-box"><h3>Kon data.json niet laden</h3>' +
-      '<p style="margin-top:.5rem;font-size:13px">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
-      '<p style="margin-top:.75rem;font-size:11px;color:var(--faint)">' + esc(String(err)) + '</p></div>';
+      '<div class="state-box" role="alert"><h2>Kon de updates niet laden</h2>' +
+      '<p style="margin-top:.5rem">Controleer of de GitHub Actions workflow succesvol gedraaid heeft.</p>' +
+      '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">'+esc(String(err))+'</p></div>';
   });
 
+// ── Kaart HTML ────────────────────────────────────────────────────────────
 function cardHTML(item) {
-  var cfg = { rolling:{label:"Wordt uitgerold",cls:"p-rolling"}, dev:{label:"In ontwikkeling",cls:"p-dev"} }[item.status];
-  var meta = APP_META[item.app] || APP_META.other;
+  var cfg  = { rolling:{label:"Wordt uitgerold",cls:"p-rolling"}, dev:{label:"In ontwikkeling",cls:"p-dev"} }[item.status];
+  var meta = APP_META[item.app]||APP_META.other;
   var dateRow = "";
-  if (item.added)    dateRow += '<span class="date-info">📅 Toegevoegd: ' + fmtDate(item.added) + '</span>';
+  if (item.added)    dateRow += '<span class="date-info"><span class="sr-only">Toegevoegd aan roadmap:</span> 📅 '+fmtDate(item.added)+'</span>';
   if (item.modified && item.modified !== item.added)
-    dateRow += '<span class="date-info" style="margin-left:10px">✏️ Gewijzigd: ' + fmtDate(item.modified) + '</span>';
-  return '<div class="card">' +
+    dateRow += '<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
+  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">' +
     '<div class="card-pills">' +
-      '<span class="pill ' + meta.cls + '">' + esc(item.prodLabel || meta.label) + '</span>' +
-      '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
-      (item.isNew ? '<span class="new-badge">⭐ Nieuw</span>' : '') +
+      '<span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
+      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>' +
+      (item.isNew ? '<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>' : '') +
     '</div>' +
-    '<div class="card-title">' + esc(item.title) + '</div>' +
-    '<div class="card-benefit"><div class="card-benefit-label">Voordeel voor de organisatie</div>' + esc(item.benefit) + '</div>' +
-    (item.desc ? '<details><summary>Technische details</summary><div class="card-desc">' + esc(item.desc) + '</div></details>' : '') +
+    '<h2 class="card-title">'+esc(item.title)+'</h2>' +
+    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+esc(item.benefit)+'</div>' +
+    '<div class="card-action act-'+item.action+'" role="img" aria-label="Actie: '+esc(ACTION_LABEL[item.action]||item.actionLabel)+'">' +
+      '<span class="action-icon" aria-hidden="true">'+ACTION_ICON[item.action]+'</span>' +
+      '<span>'+esc(item.actionLabel)+'</span>' +
+    '</div>' +
+    (item.desc ? '<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>' : '') +
     '<div class="card-foot">' +
       '<div class="card-foot-left">' +
-        '<span class="release-badge">🚀 ' + esc(nlRelease(item.release)) + '</span>' +
-        '<span class="action-badge a-' + item.action + '"><span class="action-dot"></span><span class="action-lbl">' + esc(item.actionLabel) + '</span></span>' +
-        (dateRow ? '<span style="display:flex;align-items:center;gap:4px">' + dateRow + '</span>' : '') +
+        '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Verwachte release:</span>'+esc(nlRelease(item.release))+'</span>' +
+        (dateRow ? '<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>' : '') +
       '</div>' +
-      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '" target="_blank" rel="noopener">' + LINK_ICON + ' ID ' + item.id + '</a>' +
+      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
     '</div>' +
-  '</div>';
+  '</article>';
 }
 
+// ── Render ────────────────────────────────────────────────────────────────
 function render() {
   if (!ALL_ITEMS.length) return;
   var sort = document.getElementById("sort-select").value;
 
-  // Filter zonder app-filter voor de tellingen per app-knop
-  var filteredWithoutApp = ALL_ITEMS.filter(function(i){
+  // Zonder app-filter voor aantallen per knop
+  var withoutApp = ALL_ITEMS.filter(function(i){
     if (fS !== "all" && i.status !== fS) return false;
     if (fN === "new"   && !i.isNew)      return false;
     if (fN === "known" &&  i.isNew)      return false;
+    if (fAct !== "all" && i.action !== fAct) return false;
     if (fA !== "all" || fM !== "all") {
-      var days = (fA === "aw" || fM === "mw") ? 7 : 31;
-      var addOk = fA !== "all" && daysAgo(i.added)    <= days;
-      var modOk = fM !== "all" && daysAgo(i.modified) <= days;
-      if (!addOk && !modOk) return false;
+      var days = (fA==="aw"||fM==="mw") ? 7 : 31;
+      if (!(fA!=="all" && daysAgo(i.added)<=days) && !(fM!=="all" && daysAgo(i.modified)<=days)) return false;
     }
     return true;
   });
-  updateAppCounts(filteredWithoutApp);
+  updateAppCounts(withoutApp);
 
-  var filtered = ALL_ITEMS.filter(function(i){
-    if (fS !== "all" && i.status !== fS) return false;
-    if (fN === "new"   && !i.isNew)      return false;
-    if (fN === "known" &&  i.isNew)      return false;
-    if (fA !== "all" || fM !== "all") {
-      var days = (fA === "aw" || fM === "mw") ? 7 : 31;
-      var addOk = fA !== "all" && daysAgo(i.added)    <= days;
-      var modOk = fM !== "all" && daysAgo(i.modified) <= days;
-      if (!addOk && !modOk) return false;
-    }
-    if (fP !== "all" && i.app !== fP) return false;
-    return true;
-  });
+  var filtered = withoutApp.filter(function(i){ return fP==="all" || i.app===fP; });
 
   filtered = filtered.slice().sort(function(a,b){
-    if (sort === "status")        return (a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
-    if (sort === "modified-desc") return new Date(b.modified||0)-new Date(a.modified||0);
-    var da = parseRelease(a.release), db = parseRelease(b.release);
-    return sort === "release-desc" ? da-db : db-da;
+    if (sort==="status")        return (a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
+    if (sort==="modified-desc") return new Date(b.modified||0)-new Date(a.modified||0);
+    var da=parseRelease(a.release), db=parseRelease(b.release);
+    return sort==="release-desc" ? da-db : db-da;
   });
 
   var rolling  = filtered.filter(function(i){return i.status==="rolling";});
   var dev      = filtered.filter(function(i){return i.status==="dev";});
   var newCount = filtered.filter(function(i){return i.isNew;}).length;
 
+  var statsText = filtered.length + " updates — " +
+    rolling.length + " worden uitgerold, " +
+    dev.length + " in ontwikkeling" +
+    (newCount ? ", " + newCount + " nieuw deze week" : "");
+
   document.getElementById("stats-bar").innerHTML =
-    '<span class="stat-pill s-total">'   + filtered.length + " items</span>" +
-    '<span class="stat-pill s-rolling">' + rolling.length  + " wordt uitgerold</span>" +
-    '<span class="stat-pill s-dev">'     + dev.length      + " in ontwikkeling</span>" +
-    (newCount ? '<span class="stat-pill s-new">⭐ ' + newCount + " nieuw</span>" : "");
+    '<span class="stat-pill s-total">'+filtered.length+' updates</span>' +
+    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>' +
+    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>' +
+    (newCount ? '<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>' : '');
 
   var emptyEl = document.getElementById("empty-msg");
   var rootEl  = document.getElementById("root");
   if (!filtered.length) { rootEl.innerHTML=""; emptyEl.classList.add("show"); return; }
   emptyEl.classList.remove("show");
 
-  if (sort === "status") {
+  if (sort==="status") {
     function sec(items, emoji, lbl) {
       if (!items.length) return "";
-      return '<div><div class="sec-hdr"><span>' + emoji + ' ' + lbl +
-        '</span><span class="sec-count">' + items.length + '</span></div>' +
-        items.map(cardHTML).join("") + '</div>';
+      return '<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(cardHTML).join("")+'</section>';
     }
     rootEl.innerHTML = sec(rolling,"🟡","Wordt uitgerold") + sec(dev,"🔵","In ontwikkeling");
   } else {
-    rootEl.innerHTML = '<div><div class="sec-hdr"><span>' + filtered.length +
-      ' items</span><span class="sec-count">' + filtered.length + '</span></div>' +
-      filtered.map(cardHTML).join("") + '</div>';
+    rootEl.innerHTML = '<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(cardHTML).join("")+'</section>';
   }
 }
 
-function wire(barId, prop, attr, cls) {
-  document.getElementById(barId).addEventListener("click", function(e){
+// ── Generieke filter-wiring (met aria-pressed) ────────────────────────────
+function wire(barId, prop, attr) {
+  var bar = document.getElementById(barId);
+  if (!bar) return;
+  bar.addEventListener("click", function(e){
     var t = e.target.closest("["+attr+"]"); if(!t) return;
-    document.querySelectorAll("#"+barId+" .fb").forEach(function(b){b.className="fb";});
+    bar.querySelectorAll(".fb").forEach(function(b){ b.setAttribute("aria-pressed","false"); b.className="fb"; });
     var v = t.getAttribute(attr);
-    t.classList.add("on");
-    if (cls && v !== "all") t.classList.add(cls+v);
-    if      (prop==="fS") fS=v; else if (prop==="fN") fN=v;
-    else if (prop==="fA") fA=v; else if (prop==="fM") fM=v;
+    t.setAttribute("aria-pressed","true");
+    if      (prop==="fS")   fS=v;
+    else if (prop==="fN")   fN=v;
+    else if (prop==="fA")   fA=v;
+    else if (prop==="fM")   fM=v;
     render();
   });
 }
-wire("sf","fS","data-s"); wire("nf","fN","data-n");
-wire("af","fA","data-a"); wire("mf","fM","data-m");
+wire("sf","fS","data-s");
+wire("nf","fN","data-n");
+wire("af","fA","data-a");
+wire("mf","fM","data-m");
+
+// Actie-filter apart omdat het een extra variabele gebruikt
+document.querySelectorAll("[data-act]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    document.querySelectorAll("[data-act]").forEach(function(b){ b.setAttribute("aria-pressed","false"); b.className="fb"; });
+    var v = btn.getAttribute("data-act");
+    btn.setAttribute("aria-pressed","true");
+    if (v==="none")  btn.classList.add(""); // kleur via data-act in CSS
+    fAct = v;
+    render();
+  });
+});
 </script>
 </body>
 </html>
