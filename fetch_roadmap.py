@@ -40,16 +40,46 @@ def is_dutch(text):
     return sum(1 for w in NL_INDICATORS if w in text_lower) >= 2
 
 # ── App-detectie ──────────────────────────────────────────────────────────
+# Volgorde is belangrijk: specifieker eerst
 APP_LABELS = {
-    "copilot": "Copilot", "teams": "Teams", "outlook": "Outlook",
-    "excel": "Excel", "word": "Word", "powerpoint": "PowerPoint",
-    "sharepoint": "SharePoint", "purview": "Purview", "other": "Overig"
+    "copilot":    "Copilot",
+    "teams":      "Teams",
+    "outlook":    "Outlook",
+    "excel":      "Excel",
+    "word":       "Word",
+    "powerpoint": "PowerPoint",
+    "sharepoint": "SharePoint",
+    "purview":    "Purview",
+    "viva":       "Viva",
+    "edge":       "Edge",
+    "onedrive":   "OneDrive",
+    "exchange":   "Exchange",
+    "forms":      "Forms",
+    "intune":     "Intune",
+    "entra":      "Entra",
+    "planner":    "Planner",
+    "other":      "Overig",
 }
 
 def app_key(p):
     p = p.lower()
-    for k in ["copilot","teams","outlook","excel","word","powerpoint","sharepoint","purview"]:
-        if k in p: return k
+    # Specifieke checks eerst om overlap te voorkomen
+    if "copilot"     in p: return "copilot"
+    if "teams"       in p: return "teams"
+    if "outlook"     in p: return "outlook"
+    if "excel"       in p: return "excel"
+    if "word"        in p: return "word"
+    if "powerpoint"  in p: return "powerpoint"
+    if "sharepoint"  in p: return "sharepoint"
+    if "purview"     in p: return "purview"
+    if "viva"        in p: return "viva"
+    if "edge"        in p: return "edge"
+    if "onedrive"    in p: return "onedrive"
+    if "exchange"    in p: return "exchange"
+    if "forms"       in p: return "forms"
+    if "intune"      in p: return "intune"
+    if "entra"       in p: return "entra"
+    if "planner"     in p: return "planner"
     return "other"
 
 def make_label(product, key):
@@ -80,46 +110,59 @@ def classify_action(title, desc):
 
 # ── Voordeel-omschrijvingen ───────────────────────────────────────────────
 BENEFIT_TEMPLATES = {
-    ("copilot", "agent mode"):    "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
-    ("copilot", "search"):        "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
-    ("copilot", "memory"):        "Copilot onthoudt context over gesprekken heen, waardoor antwoorden persoonlijker en relevanter worden.",
-    ("copilot", "prompt"):        "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
-    ("copilot", "watermark"):     "Organisaties kunnen AI-gegenereerde inhoud herkennen en traceren, wat bijdraagt aan transparantie en naleving.",
-    ("copilot", "video"):         "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
-    ("copilot", "image"):         "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
-    ("copilot", "email"):         "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
-    ("copilot", "dashboard"):     "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
-    ("copilot", "tuning"):        "Organisaties kunnen Copilot afstemmen op eigen processen en schrijfstijl, waardoor de AI direct bruikbare output levert.",
-    ("teams",   "meeting"):       "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
-    ("teams",   "recap"):         "Medewerkers die een vergadering gemist hebben, lezen de samenvatting in plaats van de volledige opname terug te kijken.",
-    ("teams",   "channel"):       "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
-    ("teams",   "chat"):          "Communiceren in Teams gaat soepeler door verbeterde berichtopties en slimmere weergaven.",
-    ("teams",   "room"):          "Vergaderzalen worden beter benut en medewerkers reserveren ruimtes eenvoudiger.",
-    ("teams",   "phone"):         "Medewerkers met meerdere rollen of regio's zijn makkelijker bereikbaar via meerdere telefoonnummers.",
-    ("teams",   "transcri"):      "Vergaderingen worden automatisch getranscribeerd, wat terugzoeken en naleving eenvoudiger maakt.",
-    ("teams",   "skill"):         "Medewerkers vinden sneller de juiste collega voor een vraag of samenwerking dankzij zichtbare vaardigheidspagina's.",
-    ("teams",   "notif"):         "Medewerkers houden zelf controle over welke meldingen ze ontvangen, wat afleiding vermindert.",
-    ("teams",   "webinar"):       "Grote online evenementen zijn beter te organiseren en bij te wonen via Teams.",
-    ("teams",   "external"):      "Samenwerken met externe partijen blijft veilig en controleerbaar voor de IT-afdeling.",
-    ("teams",   "annotation"):    "Deelnemers kunnen direct op gedeelde inhoud reageren zonder dat de presentator het bureaublad hoeft te delen.",
-    ("outlook", "calendar"):      "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
-    ("outlook", "copilot"):       "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
-    ("outlook", "draft"):         "Medewerkers kunnen e-mails of vergaderverzoeken starten en later afmaken, zonder dat er iets per ongeluk verstuurd wordt.",
-    ("outlook", "rule"):          "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
-    ("sharepoint", "template"):   "Nieuwe intranetpagina's aanmaken gaat sneller en ziet er meteen professioneel uit, zonder grafisch ontwerper.",
-    ("sharepoint", "agent"):      "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
-    ("sharepoint", "news"):       "Organisatienieuws delen via het intranet gaat sneller en eenvoudiger.",
-    ("sharepoint", "brand"):      "De huisstijl van het intranet is consistent en centraal beheerbaar door de IT-afdeling.",
-    ("sharepoint", "governance"): "Beheerders houden beter overzicht over toegang en beveiliging van SharePoint-inhoud.",
-    ("purview",  "dlp"):          "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
-    ("purview",  "insider"):      "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
-    ("purview",  "label"):        "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
-    ("purview",  "ediscovery"):   "Juridische onderzoeken verlopen sneller door beter overzicht over bewaard materiaal.",
-    ("purview",  "risk"):         "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
-    ("word",     "agent"):        "Documenten opstellen, samenvatten en verbeteren gaat sneller doordat Copilot direct in Word meewerkt.",
-    ("excel",    "copilot"):      "Spreadsheetanalyses die vroeger uren kostten, zijn straks een kwestie van minuten.",
-    ("powerpoint","agent"):       "Presentaties aanpassen gaat sneller doordat Copilot opdrachten opvolgt terwijl de huisstijl behouden blijft.",
-    ("powerpoint","copilot"):     "Medewerkers maken sneller aansprekende presentaties, ook zonder uitgebreide presentatievaardigheden.",
+    ("copilot",    "agent mode"):   "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+    ("copilot",    "search"):       "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+    ("copilot",    "memory"):       "Copilot onthoudt context over gesprekken heen, waardoor antwoorden persoonlijker en relevanter worden.",
+    ("copilot",    "prompt"):       "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+    ("copilot",    "watermark"):    "Organisaties kunnen AI-gegenereerde inhoud herkennen en traceren, wat bijdraagt aan transparantie en naleving.",
+    ("copilot",    "video"):        "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+    ("copilot",    "image"):        "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+    ("copilot",    "email"):        "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
+    ("copilot",    "dashboard"):    "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+    ("copilot",    "tuning"):       "Organisaties kunnen Copilot afstemmen op eigen processen en schrijfstijl, waardoor de AI direct bruikbare output levert.",
+    ("teams",      "meeting"):      "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+    ("teams",      "recap"):        "Medewerkers die een vergadering gemist hebben, lezen de samenvatting in plaats van de volledige opname terug te kijken.",
+    ("teams",      "channel"):      "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
+    ("teams",      "chat"):         "Communiceren in Teams gaat soepeler door verbeterde berichtopties en slimmere weergaven.",
+    ("teams",      "room"):         "Vergaderzalen worden beter benut en medewerkers reserveren ruimtes eenvoudiger.",
+    ("teams",      "phone"):        "Medewerkers met meerdere rollen of regio's zijn makkelijker bereikbaar via meerdere telefoonnummers.",
+    ("teams",      "transcri"):     "Vergaderingen worden automatisch getranscribeerd, wat terugzoeken en naleving eenvoudiger maakt.",
+    ("teams",      "skill"):        "Medewerkers vinden sneller de juiste collega voor een vraag of samenwerking dankzij zichtbare vaardigheidspagina's.",
+    ("teams",      "notif"):        "Medewerkers houden zelf controle over welke meldingen ze ontvangen, wat afleiding vermindert.",
+    ("teams",      "webinar"):      "Grote online evenementen zijn beter te organiseren en bij te wonen via Teams.",
+    ("teams",      "external"):     "Samenwerken met externe partijen blijft veilig en controleerbaar voor de IT-afdeling.",
+    ("teams",      "annotation"):   "Deelnemers kunnen direct op gedeelde inhoud reageren zonder dat de presentator het bureaublad hoeft te delen.",
+    ("outlook",    "calendar"):     "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
+    ("outlook",    "copilot"):      "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+    ("outlook",    "draft"):        "Medewerkers kunnen e-mails of vergaderverzoeken starten en later afmaken, zonder dat er iets per ongeluk verstuurd wordt.",
+    ("outlook",    "rule"):         "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
+    ("sharepoint", "template"):     "Nieuwe intranetpagina's aanmaken gaat sneller en ziet er meteen professioneel uit, zonder grafisch ontwerper.",
+    ("sharepoint", "agent"):        "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
+    ("sharepoint", "news"):         "Organisatienieuws delen via het intranet gaat sneller en eenvoudiger.",
+    ("sharepoint", "brand"):        "De huisstijl van het intranet is consistent en centraal beheerbaar door de IT-afdeling.",
+    ("sharepoint", "governance"):   "Beheerders houden beter overzicht over toegang en beveiliging van SharePoint-inhoud.",
+    ("purview",    "dlp"):          "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+    ("purview",    "insider"):      "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
+    ("purview",    "label"):        "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
+    ("purview",    "ediscovery"):   "Juridische onderzoeken verlopen sneller door beter overzicht over bewaard materiaal.",
+    ("purview",    "risk"):         "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
+    ("word",       "agent"):        "Documenten opstellen, samenvatten en verbeteren gaat sneller doordat Copilot direct in Word meewerkt.",
+    ("excel",      "copilot"):      "Spreadsheetanalyses die vroeger uren kostten, zijn straks een kwestie van minuten.",
+    ("powerpoint", "agent"):        "Presentaties aanpassen gaat sneller doordat Copilot opdrachten opvolgt terwijl de huisstijl behouden blijft.",
+    ("powerpoint", "copilot"):      "Medewerkers maken sneller aansprekende presentaties, ook zonder uitgebreide presentatievaardigheden.",
+    ("viva",       "insight"):      "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
+    ("viva",       "glint"):        "Medewerkersfeedback wordt sneller verzameld en geanalyseerd, zodat de organisatie gericht kan verbeteren.",
+    ("viva",       "engage"):       "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+    ("viva",       "copilot"):      "Managers en HR krijgen AI-inzichten over Copilot-adoptie en medewerkerservaringen.",
+    ("edge",       "copilot"):      "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
+    ("edge",       "security"):     "Organisaties kunnen browsersessies beter beveiligen en gevoelige data beschermen tegen lekken.",
+    ("onedrive",   "sync"):         "Bestanden synchroniseren betrouwbaarder en medewerkers zien sneller wat er mis gaat.",
+    ("exchange",   "moderat"):      "E-mailgoedkeuring werkt nu ook op mobiel, waardoor moderatoren overal bereikbaar zijn.",
+    ("forms",      "copilot"):      "Enquêtes en formulieren opstellen gaat sneller doordat Copilot inhoud en analyses automatisch genereert.",
+    ("intune",     "compliance"):   "IT-beheerders kunnen apparaten beter en consistenter beveiligen via centrale beleidsregels.",
+    ("entra",      "account"):      "Medewerkers die toegang kwijt zijn kunnen veiliger herstellen zonder IT-tussenkomst.",
+    ("entra",      "app"):          "IT-beheerders kunnen apps sneller en veiliger beheren, inclusief tijdelijk blokkeren.",
+    ("planner",    "task"):         "Taken en projecten zijn beter te overzien en bij te houden voor teams.",
 }
 
 GENERIC_BENEFIT = {
@@ -131,6 +174,14 @@ GENERIC_BENEFIT = {
     "word":       "Documenten maken en bewerken in Word gaat sneller en gemakkelijker.",
     "excel":      "Werken met data in Excel wordt slimmer en toegankelijker voor alle medewerkers.",
     "powerpoint": "Presentaties maken in PowerPoint gaat sneller, ook zonder uitgebreide vaardigheden.",
+    "viva":       "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
+    "edge":       "Browsen wordt veiliger en productiever met nieuwe Edge-functies.",
+    "onedrive":   "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder en gebruiksvriendelijker.",
+    "exchange":   "E-mailbeheer en -beveiliging wordt verbeterd voor de hele organisatie.",
+    "forms":      "Enquêtes en formulieren zijn sneller te maken en te analyseren.",
+    "intune":     "Apparaatbeheer en beveiliging worden eenvoudiger en consistenter voor IT-beheerders.",
+    "entra":      "Identiteits- en toegangsbeheer wordt veiliger en makkelijker te beheren.",
+    "planner":    "Taakoverzicht en samenwerking in projecten worden verbeterd.",
     "other":      "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
 }
 
@@ -149,8 +200,8 @@ STATUS_NL = {
 }
 
 # ── Bestaande data.json laden ─────────────────────────────────────────────
-prev_items = {}   # id → item (voor cache + vergelijking)
-cache = {}        # (id, modified) → {title, desc}  — alleen als is_dutch
+prev_items = {}
+cache = {}
 
 if os.path.exists("data.json"):
     try:
@@ -169,13 +220,13 @@ if os.path.exists("data.json"):
                 loaded += 1
             else:
                 skipped += 1
-        print(f"Cache geladen: {loaded} Nederlandse items, {skipped} overgeslagen (niet vertaald)")
+        print(f"Cache geladen: {loaded} Nederlandse items, {skipped} overgeslagen")
     except Exception as e:
         print(f"Cache kon niet worden geladen: {e}")
 else:
     print("Geen bestaande data.json — alles wordt vertaald")
 
-# ── Volledige CSV inlezen (alle statussen) ────────────────────────────────
+# ── Volledige CSV inlezen ─────────────────────────────────────────────────
 print("\nCSV inlezen...")
 with open("roadmap.csv", encoding="utf-8-sig") as f:
     raw = f.read()
@@ -183,14 +234,12 @@ with open("roadmap.csv", encoding="utf-8-sig") as f:
 reader = csv.DictReader(io.StringIO(raw))
 all_csv_rows = list(reader)
 
-# Bouw een lookup van alle IDs in de CSV met hun huidige status
 csv_status_by_id = {}
 for row in all_csv_rows:
     fid = int(row.get("Feature ID", 0) or 0)
     if fid:
         csv_status_by_id[fid] = row.get("Status", "").strip()
 
-# Filter op Worldwide + In Development / Rolling Out
 active_rows = []
 for row in all_csv_rows:
     status = row.get("Status", "").strip().lower()
@@ -202,14 +251,12 @@ for row in all_csv_rows:
     active_rows.append(row)
 
 active_ids = {int(r.get("Feature ID", 0) or 0) for r in active_rows}
-print(f"{len(active_rows)} actieve items gevonden (Worldwide, In Development / Rolling Out)")
+print(f"{len(active_rows)} actieve items gevonden")
 
-# ── Verwijderde items detecteren ─────────────────────────────────────────
-# Items die vorige week in onze lijst stonden maar nu niet meer actief zijn
+# ── Verwijderde items detecteren ──────────────────────────────────────────
 removed = []
 for item_id, prev_item in prev_items.items():
     if item_id not in active_ids:
-        # Zoek de huidige status op in de volledige CSV
         raw_status = csv_status_by_id.get(item_id, "unknown").lower()
         if "launch" in raw_status:
             new_status = "launched"
@@ -217,7 +264,6 @@ for item_id, prev_item in prev_items.items():
             new_status = "cancelled"
         else:
             new_status = "unknown"
-
         removed.append({
             "id":        item_id,
             "title":     prev_item.get("title", ""),
@@ -226,14 +272,12 @@ for item_id, prev_item in prev_items.items():
             "status":    new_status,
             "statusNl":  STATUS_NL[new_status],
         })
-        print(f"  → Verwijderd [{STATUS_NL[new_status]}]: {prev_item.get('title','')[:70]}")
+        print(f"  → [{STATUS_NL[new_status]}] {prev_item.get('title','')[:70]}")
 
-if removed:
-    print(f"\n{len(removed)} items zijn deze week gewijzigd naar Beschikbaar of Geannuleerd")
-else:
-    print("\nGeen items verwijderd uit de actieve lijst")
+if not removed:
+    print("Geen items verwijderd uit de actieve lijst")
 
-# ── Verwerken en (indien nodig) vertalen ─────────────────────────────────
+# ── Verwerken en vertalen ─────────────────────────────────────────────────
 print(f"\nVerwerken en vertalen...")
 items = []
 cached_count = new_count = retrans_count = 0
@@ -251,7 +295,7 @@ for i, row in enumerate(active_rows):
         nl_title = cache[cache_key]["title"]
         nl_desc  = cache[cache_key]["desc"]
         cached_count += 1
-        print(f"  [{i+1}/{len(active_rows)}] ✓ Cache:    {title_en[:65]}")
+        print(f"  [{i+1}/{len(active_rows)}] ✓ {title_en[:65]}")
     else:
         if any(k[0] == item_id for k in cache):
             retrans_count += 1
@@ -292,7 +336,7 @@ result = {
     "generated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
     "count":     len(items),
     "items":     items,
-    "removed":   removed,   # leeg array als niets verwijderd, anders lijst van deze week
+    "removed":   removed,
 }
 
 with open("data.json", "w", encoding="utf-8") as f:
