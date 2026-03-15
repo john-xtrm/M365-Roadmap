@@ -1,27 +1,32 @@
-import csv, json, io, datetime, re, time
+"""
+Microsoft 365 Roadmap - fetch & verwerk
+- Haalt CSV op (al gedaan door workflow via curl → roadmap.csv)
+- Laadt bestaande vertalingen uit data.json als cache
+- Vertaalt ALLEEN items die nieuw of gewijzigd zijn t.o.v. de cache
+- Slaat alles op in data.json
+"""
+
+import csv, json, io, datetime, re, time, os
 from deep_translator import GoogleTranslator
 
 translator = GoogleTranslator(source="en", target="nl")
 
 def translate(text, retries=3):
-    """Vertaal tekst naar Nederlands, met automatische herpoging bij fouten."""
     if not text or not text.strip():
         return text
     for attempt in range(retries):
         try:
-            # Google Translate heeft een limiet van ~5000 tekens per aanroep
-            if len(text) > 4800:
-                text = text[:4800] + "…"
-            result = translator.translate(text)
+            chunk = text[:4800]
+            result = translator.translate(chunk)
             return result if result else text
         except Exception as e:
             if attempt < retries - 1:
-                time.sleep(2)
+                time.sleep(3)
             else:
-                print(f"  Vertaling mislukt, origineel behouden: {e}")
+                print(f"    ⚠ Vertaling mislukt, origineel behouden: {e}")
                 return text
 
-# ── App-detectie ───────────────────────────────────────────────────────────
+# ── App-detectie ──────────────────────────────────────────────────────────
 APP_LABELS = {
     "copilot": "Copilot", "teams": "Teams", "outlook": "Outlook",
     "excel": "Excel", "word": "Word", "powerpoint": "PowerPoint",
@@ -38,7 +43,7 @@ def make_label(product, key):
     label = product.split(",")[0].strip().replace("Microsoft ", "").split("(")[0].strip()
     return label if label and len(label) <= 30 else APP_LABELS.get(key, "Overig")
 
-# ── Actie-classificatie ────────────────────────────────────────────────────
+# ── Actie-classificatie ───────────────────────────────────────────────────
 ADMIN_PATTERNS = [
     r"admin", r"tenant", r"policy", r"governance", r"powershell",
     r"it pro", r"configure", r"admin center", r"compliance",
@@ -57,10 +62,10 @@ def classify_action(title, desc):
     for p in ADMIN_PATTERNS:
         if re.search(p, text): return "admin", "IT-beheerder actie vereist"
     for p in USER_PATTERNS:
-        if re.search(p, text): return "user",  "Gebruiker kan instellen"
+        if re.search(p, text): return "user", "Gebruiker kan instellen"
     return "none", "Automatisch beschikbaar"
 
-# ── Voordeel-omschrijving ──────────────────────────────────────────────────
+# ── Voordeel-omschrijvingen ───────────────────────────────────────────────
 BENEFIT_TEMPLATES = {
     ("copilot", "agent mode"):    "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
     ("copilot", "search"):        "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
@@ -123,7 +128,25 @@ def generate_benefit(app, title, desc):
             return benefit
     return GENERIC_BENEFIT.get(app, GENERIC_BENEFIT["other"])
 
-# ── Hoofdscript ────────────────────────────────────────────────────────────
+# ── Cache laden uit bestaande data.json ───────────────────────────────────
+cache = {}   # key: (id, modified) → {"title": ..., "desc": ...}
+if os.path.exists("data.json"):
+    try:
+        with open("data.json", encoding="utf-8") as f:
+            existing = json.load(f)
+        for item in existing.get("items", []):
+            cache_key = (item["id"], item.get("modified", ""))
+            cache[cache_key] = {
+                "title": item.get("title", ""),
+                "desc":  item.get("desc", ""),
+            }
+        print(f"Cache geladen: {len(cache)} eerder vertaalde items")
+    except Exception as e:
+        print(f"Cache kon niet worden geladen: {e}")
+else:
+    print("Geen bestaande data.json gevonden — alles wordt vertaald")
+
+# ── CSV inlezen ───────────────────────────────────────────────────────────
 print("CSV inlezen...")
 with open("roadmap.csv", encoding="utf-8-sig") as f:
     raw = f.read()
@@ -139,41 +162,57 @@ for row in reader:
         continue
     rows.append(row)
 
-print(f"{len(rows)} items gevonden, vertaling starten...")
+print(f"{len(rows)} items gevonden in de CSV")
 
+# ── Verwerken en vertalen ─────────────────────────────────────────────────
 items = []
+new_count = 0
+cached_count = 0
+
 for i, row in enumerate(rows):
-    product = row.get("Tags - Product", "")
-    key     = app_key(product)
-    title   = row.get("Description", "").strip()
-    desc    = row.get("Details", "").strip()
+    product  = row.get("Tags - Product", "")
+    key      = app_key(product)
+    title_en = row.get("Description", "").strip()
+    desc_en  = row.get("Details", "").strip()
+    item_id  = int(row.get("Feature ID", 0) or 0)
+    modified = row.get("Last Modified", "").strip()
 
-    # Vertaal titel en beschrijving naar Nederlands
-    print(f"  [{i+1}/{len(rows)}] Vertalen: {title[:60]}...")
-    nl_title = translate(title)
-    nl_desc  = translate(desc[:800])   # max 800 tekens voor de beschrijving
+    cache_key = (item_id, modified)
 
-    action_key, action_label = classify_action(title, desc)
-    benefit = generate_benefit(key, title, desc)
+    if cache_key in cache:
+        # Al vertaald en niet gewijzigd — gebruik de cache
+        nl_title = cache[cache_key]["title"]
+        nl_desc  = cache[cache_key]["desc"]
+        cached_count += 1
+        print(f"  [{i+1}/{len(rows)}] ✓ Cache: {title_en[:60]}")
+    else:
+        # Nieuw of gewijzigd — vertalen
+        new_count += 1
+        print(f"  [{i+1}/{len(rows)}] ↻ Vertalen: {title_en[:60]}")
+        nl_title = translate(title_en)
+        nl_desc  = translate(desc_en[:800])
+        time.sleep(0.3)   # voorkom rate limiting
+
+    action_key, action_label = classify_action(title_en, desc_en)
+    benefit = generate_benefit(key, title_en, desc_en)
 
     items.append({
-        "id":          int(row.get("Feature ID", 0) or 0),
+        "id":          item_id,
         "title":       nl_title,
         "desc":        nl_desc,
         "benefit":     benefit,
-        "status":      "rolling" if "rolling" in status else "dev",
+        "status":      "rolling" if "rolling" in row.get("Status","").lower() else "dev",
         "app":         key,
         "prodLabel":   make_label(product, key),
         "added":       row.get("Added to Roadmap", "").strip(),
-        "modified":    row.get("Last Modified", "").strip(),
+        "modified":    modified,
         "release":     row.get("Release", "").strip(),
         "preview":     row.get("Preview", "").strip(),
         "action":      action_key,
         "actionLabel": action_label,
     })
 
-    # Kleine pauze om rate limiting te voorkomen
-    time.sleep(0.3)
+print(f"\nKlaar: {len(items)} items — {cached_count} uit cache, {new_count} nieuw vertaald")
 
 result = {
     "generated": datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -183,5 +222,3 @@ result = {
 
 with open("data.json", "w", encoding="utf-8") as f:
     json.dump(result, f, ensure_ascii=False, indent=2)
-
-print(f"\nKlaar: {len(items)} items opgeslagen in data.json")
