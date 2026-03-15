@@ -310,26 +310,19 @@ function toggleChanges() {
   chevron.classList.toggle("open");
 }
 
-// Bouw app-filterbalke dynamisch op basis van welke apps er echt in de data zitten
+// Eenmalig de app-knoppen aanmaken op basis van alle aanwezige apps
 function buildAppFilter(items) {
   var presentApps = new Set(items.map(function(i){ return i.app; }));
   var bar = document.getElementById("apf");
-
-  // Verwijder alles behalve "Alle apps"
   while (bar.children.length > 1) bar.removeChild(bar.lastChild);
-
   APP_ORDER.forEach(function(key) {
     if (!presentApps.has(key)) return;
-    var meta = APP_META[key];
-    var count = items.filter(function(i){ return i.app === key; }).length;
     var btn = document.createElement("button");
     btn.className = "fb";
     btn.setAttribute("data-p", key);
-    btn.textContent = meta.label + " (" + count + ")";
+    btn.textContent = APP_META[key].label + " (0)";
     bar.appendChild(btn);
   });
-
-  // Herverbind click-handler
   bar.addEventListener("click", function(e){
     var t = e.target.closest("[data-p]"); if (!t) return;
     document.querySelectorAll("#apf .fb").forEach(function(b){ b.className="fb"; });
@@ -338,6 +331,21 @@ function buildAppFilter(items) {
     if (v !== "all") t.classList.add("ao-" + v);
     fP = v;
     render();
+  });
+}
+
+// Pas aantallen per app-knop aan op basis van actieve filters (zonder app-filter zelf)
+function updateAppCounts(filteredWithoutApp) {
+  var counts = {};
+  filteredWithoutApp.forEach(function(i){ counts[i.app] = (counts[i.app] || 0) + 1; });
+  var allBtn = document.querySelector("#apf [data-p='all']");
+  if (allBtn) allBtn.textContent = "Alle apps (" + filteredWithoutApp.length + ")";
+  document.querySelectorAll("#apf [data-p]").forEach(function(btn){
+    var key = btn.getAttribute("data-p");
+    if (key === "all") return;
+    var n = counts[key] || 0;
+    btn.textContent = APP_META[key].label + " (" + n + ")";
+    btn.style.display = (n === 0 && fP !== key) ? "none" : "";
   });
 }
 
@@ -419,6 +427,22 @@ function cardHTML(item) {
 function render() {
   if (!ALL_ITEMS.length) return;
   var sort = document.getElementById("sort-select").value;
+
+  // Filter zonder app-filter voor de tellingen per app-knop
+  var filteredWithoutApp = ALL_ITEMS.filter(function(i){
+    if (fS !== "all" && i.status !== fS) return false;
+    if (fN === "new"   && !i.isNew)      return false;
+    if (fN === "known" &&  i.isNew)      return false;
+    if (fA !== "all" || fM !== "all") {
+      var days = (fA === "aw" || fM === "mw") ? 7 : 31;
+      var addOk = fA !== "all" && daysAgo(i.added)    <= days;
+      var modOk = fM !== "all" && daysAgo(i.modified) <= days;
+      if (!addOk && !modOk) return false;
+    }
+    return true;
+  });
+  updateAppCounts(filteredWithoutApp);
+
   var filtered = ALL_ITEMS.filter(function(i){
     if (fS !== "all" && i.status !== fS) return false;
     if (fN === "new"   && !i.isNew)      return false;
