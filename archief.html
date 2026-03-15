@@ -289,6 +289,7 @@ function renderWeek(data, dateStr){
   var items   = currentItems;
   var removed = data.removed || [];
   var filtered = archiveFP==="all" ? items : items.filter(function(i){return i.app===archiveFP;});
+  filtered = filtered.slice().sort(function(a,b){return new Date(b.added||0)-new Date(a.added||0);});
   var rolling = filtered.filter(function(i){return i.status==="rolling";});
   var dev     = filtered.filter(function(i){return i.status==="dev";});
 

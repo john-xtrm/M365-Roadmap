@@ -302,6 +302,7 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
         <label for="sort-select">Sorteren op</label>
         <div class="sort-row">
           <select id="sort-select" onchange="render()">
+            <option value="added-desc">Toegevoegd: nieuwste eerst</option>
             <option value="release-asc">Releasedatum: nieuw → oud</option>
             <option value="release-desc">Releasedatum: oud → nieuw</option>
             <option value="modified-desc">Laatst gewijzigd</option>
@@ -499,6 +500,7 @@ function render(){
   var filtered=withoutApp.filter(function(i){return fP==="all"||i.app===fP;});
   filtered=filtered.slice().sort(function(a,b){
     if(sort==="status")return(a.status==="rolling"?0:1)-(b.status==="rolling"?0:1);
+    if(sort==="added-desc")return new Date(b.added||0)-new Date(a.added||0);
     if(sort==="modified-desc")return new Date(b.modified||0)-new Date(a.modified||0);
     var da=parseRelease(a.release),db=parseRelease(b.release);
     return sort==="release-desc"?da-db:db-da;
