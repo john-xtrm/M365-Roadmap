@@ -368,7 +368,8 @@ archive_index = {
 }
 with open(os.path.join(archive_dir, "index.json"), "w", encoding="utf-8") as f:
     json.dump(archive_index, f, ensure_ascii=False, indent=2)
-print(f"Archiefindex bijgewerkt: {len(archive_files)} weken beschikbaar ✓")    if "outlook"     in p: return "outlook"
+print(f"Archiefindex bijgewerkt: {len(archive_files)} weken beschikbaar ✓")
+    if "outlook"     in p: return "outlook"
     if "excel"       in p: return "excel"
     if "word"        in p: return "word"
     if "powerpoint"  in p: return "powerpoint"
