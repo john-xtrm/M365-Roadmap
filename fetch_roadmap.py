@@ -369,20 +369,16 @@ archive_index = {
 with open(os.path.join(archive_dir, "index.json"), "w", encoding="utf-8") as f:
     json.dump(archive_index, f, ensure_ascii=False, indent=2)
 print(f"Archiefindex bijgewerkt: {len(archive_files)} weken beschikbaar ✓")
-    if "outlook"     in p: return "outlook"
-    if "excel"       in p: return "excel"
-    if "word"        in p: return "word"
-    if "powerpoint"  in p: return "powerpoint"
-    if "sharepoint"  in p: return "sharepoint"
-    if "purview"     in p: return "purview"
-    if "viva"        in p: return "viva"
-    if "edge"        in p: return "edge"
-    if "onedrive"    in p: return "onedrive"
-    if "exchange"    in p: return "exchange"
-    if "forms"       in p: return "forms"
-    if "intune"      in p: return "intune"
-    if "entra"       in p: return "entra"
-    if "planner"     in p: return "planner"
+
+def classify_product(p: str) -> str:
+    p = p.lower()
+    products = [
+        "outlook","excel","word","powerpoint","sharepoint","purview","viva","edge",
+        "onedrive","exchange","forms","intune","entra","planner"
+    ]
+    for prod in products:
+        if prod in p:
+            return prod
     return "other"
 
 def make_label(product, key):
