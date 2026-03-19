@@ -409,6 +409,18 @@ function loadData() {
     });
 }
 
+function updateWeekLabels() {
+  var now = new Date();
+  var wn  = isoWeek(now);
+  var ws  = weekStart(now);
+  var we  = weekEnd(now);
+  var fmt = function(d){ return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'}); };
+  var lbl = 'Week ' + wn + ' (' + fmt(ws) + ' – ' + fmt(we) + ')';
+  document.querySelectorAll('[data-a="aw"],[data-m="mw"]').forEach(function(btn){
+    btn.textContent = lbl;
+  });
+}
+
 function handleData(data){
   ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew: inSameWeek(i.added, new Date())});});
   var gen=new Date(data.generated);
