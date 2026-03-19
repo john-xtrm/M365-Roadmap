@@ -259,6 +259,32 @@
 }
 
 /* Leeg/laad */
+
+/* Periodfilter */
+.period-filter-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem;
+}
+.period-filter-wrap label { color: var(--faint); font-weight: 700; text-transform: uppercase; letter-spacing: .05em; font-size: .75rem; }
+.pf-btn {
+  padding: 5px 14px; border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s); background: var(--surface);
+  color: var(--muted); font-family: var(--font); font-size: .8125rem;
+  font-weight: 500; cursor: pointer; transition: all .12s; min-height: 2.25rem;
+}
+.pf-btn:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
+.pf-btn[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
+@media (prefers-color-scheme: dark) {
+  .pf-btn[aria-pressed="true"] { background: var(--blue-t); color: #0a1a38; border-color: var(--blue-t); }
+}
+
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
 #empty-msg.show { display: block; }
 </style>
@@ -301,6 +327,12 @@
   </div>
 
   <!-- Weergave-schakelaar -->
+  <!-- Informatieve banner -->
+  <div class="disclaimer" role="note">
+    <span style="flex-shrink:0" aria-hidden="true">ℹ️</span>
+    <span>Releasedatums zijn indicatief — Microsoft verschuift datums regelmatig. De <strong>korte-termijn</strong> weergave toont exacte maanddatums (komende 6 maanden). De <strong>lange-termijn</strong> weergave toont alles per kwartaal. Items met een exacte maanddatum zijn herkenbaar met een badge. Via <em>Details</em> op een kaart gaat u direct naar de uitgebreide beschrijving op de hoofdpagina.</span>
+  </div>
+
   <p class="view-intro" id="view-intro-lbl">Kies hoe ver vooruit u wilt kijken:</p>
   <div role="group" aria-labelledby="view-intro-lbl" class="view-switch">
     <button class="view-btn" aria-pressed="true" id="btn-short" onclick="setView('short')">
@@ -330,6 +362,13 @@
         <button class="fb" data-act="user"  aria-pressed="false"><span aria-hidden="true">🔵</span> Medewerker instellen</button>
       </div>
     </div>
+  </div>
+
+
+  <!-- Periodfilter (jaar/kwartaal) -->
+  <div class="period-filter-wrap" id="period-filter-wrap" role="group" aria-label="Begrens de weergave per jaar">
+    <label>Periode</label>
+    <div id="pf-bar"><!-- Dynamisch gevuld op basis van beschikbare data --></div>
   </div>
 
   <div class="stats-bar" id="stats-bar" role="status" aria-live="polite" aria-atomic="true"></div>
@@ -378,6 +417,7 @@ var ALL_ITEMS   = [];
 var currentView = 'short';
 var filterProd  = 'all';
 var filterAct   = 'all';
+var periodFilter = 'current'; /* 'current'=huidig+toekomst, 'YYYY'=jaar, 'all'=alles */
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
@@ -456,12 +496,41 @@ function loadData() {
     });
 }
 
+function buildPeriodFilter() {
+  var now   = new Date();
+  var curY  = now.getFullYear();
+  var bar   = document.getElementById('pf-bar');
+  /* Verzamel jaren aanwezig in data */
+  var years = new Set();
+  ALL_ITEMS.forEach(function(i){
+    var p = parseRelease(i.release);
+    if (p) years.add(p.year);
+  });
+  var sortedYears = Array.from(years).sort();
+  var buttons = [
+    {val:'current', lbl:'Huidig + toekomst'},
+    {val:'all',     lbl:'Alles'},
+  ];
+  sortedYears.forEach(function(y){ buttons.push({val:String(y), lbl:String(y)}); });
+  bar.innerHTML = buttons.map(function(b){
+    return '<button class="pf-btn" data-pf="'+b.val+'" aria-pressed="'+(periodFilter===b.val?'true':'false')+'">'+b.lbl+'</button>';
+  }).join('');
+  bar.addEventListener('click', function(e){
+    var t = e.target.closest('[data-pf]'); if (!t) return;
+    bar.querySelectorAll('.pf-btn').forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+    t.setAttribute('aria-pressed','true');
+    periodFilter = t.getAttribute('data-pf');
+    render();
+  });
+}
+
 function handleData(data) {
   ALL_ITEMS = data.items || [];
   var generated = new Date(data.generated);
   document.getElementById('last-updated').textContent =
     'Bijgewerkt: ' + generated.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + ' · ' + data.count + ' items';
   buildProductFilter();
+  buildPeriodFilter();
   render();
 }
 
@@ -509,6 +578,9 @@ document.getElementById('act-bar').addEventListener('click', function(e){
 function render() {
   var now  = new Date();
   var shortCutoff = new Date(now.getFullYear(), now.getMonth()+6, 1);
+  /* Periodfilter-wrap: toon alleen bij lange termijn */
+  var pfWrap = document.getElementById('period-filter-wrap');
+  if (pfWrap) pfWrap.style.display = currentView==='long' ? '' : 'none';
 
   /* Filter op product + actie */
   var items = ALL_ITEMS.filter(function(i){
@@ -557,8 +629,17 @@ function render() {
     }
   }
 
+  /* Huidige kwartaalsleutel voor lange-termijn begrenzing */
+  var nowQKey = now.getFullYear() + '-Q' + (Math.floor(now.getMonth()/3)+1);
+
   var periods = Object.keys(groups).filter(function(k){
-    if (currentView === 'long') return true;
+    if (currentView === 'long') {
+      /* Filter op geselecteerde periode */
+      if (periodFilter === 'all') return true;
+      if (periodFilter === 'current') return k >= nowQKey;
+      /* Jaar-filter: "2026-Q1" t/m "2026-Q4" */
+      return k.startsWith(periodFilter + '-');
+    }
     var p = k.split('-');
     var d = new Date(parseInt(p[0]), parseInt(p[1]), 1);
     return d >= new Date(now.getFullYear(), now.getMonth(), 1) && d < shortCutoff;
@@ -668,7 +749,7 @@ function calCardHTML(item, isShortTerm, isUncertain) {
       '<span aria-hidden="true">📅</span> Ook in maandweergave</span>'
     : '';
   /* Link naar hoofdpagina met zoekterm vooringevuld */
-  var searchUrl = 'index.html?zoek=' + encodeURIComponent(item.title.substring(0, 50));
+  var searchUrl = 'index.html?id=' + item.id;
   return '<div class="cal-card act-'+item.action+(isUncertain?' is-uncertain':'')+'">' +
     '<div class="cal-card-left">' +
       '<div class="cal-card-title">'+esc(item.title)+'</div>' +

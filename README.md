@@ -14,6 +14,7 @@ Een automatisch bijgewerkt dashboard dat Microsoft 365-roadmap updates toont in 
 - Geeft voor elk item aan **wat het betekent voor de organisatie** en **of er actie nodig is**
 - Toont welke items deze week **beschikbaar zijn gekomen of geannuleerd** zijn
 - Bewaart een **archief** van de laatste 3 maanden
+- **Releasekalender** met maand- en kwartaalweergave voor plannig
 
 ---
 
@@ -21,9 +22,10 @@ Een automatisch bijgewerkt dashboard dat Microsoft 365-roadmap updates toont in 
 
 | Bestand | Omschrijving |
 |---|---|
-| `index.html` | Hoofdpagina — actuele roadmap met filters en zoekbalk |
-| `archief.html` | Archiefpagina — bekijk updates van vorige weken |
-| `shared.css` | Gedeelde stijlen voor beide pagina's (WCAG 2.2 AA) |
+| `index.html` | Hoofdpagina — actuele roadmap met filters, zoekbalk en info-banner |
+| `archief.html` | Archiefpagina — momentopnamen van vorige weken (max 3 maanden) |
+| `kalender.html` | Releasekalender — per maand (kort) of per kwartaal (lang) |
+| `shared.css` | Gedeelde stijlen voor alle pagina's (WCAG 2.2 AA) |
 | `fetch_roadmap.py` | Python-script dat de CSV ophaalt, vertaalt en `data.json` aanmaakt |
 | `data.json` | Gegenereerde data (automatisch bijgewerkt, niet handmatig bewerken) |
 | `.github/workflows/update-roadmap.yml` | GitHub Actions workflow |
@@ -45,6 +47,7 @@ Upload de volgende bestanden naar de root van de repository:
 ```
 index.html
 archief.html
+kalender.html
 shared.css
 fetch_roadmap.py
 ```
@@ -100,9 +103,9 @@ Microsoft CSV API (publiek, gratis)
          │
          └─ git push → GitHub Pages
                   │
-                  ▼
-            index.html + archief.html
-            (geladen door de browser)
+                  ├── index.html     (actuele lijst)
+                  ├── kalender.html  (releasekalender)
+                  └── archief.html   (weekoverzichten)
 ```
 
 ### Automatische schedule
@@ -116,23 +119,50 @@ Handmatig starten kan altijd via **Actions → Run workflow**.
 
 ---
 
-## Filters en functies
+## Pagina's en functies
 
 ### Hoofdpagina (`index.html`)
 
-| Filter | Omschrijving |
+| Onderdeel | Omschrijving |
 |---|---|
-| **Kies een product** | Filter op applicatie (Teams, Outlook, etc.) — toont live aantallen |
+| **Info-banner** | Uitleg van kleurcodering en filters — inklapbaar |
+| **Kies een product** | Filter op applicatie — toont live aantallen |
 | **Is er actie nodig?** | Automatisch / IT-beheerder / Medewerker zelf |
 | **Status** | Alles / Wordt uitgerold / In ontwikkeling |
 | **Sorteren op** | Toegevoegd (standaard), releasedatum, gewijzigd, status |
-| **Meer filteropties** | Datum toegevoegd, datum gewijzigd, nieuw/al bekend |
-| **Zoekbalk** | Vrij zoeken in titel en voordeel-omschrijving (200ms debounce) |
+| **Meer filteropties** | Datum toegevoegd (standaard: deze week), datum gewijzigd, nieuw/al bekend |
+| **Zoekbalk** | Vrij zoeken in titel en voordeel (200ms debounce) |
+| **Wijzigingen** | Inklapbaar blok met Launched/Cancelled items van deze week |
+| **Kalender-knop** | Header-link naar `kalender.html` |
+| **Archief-knop** | Header-link naar `archief.html` |
 
-Onderaan de pagina verschijnt automatisch het blok **"Wijzigingen deze week"** als er items beschikbaar zijn gekomen of geannuleerd zijn.
+**Standaard filterinstelling:** alleen items die deze week aan de Microsoft roadmap zijn toegevoegd (`Toegevoegd: deze week`). Dit geeft een overzicht van de nieuwste toevoegingen.
+
+**"Nieuw"-badge:** een item geldt als nieuw als het binnen 7 dagen geleden is toegevoegd aan de roadmap — ongeacht of de gebruiker de pagina al bezocht heeft.
+
+**URL-parameters:**
+- `?id=123456` — opent de pagina met het item van dat MS-ID direct gefilterd (vanuit kalender)
+- `?zoek=Teams` — opent de pagina met die zoekterm vooringevuld
+
+### Releasekalender (`kalender.html`)
+
+| Onderdeel | Omschrijving |
+|---|---|
+| **Info-banner** | Uitleg van de twee weergaves |
+| **Korte termijn** | Per maand, komende 6 maanden, alleen exacte maanddatums |
+| **Lange termijn** | Per kwartaal, huidig kwartaal t/m toekomst (of alle jaren) |
+| **Periodfilter** | Huidig + toekomst (standaard), specifiek jaar, of alles — alleen bij lange termijn |
+| **Productfilter** | Per product filteren |
+| **Actiefilter** | Automatisch / IT-beheerder / Medewerker |
+| **Mini-uitsplitsing** | Periodeheader toont #IT, #medewerker, #auto per maand/kwartaal |
+| **Details-knop** | Stuurt via `?id=` door naar de hoofdpagina voor het volledige item |
+| **Ook in maandweergave** | Badge op items met exacte datum die ook in korte termijn verschijnen |
+
+**Lange termijn begint altijd bij het huidige kwartaal** — verleden kwartalen zijn verborgen tenzij u "Alles" selecteert in de periodfilter.
 
 ### Archiefpagina (`archief.html`)
 
+- Info-banner met uitleg over het archief
 - Weekknoppen voor alle beschikbare weken (laatste 3 maanden)
 - De meest recente week wordt automatisch geladen
 - Productfilter per week
@@ -142,21 +172,19 @@ Onderaan de pagina verschijnt automatisch het blok **"Wijzigingen deze week"** a
 
 ## Toegankelijkheid (WCAG 2.2 AA)
 
-De pagina's voldoen aan de volgende WCAG 2.2 AA-criteria:
-
 | Criterium | Oplossing |
 |---|---|
 | 1.3.1 Koppen-hiërarchie | h1 header → h2 secties → h3 kaarttitels |
 | 1.4.3 Kleurcontrast ≥4.5:1 | Alle kleuren getest, ook in dark mode |
 | 1.4.4 Tekst schaalbaar | Alle font-sizes in `rem`, schaalt met browservoorkeur |
-| 2.4.1 Skip-link | "Ga naar hoofdinhoud" als eerste element |
+| 2.4.1 Skip-link | "Ga naar hoofdinhoud" als eerste element op alle pagina's |
 | 2.4.7 Focusindicator | Zichtbare focus-ring op alle interactieve elementen |
-| 2.4.11 Focus niet verborgen (WCAG 2.2) | `scroll-margin-top` voorkomt dat sticky header focus bedekt |
-| 2.5.8 Raakdoelgrootte ≥24px (WCAG 2.2) | Alle knoppen minimaal 44px hoog |
+| 2.4.11 Focus niet verborgen | `scroll-margin-top` voorkomt dat sticky header focus bedekt |
+| 2.5.8 Raakdoelgrootte ≥24px | Alle knoppen minimaal 44px hoog |
 | 3.1.1 Taal | `lang="nl"` op elk HTML-document |
 | 3.3.2 Formulierlabels | Alle invoervelden en filtergroepen gelabeld |
 | 4.1.2 Naam/rol/waarde | `aria-pressed`, `aria-expanded`, `aria-live`, `aria-label` |
-| 4.1.3 Statusberichten | `aria-live` op resultatenbalken en paginateller |
+| 4.1.3 Statusberichten | `aria-live` op resultatenbalken en paginatellers |
 
 Aanvullend:
 - **Dark mode** via `@media (prefers-color-scheme: dark)` — alle kleuren herberekend voor ≥4.5:1
@@ -173,8 +201,8 @@ Aanvullend:
 - **Vertaalcache**: slaat vertalingen op per `(id, modified)` — vertaalt alleen bij wijziging
 - **Taaldetectie**: controleert of gecachede items daadwerkelijk Nederlands zijn
 - **Verwijderde items**: vergelijkt vorige `data.json` met nieuwe CSV, detecteert Launched/Cancelled
-- **Archief**: slaat slanke kopie op als `archive/YYYY-MM-DD.json` (zonder volledige beschrijvingen)
-- **Archiefindex**: schrijft `archive/index.json` bij met alle datums van de laatste 3 maanden
+- **Archief**: slanke kopie als `archive/YYYY-MM-DD.json` (zonder volledige beschrijvingen)
+- **Archiefindex**: schrijft `archive/index.json` bij met datums van de laatste 3 maanden
 
 ### `update-roadmap.yml`
 
@@ -185,12 +213,23 @@ Aanvullend:
 
 ### Performance (browser)
 
-- **SessionStorage-cache**: `data.json` wordt 30 minuten gecached — herlaad is direct
-- **Cache-buster**: URL krijgt `?v=timestamp` om GitHub Pages CDN-cache te omzeilen
-- **Fetch-timeout**: verzoeken worden na 12 seconden afgebroken met foutmelding
+- **SessionStorage-cache**: `data.json` 30 minuten gecached — herlaad is direct
+- **Cache-buster**: `?v=timestamp` om GitHub Pages CDN-cache te omzeilen
+- **Fetch-timeout**: verzoeken afgebroken na 12 seconden met foutmelding
 - **Debounce**: zoekbalk wacht 200ms na laatste toetsaanslag
 - **Event delegation**: één listener per filtergroep in plaats van per knop
-- **shared.css**: gedeelde stijlen in één bestand — browser cachet dit over beide pagina's
+- **shared.css**: gedeelde stijlen — browser cachet dit over alle pagina's
+
+---
+
+## Bekende gedragingen
+
+| Gedrag | Uitleg |
+|---|---|
+| Sorteren werkt niet bij lege releasedatums | Items zonder datum komen altijd achteraan (datum = 9999) |
+| "Nieuw"-badge verdwijnt na 7 dagen | Gebaseerd op `added`-datum in data.json, niet op browsergeschiedenis |
+| Lange termijn start bij huidig kwartaal | Verleden kwartalen verborgen — gebruik "Alles" in periodfilter om ze te zien |
+| Kalender toont enkel items met datum | Items zonder releasedatum staan in het inklapbare blok onderaan |
 
 ---
 
@@ -210,7 +249,7 @@ Aanvullend:
 
 ### Vertalingen corrigeren
 
-Zoek het roadmap-ID op in `data.json` en pas de `title` of `benefit` handmatig aan. De cache herkent het item bij de volgende run op `(id, modified)` — zolang Microsoft het item niet wijzigt, blijft uw correctie behouden.
+Zoek het roadmap-ID op in `data.json` en pas `title` of `benefit` handmatig aan. De cache herkent het item op `(id, modified)` — uw correctie blijft behouden zolang Microsoft het item niet wijzigt.
 
 ### Workflow mislukt?
 

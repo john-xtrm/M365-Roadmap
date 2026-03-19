@@ -40,6 +40,31 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
 #empty-msg.show { display: block; }
 
+
+/* Info-banner */
+.info-banner {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+}
+.info-banner-toggle {
+  width: 100%; display: flex; align-items: center; justify-content: space-between;
+  padding: 0.625rem 1rem; background: none; border: none; cursor: pointer;
+  font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--muted);
+  gap: 0.5rem; min-height: 2.75rem;
+}
+.info-banner-toggle:hover { background: var(--surface2); }
+.info-banner-body { display: none; padding: 0 1rem 0.875rem; border-top: 1px solid var(--border); }
+.info-banner-body.open { display: block; }
+.info-list { list-style: none; display: flex; flex-direction: column; gap: 6px; padding-top: 0.75rem; }
+.info-list li { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--muted); }
+.info-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.dot-none  { background: var(--c-none); }
+.dot-admin { background: var(--c-admin); }
+.dot-user  { background: var(--c-user); }
+
 /* Zoektreffer-melding */
 .search-origin-note { display: none; font-size: 0.8125rem; color: var(--muted); background: var(--surface2); border-radius: var(--radius-sm); padding: 8px 14px; margin-bottom: 1rem; align-items: center; gap: 8px; }
 .search-origin-note.show { display: flex; }
@@ -87,6 +112,24 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
            autocomplete="search"
            oninput="debouncedSearch(this.value)">
     <button class="search-clear" id="search-clear" aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
+  </div>
+
+  <!-- Informatieve banner -->
+  <div class="info-banner" role="note" aria-label="Uitleg over deze pagina">
+    <button class="info-banner-toggle" aria-expanded="false" aria-controls="info-banner-body"
+            onclick="toggleInfoBanner(this)">
+      <span><span aria-hidden="true">ℹ️</span> Hoe werkt dit overzicht?</span>
+      <span class="collapsible-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div id="info-banner-body" class="info-banner-body">
+      <ul class="info-list">
+        <li><span class="info-dot dot-none" aria-hidden="true"></span><strong>Groene streep</strong> — gaat automatisch aan. Geen actie vereist.</li>
+        <li><span class="info-dot dot-admin" aria-hidden="true"></span><strong>Gele streep</strong> — IT-beheerder moet iets instellen of goedkeuren.</li>
+        <li><span class="info-dot dot-user" aria-hidden="true"></span><strong>Blauwe streep</strong> — medewerker kan dit zelf inschakelen.</li>
+        <li><span aria-hidden="true">⭐</span> <strong>Nieuw</strong> — deze week toegevoegd aan de Microsoft roadmap.</li>
+        <li>Gebruik de <strong>filters</strong> om te zoeken op product, actie of status. Standaard ziet u de updates van deze week.</li>
+      </ul>
+    </div>
   </div>
 
   <!-- Melding wanneer zoekopdracht via URL is ingevuld (vanuit kalender) -->
@@ -158,8 +201,8 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
           <div class="filter-group">
             <label id="lbl-mf">Gewijzigd op roadmap</label>
             <div class="filter-bar" id="mf" role="group" aria-labelledby="lbl-mf">
-              <button class="fb" data-m="all" aria-pressed="false">Alle</button>
-              <button class="fb" data-m="mw"  aria-pressed="true">Deze week</button>
+              <button class="fb" data-m="all" aria-pressed="true">Alle</button>
+              <button class="fb" data-m="mw"  aria-pressed="false">Deze week</button>
               <button class="fb" data-m="mm"  aria-pressed="false">Deze maand</button>
             </div>
           </div>
@@ -240,9 +283,10 @@ var CACHE_KEY = 'm365_data_v1';
 var SEEN_KEY  = 'm365_seen_ids';
 
 var ALL_ITEMS = [];
-var fS='all', fN='all', fA='aw', fM='mw', fP='all', fAct='all', fQ='';
+var fS='all', fN='all', fA='aw', fM='all', fP='all', fAct='all', fQ='';
 var searchTimer = null;
-var fromKalender = false;  /* true als ?zoek= via URL meegekomen is */
+var fromKalender = false;
+var idParam = null;  /* MS-ID vanuit kalender via ?id= */
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
@@ -264,12 +308,25 @@ function highlight(text,query){
 
 /* ── URL-parameter ?zoek= verwerken ────────────────────────────────────── */
 (function(){
-  var params = new URLSearchParams(window.location.search);
-  var zoek   = params.get('zoek');
-  if (zoek) {
+  var params  = new URLSearchParams(window.location.search);
+  var zoek    = params.get('zoek');
+  idParam = params.get('id');   /* Vanuit releasekalender via MS-ID — globale variabele */
+
+  if (idParam) {
+    /* ID-modus: zoek op exact MS-ID, toon direct dat item */
+    fQ = idParam.trim();
+    fromKalender = true;
+    document.addEventListener('DOMContentLoaded', function(){
+      var inp = document.getElementById('search-input');
+      if (inp) {
+        inp.value = 'ID: ' + idParam;
+        document.getElementById('search-clear').classList.add('show');
+        document.getElementById('search-origin-note').classList.add('show');
+      }
+    });
+  } else if (zoek) {
     fQ = zoek.trim().toLowerCase();
     fromKalender = true;
-    /* Zoekveld vullen zodra DOM beschikbaar is */
     document.addEventListener('DOMContentLoaded', function(){
       var inp = document.getElementById('search-input');
       if (inp) {
@@ -310,9 +367,7 @@ function loadData() {
 }
 
 function handleData(data){
-  var SEEN=new Set(JSON.parse(localStorage.getItem(SEEN_KEY)||'[]'));
-  ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew:!SEEN.has(i.id)});});
-  localStorage.setItem(SEEN_KEY,JSON.stringify(data.items.map(function(i){return i.id;})));
+  ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew: daysAgo(i.added) <= 7});});
   var gen=new Date(data.generated);
   document.getElementById('last-updated').textContent=
     'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' · '+data.count+' items';
@@ -388,6 +443,14 @@ function onSearch(val){
   if(fromKalender&&fQ.length===0){document.getElementById('search-origin-note').classList.remove('show');}
   render();
 }
+function toggleInfoBanner(btn) {
+  var body = document.getElementById('info-banner-body');
+  var chevron = btn.querySelector('.collapsible-chevron');
+  var open = btn.getAttribute('aria-expanded') === 'true';
+  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+  body.classList.toggle('open', !open);
+  if (chevron) chevron.classList.toggle('open', !open);
+}
 function clearSearch(){
   document.getElementById('search-input').value='';
   document.getElementById('search-clear').classList.remove('show');
@@ -438,7 +501,15 @@ function render(){
       var days=(fA==='aw'||fM==='mw')?7:31;
       if(!(fA!=='all'&&daysAgo(i.added)<=days)&&!(fM!=='all'&&daysAgo(i.modified)<=days))return false;
     }
-    if(query&&!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query)))return false;
+    if(query){
+      /* ?id= modus: vergelijk numeriek MS-ID */
+      var qId = parseInt(query);
+      if (!isNaN(qId) && idParam) {
+        if (i.id !== qId) return false;
+      } else {
+        if(!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query)))return false;
+      }
+    }
     return true;
   });
   updateAppCounts(withoutApp);
@@ -448,7 +519,7 @@ function render(){
     if(sort==='added-desc')return new Date(b.added||0)-new Date(a.added||0);
     if(sort==='modified-desc')return new Date(b.modified||0)-new Date(a.modified||0);
     var da=parseRelease(a.release),db=parseRelease(b.release);
-    return sort==='release-desc'?da-db:db-da;
+    return sort==='release-desc'?db-da:da-db;
   });
   var rolling=filtered.filter(function(i){return i.status==='rolling';});
   var dev=filtered.filter(function(i){return i.status==='dev';});
