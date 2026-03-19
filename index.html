@@ -7,27 +7,7 @@
 <meta name="description" content="Overzicht van aankomende Microsoft 365-updates: wat staat er aan te komen, wat betekent het voor uw organisatie en is er actie nodig van IT of medewerkers?">
 <link rel="stylesheet" href="shared.css">
 <style>
-/* ── Pagina-specifieke stijlen ────────────────────────────────────────── */
-
-.filters { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; }
-.filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.filter-group label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--faint); }
-.filter-bar { display: flex; flex-wrap: wrap; gap: 7px; }
-.filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-.filter-row-2 .filter-group { flex: 1; min-width: 160px; }
-
-.more-toggle { display: inline-flex; align-items: center; gap: 6px; background: none; border: none; font: inherit; font-size: 0.8125rem; color: var(--blue-t); cursor: pointer; padding: 2px 4px; border-radius: var(--radius-sm); text-decoration: underline; text-decoration-color: transparent; min-height: 2.75rem; }
-.more-toggle:hover { text-decoration-color: var(--blue-t); }
-.more-toggle .chevron { font-size: 0.625rem; transition: transform 0.15s; display: inline-block; }
-.more-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
-.more-section { display: none; }
-.more-section.open { display: flex; flex-direction: column; gap: 1.25rem; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: 0.25rem; }
-
-.sort-row { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
-.sort-row label { font-size: 0.8125rem; color: var(--muted); font-weight: 500; white-space: nowrap; }
-select { padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: var(--font); font-size: 0.875rem; cursor: pointer; min-height: 2.75rem; }
-select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
-
+/* ── Zoekbalk ─────────────────────────────────────────────────────────── */
 .search-wrap { position: relative; margin-bottom: 1.25rem; }
 .search-wrap .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
 #search-input { width: 100%; padding: 0.75rem 1rem 0.75rem 2.625rem; font-size: 1rem; font-family: var(--font); border: 1.5px solid var(--border-s); border-radius: var(--radius-md); background: var(--surface); color: var(--text); transition: border-color 0.15s; }
@@ -37,24 +17,9 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 .search-clear:hover { background: var(--surface2); color: var(--text); }
 .search-clear.show { display: flex; }
 
-#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
-#empty-msg.show { display: block; }
-
-
-/* Info-banner */
-.info-banner {
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: var(--surface);
-  margin-bottom: 1.25rem;
-  overflow: hidden;
-}
-.info-banner-toggle {
-  width: 100%; display: flex; align-items: center; justify-content: space-between;
-  padding: 0.625rem 1rem; background: none; border: none; cursor: pointer;
-  font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--muted);
-  gap: 0.5rem; min-height: 2.75rem;
-}
+/* ── Info-banner ──────────────────────────────────────────────────────── */
+.info-banner { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); margin-bottom: 1.25rem; overflow: hidden; }
+.info-banner-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; background: none; border: none; cursor: pointer; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--muted); gap: 0.5rem; min-height: 2.75rem; }
 .info-banner-toggle:hover { background: var(--surface2); }
 .info-banner-body { display: none; padding: 0 1rem 0.875rem; border-top: 1px solid var(--border); }
 .info-banner-body.open { display: block; }
@@ -65,10 +30,74 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 .dot-admin { background: var(--c-admin); }
 .dot-user  { background: var(--c-user); }
 
-/* Zoektreffer-melding */
+/* ── Kalender-melding ─────────────────────────────────────────────────── */
 .search-origin-note { display: none; font-size: 0.8125rem; color: var(--muted); background: var(--surface2); border-radius: var(--radius-sm); padding: 8px 14px; margin-bottom: 1rem; align-items: center; gap: 8px; }
 .search-origin-note.show { display: flex; }
 .search-origin-note button { background: none; border: none; color: var(--blue-t); cursor: pointer; font: inherit; font-size: 0.8125rem; padding: 0; text-decoration: underline; }
+
+/* ── Filterblok ───────────────────────────────────────────────────────── */
+.filters {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.filter-divider { height: 1px; background: var(--border); margin: 0.125rem 0; }
+.filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.filter-group > label {
+  font-size: 0.6875rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--faint);
+  display: flex; align-items: center; gap: 6px;
+}
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-note { font-size: 0.6875rem; color: var(--faint); margin-top: 3px; }
+.filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.filter-row-2 .filter-group { flex: 1; min-width: 160px; }
+
+/* Actie-knoppen met gekleurde dot */
+.act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.act-dot.d-none  { background: var(--c-none); }
+.act-dot.d-admin { background: var(--c-admin); }
+.act-dot.d-user  { background: var(--c-user); }
+
+/* Sorteren */
+select { padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: var(--font); font-size: 0.875rem; cursor: pointer; min-height: 2.75rem; }
+select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
+
+/* Weekbadge naast filterlabel */
+.week-mini-badge {
+  font-size: 0.6rem; font-weight: 700;
+  background: var(--new-bg); color: var(--new-t);
+  padding: 1px 7px; border-radius: var(--radius-pill);
+  white-space: nowrap; text-transform: none; letter-spacing: 0;
+}
+
+/* ── Product-iconen in filterknoppen ─────────────────────────────────── */
+/* Elk icoon zit in een 20×20px afgerond vakje — consistent voor iconen
+   met én zonder achtergrond, incl. zwarte achtergrond-PNGs            */
+.app-icon-wrap {
+  width: 20px; height: 20px;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fff;  /* vangt transparante iconen op */
+}
+.app-icon-wrap img { width: 20px; height: 20px; object-fit: contain; display: block; }
+
+/* Donkere modus: witte achtergrond blijft — geeft app-icon-uitstraling */
+@media (prefers-color-scheme: dark) {
+  .app-icon-wrap { background: #fff; }
+}
+
+/* ── Leeg-melding ─────────────────────────────────────────────────────── */
+#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
+#empty-msg.show { display: block; }
 </style>
 </head>
 <body>
@@ -105,6 +134,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 <main id="main-content">
 <div class="main">
 
+  <!-- Zoekbalk -->
   <div class="search-wrap" role="search">
     <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     <input type="search" id="search-input"
@@ -115,7 +145,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
     <button class="search-clear" id="search-clear" aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
   </div>
 
-  <!-- Informatieve banner -->
+  <!-- Info-banner -->
   <div class="info-banner" role="note" aria-label="Uitleg over deze pagina">
     <button class="info-banner-toggle" aria-expanded="false" aria-controls="info-banner-body"
             onclick="toggleInfoBanner(this)">
@@ -127,13 +157,13 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
         <li><span class="info-dot dot-none" aria-hidden="true"></span><strong>Groene streep</strong> — gaat automatisch aan. Geen actie vereist.</li>
         <li><span class="info-dot dot-admin" aria-hidden="true"></span><strong>Gele streep</strong> — IT-beheerder moet iets instellen of goedkeuren.</li>
         <li><span class="info-dot dot-user" aria-hidden="true"></span><strong>Blauwe streep</strong> — medewerker kan dit zelf inschakelen.</li>
-        <li><span aria-hidden="true">⭐</span> <strong>Nieuw</strong> — deze week toegevoegd aan de Microsoft roadmap.</li>
-        <li>Gebruik de <strong>filters</strong> om te zoeken op product, actie of status. Standaard ziet u de updates van deze week.</li>
+        <li><span aria-hidden="true">⭐</span> <strong>Nieuw</strong> — deze week toegevoegd of gewijzigd op de Microsoft roadmap.</li>
+        <li>Standaard ziet u de updates van de huidige kalenderweek. Gebruik de filters om meer of minder te tonen.</li>
       </ul>
     </div>
   </div>
 
-  <!-- Melding wanneer zoekopdracht via URL is ingevuld (vanuit kalender) -->
+  <!-- Melding vanuit kalender -->
   <div class="search-origin-note" id="search-origin-note" role="note">
     <span aria-hidden="true">📅</span>
     <span>U bekijkt details vanuit de releasekalender.</span>
@@ -142,79 +172,65 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
     <a href="kalender.html" style="color:var(--blue-t);font-size:.8125rem">terug naar kalender</a>
   </div>
 
+  <!-- Filters -->
   <section class="filters" aria-label="Filters">
 
+    <!-- 1. Product -->
     <div class="filter-group">
-      <label id="lbl-app">Kies een product</label>
+      <label id="lbl-app">Product</label>
       <div class="filter-bar" id="apf" role="group" aria-labelledby="lbl-app">
         <button class="fb" data-p="all" aria-pressed="true">Alle producten</button>
+        <!-- Dynamisch gevuld met iconen op basis van data.json -->
       </div>
     </div>
 
-    <div class="filter-group">
-      <label id="lbl-act">Is er actie nodig?</label>
-      <div class="filter-bar" id="act-bar" role="group" aria-labelledby="lbl-act">
-        <button class="fb" data-act="all"   aria-pressed="true">Alles</button>
-        <button class="fb" data-act="none"  aria-pressed="false"><span aria-hidden="true">🟢</span> Gaat automatisch</button>
-        <button class="fb" data-act="admin" aria-pressed="false"><span aria-hidden="true">🟡</span> IT-beheerder moet iets doen</button>
-        <button class="fb" data-act="user"  aria-pressed="false"><span aria-hidden="true">🔵</span> Medewerker kan zelf instellen</button>
-      </div>
-    </div>
+    <div class="filter-divider"></div>
 
+    <!-- 2. Actie + Sorteren -->
     <div class="filter-row-2">
+      <div class="filter-group" style="flex:1">
+        <label id="lbl-act">Actie nodig?</label>
+        <div class="filter-bar" id="act-bar" role="group" aria-labelledby="lbl-act">
+          <button class="fb" data-act="all"   aria-pressed="true">Alles</button>
+          <button class="fb" data-act="none"  aria-pressed="false"><span class="act-dot d-none" aria-hidden="true"></span>Automatisch</button>
+          <button class="fb" data-act="admin" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>IT-beheerder</button>
+          <button class="fb" data-act="user"  aria-pressed="false"><span class="act-dot d-user" aria-hidden="true"></span>Medewerker</button>
+        </div>
+      </div>
+      <div class="filter-group" style="flex:0 0 auto">
+        <label for="sort-select">Sorteren</label>
+        <select id="sort-select" onchange="render()">
+          <option value="added-desc">Toegevoegd: nieuwste eerst</option>
+          <option value="release-asc">Releasedatum: nieuw → oud</option>
+          <option value="release-desc">Releasedatum: oud → nieuw</option>
+          <option value="modified-desc">Laatst gewijzigd</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <!-- 3. Periode + Status -->
+    <div class="filter-row-2">
+      <div class="filter-group">
+        <label id="lbl-fp">
+          Periode
+          <span id="week-mini-badge" class="week-mini-badge" aria-live="polite"></span>
+        </label>
+        <div class="filter-bar" id="fp-bar" role="group" aria-labelledby="lbl-fp">
+          <button class="fb" data-a="all" aria-pressed="false">Alle</button>
+          <button class="fb" data-a="aw"  aria-pressed="true">Deze week</button>
+          <button class="fb" data-a="am"  aria-pressed="false">Deze maand</button>
+        </div>
+        <p class="filter-note">Filtert op items toegevoegd of gewijzigd in de geselecteerde periode</p>
+      </div>
       <div class="filter-group">
         <label id="lbl-status">Status</label>
         <div class="filter-bar" id="sf" role="group" aria-labelledby="lbl-status">
           <button class="fb" data-s="all"     aria-pressed="true">Alles</button>
-          <button class="fb" data-s="rolling" aria-pressed="false">🟡 Wordt uitgerold</button>
-          <button class="fb" data-s="dev"     aria-pressed="false">🔵 In ontwikkeling</button>
-        </div>
-      </div>
-      <div class="filter-group" style="max-width:280px">
-        <label for="sort-select">Sorteren op</label>
-        <div class="sort-row">
-          <select id="sort-select" onchange="render()">
-            <option value="added-desc">Toegevoegd: nieuwste eerst</option>
-            <option value="release-asc">Releasedatum: nieuw → oud</option>
-            <option value="release-desc">Releasedatum: oud → nieuw</option>
-            <option value="modified-desc">Laatst gewijzigd</option>
-            <option value="status">Status</option>
-          </select>
-        </div>
-      </div>
-    </div>
-
-    <div>
-      <button class="more-toggle" aria-expanded="false" aria-controls="more-filters"
-              onclick="toggleSection(this,'more-filters')">
-        Meer filteropties <span class="chevron" aria-hidden="true">▼</span>
-      </button>
-      <div id="more-filters" class="more-section" role="group" aria-label="Aanvullende filters">
-        <div class="filter-row-2">
-          <div class="filter-group">
-            <label id="lbl-af">Toegevoegd aan roadmap</label>
-            <div class="filter-bar" id="af" role="group" aria-labelledby="lbl-af">
-              <button class="fb" data-a="all" aria-pressed="false">Alle</button>
-              <button class="fb" data-a="aw"  aria-pressed="true">Deze week</button>
-              <button class="fb" data-a="am"  aria-pressed="false">Deze maand</button>
-            </div>
-          </div>
-          <div class="filter-group">
-            <label id="lbl-mf">Gewijzigd op roadmap</label>
-            <div class="filter-bar" id="mf" role="group" aria-labelledby="lbl-mf">
-              <button class="fb" data-m="all" aria-pressed="true">Alle</button>
-              <button class="fb" data-m="mw"  aria-pressed="false">Deze week</button>
-              <button class="fb" data-m="mm"  aria-pressed="false">Deze maand</button>
-            </div>
-          </div>
-        </div>
-        <div class="filter-group">
-          <label id="lbl-nf">Bekendheid</label>
-          <div class="filter-bar" id="nf" role="group" aria-labelledby="lbl-nf">
-            <button class="fb" data-n="all"   aria-pressed="true">Alles</button>
-            <button class="fb" data-n="new"   aria-pressed="false">⭐ Nieuw deze week</button>
-            <button class="fb" data-n="known" aria-pressed="false">Al bekend</button>
-          </div>
+          <button class="fb" data-s="rolling" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>Uitgerold</button>
+          <button class="fb" data-s="dev"     aria-pressed="false"><span class="act-dot d-user" aria-hidden="true"></span>Ontwikkeling</button>
         </div>
       </div>
     </div>
@@ -260,20 +276,28 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 var APP_META = {
-  copilot:{label:'Copilot',cls:'p-copilot'},    teams:{label:'Teams',cls:'p-teams'},
-  outlook:{label:'Outlook',cls:'p-outlook'},    excel:{label:'Excel',cls:'p-excel'},
-  word:{label:'Word',cls:'p-word'},              powerpoint:{label:'PowerPoint',cls:'p-powerpoint'},
-  sharepoint:{label:'SharePoint',cls:'p-sharepoint'}, purview:{label:'Purview',cls:'p-purview'},
-  viva:{label:'Viva',cls:'p-viva'},              edge:{label:'Edge',cls:'p-edge'},
-  onedrive:{label:'OneDrive',cls:'p-onedrive'}, exchange:{label:'Exchange',cls:'p-exchange'},
-  forms:{label:'Forms',cls:'p-forms'},           intune:{label:'Intune',cls:'p-intune'},
-  entra:{label:'Entra',cls:'p-entra'},           planner:{label:'Planner',cls:'p-planner'},
-  other:{label:'Overig',cls:'p-other'}
+  copilot:    {label:'Copilot',     cls:'p-copilot',    icon:'icons/copilot.png'},
+  teams:      {label:'Teams',       cls:'p-teams',      icon:'icons/teams.png'},
+  outlook:    {label:'Outlook',     cls:'p-outlook',    icon:'icons/outlook.png'},
+  excel:      {label:'Excel',       cls:'p-excel',      icon:'icons/excel.png'},
+  word:       {label:'Word',        cls:'p-word',       icon:'icons/word.png'},
+  powerpoint: {label:'PowerPoint',  cls:'p-powerpoint', icon:'icons/powerpoint.png'},
+  sharepoint: {label:'SharePoint',  cls:'p-sharepoint', icon:'icons/sharepoint.png'},
+  purview:    {label:'Purview',     cls:'p-purview',    icon:'icons/purview.png'},
+  viva:       {label:'Viva',        cls:'p-viva',       icon:'icons/viva.png'},
+  edge:       {label:'Edge',        cls:'p-edge',       icon:'icons/edge.png'},
+  onedrive:   {label:'OneDrive',    cls:'p-onedrive',   icon:'icons/onedrive.png'},
+  exchange:   {label:'Exchange',    cls:'p-exchange',   icon:'icons/exchange.png'},
+  forms:      {label:'Forms',       cls:'p-forms',      icon:'icons/forms.png'},
+  intune:     {label:'Intune',      cls:'p-intune',     icon:'icons/intune.png'},
+  entra:      {label:'Entra',       cls:'p-entra',      icon:'icons/entra.png'},
+  planner:    {label:'Planner',     cls:'p-planner',    icon:'icons/planner.png'},
+  other:      {label:'Overig',      cls:'p-other',      icon:null}
 };
 var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview',
                  'viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
-var ACTION_LABEL = {none:'Gaat automatisch',admin:'IT-beheerder actie vereist',user:'Medewerker kan zelf instellen'};
-var ACTION_ICON  = {none:'🟢',admin:'🟡',user:'🔵'};
+var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie vereist', user:'Medewerker kan zelf instellen'};
+var ACTION_ICON  = {none:'🟢', admin:'🟡', user:'🔵'};
 var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,
               oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,
               june:5,july:6,august:7,september:8,october:9,november:10,december:11};
@@ -281,47 +305,35 @@ var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april'
                june:'juni',july:'juli',august:'augustus',september:'september',
                october:'oktober',november:'november',december:'december'};
 var CACHE_KEY = 'm365_data_v1';
-var SEEN_KEY  = 'm365_seen_ids';
 
+/* ── State ────────────────────────────────────────────────────────────── */
 var ALL_ITEMS = [];
-var fS='all', fN='all', fA='aw', fM='all', fP='all', fAct='all', fQ='';
+var fS='all', fA='aw', fP='all', fAct='all', fQ='';
 var searchTimer = null;
 var fromKalender = false;
-var idParam = null;  /* MS-ID vanuit kalender via ?id= */
+var idParam = null;
 
+/* ── Hulpfuncties ─────────────────────────────────────────────────────── */
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
 
-/* Geeft maandag 00:00 van de ISO-kalenderweek die 'date' bevat */
-function weekStart(date) {
-  var d = new Date(date);
-  var day = d.getDay();                   /* 0=zo, 1=ma … 6=za */
-  var diff = (day === 0 ? -6 : 1 - day); /* verschuif naar maandag */
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + diff);
-  return d;
+function weekStart(date){
+  var d=new Date(date); var day=d.getDay();
+  var diff=(day===0?-6:1-day); d.setHours(0,0,0,0); d.setDate(d.getDate()+diff); return d;
 }
-/* Geeft zondag 23:59:59 van dezelfde week */
-function weekEnd(date) {
-  var ws = weekStart(date);
-  var we = new Date(ws);
-  we.setDate(we.getDate() + 6);
-  we.setHours(23, 59, 59, 999);
-  return we;
+function weekEnd(date){
+  var ws=weekStart(date); var we=new Date(ws);
+  we.setDate(we.getDate()+6); we.setHours(23,59,59,999); return we;
 }
-/* ISO-weeknummer (1-53) */
-function isoWeek(date) {
-  var d = new Date(date);
-  d.setHours(0, 0, 0, 0);
-  d.setDate(d.getDate() + 3 - (d.getDay() + 6) % 7);
-  var w1 = new Date(d.getFullYear(), 0, 4);
-  return 1 + Math.round(((d - w1) / 864e5 - 3 + (w1.getDay() + 6) % 7) / 7);
+function isoWeek(date){
+  var d=new Date(date); d.setHours(0,0,0,0);
+  d.setDate(d.getDate()+3-(d.getDay()+6)%7);
+  var w1=new Date(d.getFullYear(),0,4);
+  return 1+Math.round(((d-w1)/864e5-3+(w1.getDay()+6)%7)/7);
 }
-/* True als datum d binnen de ISO-kalenderweek van refDate valt */
-function inSameWeek(d, refDate) {
-  if (!d) return false;
-  var dt = new Date(d);
-  return dt >= weekStart(refDate) && dt <= weekEnd(refDate);
+function inSameWeek(d,refDate){
+  if(!d)return false;
+  var dt=new Date(d); return dt>=weekStart(refDate)&&dt<=weekEnd(refDate);
 }
 function fmtDate(d){ return d?new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}):''; }
 function nlRelease(s){
@@ -339,16 +351,22 @@ function highlight(text,query){
   return esc(text).replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
 }
 
-/* ── URL-parameter ?zoek= verwerken ────────────────────────────────────── */
+/* Bouw het app-icoon HTML fragment */
+function appIconHTML(key) {
+  var meta = APP_META[key];
+  if (!meta || !meta.icon) return '';
+  return '<span class="app-icon-wrap" aria-hidden="true"><img src="'+meta.icon+'" alt="" width="20" height="20"></span>';
+}
+
+/* ── URL-parameters ────────────────────────────────────────────────────── */
 (function(){
-  var params  = new URLSearchParams(window.location.search);
-  var zoek    = params.get('zoek');
-  idParam = params.get('id');   /* Vanuit releasekalender via MS-ID — globale variabele */
+  var params = new URLSearchParams(window.location.search);
+  var zoek   = params.get('zoek');
+  idParam = params.get('id');
 
   if (idParam) {
-    /* ID-modus: zoek op exact MS-ID — reset alle andere filters zodat het item altijd gevonden wordt */
     fQ = idParam.trim();
-    fA = 'all'; fM = 'all'; fS = 'all'; fN = 'all'; fAct = 'all'; fP = 'all';
+    fA = 'all'; fS = 'all'; fAct = 'all'; fP = 'all';
     fromKalender = true;
     document.addEventListener('DOMContentLoaded', function(){
       var inp = document.getElementById('search-input');
@@ -357,14 +375,9 @@ function highlight(text,query){
         document.getElementById('search-clear').classList.add('show');
         document.getElementById('search-origin-note').classList.add('show');
       }
-      /* Reset ook de aria-pressed staat van filterknoppen zodat UI klopt */
-      document.querySelectorAll('#af .fb').forEach(function(b){
-        b.setAttribute('aria-pressed', b.getAttribute('data-a')==='all' ? 'true' : 'false');
-        b.className = 'fb';
-      });
-      document.querySelectorAll('#mf .fb').forEach(function(b){
-        b.setAttribute('aria-pressed', b.getAttribute('data-m')==='all' ? 'true' : 'false');
-        b.className = 'fb';
+      document.querySelectorAll('#fp-bar .fb').forEach(function(b){
+        b.setAttribute('aria-pressed', b.getAttribute('data-a')==='all'?'true':'false');
+        b.className='fb';
       });
     });
   } else if (zoek) {
@@ -381,15 +394,12 @@ function highlight(text,query){
   }
 })();
 
-/* ── Fetch met timeout + sessionStorage cache ───────────────────────────── */
-function loadData() {
-  try {
-    var cached = sessionStorage.getItem(CACHE_KEY);
-    if (cached) {
-      var p = JSON.parse(cached);
-      if (Date.now()-p._ts < 30*60*1000) { handleData(p); return; }
-    }
-  } catch(e){}
+/* ── Fetch + cache ─────────────────────────────────────────────────────── */
+function loadData(){
+  try{
+    var cached=sessionStorage.getItem(CACHE_KEY);
+    if(cached){var p=JSON.parse(cached);if(Date.now()-p._ts<30*60*1000){handleData(p);return;}}
+  }catch(e){}
   var ctrl=new AbortController();
   var timer=setTimeout(function(){ctrl.abort();},12000);
   fetch('data.json?v='+Date.now(),{signal:ctrl.signal})
@@ -409,33 +419,31 @@ function loadData() {
     });
 }
 
-function updateWeekLabels() {
-  var now = new Date();
-  var wn  = isoWeek(now);
-  var ws  = weekStart(now);
-  var we  = weekEnd(now);
-  var fmt = function(d){ return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'}); };
-  var lbl = 'Week ' + wn + ' (' + fmt(ws) + ' – ' + fmt(we) + ')';
-  document.querySelectorAll('[data-a="aw"],[data-m="mw"]').forEach(function(btn){
-    btn.textContent = lbl;
-  });
+/* ── Weeklabels bijwerken ───────────────────────────────────────────────── */
+function updateWeekLabels(){
+  var now=new Date(); var wn=isoWeek(now); var ws=weekStart(now); var we=weekEnd(now);
+  var fmt=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
+  var lbl='Week '+wn+' ('+fmt(ws)+' \u2013 '+fmt(we)+')';
+  /* Periodeknop */
+  var awBtn=document.querySelector('#fp-bar [data-a="aw"]');
+  if(awBtn)awBtn.textContent=lbl;
+  /* Mini-badge bij label */
+  var badge=document.getElementById('week-mini-badge');
+  if(badge)badge.textContent=lbl;
 }
 
+/* ── Data verwerken ─────────────────────────────────────────────────────── */
 function handleData(data){
-  ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew: inSameWeek(i.added, new Date())});});
+  ALL_ITEMS=data.items.map(function(i){
+    return Object.assign({},i,{isNew: inSameWeek(i.added,new Date())||inSameWeek(i.modified,new Date())});
+  });
   var gen=new Date(data.generated);
-  var wn  = isoWeek(new Date());
-  var ws  = weekStart(new Date());
-  var we  = weekEnd(new Date());
-  var fmtShort = function(d){ return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'}); };
+  var wn=isoWeek(new Date()); var ws=weekStart(new Date()); var we=weekEnd(new Date());
+  var fmtS=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
   document.getElementById('last-updated').textContent=
-    'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' · '+data.count+' items';
-  /* Weekbadge naast header */
-  var wbadge = document.getElementById('week-badge');
-  if (wbadge) {
-    wbadge.textContent = 'Week ' + wn + ' · ' + fmtShort(ws) + ' – ' + fmtShort(we);
-    wbadge.style.display = '';
-  }
+    'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' \u00b7 '+data.count+' items';
+  var wb=document.getElementById('week-badge');
+  if(wb){wb.textContent='Week '+wn+' \u00b7 '+fmtS(ws)+' \u2013 '+fmtS(we);wb.style.display='';}
   document.getElementById('root').setAttribute('aria-busy','false');
   buildAppFilter(ALL_ITEMS);
   updateWeekLabels();
@@ -443,10 +451,11 @@ function handleData(data){
   if(removed.length>0){
     document.getElementById('changes-block').style.display='block';
     document.getElementById('changes-title').textContent='Wijzigingen deze week ('+removed.length+' item'+(removed.length!==1?'s':'')+')';
-    document.getElementById('changes-icon').textContent=removed.some(function(r){return r.status==='launched';})?' ✅':'⚑';
+    document.getElementById('changes-icon').textContent=removed.some(function(r){return r.status==='launched';})?' \u2705':'\u2691';
     document.getElementById('changes-cards').innerHTML=removed.map(function(r){
       var meta=APP_META[r.app]||APP_META.other;
-      return '<div class="rcard"><span class="pill '+meta.cls+'">'+esc(r.prodLabel||meta.label)+'</span>'+
+      return '<div class="rcard">'+
+        '<span class="pill '+meta.cls+'">'+appIconHTML(r.app)+esc(r.prodLabel||meta.label)+'</span>'+
         '<span class="rcard-title">'+esc(r.title)+'</span>'+
         '<div class="rcard-right"><span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>'+
         '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+' ID '+r.id+'</a></div></div>';
@@ -455,21 +464,29 @@ function handleData(data){
   render();
 }
 
-/* ── App-filter ─────────────────────────────────────────────────────────── */
+/* ── Productfilter opbouwen met iconen ───────────────────────────────────── */
 function buildAppFilter(items){
   var present=new Set(items.map(function(i){return i.app;}));
   var bar=document.getElementById('apf');
   while(bar.children.length>1)bar.removeChild(bar.lastChild);
   APP_ORDER.forEach(function(key){
     if(!present.has(key))return;
+    var meta=APP_META[key];
     var btn=document.createElement('button');
-    btn.className='fb';btn.setAttribute('data-p',key);btn.setAttribute('aria-pressed','false');
-    btn.textContent=APP_META[key].label+' (0)';bar.appendChild(btn);
+    btn.className='fb';
+    btn.setAttribute('data-p',key);
+    btn.setAttribute('aria-pressed','false');
+    btn.innerHTML=appIconHTML(key)+esc(meta.label)+' <span class="app-count">(0)</span>';
+    bar.appendChild(btn);
   });
   bar.addEventListener('click',function(e){
     var t=e.target.closest('[data-p]');if(!t)return;
-    bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false');b.className='fb';});
-    var v=t.getAttribute('data-p');t.setAttribute('aria-pressed','true');
+    bar.querySelectorAll('.fb').forEach(function(b){
+      b.setAttribute('aria-pressed','false');
+      b.className='fb';
+    });
+    var v=t.getAttribute('data-p');
+    t.setAttribute('aria-pressed','true');
     if(v!=='all')t.classList.add('ao-'+v);
     fP=v;render();
   });
@@ -481,18 +498,14 @@ function updateAppCounts(items){
   if(allBtn)allBtn.textContent='Alle producten ('+items.length+')';
   document.querySelectorAll('#apf [data-p]').forEach(function(btn){
     var key=btn.getAttribute('data-p');if(key==='all')return;
+    var meta=APP_META[key];
     var n=counts[key]||0;
-    btn.textContent=APP_META[key].label+' ('+n+')';
+    btn.innerHTML=appIconHTML(key)+esc(meta.label)+' <span class="app-count">('+n+')</span>';
     btn.style.display=(n===0&&fP!==key)?'none':'';
   });
 }
 
 /* ── UI-helpers ─────────────────────────────────────────────────────────── */
-function toggleSection(btn,panelId){
-  var open=btn.getAttribute('aria-expanded')==='true';
-  btn.setAttribute('aria-expanded',open?'false':'true');
-  document.getElementById(panelId).classList.toggle('open',!open);
-}
 function toggleCollapsible(btn,panelId){
   var open=btn.getAttribute('aria-expanded')==='true';
   btn.setAttribute('aria-expanded',open?'false':'true');
@@ -501,21 +514,20 @@ function toggleCollapsible(btn,panelId){
   panel.classList.toggle('open',!open);
   if(chevron)chevron.classList.toggle('open',!open);
 }
+function toggleInfoBanner(btn){
+  var body=document.getElementById('info-banner-body');
+  var chevron=btn.querySelector('.collapsible-chevron');
+  var open=btn.getAttribute('aria-expanded')==='true';
+  btn.setAttribute('aria-expanded',open?'false':'true');
+  body.classList.toggle('open',!open);
+  if(chevron)chevron.classList.toggle('open',!open);
+}
 function debouncedSearch(val){clearTimeout(searchTimer);searchTimer=setTimeout(function(){onSearch(val);},200);}
 function onSearch(val){
   fQ=val.trim().toLowerCase();
   document.getElementById('search-clear').classList.toggle('show',fQ.length>0);
-  /* Verberg de "vanuit kalender"-melding zodra de gebruiker zelf iets typt */
   if(fromKalender&&fQ.length===0){document.getElementById('search-origin-note').classList.remove('show');}
   render();
-}
-function toggleInfoBanner(btn) {
-  var body = document.getElementById('info-banner-body');
-  var chevron = btn.querySelector('.collapsible-chevron');
-  var open = btn.getAttribute('aria-expanded') === 'true';
-  btn.setAttribute('aria-expanded', open ? 'false' : 'true');
-  body.classList.toggle('open', !open);
-  if (chevron) chevron.classList.toggle('open', !open);
 }
 function clearSearch(){
   document.getElementById('search-input').value='';
@@ -530,26 +542,27 @@ function cardHTML(item,query){
   var cfg={rolling:{label:'Wordt uitgerold',cls:'p-rolling'},dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status];
   var meta=APP_META[item.app]||APP_META.other;
   var dateRow='';
-  if(item.added)dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> 📅 '+fmtDate(item.added)+'</span>';
+  if(item.added)dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> \uD83D\uDCC5 '+fmtDate(item.added)+'</span>';
   if(item.modified&&item.modified!==item.added)
-    dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> ✏️ '+fmtDate(item.modified)+'</span>';
+    dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> \u270F\uFE0F '+fmtDate(item.modified)+'</span>';
   return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">' +
-    '<div class="card-pills"><span class="pill '+meta.cls+'">'+esc(item.prodLabel||meta.label)+'</span>' +
-    '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>' +
-    (item.isNew?'<span class="new-badge"><span aria-hidden="true">⭐</span> Nieuw</span>':'')+
-    '</div>' +
-    '<h3 class="card-title">'+highlight(item.title,query)+'</h3>' +
-    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit,query)+'</div>' +
-    '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'">' +
-      '<span aria-hidden="true">'+ACTION_ICON[item.action]+'</span>' +
-      '<span>'+esc(item.actionLabel)+'</span>' +
-    '</div>' +
+    '<div class="card-pills">'+
+      '<span class="pill '+meta.cls+'">'+appIconHTML(item.app)+esc(item.prodLabel||meta.label)+'</span>'+
+      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+
+      (item.isNew?'<span class="new-badge"><span aria-hidden="true">\u2B50</span> Nieuw</span>':'')+
+    '</div>'+
+    '<h3 class="card-title">'+highlight(item.title,query)+'</h3>'+
+    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit,query)+'</div>'+
+    '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'">'+
+      '<span aria-hidden="true">'+ACTION_ICON[item.action]+'</span>'+
+      '<span>'+esc(item.actionLabel)+'</span>'+
+    '</div>'+
     (item.desc?'<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>':'')+
-    '<div class="card-foot"><div class="card-foot-left">' +
-      '<span class="release-badge"><span aria-hidden="true">🚀</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>' +
+    '<div class="card-foot"><div class="card-foot-left">'+
+      '<span class="release-badge"><span aria-hidden="true">\uD83D\uDE80</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>'+
       (dateRow?'<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>':'')+
-    '</div>' +
-    '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
+    '</div>'+
+    '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>'+
     '</div></article>';
 }
 
@@ -558,32 +571,25 @@ function render(){
   if(!ALL_ITEMS.length)return;
   var sort=document.getElementById('sort-select').value;
   var query=fQ;
+
   var withoutApp=ALL_ITEMS.filter(function(i){
     if(fS!=='all'&&i.status!==fS)return false;
-    if(fN==='new'&&!i.isNew)return false;
-    if(fN==='known'&&i.isNew)return false;
     if(fAct!=='all'&&i.action!==fAct)return false;
-    if(fA!=='all'||fM!=='all'){
-      var addOk = false, modOk = false;
-      if (fA === 'aw') addOk = inSameWeek(i.added, new Date());
-      else if (fA === 'am') addOk = daysAgo(i.added) <= 31;
-      if (fM === 'mw') modOk = inSameWeek(i.modified, new Date());
-      else if (fM === 'mm') modOk = daysAgo(i.modified) <= 31;
-      if (fA !== 'all' && fM !== 'all' && !addOk && !modOk) return false;
-      if (fA !== 'all' && fM === 'all' && !addOk) return false;
-      if (fM !== 'all' && fA === 'all' && !modOk) return false;
+    /* Unified periode filter: added OF modified binnen de periode */
+    if(fA!=='all'){
+      var thisWeek=(fA==='aw');
+      var addOk=thisWeek?inSameWeek(i.added,new Date()):daysAgo(i.added)<=31;
+      var modOk=thisWeek?inSameWeek(i.modified,new Date()):daysAgo(i.modified)<=31;
+      if(!addOk&&!modOk)return false;
     }
     if(query){
-      /* ?id= modus: vergelijk numeriek MS-ID */
-      var qId = parseInt(query);
-      if (!isNaN(qId) && idParam) {
-        if (i.id !== qId) return false;
-      } else {
-        if(!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query)))return false;
-      }
+      var qId=parseInt(query);
+      if(!isNaN(qId)&&idParam){if(i.id!==qId)return false;}
+      else{if(!(i.title.toLowerCase().includes(query)||i.benefit.toLowerCase().includes(query)))return false;}
     }
     return true;
   });
+
   updateAppCounts(withoutApp);
   var filtered=withoutApp.filter(function(i){return fP==='all'||i.app===fP;});
   filtered=filtered.slice().sort(function(a,b){
@@ -597,10 +603,10 @@ function render(){
   var dev=filtered.filter(function(i){return i.status==='dev';});
   var newCount=filtered.filter(function(i){return i.isNew;}).length;
   document.getElementById('stats-bar').innerHTML=
-    '<span class="stat-pill s-total">'+filtered.length+' updates</span>' +
-    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>' +
-    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>' +
-    (newCount?'<span class="stat-pill s-new">⭐ '+newCount+' nieuw</span>':'')+
+    '<span class="stat-pill s-total">'+filtered.length+' updates</span>'+
+    '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>'+
+    '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>'+
+    (newCount?'<span class="stat-pill s-new">\u2B50 '+newCount+' nieuw</span>':'')+
     (query?'<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>':'');
   var emptyEl=document.getElementById('empty-msg');
   var rootEl=document.getElementById('root');
@@ -611,7 +617,7 @@ function render(){
     return'<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
   }
   if(sort==='status'){
-    rootEl.innerHTML=sec(rolling,'🟡','Wordt uitgerold')+sec(dev,'🔵','In ontwikkeling');
+    rootEl.innerHTML=sec(rolling,'\uD83D\uDFE1','Wordt uitgerold')+sec(dev,'\uD83D\uDD35','In ontwikkeling');
   }else{
     rootEl.innerHTML='<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
   }
@@ -624,12 +630,13 @@ function wireBar(barId,stateKey,attr){
     var t=e.target.closest('['+attr+']');if(!t)return;
     bar.querySelectorAll('.fb').forEach(function(b){b.setAttribute('aria-pressed','false');b.className='fb';});
     var v=t.getAttribute(attr);t.setAttribute('aria-pressed','true');
-    switch(stateKey){case'fS':fS=v;break;case'fN':fN=v;break;case'fA':fA=v;break;case'fM':fM=v;break;}
+    switch(stateKey){case'fS':fS=v;break;case'fA':fA=v;break;}
     render();
   });
 }
-wireBar('sf','fS','data-s'); wireBar('nf','fN','data-n');
-wireBar('af','fA','data-a'); wireBar('mf','fM','data-m');
+wireBar('sf','fS','data-s');
+wireBar('fp-bar','fA','data-a');
+
 document.getElementById('act-bar').addEventListener('click',function(e){
   var t=e.target.closest('[data-act]');if(!t)return;
   document.querySelectorAll('#act-bar .fb').forEach(function(b){b.setAttribute('aria-pressed','false');b.className='fb';});
