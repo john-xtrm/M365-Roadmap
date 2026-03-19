@@ -96,6 +96,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
         Archief
       </a>
+      <span id="week-badge" style="display:none;font-size:.75rem;font-weight:600;background:var(--new-bg);color:var(--new-t);padding:5px 12px;border-radius:var(--radius-pill);white-space:nowrap" aria-live="polite"></span>
       <div id="last-updated" aria-live="polite" aria-atomic="true">Laden…</div>
     </div>
   </div>
@@ -290,6 +291,38 @@ var idParam = null;  /* MS-ID vanuit kalender via ?id= */
 
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
+
+/* Geeft maandag 00:00 van de ISO-kalenderweek die 'date' bevat */
+function weekStart(date) {
+  var d = new Date(date);
+  var day = d.getDay();                   /* 0=zo, 1=ma … 6=za */
+  var diff = (day === 0 ? -6 : 1 - day); /* verschuif naar maandag */
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + diff);
+  return d;
+}
+/* Geeft zondag 23:59:59 van dezelfde week */
+function weekEnd(date) {
+  var ws = weekStart(date);
+  var we = new Date(ws);
+  we.setDate(we.getDate() + 6);
+  we.setHours(23, 59, 59, 999);
+  return we;
+}
+/* ISO-weeknummer (1-53) */
+function isoWeek(date) {
+  var d = new Date(date);
+  d.setHours(0, 0, 0, 0);
+  d.setDate(d.getDate() + 3 - (d.getDay() + 6) % 7);
+  var w1 = new Date(d.getFullYear(), 0, 4);
+  return 1 + Math.round(((d - w1) / 864e5 - 3 + (w1.getDay() + 6) % 7) / 7);
+}
+/* True als datum d binnen de ISO-kalenderweek van refDate valt */
+function inSameWeek(d, refDate) {
+  if (!d) return false;
+  var dt = new Date(d);
+  return dt >= weekStart(refDate) && dt <= weekEnd(refDate);
+}
 function fmtDate(d){ return d?new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}):''; }
 function nlRelease(s){
   if(!s)return'–';
@@ -377,12 +410,23 @@ function loadData() {
 }
 
 function handleData(data){
-  ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew: daysAgo(i.added) <= 7});});
+  ALL_ITEMS=data.items.map(function(i){return Object.assign({},i,{isNew: inSameWeek(i.added, new Date())});});
   var gen=new Date(data.generated);
+  var wn  = isoWeek(new Date());
+  var ws  = weekStart(new Date());
+  var we  = weekEnd(new Date());
+  var fmtShort = function(d){ return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'}); };
   document.getElementById('last-updated').textContent=
     'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' · '+data.count+' items';
+  /* Weekbadge naast header */
+  var wbadge = document.getElementById('week-badge');
+  if (wbadge) {
+    wbadge.textContent = 'Week ' + wn + ' · ' + fmtShort(ws) + ' – ' + fmtShort(we);
+    wbadge.style.display = '';
+  }
   document.getElementById('root').setAttribute('aria-busy','false');
   buildAppFilter(ALL_ITEMS);
+  updateWeekLabels();
   var removed=data.removed||[];
   if(removed.length>0){
     document.getElementById('changes-block').style.display='block';
@@ -508,8 +552,14 @@ function render(){
     if(fN==='known'&&i.isNew)return false;
     if(fAct!=='all'&&i.action!==fAct)return false;
     if(fA!=='all'||fM!=='all'){
-      var days=(fA==='aw'||fM==='mw')?7:31;
-      if(!(fA!=='all'&&daysAgo(i.added)<=days)&&!(fM!=='all'&&daysAgo(i.modified)<=days))return false;
+      var addOk = false, modOk = false;
+      if (fA === 'aw') addOk = inSameWeek(i.added, new Date());
+      else if (fA === 'am') addOk = daysAgo(i.added) <= 31;
+      if (fM === 'mw') modOk = inSameWeek(i.modified, new Date());
+      else if (fM === 'mm') modOk = daysAgo(i.modified) <= 31;
+      if (fA !== 'all' && fM !== 'all' && !addOk && !modOk) return false;
+      if (fA !== 'all' && fM === 'all' && !addOk) return false;
+      if (fM !== 'all' && fA === 'all' && !modOk) return false;
     }
     if(query){
       /* ?id= modus: vergelijk numeriek MS-ID */
