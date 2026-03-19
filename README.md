@@ -14,7 +14,7 @@ Een automatisch bijgewerkt dashboard dat Microsoft 365-roadmap updates toont in 
 - Geeft voor elk item aan **wat het betekent voor de organisatie** en **of er actie nodig is**
 - Toont welke items deze week **beschikbaar zijn gekomen of geannuleerd** zijn
 - Bewaart een **archief** van de laatste 3 maanden
-- **Releasekalender** met maand- en kwartaalweergave voor plannig
+- **Releasekalender** met maand- en kwartaalweergave voor planning
 
 ---
 
@@ -22,7 +22,7 @@ Een automatisch bijgewerkt dashboard dat Microsoft 365-roadmap updates toont in 
 
 | Bestand | Omschrijving |
 |---|---|
-| `index.html` | Hoofdpagina — actuele roadmap met filters, zoekbalk en info-banner |
+| `index.html` | Hoofdpagina — actuele roadmap met filters, zoekbalk en weekbadge |
 | `archief.html` | Archiefpagina — momentopnamen van vorige weken (max 3 maanden) |
 | `kalender.html` | Releasekalender — per maand (kort) of per kwartaal (lang) |
 | `shared.css` | Gedeelde stijlen voor alle pagina's (WCAG 2.2 AA) |
@@ -125,6 +125,7 @@ Handmatig starten kan altijd via **Actions → Run workflow**.
 
 | Onderdeel | Omschrijving |
 |---|---|
+| **Weekbadge in header** | Toont actief weeknummer en datumrange, bijv. "Week 12 · 16 mrt – 22 mrt" |
 | **Info-banner** | Uitleg van kleurcodering en filters — inklapbaar |
 | **Kies een product** | Filter op applicatie — toont live aantallen |
 | **Is er actie nodig?** | Automatisch / IT-beheerder / Medewerker zelf |
@@ -136,12 +137,14 @@ Handmatig starten kan altijd via **Actions → Run workflow**.
 | **Kalender-knop** | Header-link naar `kalender.html` |
 | **Archief-knop** | Header-link naar `archief.html` |
 
-**Standaard filterinstelling:** alleen items die deze week aan de Microsoft roadmap zijn toegevoegd (`Toegevoegd: deze week`). Dit geeft een overzicht van de nieuwste toevoegingen.
+**Standaard filterinstelling:** alleen items die in de huidige ISO-kalenderweek aan de Microsoft roadmap zijn toegevoegd (`Toegevoegd: Week XX`). Op maandag reset het filter automatisch naar de nieuwe week.
 
-**"Nieuw"-badge:** een item geldt als nieuw als het binnen 7 dagen geleden is toegevoegd aan de roadmap — ongeacht of de gebruiker de pagina al bezocht heeft.
+**Weekdefinitie:** de pagina gebruikt ISO-kalenderweken (maandag t/m zondag). De actieve week staat altijd zichtbaar als badge in de header én op de filterknoppen, zodat direct duidelijk is welke periode getoond wordt.
+
+**"Nieuw"-badge:** een item krijgt de ⭐-badge als het in de huidige kalenderweek aan de roadmap is toegevoegd. Dit is consistent met het weekfilter en geldt voor alle gebruikers gelijk.
 
 **URL-parameters:**
-- `?id=123456` — opent de pagina met het item van dat MS-ID direct gefilterd (vanuit kalender)
+- `?id=123456` — opent de pagina met dat MS-ID direct gefilterd (alle andere filters worden gereset); gebruikt vanuit de releasekalender
 - `?zoek=Teams` — opent de pagina met die zoekterm vooringevuld
 
 ### Releasekalender (`kalender.html`)
@@ -184,7 +187,7 @@ Handmatig starten kan altijd via **Actions → Run workflow**.
 | 3.1.1 Taal | `lang="nl"` op elk HTML-document |
 | 3.3.2 Formulierlabels | Alle invoervelden en filtergroepen gelabeld |
 | 4.1.2 Naam/rol/waarde | `aria-pressed`, `aria-expanded`, `aria-live`, `aria-label` |
-| 4.1.3 Statusberichten | `aria-live` op resultatenbalken en paginatellers |
+| 4.1.3 Statusberichten | `aria-live` op resultatenbalken, weekbadge en paginatellers |
 
 Aanvullend:
 - **Dark mode** via `@media (prefers-color-scheme: dark)` — alle kleuren herberekend voor ≥4.5:1
@@ -220,16 +223,28 @@ Aanvullend:
 - **Event delegation**: één listener per filtergroep in plaats van per knop
 - **shared.css**: gedeelde stijlen — browser cachet dit over alle pagina's
 
+### Weekberekening (`index.html`)
+
+De pagina gebruikt drie JavaScript-hulpfuncties voor weekberekening:
+
+- `isoWeek(date)` — berekent het ISO-weeknummer (1–53)
+- `weekStart(date)` — geeft de maandag 00:00 van de week van die datum
+- `weekEnd(date)` — geeft de zondag 23:59:59 van dezelfde week
+- `inSameWeek(d, refDate)` — controleert of datum `d` in dezelfde kalenderweek valt als `refDate`
+
+Deze functies worden gebruikt voor zowel het weekfilter als de ⭐ Nieuw-badge.
+
 ---
 
 ## Bekende gedragingen
 
 | Gedrag | Uitleg |
 |---|---|
-| Sorteren werkt niet bij lege releasedatums | Items zonder datum komen altijd achteraan (datum = 9999) |
-| "Nieuw"-badge verdwijnt na 7 dagen | Gebaseerd op `added`-datum in data.json, niet op browsergeschiedenis |
+| Weekfilter reset op maandag | Op maandag valt de vorige week buiten het filter — nieuw toegevoegde items van die dag zijn direct zichtbaar |
+| Sorteren op datum werkt niet bij lege releasedatums | Items zonder datum komen altijd achteraan (datum = jaar 9999) |
 | Lange termijn start bij huidig kwartaal | Verleden kwartalen verborgen — gebruik "Alles" in periodfilter om ze te zien |
 | Kalender toont enkel items met datum | Items zonder releasedatum staan in het inklapbare blok onderaan |
+| `?id=` reset alle filters | Bij openen via kalender-link worden datumfilters gereset zodat het item altijd gevonden wordt |
 
 ---
 
