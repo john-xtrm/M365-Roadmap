@@ -313,8 +313,9 @@ function highlight(text,query){
   idParam = params.get('id');   /* Vanuit releasekalender via MS-ID — globale variabele */
 
   if (idParam) {
-    /* ID-modus: zoek op exact MS-ID, toon direct dat item */
+    /* ID-modus: zoek op exact MS-ID — reset alle andere filters zodat het item altijd gevonden wordt */
     fQ = idParam.trim();
+    fA = 'all'; fM = 'all'; fS = 'all'; fN = 'all'; fAct = 'all'; fP = 'all';
     fromKalender = true;
     document.addEventListener('DOMContentLoaded', function(){
       var inp = document.getElementById('search-input');
@@ -323,6 +324,15 @@ function highlight(text,query){
         document.getElementById('search-clear').classList.add('show');
         document.getElementById('search-origin-note').classList.add('show');
       }
+      /* Reset ook de aria-pressed staat van filterknoppen zodat UI klopt */
+      document.querySelectorAll('#af .fb').forEach(function(b){
+        b.setAttribute('aria-pressed', b.getAttribute('data-a')==='all' ? 'true' : 'false');
+        b.className = 'fb';
+      });
+      document.querySelectorAll('#mf .fb').forEach(function(b){
+        b.setAttribute('aria-pressed', b.getAttribute('data-m')==='all' ? 'true' : 'false');
+        b.className = 'fb';
+      });
     });
   } else if (zoek) {
     fQ = zoek.trim().toLowerCase();
