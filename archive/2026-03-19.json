@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-19T11:14:36Z",
+  "generated": "2026-03-19T11:57:11Z",
   "date": "2026-03-19",
   "count": 811,
   "items": [
@@ -10547,22 +10547,5 @@
       "modified": "2025-12-09"
     }
   ],
-  "removed": [
-    {
-      "id": 557562,
-      "title": "OneDrive: Stel een aangepaste naam in voor de OneDrive-synchronisatiemap",
-      "app": "onedrive",
-      "prodLabel": "OneDrive",
-      "status": "launched",
-      "statusNl": "Beschikbaar"
-    },
-    {
-      "id": 500377,
-      "title": "Microsoft Copilot (Microsoft 365): Copilot Chat - Ondersteuning voor e-mails in ContextIQ",
-      "app": "copilot",
-      "prodLabel": "Copilot",
-      "status": "cancelled",
-      "statusNl": "Geannuleerd"
-    }
-  ]
+  "removed": []
 }
