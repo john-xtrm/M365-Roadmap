@@ -322,6 +322,8 @@ var fromKalender = false;
 var idParam = null;
 var CACHE_KEY = 'm365_data_v1';
 
+var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie vereist', user:'Medewerker kan zelf instellen'};
+var ACTION_ICON  = {none:'🟢', admin:'🟡', user:'🔵'};
 /* ── Hulpfuncties ────────────────────────────────────────────────────────── */
 function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
