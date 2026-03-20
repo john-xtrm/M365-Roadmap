@@ -501,6 +501,8 @@ function isCurrentPeriod(key, view, now) {
   var p = key.split('-Q');
   return parseInt(p[0])===now.getFullYear() && (Math.floor(now.getMonth()/3)+1)===parseInt(p[1]);
 }
+/* ── State ──────────────────────────────────────────────────────────────── */
+
 
 /* ── Data laden ─────────────────────────────────────────────────────────── */
 function loadData() {

@@ -310,6 +310,62 @@ function appIconHTML(key) {
   return '<img class="app-icon" src="' + uri + '" alt="" aria-hidden="true">';
 }
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
+/* ── State ──────────────────────────────────────────────────────────────── */
+var ALL_ITEMS   = [];
+var fS  = 'all';
+var fA  = 'aw';      /* Standaard: huidige kalenderweek */
+var fP  = 'all';
+var fAct= 'all';
+var fQ  = '';
+var searchTimer = null;
+var fromKalender = false;
+var idParam = null;
+var CACHE_KEY = 'm365_data_v1';
+
+/* ── Hulpfuncties ────────────────────────────────────────────────────────── */
+function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
+
+function weekStart(date){
+  var d=new Date(date); var day=d.getDay();
+  var diff=(day===0?-6:1-day); d.setHours(0,0,0,0); d.setDate(d.getDate()+diff); return d;
+}
+function weekEnd(date){
+  var ws=weekStart(date); var we=new Date(ws);
+  we.setDate(we.getDate()+6); we.setHours(23,59,59,999); return we;
+}
+function isoWeek(date){
+  var d=new Date(date); d.setHours(0,0,0,0);
+  d.setDate(d.getDate()+3-(d.getDay()+6)%7);
+  var w1=new Date(d.getFullYear(),0,4);
+  return 1+Math.round(((d-w1)/864e5-3+(w1.getDay()+6)%7)/7);
+}
+function inSameWeek(d,refDate){
+  if(!d)return false;
+  var dt=new Date(d); return dt>=weekStart(refDate)&&dt<=weekEnd(refDate);
+}
+function fmtDate(d){ return d?new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}):''; }
+function nlRelease(s){
+  if(!s)return'\u2013';
+  var MAANDEN={january:'januari',february:'februari',march:'maart',april:'april',may:'mei',
+    june:'juni',july:'juli',august:'augustus',september:'september',
+    october:'oktober',november:'november',december:'december'};
+  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
+    function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,'$1');
+}
+function parseRelease(s){
+  if(!s)return new Date(9999,0,1);
+  var MONTHS={january:0,february:1,march:2,april:3,may:4,june:5,july:6,august:7,
+    september:8,october:9,november:10,december:11};
+  var m=s.toLowerCase().match(/(\w+)\s+(\d{4})/);
+  return(m&&MONTHS[m[1]]!==undefined)?new Date(parseInt(m[2]),MONTHS[m[1]],1):new Date(9999,0,1);
+}
+function highlight(text,query){
+  if(!query)return esc(text);
+  return esc(text).replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
+}
+
+
 
 
 /* ── URL-parameters ────────────────────────────────────────────────────── */

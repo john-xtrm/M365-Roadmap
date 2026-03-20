@@ -210,6 +210,19 @@ function appIconHTML(key) {
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 
+/* ── State ──────────────────────────────────────────────────────────────── */
+var ALL_ITEMS   = [];
+var fS  = 'all';
+var fA  = 'aw';      /* Standaard: huidige kalenderweek */
+var fP  = 'all';
+var fAct= 'all';
+var fQ  = '';
+var searchTimer = null;
+var fromKalender = false;
+var idParam = null;
+var CACHE_KEY = 'm365_data_v1';
+
+
 var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie vereist', user:'Medewerker kan zelf instellen'};
 var ACTION_ICON  = {none:'🟢', admin:'🟡', user:'🔵'};
 var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,
@@ -432,6 +445,61 @@ function itemCard(item) {
     '</div>' +
   '</article>';
 }
+
+/* ── Archief index laden ────────────────────────────────────────────────── */
+function loadIndex() {
+  var ctrl  = new AbortController();
+  var timer = setTimeout(function(){ ctrl.abort(); }, 12000);
+  fetch('archive/index.json?v=' + Date.now(), {signal: ctrl.signal})
+    .finally(function(){ clearTimeout(timer); })
+    .then(function(r){ if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(data) {
+      var dates = data.dates || [];
+      if (!dates.length) {
+        document.getElementById('week-nav').innerHTML =
+          '<p style="color:var(--faint);font-size:.875rem">Nog geen archiefweken beschikbaar. Start de workflow om de eerste snapshot op te slaan.</p>';
+        return;
+      }
+      /* Bouw weekknoppen — meest recent eerst */
+      dates.sort(function(a,b){ return b.localeCompare(a); });
+      var nav = document.getElementById('week-nav');
+      nav.innerHTML = '';
+      dates.forEach(function(dateStr, i) {
+        var d   = new Date(dateStr);
+        var btn = document.createElement('button');
+        btn.className = 'week-btn' + (i === 0 ? ' active' : '');
+        btn.setAttribute('data-date', dateStr);
+        btn.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+        btn.setAttribute('aria-label', 'Week van ' + d.toLocaleDateString('nl-NL',{day:'numeric',month:'long',year:'numeric'}));
+        btn.innerHTML =
+          d.toLocaleDateString('nl-NL',{weekday:'short',day:'numeric',month:'short'}) +
+          '<span class="week-btn-year">' + d.getFullYear() + '</span>';
+        btn.addEventListener('click', function() {
+          nav.querySelectorAll('.week-btn').forEach(function(b){
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed','false');
+          });
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed','true');
+          loadWeek(dateStr, btn);
+        });
+        nav.appendChild(btn);
+      });
+      /* Laad de eerste (meest recente) week automatisch */
+      loadWeek(dates[0], nav.querySelector('.week-btn'));
+    })
+    .catch(function(err) {
+      var msg = err.name === 'AbortError' ? 'Tijdslimiet overschreden.' : String(err);
+      document.getElementById('archive-content').innerHTML =
+        '<div class="state-box" role="alert"><h2>Archief niet beschikbaar</h2>' +
+        '<p style="margin-top:.5rem">Controleer of de workflow al heeft gedraaid.</p>' +
+        '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">' + esc(msg) + '</p></div>';
+    });
+}
+
+/* ── Start ──────────────────────────────────────────────────────────────── */
+loadIndex();
+
 </script>
 </body>
 </html>
