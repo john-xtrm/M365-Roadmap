@@ -77,23 +77,9 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
   white-space: nowrap; text-transform: none; letter-spacing: 0;
 }
 
-/* ── Product-iconen in filterknoppen ─────────────────────────────────── */
-/* Elk icoon zit in een 20×20px afgerond vakje — consistent voor iconen
-   met én zonder achtergrond, incl. zwarte achtergrond-PNGs            */
-.app-icon-wrap {
-  width: 20px; height: 20px;
-  border-radius: 5px;
-  overflow: hidden;
-  flex-shrink: 0;
-  display: inline-flex; align-items: center; justify-content: center;
-  background: #fff;  /* vangt transparante iconen op */
-}
-.app-icon-wrap img { width: 20px; height: 20px; object-fit: contain; display: block; }
-
 /* Donkere modus: witte achtergrond blijft — geeft app-icon-uitstraling */
 @media (prefers-color-scheme: dark) {
-  .app-icon-wrap { background: #fff; }
-}
+  }
 
 /* ── Leeg-melding ─────────────────────────────────────────────────────── */
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
@@ -270,93 +256,12 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 </div>
 </main>
 
+<script src="app-meta.js"></script>
 <script>
 'use strict';
 
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
-var APP_META = {
-  copilot:    {label:'Copilot',     cls:'p-copilot',    icon:'icons/copilot.png'},
-  teams:      {label:'Teams',       cls:'p-teams',      icon:'icons/teams.png'},
-  outlook:    {label:'Outlook',     cls:'p-outlook',    icon:'icons/outlook.png'},
-  excel:      {label:'Excel',       cls:'p-excel',      icon:'icons/excel.png'},
-  word:       {label:'Word',        cls:'p-word',       icon:'icons/word.png'},
-  powerpoint: {label:'PowerPoint',  cls:'p-powerpoint', icon:'icons/powerpoint.png'},
-  sharepoint: {label:'SharePoint',  cls:'p-sharepoint', icon:'icons/sharepoint.png'},
-  purview:    {label:'Purview',     cls:'p-purview',    icon:'icons/purview.png'},
-  viva:       {label:'Viva',        cls:'p-viva',       icon:'icons/viva.png'},
-  edge:       {label:'Edge',        cls:'p-edge',       icon:'icons/edge.png'},
-  onedrive:   {label:'OneDrive',    cls:'p-onedrive',   icon:'icons/onedrive.png'},
-  exchange:   {label:'Exchange',    cls:'p-exchange',   icon:'icons/exchange.png'},
-  forms:      {label:'Forms',       cls:'p-forms',      icon:'icons/forms.png'},
-  intune:     {label:'Intune',      cls:'p-intune',     icon:'icons/intune.png'},
-  entra:      {label:'Entra',       cls:'p-entra',      icon:'icons/entra.png'},
-  planner:    {label:'Planner',     cls:'p-planner',    icon:'icons/planner.png'},
-  other:      {label:'Overig',      cls:'p-other',      icon:null}
-};
-var APP_ORDER = ['copilot','teams','outlook','excel','word','powerpoint','sharepoint','purview',
-                 'viva','edge','onedrive','exchange','forms','intune','entra','planner','other'];
-var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie vereist', user:'Medewerker kan zelf instellen'};
-var ACTION_ICON  = {none:'🟢', admin:'🟡', user:'🔵'};
-var MONTHS = {januari:0,februari:1,maart:2,april:3,mei:4,juni:5,juli:6,augustus:7,september:8,
-              oktober:9,november:10,december:11,january:0,february:1,march:2,april:3,may:4,
-              june:5,july:6,august:7,september:8,october:9,november:10,december:11};
-var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april',may:'mei',
-               june:'juni',july:'juli',august:'augustus',september:'september',
-               october:'oktober',november:'november',december:'december'};
-var CACHE_KEY = 'm365_data_v1';
-
-/* ── State ────────────────────────────────────────────────────────────── */
-var ALL_ITEMS = [];
-var fS='all', fA='aw', fP='all', fAct='all', fQ='';
-var searchTimer = null;
-var fromKalender = false;
-var idParam = null;
-
-/* ── Hulpfuncties ─────────────────────────────────────────────────────── */
-function esc(s){ return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-function daysAgo(d){ return d?(Date.now()-new Date(d).getTime())/864e5:9999; }
-
-function weekStart(date){
-  var d=new Date(date); var day=d.getDay();
-  var diff=(day===0?-6:1-day); d.setHours(0,0,0,0); d.setDate(d.getDate()+diff); return d;
-}
-function weekEnd(date){
-  var ws=weekStart(date); var we=new Date(ws);
-  we.setDate(we.getDate()+6); we.setHours(23,59,59,999); return we;
-}
-function isoWeek(date){
-  var d=new Date(date); d.setHours(0,0,0,0);
-  d.setDate(d.getDate()+3-(d.getDay()+6)%7);
-  var w1=new Date(d.getFullYear(),0,4);
-  return 1+Math.round(((d-w1)/864e5-3+(w1.getDay()+6)%7)/7);
-}
-function inSameWeek(d,refDate){
-  if(!d)return false;
-  var dt=new Date(d); return dt>=weekStart(refDate)&&dt<=weekEnd(refDate);
-}
-function fmtDate(d){ return d?new Date(d).toLocaleDateString('nl-NL',{day:'numeric',month:'short',year:'numeric'}):''; }
-function nlRelease(s){
-  if(!s)return'–';
-  return s.replace(/\b(january|february|march|april|may|june|july|august|september|october|november|december)\b/gi,
-    function(m){return MAANDEN[m.toLowerCase()]||m;}).replace(/\bCY(\d{4})\b/,'$1');
-}
-function parseRelease(s){
-  if(!s)return new Date(9999,0,1);
-  var m=s.toLowerCase().match(/(\w+)\s+(\d{4})/);
-  return(m&&MONTHS[m[1]]!==undefined)?new Date(parseInt(m[2]),MONTHS[m[1]],1):new Date(9999,0,1);
-}
-function highlight(text,query){
-  if(!query)return esc(text);
-  return esc(text).replace(new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');
-}
-
-/* Bouw het app-icoon HTML fragment */
-function appIconHTML(key) {
-  var meta = APP_META[key];
-  if (!meta || !meta.icon) return '';
-  return '<span class="app-icon-wrap" aria-hidden="true"><img src="'+meta.icon+'" alt="" width="20" height="20"></span>';
-}
 
 /* ── URL-parameters ────────────────────────────────────────────────────── */
 (function(){

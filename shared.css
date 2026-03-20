@@ -450,3 +450,41 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
   .card { padding: 1rem 1.1rem; }
   .collapsible-toggle { padding: 0.875rem 1rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Product-iconen — gedeeld over alle pagina's
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Icoon-wrapper in filterknoppen en pills */
+.app-icon {
+  width: 1.125rem;       /* 18px — schaalt mee met rem (WCAG 1.4.4) */
+  height: 1.125rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* In kleine pill-context (kaarten, rcard) iets kleiner */
+.pill .app-icon,
+.rcard .app-icon {
+  width: 0.9375rem;      /* 15px */
+  height: 0.9375rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Product-iconen — gedeeld door alle pagina's
+   ═══════════════════════════════════════════════════════════════════════ */
+.app-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+/* Iets kleiner in compacte context */
+.pill .app-icon,
+.rcard .app-icon,
+.cal-card .app-icon { width: 0.9375rem; height: 0.9375rem; }
