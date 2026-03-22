@@ -60,10 +60,7 @@
 .filter-row-2 .filter-group { flex: 1; min-width: 160px; }
 
 /* Actie-knoppen met gekleurde dot */
-.act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.act-dot.d-none  { background: var(--c-none); }
-.act-dot.d-admin { background: var(--c-admin); }
-.act-dot.d-user  { background: var(--c-user); }
+
 
 /* Sorteren */
 select { padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: var(--font); font-size: 0.875rem; cursor: pointer; min-height: 2.75rem; }
@@ -626,12 +623,12 @@ function render(){
   emptyEl.classList.remove('show');
   function sec(items,emoji,lbl){
     if(!items.length)return'';
-    return'<section aria-label="'+lbl+'"><h2 class="sec-hdr"><span>'+emoji+' '+lbl+'</span><span class="sec-count">'+items.length+'</span></h2>'+items.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
+    return'<section aria-label="'+lbl+'"><h2 class="sec-hdr">'+emoji+' '+lbl+'</h2>'+items.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
   }
   if(sort==='status'){
     rootEl.innerHTML=sec(rolling,'\uD83D\uDFE1','Wordt uitgerold')+sec(dev,'\uD83D\uDD35','In ontwikkeling');
   }else{
-    rootEl.innerHTML='<section aria-label="Resultaten"><h2 class="sec-hdr"><span>'+filtered.length+' updates</span><span class="sec-count">'+filtered.length+'</span></h2>'+filtered.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
+    rootEl.innerHTML='<section aria-label="'+filtered.length+' updates">'+filtered.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
   }
 }
 

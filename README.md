@@ -1,12 +1,12 @@
 # Microsoft 365 Roadmap Dashboard
 
-Automatisch bijgewerkt dashboard voor Microsoft 365-roadmap updates in begrijpelijk Nederlands. Bedoeld voor niet-technische medewerkers die willen weten wat er aan te komen is en of er actie nodig is.
+Automatisch bijgewerkt dashboard voor Microsoft 365-roadmap updates in begrijpelijk Nederlands. Geoptimaliseerd voor niet-technische medewerkers die willen weten wat er aankomt en of er actie nodig is.
 
 **Volledig gratis** — GitHub Pages + GitHub Actions + Microsoft publieke CSV API + Google Translate via `deep_translator`.
 
 ---
 
-## Bestanden in de repository
+## Bestanden
 
 | Bestand | Omschrijving |
 |---|---|
@@ -20,7 +20,7 @@ Automatisch bijgewerkt dashboard voor Microsoft 365-roadmap updates in begrijpel
 | `archive/index.json` | Index van beschikbare archiefdatums |
 | `archive/YYYY-MM-DD.json` | Archief per week (automatisch aangemaakt, max 3 maanden) |
 
-> **Geen `icons/` map of `app-meta.js` nodig.** Alle product-iconen (16 stuks, 64×64 px) zijn als geoptimaliseerde base64 data-URI direct in elke HTML-pagina ingebouwd. Dit voorkomt laadproblemen in sandboxed omgevingen zoals Teams-tabs en maakt de repository eenvoudiger.
+> Alle 16 product-iconen zijn als geoptimaliseerde base64 PNG (64×64 px) direct in elke HTML-pagina ingebouwd. Geen losse bestanden, geen externe afhankelijkheden, werkt ook in sandboxed Teams-tabs.
 
 ---
 
@@ -50,8 +50,6 @@ https://<gebruikersnaam>.github.io/<repository-naam>/
 ### 4. Eerste run starten
 **Actions → Ververs Microsoft 365 Roadmap → Run workflow**
 
-Dit genereert `data.json` en de eerste archiefbestanden.
-
 ### 5. Teams-tabblad instellen (optioneel)
 Kanaal → **+** → **Website** → GitHub Pages URL → Opslaan
 
@@ -67,17 +65,13 @@ Microsoft CSV API (publiek, gratis)
          │
          ├─ fetch_roadmap.py
          │    ├── CSV ophalen via curl (met browser-headers)
-         │    ├── Vertalingen laden uit cache (data.json)
+         │    ├── Vertalingen laden uit cache
          │    ├── Alleen nieuwe/gewijzigde items vertalen
          │    ├── Launched/Cancelled items detecteren
          │    ├── data.json wegschrijven
          │    └── archive/YYYY-MM-DD.json opslaan
          │
          └─ git push → GitHub Pages
-                  │
-                  ├── index.html     (actuele roadmap)
-                  ├── kalender.html  (releasekalender)
-                  └── archief.html   (weekoverzichten)
 ```
 
 ---
@@ -88,21 +82,22 @@ Microsoft CSV API (publiek, gratis)
 
 | Filter | Standaard | Omschrijving |
 |---|---|---|
-| Product | Alle producten | Officieel icoon + naam + live aantal. Alleen producten met items worden getoond. |
+| Product | Alle producten | Icoon + naam + live aantal. Verborgen als 0 items. |
 | Actie nodig? | Alles | Automatisch / IT-beheerder / Medewerker |
 | Sorteren | Toegevoegd: nieuwste eerst | 5 opties |
-| Periode | Deze week | Filtert op items toegevoegd én gewijzigd in de kalenderweek. Toont weeknummer + datumrange op knop en in header. |
+| Periode | Deze week | Items toegevoegd én gewijzigd in de kalenderweek. Label toont weeknummer + datumrange. |
 | Status | Alles | Uitgerold / In ontwikkeling |
 
-### Weekfilter
-Gebruikt ISO-kalenderweken (maandag t/m zondag). Op maandag reset het filter automatisch naar de nieuwe week. De actieve week is altijd zichtbaar als badge in de header en op de filterknop.
+**Weekfilter:** ISO-kalenderweken (ma–zo). Reset automatisch op maandag naar de nieuwe week.
 
-### "Nieuw"-badge
-Een item is nieuw als het in de huidige kalenderweek aan de roadmap is **toegevoegd of gewijzigd**. Dit is consistent met het weekfilter.
+**"Nieuw" badge:** item is nieuw als het in de huidige kalenderweek is toegevoegd of gewijzigd.
 
-### URL-parameters
-- `?id=123456` — opent de pagina met dat MS-ID direct gefilterd; alle datumfilters worden gereset zodat het item altijd gevonden wordt. Wordt gebruikt vanuit de releasekalender.
-- `?zoek=Teams` — vult de zoekbalk voor met de opgegeven term.
+**URL-parameters:**
+- `?id=123456` — filtert direct op MS-ID; alle datumfilters worden gereset
+- `?zoek=Teams` — vult de zoekbalk voor
+
+### Statistiekenbalk
+Toont: totaal items · wordt uitgerold · in ontwikkeling · nieuw deze week. Bij actieve zoekopdracht ook het zoekterm-pill. Verdwijnt als er niets te tonen is.
 
 ---
 
@@ -110,26 +105,23 @@ Een item is nieuw als het in de huidige kalenderweek aan de roadmap is **toegevo
 
 | Onderdeel | Omschrijving |
 |---|---|
-| **Korte termijn** | Per maand, komende 6 maanden, alleen items met exacte maanddatum |
-| **Lange termijn** | Per kwartaal, start bij huidig kwartaal |
-| **Periodfilter** | Huidig + toekomst (standaard), specifiek jaar, of alles — alleen zichtbaar bij lange termijn |
-| **Productfilter** | Met officieel icoon per product |
-| **Actiefilter** | Automatisch / IT-beheerder / Medewerker |
-| **Mini-uitsplitsing** | Periodeheader toont #IT, #medewerker, #auto per periode |
-| **Details-knop** | Stuurt via `?id=` naar de hoofdpagina voor de volledige beschrijving |
-| **"Ook in maandweergave"** | Badge op items met exacte maanddatum in de lange-termijn weergave |
-| **Lege maanden** | Compact en gedimpt weergegeven |
-| **Kwartaalblok** | Standaard open, items visueel gedimpt om onzekerheid aan te geven |
+| Korte termijn | Per maand, komende 6 maanden, exacte maanddatums |
+| Lange termijn | Per kwartaal, start bij huidig kwartaal |
+| Periodfilter | Huidig + toekomst / specifiek jaar / alles — alleen bij lange termijn |
+| Productfilter | Met officieel icoon per product |
+| Actiefilter | Automatisch / IT-beheerder / Medewerker |
+| Mini-uitsplitsing | Periodeheader toont #IT, #medewerker, #auto |
+| Details-knop | Stuurt via `?id=` naar hoofdpagina |
+| "Ook in maandweergave" | Badge op exacte maanddatums in lange-termijn view |
 
 ---
 
 ## Archiefpagina (`archief.html`)
 
-- Laadt `archive/index.json` voor de lijst van beschikbare weken
+- Laadt `archive/index.json` voor beschikbare weken
 - Meest recente week automatisch geladen
-- Weekknoppen voor alle beschikbare weken (max 3 maanden terug)
-- Productfilter per week met officieel icoon
-- Statistieken en gewijzigde items per week
+- Weekknoppen voor max 3 maanden terug
+- Productfilter per week met icoon
 
 ---
 
@@ -137,8 +129,9 @@ Een item is nieuw als het in de huidige kalenderweek aan de roadmap is **toegevo
 
 | Criterium | Oplossing |
 |---|---|
-| 1.3.1 Koppen-hiërarchie | h1 header → h2 secties → h3 kaarttitels |
-| 1.4.3 Kleurcontrast ≥4.5:1 | Alle kleuren getest incl. dark mode |
+| 1.1.1 Afbeeldingen | Alle iconen `aria-hidden="true"` + leeg `alt=""` |
+| 1.3.1 Koppen-hiërarchie | h1 → h2 → h3, geen gaten |
+| 1.4.3 Kleurcontrast ≥4.5:1 | Getest incl. dark mode |
 | 1.4.4 Tekst schaalbaar | Alle font-sizes in `rem` |
 | 2.4.1 Skip-link | Op alle pagina's als eerste element |
 | 2.4.7 Focusindicator | `:focus-visible` op alle interactieve elementen |
@@ -146,32 +139,21 @@ Een item is nieuw als het in de huidige kalenderweek aan de roadmap is **toegevo
 | 2.5.8 Raakdoelgrootte ≥24px | Min. 44px hoogte op alle knoppen |
 | 3.1.1 Taal | `lang="nl"` op elk document |
 | 4.1.2 Naam/rol/waarde | `aria-pressed`, `aria-expanded`, `aria-live`, `aria-label` |
-| 4.1.3 Statusberichten | `aria-live` op resultatenbalken en weekbadge |
+| 4.1.3 Statusberichten | `aria-live` op statistiekenbalk en weekbadge |
 
-**Product-iconen:** alle iconen zijn `aria-hidden="true"` — de tekst van de knop is de toegankelijke naam.
+Aanvullend: dark mode (`@media (prefers-color-scheme: dark)`), reduced-motion (`@media (prefers-reduced-motion: reduce)`), noscript-fallback.
 
 ---
 
-## Technische details
+## Performance
 
-### Iconen
-Alle 16 product-iconen zijn opgeslagen als base64-gecodeerde PNG (64×64 px, geoptimaliseerd) direct in elke HTML-pagina. Voordelen:
-- Werkt altijd, ook in sandboxed omgevingen (Teams-tabs, previews)
-- Geen aparte HTTP-requests per icoon
-- Browser cachet de gehele pagina inclusief iconen
-
-### Performance
-- **SessionStorage-cache**: `data.json` 30 minuten gecached — herlaad is direct
-- **Cache-buster**: `?v=timestamp` om GitHub Pages CDN-cache te omzeilen
-- **Fetch-timeout**: verzoeken afgebroken na 12 seconden met foutmelding
-- **Debounce**: zoekbalk 200ms na laatste toetsaanslag
-- **Event delegation**: één listener per filtergroep
-
-### Weekberekening
-- `isoWeek(date)` — ISO-weeknummer (1–53)
-- `weekStart(date)` — maandag 00:00 van die week
-- `weekEnd(date)` — zondag 23:59:59 van dezelfde week
-- `inSameWeek(d, ref)` — controleert of datum `d` in dezelfde kalenderweek valt als `ref`
+- **Iconen inline:** geen externe HTTP-requests; browser cachet de HTML inclusief iconen
+- **SessionStorage-cache:** `data.json` 30 min gecached — herlaad is direct
+- **Cache-buster:** `?v=timestamp` omzeilt GitHub Pages CDN-cache
+- **Fetch-timeout:** 12 seconden; daarna foutmelding
+- **Debounce:** zoekbalk 200ms
+- **Event delegation:** één listener per filtergroep; geen per-knop handlers
+- **innerHTML batch:** alle renders bouwen eerst een volledige HTML-string, dan één write
 
 ---
 
@@ -183,8 +165,8 @@ Alle 16 product-iconen zijn opgeslagen als base64-gecodeerde PNG (64×64 px, geo
 
 ## Onderhoud
 
-**Workflow mislukt?** Actions → mislukte run → Re-run. De woensdag-run pikt maandagfouten automatisch op.
+**Workflow mislukt?** Actions → mislukte run → Re-run. Woensdag pikt maandagfouten op.
 
-**Vertaling corrigeren?** Pas `title` of `benefit` aan in `data.json`. De cache herkent het item op `(id, modified)` — uw correctie blijft behouden zolang Microsoft het item niet wijzigt.
+**Vertaling corrigeren?** Pas `title` of `benefit` aan in `data.json`. Blijft behouden zolang Microsoft het item niet wijzigt.
 
-**Product niet herkend?** Voeg het toe aan `DETECT_PATTERNS` in `fetch_roadmap.py` en update `APP_META` en `APP_ORDER` in de drie HTML-pagina's.
+**Nieuw product toevoegen?** Voeg een entry toe aan `DETECT_PATTERNS` in `fetch_roadmap.py`, aan `APP_META`/`APP_ORDER`/`APP_ICONS` in elk van de drie HTML-pagina's, en voeg een pill-klasse toe in `shared.css`.
