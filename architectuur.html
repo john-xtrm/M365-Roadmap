@@ -3,113 +3,147 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architectuurkaart – Microsoft 365 Roadmap Dashboard</title>
+  <title>Architectuurkaart v2 – Microsoft 365 Roadmap Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
 <div class="max-w-7xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-2">Architectuurkaart</h1>
-  <p class="text-gray-500 mb-4">Interactieve C4-view • klik componenten • gebruik zoom</p>
+  <h1 class="text-3xl font-bold mb-2">Architectuurkaart v2</h1>
+  <p class="text-gray-500 mb-4">Volledig C4-model + datastromen + technische details</p>
 
-  <!-- toggles -->
+  <!-- VIEW SWITCH -->
   <div class="flex gap-2 mb-6">
-    <button onclick="setView('context')" class="px-4 py-2 bg-gray-200 rounded-xl">Context</button>
-    <button onclick="setView('container')" class="px-4 py-2 bg-gray-200 rounded-xl">Container</button>
-    <button onclick="setView('component')" class="px-4 py-2 bg-gray-200 rounded-xl">Component</button>
+    <button onclick="setView('context')" class="btn">Context</button>
+    <button onclick="setView('container')" class="btn">Container</button>
+    <button onclick="setView('component')" class="btn">Component</button>
   </div>
 
-  <!-- zoom wrapper -->
-  <div id="viewport" class="overflow-hidden border rounded-2xl bg-white shadow">
-    <div id="canvas" class="relative w-[1400px] h-[600px] origin-top-left transition-transform duration-300">
+  <!-- DIAGRAM -->
+  <div id="viewport" class="overflow-auto border rounded-2xl bg-white shadow">
+    <div id="canvas" class="relative w-[1400px] h-[700px]">
 
-      <!-- SVG animated lijnen -->
-      <svg class="absolute inset-0 w-full h-full pointer-events-none">
-        <defs>
-          <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
-          </marker>
-        </defs>
+      <!-- GROUPS -->
+      <div class="group left-10 top-50 w-60">
+        <h3>External</h3>
+        <div onclick="show('api')" class="node">📡 Microsoft API</div>
+      </div>
 
-        <line class="flow" x1="150" y1="200" x2="350" y2="200" />
-        <line class="flow" x1="350" y1="200" x2="550" y2="200" />
-        <line class="flow" x1="550" y1="200" x2="750" y2="200" />
-        <line class="flow" x1="750" y1="200" x2="950" y2="200" />
-      </svg>
+      <div class="group left-300 top-50 w-80">
+        <h3>Processing</h3>
+        <div onclick="show('actions')" class="node">⚙️ GitHub Actions</div>
+        <div onclick="show('script')" class="node">🐍 Python Script</div>
+      </div>
 
-      <!-- nodes -->
-      <div onclick="show('source')" class="node absolute left-[80px] top-[160px] bg-blue-50">📡<br>API</div>
-      <div onclick="show('actions')" class="node absolute left-[280px] top-[160px] bg-purple-50">⚙️<br>Actions</div>
-      <div onclick="show('script')" class="node absolute left-[480px] top-[160px] bg-green-50">🐍<br>Script</div>
-      <div onclick="show('data')" class="node absolute left-[680px] top-[160px] bg-yellow-50">💾<br>Data</div>
-      <div onclick="show('frontend')" class="node absolute left-[880px] top-[160px] bg-pink-50">🌐<br>Frontend</div>
+      <div class="group left-650 top-50 w-60">
+        <h3>Storage</h3>
+        <div onclick="show('data')" class="node">💾 data.json</div>
+        <div onclick="show('archive')" class="node">🗂️ Archive</div>
+      </div>
 
-      <div onclick="show('user')" class="node absolute left-[580px] top-[350px] bg-gray-100">👤 Gebruiker</div>
+      <div class="group left-950 top-50 w-80">
+        <h3>Frontend</h3>
+        <div onclick="show('frontend')" class="node">🌐 HTML Pages</div>
+        <div onclick="show('cache')" class="node">⚡ Session Cache</div>
+      </div>
+
+      <div class="group left-550 top-400 w-300">
+        <h3>Users</h3>
+        <div onclick="show('user')" class="node">👤 Browser / Teams</div>
+      </div>
+
+      <!-- DATAFLOW LABELS -->
+      <div class="flow-label" style="left:180px; top:120px;">CSV download</div>
+      <div class="flow-label" style="left:420px; top:120px;">Process + translate</div>
+      <div class="flow-label" style="left:720px; top:120px;">Write JSON</div>
+      <div class="flow-label" style="left:1020px; top:120px;">Render UI</div>
 
     </div>
   </div>
 
-  <!-- zoom controls -->
-  <div class="flex gap-2 mt-4">
-    <button onclick="zoom(1.2)" class="px-3 py-1 bg-gray-200 rounded">+</button>
-    <button onclick="zoom(0.8)" class="px-3 py-1 bg-gray-200 rounded">−</button>
-    <button onclick="resetZoom()" class="px-3 py-1 bg-gray-200 rounded">Reset</button>
-  </div>
-
-  <!-- details -->
-  <div id="details" class="mt-6 bg-white p-6 rounded-2xl shadow hidden"></div>
+  <!-- DETAILS -->
+  <div id="details" class="mt-6 bg-white p-6 rounded-2xl shadow"></div>
 </div>
 
 <style>
-.node {
-  @apply p-4 rounded-2xl shadow text-center cursor-pointer hover:scale-105 transition;
-}
-.flow {
-  stroke: #9CA3AF;
-  stroke-width: 2;
-  marker-end: url(#arrow);
-  stroke-dasharray: 6;
-  animation: dash 3s linear infinite;
-}
-@keyframes dash {
-  to { stroke-dashoffset: -12; }
-}
+.btn { @apply px-4 py-2 bg-gray-200 rounded-xl; }
+.node { @apply p-3 bg-white rounded-xl shadow mt-2 cursor-pointer hover:bg-gray-100; }
+.group { position:absolute; border:1px solid #ddd; padding:10px; border-radius:12px; background:#f9fafb; }
+.group h3 { font-size:14px; font-weight:bold; margin-bottom:5px; }
+.flow-label { position:absolute; font-size:12px; color:#6b7280; }
 </style>
 
 <script>
-let scale = 1;
+const content = {
+  context: `<h2 class='text-xl font-semibold'>Context</h2>
+    <p>Dit systeem haalt data uit Microsoft en toont deze aan eindgebruikers via een webinterface of Teams.</p>`,
 
-function zoom(factor) {
-  scale *= factor;
-  document.getElementById('canvas').style.transform = `scale(${scale})`;
-}
+  container: `<h2 class='text-xl font-semibold'>Container</h2>
+    <ul class='list-disc pl-5'>
+      <li>GitHub Actions (scheduler)</li>
+      <li>Python script (processing)</li>
+      <li>Static hosting (GitHub Pages)</li>
+    </ul>`,
 
-function resetZoom() {
-  scale = 1;
-  document.getElementById('canvas').style.transform = 'scale(1)';
+  component: `<h2 class='text-xl font-semibold'>Component</h2>
+    <ul class='list-disc pl-5'>
+      <li>Translation cache</li>
+      <li>Change detection logic</li>
+      <li>Filtering & UI rendering</li>
+    </ul>`,
+
+  api: `<h2 class='text-xl font-semibold'>Microsoft API</h2>
+    <ul class='list-disc pl-5'>
+      <li>Publieke CSV endpoint</li>
+      <li>Geen auth vereist</li>
+      <li>Wordt periodiek opgehaald</li>
+    </ul>`,
+
+  actions: `<h2 class='text-xl font-semibold'>GitHub Actions</h2>
+    <ul class='list-disc pl-5'>
+      <li>Runs 2x per week</li>
+      <li>Start Python script</li>
+      <li>Commit & deploy</li>
+    </ul>`,
+
+  script: `<h2 class='text-xl font-semibold'>Python Script</h2>
+    <ul class='list-disc pl-5'>
+      <li>CSV parsing</li>
+      <li>Translation via cache</li>
+      <li>Status detection</li>
+      <li>JSON output</li>
+    </ul>`,
+
+  data: `<h2 class='text-xl font-semibold'>data.json</h2>
+    <p>Actuele dataset voor frontend gebruik.</p>`,
+
+  archive: `<h2 class='text-xl font-semibold'>Archive</h2>
+    <p>Historische snapshots per week (max 3 maanden).</p>`,
+
+  frontend: `<h2 class='text-xl font-semibold'>Frontend</h2>
+    <ul class='list-disc pl-5'>
+      <li>index.html</li>
+      <li>kalender.html</li>
+      <li>archief.html</li>
+    </ul>`,
+
+  cache: `<h2 class='text-xl font-semibold'>Session Cache</h2>
+    <p>30 min caching van data.json voor performance.</p>`,
+
+  user: `<h2 class='text-xl font-semibold'>Gebruiker</h2>
+    <p>Gebruikt dashboard via browser of Teams tab.</p>`
+};
+
+function show(key) {
+  document.getElementById('details').innerHTML = content[key];
 }
 
 function setView(view) {
   show(view);
 }
 
-const content = {
-  context: `<h2 class='text-xl font-semibold mb-2'>Context niveau</h2><p>Systeem in relatie tot Microsoft en gebruikers.</p>`,
-  container: `<h2 class='text-xl font-semibold mb-2'>Container niveau</h2><p>GitHub Actions, Python script en static site hosting.</p>`,
-  component: `<h2 class='text-xl font-semibold mb-2'>Component niveau</h2><p>Details van scripts, JSON verwerking en frontend logica.</p>`,
-  source: `<h2 class='text-xl font-semibold mb-2'>API</h2><p>Microsoft CSV bron.</p>`,
-  actions: `<h2 class='text-xl font-semibold mb-2'>Actions</h2><p>Automatische workflow.</p>`,
-  script: `<h2 class='text-xl font-semibold mb-2'>Script</h2><p>Data verwerking.</p>`,
-  data: `<h2 class='text-xl font-semibold mb-2'>Data</h2><p>JSON opslag + archief.</p>`,
-  frontend: `<h2 class='text-xl font-semibold mb-2'>Frontend</h2><p>HTML UI.</p>`,
-  user: `<h2 class='text-xl font-semibold mb-2'>Gebruiker</h2><p>Browser / Teams.</p>`
-};
-
-function show(key) {
-  const el = document.getElementById('details');
-  el.innerHTML = content[key];
-  el.classList.remove('hidden');
-}
+// init
+show('context');
 </script>
 
 </body>
