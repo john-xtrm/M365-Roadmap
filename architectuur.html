@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architectuurkaart – Microsoft 365 Roadmap Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<div class="max-w-7xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-2">Architectuurkaart</h1>
+  <p class="text-gray-500 mb-4">Interactieve C4-view • klik componenten • gebruik zoom</p>
+
+  <!-- toggles -->
+  <div class="flex gap-2 mb-6">
+    <button onclick="setView('context')" class="px-4 py-2 bg-gray-200 rounded-xl">Context</button>
+    <button onclick="setView('container')" class="px-4 py-2 bg-gray-200 rounded-xl">Container</button>
+    <button onclick="setView('component')" class="px-4 py-2 bg-gray-200 rounded-xl">Component</button>
+  </div>
+
+  <!-- zoom wrapper -->
+  <div id="viewport" class="overflow-hidden border rounded-2xl bg-white shadow">
+    <div id="canvas" class="relative w-[1400px] h-[600px] origin-top-left transition-transform duration-300">
+
+      <!-- SVG animated lijnen -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#9CA3AF" />
+          </marker>
+        </defs>
+
+        <line class="flow" x1="150" y1="200" x2="350" y2="200" />
+        <line class="flow" x1="350" y1="200" x2="550" y2="200" />
+        <line class="flow" x1="550" y1="200" x2="750" y2="200" />
+        <line class="flow" x1="750" y1="200" x2="950" y2="200" />
+      </svg>
+
+      <!-- nodes -->
+      <div onclick="show('source')" class="node absolute left-[80px] top-[160px] bg-blue-50">📡<br>API</div>
+      <div onclick="show('actions')" class="node absolute left-[280px] top-[160px] bg-purple-50">⚙️<br>Actions</div>
+      <div onclick="show('script')" class="node absolute left-[480px] top-[160px] bg-green-50">🐍<br>Script</div>
+      <div onclick="show('data')" class="node absolute left-[680px] top-[160px] bg-yellow-50">💾<br>Data</div>
+      <div onclick="show('frontend')" class="node absolute left-[880px] top-[160px] bg-pink-50">🌐<br>Frontend</div>
+
+      <div onclick="show('user')" class="node absolute left-[580px] top-[350px] bg-gray-100">👤 Gebruiker</div>
+
+    </div>
+  </div>
+
+  <!-- zoom controls -->
+  <div class="flex gap-2 mt-4">
+    <button onclick="zoom(1.2)" class="px-3 py-1 bg-gray-200 rounded">+</button>
+    <button onclick="zoom(0.8)" class="px-3 py-1 bg-gray-200 rounded">−</button>
+    <button onclick="resetZoom()" class="px-3 py-1 bg-gray-200 rounded">Reset</button>
+  </div>
+
+  <!-- details -->
+  <div id="details" class="mt-6 bg-white p-6 rounded-2xl shadow hidden"></div>
+</div>
+
+<style>
+.node {
+  @apply p-4 rounded-2xl shadow text-center cursor-pointer hover:scale-105 transition;
+}
+.flow {
+  stroke: #9CA3AF;
+  stroke-width: 2;
+  marker-end: url(#arrow);
+  stroke-dasharray: 6;
+  animation: dash 3s linear infinite;
+}
+@keyframes dash {
+  to { stroke-dashoffset: -12; }
+}
+</style>
+
+<script>
+let scale = 1;
+
+function zoom(factor) {
+  scale *= factor;
+  document.getElementById('canvas').style.transform = `scale(${scale})`;
+}
+
+function resetZoom() {
+  scale = 1;
+  document.getElementById('canvas').style.transform = 'scale(1)';
+}
+
+function setView(view) {
+  show(view);
+}
+
+const content = {
+  context: `<h2 class='text-xl font-semibold mb-2'>Context niveau</h2><p>Systeem in relatie tot Microsoft en gebruikers.</p>`,
+  container: `<h2 class='text-xl font-semibold mb-2'>Container niveau</h2><p>GitHub Actions, Python script en static site hosting.</p>`,
+  component: `<h2 class='text-xl font-semibold mb-2'>Component niveau</h2><p>Details van scripts, JSON verwerking en frontend logica.</p>`,
+  source: `<h2 class='text-xl font-semibold mb-2'>API</h2><p>Microsoft CSV bron.</p>`,
+  actions: `<h2 class='text-xl font-semibold mb-2'>Actions</h2><p>Automatische workflow.</p>`,
+  script: `<h2 class='text-xl font-semibold mb-2'>Script</h2><p>Data verwerking.</p>`,
+  data: `<h2 class='text-xl font-semibold mb-2'>Data</h2><p>JSON opslag + archief.</p>`,
+  frontend: `<h2 class='text-xl font-semibold mb-2'>Frontend</h2><p>HTML UI.</p>`,
+  user: `<h2 class='text-xl font-semibold mb-2'>Gebruiker</h2><p>Browser / Teams.</p>`
+};
+
+function show(key) {
+  const el = document.getElementById('details');
+  el.innerHTML = content[key];
+  el.classList.remove('hidden');
+}
+</script>
+
+</body>
+</html>
