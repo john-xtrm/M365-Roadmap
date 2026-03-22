@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architectuurkaart v3.1 – Fixed Layout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<div class="max-w-7xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-2">Architectuurkaart v3.1</h1>
+  <p class="text-gray-500 mb-6">Fixed layout • duidelijke zones • stabiele rendering</p>
+
+  <!-- VIEW SWITCH -->
+  <div class="flex gap-2 mb-6">
+    <button onclick="setView('context')" class="btn">Context</button>
+    <button onclick="setView('container')" class="btn">Container</button>
+    <button onclick="setView('component')" class="btn">Component</button>
+  </div>
+
+  <!-- DIAGRAM GRID -->
+  <div class="grid grid-cols-5 gap-4 bg-white p-6 rounded-2xl shadow relative">
+
+    <!-- External -->
+    <div class="boundary">
+      <h3>External</h3>
+      <div onclick="show('api')" class="node">📡 Microsoft API</div>
+    </div>
+
+    <!-- Processing -->
+    <div class="boundary">
+      <h3>Processing</h3>
+      <div onclick="show('actions')" class="node">⚙️ GitHub Actions</div>
+      <div onclick="show('script')" class="node">🐍 Python Script</div>
+    </div>
+
+    <!-- Storage -->
+    <div class="boundary">
+      <h3>Storage</h3>
+      <div onclick="show('data')" class="node">💾 data.json</div>
+      <div onclick="show('archive')" class="node">🗂️ Archive</div>
+    </div>
+
+    <!-- Frontend -->
+    <div class="boundary">
+      <h3>Frontend</h3>
+      <div onclick="show('frontend')" class="node">🌐 HTML Pages</div>
+      <div onclick="show('cache')" class="node">⚡ Session Cache</div>
+    </div>
+
+    <!-- Users -->
+    <div class="boundary">
+      <h3>Users</h3>
+      <div onclick="show('user')" class="node">👤 Browser / Teams</div>
+    </div>
+
+  </div>
+
+  <!-- FLOW ROW -->
+  <div class="flex justify-between text-sm text-gray-500 mt-4 px-4">
+    <span>CSV fetch →</span>
+    <span>Process + translate →</span>
+    <span>Write JSON →</span>
+    <span>Render UI →</span>
+    <span>User interaction</span>
+  </div>
+
+  <!-- DETAILS -->
+  <div id="details" class="mt-6 bg-white p-6 rounded-2xl shadow"></div>
+</div>
+
+<style>
+.btn { @apply px-4 py-2 bg-gray-200 rounded-xl; }
+.boundary {
+  @apply border-2 border-dashed border-gray-300 rounded-xl p-4 bg-gray-50;
+}
+.boundary h3 {
+  @apply text-sm font-semibold text-gray-600 mb-2;
+}
+.node {
+  @apply p-3 bg-white rounded-xl shadow cursor-pointer hover:bg-gray-100 mb-2;
+}
+</style>
+
+<script>
+const content = {
+  context: `<h2 class='text-xl font-semibold'>Context</h2>
+  <p>Microsoft levert roadmap data → systeem verwerkt → gebruiker consumeert via UI.</p>`,
+
+  container: `<h2 class='text-xl font-semibold'>Container</h2>
+  <ul class='list-disc pl-5'>
+    <li>GitHub Actions (CI/CD)</li>
+    <li>Python processing</li>
+    <li>Static hosting (Pages)</li>
+  </ul>`,
+
+  component: `<h2 class='text-xl font-semibold'>Component</h2>
+  <ul class='list-disc pl-5'>
+    <li>Translation cache</li>
+    <li>Change detection</li>
+    <li>Session caching</li>
+  </ul>`,
+
+  api: `<h2 class='text-xl font-semibold'>Microsoft API</h2>
+    <ul class='list-disc pl-5'>
+      <li>Publieke CSV endpoint</li>
+      <li>Geen authenticatie</li>
+    </ul>`,
+
+  actions: `<h2 class='text-xl font-semibold'>GitHub Actions</h2>
+    <ul class='list-disc pl-5'>
+      <li>Runs 2x/week</li>
+      <li>Runtime ~3-5 min</li>
+    </ul>`,
+
+  script: `<h2 class='text-xl font-semibold'>Python Script</h2>
+    <ul class='list-disc pl-5'>
+      <li>CSV parsing</li>
+      <li>Translation cache</li>
+      <li>Delta updates</li>
+    </ul>`,
+
+  data: `<h2 class='text-xl font-semibold'>data.json</h2>
+    <p>Actuele dataset voor frontend</p>`,
+
+  archive: `<h2 class='text-xl font-semibold'>Archive</h2>
+    <p>Historische snapshots</p>`,
+
+  frontend: `<h2 class='text-xl font-semibold'>Frontend</h2>
+    <ul class='list-disc pl-5'>
+      <li>index.html</li>
+      <li>kalender.html</li>
+    </ul>`,
+
+  cache: `<h2 class='text-xl font-semibold'>Session Cache</h2>
+    <p>30 min caching voor performance</p>`,
+
+  user: `<h2 class='text-xl font-semibold'>Gebruiker</h2>
+    <p>Browser of Teams tab</p>`
+};
+
+function show(key){
+  document.getElementById('details').innerHTML = content[key];
+}
+
+function setView(view){ show(view); }
+
+show('context');
+</script>
+
+</body>
+</html>
