@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>M365 Roadmap Dashboard — Interactieve C4 Architectuur</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Trust-boundary look & feel */
+    .trust-boundary {
+      border-width: 2px;
+      border-style: dashed;
+      border-radius: .75rem;
+      background-image: linear-gradient(135deg, rgba(148,163,184,.08) 25%, rgba(0,0,0,0) 25%),
+                        linear-gradient(225deg, rgba(148,163,184,.08) 25%, rgba(0,0,0,0) 25%),
+                        linear-gradient(45deg, rgba(148,163,184,.08) 25%, rgba(0,0,0,0) 25%),
+                        linear-gradient(315deg, rgba(148,163,184,.08) 25%, rgba(0,0,0,0) 25%);
+      background-position: 10px 0, 10px 0, 0 0, 0 0;
+      background-size: 10px 10px;
+      background-repeat: repeat;
+    }
+    /* Clickable component card */
+    .comp {
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .comp:focus-visible {
+      outline: 3px solid #2563eb; /* blue-600 */
+      outline-offset: 2px;
+      border-radius: .5rem;
+    }
+    .comp:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 14px rgba(2,6,23,.08);
+    }
+    /* Flow pills (no fragile positioning) */
+    .flow-pill::before { content: "→"; margin-right: .5rem; color: rgb(71,85,105); }
+    /* Responsive helpers for zones */
+    .zones { grid-template-columns: repeat(1,minmax(0,1fr)); }
+    @media (min-width: 1024px) { /* lg */
+      .zones { grid-template-columns: repeat(5,minmax(0,1fr)); }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+  <!-- Header -->
+  <header class="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="mx-auto max-w-7xl px-4 py-4 md:py-5 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-lg bg-blue-600 text-white grid place-items-center font-semibold">C4</div>
+        <div>
+          <h1 class="text-lg md:text-xl font-semibold">Microsoft 365 Roadmap Dashboard — Architectuurkaart</h1>
+          <p class="text-sm text-slate-600">Interactieve C4-weergaven met trust boundaries, datastromen en componentdetails</p>
+        </div>
+      </div>
+      <nav class="flex items-center gap-2" aria-label="View switch">
+        <button id="btnContext" class="px-3 py-2 rounded-md text-sm font-medium bg-blue-600 text-white" aria-pressed="true">Context</button>
+        <button id="btnContainer" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100" aria-pressed="false">Container</button>
+        <button id="btnComponent" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-100" aria-pressed="false">Component</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-6 md:py-10">
+    <!-- Legend -->
+    <section class="mb-6 md:mb-8">
+      <div class="flex flex-wrap items-center gap-3 text-sm text-slate-600">
+        <span class="inline-flex items-center gap-2"><span class="h-3.5 w-3.5 rounded-full bg-emerald-500"></span> External</span>
+        <span class="inline-flex items-center gap-2"><span class="h-3.5 w-3.5 rounded-full bg-indigo-500"></span> Processing</span>
+        <span class="inline-flex items-center gap-2"><span class="h-3.5 w-3.5 rounded-full bg-amber-500"></span> Storage</span>
+        <span class="inline-flex items-center gap-2"><span class="h-3.5 w-3.5 rounded-full bg-sky-500"></span> Frontend</span>
+        <span class="inline-flex items-center gap-2"><span class="h-3.5 w-3.5 rounded-full bg-rose-500"></span> Users</span>
+        <span class="inline-flex items-center gap-2"><span class="px-2 py-0.5 rounded-full bg-slate-200 text-slate-700">→ flow</span> gelabelde datastroom (links → rechts)</span>
+      </div>
+    </section>
+
+    <!-- =================== CONTEXT VIEW =================== -->
+    <section id="viewContext" aria-labelledby="contextTitle">
+      <h2 id="contextTitle" class="sr-only">Context weergave</h2>
+      <div class="grid zones gap-4 md:gap-6">
+        <!-- External -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span> External
+          </h3>
+          <div class="space-y-3">
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="csvApi">
+              <div class="font-medium">Microsoft 365 Roadmap CSV API</div>
+              <div class="text-sm text-slate-600">Publieke CSV feed met roadmap-items</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="translateSvc">
+              <div class="font-medium">Google Translate (via <code>deep_translator</code>)</div>
+              <div class="text-sm text-slate-600">Automatische vertaling naar NL</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="githubPlatform">
+              <div class="font-medium">GitHub Platform</div>
+              <div class="text-sm text-slate-600">Actions + Pages hosting</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Processing -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-indigo-500"></span> Processing
+          </h3>
+          <div class="space-y-3">
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="ghaWorkflow">
+              <div class="font-medium">GitHub Actions Workflow</div>
+              <div class="text-sm text-slate-600">Ma + Wo 06:00 UTC; triggert update</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="fetchScript">
+              <div class="font-medium"><code>fetch_roadmap.py</code></div>
+              <div class="text-sm text-slate-600">CSV ophalen, vertalen, data opschonen, archiveren</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Storage -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span> Storage
+          </h3>
+          <div class="space-y-3">
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="repo">
+              <div class="font-medium">GitHub Repository</div>
+              <div class="text-sm text-slate-600">Bronbestanden + JSON-output</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="dataJson">
+              <div class="font-medium"><code>data.json</code></div>
+              <div class="text-sm text-slate-600">Actuele roadmapdata (niet handmatig bewerken)</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="archive">
+              <div class="font-medium"><code>archive/index.json</code> + weekbestanden</div>
+              <div class="text-sm text-slate-600">Historie per week (max. 3 maanden)</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-sky-500"></span> Frontend
+          </h3>
+          <div class="space-y-3">
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="pages">
+              <div class="font-medium">GitHub Pages Site</div>
+              <div class="text-sm text-slate-600"><code>index.html</code> · <code>kalender.html</code> · <code>archief.html</code> · <code>shared.css</code></div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="icons">
+              <div class="font-medium">Inline product-iconen</div>
+              <div class="text-sm text-slate-600">16 base64 PNG’s (64×64); geen externe requests</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="accessibility">
+              <div class="font-medium">Toegankelijkheid (WCAG 2.2 AA)</div>
+              <div class="text-sm text-slate-600">Semantiek, contrast, focus, skip-links, ARIA</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="perf">
+              <div class="font-medium">Performance & UX</div>
+              <div class="text-sm text-slate-600">SessionStorage-cache, debounce, timeout, batching</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Users -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span> Users
+          </h3>
+          <div class="space-y-3">
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="nonTech">
+              <div class="font-medium">Niet-technische medewerkers</div>
+              <div class="text-sm text-slate-600">Begrijpelijke NL-omschrijving & acties</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="itAdmins">
+              <div class="font-medium">IT‑beheerders & change managers</div>
+              <div class="text-sm text-slate-600">Filters op actie nodig; releasekalender; archief</div>
+            </button>
+            <button class="comp w-full text-left p-3 rounded-lg bg-white border border-slate-200" data-comp="teamsTab">
+              <div class="font-medium">Teams‑tab (optioneel)</div>
+              <div class="text-sm text-slate-600">Website-tab naar GitHub Pages URL</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data flow bar -->
+      <div class="mt-6 md:mt-8">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm">
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">CSV fetch</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">translate (cache-first)</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">detect launched/cancelled</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">write <code>data.json</code></span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">save <code>archive/YYYY-MM-DD.json</code></span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">git push → Pages</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">render UI</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">browse / filter</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== CONTAINER VIEW =================== -->
+    <section id="viewContainer" class="hidden" aria-labelledby="containerTitle">
+      <h2 id="containerTitle" class="sr-only">Container weergave</h2>
+      <div class="grid zones gap-4 md:gap-6">
+        <!-- External -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span> External
+          </h3>
+          <div class="space-y-3">
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="csvApi">
+              <div class="font-medium">M365 Roadmap CSV API</div>
+              <div class="text-sm text-slate-600">Bron van waarheid</div>
+            </button>
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="translateSvc">
+              <div class="font-medium">Google Translate (deep_translator)</div>
+              <div class="text-sm text-slate-600">NL‑vertalingen</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Processing -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-indigo-500"></span> Processing
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="ghaWorkflow">
+              <div class="font-medium">Container: CI/CD (GitHub Actions)</div>
+              <div class="text-sm text-slate-600">Workflow: <code>.github/workflows/update-roadmap.yml</code></div>
+            </button>
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="fetchScript">
+              <div class="font-medium">Container: Data Processor (<code>fetch_roadmap.py</code>)</div>
+              <div class="text-sm text-slate-600">ETL + archivering</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Storage -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span> Storage
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="repo">
+              <div class="font-medium">Container: Git Repository</div>
+              <div class="text-sm text-slate-600">Bron + JSON output</div>
+            </button>
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="dataJson">
+              <div class="font-medium">Container: Object Store (<code>data.json</code>)</div>
+              <div class="text-sm text-slate-600">Actueel model</div>
+            </button>
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="archive">
+              <div class="font-medium">Container: Archive Store</div>
+              <div class="text-sm text-slate-600">Index + weekbestanden</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-sky-500"></span> Frontend
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="pages">
+              <div class="font-medium">Container: Static Web App (GitHub Pages)</div>
+              <div class="text-sm text-slate-600">HTML/JS/CSS, geen server</div>
+            </button>
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="clientRuntime">
+              <div class="font-medium">Container: Browser Runtime</div>
+              <div class="text-sm text-slate-600">SessionStorage‑cache, fetch timeout, debounce</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Users -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span> Users
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="nonTech">
+              <div class="font-medium">Rol: Medewerkers</div>
+              <div class="text-sm text-slate-600">Inzicht en acties in NL</div>
+            </button>
+            <button class="comp w-full p-3 text-left bg-white border border-slate-200 rounded-lg" data-comp="itAdmins">
+              <div class="font-medium">Rol: IT/Change</div>
+              <div class="text-sm text-slate-600">Filter op “actie nodig”, kalender & archief</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Container data flow -->
+      <div class="mt-6 md:mt-8">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm">
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">CSV → Processor</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">ETL → <code>data.json</code></span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">ETL → <code>archive/…</code></span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">git push → Pages</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">Browser → fetch + render</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== COMPONENT VIEW =================== -->
+    <section id="viewComponent" class="hidden" aria-labelledby="componentTitle">
+      <h2 id="componentTitle" class="sr-only">Component weergave</h2>
+      <div class="grid zones gap-4 md:gap-6">
+        <!-- External -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-500"></span> External
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="csvApi">
+              <div class="font-medium">CSV feed endpoint</div>
+              <div class="text-sm text-slate-600">Download via <code>curl</code> met browser‑headers</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="translateSvc">
+              <div class="font-medium">Vertaalservice</div>
+              <div class="text-sm text-slate-600">Cache‑first; alleen nieuwe/gewijzigde items</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Processing -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-indigo-500"></span> Processing
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="ghaWorkflow">
+              <div class="font-medium">Actions: scheduler</div>
+              <div class="text-sm text-slate-600">Cron Ma + Wo 06:00 UTC; handmatige run mogelijk</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepFetch">
+              <div class="font-medium">Stap: CSV ophalen</div>
+              <div class="text-sm text-slate-600">Browser‑like headers; robust timeout</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepLoadCache">
+              <div class="font-medium">Stap: vertaalcache laden</div>
+              <div class="text-sm text-slate-600">Hergebruik bestaande NL‑titels/benefits</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepDeltaTranslate">
+              <div class="font-medium">Stap: delta‑vertalen</div>
+              <div class="text-sm text-slate-600">Alleen nieuwe/gewijzigde items vertalen</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepDetect">
+              <div class="font-medium">Stap: statusdetectie</div>
+              <div class="text-sm text-slate-600">Launched/Cancelled mutaties herkennen</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepWriteData">
+              <div class="font-medium">Stap: schrijf <code>data.json</code></div>
+              <div class="text-sm text-slate-600">Actuele dataset voor UI; JSON</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepWriteArchive">
+              <div class="font-medium">Stap: archiveer week</div>
+              <div class="text-sm text-slate-600"><code>archive/index.json</code> + <code>archive/YYYY-MM-DD.json</code></div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="stepPush">
+              <div class="font-medium">Stap: <code>git push → Pages</code></div>
+              <div class="text-sm text-slate-600">Publicatie naar statische site</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Storage -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-500"></span> Storage
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="repo">
+              <div class="font-medium">Repo structuur</div>
+              <div class="text-sm text-slate-600">HTML, CSS, Python, Workflow, JSON</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="dataJson">
+              <div class="font-medium"><code>data.json</code> (actueel)</div>
+              <div class="text-sm text-slate-600">Niet handmatig bewerken; UI‑bron</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="archive">
+              <div class="font-medium">Archief</div>
+              <div class="text-sm text-slate-600">Max 3 maanden terug; weekselectie</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Frontend -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-sky-500"></span> Frontend
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="filters">
+              <div class="font-medium">Filters & URL‑params</div>
+              <div class="text-sm text-slate-600">Product, Actie nodig, Sorteren, Periode, Status · <code>?id=</code> / <code>?zoek=</code></div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="statsBar">
+              <div class="font-medium">Statistiekenbalk</div>
+              <div class="text-sm text-slate-600">Totaal, uitgerold, in ontwikkeling, nieuw; live updates</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="calendarView">
+              <div class="font-medium">Releasekalender</div>
+              <div class="text-sm text-slate-600">Maanden (6m) + kwartalen; product‑ en actiefilters</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="archiveView">
+              <div class="font-medium">Archiefpagina</div>
+              <div class="text-sm text-slate-600">Weekknoppen; statusgroepen; productpills</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="icons">
+              <div class="font-medium">Inline iconen</div>
+              <div class="text-sm text-slate-600">Base64 PNG 64×64; cache door HTML</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="accessibility">
+              <div class="font-medium">WCAG 2.2 AA</div>
+              <div class="text-sm text-slate-600">Semantiek, aria, focus, contrast, skip</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="perf">
+              <div class="font-medium">Performance</div>
+              <div class="text-sm text-slate-600">SessionStorage (30m), cache‑buster, timeout 12s, debounce 200ms, event delegation, innerHTML batch</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Users -->
+        <div class="trust-boundary border-slate-300 p-4">
+          <h3 class="font-semibold text-slate-700 mb-3 flex items-center gap-2">
+            <span class="h-2.5 w-2.5 rounded-full bg-rose-500"></span> Users
+          </h3>
+          <div class="grid gap-3">
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="nonTech">
+              <div class="font-medium">Medewerkers</div>
+              <div class="text-sm text-slate-600">Eenvoudige taal, “actie nodig” zichtbaar</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="itAdmins">
+              <div class="font-medium">IT/Change</div>
+              <div class="text-sm text-slate-600">Adoptieplanning, archiefanalyse</div>
+            </button>
+            <button class="comp bg-white border border-slate-200 rounded-lg p-3 text-left" data-comp="teamsTab">
+              <div class="font-medium">Teams‑tab</div>
+              <div class="text-sm text-slate-600">Website‑tab; sandbox‑proof, geen externe calls</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Component flow -->
+      <div class="mt-6 md:mt-8">
+        <div class="flex flex-wrap items-center gap-2 md:gap-3 text-xs md:text-sm">
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">curl CSV</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">load cache</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">delta translate</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">detect status</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">write data.json</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">write archive/…</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">push</span>
+          <span class="flow-pill inline-flex items-center rounded-full bg-slate-200 px-3 py-1">render UI</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- =================== DETAILS PANEL =================== -->
+    <section class="mt-8 md:mt-10">
+      <div class="rounded-xl border border-slate-200 bg-white">
+        <header class="px-4 md:px-6 py-3 border-b border-slate-200">
+          <h3 id="detailTitle" class="text-base md:text-lg font-semibold">Details</h3>
+        </header>
+        <div id="detailBody" class="px-4 md:px-6 py-4 text-sm md:text-base" aria-live="polite">
+          <p>Klik op een onderdeel in het diagram om functie, logica en technische details te bekijken. Standaardweergave: <span class="font-medium">Context</span>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mx-auto max-w-7xl px-4 py-10 text-xs text-slate-500">
+    <p>Werkt op GitHub Pages (zonder build stap). Geen externe frameworks behalve Tailwind CDN. Layout via grid/flex — geen absolute positioning.</p>
+  </footer>
+
+  <script>
+    // ----- Simple state -----
+    const views = {
+      context: document.getElementById('viewContext'),
+      container: document.getElementById('viewContainer'),
+      component: document.getElementById('viewComponent'),
+    };
+    const btns = {
+      context: document.getElementById('btnContext'),
+      container: document.getElementById('btnContainer'),
+      component: document.getElementById('btnComponent'),
+    };
+    function setView(name) {
+      for (const key of Object.keys(views)) {
+        views[key].classList.toggle('hidden', key !== name);
+        btns[key].classList.toggle('bg-blue-600', key === name);
+        btns[key].classList.toggle('text-white', key === name);
+        btns[key].classList.toggle('hover:bg-slate-100', key !== name);
+        btns[key].setAttribute('aria-pressed', key === name ? 'true' : 'false');
+      }
+      // Reset detail intro when switching views (keeps panel informative)
+      setDetail('Details', 'Kies een onderdeel om meer te lezen over functie, belangrijkste logica en technische eigenschappen.');
+    }
+    btns.context.addEventListener('click', () => setView('context'));
+    btns.container.addEventListener('click', () => setView('container'));
+    btns.component.addEventListener('click', () => setView('component'));
+
+    // ----- Details content from README (curated) -----
+    const DETAILS = {
+      csvApi: {
+        title: "Microsoft 365 Roadmap CSV API",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> bron van alle roadmap-items die het dashboard toont.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> CSV wordt periodiek gedownload en verwerkt tot een compacte JSON (<code>data.json</code>), waarbij nieuwe/gewijzigde items worden herkend.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> Publieke CSV, opgehaald via <code>curl</code> met browser‑achtige headers en een fetch‑timeout (12s) voor robuuste runs.</p>`
+      },
+      translateSvc: {
+        title: "Google Translate via deep_translator",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> vertaalt titels/benefits naar begrijpelijk Nederlands.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> cache‑first: bestaande vertalingen worden hergebruikt; alleen nieuwe of gewijzigde items worden opnieuw vertaald.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> gebruikt de <code>deep_translator</code> library vanuit het Python‑script; vertaalcache wordt lokaal in repo‑data meegenomen.</p>`
+      },
+      githubPlatform: {
+        title: "GitHub Platform (Actions + Pages)",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> automatiseert de updates en publiceert de site.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> workflow draait op maandag en woensdag 06:00 UTC (en on‑demand) en pusht gewijzigde JSON/HTML naar Pages.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> workflowbestand: <code>.github/workflows/update-roadmap.yml</code>; Pages serveert statische assets direct vanaf <code>main</code>.</p>`
+      },
+      ghaWorkflow: {
+        title: "GitHub Actions Workflow",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> orkestreert de data‑pipeline.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> triggert <code>fetch_roadmap.py</code>, commit resultaten, en publiceert naar Pages.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> cron: Ma + Wo 06:00 UTC; fallback via handmatige “Run workflow”.</p>`
+      },
+      fetchScript: {
+        title: "Data Processor — fetch_roadmap.py",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> ETL: ophalen, vertalen, mutaties detecteren en datasets schrijven.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> 
+            <ul class="list-disc pl-5">
+              <li>CSV ophalen met browser‑headers</li>
+              <li>Vertaalcache laden en delta‑vertalen</li>
+              <li>Launched/Cancelled statuswijzigingen herkennen</li>
+              <li><code>data.json</code> en <code>archive/YYYY-MM-DD.json</code> wegschrijven</li>
+            </ul>
+          </p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> draait in Actions, schrijft JSON‑bestanden die door de UI direct worden geconsumeerd.</p>`
+      },
+      repo: {
+        title: "GitHub Repository",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> versiebeheer en opslag voor bron en output.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> bevat webapp (HTML/CSS), processor (Python), workflow (YAML) en data (JSON).</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> publieke repo; Pages deploy van <code>main</code> root; index en archiefbestanden onder <code>archive/</code>.</p>`
+      },
+      dataJson: {
+        title: "data.json (actuele dataset)",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> de UI‑bron met alle gefilterde/vertakte velden.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> elke run overschrijft het actuele bestand zodat de site zonder server logica kan renderen.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> JSON wordt in de browser 30 min gecachet via <code>sessionStorage</code>; cache‑buster via queryparam <code>?v=timestamp</code>.</p>`
+      },
+      archive: {
+        title: "Archief (index + weekbestanden)",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> tijdlijn voor terugkijken en impactanalyse.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> index verwijst naar beschikbare weken; weekbestanden groeperen status (uitgerold/in ontwikkeling).</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> retentie: ~3 maanden; UI laadt de meest recente week standaard.</p>`
+      },
+      pages: {
+        title: "Static Web App (GitHub Pages)",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> levert de gebruikersinterface zonder server.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> drie views: Hoofdpagina (filters & statistieken), Releasekalender (maand/kwartaal), Archief (weken).</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> <code>index.html</code>, <code>kalender.html</code>, <code>archief.html</code>, gedeelde stijlen in <code>shared.css</code>; product‑iconen inline (base64, 64×64).</p>`
+      },
+      icons: {
+        title: "Inline product‑iconen",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> consistente branding per Microsoft‑product.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> geen extra HTTP‑requests, werkt ook in sandboxed Teams‑tabs.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> 16 PNG's als base64 inline in de HTML‑pagina's.</p>`
+      },
+      accessibility: {
+        title: "Toegankelijkheid (WCAG 2.2 AA)",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> maakt de UI bruikbaar voor iedereen.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> semantische headings, focus‑indicatoren, skip‑links, ARIA‑attributen en contrast.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> o.a. <code>aria-live</code> voor status, <code>:focus-visible</code>, taal <code>lang="nl"</code>, reduced‑motion en dark‑mode ondersteuning.</p>`
+      },
+      perf: {
+        title: "Performance & UX",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> snelle laadtijden en responsieve interactie.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> zoek‑debounce (200ms), één event‑listener per groep, batch rendering.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> <code>sessionStorage</code> 30 min; fetch‑timeout 12s; cache‑buster via <code>?v=timestamp</code>; innerHTML batching.</p>`
+      },
+      nonTech: {
+        title: "Niet‑technische medewerkers",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> snel zien wat eraan komt en of actie nodig is.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> filter “Actie nodig?” (Automatisch / IT‑beheerder / Medewerker) en duidelijke NL‑teksten.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> UI badge “Nieuw” markeert items die in de huidige kalenderweek zijn toegevoegd/gewijzigd.</p>`
+      },
+      itAdmins: {
+        title: "IT‑beheerders & Change managers",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> planning, adoptie en impact op beheerprocessen.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> releasekalender (maand/kwartaal), archiefweken (3 maanden) en product‑filters.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> URL‑param <code>?id=</code> opent direct een specifiek MS‑item; zoekterm via <code>?zoek=</code>.</p>`
+      },
+      teamsTab: {
+        title: "Microsoft Teams‑tab (optioneel)",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> toegankelijkheid voor eindgebruikers binnen Teams.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> voeg een Website‑tab toe met de Pages‑URL; werkt sandboxed dankzij inline iconen en statische assets.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> geen aanvullende permissies of scripts nodig.</p>`
+      },
+      clientRuntime: {
+        title: "Browser runtime",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> client‑side rendering van lijsten, filters en statistieken.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> fetch <code>data.json</code>, render, hergebruik cache, en toon statusbalk/filters.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> sessionStorage, ARIA live‑updates, no‑JS fallback baseline.</p>`
+      },
+      stepFetch: {
+        title: "Stap — CSV ophalen",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> download de laatste roadmap.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> emulate browser headers om throttling te minimaliseren; timeouts en retry‑vriendelijk.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> draait in Actions runner; output in memory → parsing pipeline.</p>`
+      },
+      stepLoadCache: {
+        title: "Stap — Vertaalcache laden",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> minimaliseert externe vertaalaanroepen.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> match op MS‑ID/velden; hergebruik bestaande NL‑strings.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> eenvoudige key‑value mapping in Python‑structuur / JSON bestanden.</p>`
+      },
+      stepDeltaTranslate: {
+        title: "Stap — Delta‑vertalen",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> vertaalt alleen wat nodig is.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> vergelijk huidige CSV met cache; alleen mutaties naar Translate.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> gebruikt <code>deep_translator</code> API; errors vangen, retries beperkt.</p>`
+      },
+      stepDetect: {
+        title: "Stap — Statusdetectie",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> markeert “Launched” en “Cancelled”.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> vergelijkt statusvelden t.o.v. vorige run en tagt wijzigingen.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> eenvoudige diff‑logica; outputvelden voor UI badges.</p>`
+      },
+      stepWriteData: {
+        title: "Stap — Schrijf data.json",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> levert het actuele model aan de UI.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> normaliseren van velden, toevoegen van meta (week, badges, productmeta).</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> JSON encoding met NL‑strings; wordt door alle pagina’s ingelezen.</p>`
+      },
+      stepWriteArchive: {
+        title: "Stap — Archiveer week",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> bewaart een wekelijkse snapshot.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> <code>archive/index.json</code> bijwerken en weekbestand wegschrijven.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> retentie ~3 maanden; UI laadt recentste week automatisch.</p>`
+      },
+      stepPush: {
+        title: "Stap — Publiceer naar Pages",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> maakt wijzigingen meteen zichtbaar.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> commit & push; CDN‑cache omzeild via query <code>?v=timestamp</code>.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> Pages serveert zonder server; werkt als Teams tab.</p>`
+      },
+      filters: {
+        title: "Filters & URL‑parameters",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> snel focussen op relevante items.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> Product, Actie nodig? (Automatisch/IT/Medewerker), Sorteren, Periode (week), Status; “Nieuw”‑badge op weekmutaties.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> <code>?id=123456</code> (direct MS‑item) en <code>?zoek=Teams</code> (prefill). Weekfilter reset op maandag.</p>`
+      },
+      statsBar: {
+        title: "Statistiekenbalk",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> snelle status op het scherm.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> totalen, in ontwikkeling, uitgerold, nieuw; zoekterm‑pill bij actieve zoekopdracht.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> ARIA live‑regio voor statusupdates.</p>`
+      },
+      calendarView: {
+        title: "Releasekalender",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> planning per maand/kwartaal.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> komende 6 maanden (maanden) + start huidig kwartaal (kwartalen); filters voor product en actie; mini‑uitsplitsing (#IT, #medewerker, #auto).</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> “Ook in maandweergave” badge; details via <code>?id=</code> naar hoofdpagina.</p>`
+      },
+      archiveView: {
+        title: "Archiefpagina",
+        html: `
+          <p class="mb-2"><span class="font-semibold">Functie:</span> terugkijken per week.</p>
+          <p class="mb-2"><span class="font-semibold">Belangrijkste logica:</span> laad <code>archive/index.json</code>; knoppen voor beschikbare weken; groep per status.</p>
+          <p class="mb-2"><span class="font-semibold">Technische details:</span> productfilter met officiële iconen en tekstscheiding; recentste week autoload.</p>`
+      }
+    };
+
+    function setDetail(title, html) {
+      document.getElementById('detailTitle').textContent = title;
+      document.getElementById('detailBody').innerHTML = html;
+    }
+
+    // Event delegation for all .comp buttons
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.comp');
+      if (!btn) return;
+      const key = btn.getAttribute('data-comp');
+      const data = DETAILS[key];
+      if (data) setDetail(data.title, data.html);
+    });
+
+    // Default view
+    setView('context');
+  </script>
+</body>
+</html>
