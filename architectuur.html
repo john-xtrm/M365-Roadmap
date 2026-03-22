@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architectuurkaart v2 – Microsoft 365 Roadmap Dashboard</title>
+  <title>Architectuurkaart v3 – Microsoft 365 Roadmap Dashboard</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
 <div class="max-w-7xl mx-auto p-6">
-  <h1 class="text-3xl font-bold mb-2">Architectuurkaart v2</h1>
-  <p class="text-gray-500 mb-4">Volledig C4-model + datastromen + technische details</p>
+  <h1 class="text-3xl font-bold mb-2">Architectuurkaart v3</h1>
+  <p class="text-gray-500 mb-4">Consultant-level diagram • flows • trust boundaries • metrics</p>
 
   <!-- VIEW SWITCH -->
   <div class="flex gap-2 mb-6">
@@ -20,43 +20,44 @@
   </div>
 
   <!-- DIAGRAM -->
-  <div id="viewport" class="overflow-auto border rounded-2xl bg-white shadow">
-    <div id="canvas" class="relative w-[1400px] h-[700px]">
+  <div class="overflow-auto border rounded-2xl bg-white shadow">
+    <div id="canvas" class="relative w-[1500px] h-[800px]">
 
-      <!-- GROUPS -->
-      <div class="group left-10 top-50 w-60">
-        <h3>External</h3>
-        <div onclick="show('api')" class="node">📡 Microsoft API</div>
-      </div>
+      <!-- TRUST BOUNDARIES -->
+      <div class="boundary" style="left:20px; top:20px; width:260px; height:300px;">External</div>
+      <div class="boundary" style="left:300px; top:20px; width:400px; height:300px;">Processing (GitHub)</div>
+      <div class="boundary" style="left:720px; top:20px; width:300px; height:300px;">Storage</div>
+      <div class="boundary" style="left:1040px; top:20px; width:400px; height:300px;">Frontend (Pages)</div>
 
-      <div class="group left-300 top-50 w-80">
-        <h3>Processing</h3>
-        <div onclick="show('actions')" class="node">⚙️ GitHub Actions</div>
-        <div onclick="show('script')" class="node">🐍 Python Script</div>
-      </div>
+      <!-- NODES -->
+      <div class="node" style="left:60px; top:120px" onclick="show('api')">📡 API</div>
+      <div class="node" style="left:350px; top:80px" onclick="show('actions')">⚙️ Actions</div>
+      <div class="node" style="left:350px; top:180px" onclick="show('script')">🐍 Script</div>
+      <div class="node" style="left:760px; top:80px" onclick="show('data')">💾 data.json</div>
+      <div class="node" style="left:760px; top:180px" onclick="show('archive')">🗂️ Archive</div>
+      <div class="node" style="left:1100px; top:120px" onclick="show('frontend')">🌐 UI</div>
 
-      <div class="group left-650 top-50 w-60">
-        <h3>Storage</h3>
-        <div onclick="show('data')" class="node">💾 data.json</div>
-        <div onclick="show('archive')" class="node">🗂️ Archive</div>
-      </div>
+      <div class="node" style="left:650px; top:500px" onclick="show('user')">👤 User</div>
 
-      <div class="group left-950 top-50 w-80">
-        <h3>Frontend</h3>
-        <div onclick="show('frontend')" class="node">🌐 HTML Pages</div>
-        <div onclick="show('cache')" class="node">⚡ Session Cache</div>
-      </div>
+      <!-- SVG FLOWS -->
+      <svg class="absolute inset-0 w-full h-full pointer-events-none">
+        <defs>
+          <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L9,3 z" fill="#6b7280" />
+          </marker>
+        </defs>
 
-      <div class="group left-550 top-400 w-300">
-        <h3>Users</h3>
-        <div onclick="show('user')" class="node">👤 Browser / Teams</div>
-      </div>
+        <line class="flow" x1="140" y1="140" x2="350" y2="140" onclick="highlight('apiFlow')" />
+        <line class="flow" x1="420" y1="140" x2="760" y2="100" onclick="highlight('processFlow')" />
+        <line class="flow" x1="820" y1="100" x2="1100" y2="140" onclick="highlight('uiFlow')" />
+        <line class="flow" x1="1100" y1="180" x2="700" y2="500" onclick="highlight('userFlow')" />
+      </svg>
 
-      <!-- DATAFLOW LABELS -->
-      <div class="flow-label" style="left:180px; top:120px;">CSV download</div>
-      <div class="flow-label" style="left:420px; top:120px;">Process + translate</div>
-      <div class="flow-label" style="left:720px; top:120px;">Write JSON</div>
-      <div class="flow-label" style="left:1020px; top:120px;">Render UI</div>
+      <!-- LABELS -->
+      <div class="flow-label" style="left:180px; top:110px;">CSV fetch</div>
+      <div class="flow-label" style="left:520px; top:100px;">Transform + translate</div>
+      <div class="flow-label" style="left:900px; top:100px;">Static render</div>
+      <div class="flow-label" style="left:900px; top:350px;">User interaction</div>
 
     </div>
   </div>
@@ -67,82 +68,95 @@
 
 <style>
 .btn { @apply px-4 py-2 bg-gray-200 rounded-xl; }
-.node { @apply p-3 bg-white rounded-xl shadow mt-2 cursor-pointer hover:bg-gray-100; }
-.group { position:absolute; border:1px solid #ddd; padding:10px; border-radius:12px; background:#f9fafb; }
-.group h3 { font-size:14px; font-weight:bold; margin-bottom:5px; }
+.node { @apply absolute p-3 bg-white rounded-xl shadow cursor-pointer hover:bg-gray-100; }
+.boundary {
+  position:absolute;
+  border:2px dashed #d1d5db;
+  border-radius:12px;
+  font-size:12px;
+  padding:6px;
+  color:#6b7280;
+}
+.flow {
+  stroke:#6b7280;
+  stroke-width:2;
+  marker-end:url(#arrow);
+  stroke-dasharray:6;
+  animation:dash 4s linear infinite;
+}
+.flow.highlight {
+  stroke:#111827;
+  stroke-width:3;
+}
 .flow-label { position:absolute; font-size:12px; color:#6b7280; }
+@keyframes dash { to { stroke-dashoffset:-12; } }
 </style>
 
 <script>
 const content = {
   context: `<h2 class='text-xl font-semibold'>Context</h2>
-    <p>Dit systeem haalt data uit Microsoft en toont deze aan eindgebruikers via een webinterface of Teams.</p>`,
+  <p>Microsoft levert roadmap data → systeem verwerkt → gebruiker consumeert via UI.</p>`,
 
   container: `<h2 class='text-xl font-semibold'>Container</h2>
-    <ul class='list-disc pl-5'>
-      <li>GitHub Actions (scheduler)</li>
-      <li>Python script (processing)</li>
-      <li>Static hosting (GitHub Pages)</li>
-    </ul>`,
+  <ul class='list-disc pl-5'>
+    <li>GitHub Actions (CI/CD)</li>
+    <li>Python processing</li>
+    <li>Static hosting (Pages)</li>
+  </ul>`,
 
   component: `<h2 class='text-xl font-semibold'>Component</h2>
-    <ul class='list-disc pl-5'>
-      <li>Translation cache</li>
-      <li>Change detection logic</li>
-      <li>Filtering & UI rendering</li>
-    </ul>`,
+  <ul class='list-disc pl-5'>
+    <li>Translation cache</li>
+    <li>Change detection</li>
+    <li>Session caching</li>
+  </ul>`,
 
-  api: `<h2 class='text-xl font-semibold'>Microsoft API</h2>
-    <ul class='list-disc pl-5'>
-      <li>Publieke CSV endpoint</li>
-      <li>Geen auth vereist</li>
-      <li>Wordt periodiek opgehaald</li>
-    </ul>`,
+  api: `<h2 class='text-xl font-semibold'>API</h2>
+  <ul class='list-disc pl-5'>
+    <li>CSV endpoint</li>
+    <li>No auth</li>
+    <li>External dependency</li>
+  </ul>`,
 
-  actions: `<h2 class='text-xl font-semibold'>GitHub Actions</h2>
-    <ul class='list-disc pl-5'>
-      <li>Runs 2x per week</li>
-      <li>Start Python script</li>
-      <li>Commit & deploy</li>
-    </ul>`,
+  actions: `<h2 class='text-xl font-semibold'>Actions</h2>
+  <ul class='list-disc pl-5'>
+    <li>Schedule: 2x/week</li>
+    <li>Runtime: ~3-5 min</li>
+  </ul>`,
 
-  script: `<h2 class='text-xl font-semibold'>Python Script</h2>
-    <ul class='list-disc pl-5'>
-      <li>CSV parsing</li>
-      <li>Translation via cache</li>
-      <li>Status detection</li>
-      <li>JSON output</li>
-    </ul>`,
+  script: `<h2 class='text-xl font-semibold'>Script</h2>
+  <ul class='list-disc pl-5'>
+    <li>Translation logic</li>
+    <li>Delta updates</li>
+  </ul>`,
 
-  data: `<h2 class='text-xl font-semibold'>data.json</h2>
-    <p>Actuele dataset voor frontend gebruik.</p>`,
+  data: `<h2 class='text-xl font-semibold'>Data</h2>
+  <p>Primary dataset for UI</p>`,
 
   archive: `<h2 class='text-xl font-semibold'>Archive</h2>
-    <p>Historische snapshots per week (max 3 maanden).</p>`,
+  <p>Historical data (3 months)</p>`,
 
   frontend: `<h2 class='text-xl font-semibold'>Frontend</h2>
-    <ul class='list-disc pl-5'>
-      <li>index.html</li>
-      <li>kalender.html</li>
-      <li>archief.html</li>
-    </ul>`,
+  <ul class='list-disc pl-5'>
+    <li>Static HTML</li>
+    <li>Client filtering</li>
+  </ul>`,
 
-  cache: `<h2 class='text-xl font-semibold'>Session Cache</h2>
-    <p>30 min caching van data.json voor performance.</p>`,
-
-  user: `<h2 class='text-xl font-semibold'>Gebruiker</h2>
-    <p>Gebruikt dashboard via browser of Teams tab.</p>`
+  user: `<h2 class='text-xl font-semibold'>User</h2>
+  <p>Consumes via browser or Teams</p>`
 };
 
-function show(key) {
+function show(key){
   document.getElementById('details').innerHTML = content[key];
 }
 
-function setView(view) {
-  show(view);
+function setView(view){ show(view); }
+
+function highlight(type){
+  document.querySelectorAll('.flow').forEach(l => l.classList.remove('highlight'));
+  event.target.classList.add('highlight');
 }
 
-// init
 show('context');
 </script>
 
