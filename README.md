@@ -97,7 +97,7 @@ Microsoft CSV API (publiek, gratis)
 - `?zoek=Teams` — vult de zoekbalk voor
 
 ### Statistiekenbalk
-Toont: totaal items · wordt uitgerold · in ontwikkeling · nieuw deze week. Bij actieve zoekopdracht ook het zoekterm-pill. Verdwijnt als er niets te tonen is.
+Toont: totaal items · wordt uitgerold · in ontwikkeling · nieuw deze week. Bij actieve zoekopdracht ook een zoekterm-pill.
 
 ---
 
@@ -112,16 +112,18 @@ Toont: totaal items · wordt uitgerold · in ontwikkeling · nieuw deze week. Bi
 | Actiefilter | Automatisch / IT-beheerder / Medewerker |
 | Mini-uitsplitsing | Periodeheader toont #IT, #medewerker, #auto |
 | Details-knop | Stuurt via `?id=` naar hoofdpagina |
-| "Ook in maandweergave" | Badge op exacte maanddatums in lange-termijn view |
+| "Ook in maandweergave" | Badge op exacte maanddatums in lange-termijn weergave |
 
 ---
 
 ## Archiefpagina (`archief.html`)
 
-- Laadt `archive/index.json` voor beschikbare weken
+- Laadt `archive/index.json` voor de lijst van beschikbare weken
 - Meest recente week automatisch geladen
-- Weekknoppen voor max 3 maanden terug
-- Productfilter per week met icoon
+- Weekknoppen voor alle beschikbare weken (max 3 maanden terug)
+- Productfilter per week met officieel icoon en icoon-tekst scheiding
+- Statistiekenbalk per week (totaal, uitgerold, in ontwikkeling)
+- Kaarten gegroepeerd per status (uitgerold / in ontwikkeling)
 
 ---
 
@@ -141,7 +143,7 @@ Toont: totaal items · wordt uitgerold · in ontwikkeling · nieuw deze week. Bi
 | 4.1.2 Naam/rol/waarde | `aria-pressed`, `aria-expanded`, `aria-live`, `aria-label` |
 | 4.1.3 Statusberichten | `aria-live` op statistiekenbalk en weekbadge |
 
-Aanvullend: dark mode (`@media (prefers-color-scheme: dark)`), reduced-motion (`@media (prefers-reduced-motion: reduce)`), noscript-fallback.
+Aanvullend: dark mode, reduced-motion, noscript-fallback.
 
 ---
 
@@ -152,8 +154,8 @@ Aanvullend: dark mode (`@media (prefers-color-scheme: dark)`), reduced-motion (`
 - **Cache-buster:** `?v=timestamp` omzeilt GitHub Pages CDN-cache
 - **Fetch-timeout:** 12 seconden; daarna foutmelding
 - **Debounce:** zoekbalk 200ms
-- **Event delegation:** één listener per filtergroep; geen per-knop handlers
-- **innerHTML batch:** alle renders bouwen eerst een volledige HTML-string, dan één write
+- **Event delegation:** één listener per filtergroep
+- **innerHTML batch:** alle renders bouwen eerst een volledige HTML-string, dan één DOM-write
 
 ---
 
