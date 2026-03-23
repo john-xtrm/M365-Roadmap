@@ -1,7 +1,67 @@
 {
-  "generated": "2026-03-20T09:17:19Z",
-  "count": 815,
+  "generated": "2026-03-23T07:35:39Z",
+  "count": 819,
   "items": [
+    {
+      "id": 558938,
+      "title": "Microsoft Copilot (Microsoft 365): Maak PowerPoint-presentaties vanuit Copilot Notebooks",
+      "desc": "Met Copilot Notebooks kunnen gebruikers PowerPoint-presentaties rechtstreeks genereren op basis van de inhoud en referenties die in een notebook zijn verzameld. Met behulp van de samengestelde context van het notebook creëert Copilot een gestructureerd, bewerkbaar diadeck dat gebruikers kunnen openen en verfijnen in PowerPoint, waardoor onderzoek, notities en inzichten sneller kunnen worden omgezet in deelbare presentaties.",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "status": "dev",
+      "app": "copilot",
+      "prodLabel": "365",
+      "added": "2026-03-20",
+      "modified": "2026-03-20",
+      "release": "May CY2026",
+      "preview": "March CY2026",
+      "action": "user",
+      "actionLabel": "Gebruiker kan instellen"
+    },
+    {
+      "id": 558934,
+      "title": "Microsoft Copilot (Microsoft 365): Maak Word-documenten vanuit Copilot Notebooks",
+      "desc": "Met Copilot Notebooks kunnen gebruikers Word-documenten genereren met behulp van de inhoud en referenties die in een notebook zijn verzameld. Copilot stelt een gestructureerd document op, gebaseerd op de context van het notebook, dat kan worden geopend en bewerkt in Word, waardoor gebruikers met minder handmatige stappen van ideeën en bronmateriaal kunnen overstappen naar een kant-en-klaar document.",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "status": "dev",
+      "app": "copilot",
+      "prodLabel": "365",
+      "added": "2026-03-20",
+      "modified": "2026-03-20",
+      "release": "May CY2026",
+      "preview": "March CY2026",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar"
+    },
+    {
+      "id": 558856,
+      "title": "Microsoft Teams: capaciteitspakketten voor deelnemers voor Teams-evenementen",
+      "desc": "Capaciteitspakketten voor deelnemers bieden verhoogde capaciteitslimieten voor Teams-evenementen. Organisatoren kunnen de deelname aan evenementen buiten de basislimieten schalen, terwijl ze een consistente Teams-evenementenervaring behouden.",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "status": "dev",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "added": "2026-03-20",
+      "modified": "2026-03-20",
+      "release": "May CY2026",
+      "preview": "April CY2026",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar"
+    },
+    {
+      "id": 558852,
+      "title": "Microsoft Teams: Ondersteuning voor digitale signage voor Teams-panelen",
+      "desc": "Narrowcasting kan nu worden weergegeven op inactieve Teams-paneelapparaten, vergelijkbaar met ondersteuning voor digitale signage voor Microsoft Teams Rooms-displays aan de voorkant van de kamer. Signage-bron en -instellingen kunnen worden geconfigureerd in de Pro Management-portal. Beschikbaar met Teams Rooms Pro of ruimtes met een gedeelde ruimtelicentie.",
+      "benefit": "Vergaderzalen worden beter benut en medewerkers reserveren ruimtes eenvoudiger.",
+      "status": "dev",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "added": "2026-03-20",
+      "modified": "2026-03-20",
+      "release": "May CY2026",
+      "preview": "",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist"
+    },
     {
       "id": 558939,
       "title": "Microsoft Purview: Preventie van gegevensverlies - Ontdekking en bescherming van onbeheerde cloud-apps met Microsoft Purview en Palo Alto Prisma Access",
@@ -71,7 +131,7 @@
       "app": "teams",
       "prodLabel": "Teams",
       "added": "2026-03-19",
-      "modified": "2026-03-19",
+      "modified": "2026-03-20",
       "release": "June CY2026",
       "preview": "",
       "action": "none",
@@ -170,7 +230,7 @@
     {
       "id": 558685,
       "title": "Microsoft Purview: Informatiebeveiliging - Moderne groepen uitsluiten/ondersteuning voor dynamische beveiligingsgroepen opnemen voor beleid voor gevoeligheidslabels",
-      "desc": "Om meer flexibiliteit te bieden, kunnen beheerders nu moderne Microsoft 365-groepen uitsluiten en het gevoeligheidslabelbeleid instellen op dynamische beveiligingsgroepen en niet voor e-mail geschikte beveiligingsgroepen, waardoor de beleidstargeting wordt uitgebreid tot voorbij individuele gebruikers en e-mailgroepen.",
+      "desc": "Om meer flexibiliteit te bieden, kunnen beheerders nu moderne Microsoft 365-groepen uitsluiten en het gevoeligheidslabelbeleid instellen op dynamische en niet-e-mail ingeschakelde beveiligingsgroepen, waardoor de beleidstargeting wordt uitgebreid tot voorbij individuele gebruikers en e-mailgroepen.",
       "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
       "status": "dev",
       "app": "purview",
@@ -485,7 +545,7 @@
     {
       "id": 558249,
       "title": "Microsoft 365-apps: Cloudupdate - beschrijvende fouten",
-      "desc": "Gebruik verbeterde foutrapportage in Cloud Update voor Microsoft 365 Apps-updates om toegang te krijgen tot duidelijke, beschrijvende foutmeldingen waarmee u eenvoudig kunt vaststellen waarom een ​​update niet met succes is voltooid. Beheerders kunnen uitgebreide inzichten bekijken op alle door Cloud Update beheerde apparaten en inzoomen op individuele apparaten voor gedetailleerde informatie. Deze verbeterde functie breidt de bestaande inzichten in de upgradevoortgang uit door problemen te groeperen op basis van foutcodes en duidelijke beschrijvingen te geven. Dankzij deze verbeteringen kunnen beheerders problemen efficiënter diagnosticeren, escalaties van ondersteuning verminderen en beslissende corrigerende maatregelen nemen om de maandelijkse nalevingspercentages te verhogen.",
+      "desc": "Gebruik verbeterde foutrapportage in Cloud Update voor Microsoft 365 Apps-updates om toegang te krijgen tot duidelijke, beschrijvende foutmeldingen waarmee u eenvoudig kunt identificeren waarom een ​​update niet met succes is voltooid. Beheerders kunnen uitgebreide inzichten bekijken op alle door Cloud Update beheerde apparaten en inzoomen op individuele apparaten voor gedetailleerde informatie. Deze verbeterde functie breidt de bestaande inzichten in de upgradevoortgang uit door problemen te groeperen op basis van foutcodes en duidelijke beschrijvingen te geven. Dankzij deze verbeteringen kunnen beheerders problemen efficiënter diagnosticeren, escalaties van ondersteuning verminderen en beslissende corrigerende maatregelen nemen om de maandelijkse nalevingspercentages te verhogen.",
       "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
       "app": "other",
@@ -575,7 +635,7 @@
     {
       "id": 558342,
       "title": "Microsoft Purview: Informatiebeveiliging – Handmatig aangebrachte labels overschrijven en labels verwijderen met automatische labeling",
-      "desc": "Met nieuwe verbeteringen voor SharePoint en OneDrive kunnen organisaties handmatig toegepaste gevoeligheidslabels automatisch overschrijven en labels op schaal verwijderen in Word-, Excel-, PowerPoint- en PDF-bestanden. Deze mogelijkheden zorgen ervoor dat gegevens correct geclassificeerd blijven naarmate het beleid, de labels en de bedrijfsvereisten evolueren, waardoor de afhankelijkheid van handmatige gebruikersupdates wordt verminderd en de consistentie van gegevens in rust in Microsoft 365 wordt verbeterd.",
+      "desc": "Nieuwe verbeteringen voor SharePoint en OneDrive stellen organisaties in staat automatisch handmatig toegepaste gevoeligheidslabels te overschrijven en labels op schaal te verwijderen in Word-, Excel-, PowerPoint- en PDF-bestanden. Deze mogelijkheden zorgen ervoor dat gegevens correct geclassificeerd blijven naarmate het beleid, de labels en de bedrijfsvereisten evolueren, waardoor de afhankelijkheid van handmatige gebruikersupdates wordt verminderd en de consistentie van gegevens in rust in Microsoft 365 wordt verbeterd.",
       "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
       "status": "dev",
       "app": "purview",
@@ -650,7 +710,7 @@
     {
       "id": 557560,
       "title": "Microsoft Copilot (Microsoft 365): AI-gegenereerde videoconcepten bevatten tekstanimaties en nieuwe lay-outopties",
-      "desc": "Gebruikers vinden bijgewerkte lay-outs en tekstanimaties op videoprojecten die met Copilot zijn gegenereerd.",
+      "desc": "Gebruikers vinden bijgewerkte lay-outs en tekstanimaties op videoprojecten die zijn gegenereerd met Copilot.",
       "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
       "status": "dev",
       "app": "copilot",
@@ -1160,7 +1220,7 @@
     {
       "id": 557548,
       "title": "Microsoft Purview: Insider Risk Management – ​​Pay-as-you-go-model voor indicatoren voor andere generatieve AI-apps",
-      "desc": "Andere AI-apps zullen overgaan op het pay-as-you-go-model. Microsoft Copilot-ervaringsindicatoren kunnen nog steeds gratis worden gebruikt, zelfs zonder abonnement. Als u indicatoren voor andere AI-apps wilt blijven gebruiken, koppelt u een Azure-abonnement aan Microsoft Purview om facturering in te schakelen. \n\nIndicatoren voor insiderrisicobeheer die overgaan naar een pay-as-you-go-prijsmodel: \"Risicovolle prompt invoeren in andere AI-apps\". Deze indicator is aanwezig in Beleidsindicatoren -> Generatieve AI-apps -> Andere AI-apps \n\nMicrosoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Met Insider Risk Management kunnen klanten beleid opstellen om de beveiliging en compliance te beheren. Gebouwd met privacy bydesign, zijn gebruikers p",
+      "desc": "Andere AI-apps zullen overgaan op het pay-as-you-go-model. Microsoft Copilot-ervaringsindicatoren kunnen nog steeds gratis worden gebruikt, zelfs zonder abonnement. Als u indicatoren voor andere AI-apps wilt blijven gebruiken, koppelt u een Azure-abonnement aan Microsoft Purview om facturering in te schakelen. \n\nInsider Risk Management-indicatoren die overgaan naar een pay-as-you-go-prijsmodel: \"Risicovolle prompt invoeren in andere AI-apps\". Deze indicator is aanwezig in Beleidsindicatoren -> Generatieve AI-apps -> Andere AI-apps \n\nMicrosoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Met Insider Risk Management kunnen klanten beleid opstellen om de beveiliging en compliance te beheren. Gebouwd met privacy bydesign, zijn gebruikers p",
       "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
       "status": "dev",
       "app": "purview",
@@ -1175,7 +1235,7 @@
     {
       "id": 555234,
       "title": "Microsoft Teams: Live transcriptie in Teams Rooms op Android",
-      "desc": "Bekijk en beheer live transcriptie tijdens een vergadering vanuit Teams\nKamers op Android-apparaat. Het realtime transcript bevat de namen van sprekers en\ntijdstempels. U kunt instellingen aanpassen zoals gesproken taal, vertaald\ntaal, en of zowel originele als vertaalde transcripties worden weergegeven\nnaast elkaar op de voorkant van het kamerdisplay. Deze functie is beschikbaar in Teams Rooms Pro.",
+      "desc": "Bekijk en beheer live transcriptie tijdens een vergadering vanuit Teams\nKamers op Android-apparaat. Het realtime transcript bevat de namen van sprekers en\ntijdstempels. U kunt instellingen aanpassen zoals gesproken taal, vertaald\ntaal, en of zowel originele als vertaalde transcripties worden weergegeven\nnaast elkaar op de voorkant van de kamerdisplay. Deze functie is beschikbaar in Teams Rooms Pro.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
       "app": "teams",
@@ -1235,7 +1295,7 @@
     {
       "id": 555852,
       "title": "Microsoft Copilot (Microsoft 365): merkvoettekst in de Microsoft 365 Copilot-app",
-      "desc": "Deze update introduceert een co-branding-ervaring in de Microsoft 365 Copilot-app waarmee organisaties een door de beheerder goedgekeurde visuele identificatie direct in het chatscherm kunnen presenteren. Deze ervaring stelt beheerders in het bijzonder in staat gebruik te maken van het door de organisatie ondersteunde logo dat al wordt beheerd in de thema-instellingen van het Microsoft Admin Center en dit weer te geven in de voettekst van het chatscherm, gecombineerd met een vast label: 'Goedgekeurd door'.",
+      "desc": "Deze update introduceert een co-branding-ervaring in de Microsoft 365 Copilot-app waarmee organisaties een door de beheerder goedgekeurde visuele identificatie direct in het chatscherm kunnen presenteren. Deze ervaring stelt beheerders in het bijzonder in staat gebruik te maken van het door de organisatie ondersteunde logo dat al wordt beheerd in de thema-instellingen van het Microsoft Admin Center en dit weer te geven in de voettekst van het chatscherm, gecombineerd met een vast label: \"Goedgekeurd door\".",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -1324,7 +1384,7 @@
     },
     {
       "id": 557564,
-      "title": "Microsoft Copilot (Microsoft 365): Lokale bestandsondersteuning voor Agent-modus in Excel",
+      "title": "Microsoft Copilot (Microsoft 365): Ondersteuning voor lokale bestanden voor Agent-modus in Excel",
       "desc": "Ondersteuning voor moderne Excel-werkmappen die op uw apparaat zijn opgeslagen, wordt uitgebreid naar de Agent-modus in Excel, waardoor gebruikers de flexibiliteit hebben om bewerkingsmogelijkheden in meerdere stappen te gebruiken met Copilot in Excel, ongeacht of bestanden lokaal of in de cloud zijn opgeslagen.",
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
@@ -2375,7 +2435,7 @@
     {
       "id": 555233,
       "title": "Outlook: antwoordopties voor EML-bijlagen",
-      "desc": "Wanneer gebruikers nu een .eml-bijlage openen, zien ze de opties Antwoord, Alles beantwoorden en Doorsturen.",
+      "desc": "Wanneer gebruikers nu een .eml-bijlage openen, zien ze opties voor antwoorden, alles beantwoorden en doorsturen.",
       "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
       "status": "dev",
       "app": "outlook",
@@ -2390,7 +2450,7 @@
     {
       "id": 555232,
       "title": "Outlook: antwoordopties voor EML-bijlagen",
-      "desc": "Wanneer gebruikers nu een .eml-bijlage openen, zien ze de opties Antwoord, Alles beantwoorden en Doorsturen.",
+      "desc": "Wanneer gebruikers nu een .eml-bijlage openen, zien ze opties voor antwoorden, alles beantwoorden en doorsturen.",
       "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
       "status": "dev",
       "app": "outlook",
@@ -2630,7 +2690,7 @@
     {
       "id": 554940,
       "title": "Microsoft Purview: Insider Risk Management – ​​Mogelijkheid om cases te maken zonder inhoud in IRM",
-      "desc": "Insider Risk Management biedt de mogelijkheid om een ​​casus zonder inhoud te creëren. Hiermee introduceren we een nieuwe actieve casuslimiet (2000). Met deze nieuwe functionaliteit kunnen klanten meer cases maken, vooral wanneer het downloaden van inhoud niet nodig is. Als een casus wordt aangemaakt zonder dat er inhoud wordt gedownload, kan het downloaden van inhoud op elk gewenst moment worden gestart wanneer de zaak actief is, in afwachting van de beschikbare limieten voor het downloaden van inhoud. Er is geen wijziging in de downloadlimiet voor actieve inhoud (100). \n\nMicrosoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management stelt klanten in staat beleid te creëren op basis van hun eigen interne beleid, governance en organisatorische vereisten",
+      "desc": "Insider Risk Management biedt de mogelijkheid om een ​​casus zonder inhoud te creëren. Hiermee introduceren we een nieuwe actieve casuslimiet (2000). Met deze nieuwe functionaliteit kunnen klanten meer cases maken, vooral wanneer het downloaden van inhoud niet nodig is. Als een aanvraag wordt aangemaakt zonder dat er inhoud wordt gedownload, kan het downloaden van de inhoud op elk gewenst moment worden gestart als de aanvraag actief is, in afwachting van de beschikbare limieten voor het downloaden van inhoud. Er is geen wijziging in de downloadlimiet voor actieve inhoud (100). \n\nMicrosoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management stelt klanten in staat beleid te creëren op basis van hun eigen interne beleid, governance en organisatorische vereisten",
       "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
       "status": "dev",
       "app": "purview",
@@ -2674,7 +2734,7 @@
     },
     {
       "id": 554933,
-      "title": "Microsoft Teams: Verbeterde toetsenbordnavigatie en standaardregelnummers in codeblokken",
+      "title": "Microsoft Teams: Verbeterde toetsenbordnavigatie en standaard regelnummers in codeblokken",
       "desc": "Navigeer gemakkelijker door codeblokken met verbeterde toetsenbordbediening en standaardregelnummers. Stel de codetaal snel in en verwijs naar specifieke regels voor verbeterde samenwerking en workflow.",
       "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
       "status": "dev",
@@ -2810,7 +2870,7 @@
     {
       "id": 548641,
       "title": "Microsoft Copilot (Microsoft 365): Microsoft Copilot (Microsoft 365): Open Word-, Excel- en PowerPoint-bestanden in Copilot Chat",
-      "desc": "Momenteel opent het klikken op geciteerde inhoud in Copilot bestanden buiten Copilot. Met deze nieuwe functie kan inhoud rechtstreeks in Copilot Chat worden geopend, zodat het bekijken van documenten naast de chat gestroomlijnder wordt. Deze wijziging is niet beschikbaar in de mobiele app Microsfot 365 Copilot of bij gebruik van Copilot in Edge, Copilot in Excel, Copilot in Word en Copilot PowerPoint.",
+      "desc": "Momenteel opent het klikken op geciteerde inhoud in Copilot bestanden buiten Copilot. Met deze nieuwe functie kan inhoud rechtstreeks in Copilot Chat worden geopend, zodat het bekijken van documenten naast de chat gestroomlijnder wordt. Deze wijziging is niet beschikbaar in de mobiele Microsfot 365 Copilot-app of bij gebruik van Copilot in Edge, Copilot in Excel, Copilot in Word en Copilot PowerPoint.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -3020,7 +3080,7 @@
     {
       "id": 551187,
       "title": "Microsoft Copilot (Microsoft 365): Bewerk snel een afbeelding in PowerPoint",
-      "desc": "Bewerk uw afbeeldingen rechtstreeks in PowerPoint met Copilot, u hoeft niet van app te wisselen of uw stroom te onderbreken. Of u nu de beelden voor een pitchdeck verfijnt, marketingmiddelen verbetert of uw dia's eenvoudigweg laat opvallen, de afbeeldingseditor maakt het snel en naadloos. U kunt bewerkingen uitvoeren, zoals het verbeteren van de resolutie, het verwijderen van de achtergrond en meer.",
+      "desc": "Bewerk uw afbeeldingen rechtstreeks in PowerPoint met Copilot, u hoeft niet van app te wisselen of uw stroom te onderbreken. Of u nu de beelden voor een pitchdeck verfijnt, marketingmateriaal verbetert of uw dia's eenvoudigweg laat opvallen, de afbeeldingseditor maakt het snel en naadloos. U kunt bewerkingen uitvoeren, zoals het verbeteren van de resolutie, het verwijderen van de achtergrond en meer.",
       "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
       "status": "dev",
       "app": "copilot",
@@ -3350,7 +3410,7 @@
     {
       "id": 545894,
       "title": "Microsoft Entra: app-deactivering",
-      "desc": "Beheerders of app-eigenaren kunnen nu veilig de toegang van een app tot door Entra beschermde bronnen onderbreken zonder deze te verwijderen of de configuratie te verstoren. Wanneer gedeactiveerd kunnen de app en de service-principals wereldwijd (voor alle tenants) geen nieuwe tokens aanvragen en worden gebruikersaanmeldingen geblokkeerd, terwijl bestaande tokens gewoon volgens hun normale schema verlopen. Dit maakt het gemakkelijk voor beheerders om verdachte of ongebruikte apps tijdelijk te bevriezen tijdens onderzoeken, bulkopruimingen of werkzaamheden aan de huurderhygiëne. Deze mogelijkheid is nu beschikbaar in het Entra-beheercentrum (app-registraties, Enterprise-apps) en Microsoft Graph API.",
+      "desc": "Beheerders of app-eigenaren kunnen nu veilig de toegang van een app tot door Entra beschermde bronnen onderbreken zonder deze te verwijderen of de configuratie te verstoren. Wanneer gedeactiveerd, kunnen de app en de service-principals wereldwijd (voor alle tenants) geen nieuwe tokens aanvragen en worden gebruikersaanmeldingen geblokkeerd, terwijl bestaande tokens gewoon volgens hun normale schema verlopen. Dit maakt het gemakkelijk voor beheerders om verdachte of ongebruikte apps tijdelijk te bevriezen tijdens onderzoeken, bulkopruimingen of werkzaamheden aan de huurderhygiëne. Deze mogelijkheid is nu beschikbaar in het Entra-beheercentrum (app-registraties, Enterprise-apps) en Microsoft Graph API.",
       "benefit": "IT-beheerders kunnen apps sneller en veiliger beheren, inclusief tijdelijk blokkeren.",
       "status": "rolling",
       "app": "entra",
@@ -3365,7 +3425,7 @@
     {
       "id": 545012,
       "title": "Microsoft Copilot (Microsoft 365): Wanneer u de Agent-modus in Word gebruikt, kunt u handmatig selecteren welk model u wilt gebruiken",
-      "desc": "Met de Agent-modus in Word kunt u uit meerdere modellen kiezen, waardoor u de flexibiliteit heeft om het juiste model voor uw taak te selecteren.",
+      "desc": "In de Agent-modus in Word kunt u kiezen uit meerdere modellen, waardoor u de flexibiliteit heeft om het juiste model voor uw taak te selecteren.",
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
@@ -3950,7 +4010,7 @@
     {
       "id": 516032,
       "title": "Microsoft Purview: Insider Risk Management-Insider risicobeheer voor agenten",
-      "desc": "Naarmate AI-agenten diep ingebed raken in de ecosystemen van ondernemingen, evolueren ze van eenvoudige tools of workflows naar een digitaal personeelsbestand. Deze agenten kunnen de bedoelingen interpreteren, toegang krijgen tot bedrijfsgegevens en deze manipuleren, acties uitvoeren en zelfs realtime beslissingen nemen. In veel opzichten opereren ze als menselijke insiders, maar dan met gegevensverwerkingsmogelijkheden op machinesnelheid. Om deze agenten effectief te beheren en te beschermen, wordt Microsoft Purview Insider Risk Management uitgebreid naar agenten, met specifieke indicatoren en een insider-risicoscore voor agenten op basis van agentactiviteiten. Microsoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management maakt cu",
+      "desc": "Naarmate AI-agenten diep ingebed raken in de ecosystemen van ondernemingen, evolueren ze van eenvoudige tools of workflows naar een digitaal personeelsbestand. Deze agenten kunnen de bedoelingen interpreteren, toegang krijgen tot bedrijfsgegevens en deze manipuleren, acties uitvoeren en zelfs realtime beslissingen nemen. In veel opzichten opereren ze als menselijke insiders, maar dan met gegevensverwerkingsmogelijkheden op machinesnelheid. Om deze agenten effectief te kunnen beheren en beschermen, wordt Microsoft Purview Insider Risk Management uitgebreid naar agenten, met specifieke indicatoren en insider-risicoscores die zijn gebouwd voor agenten op basis van agentactiviteiten. Microsoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management maakt cu",
       "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
       "status": "dev",
       "app": "purview",
@@ -4040,7 +4100,7 @@
     {
       "id": 537279,
       "title": "Microsoft Teams: Kies uw Enter Key-gedrag in Teams Chat",
-      "desc": "Microsoft Teams geeft je nu controle over hoe de Enter-toets werkt bij het opstellen van berichten. U kunt kiezen of u door op Enter te drukken uw bericht verzendt of een nieuwe regel begint, zodat u gemakkelijker langere berichten kunt schrijven zonder dat u ze per ongeluk verzendt.",
+      "desc": "Microsoft Teams geeft je nu controle over hoe de Enter-toets werkt bij het opstellen van berichten. U kunt kiezen of u door op Enter te drukken uw bericht verzendt of een nieuwe regel begint, zodat u gemakkelijker langere berichten kunt schrijven zonder dat deze per ongeluk worden verzonden.",
       "benefit": "Communiceren in Teams gaat soepeler door verbeterde berichtopties en slimmere weergaven.",
       "status": "rolling",
       "app": "teams",
@@ -4325,7 +4385,7 @@
     {
       "id": 534609,
       "title": "Microsoft Purview: Purview SDK ingebed in Agent Framework SDK",
-      "desc": "Purview SDK, ingebed in Agent Framework SDK, stelt ontwikkelaars in staat om naadloos beveiliging, compliance en governance op bedrijfsniveau te integreren in de AI-agents die ze bouwen. Deze integratie maakt automatische classificatie en bescherming van gevoelige gegevens mogelijk, voorkomt datalekken en overmatig delen, en biedt zichtbaarheid en controle voor naleving van de regelgeving, waardoor organisaties met vertrouwen en veilig AI-agenten kunnen inzetten in complexe omgevingen.",
+      "desc": "Purview SDK, ingebed in Agent Framework SDK, stelt ontwikkelaars in staat om naadloos beveiliging, compliance en governance op bedrijfsniveau te integreren in de AI-agents die ze bouwen. Deze integratie maakt automatische classificatie en bescherming van gevoelige gegevens mogelijk, voorkomt datalekken en overmatig delen, en biedt inzicht en controle over de naleving van de regelgeving, waardoor organisaties met vertrouwen en veilig AI-agenten kunnen inzetten in complexe omgevingen.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
       "app": "purview",
@@ -4340,7 +4400,7 @@
     {
       "id": 532720,
       "title": "Microsoft Teams: Organisatie-evaluatiescore voor apps en agenten",
-      "desc": "Tegenwoordig beoordelen IT-beheerders handmatig de vertrouwensgegevens voor Teams-apps en -agenten in het Teams-beheercentrum om er zeker van te zijn dat ze voldoen aan de beveiligings-, privacy- en nalevingsnormen van de organisatie. Deze functie introduceert een schaalbaar, geautomatiseerd evaluatieproces. Beheerders kunnen de vertrouwensvereisten van hun organisatie één keer definiëren, en het systeem beoordeelt automatisch elke app en agent, waardoor een evaluatiescore en een gedetailleerd evaluatierapport wordt gegenereerd dat is afgestemd op die vereisten. Dit maakt snellere, consistentere besluitvorming mogelijk door duidelijk te identificeren welke apps en agenten voldoen aan de normen van de organisatie en waar verdere beoordeling nodig is.",
+      "desc": "Tegenwoordig beoordelen IT-beheerders handmatig de vertrouwensgegevens voor Teams-apps en -agenten in het Teams-beheercentrum om er zeker van te zijn dat ze voldoen aan de normen voor beveiliging, privacy en naleving van de organisatie. Deze functie introduceert een schaalbaar, geautomatiseerd evaluatieproces. Beheerders kunnen de vertrouwensvereisten van hun organisatie één keer definiëren, en het systeem beoordeelt automatisch elke app en agent, waardoor een evaluatiescore en een gedetailleerd evaluatierapport wordt gegenereerd dat is afgestemd op die vereisten. Dit maakt snellere, consistentere besluitvorming mogelijk door duidelijk te identificeren welke apps en agenten voldoen aan de normen van de organisatie en waar verdere beoordeling nodig is.",
       "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
       "status": "rolling",
       "app": "teams",
@@ -4549,7 +4609,7 @@
     },
     {
       "id": 529849,
-      "title": "Outlook: Voorwaardelijke opmaak van agenda's in nieuwe Outlook",
+      "title": "Outlook: voorwaardelijke opmaak van agenda's in nieuwe Outlook",
       "desc": "Gebruikers kunnen nu basisregels voor voorwaardelijke opmaak toepassen op de agenda in de nieuwe Outlook, waardoor gebeurtenissen en afspraken een kleurcode kunnen krijgen op basis van afzender, locatie, deelnemers en meer. #nieuweoutlookforwindows",
       "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
       "status": "dev",
@@ -4580,7 +4640,7 @@
     {
       "id": 523222,
       "title": "Microsoft Copilot (Microsoft 365): uw commandocentrum voor AI-succes",
-      "desc": "De vernieuwde Copilot-landingspagina in het Microsoft 365-beheercentrum geeft in één oogopslag een overzicht van uw Copilot-reis via Chat, Agents en M365 Copilot. Het bevat successtatistieken voor elke pijler, nieuwe statistieken zoals actieve chatgebruikers, ondersteunde uren en tevredenheidspercentage, plus gepersonaliseerde en bruikbare inzichten met meerdere signalen om de acceptatie te stimuleren. We hebben een beveiligingsspil toegevoegd voor Purview-acties en gecentraliseerde Copilot-gebruiksrapporten onder een nieuwe gebruiksspil.",
+      "desc": "De vernieuwde Copilot-landingspagina in het Microsoft 365-beheercentrum geeft in één oogopslag een overzicht van uw Copilot-reis via Chat, Agents en M365 Copilot. Het omvat successtatistieken voor elke pijler, nieuwe statistieken zoals actieve chatgebruikers, ondersteunde uren en tevredenheidspercentage, plus multi-signaal, gepersonaliseerde en bruikbare inzichten om de acceptatie te stimuleren. We hebben een beveiligingsspil toegevoegd voor Purview-acties en gecentraliseerde Copilot-gebruiksrapporten onder een nieuwe gebruiksspil.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -4610,7 +4670,7 @@
     {
       "id": 529864,
       "title": "Microsoft Copilot (Microsoft 365): Semantisch afscheidswoord voor stem in Microsoft 365 Copilot",
-      "desc": "Nu kunnen gebruikers een spraaksessie op Windows sluiten door simpelweg gedag of tot ziens te zeggen wanneer ze de spraaksessie willen sluiten. Dit, gecombineerd met het wake-word 'Hey Copilot', biedt hen een volledige handsfree stemervaring in Microsoft 365 Copilot op Windows-apparaten.",
+      "desc": "Nu kunnen gebruikers een spraaksessie op Windows sluiten door simpelweg gedag of tot ziens te zeggen wanneer ze de spraaksessie willen sluiten. Dit, gecombineerd met het wake-word 'Hey Copilot', biedt hen een volledige handsfree ervaring voor spraak in Microsoft 365 Copilot op Windows-apparaten.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -4835,7 +4895,7 @@
     {
       "id": 529851,
       "title": "Outlook: Profielkaarten verrijken met aangepaste, organisatiespecifieke eigenschappen",
-      "desc": "Klanten kunnen hun M365-profielkaarten nu aanpassen door aangepaste eigenschappen toe te voegen die uniek zijn voor hun organisatie. Deze eigenschappen kunnen afkomstig zijn van externe systemen zoals HR-platforms, waardoor gebruikersprofielen worden verrijkt met relevante organisatorische details. Tenantbeheerders kunnen deze eigenschappen configureren met een weergavenaam en een pictogram, dat wordt weergegeven in het gedeelte Contactgegevens van de profielkaarten.",
+      "desc": "Klanten kunnen hun M365-profielkaarten nu aanpassen door aangepaste eigenschappen toe te voegen die uniek zijn voor hun organisatie. Deze eigenschappen kunnen afkomstig zijn van externe systemen zoals HR-platforms, waardoor gebruikersprofielen worden verrijkt met relevante organisatorische details. Tenantbeheerders kunnen deze eigenschappen configureren met een weergavenaam en pictogram, die verschijnen in het gedeelte Contactgegevens van de profielkaarten.",
       "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
       "status": "dev",
       "app": "outlook",
@@ -4955,7 +5015,7 @@
     {
       "id": 523209,
       "title": "Microsoft Purview: Compliance Manager - AI-aangedreven regelgevingssjablonen",
-      "desc": "Deze functie in Purview Compliance Manager stelt klanten in staat complexe regelgeving van PDF-documenten om te zetten naar bruikbare controles en acties in een multi-cloudomgeving. Klanten kunnen de geconverteerde regelgevingssjablonen gebruiken om beoordelingen te maken en lacunes in de naleving te identificeren, controles te begrijpen en te implementeren om hun nalevingspositie te verbeteren.",
+      "desc": "Deze functie in Purview Compliance Manager stelt klanten in staat complexe regelgeving van PDF-documenten om te zetten naar bruikbare controles en acties in een multi-cloudomgeving. Klanten kunnen de geconverteerde regelgevingssjablonen gebruiken om beoordelingen te maken en lacunes in de naleving te identificeren, controles te begrijpen en te implementeren om hun nalevingshouding te verbeteren.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
       "app": "purview",
@@ -5660,7 +5720,7 @@
     {
       "id": 508530,
       "title": "Microsoft Copilot (Microsoft 365): Bewerk snel een afbeelding in PowerPoint",
-      "desc": "Bewerk uw afbeeldingen rechtstreeks in PowerPoint met Copilot, u hoeft niet van app te wisselen of uw stroom te onderbreken.  Of u nu de beelden voor een pitchdeck verfijnt, marketingmiddelen verbetert of uw dia's eenvoudigweg laat opvallen, de afbeeldingseditor maakt het snel en naadloos. U kunt bewerkingen uitvoeren, zoals het verbeteren van de resolutie, het verwijderen van de achtergrond en meer.",
+      "desc": "Bewerk uw afbeeldingen rechtstreeks in PowerPoint met Copilot, u hoeft niet van app te wisselen of uw stroom te onderbreken.  Of u nu de beelden voor een pitchdeck verfijnt, marketingmateriaal verbetert of uw dia's eenvoudigweg laat opvallen, de afbeeldingseditor maakt het snel en naadloos. U kunt bewerkingen uitvoeren, zoals het verbeteren van de resolutie, het verwijderen van de achtergrond en meer.",
       "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
       "status": "rolling",
       "app": "copilot",
@@ -5824,7 +5884,7 @@
     },
     {
       "id": 513272,
-      "title": "Microsoft Teams: Live meetings-indicator voor kanalen",
+      "title": "Microsoft Teams: indicator voor livevergaderingen voor kanalen",
       "desc": "Introductie van een nieuwe indicator in kanalen om gebruikers te helpen vergaderingen die live binnen het kanaal plaatsvinden te vinden en eraan deel te nemen.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
@@ -6260,7 +6320,7 @@
     {
       "id": 512429,
       "title": "Microsoft Copilot (Microsoft 365): naadloze zoek- en chatintegratie",
-      "desc": "Microsoft 365 Chat brengt de kracht van conversatie-AI rechtstreeks naar Microsoft 365 Copilot Search, waardoor gebruikers moeiteloos kunnen overstappen van het vinden van informatie naar actie daarop. Zoekresultaten vormen de basis voor contextuele chat, waardoor u vervolgvragen kunt stellen, inzichten kunt synthetiseren en inhoud kunt genereren, allemaal in één uniforme ervaring. Deze integratie vermindert de fragmentatie van de workflow, versnelt de besluitvorming en biedt een intuïtievere manier om met de kennis van uw organisatie te communiceren.",
+      "desc": "Microsoft 365 Chat brengt de kracht van conversationele AI rechtstreeks naar Microsoft 365 Copilot Search, waardoor gebruikers moeiteloos kunnen overstappen van het vinden van informatie naar actie daarop. Zoekresultaten vormen de basis voor contextuele chat, waardoor u vervolgvragen kunt stellen, inzichten kunt synthetiseren en inhoud kunt genereren, allemaal in één uniforme ervaring. Deze integratie vermindert de fragmentatie van de workflow, versnelt de besluitvorming en biedt een intuïtievere manier om met de kennis van uw organisatie te communiceren.",
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "dev",
       "app": "copilot",
@@ -6440,7 +6500,7 @@
     {
       "id": 496655,
       "title": "Microsoft Viva: Tevredenheidsgraadstatistiek voor Microsoft 365 Copilot in Copilot Dashboard",
-      "desc": "Volg het gebruikerssentiment van Microsoft 365 Copilot. Begrijp hoe gebruikers de waarde van Copilot ervaren door de uitsplitsing van de waarderingen met een duim omhoog en een duim omlaag te analyseren na Copilot-interacties.  Bekijk trends in de loop van de tijd en uitsplitsingen per groep.",
+      "desc": "Volg het gebruikerssentiment van Microsoft 365 Copilot. Begrijp hoe gebruikers de waarde van Copilot ervaren door de uitsplitsing van de waarderingen met duim omhoog en omlaag te analyseren na Copilot-interacties.  Bekijk trends in de loop van de tijd en uitsplitsingen per groep.",
       "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
       "status": "dev",
       "app": "copilot",
@@ -6665,7 +6725,7 @@
     {
       "id": 503295,
       "title": "Microsoft Teams: nieuwe beleidsinstelling die expliciete toestemming vereist voor opname en transcriptie in Teams 1:1-gesprekken",
-      "desc": "We breiden de mogelijkheid uit om expliciete toestemming te vereisen voor opname en transcriptie, zodat ook 1:1-oproepen in Microsoft Teams kunnen worden opgenomen. Dankzij een nieuwe instelling in het Teams Calling-beleid kunnen beheerders deze vereiste afdwingen voordat de opname of transcriptie kan beginnen. Wanneer een gebruiker met dit beleid de opname, transcriptie of beide initieert in een één-op-één-gesprek, wordt het geluid van de andere deelnemer automatisch gedempt en is het delen van de camera en inhoud uitgeschakeld. De deelnemer ziet een prompt met de vraag of hij of zij ermee instemt dat deze wordt opgenomen in de opname en transcriptie.",
+      "desc": "We breiden de mogelijkheid uit om expliciete toestemming te vereisen voor opname en transcriptie, zodat ook 1:1-oproepen in Microsoft Teams kunnen worden opgenomen. Dankzij een nieuwe instelling in het Teams Calling-beleid kunnen beheerders deze vereiste afdwingen voordat de opname of transcriptie kan beginnen. Wanneer een gebruiker met dit beleid de opname, transcriptie of beide initieert in een 1:1-gesprek, wordt het geluid van de andere deelnemer automatisch gedempt en is het delen van de camera en inhoud uitgeschakeld. De deelnemer ziet een prompt met de vraag of hij of zij ermee instemt dat deze wordt opgenomen in de opname en transcriptie.",
       "benefit": "Vergaderingen worden automatisch getranscribeerd, wat terugzoeken en naleving eenvoudiger maakt.",
       "status": "rolling",
       "app": "teams",
@@ -6800,7 +6860,7 @@
     {
       "id": 501451,
       "title": "Microsoft Copilot (Microsoft 365): Kennisagent",
-      "desc": "Vereenvoudigt het SharePoint-inhoudsbeheer en zorgt ervoor dat de inhoud geschikt is voor Copilot door metagegevens te automatiseren, verouderde inhoud te herstellen, snelle paginacreatie mogelijk te maken, de compliance te verbeteren en de inhoud te verrijken, zodat Copilot nauwkeurigere, gefundeerde antwoorden kan geven.",
+      "desc": "Vereenvoudigt het contentbeheer van SharePoint en zorgt ervoor dat de content geschikt is voor Copilot door metagegevens te automatiseren, verouderde content te herstellen, snelle paginacreatie mogelijk te maken, de compliance te verbeteren en de content te verrijken, zodat Copilot nauwkeurigere, gefundeerde antwoorden kan geven.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
@@ -7715,7 +7775,7 @@
     {
       "id": 498910,
       "title": "Microsoft Copilot (Microsoft 365): [Copilot-uitbreidbaarheid] Volledige vernieuwing van aangepaste connectorgegevensbron",
-      "desc": "Beheerders en ontwikkelaars kunnen hun gegevensbron voor aangepaste connectors volledig vernieuwen of synchroniseren met behulp van Graph API's. Dit zorgt er ook voor dat alle items die in de bron worden verwijderd, automatisch worden verwijderd tijdens deze volledige synchronisatie en dat beheerders hiervoor geen afzonderlijke verwijder-API's hoeven te gebruiken.",
+      "desc": "Beheerders en ontwikkelaars kunnen hun gegevensbron voor aangepaste connectoren volledig vernieuwen of synchroniseren met behulp van Graph API's. Dit zorgt er ook voor dat alle items die in de bron worden verwijderd, automatisch worden verwijderd tijdens deze volledige synchronisatie en dat beheerders hiervoor geen afzonderlijke verwijder-API's hoeven te gebruiken.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -7820,7 +7880,7 @@
     {
       "id": 498639,
       "title": "Microsoft Viva: Viva Pulse - Nieuwe aanpassingsopties voor Pulse",
-      "desc": "Auteurs krijgen nieuwe opties bij het starten van enquêtes, waaronder de keuze om te verzenden zonder vooraf een doelgroep te definiëren. In plaats daarvan kan feedback worden verzameld door een link te delen waarmee mensen toegang hebben tot de enquête en kunnen reageren, door een enquête te verzenden zonder een specifieke einddatum, waardoor het verzamelen van gegevens op langere termijn en meerdere reacties van ontvangers in de loop van de tijd mogelijk wordt, en door het verzamelen van geïdentificeerde antwoorden, waarbij de antwoorden worden toegeschreven aan de persoon die ze heeft ingediend.",
+      "desc": "Auteurs krijgen nieuwe opties bij het starten van enquêtes, waaronder de keuze om te verzenden zonder vooraf een doelgroep te definiëren. In plaats daarvan kan feedback worden verzameld door een link te delen waarmee mensen toegang kunnen krijgen tot de enquête en kunnen reageren, door een enquête te verzenden zonder een specifieke einddatum, waardoor het verzamelen van gegevens op langere termijn en meerdere reacties van ontvangers in de loop van de tijd mogelijk wordt, en door het verzamelen van geïdentificeerde antwoorden, waarbij de antwoorden worden toegeschreven aan de persoon die ze heeft ingediend.",
       "benefit": "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
       "status": "rolling",
       "app": "viva",
@@ -7924,7 +7984,7 @@
     },
     {
       "id": 497132,
-      "title": "SharePoint: Update voor teksteditor Copilot 'Verfijnen'",
+      "title": "SharePoint: Teksteditor Copilot 'Verfijn'-update",
       "desc": "SharePoint werkt de mogelijkheden van zijn teksteditor Copilot bij. Nu kunt u copilot niet alleen gebruiken om uw bestaande tekst te herschrijven, maar ook om door te schrijven of een basisdocument toe te voegen. Door de vraag te beantwoorden \"wat wil je dat copilot verandert\", kun je een aantal verfijningen aanbrengen in je bestaande inhoud.",
       "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
       "status": "dev",
@@ -7985,7 +8045,7 @@
     {
       "id": 497944,
       "title": "Microsoft Purview Compliance Portal: servicestatusdashboard",
-      "desc": "Als Microsoft Purview-gebruiker kunt u storingen, serviceproblemen en adviezen bekijken die van invloed kunnen zijn op uw services. Dit nieuwe dashboard combineert de services en oplossingenstatus van Purview, Microsoft 365-services en Azure Cloud Services op één centrale plek in de Purview-portal, waardoor het niet meer nodig is om naar verschillende plaatsen te gaan om deze informatie te vinden.",
+      "desc": "Als Microsoft Purview-gebruiker kunt u storingen, serviceproblemen en adviezen bekijken die van invloed kunnen zijn op uw services. Dit nieuwe dashboard combineert de services en oplossingenstatus van Purview, Microsoft 365-services en Azure Cloud Services op één centrale plek in het Purview-portaal, waardoor het niet meer nodig is om naar verschillende plaatsen te gaan om deze informatie te vinden.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
       "app": "purview",
@@ -8104,7 +8164,7 @@
     },
     {
       "id": 495828,
-      "title": "Microsoft Copilot (Microsoft 365): Inhoudsuggesties in Word",
+      "title": "Microsoft Copilot (Microsoft 365): Inhoudssuggesties in Word",
       "desc": "Selecteer het tabblad Suggesties in het Copilot-samenvatting bovenaan een Word-document voor suggesties voor het verbeteren van de inhoud van het document.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
@@ -8495,7 +8555,7 @@
     {
       "id": 495467,
       "title": "Outlook: Afbeelding invoegen",
-      "desc": "Wanneer u een bericht opstelt in de nieuwe Outlook voor Windows en de webversie van Outlook, is er een nieuwe knop Grafisch onder het linttabblad Invoegen. Hierdoor wordt een paneel geopend waarin gebruikers kunnen zoeken en kiezen uit een grote selectie emoji, stockfoto's en stickers, die bij selectie in het bericht worden ingevoegd. #nieuweoutlookforwindows",
+      "desc": "Wanneer u een bericht opstelt in de nieuwe Outlook voor Windows en de webversie van Outlook, is er een nieuwe knop Grafisch onder het linttabblad Invoegen. Hierdoor wordt een paneel geopend waarin gebruikers kunnen zoeken en kiezen uit een grote selectie emoji's, stockfoto's en stickers, die in het bericht worden ingevoegd wanneer ze worden geselecteerd. #nieuweoutlookforwindows",
       "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
       "status": "dev",
       "app": "outlook",
@@ -8540,7 +8600,7 @@
     {
       "id": 492616,
       "title": "Microsoft 365-beheercentrum: M365 Copilot - Facturering en gebruik - Gebruiksinzichten",
-      "desc": "Wanneer u M365 Copilot Chat pay-as-you-go-facturering inschakelt, kunnen AI-beheerders gebruiksinzichten bekijken om beslissingen over agentbeheer te onderbouwen. Deze functie toont de kosten en het aantal berichten in totaal en per agent. Kosten- en gebruiksgegevens kunnen worden gefilterd op factureringsbeleid en datumbereik.",
+      "desc": "Wanneer u M365 Copilot Chat pay-as-you-go-facturering inschakelt, kunnen AI-beheerders gebruiksinzichten bekijken om beslissingen over agentbeheer te onderbouwen. Deze functie geeft de kosten en het aantal berichten in totaal en per agent weer. Kosten- en gebruiksgegevens kunnen worden gefilterd op factureringsbeleid en datumbereik.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -8645,7 +8705,7 @@
     {
       "id": 491022,
       "title": "Microsoft Viva: Viva Insights - Vaardighedenlandschapsrapport voor organisaties",
-      "desc": "Een Power BI-rapport dat een overzicht biedt van de verdeling van vaardigheden in de organisatie en gebruikers ondersteunt bij het identificeren van lacunes in vaardigheden en het nemen van weloverwogen beslissingen over personeelsplanning, toewijzing van middelen en vaardigheidsinitiatieven.",
+      "desc": "Een Power BI-rapport dat een overzicht geeft van de verdeling van vaardigheden in de organisatie en gebruikers ondersteunt bij het identificeren van lacunes in vaardigheden en het nemen van weloverwogen beslissingen over personeelsplanning, toewijzing van middelen en vaardigheidsinitiatieven.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
@@ -8884,8 +8944,8 @@
     },
     {
       "id": 490564,
-      "title": "Microsoft Teams: interactieve agenten voor teamsvergaderingen en -gesprekken",
-      "desc": "Na verdere beoordeling kunnen we dit momenteel niet verder uitrollen.  Onze excuses voor eventueel ongemak. Introductie van een nieuwe functie die interactieve agenten naar uw Teams-vergaderingen en 1-op-1-gesprekken brengt. Communiceer met agenten als groep of privé, zonder statusmeldingen en geschiedenisondersteuning voor naadloze interacties. Momenteel bouwen alleen agenten voort op Copilot-ondersteuningssessies, wat betekent dat ze de context van eerdere interacties binnen dezelfde sessie kunnen onthouden voor relevantere reacties. Aangepaste agenten hebben nog geen sessieondersteuning. Alle agenten van BizChat/Copilot Studio zijn nu beschikbaar voor gebruik in uw vergaderingen en gesprekken. Deze functie maakt veilig testen en iteratie mogelijk, waarbij collega's worden uitgenodigd voor feedback zonder dat gevoelige gegevens of productiekanalen worden beïnvloed.",
+      "title": "Microsoft Teams: interactieve agenten voor teamvergaderingen en -gesprekken",
+      "desc": "Na verdere beoordeling kunnen we dit momenteel niet verder uitrollen.  Onze excuses voor eventueel ongemak. Introductie van een nieuwe functie die interactieve agenten naar uw Teams-vergaderingen en 1-op-1-gesprekken brengt. Communiceer met agenten als groep of privé, zonder statusmeldingen en geschiedenisondersteuning voor naadloze interacties. Momenteel bouwen alleen agenten voort op Copilot-ondersteuningssessies, wat betekent dat ze de context van eerdere interacties binnen dezelfde sessie kunnen onthouden voor relevantere antwoorden. Aangepaste agenten hebben nog geen sessieondersteuning. Alle agenten van BizChat/Copilot Studio zijn nu beschikbaar voor gebruik in uw vergaderingen en gesprekken. Deze functie maakt veilig testen en iteratie mogelijk, waarbij collega's worden uitgenodigd voor feedback zonder dat gevoelige gegevens of productiekanalen worden beïnvloed.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
       "app": "teams",
@@ -9305,7 +9365,7 @@
     {
       "id": 486698,
       "title": "Microsoft Viva: Copilot Analytics - Promptcategoriestatistieken voor Microsoft 365 Copilot Chat",
-      "desc": "Viva Insights Copilot Dashboard toont Microsoft 365 Copilot Chat-promptcategoriestatistieken binnen Copilot Chat (werk)-inzichten. #copilootcontrolesysteem",
+      "desc": "Viva Insights Copilot Dashboard begint met het tonen van Microsoft 365 Copilot Chat-promptcategoriestatistieken binnen Copilot Chat (werk)-inzichten. #copilootcontrolesysteem",
       "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
       "status": "dev",
       "app": "copilot",
@@ -9559,7 +9619,7 @@
     },
     {
       "id": 485713,
-      "title": "Microsoft Teams: Selecteer de camera vóór deelname en tijdens de vergadering",
+      "title": "Microsoft Teams: Selecteer camera vóór deelname en tijdens vergadering",
       "desc": "Gebruikers kunnen een interne of externe camera selecteren of uitgeschakeld houden voordat ze deelnemen aan of tijdens Teams-vergaderingen.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
@@ -9769,7 +9829,7 @@
     },
     {
       "id": 483884,
-      "title": "Microsoft Purview-complianceportal: nieuwe personalisatie-instellingen",
+      "title": "Microsoft Purview-nalevingsportal: nieuwe personalisatie-instellingen",
       "desc": "Microsoft Purview lanceert een nieuwe personalisatiepagina waarmee gebruikers hun individuele ervaring op Purview kunnen personaliseren.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
@@ -9844,8 +9904,8 @@
     },
     {
       "id": 484053,
-      "title": "SharePoint: Ontwerpideeën suggereren afbeeldingen van organisatiemiddelen",
-      "desc": "SharePoint-ontwerpideeën kunnen nu uit uw organisatie-activa-afbeeldingen worden gehaald om binnen ontwerpideeën te gebruiken. Indien beschikbaar bij het uitvoeren van afbeeldingssuggesties, tonen de eerste drie ideeën suggesties met afbeeldingen uit organisatiemiddelen, terwijl de rest van de ideeën stockfoto's zullen gebruiken.",
+      "title": "SharePoint: Ontwerpideeën stellen afbeeldingen uit organisatiemiddelen voor",
+      "desc": "SharePoint-ontwerpideeën kunnen nu uit uw organisatieactiva-afbeeldingen worden gehaald en in ontwerpideeën worden gebruikt. Indien beschikbaar bij het uitvoeren van afbeeldingssuggesties, tonen de eerste drie ideeën suggesties met afbeeldingen uit organisatiemiddelen, terwijl de rest van de ideeën stockfoto's zullen gebruiken.",
       "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
       "status": "dev",
       "app": "sharepoint",
@@ -11719,7 +11779,7 @@
     },
     {
       "id": 98186,
-      "title": "Microsoft Purview | Communicatienaleving: ondersteuning voor adaptieve beleidsscopes",
+      "title": "Microsoft Purview | Communicatiecompliance: ondersteuning voor adaptieve beleidsscopes",
       "desc": "Met adaptieve beleidsbereiken kan uw organisatie gebruikersbereiken voor beleid definiëren op basis van criteria zoals geografie, groep of andere Azure Active Directory-kenmerken. Met adaptieve beleidsbereiken wordt het beleid automatisch bijgewerkt om gebruikers op te nemen die aan gedefinieerde risicocriteria voldoen, in plaats van dat beheerders herhaaldelijk statische lijsten met gebruikers moeten bijwerken om deze in het beleidsbereik op te nemen. Microsoft Purview Communication Compliance biedt de tools waarmee organisaties overtredingen van de regelgeving kunnen opsporen (bijvoorbeeld SEC- en FINRA-verplichtingen), zoals het ongepast delen van gevoelige of vertrouwelijke informatie, intimiderend of bedreigend taalgebruik en het delen van inhoud voor volwassenen. Communication Compliance stelt klanten in staat beleid te creëren op basis van hun eigen interne beleid, governance en/of",
       "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
       "status": "dev",
@@ -12095,7 +12155,7 @@
     {
       "id": 117394,
       "title": "Whiteboard: bestaande Azure Board-migratie",
-      "desc": "Met deze functie worden boards die in de Azure-opslag van uw tenant aanwezig zijn, gemigreerd naar OneDrive voor Bedrijven-opslag. Meer informatie volgt zodra we de release naderen.",
+      "desc": "Met deze functie worden boards die aanwezig zijn in de Azure-opslag van uw tenant gemigreerd naar OneDrive voor Bedrijven-opslag. Meer informatie volgt zodra we de release naderen.",
       "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "rolling",
       "app": "other",
