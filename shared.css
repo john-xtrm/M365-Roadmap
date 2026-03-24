@@ -296,7 +296,7 @@ details[open] summary::before { transform: rotate(90deg); }
 .date-info { font-size: 0.75rem; color: var(--faint); }
 
 /* ── Pills ───────────────────────────────────────────────────────────── */
-.pill { font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0; }
+.pill { font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.3rem; }
 .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
 .p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
 .p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
