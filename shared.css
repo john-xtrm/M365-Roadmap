@@ -152,6 +152,9 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
   font-size: 0.875rem;
   font-weight: 500;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;        /* scheiding icoon ↔ tekst */
   transition: background 0.12s, color 0.12s, border-color 0.12s;
   line-height: 1.3;
   align-items: center;
@@ -205,8 +208,6 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
   align-items: center;
   justify-content: space-between;
 }
-.sec-count { font-size: 0.6875rem; background: var(--surface2); padding: 2px 9px; border-radius: var(--radius-pill); }
-
 /* ── Kaart ────────────────────────────────────────────────────────────── */
 .card {
   background: var(--surface);
@@ -295,7 +296,7 @@ details[open] summary::before { transform: rotate(90deg); }
 .date-info { font-size: 0.75rem; color: var(--faint); }
 
 /* ── Pills ───────────────────────────────────────────────────────────── */
-.pill { font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0; }
+.pill { font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.3rem; }
 .p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
 .p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
 .p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
@@ -450,3 +451,47 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
   .card { padding: 1rem 1.1rem; }
   .collapsible-toggle { padding: 0.875rem 1rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Product-iconen — gedeeld over alle pagina's
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Icoon-wrapper in filterknoppen en pills */
+.app-icon {
+  width: 1.125rem;       /* 18px — schaalt mee met rem (WCAG 1.4.4) */
+  height: 1.125rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* In kleine pill-context (kaarten, rcard) iets kleiner */
+.pill .app-icon,
+.rcard .app-icon {
+  width: 0.9375rem;      /* 15px */
+  height: 0.9375rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   Product-iconen — gedeeld door alle pagina's
+   ═══════════════════════════════════════════════════════════════════════ */
+.app-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+/* Iets kleiner in compacte context */
+.pill .app-icon,
+.rcard .app-icon,
+.cal-card .app-icon { width: 0.9375rem; height: 0.9375rem; }
+
+/* ── Actie-dots (filterknoppen) ──────────────────────────────────────────── */
+.act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.act-dot.d-none  { background: var(--c-none); }
+.act-dot.d-admin { background: var(--c-admin); }
+.act-dot.d-user  { background: var(--c-user); }
