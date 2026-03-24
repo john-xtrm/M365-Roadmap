@@ -440,7 +440,7 @@ function updateWeekLabels(){
   var lblPrev='Week '+pwn+' ('+fmt(pwStart)+' \u2013 '+fmt(pwEnd)+')';
   /* Periodeknop bijwerken */
   var pwBtn=document.querySelector('#fp-bar [data-a="pw"]');
-  if(pwBtn)pwBtn.textContent=lblPrev;
+  if(pwBtn)pwBtn.textContent='Vorige week';
   /* Mini-badge toont altijd de afgelopen week */
   var badge=document.getElementById('week-mini-badge');
   if(badge)badge.textContent=lblPrev;
