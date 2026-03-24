@@ -222,10 +222,10 @@
       </div>
     </div>
     <div class="flex items-center gap-2 flex-wrap">
-      <button class="level-btn active" id="btn-context"   onclick="setView('context')">L1 · Context</button>
-      <button class="level-btn"        id="btn-container" onclick="setView('container')">L2 · Container</button>
-      <button class="level-btn"        id="btn-component" onclick="setView('component')">L3 · Component</button>
-      <button class="level-btn"        id="btn-code"      onclick="setView('code')">L4 · Code</button>
+      <button class="level-btn active" id="btn-context"   onclick="setView('context')">C1 · Context</button>
+      <button class="level-btn"        id="btn-container" onclick="setView('container')">C2 · Container</button>
+      <button class="level-btn"        id="btn-component" onclick="setView('component')">C3 · Component</button>
+      <button class="level-btn"        id="btn-code"      onclick="setView('code')">C4 · Code</button>
     </div>
   </div>
 </header>
@@ -235,8 +235,9 @@
 
   <!-- View meta -->
   <div class="mb-5">
-    <h1 class="brand text-2xl text-white mb-1" id="view-title">L1 · Systeemcontext</h1>
-    <p class="text-sm" style="color:var(--text-dim)" id="view-desc">Het M365 Roadmap Dashboard in relatie tot externe systemen en eindgebruikers.</p>
+    <h1 class="brand text-2xl text-white mb-1" id="view-title">C1 · Context</h1>
+    <p class="mono text-sm font-semibold mb-1" style="color:var(--blue)" id="view-question">Wie gebruikt het systeem? Waarmee communiceert het?</p>
+    <p class="text-sm" style="color:var(--text-dim)" id="view-desc">Het M365 Roadmap Dashboard in relatie tot externe systemen, diensten en eindgebruikers. Toont wie het systeem gebruikt en waarmee het communiceert.</p>
   </div>
 
   <div class="diagram-scroll mb-3">
@@ -1095,10 +1096,10 @@ const NODE_DATA = {
 };
 
 const VIEWS = {
-  context:   { title:'L1 · Systeemcontext',  desc:'Het M365 Roadmap Dashboard in relatie tot externe systemen, diensten en eindgebruikers. Toont wie het systeem gebruikt en waarmee het communiceert.' },
-  container: { title:'L2 · Containers',      desc:'De deploybare eenheden: scripts, bestanden en hosting — en hun onderlinge datastromen van externe bron naar eindgebruiker.' },
-  component: { title:'L3 · Componenten',     desc:'Interne bouwblokken van de Python-pipeline en de statische frontend. Toont de verantwoordelijkheden binnen Processing-, Storage- en Frontend-zones.' },
-  code:      { title:'L4 · Code',            desc:'Sleutelfuncties, datastructuren en JSON-schema\'s. Toont de concrete implementatielaag van fetch_roadmap.py en de JavaScript in de frontend.' }
+  context:   { title:'C1 · Context',    question:'Wie gebruikt het systeem? Waarmee communiceert het?',         desc:'Het M365 Roadmap Dashboard in relatie tot externe systemen, diensten en eindgebruikers. Toont wie het systeem gebruikt en waarmee het communiceert.' },
+  container: { title:'C2 · Container',  question:'Uit welke uitvoerbare onderdelen bestaat het systeem?',        desc:'De deploybare eenheden: scripts, bestanden en hosting — en hun onderlinge datastromen van externe bron naar eindgebruiker.' },
+  component: { title:'C3 · Component',  question:'Wat zit er binnen elke container?',                            desc:'Interne bouwblokken van de Python-pipeline en de statische frontend. Toont de verantwoordelijkheden binnen Processing-, Storage- en Frontend-zones.' },
+  code:      { title:'C4 · Code',       question:'Hoe ziet de concrete implementatie er precies uit?',           desc:'Sleutelfuncties, datastructuren en JSON-schema\'s. Toont de concrete implementatielaag van fetch_roadmap.py en de JavaScript in de frontend.' }
 };
 
 let currentView = 'context';
@@ -1111,8 +1112,9 @@ function setView(v) {
   });
   document.getElementById('view-'+v).classList.remove('hidden');
   document.getElementById('btn-'+v).classList.add('active');
-  document.getElementById('view-title').textContent = VIEWS[v].title;
-  document.getElementById('view-desc').textContent  = VIEWS[v].desc;
+  document.getElementById('view-title').textContent    = VIEWS[v].title;
+  document.getElementById('view-question').textContent = VIEWS[v].question;
+  document.getElementById('view-desc').textContent     = VIEWS[v].desc;
   currentView = v;
   closeDetail();
 }
