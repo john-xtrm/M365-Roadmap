@@ -203,7 +203,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
         </label>
         <div class="filter-bar" id="fp-bar" role="group" aria-labelledby="lbl-fp">
           <button class="fb" data-a="all" aria-pressed="false">Alle</button>
-          <button class="fb" data-a="aw"  aria-pressed="true">Deze week</button>
+          <button class="fb" data-a="pw"  aria-pressed="true">Afgelopen week</button>
           <button class="fb" data-a="am"  aria-pressed="false">Deze maand</button>
         </div>
         <p class="filter-note">Filtert op items toegevoegd of gewijzigd in de geselecteerde periode</p>
@@ -310,7 +310,7 @@ var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" str
 /* ── State ──────────────────────────────────────────────────────────────── */
 var ALL_ITEMS   = [];
 var fS  = 'all';
-var fA  = 'aw';      /* Standaard: huidige kalenderweek */
+var fA  = 'pw';      /* Standaard: vorige kalenderweek */
 var fP  = 'all';
 var fAct= 'all';
 var fQ  = '';
@@ -430,15 +430,20 @@ function loadData(){
 
 /* ── Weeklabels bijwerken ───────────────────────────────────────────────── */
 function updateWeekLabels(){
-  var now=new Date(); var wn=isoWeek(now); var ws=weekStart(now); var we=weekEnd(now);
+  var now=new Date();
+  var wn=isoWeek(now); var ws=weekStart(now); var we=weekEnd(now);
+  /* Vorige week: weekStart 7 dagen terug */
+  var pwStart=new Date(ws); pwStart.setDate(pwStart.getDate()-7);
+  var pwEnd=new Date(we); pwEnd.setDate(pwEnd.getDate()-7);
+  var pwn=isoWeek(pwStart);
   var fmt=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
-  var lbl='Week '+wn+' ('+fmt(ws)+' \u2013 '+fmt(we)+')';
-  /* Periodeknop */
-  var awBtn=document.querySelector('#fp-bar [data-a="aw"]');
-  if(awBtn)awBtn.textContent=lbl;
-  /* Mini-badge bij label */
+  var lblPrev='Week '+pwn+' ('+fmt(pwStart)+' \u2013 '+fmt(pwEnd)+')';
+  /* Periodeknop bijwerken */
+  var pwBtn=document.querySelector('#fp-bar [data-a="pw"]');
+  if(pwBtn)pwBtn.textContent=lblPrev;
+  /* Mini-badge toont altijd de afgelopen week */
   var badge=document.getElementById('week-mini-badge');
-  if(badge)badge.textContent=lbl;
+  if(badge)badge.textContent=lblPrev;
 }
 
 /* ── Data verwerken ─────────────────────────────────────────────────────── */
@@ -447,12 +452,16 @@ function handleData(data){
     return Object.assign({},i,{isNew: inSameWeek(i.added,new Date())||inSameWeek(i.modified,new Date())});
   });
   var gen=new Date(data.generated);
-  var wn=isoWeek(new Date()); var ws=weekStart(new Date()); var we=weekEnd(new Date());
+  /* Toon vorige kalenderweek in header — data is altijd van maandag-run */
+  var ws=weekStart(new Date()); var we=weekEnd(new Date());
+  var pwS=new Date(ws); pwS.setDate(pwS.getDate()-7);
+  var pwE=new Date(we); pwE.setDate(pwE.getDate()-7);
+  var pwn=isoWeek(pwS);
   var fmtS=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
   document.getElementById('last-updated').textContent=
     'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' \u00b7 '+data.count+' items';
   var wb=document.getElementById('week-badge');
-  if(wb){wb.textContent='Week '+wn+' \u00b7 '+fmtS(ws)+' \u2013 '+fmtS(we);wb.style.display='';}
+  if(wb){wb.textContent='Week '+pwn+' \u00b7 '+fmtS(pwS)+' \u2013 '+fmtS(pwE);wb.style.display='';}
   document.getElementById('root').setAttribute('aria-busy','false');
   buildAppFilter(ALL_ITEMS);
   updateWeekLabels();
@@ -586,9 +595,12 @@ function render(){
     if(fAct!=='all'&&i.action!==fAct)return false;
     /* Unified periode filter: added OF modified binnen de periode */
     if(fA!=='all'){
-      var thisWeek=(fA==='aw');
-      var addOk=thisWeek?inSameWeek(i.added,new Date()):daysAgo(i.added)<=31;
-      var modOk=thisWeek?inSameWeek(i.modified,new Date()):daysAgo(i.modified)<=31;
+      var now=new Date();
+      var prevWkStart=new Date(weekStart(now)); prevWkStart.setDate(prevWkStart.getDate()-7);
+      var prevWkEnd=new Date(weekEnd(now)); prevWkEnd.setDate(prevWkEnd.getDate()-7);
+      function inPrevWeek(d){ if(!d)return false; var dt=new Date(d); return dt>=prevWkStart&&dt<=prevWkEnd; }
+      var addOk=fA==='pw'?inPrevWeek(i.added):daysAgo(i.added)<=31;
+      var modOk=fA==='pw'?inPrevWeek(i.modified):daysAgo(i.modified)<=31;
       if(!addOk&&!modOk)return false;
     }
     if(query){
