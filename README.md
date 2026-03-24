@@ -85,10 +85,10 @@ Microsoft CSV API (publiek, gratis)
 | Product | Alle producten | Icoon + naam + live aantal. Verborgen als 0 items. |
 | Actie nodig? | Alles | Automatisch / IT-beheerder / Medewerker |
 | Sorteren | Toegevoegd: nieuwste eerst | 5 opties |
-| Periode | Deze week | Items toegevoegd én gewijzigd in de kalenderweek. Label toont weeknummer + datumrange. |
+| Periode | Afgelopen week | Items toegevoegd én gewijzigd in de vorige kalenderweek. De workflow draait op maandag — nieuwe data gaat altijd over de afgelopen week. Opties: Alle · Afgelopen week · Deze maand. |
 | Status | Alles | Uitgerold / In ontwikkeling |
 
-**Weekfilter:** ISO-kalenderweken (ma–zo). Reset automatisch op maandag naar de nieuwe week.
+**Weekbadge in header:** toont altijd de vorige kalenderweek, consistent met de workflow die op maandag de data van de afgelopen week ophaalt.
 
 **"Nieuw" badge:** item is nieuw als het in de huidige kalenderweek is toegevoegd of gewijzigd.
 
