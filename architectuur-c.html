@@ -238,9 +238,10 @@
 
       <!-- ═══ CONTEXT VIEW ═══ -->
       <div id="view-context" class="view">
-        <div class="flex items-stretch gap-3">
+        <div class="flex items-center gap-0" style="min-width:900px">
 
-          <div class="zone zone-external flex flex-col gap-3" style="width:175px;flex-shrink:0">
+          <!-- External zone -->
+          <div class="zone zone-external flex flex-col gap-3" style="width:190px;flex-shrink:0;align-self:stretch">
             <span class="zone-label">External</span>
             <div class="node" onclick="selectNode('ms-csv')" id="n-ms-csv">
               <div class="node-type-badge" style="background:rgba(239,68,68,0.15);color:#ef4444">Extern systeem</div>
@@ -256,45 +257,43 @@
             </div>
           </div>
 
-          <div class="flow-col">
-            <div class="flow-arrow">
-              <div class="arrow-label">CSV fetch</div>
-              <div class="arrow-line"></div>
-              <div class="arrow-head"></div>
+          <!-- Horizontal arrows left -->
+          <div class="flex flex-col gap-6 items-center" style="flex-shrink:0;width:90px;padding:0 4px">
+            <div class="flex flex-col items-center gap-1">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;color:var(--blue);letter-spacing:0.04em;white-space:nowrap">CSV fetch</span>
+              <div class="flow-row"><div class="arrow-h-line" style="width:56px"></div><div class="arrow-h-head"></div></div>
             </div>
-            <div style="height:1.5rem"></div>
-            <div class="flow-arrow">
-              <div class="arrow-label">EN→NL</div>
-              <div class="arrow-line"></div>
-              <div class="arrow-head"></div>
+            <div class="flex flex-col items-center gap-1">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;color:var(--blue);letter-spacing:0.04em;white-space:nowrap">EN → NL</span>
+              <div class="flow-row"><div class="arrow-h-line" style="width:56px"></div><div class="arrow-h-head"></div></div>
             </div>
           </div>
 
-          <div class="zone zone-processing flex-1 flex flex-col justify-center" style="min-width:210px">
+          <!-- System zone -->
+          <div class="zone zone-processing flex flex-col justify-center" style="width:280px;flex-shrink:0;align-self:stretch">
             <span class="zone-label">Systeem (in scope)</span>
             <div class="node" onclick="selectNode('sys-dashboard')" id="n-sys-dashboard" style="margin-top:0.5rem">
               <div class="node-type-badge" style="background:rgba(0,120,212,0.15);color:#2196f3">Softwaresysteem</div>
               <div class="node-icon" style="font-size:1.8rem">📋</div>
-              <div class="node-title" style="font-size:0.9rem">M365 Roadmap Dashboard</div>
-              <div class="node-sub" style="font-size:0.72rem">Vertaalt en visualiseert Microsoft 365 roadmap-updates voor Nederlandse medewerkers. Volledig gratis gehost op GitHub Pages + Actions.</div>
+              <div class="node-title" style="font-size:0.88rem">M365 Roadmap Dashboard</div>
+              <div class="node-sub" style="font-size:0.71rem">Vertaalt en visualiseert Microsoft 365 roadmap-updates voor Nederlandse medewerkers. Volledig gratis gehost op GitHub Pages + Actions.</div>
             </div>
           </div>
 
-          <div class="flow-col">
-            <div class="flow-arrow">
-              <div class="arrow-label">leest roadmap</div>
-              <div class="arrow-line"></div>
-              <div class="arrow-head"></div>
+          <!-- Horizontal arrows right -->
+          <div class="flex flex-col gap-6 items-center" style="flex-shrink:0;width:90px;padding:0 4px">
+            <div class="flex flex-col items-center gap-1">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;color:var(--blue);letter-spacing:0.04em;white-space:nowrap">leest roadmap</span>
+              <div class="flow-row"><div class="arrow-h-line" style="width:56px"></div><div class="arrow-h-head"></div></div>
             </div>
-            <div style="height:1.5rem"></div>
-            <div class="flow-arrow">
-              <div class="arrow-label">Teams-tab</div>
-              <div class="arrow-line"></div>
-              <div class="arrow-head"></div>
+            <div class="flex flex-col items-center gap-1">
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:0.56rem;color:var(--blue);letter-spacing:0.04em;white-space:nowrap">Teams-tab</span>
+              <div class="flow-row"><div class="arrow-h-line" style="width:56px"></div><div class="arrow-h-head"></div></div>
             </div>
           </div>
 
-          <div class="zone zone-users flex flex-col gap-3" style="width:172px;flex-shrink:0">
+          <!-- Users zone -->
+          <div class="zone zone-users flex flex-col gap-3" style="width:190px;flex-shrink:0;align-self:stretch">
             <span class="zone-label">Users</span>
             <div class="node" onclick="selectNode('user-employee')" id="n-user-employee">
               <div class="node-type-badge" style="background:rgba(0,200,150,0.15);color:#00c896">Gebruiker</div>
