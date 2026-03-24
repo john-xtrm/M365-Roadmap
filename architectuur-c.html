@@ -201,8 +201,10 @@
   }
   .view { animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity:1; transform:translateY(0); } }
-  .diagram-scroll { overflow-x: auto; padding-bottom: 0.5rem; }
-  .diagram-inner { min-width: 920px; }
+  .diagram-scroll { overflow-x: auto; overflow-y: visible; padding-bottom: 0.5rem; }
+  .diagram-inner { min-width: 960px; padding-top: 1.1rem; }
+  .zone { overflow: visible; }
+  .grid-wrap { padding-top: 1.1rem; }
   .legend-dot { width:10px; height:10px; border-radius:2px; flex-shrink:0; }
 </style>
 </head>
@@ -223,6 +225,7 @@
       <button class="level-btn active" id="btn-context"   onclick="setView('context')">L1 · Context</button>
       <button class="level-btn"        id="btn-container" onclick="setView('container')">L2 · Container</button>
       <button class="level-btn"        id="btn-component" onclick="setView('component')">L3 · Component</button>
+      <button class="level-btn"        id="btn-code"      onclick="setView('code')">L4 · Code</button>
     </div>
   </div>
 </header>
@@ -588,9 +591,216 @@
           </div>
         </div>
 
-      </div>
-    </div>
-  </div>
+      </div><!-- /component -->
+
+      <!-- ═══ CODE VIEW ═══ -->
+      <div id="view-code" class="view hidden">
+
+        <style>
+          .code-block {
+            background: var(--navy-mid);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1rem 1.1rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.7rem;
+            line-height: 1.7;
+            color: #c9d1e0;
+          }
+          .code-block .cb-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
+          .cb-key   { color: #00b4d8; }
+          .cb-type  { color: #8b5cf6; }
+          .cb-val   { color: #00c896; }
+          .cb-fn    { color: #f59e0b; }
+          .cb-cmt   { color: #4a5568; }
+          .cb-req   { color: #ef4444; }
+          .cb-str   { color: #f9a825; }
+          .schema-row { display:flex; gap:0.5rem; }
+          .schema-row .req { color:#ef4444;font-size:0.6rem;align-self:center;margin-left:auto;flex-shrink:0 }
+        </style>
+
+        <!-- Row 1: Python pipeline data structures -->
+        <div class="mb-4">
+          <div class="mono text-xs mb-3 px-1" style="color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase">fetch_roadmap.py — Sleutelfuncties &amp; Datastructuren</div>
+          <div class="grid gap-3" style="grid-template-columns:repeat(3,1fr)">
+
+            <!-- fetch_csv() -->
+            <div class="code-block" onclick="selectNode('code-fetch-fn')" id="n-code-fetch-fn" style="cursor:pointer">
+              <div class="cb-title">📥 <span>fetch_csv()</span></div>
+<span class="cb-cmt"># Haalt roadmap CSV op van Microsoft</span>
+<span class="cb-fn">def</span> <span class="cb-key">fetch_csv</span>() → <span class="cb-type">list[dict]</span>:
+  url = <span class="cb-str">"aka.ms/MSRoadmapCSV"</span>
+  headers = {
+    <span class="cb-str">"User-Agent"</span>: <span class="cb-str">"Mozilla/5.0"</span>,
+    <span class="cb-str">"Accept-Language"</span>: <span class="cb-str">"en-US"</span>
+  }
+  raw = <span class="cb-fn">curl</span>(url, headers)
+  <span class="cb-fn">return</span> <span class="cb-fn">csv.DictReader</span>(raw)
+            </div>
+
+            <!-- translate_items() -->
+            <div class="code-block" onclick="selectNode('code-translate-fn')" id="n-code-translate-fn" style="cursor:pointer">
+              <div class="cb-title">🔤 <span>translate_items()</span></div>
+<span class="cb-cmt"># Vertaalt alleen nieuwe/gewijzigde items</span>
+<span class="cb-fn">def</span> <span class="cb-key">translate_items</span>(
+  items: <span class="cb-type">list[dict]</span>,
+  cache: <span class="cb-type">dict</span>
+) → <span class="cb-type">list[dict]</span>:
+  translator = <span class="cb-fn">GoogleTranslator</span>(
+    source=<span class="cb-str">"en"</span>, target=<span class="cb-str">"nl"</span>
+  )
+  <span class="cb-fn">for</span> item <span class="cb-fn">in</span> items:
+    h = <span class="cb-fn">hash</span>(item[<span class="cb-str">"Title"</span>])
+    <span class="cb-fn">if</span> cache.get(item[<span class="cb-str">"id"</span>]) != h:
+      item[<span class="cb-str">"title_nl"</span>] = translator
+        .<span class="cb-fn">translate</span>(item[<span class="cb-str">"Title"</span>])
+            </div>
+
+            <!-- detect_product() -->
+            <div class="code-block" onclick="selectNode('code-detect-fn')" id="n-code-detect-fn" style="cursor:pointer">
+              <div class="cb-title">🔍 <span>detect_product()</span></div>
+<span class="cb-cmt"># Matcht item op dashboardproduct</span>
+DETECT_PATTERNS = {
+  <span class="cb-str">"Teams"</span>:    [<span class="cb-str">"teams"</span>, <span class="cb-str">"meeting"</span>],
+  <span class="cb-str">"SharePoint"</span>:[<span class="cb-str">"sharepoint"</span>, <span class="cb-str">"viva"</span>],
+  <span class="cb-str">"Exchange"</span>:  [<span class="cb-str">"exchange"</span>, <span class="cb-str">"outlook"</span>],
+  <span class="cb-cmt">...  # 16 producten totaal</span>
+}
+<span class="cb-fn">def</span> <span class="cb-key">detect_product</span>(
+  row: <span class="cb-type">dict</span>
+) → <span class="cb-type">str</span>:
+  pf = row[<span class="cb-str">"ProductFamily"</span>].<span class="cb-fn">lower</span>()
+  <span class="cb-fn">return next</span>(k <span class="cb-fn">for</span> k,v
+    <span class="cb-fn">in</span> DETECT_PATTERNS <span class="cb-fn">if</span> pf <span class="cb-fn">in</span> v)
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Row 2: data.json schema -->
+        <div class="mb-4">
+          <div class="mono text-xs mb-3 px-1" style="color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase">data.json — Schema</div>
+          <div class="grid gap-3" style="grid-template-columns:1fr 1fr">
+
+            <!-- RoadmapItem -->
+            <div class="code-block" onclick="selectNode('code-item-schema')" id="n-code-item-schema" style="cursor:pointer">
+              <div class="cb-title">📦 <span>RoadmapItem (één item in items[])</span></div>
+{
+  <span class="cb-key">"id"</span>:             <span class="cb-type">string</span>   <span class="cb-cmt"># Microsoft ID (uniek)</span>
+  <span class="cb-key">"title_nl"</span>:       <span class="cb-type">string</span>   <span class="cb-cmt"># Vertaalde titel</span>
+  <span class="cb-key">"benefit_nl"</span>:     <span class="cb-type">string</span>   <span class="cb-cmt"># Vertaalde beschrijving</span>
+  <span class="cb-key">"title_en"</span>:       <span class="cb-type">string</span>   <span class="cb-cmt"># Originele Engelse titel</span>
+  <span class="cb-key">"product"</span>:        <span class="cb-type">string</span>   <span class="cb-cmt"># bijv. "Teams", "SharePoint"</span>
+  <span class="cb-key">"status"</span>:         <span class="cb-type">enum</span>     <span class="cb-cmt"># "uitgerold" | "in_ontwikkeling"</span>
+  <span class="cb-key">"actionType"</span>:     <span class="cb-type">enum</span>     <span class="cb-cmt"># "auto" | "it" | "medewerker"</span>
+  <span class="cb-key">"rolloutDate"</span>:    <span class="cb-type">string</span>   <span class="cb-cmt"># ISO-datum bijv. "2024-Q2"</span>
+  <span class="cb-key">"addedDate"</span>:      <span class="cb-type">string</span>   <span class="cb-cmt"># Datum toegevoegd aan roadmap</span>
+  <span class="cb-key">"modifiedDate"</span>:   <span class="cb-type">string</span>   <span class="cb-cmt"># Datum laatste wijziging</span>
+  <span class="cb-key">"moreInfoLink"</span>:   <span class="cb-type">string</span>   <span class="cb-cmt"># URL naar Microsoft docs</span>
+}
+            </div>
+
+            <!-- Root schema -->
+            <div class="code-block" onclick="selectNode('code-root-schema')" id="n-code-root-schema" style="cursor:pointer">
+              <div class="cb-title">🗂️ <span>data.json (root object)</span></div>
+{
+  <span class="cb-key">"generated_at"</span>:  <span class="cb-type">string</span>
+    <span class="cb-cmt"># ISO-timestamp van laatste run</span>
+
+  <span class="cb-key">"items"</span>:         <span class="cb-type">RoadmapItem[]</span>
+    <span class="cb-cmt"># Alle actuele roadmap-items</span>
+
+  <span class="cb-key">"translation_cache"</span>: {
+    <span class="cb-cmt"># Per item-id: hash + vertalingen</span>
+    <span class="cb-key">"&lt;id&gt;"</span>: {
+      <span class="cb-key">"title_nl"</span>:  <span class="cb-type">string</span>,
+      <span class="cb-key">"benefit_nl"</span>: <span class="cb-type">string</span>,
+      <span class="cb-key">"hash"</span>:      <span class="cb-type">string</span>
+    }
+  }
+}
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Row 3: Frontend JS key functions -->
+        <div class="mb-2">
+          <div class="mono text-xs mb-3 px-1" style="color:var(--text-dim);letter-spacing:0.08em;text-transform:uppercase">index.html — Sleutel-JavaScript</div>
+          <div class="grid gap-3" style="grid-template-columns:repeat(3,1fr)">
+
+            <!-- loadData() -->
+            <div class="code-block" onclick="selectNode('code-loaddata')" id="n-code-loaddata" style="cursor:pointer">
+              <div class="cb-title">📡 <span>loadData()</span></div>
+<span class="cb-cmt"># SessionStorage-cache 30 min</span>
+<span class="cb-fn">async function</span> <span class="cb-key">loadData</span>():
+  cached = <span class="cb-fn">sessionStorage</span>.get(
+    <span class="cb-str">"roadmap_data"</span>)
+  <span class="cb-fn">if</span> cached &amp;&amp; !<span class="cb-fn">isExpired</span>(cached):
+    <span class="cb-fn">return</span> <span class="cb-fn">JSON.parse</span>(cached)
+  url = <span class="cb-str">"data.json?v="</span>+<span class="cb-fn">Date.now</span>()
+  data = <span class="cb-fn">await fetch</span>(url, {
+    signal: <span class="cb-fn">AbortSignal.timeout</span>(12000)
+  })
+  <span class="cb-fn">sessionStorage</span>.<span class="cb-fn">set</span>(<span class="cb-str">"roadmap_data"</span>, data)
+            </div>
+
+            <!-- applyFilters() -->
+            <div class="code-block" onclick="selectNode('code-filter')" id="n-code-filter" style="cursor:pointer">
+              <div class="cb-title">🔎 <span>applyFilters()</span></div>
+<span class="cb-cmt"># Combineert alle actieve filters</span>
+<span class="cb-fn">function</span> <span class="cb-key">applyFilters</span>(items):
+  <span class="cb-fn">return</span> items
+    .<span class="cb-fn">filter</span>(i =&gt; matchProduct(i))
+    .<span class="cb-fn">filter</span>(i =&gt; matchAction(i))
+    .<span class="cb-fn">filter</span>(i =&gt; matchStatus(i))
+    .<span class="cb-fn">filter</span>(i =&gt; matchWeek(i))
+    .<span class="cb-fn">filter</span>(i =&gt; matchSearch(i))
+    .<span class="cb-fn">sort</span>(<span class="cb-fn">by</span>(activeSort))
+
+<span class="cb-cmt"># Weekfilter: ISO-kalenderweek (ma-zo)</span>
+<span class="cb-fn">function</span> <span class="cb-key">matchWeek</span>(item):
+  <span class="cb-fn">return</span> <span class="cb-fn">getISOWeek</span>(item.addedDate)
+    === currentWeek
+            </div>
+
+            <!-- renderCards() -->
+            <div class="code-block" onclick="selectNode('code-render')" id="n-code-render" style="cursor:pointer">
+              <div class="cb-title">🖼️ <span>renderCards()</span></div>
+<span class="cb-cmt"># Batchrender: één DOM-write</span>
+<span class="cb-fn">function</span> <span class="cb-key">renderCards</span>(items):
+  html = items
+    .<span class="cb-fn">map</span>(i =&gt; <span class="cb-fn">buildCard</span>(i))
+    .<span class="cb-fn">join</span>(<span class="cb-str">""</span>)
+  container.<span class="cb-fn">innerHTML</span> = html
+
+<span class="cb-cmt"># URL deep-link afhandeling</span>
+params = <span class="cb-fn">new URLSearchParams</span>(
+  location.search)
+<span class="cb-fn">if</span> params.<span class="cb-fn">has</span>(<span class="cb-str">"id"</span>):
+  <span class="cb-fn">filterById</span>(params.<span class="cb-fn">get</span>(<span class="cb-str">"id"</span>))
+<span class="cb-fn">if</span> params.<span class="cb-fn">has</span>(<span class="cb-str">"zoek"</span>):
+  searchBar.value = params.<span class="cb-fn">get</span>(<span class="cb-str">"zoek"</span>)
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /code -->
+
+    </div><!-- /diagram-inner -->
+  </div><!-- /diagram-scroll -->
 
   <!-- Legend -->
   <div class="flex flex-wrap items-center gap-4 mb-5 px-1">
@@ -823,20 +1033,79 @@ const NODE_DATA = {
     function:"Bevat alle gedeelde CSS-regels voor de drie HTML-pagina's. Inclusief volledige WCAG 2.2 AA-conformiteit, dark mode, reduced-motion en responsive design.",
     logic:"Centrale stylesheet voorkomt duplicatie over de drie pagina's. Alle font-sizes in rem (schaalbaar). :focus-visible op alle interactieve elementen. scroll-margin-top voor verborgen focus. Min. 44px taakvlak op knoppen.",
     tech:"WCAG-criteria: 1.1.1 (alt), 1.3.1 (koppen), 1.4.3 (contrast ≥4.5:1), 1.4.4 (rem), 2.4.1 (skip-link), 2.4.7 (focus), 2.4.11 (focus niet verborgen), 2.5.8 (raakdoel ≥24px), 3.1.1 (lang=nl), 4.1.2, 4.1.3 (aria-live). Pill-klassen per product uitbreidbaar."
+  },
+
+  // ── L4 Code nodes ──
+  'code-fetch-fn': {
+    badge:'📥 Functie', badgeColor:'#f59e0b',
+    title:'fetch_csv()', sub:'Python · fetch_roadmap.py',
+    function:'Haalt de Microsoft 365 roadmap-CSV op van de publieke Microsoft-endpoint via een HTTP GET-verzoek.',
+    logic:'Roept curl aan via subprocess met browser-achtige headers (User-Agent, Accept-Language) zodat Microsoft het verzoek niet als bot blokkeert. De ruwe CSV-bytes worden via csv.DictReader omgezet naar een lijst van dictionaries.',
+    tech:'subprocess.run(["curl", "-H", "User-Agent: Mozilla/5.0", url]). Retourtype: list[dict]. Geen authenticatie of API-sleutel vereist. Timeout afgehandeld door de workflow-retry op woensdag.'
+  },
+  'code-translate-fn': {
+    badge:'🔤 Functie', badgeColor:'#f59e0b',
+    title:'translate_items()', sub:'Python · fetch_roadmap.py',
+    function:'Vertaalt de Engelse title en benefit van roadmap-items naar Nederlands via Google Translate, maar alleen voor nieuwe of gewijzigde items.',
+    logic:'Per item wordt een hash berekend van de Engelse tekst. Als de hash verschilt van wat er in de cache staat, wordt deep_translator.GoogleTranslator aangeroepen. Zo worden onnodige API-aanroepen en quota-gebruik geminimaliseerd.',
+    tech:'pip: deep_translator. GoogleTranslator(source="en", target="nl").translate(). Hash: hash(Title + Description). Cache-structuur: {id: {title_nl, benefit_nl, hash}}. Gratis tier volstaat voor ~50-200 vertalingen/week.'
+  },
+  'code-detect-fn': {
+    badge:'🔍 Functie', badgeColor:'#f59e0b',
+    title:'detect_product()', sub:'Python · fetch_roadmap.py',
+    function:'Bepaalt op basis van de ProductFamily- en Product-kolomwaarden uit de CSV welk dashboardproduct (bijv. "Teams", "SharePoint") bij een item hoort.',
+    logic:'DETECT_PATTERNS is een Python-dict met per dashboardproduct een lijst van zoekstrings. De functie doorloopt de patterns en geeft de eerste match terug. Onbekende producten vallen terug op "Overig".',
+    tech:'Pure dict-lookup, O(1) per item. 16 producten geconfigureerd. Uitbreiden: voeg entry toe aan DETECT_PATTERNS + APP_META/APP_ORDER/APP_ICONS in elk HTML-bestand + pill-klasse in shared.css.'
+  },
+  'code-item-schema': {
+    badge:'📦 Schema', badgeColor:'#8b5cf6',
+    title:'RoadmapItem', sub:'data.json · items[] · één item',
+    function:'Beschrijft de structuur van één roadmap-item zoals opgeslagen in data.json na verwerking door fetch_roadmap.py.',
+    logic:'Bevat zowel de vertaalde Nederlandse velden (title_nl, benefit_nl) als de originele Engelse waarden voor cache-vergelijking. actionType wordt door de pipeline afgeleid uit de beschrijving en status.',
+    tech:'id: string (MS-ID, uniek). status: "uitgerold" | "in_ontwikkeling". actionType: "auto" | "it" | "medewerker". rolloutDate: ISO-kwartaal ("2024-Q2") of exacte datum. Alle velden UTF-8.'
+  },
+  'code-root-schema': {
+    badge:'🗂️ Schema', badgeColor:'#8b5cf6',
+    title:'data.json root', sub:'Compleet schema van het outputbestand',
+    function:'Beschrijft de volledige structuur van data.json: het hoofdbestand dat door alle drie de HTML-pagina\'s wordt geladen.',
+    logic:'generated_at geeft de timestamp van de laatste pipeline-run. items[] is de primaire datalijst. translation_cache slaat bestaande vertalingen op per item-id zodat handmatige correcties bij herverwerking bewaard blijven.',
+    tech:'JSON UTF-8. translation_cache: {id: {title_nl, benefit_nl, hash}}. Geladen via fetch("data.json?v="+Date.now()) in de browser. SessionStorage-cache 30 minuten. Max bestandsgrootte: ~2-4 MB afhankelijk van roadmap-omvang.'
+  },
+  'code-loaddata': {
+    badge:'📡 Functie', badgeColor:'#00b4d8',
+    title:'loadData()', sub:'JavaScript · index.html',
+    function:'Laadt data.json vanuit GitHub Pages met een SessionStorage-cache van 30 minuten voor snelle herladingen zonder opnieuw te downloaden.',
+    logic:'Controleert eerst of er een geldig gecached object in SessionStorage zit. Zo niet, doet een fetch() met cache-buster (?v=timestamp) om GitHub Pages CDN-cache te omzeilen. Fetch heeft een AbortSignal timeout van 12 seconden.',
+    tech:'sessionStorage.getItem/setItem. Cache-key: "roadmap_data". TTL: 30 min (timestamp opgeslagen naast data). fetch(url, {signal: AbortSignal.timeout(12000)}). Foutmelding bij timeout of netwerk-error.'
+  },
+  'code-filter': {
+    badge:'🔎 Functie', badgeColor:'#00b4d8',
+    title:'applyFilters()', sub:'JavaScript · index.html',
+    function:'Combineert alle actieve filterwaarden (product, actie-type, status, weekperiode, zoekterm) en sorteert het resultaat volgens de geselecteerde sorteeroptie.',
+    logic:'Vijf filterchained .filter()-aanroepen op de items-array, gevolgd door een .sort(). Elke deelfunctie (matchProduct, matchWeek etc.) bekijkt één dimension. Weekfilter gebruikt ISO-kalenderweken (ma-zo) en reset automatisch elke maandag.',
+    tech:'Event delegation: één listener per filtergroep op de containerdiv. Debounce op zoekbalk: 200ms via setTimeout/clearTimeout. Sorteermogelijkheden: toegevoegd nieuwste, toegevoegd oudste, product A-Z, rollout vroegst, rollout latest.'
+  },
+  'code-render': {
+    badge:'🖼️ Functie', badgeColor:'#00b4d8',
+    title:'renderCards()', sub:'JavaScript · index.html',
+    function:'Rendert de gefilterde items als HTML-kaarten met één enkele innerHTML-toewijzing voor minimale DOM-reflows.',
+    logic:'Bouwt via .map(buildCard).join("") een volledige HTML-string op in geheugen, en schrijft die in één keer naar container.innerHTML. URL-parameters (?id=, ?zoek=) worden bij pagina-load verwerkt vóór de eerste render.',
+    tech:'innerHTML-batching: één DOM-write ongeacht het aantal items. buildCard() genereert per item de volledige card-HTML inclusief product-icoon (inline base64), actie-badge en rolloutDate. "Nieuw"-badge op items uit huidige ISO-week.'
   }
 };
 
 const VIEWS = {
   context:   { title:'L1 · Systeemcontext',  desc:'Het M365 Roadmap Dashboard in relatie tot externe systemen, diensten en eindgebruikers. Toont wie het systeem gebruikt en waarmee het communiceert.' },
   container: { title:'L2 · Containers',      desc:'De deploybare eenheden: scripts, bestanden en hosting — en hun onderlinge datastromen van externe bron naar eindgebruiker.' },
-  component: { title:'L3 · Componenten',     desc:'Interne bouwblokken van de Python-pipeline en de statische frontend. Toont de verantwoordelijkheden binnen Processing-, Storage- en Frontend-zones.' }
+  component: { title:'L3 · Componenten',     desc:'Interne bouwblokken van de Python-pipeline en de statische frontend. Toont de verantwoordelijkheden binnen Processing-, Storage- en Frontend-zones.' },
+  code:      { title:'L4 · Code',            desc:'Sleutelfuncties, datastructuren en JSON-schema\'s. Toont de concrete implementatielaag van fetch_roadmap.py en de JavaScript in de frontend.' }
 };
 
 let currentView = 'context';
 let selectedNode = null;
 
 function setView(v) {
-  ['context','container','component'].forEach(id => {
+  ['context','container','component','code'].forEach(id => {
     document.getElementById('view-'+id).classList.add('hidden');
     document.getElementById('btn-'+id).classList.remove('active');
   });
