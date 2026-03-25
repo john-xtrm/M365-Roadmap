@@ -335,7 +335,13 @@ function loadWeek(dateStr, activeBtn) {
     '<div class="state-box"><div class="spinner" role="progressbar" aria-label="Week laden"></div>' +
     '<h2>Week laden…</h2></div>';
 
-  fetchWithTimeout('archive/' + dateStr + '.json', 10000)
+  /* Gebruik gecachede data als beschikbaar (uit loadIndex) */
+  if (typeof archiveCache !== 'undefined' && archiveCache[dateStr]) {
+    currentData = archiveCache[dateStr];
+    renderWeek();
+    return;
+  }
+  fetchWithTimeout('archive/' + dateStr + '.json?v=' + Date.now(), 10000)
     .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(data) {
       currentData = data;
@@ -503,12 +509,14 @@ function loadIndex() {
         return;
       }
       /* Controleer welke bestanden daadwerkelijk bestaan via HEAD-requests */
+      var archiveCache = {};
       Promise.allSettled(
         dates.map(function(dateStr) {
           return fetch('archive/' + dateStr + '.json?v=' + Date.now())
             .then(function(r) { if (!r.ok) throw new Error('404'); return r.json(); })
             .then(function(data) {
               var hasItems = data.removed && data.removed.length > 0;
+              if (hasItems) archiveCache[dateStr] = data;
               return { date: dateStr, ok: hasItems };
             })
             .catch(function() { return { date: dateStr, ok: false }; });
