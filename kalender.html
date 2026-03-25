@@ -278,10 +278,11 @@
   color: var(--muted); font-family: var(--font); font-size: .8125rem;
   font-weight: 500; cursor: pointer; transition: all .12s; min-height: 2.25rem;
 }
+.pf-btn[aria-pressed="true"] { background: var(--blue-t); color: var(--surface); border-color: var(--blue-t); font-weight: 600; }
 .pf-btn:hover:not([aria-pressed="true"]) { background: var(--surface2); color: var(--text); }
-.pf-btn[aria-pressed="true"] { background: var(--text); color: #fff; border-color: var(--text); font-weight: 600; }
+
 @media (prefers-color-scheme: dark) {
-  .pf-btn[aria-pressed="true"] { background: var(--blue-t); color: #0a1a38; border-color: var(--blue-t); }
+  
 }
 
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
@@ -304,16 +305,13 @@
 <header role="banner">
   <div class="hdr">
     <div class="hdr-left">
-      <a href="index.html" class="back-link" aria-label="Terug naar de hoofdpagina">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-        Overzicht
-      </a>
       <div>
         <h1>Releasekalender</h1>
         <p class="hdr-sub">Wanneer komen updates beschikbaar voor uw organisatie?</p>
       </div>
     </div>
     <div class="hdr-right">
+      <a href="index.html" class="hdr-archive-link hdr-active" aria-label="Terug naar de hoofdpagina roadmap"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg> Roadmap</a>
       <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van vorige weken"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Archief</a>
       <a href="architectuur.html" class="hdr-archive-link" aria-label="Bekijk de architectuurkaart"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><line x1="5" y1="9" x2="5" y2="12"/><line x1="19" y1="9" x2="19" y2="12"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="12" x2="12" y2="15"/></svg> Architectuur</a>
       <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Schakel naar donker thema" title="Thema wisselen">

@@ -120,90 +120,13 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       Gefilterd op item vanaf de releasekalender. <button class="ms-link" onclick="clearSearch()">Wis filter</button>
     </p>
   </div>
-
   <!-- Info-banner -->
-  <div class="collapsible-block" id="info-banner">
-    <button class="collapsible-toggle" aria-expanded="false" aria-controls="info-banner-body"
-            onclick="toggleInfoBanner(this)">
-      <div class="collapsible-left">
-        <span aria-hidden="true">ℹ️</span>
-        <span>Hoe werkt dit overzicht?</span>
-      </div>
-      <span class="collapsible-chevron" aria-hidden="true">▼</span>
-    </button>
-    <div id="info-banner-body" class="collapsible-inner" role="region" aria-label="Uitleg over dit overzicht" style="display:none">
-      <ul class="info-list">
-        <li>Dit overzicht toont Microsoft 365-updates die elke maandag automatisch worden opgehaald.</li>
-        <li>Standaard ziet u de updates van de <strong>afgelopen kalenderweek</strong> — consistent met de wekelijkse workflow.</li>
-        <li>Gebruik de filters om op product, actie-type, periode of status te filteren.</li>
-        <li><strong>Automatisch</strong> — geen actie nodig. <strong>IT-beheerder</strong> — vereist technische actie. <strong>Medewerker</strong> — de gebruiker kan zelf iets instellen.</li>
-        <li>Klik op een kaart om meer details te zien of gebruik de ID-link naar Microsoft.</li>
-      </ul>
-    </div>
+  <div class="disclaimer" role="note">
+    <span style="flex-shrink:0" aria-hidden="true">ℹ️</span>
+    <span>Dit overzicht toont Microsoft 365-updates die elke <strong>maandag</strong> automatisch worden opgehaald. Standaard ziet u de <strong>afgelopen kalenderweek</strong>. Gebruik de filters om te filteren op product, actie-type, periode of status. <strong>Automatisch</strong> = geen actie nodig · <strong>IT-beheerder</strong> = technische actie vereist · <strong>Medewerker</strong> = gebruiker kan zelf instellen.</span>
   </div>
 
-  <!-- Filters -->
-  <section class="filters" aria-label="Filters">
 
-    <!-- 1. Product -->
-    <div class="filter-group">
-      <label id="lbl-app">Product</label>
-      <div class="filter-bar" id="apf" role="group" aria-labelledby="lbl-app">
-        <button class="fb" data-p="all" aria-pressed="true">Alle producten</button>
-        <!-- Dynamisch gevuld met iconen op basis van data.json -->
-      </div>
-    </div>
-
-    <div class="filter-divider"></div>
-
-    <!-- 2. Actie + Sorteren -->
-    <div class="filter-row-2">
-      <div class="filter-group" style="flex:1">
-        <label id="lbl-act">Actie nodig?</label>
-        <div class="filter-bar" id="act-bar" role="group" aria-labelledby="lbl-act">
-          <button class="fb" data-act="all"   aria-pressed="true">Alles</button>
-          <button class="fb" data-act="none"  aria-pressed="false"><span class="act-dot d-none" aria-hidden="true"></span>Automatisch</button>
-          <button class="fb" data-act="admin" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>IT-beheerder</button>
-          <button class="fb" data-act="user"  aria-pressed="false"><span class="act-dot d-user" aria-hidden="true"></span>Medewerker</button>
-        </div>
-      </div>
-      <div class="filter-group" style="flex:0 0 auto">
-        <label for="sort-select">Sorteren</label>
-        <select id="sort-select" onchange="render()">
-          <option value="added-desc">Toegevoegd: nieuwste eerst</option>
-          <option value="release-asc">Releasedatum: nieuw → oud</option>
-          <option value="release-desc">Releasedatum: oud → nieuw</option>
-          <option value="modified-desc">Laatst gewijzigd</option>
-          <option value="status">Status</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="filter-divider"></div>
-
-    <!-- 3. Periode + Status -->
-    <div class="filter-row-2">
-      <div class="filter-group">
-        <label id="lbl-fp">
-          Periode
-          <span id="week-mini-badge" class="week-mini-badge" aria-live="polite"></span>
-        </label>
-        <div class="filter-bar" id="fp-bar" role="group" aria-labelledby="lbl-fp">
-          <button class="fb" data-a="all" aria-pressed="false">Alle</button>
-          <button class="fb" data-a="pw"  aria-pressed="true">Afgelopen week</button>
-          <button class="fb" data-a="am"  aria-pressed="false">Deze maand</button>
-        </div>
-        <p class="filter-note">Filtert op items toegevoegd of gewijzigd in de geselecteerde periode</p>
-      </div>
-      <div class="filter-group">
-        <label id="lbl-status">Status</label>
-        <div class="filter-bar" id="sf" role="group" aria-labelledby="lbl-status">
-          <button class="fb" data-s="all"     aria-pressed="true">Alles</button>
-          <button class="fb" data-s="rolling" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>Uitgerold</button>
-          <button class="fb" data-s="dev"     aria-pressed="false"><span class="act-dot d-user" aria-hidden="true"></span>Ontwikkeling</button>
-        </div>
-      </div>
-    </div>
 
   </section>
 
@@ -542,14 +465,6 @@ function toggleCollapsible(btn,panelId){
   var panel=document.getElementById(panelId);
   var chevron=btn.querySelector('.collapsible-chevron');
   panel.classList.toggle('open',!open);
-  if(chevron)chevron.classList.toggle('open',!open);
-}
-function toggleInfoBanner(btn){
-  var body=document.getElementById('info-banner-body');
-  var chevron=btn.querySelector('.collapsible-chevron');
-  var open=btn.getAttribute('aria-expanded')==='true';
-  btn.setAttribute('aria-expanded',open?'false':'true');
-  body.classList.toggle('open',!open);
   if(chevron)chevron.classList.toggle('open',!open);
 }
 function debouncedSearch(val){clearTimeout(searchTimer);searchTimer=setTimeout(function(){onSearch(val);},200);}
