@@ -268,6 +268,7 @@ var MAANDEN = {january:'januari',february:'februari',march:'maart',april:'april'
 var currentData   = null;   /* Geladen weekdata */
 var currentDate   = null;   /* ISO datumstring van geladen week */
 var archiveFP     = 'all';  /* Productfilter */
+var archiveCache  = {};      /* Gecachede archiefdata van loadIndex */
 
 /* ── Hulpfuncties ────────────────────────────────────────────────────────── */
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -336,16 +337,26 @@ function loadWeek(dateStr, activeBtn) {
     '<h2>Week laden…</h2></div>';
 
   /* Gebruik gecachede data als beschikbaar (uit loadIndex) */
-  if (typeof archiveCache !== 'undefined' && archiveCache[dateStr]) {
+  if (archiveCache[dateStr]) {
     currentData = archiveCache[dateStr];
-    renderWeek();
+    try { renderWeek(); } catch(e) {
+      document.getElementById('archive-content').innerHTML =
+        '<div class="state-box" role="alert"><h2>Fout bij weergave</h2>' +
+        '<p>' + esc(String(e)) + '</p></div>';
+    }
     return;
   }
   fetchWithTimeout('archive/' + dateStr + '.json?v=' + Date.now(), 10000)
     .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
     .then(function(data) {
       currentData = data;
-      renderWeek();
+      try {
+        renderWeek();
+      } catch(e) {
+        document.getElementById('archive-content').innerHTML =
+          '<div class="state-box" role="alert"><h2>Fout bij weergave</h2>' +
+          '<p>' + esc(String(e)) + '</p></div>';
+      }
     })
     .catch(function(err) {
       /* Bij 404: bestand bestaat niet meer — verwijder de weekknop */
@@ -509,7 +520,7 @@ function loadIndex() {
         return;
       }
       /* Controleer welke bestanden daadwerkelijk bestaan via HEAD-requests */
-      var archiveCache = {};
+      archiveCache = {}; /* Reset voor nieuwe loadIndex run */
       Promise.allSettled(
         dates.map(function(dateStr) {
           return fetch('archive/' + dateStr + '.json?v=' + Date.now())
