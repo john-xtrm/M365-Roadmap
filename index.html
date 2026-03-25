@@ -106,27 +106,91 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 <main id="main-content">
 <div class="main">
 
-  <!-- Zoekbalk -->
-  <div class="search-wrap" id="search-wrap">
-    <span class="search-icon" aria-hidden="true">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    </span>
-    <input id="search-input" type="search" class="search-input" placeholder="Zoek op trefwoord, bijv. 'vergadering' of 'SharePoint'"
-           aria-label="Zoek in roadmap-updates" autocomplete="off" spellcheck="false">
-    <button id="search-clear" class="search-clear" onclick="clearSearch()" aria-label="Zoekopdracht wissen" style="display:none">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <p id="search-origin-note" class="search-origin-note" style="display:none">
-      Gefilterd op item vanaf de releasekalender. <button class="ms-link" onclick="clearSearch()">Wis filter</button>
-    </p>
-  </div>
   <!-- Info-banner -->
   <div class="disclaimer" role="note">
     <span style="flex-shrink:0" aria-hidden="true">ℹ️</span>
     <span>Dit overzicht toont Microsoft 365-updates die elke <strong>maandag</strong> automatisch worden opgehaald. Standaard ziet u de <strong>afgelopen kalenderweek</strong>. Gebruik de filters om te filteren op product, actie-type, periode of status. <strong>Automatisch</strong> = geen actie nodig · <strong>IT-beheerder</strong> = technische actie vereist · <strong>Medewerker</strong> = gebruiker kan zelf instellen.</span>
   </div>
 
+  <!-- Zoekbalk -->
+  <div class="search-wrap" id="search-wrap">
+    <span class="search-icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input id="search-input" type="search" class="search-input"
+           placeholder="Zoek op trefwoord, bijv. 'vergadering' of 'SharePoint'"
+           aria-label="Zoek in roadmap-updates" autocomplete="off" spellcheck="false">
+    <button id="search-clear" class="search-clear" onclick="clearSearch()"
+            aria-label="Zoekopdracht wissen" style="display:none">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <p id="search-origin-note" class="search-origin-note" style="display:none">
+      Gefilterd op item vanaf de releasekalender. <button class="ms-link" onclick="clearSearch()">Wis filter</button>
+    </p>
+  </div>
 
+  <!-- Filters -->
+  <section class="filters" aria-label="Filters">
+
+    <!-- 1. Product -->
+    <div class="filter-group">
+      <label id="lbl-app" class="filter-lbl">Product</label>
+      <div class="filter-bar" id="apf" role="group" aria-labelledby="lbl-app">
+        <button class="fb" data-p="all" aria-pressed="true">Alle producten</button>
+        <!-- Dynamisch gevuld -->
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <!-- 2. Actie + Sorteren -->
+    <div class="filter-row-2">
+      <div class="filter-group" style="flex:1">
+        <label id="lbl-act" class="filter-lbl">Actie nodig?</label>
+        <div class="filter-bar" id="act-bar" role="group" aria-labelledby="lbl-act">
+          <button class="fb" data-act="all"   aria-pressed="true">Alles</button>
+          <button class="fb" data-act="none"  aria-pressed="false"><span class="act-dot d-none"  aria-hidden="true"></span>Automatisch</button>
+          <button class="fb" data-act="admin" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>IT-beheerder</button>
+          <button class="fb" data-act="user"  aria-pressed="false"><span class="act-dot d-user"  aria-hidden="true"></span>Medewerker</button>
+        </div>
+      </div>
+      <div class="filter-group" style="flex:0 0 auto">
+        <label for="sort-select" class="filter-lbl">Sorteren</label>
+        <select id="sort-select" onchange="render()">
+          <option value="added-desc">Toegevoegd: nieuwste eerst</option>
+          <option value="added-asc">Toegevoegd: oudste eerst</option>
+          <option value="release-asc">Releasedatum: vroegst eerst</option>
+          <option value="release-desc">Releasedatum: latest eerst</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-divider"></div>
+
+    <!-- 3. Periode + Status -->
+    <div class="filter-row-2">
+      <div class="filter-group">
+        <label id="lbl-fp" class="filter-lbl">
+          Periode
+          <span id="week-mini-badge" class="week-mini-badge" aria-live="polite"></span>
+        </label>
+        <div class="filter-bar" id="fp-bar" role="group" aria-labelledby="lbl-fp">
+          <button class="fb" data-a="all" aria-pressed="false">Alle</button>
+          <button class="fb" data-a="pw"  aria-pressed="true">Vorige week</button>
+          <button class="fb" data-a="am"  aria-pressed="false">Deze maand</button>
+        </div>
+        <p class="filter-note">Filtert op items toegevoegd of gewijzigd in de geselecteerde periode</p>
+      </div>
+      <div class="filter-group">
+        <label id="lbl-status" class="filter-lbl">Status</label>
+        <div class="filter-bar" id="sf" role="group" aria-labelledby="lbl-status">
+          <button class="fb" data-s="all"     aria-pressed="true">Alles</button>
+          <button class="fb" data-s="rolling" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>Uitgerold</button>
+          <button class="fb" data-s="dev"     aria-pressed="false"><span class="act-dot d-user"  aria-hidden="true"></span>Ontwikkeling</button>
+        </div>
+      </div>
+    </div>
 
   </section>
 
@@ -139,7 +203,8 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       <p>Even geduld, de actuele roadmap wordt opgehaald.</p>
     </div>
   </div>
-  <p id="empty-msg" role="status">
+
+  <p id="empty-msg" role="status" style="display:none">
     Geen updates gevonden voor deze filterinstellingen. Probeer een andere combinatie of pas de zoekopdracht aan.
   </p>
 
@@ -159,8 +224,6 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       <div id="changes-cards"></div>
     </div>
   </div>
-
-</div>
 
 </div>
 </main>
