@@ -343,6 +343,16 @@ details[open] summary::before { transform: rotate(90deg); }
 }
 .back-link:hover, .hdr-archive-link:hover { opacity: 0.8; }
 
+/* Actieve navigatieknop in header (huidige pagina) */
+.hdr-archive-link[aria-current="page"] {
+  background: var(--text);
+  color: var(--surface);
+  opacity: 1;
+  font-weight: 600;
+  pointer-events: none;   /* niet klikbaar op eigen pagina */
+}
+.hdr-archive-link[aria-current="page"]:hover { opacity: 1; }
+
 /* ── Uitklapblokken ───────────────────────────────────────────────────── */
 .collapsible-block { margin-top: 2rem; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
 .collapsible-toggle {
