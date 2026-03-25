@@ -115,6 +115,16 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
 .hdr h1    { font-size: 1.25rem; font-weight: 700; }
 .hdr-sub   { font-size: 0.875rem; color: var(--muted); margin-top: 3px; }
 .hdr-right { display: flex; align-items: center; gap: 0.625rem; flex-shrink: 0; flex-wrap: wrap; }
+/* ── Header linker kolom ────────────────────────────────────────────────── */
+.hdr-left {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  flex: 1;
+  min-width: 0;
+}
+.hdr-left > div { min-width: 0; }
+
 #last-updated {
   font-size: 0.75rem;
   color: var(--faint);
@@ -377,8 +387,7 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
 /* ── Dark mode ────────────────────────────────────────────────────────── */
 /* Alle kleurwaarden opnieuw berekend voor ≥ 4.5:1 contrast op donkere bg */
 /* ── Dark mode — handmatig (data-theme="dark") ──────────────────────── */
-[data-theme="dark"] {
-  :root {
+html[data-theme="dark"] {
     --bg:       #1a1917;
     --surface:  #242220;
     --surface2: #2e2c2a;
@@ -399,8 +408,8 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
     --c-none:    #5dd48a;
     --c-admin:   #f0a830;
     --c-user:    #7ab0f5;
-  }
-  mark             { background: #5c4a00; color: #f5e6a0; }
+  mark             { background: #5c4a00; color: #f5e6a0;
+}
   input, select    { color-scheme: dark; }
 
   /* Geselecteerde knoppen: donkere achtergrond met leesbare tekst */
@@ -416,7 +425,6 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
 /* ── Dark mode — automatisch via systeemvoorkeur ─────────────────────── */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-  :root {
     --bg:       #1a1917;
     --surface:  #242220;
     --surface2: #2e2c2a;
@@ -448,8 +456,8 @@ mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; 
   .fb[aria-pressed="true"][data-act="user"]  { background: #162650; color: var(--blue-t);   border-color: var(--blue-t); }
   .card-action.act-none  { background: #1a3d25; color: var(--c-none); }
   .card-action.act-admin { background: #3a2800; color: var(--c-admin); }
-  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-  }
+  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user);   }
+
 }
 
 /* ── Thema-wissel knop ───────────────────────────────────────────────── */
