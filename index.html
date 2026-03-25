@@ -97,8 +97,6 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       </button>
     </div>
     <div class="hdr-meta">
-      <span id="last-updated" class="hdr-updated" aria-live="polite"></span>
-      <span id="week-badge" class="week-badge" style="display:none" aria-live="polite"></span>
     </div>
   </div>
 </header>
@@ -194,7 +192,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
   </section>
 
-  <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"></div>
+  <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"><span id="last-updated" class="stat-updated" aria-live="polite"></span></div>
 
   <div id="root" role="feed" aria-busy="true" aria-label="Roadmap-updates">
     <div class="state-box">
@@ -458,8 +456,7 @@ function handleData(data){
   var fmtS=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
   document.getElementById('last-updated').textContent=
     'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' \u00b7 '+data.count+' items';
-  var wb=document.getElementById('week-badge');
-  if(wb){wb.textContent='Week '+pwn+' \u00b7 '+fmtS(pwS)+' \u2013 '+fmtS(pwE);wb.style.display='';}
+
   document.getElementById('root').setAttribute('aria-busy','false');
   buildAppFilter(ALL_ITEMS);
   updateWeekLabels();
@@ -614,11 +611,12 @@ function render(){
   var dev=filtered.filter(function(i){return i.status==='dev';});
   var newCount=filtered.filter(function(i){return i.isNew;}).length;
   document.getElementById('stats-bar').innerHTML=
+    '<div class="stats-left">'+
     '<span class="stat-pill s-total">'+filtered.length+' updates</span>'+
     '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>'+
     '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>'+
     (newCount?'<span class="stat-pill s-new">\u2B50 '+newCount+' nieuw</span>':'')+
-    (query?'<span class="stat-pill" style="background:#fff3b0;color:#5c3a00">Zoek: "'+esc(query)+'"</span>':'');
+    (query?'<span class="stat-pill" style="background:var(--new-bg);color:var(--new-t)">Zoek: "'+esc(query)+'"</span>':'')+'</div>';
   var emptyEl=document.getElementById('empty-msg');
   var rootEl=document.getElementById('root');
   if(!filtered.length){rootEl.innerHTML='';emptyEl.classList.add('show');return;}

@@ -179,7 +179,7 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
 
 /* App-filterkleuren */
 .fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"]/* ── Statistiekenbalk ─────────────────────────────────────────────────── */
-.stats-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; margin-top: 0.25rem; align-items: center; }
+.stats-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; margin-top: 1.25rem; }
 .stat-pill { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 500; }
 .s-total   { background: var(--surface2); color: var(--muted); }
 .s-rolling { background: var(--amber-bg); color: var(--amber-t); }
@@ -588,3 +588,5 @@ html[data-theme="dark"] {
   border-left: 3px solid var(--border-s);
   margin-bottom: 1.25rem;
 }
+.stat-updated { font-size: 0.75rem; color: var(--faint); margin-left: auto; white-space: nowrap; }
+.stats-left { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; flex: 1; }
