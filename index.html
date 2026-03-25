@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl" data-theme="">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,52 +15,35 @@
 #search-input::placeholder { color: var(--faint); }
 .search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--faint); font-size: 1rem; border-radius: 50%; display: none; align-items: center; justify-content: center; }
 .search-clear:hover { background: var(--surface2); color: var(--text); }
-.search-clear.show { display: flex; }
+.search-clear
 
 /* ── Info-banner ──────────────────────────────────────────────────────── */
 .info-banner { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); margin-bottom: 1.25rem; overflow: hidden; }
 .info-banner-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; background: none; border: none; cursor: pointer; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--muted); gap: 0.5rem; min-height: 2.75rem; }
 .info-banner-toggle:hover { background: var(--surface2); }
 .info-banner-body { display: none; padding: 0 1rem 0.875rem; border-top: 1px solid var(--border); }
-.info-banner-body.open { display: block; }
+.info-banner-body
 .info-list { list-style: none; display: flex; flex-direction: column; gap: 6px; padding-top: 0.75rem; }
 .info-list li { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--muted); }
 .info-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.dot-none  { background: var(--c-none); }
-.dot-admin { background: var(--c-admin); }
-.dot-user  { background: var(--c-user); }
 
 /* ── Kalender-melding ─────────────────────────────────────────────────── */
 .search-origin-note { display: none; font-size: 0.8125rem; color: var(--muted); background: var(--surface2); border-radius: var(--radius-sm); padding: 8px 14px; margin-bottom: 1rem; align-items: center; gap: 8px; }
-.search-origin-note.show { display: flex; }
+.search-origin-note
 .search-origin-note button { background: none; border: none; color: var(--blue-t); cursor: pointer; font: inherit; font-size: 0.8125rem; padding: 0; text-decoration: underline; }
 
 /* ── Filterblok ───────────────────────────────────────────────────────── */
-.filters {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.filter-divider { height: 1px; background: var(--border); margin: 0.125rem 0; }
-.filter-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
 .filter-group > label {
   font-size: 0.6875rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.06em;
   color: var(--faint);
   display: flex; align-items: center; gap: 6px;
 }
-.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; }
-.filter-note { font-size: 0.6875rem; color: var(--faint); margin-top: 3px; }
-.filter-row-2 { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+
 .filter-row-2 .filter-group { flex: 1; min-width: 160px; }
 
 /* Actie-knoppen met gekleurde dot */
-
 
 /* Sorteren */
 select { padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: var(--font); font-size: 0.875rem; cursor: pointer; min-height: 2.75rem; }
@@ -82,6 +65,9 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 #empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
 #empty-msg.show { display: block; }
 </style>
+<script>
+(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
+</script>
 </head>
 <body>
 
@@ -100,64 +86,14 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       <p class="hdr-sub">Wat staat er aan te komen en wat betekent dat voor uw organisatie?</p>
     </div>
     <div class="hdr-right">
-      <a href="kalender.html" class="hdr-archive-link" aria-label="Bekijk de releasekalender">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-        Kalender
-      </a>
-      <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van vorige weken">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
-        Archief
-      </a>
-      <a href="architectuur.html" class="hdr-archive-link" aria-label="Bekijk de architectuurkaart">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><line x1="5" y1="9" x2="5" y2="12"/><line x1="19" y1="9" x2="19" y2="12"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="12" x2="12" y2="15"/></svg>
-        Architectuur
-      </a>
-      <span id="week-badge" style="display:none;font-size:.75rem;font-weight:600;background:var(--new-bg);color:var(--new-t);padding:5px 12px;border-radius:var(--radius-pill);white-space:nowrap" aria-live="polite"></span>
-      <div id="last-updated" aria-live="polite" aria-atomic="true">Laden…</div>
+      <a href="kalender.html" class="hdr-archive-link" aria-label="Bekijk de releasekalender"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Kalender</a>
+      <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van vorige weken"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Archief</a>
+      <a href="architectuur.html" class="hdr-archive-link" aria-label="Bekijk de architectuurkaart"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><line x1="5" y1="9" x2="5" y2="12"/><line x1="19" y1="9" x2="19" y2="12"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="12" x2="12" y2="15"/></svg> Architectuur</a>
+      <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Schakel naar donker thema" title="Thema wisselen">
+        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
     </div>
-  </div>
-</header>
-
-<main id="main-content">
-<div class="main">
-
-  <!-- Zoekbalk -->
-  <div class="search-wrap" role="search">
-    <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-    <input type="search" id="search-input"
-           placeholder="Zoek op trefwoord, bijv. 'vergadering' of 'SharePoint'"
-           aria-label="Zoek in roadmap-updates"
-           autocomplete="search"
-           oninput="debouncedSearch(this.value)">
-    <button class="search-clear" id="search-clear" aria-label="Zoekopdracht wissen" onclick="clearSearch()">✕</button>
-  </div>
-
-  <!-- Info-banner -->
-  <div class="info-banner" role="note" aria-label="Uitleg over deze pagina">
-    <button class="info-banner-toggle" aria-expanded="false" aria-controls="info-banner-body"
-            onclick="toggleInfoBanner(this)">
-      <span><span aria-hidden="true">ℹ️</span> Hoe werkt dit overzicht?</span>
-      <span class="collapsible-chevron" aria-hidden="true">▼</span>
-    </button>
-    <div id="info-banner-body" class="info-banner-body">
-      <ul class="info-list">
-        <li><span class="info-dot dot-none" aria-hidden="true"></span><strong>Groene streep</strong> — gaat automatisch aan. Geen actie vereist.</li>
-        <li><span class="info-dot dot-admin" aria-hidden="true"></span><strong>Gele streep</strong> — IT-beheerder moet iets instellen of goedkeuren.</li>
-        <li><span class="info-dot dot-user" aria-hidden="true"></span><strong>Blauwe streep</strong> — medewerker kan dit zelf inschakelen.</li>
-        <li><span aria-hidden="true">⭐</span> <strong>Nieuw</strong> — deze week toegevoegd of gewijzigd op de Microsoft roadmap.</li>
-        <li>Standaard ziet u de updates van de huidige kalenderweek. Gebruik de filters om meer of minder te tonen.</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- Melding vanuit kalender -->
-  <div class="search-origin-note" id="search-origin-note" role="note">
-    <span aria-hidden="true">📅</span>
-    <span>U bekijkt details vanuit de releasekalender.</span>
-    <button onclick="clearSearch()" aria-label="Zoekopdracht wissen en alle items tonen">Wis filter</button>
-    <span>of</span>
-    <a href="kalender.html" style="color:var(--blue-t);font-size:.8125rem">terug naar kalender</a>
-  </div>
 
   <!-- Filters -->
   <section class="filters" aria-label="Filters">
@@ -259,6 +195,28 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
 <script>
 'use strict';
+
+/* ── Thema-toggle ───────────────────────────────────────────────────────── */
+(function(){
+  var stored = localStorage.getItem('theme');
+  if (stored === 'dark' || stored === 'light') {
+    document.documentElement.setAttribute('data-theme', stored);
+  }
+})();
+
+function toggleTheme() {
+  var html    = document.documentElement;
+  var current = html.getAttribute('data-theme');
+  var sys     = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var isDark  = current === 'dark' || (!current && sys);
+  var next    = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  var btn = document.getElementById('theme-btn');
+  if (btn) btn.setAttribute('aria-label', next === 'dark' ? 'Schakel naar licht thema' : 'Schakel naar donker thema');
+}
+
+
 
 /* ── Product-metadata en iconen (inline) ──────────────────────────────── */
 var APP_ICONS = {
