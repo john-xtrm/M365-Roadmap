@@ -15,10 +15,10 @@
 .level-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
 .level-btn { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.4rem 1rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: var(--font); min-height: 2.75rem; }
 .level-btn:hover { border-color: var(--blue-t); color: var(--text); }
-.level-btn.active { background: var(--text); border-color: var(--text); color: #fff; }
+.level-btn.active { background: var(--text); border-color: var(--text); color: var(--surface); }
 .zone { border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1rem 1rem; position: relative; overflow: visible; }
 .zone-label { position: absolute; top: -0.65rem; left: 1rem; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.1rem 0.6rem; background: var(--bg); border-radius: var(--radius-sm); white-space: nowrap; }
-.zone-ext   { border-color: rgba(185,28,28,0.35); } .zone-ext   .zone-label { color: #b91c1c; }
+.zone-ext   { border-color: rgba(185,28,28,0.35); } .zone-ext   .zone-label { color: var(--red-t); }
 .zone-proc  { border-color: rgba(146,64,14,0.35); } .zone-proc  .zone-label { color: var(--amber-t); }
 .zone-stor  { border-color: rgba(58,42,138,0.35); } .zone-stor  .zone-label { color: var(--purple-t); }
 .zone-front { border-color: rgba(10,82,72,0.35);  } .zone-front .zone-label { color: var(--teal-t); }
@@ -51,7 +51,7 @@
 .code-block:hover { border-color: var(--blue-t); }
 .code-block.selected { border-color: var(--blue-t); box-shadow: 0 0 0 3px rgba(20,61,130,0.1); }
 .cb-title { font-family: var(--font); font-size: 0.8125rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.4rem; white-space: normal; }
-.ck { color: var(--blue-t); } .ct { color: var(--purple-t); } .cv { color: var(--green-t); } .cf { color: var(--amber-t); } .cc { color: var(--faint); } .cs { color: #6b3200; }
+.ck { color: var(--blue-t); } .ct { color: var(--purple-t); } .cv { color: var(--green-t); } .cf { color: var(--amber-t); } .cc { color: var(--faint); } .cs { color: var(--amber-t); }
 .dscroll { overflow-x: auto; padding-bottom: 0.5rem; }
 .dinner { min-width: 860px; padding-top: 1.25rem; }
 .view { animation: fadeIn 0.2s ease; }
