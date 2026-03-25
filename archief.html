@@ -137,7 +137,7 @@
   <!-- Informatieve banner -->
   <div class="disclaimer" role="note" style="margin-bottom:1.5rem">
     <span style="flex-shrink:0" aria-hidden="true">ℹ️</span>
-    <span>Dit archief bewaart wekelijkse momentopnamen van de Microsoft 365 roadmap — maximaal 3 maanden terug. Elke week wordt automatisch een nieuwe snapshot opgeslagen. De meest recente week wordt automatisch geladen. Via de weekknoppen kunt u eerder vergelijken welke items zijn bijgekomen of beschikbaar zijn gekomen.</span>
+    <span>Dit archief toont per week welke Microsoft 365-updates van de roadmap zijn <strong>verdwenen</strong> — uitgerold of geannuleerd door Microsoft. Maximaal 3 maanden terug bewaard. Weken zonder verdwenen items verschijnen niet als knop.</span>
   </div>
 
   <nav class="week-nav-wrap" aria-label="Kies een week">
@@ -366,29 +366,24 @@ function loadWeek(dateStr, activeBtn) {
 function renderWeek() {
   if (!currentData || !currentDate) return;
 
-  var allItems = currentData.items || [];
-  var removed  = currentData.removed || [];
-
-  /* Sorteer op toegevoegddatum, nieuwste eerst */
-  var sorted = allItems.slice().sort(function(a,b){
-    return new Date(b.added||0) - new Date(a.added||0);
-  });
+  /* Nieuwe structuur: archief toont alleen verdwenen items (Launched/Cancelled) */
+  var allRemoved = currentData.removed || [];
 
   /* Productfilter */
   var filtered = archiveFP === 'all'
-    ? sorted
-    : sorted.filter(function(i){ return i.app === archiveFP; });
+    ? allRemoved
+    : allRemoved.filter(function(i){ return i.app === archiveFP; });
 
-  var rolling = filtered.filter(function(i){ return i.status === 'rolling'; });
-  var dev     = filtered.filter(function(i){ return i.status === 'dev'; });
+  var launched   = filtered.filter(function(i){ return i.status === 'launched'; });
+  var cancelled  = filtered.filter(function(i){ return i.status === 'cancelled'; });
 
   /* ── Productfilter HTML ── */
-  var presentApps = new Set(allItems.map(function(i){ return i.app; }));
+  var presentApps = new Set(allRemoved.map(function(i){ return i.app; }));
   var filterHtml  = '<div class="arch-filter" role="group" aria-label="Filter op product">';
   filterHtml += '<button class="arch-fb" aria-pressed="' + (archiveFP==='all'?'true':'false') + '" data-fp="all">Alle producten</button>';
   APP_ORDER.forEach(function(key) {
     if (!presentApps.has(key)) return;
-    var count = allItems.filter(function(i){ return i.app===key; }).length;
+    var count = allRemoved.filter(function(i){ return i.app===key; }).length;
     filterHtml +=
       '<button class="arch-fb" aria-pressed="' + (archiveFP===key?'true':'false') + '" data-fp="' + key + '">' +
       appIconHTML(key) + APP_META[key].label + ' (' + count + ')</button>';
@@ -396,63 +391,64 @@ function renderWeek() {
   filterHtml += '</div>';
 
   /* ── Statistieken ── */
-  var statsHtml =
+  var statsHtml = allRemoved.length === 0 ? '' :
     '<div class="stats-bar">' +
-    '<span class="stat-pill s-total">' + filtered.length + ' updates</span>' +
-    '<span class="stat-pill s-rolling">' + rolling.length + ' werd uitgerold</span>' +
-    '<span class="stat-pill s-dev">' + dev.length + ' in ontwikkeling</span>' +
+    '<span class="stat-pill s-total">' + filtered.length + ' verdwenen' + (archiveFP !== 'all' ? ' (gefilterd)' : '') + '</span>' +
+    (launched.length  ? '<span class="stat-pill s-rolling">' + launched.length  + ' uitgerold</span>' : '') +
+    (cancelled.length ? '<span class="stat-pill s-dev">'     + cancelled.length + ' geannuleerd</span>' : '') +
     '</div>';
 
   /* ── Kaarten ── */
+  function removedCard(r) {
+    var meta = APP_META[r.app] || APP_META.other;
+    var statusCls = r.status === 'launched' ? 'p-rolling' : 'p-dev';
+    var statusLbl = r.status === 'launched' ? 'Uitgerold' : 'Geannuleerd';
+    return '<article class="card" aria-label="' + esc(r.title) + '">' +
+      '<div class="card-pills">' +
+        '<span class="pill ' + meta.cls + '">' + appIconHTML(r.app) + esc(r.prodLabel||meta.label) + '</span>' +
+        '<span class="pill ' + statusCls + '">' + statusLbl + '</span>' +
+      '</div>' +
+      '<h3 class="card-title">' + esc(r.title) + '</h3>' +
+      '<div class="card-foot"><div class="card-foot-left">' +
+        '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID ' + r.id + ' op Microsoft roadmap (opent in nieuw venster)">' +
+          LINK_ICON + ' ID ' + r.id +
+        '</a>' +
+      '</div></div>' +
+    '</article>';
+  }
+
   function sec(items, emoji, lbl) {
     if (!items.length) return '';
     return '<section aria-label="' + lbl + '">' +
       '<h2 class="sec-hdr">' + emoji + ' ' + lbl + '</h2>' +
-      items.map(itemCard).join('') +
+      items.map(removedCard).join('') +
     '</section>';
   }
 
-  var cardsHtml = filtered.length === 0
-    ? '<p class="archive-empty">Geen items voor dit product in deze week.</p>'
-    : sec(rolling, '🟡', 'Werd uitgerold') + sec(dev, '🔵', 'In ontwikkeling');
-
-  /* ── Gewijzigde items ── */
-  var changedHtml = '';
-  if (removed.length > 0) {
-    changedHtml =
-      '<div class="changed-block">' +
-      '<div class="changed-hdr">⚑ Deze week beschikbaar of geannuleerd (' + removed.length + ')</div>' +
-      '<div class="changed-inner">' +
-      removed.map(function(r) {
-        var meta = APP_META[r.app] || APP_META.other;
-        return '<div class="rcard">' +
-          '<span class="pill ' + meta.cls + '">' + appIconHTML(r.app) + esc(r.prodLabel||meta.label) + '</span>' +
-          '<span class="rcard-title">' + esc(r.title) + '</span>' +
-          '<div class="rcard-right">' +
-            '<span class="pill p-' + r.status + '">' + esc(r.statusNl) + '</span>' +
-            '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID ' + r.id + ' op Microsoft roadmap (opent in nieuw venster)">' +
-              LINK_ICON + ' ID ' + r.id +
-            '</a>' +
-          '</div></div>';
-      }).join('') +
-      '</div></div>';
+  var cardsHtml;
+  if (allRemoved.length === 0) {
+    cardsHtml = '<p class="archive-empty">Geen items verdwenen van de roadmap in deze week.</p>';
+  } else if (filtered.length === 0) {
+    cardsHtml = '<p class="archive-empty">Geen items voor dit product verdwenen in deze week.</p>';
+  } else {
+    cardsHtml = sec(launched, '✅', 'Uitgerold') + sec(cancelled, '❌', 'Geannuleerd');
   }
 
   /* ── Samenvoegen ── */
   document.getElementById('archive-content').innerHTML =
-    '<div class="archive-hdr">' +
-      '<h2>' + fmtDateLong(currentDate) + '</h2>' +
-      '<span class="archive-hdr-meta">' + allItems.length + ' actieve updates' +
-        (removed.length > 0 ? ' · ' + removed.length + ' gewijzigd' : '') +
-      '</span>' +
-    '</div>' +
-    filterHtml + statsHtml + cardsHtml + changedHtml;
+    filterHtml +
+    statsHtml +
+    cardsHtml;
 
-  /* Productfilter knoppen verbinden */
+  /* ── Filter-event opnieuw koppelen ── */
   document.getElementById('archive-content')
     .querySelectorAll('.arch-fb[data-fp]')
     .forEach(function(btn) {
       btn.addEventListener('click', function() {
+        document.getElementById('archive-content')
+          .querySelectorAll('.arch-fb[data-fp]')
+          .forEach(function(b){ b.setAttribute('aria-pressed','false'); });
+        btn.setAttribute('aria-pressed','true');
         archiveFP = btn.getAttribute('data-fp');
         renderWeek();
       });
