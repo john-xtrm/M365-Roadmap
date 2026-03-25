@@ -92,8 +92,54 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
       <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Schakel naar donker thema" title="Thema wisselen">
         <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         <svg class="icon-sun"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
+      </button>    </div>
+
+    <div class="hdr-meta">
+      <span id="last-updated" class="hdr-updated" aria-live="polite"></span>
+      <span id="week-badge" class="week-badge" style="display:none" aria-live="polite"></span>
     </div>
+
+  </div>
+</header>
+
+<main id="main-content">
+<div class="main">
+
+  <!-- Zoekbalk -->
+  <div class="search-wrap" id="search-wrap">
+    <span class="search-icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input id="search-input" type="search" class="search-input" placeholder="Zoek op trefwoord, bijv. 'vergadering' of 'SharePoint'"
+           aria-label="Zoek in roadmap-updates" autocomplete="off" spellcheck="false">
+    <button id="search-clear" class="search-clear" onclick="clearSearch()" aria-label="Zoekopdracht wissen" style="display:none">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <p id="search-origin-note" class="search-origin-note" style="display:none">
+      Gefilterd op item vanaf de releasekalender. <button class="ms-link" onclick="clearSearch()">Wis filter</button>
+    </p>
+  </div>
+
+  <!-- Info-banner -->
+  <div class="collapsible-block" id="info-banner">
+    <button class="collapsible-toggle" aria-expanded="false" aria-controls="info-banner-body"
+            onclick="toggleInfoBanner()">
+      <div class="collapsible-left">
+        <span aria-hidden="true">ℹ️</span>
+        <span>Hoe werkt dit overzicht?</span>
+      </div>
+      <span class="collapsible-chevron" aria-hidden="true">▼</span>
+    </button>
+    <div id="info-banner-body" class="collapsible-inner" role="region" aria-label="Uitleg over dit overzicht" style="display:none">
+      <ul class="info-list">
+        <li>Dit overzicht toont Microsoft 365-updates die elke maandag automatisch worden opgehaald.</li>
+        <li>Standaard ziet u de updates van de <strong>afgelopen kalenderweek</strong> — consistent met de wekelijkse workflow.</li>
+        <li>Gebruik de filters om op product, actie-type, periode of status te filteren.</li>
+        <li><strong>Automatisch</strong> — geen actie nodig. <strong>IT-beheerder</strong> — vereist technische actie. <strong>Medewerker</strong> — de gebruiker kan zelf iets instellen.</li>
+        <li>Klik op een kaart om meer details te zien of gebruik de ID-link naar Microsoft.</li>
+      </ul>
+    </div>
+  </div>
 
   <!-- Filters -->
   <section class="filters" aria-label="Filters">
@@ -191,7 +237,10 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
   </div>
 
 </div>
+
+</div>
 </main>
+
 
 <script>
 'use strict';
