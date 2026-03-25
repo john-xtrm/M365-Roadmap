@@ -66,7 +66,7 @@ Microsoft CSV API (publiek, gratis)
               ├── Alleen nieuw/gewijzigd vertalen
               ├── Producten detecteren (DETECT_PATTERNS)
               ├── data.json schrijven
-              └── archive/YYYY-MM-DD.json opslaan
+              └── archive/YYYY-MM-DD.json opslaan (alleen als er verdwenen items zijn)
                        │
                        └─ git push → GitHub Pages
 ```
@@ -160,6 +160,9 @@ ISO-kalenderweken (ma–zo). Standaard "Vorige week" is consistent met de maanda
 | `weekStart(date)` | Maandag 00:00 van die week |
 | `weekEnd(date)` | Zondag 23:59:59 van die week |
 | `inPrevWeek(d)` | Valt datum in de vorige kalenderweek? |
+
+### Archief-weekknoppen
+Vóór het tonen van weekknoppen haalt `archief.html` elk archiefbestand op en controleert of `removed.length > 0`. Weken zonder verdwenen items krijgen geen knop. `fetch_roadmap.py` slaat ook alleen een archiefbestand op als er verdwenen items zijn — lege runs produceren geen JSON-bestand.
 
 ---
 
