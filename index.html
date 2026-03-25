@@ -192,7 +192,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
   </section>
 
-  <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"><span id="last-updated" class="stat-updated" aria-live="polite"></span></div>
+  <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"></div>
 
   <div id="root" role="feed" aria-busy="true" aria-label="Roadmap-updates">
     <div class="state-box">
@@ -314,6 +314,7 @@ var searchTimer = null;
 var fromKalender = false;
 var idParam = null;
 var CACHE_KEY = 'm365_data_v1';
+var lastUpdatedText = '';
 
 var ACTION_LABEL = {none:'Gaat automatisch', admin:'IT-beheerder actie vereist', user:'Medewerker kan zelf instellen'};
 var ACTION_ICON  = {none:'🟢', admin:'🟡', user:'🔵'};
@@ -454,8 +455,7 @@ function handleData(data){
   var pwE=new Date(we); pwE.setDate(pwE.getDate()-7);
   var pwn=isoWeek(pwS);
   var fmtS=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
-  document.getElementById('last-updated').textContent=
-    'Bijgewerkt: '+gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'})+' \u00b7 '+data.count+' items';
+  lastUpdatedText = 'Bijgewerkt\u00a0' + gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + '\u00a0\u00b7\u00a0' + data.count + '\u00a0items';
 
   document.getElementById('root').setAttribute('aria-busy','false');
   buildAppFilter(ALL_ITEMS);
@@ -616,7 +616,8 @@ function render(){
     '<span class="stat-pill s-rolling">'+rolling.length+' wordt uitgerold</span>'+
     '<span class="stat-pill s-dev">'+dev.length+' in ontwikkeling</span>'+
     (newCount?'<span class="stat-pill s-new">\u2B50 '+newCount+' nieuw</span>':'')+
-    (query?'<span class="stat-pill" style="background:var(--new-bg);color:var(--new-t)">Zoek: "'+esc(query)+'"</span>':'')+'</div>';
+    (query?'<span class="stat-pill" style="background:var(--new-bg);color:var(--new-t)">Zoek: "'+esc(query)+'"</span>':'')+'</div>'+
+    (lastUpdatedText?'<span class="stat-updated">'+lastUpdatedText+'</span>':'');
   var emptyEl=document.getElementById('empty-msg');
   var rootEl=document.getElementById('root');
   if(!filtered.length){rootEl.innerHTML='';emptyEl.classList.add('show');return;}
