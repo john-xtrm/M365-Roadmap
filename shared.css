@@ -179,7 +179,7 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
 
 /* App-filterkleuren */
 .fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"].fb[aria-pressed="true"]/* ── Statistiekenbalk ─────────────────────────────────────────────────── */
-.stats-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.25rem; align-items: center; }
+.stats-bar { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; margin-top: 0.25rem; align-items: center; }
 .stat-pill { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 500; }
 .s-total   { background: var(--surface2); color: var(--muted); }
 .s-rolling { background: var(--amber-bg); color: var(--amber-t); }
@@ -584,6 +584,7 @@ html[data-theme="dark"] {
   font-size: 0.8125rem; color: var(--faint);
   background: var(--surface2);
   border-radius: var(--radius-sm);
-  padding: 0.625rem 0.875rem;
+  padding: 0.75rem 1rem;
   border-left: 3px solid var(--border-s);
+  margin-bottom: 1.25rem;
 }
