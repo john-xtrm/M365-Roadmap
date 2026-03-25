@@ -330,10 +330,13 @@ archive_data = {
     "removed":   removed,   # Alleen verdwenen items (Launched of Cancelled)
 }
 
-archive_path = os.path.join(archive_dir, f"{today}.json")
-with open(archive_path, "w", encoding="utf-8") as f:
-    json.dump(archive_data, f, ensure_ascii=False, indent=2)
-print(f"Archief opgeslagen: {archive_path} ✓")
+if removed:
+    archive_path = os.path.join(archive_dir, f"{today}.json")
+    with open(archive_path, "w", encoding="utf-8") as f:
+        json.dump(archive_data, f, ensure_ascii=False, indent=2)
+    print(f"Archief opgeslagen: {archive_path} ({len(removed)} verdwenen items) ✓")
+else:
+    print("Geen verdwenen items deze run — geen archiefbestand aangemaakt.")
 
 # ── Archiefindex bijwerken ────────────────────────────────────────────────
 # Maak een index van alle beschikbare archiefdatums voor de pagina
