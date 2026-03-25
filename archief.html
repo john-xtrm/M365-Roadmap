@@ -143,8 +143,7 @@
   <nav class="week-nav-wrap" aria-label="Kies een week">
     <span id="week-nav-lbl">Kies een week</span>
     <div class="week-nav" id="week-nav" role="group" aria-labelledby="week-nav-lbl">
-      <div class="state-box" style="padding:1rem;width:100%">
-        <div class="spinner" role="progressbar" aria-label="Archief laden"></div>
+      <p style="color:var(--faint);font-size:.875rem;padding:.5rem 0">Archief wordt gecontroleerd…</p>
       </div>
     </div>
   </nav>
@@ -540,7 +539,9 @@ function loadIndex() {
 
         if (!existing.length) {
           document.getElementById('week-nav').innerHTML =
-            '<p style="color:var(--faint);font-size:.875rem">Geen archief beschikbaar.</p>';
+            '<p style="color:var(--faint);font-size:.875rem">Geen archiefweken beschikbaar.</p>';
+          document.getElementById('archive-content').innerHTML =
+            '<div class="state-box"><p style="color:var(--faint)">Er zijn nog geen verdwenen items geregistreerd. Na de eerstvolgende maandag-run verschijnt hier automatisch een weekknop als er items zijn verdwenen.</p></div>';
           return;
         }
 
