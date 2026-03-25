@@ -612,8 +612,8 @@ function buildPeriodFilter() {
 function handleData(data) {
   ALL_ITEMS = data.items || [];
   var generated = new Date(data.generated);
-  document.getElementById('last-updated').textContent =
-    'Bijgewerkt: ' + generated.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + ' · ' + data.count + ' items';
+  var luEl = document.getElementById('last-updated');
+  if(luEl) luEl.textContent = 'Bijgewerkt: ' + generated.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + ' · ' + data.count + ' items';
   buildProductFilter();
   buildPeriodFilter();
   render();
