@@ -505,9 +505,13 @@ function loadIndex() {
       /* Controleer welke bestanden daadwerkelijk bestaan via HEAD-requests */
       Promise.allSettled(
         dates.map(function(dateStr) {
-          return fetch('archive/' + dateStr + '.json', { method: 'HEAD' })
-            .then(function(r) { return { date: dateStr, ok: r.ok }; })
-            .catch(function()   { return { date: dateStr, ok: false }; });
+          return fetch('archive/' + dateStr + '.json?v=' + Date.now())
+            .then(function(r) { if (!r.ok) throw new Error('404'); return r.json(); })
+            .then(function(data) {
+              var hasItems = data.removed && data.removed.length > 0;
+              return { date: dateStr, ok: hasItems };
+            })
+            .catch(function() { return { date: dateStr, ok: false }; });
         })
       ).then(function(results) {
         var existing = results
