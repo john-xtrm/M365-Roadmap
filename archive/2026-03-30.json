@@ -1,0 +1,54 @@
+{
+  "generated": "2026-03-30T07:27:00Z",
+  "date": "2026-03-30",
+  "removed": [
+    {
+      "id": 551187,
+      "title": "Microsoft Copilot (Microsoft 365): Bewerk snel een afbeelding in PowerPoint",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 526793,
+      "title": "Microsoft 365-beheercentrum: Copilot-instellingen – Weergave optimaliseren",
+      "app": "copilot",
+      "prodLabel": "365 admin center",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 523202,
+      "title": "Microsoft Purview: DSPM-gegevensrisicobeoordelingen: onderzoek en herstel op itemniveau",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 496655,
+      "title": "Microsoft Viva: Tevredenheidsgraadstatistiek voor Microsoft 365 Copilot in Copilot Dashboard",
+      "app": "copilot",
+      "prodLabel": "Viva",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 492625,
+      "title": "Microsoft Teams: deel bestand in chat met externe gebruikers",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 464991,
+      "title": "Microsoft 365: voer gedetailleerd herstel op bestandsniveau uit met Microsoft 365 Backup",
+      "app": "other",
+      "prodLabel": "365",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
