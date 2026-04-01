@@ -80,7 +80,7 @@ def classify_action(title, desc):
     for p in ADMIN_PATTERNS:
         if re.search(p, text): return "admin", "IT-beheerder actie vereist"
     for p in USER_PATTERNS:
-        if re.search(p, text): return "user", "Gebruiker kan instellen"
+        if re.search(p, text): return "user", "Medewerker kan instellen"
     return "none", "Automatisch beschikbaar"
 
 # ── Voordeel-omschrijvingen ───────────────────────────────────────────────
