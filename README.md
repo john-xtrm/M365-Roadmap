@@ -166,7 +166,22 @@ Vóór het tonen van weekknoppen haalt `archief.html` elk archiefbestand op en c
 
 ---
 
+## Nieuwe functies (april 2026)
+
+| Functie | Beschrijving |
+|---|---|
+| Directe item-link | Elke kaart heeft een kopieer-knop die `?id=123` naar het klembord kopieert. Bij het openen scrollt de pagina automatisch naar het item en markeert het. |
+| Slimme cache | SessionStorage-cache wordt automatisch ongeldig na de maandag-run (06:00 UTC), zodat gebruikers altijd verse data zien. |
+| Lege staat periode | Als "Vorige week" geen resultaten geeft, verschijnt een suggestieknop om naar "Alle periodes" te schakelen. |
+| Legenda | Compact overzicht van de drie actie-types direct onder de filterbalk. |
+| Zoeken in archief | Zoekbalk op de archiefpagina filtert verdwenen items op titel binnen de geselecteerde week. |
+| GitHub Step Summary | Na elke workflow-run verschijnt een samenvatting in de Actions-tab met item-aantallen en verdwenen items. |
+| Opschonen lege archieven | `fetch_roadmap.py` verwijdert automatisch archiefbestanden met een lege `removed[]` (aangemaakt vóór de nieuwe logica). |
+
+---
+
 ## Performance
+
 
 | Maatregel | Details |
 |---|---|

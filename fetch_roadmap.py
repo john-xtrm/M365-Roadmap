@@ -341,6 +341,19 @@ else:
 # ── Archiefindex bijwerken ────────────────────────────────────────────────
 # Maak een index van alle beschikbare archiefdatums voor de pagina
 cutoff = (datetime.datetime.utcnow() - datetime.timedelta(days=92)).strftime("%Y-%m-%d")
+# Verwijder archiefbestanden met lege removed[] (aangemaakt voor de nieuwe logica)
+for fname in os.listdir(archive_dir):
+    if fname.endswith(".json") and fname != "index.json":
+        fpath = os.path.join(archive_dir, fname)
+        try:
+            with open(fpath, encoding="utf-8") as _f:
+                _d = json.load(_f)
+            if not _d.get("removed"):
+                os.remove(fpath)
+                print(f"Leeg archiefbestand verwijderd: {fname}")
+        except Exception:
+            pass
+
 archive_files = []
 for fname in sorted(os.listdir(archive_dir), reverse=True):
     if fname.endswith(".json") and fname != "index.json":
@@ -355,3 +368,20 @@ archive_index = {
 with open(os.path.join(archive_dir, "index.json"), "w", encoding="utf-8") as f:
     json.dump(archive_index, f, ensure_ascii=False, indent=2)
 print(f"Archiefindex bijgewerkt: {len(archive_files)} weken beschikbaar ✓")
+
+# ── GitHub Actions Step Summary ──────────────────────────────────────────
+summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
+if summary_path:
+    with open(summary_path, "a", encoding="utf-8") as sf:
+        sf.write("## 📊 Microsoft 365 Roadmap — Run samenvatting\n\n")
+        sf.write(f"| | |\n|---|---|\n")
+        sf.write(f"| 🗓️ Bijgewerkt | {result['generated']} |\n")
+        sf.write(f"| 📋 Actieve items | {len(items)} |\n")
+        sf.write(f"| 🆕 Nieuw vertaald | {sum(1 for i in items if not i.get('_cached', False))} |\n")
+        sf.write(f"| 🚀 Verdwenen items | {len(removed)} |\n")
+        sf.write(f"| 🗄️ Archiefweken | {len(archive_files)} |\n")
+        if removed:
+            sf.write("\n### Verdwenen items deze run\n\n")
+            for r in removed:
+                sf.write(f"- **{r['title']}** ({r['statusNl']})\n")
+    print("GitHub Step Summary geschreven ✓")

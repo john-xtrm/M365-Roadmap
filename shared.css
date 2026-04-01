@@ -600,3 +600,52 @@ html[data-theme="dark"] {
 }
 .stat-updated { font-size: 0.75rem; color: var(--faint); margin-left: auto; white-space: nowrap; }
 .stats-left { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; flex: 1; }
+
+/* ── Legenda ─────────────────────────────────────────────────────────────── */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.legend-divider {
+  color: var(--border-s);
+  font-size: 1rem;
+}
+
+/* ── Kopieer-link knop ───────────────────────────────────────────────────── */
+.copy-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-s);
+  background: transparent;
+  color: var(--faint);
+  cursor: pointer;
+  transition: all 0.12s;
+  flex-shrink: 0;
+}
+.copy-link-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border); }
+.card-foot-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+
+/* Item highlight na directe link navigatie */
+@keyframes itemPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--blue-t-rgb, 122,176,245), 0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(var(--blue-t-rgb, 122,176,245), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--blue-t-rgb, 122,176,245), 0); }
+}
+.item-highlight {
+  border-color: var(--blue-t) !important;
+  animation: itemPulse 1.2s ease-out;
+}

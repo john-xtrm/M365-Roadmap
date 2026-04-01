@@ -148,6 +148,20 @@
     </div>
   </nav>
 
+  <!-- Zoekbalk archief -->
+  <div class="search-wrap" id="arch-search-wrap" style="margin-bottom:1.25rem">
+    <span class="search-icon" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </span>
+    <input id="arch-search-input" type="search" class="search-input"
+           placeholder="Zoek in verdwenen items…"
+           aria-label="Zoek in archief" autocomplete="off" spellcheck="false">
+    <button id="arch-search-clear" class="search-clear" onclick="clearArchSearch()"
+            aria-label="Zoekopdracht wissen" style="display:none">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+
   <div id="archive-content"
        role="region"
        aria-label="Inhoud van de gekozen week"
@@ -268,6 +282,7 @@ var currentData   = null;   /* Geladen weekdata */
 var currentDate   = null;   /* ISO datumstring van geladen week */
 var archiveFP     = 'all';  /* Productfilter */
 var archiveCache  = {};      /* Gecachede archiefdata van loadIndex */
+var archQuery     = '';      /* Zoekterm in archief */
 
 /* ── Hulpfuncties ────────────────────────────────────────────────────────── */
 function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -386,9 +401,13 @@ function renderWeek() {
   var allRemoved = currentData.removed || [];
 
   /* Productfilter */
-  var filtered = archiveFP === 'all'
+  var appFiltered = archiveFP === 'all'
     ? allRemoved
     : allRemoved.filter(function(i){ return i.app === archiveFP; });
+  var filtered = !archQuery ? appFiltered :
+    appFiltered.filter(function(i){
+      return (i.title||'').toLowerCase().includes(archQuery);
+    });
 
   var launched   = filtered.filter(function(i){ return i.status === 'launched'; });
   var cancelled  = filtered.filter(function(i){ return i.status === 'cancelled'; });
@@ -444,6 +463,8 @@ function renderWeek() {
   var cardsHtml;
   if (allRemoved.length === 0) {
     cardsHtml = '<p class="archive-empty">Geen items verdwenen van de roadmap in deze week.</p>';
+  } else if (filtered.length === 0 && archQuery) {
+    cardsHtml = '<p class="archive-empty">Geen resultaten voor <strong>'+esc(archQuery)+'</strong>.</p>';
   } else if (filtered.length === 0) {
     cardsHtml = '<p class="archive-empty">Geen items voor dit product verdwenen in deze week.</p>';
   } else {
@@ -580,6 +601,36 @@ function loadIndex() {
         '<p style="margin-top:.75rem;font-size:.75rem;color:var(--faint)">' + esc(msg) + '</p></div>';
     });
 }
+
+
+/* ── Archief zoeken ─────────────────────────────────────────────────────── */
+function clearArchSearch(){
+  var inp=document.getElementById('arch-search-input');
+  if(inp)inp.value='';
+  var clr=document.getElementById('arch-search-clear');
+  if(clr)clr.style.display='none';
+  archQuery='';
+  renderWeek();
+}
+
+/* Zoekfunctie: filter huidige week op titel */
+function archSearch(q){
+  archQuery=q.trim().toLowerCase();
+  var clr=document.getElementById('arch-search-clear');
+  if(clr)clr.style.display=archQuery?'':'none';
+  renderWeek();
+}
+
+/* ── Zoekbalk koppelen ───────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function(){
+  var inp=document.getElementById('arch-search-input');
+  if(!inp)return;
+  var timer=null;
+  inp.addEventListener('input',function(){
+    clearTimeout(timer);
+    timer=setTimeout(function(){archSearch(inp.value);},250);
+  });
+});
 
 /* ── Start ──────────────────────────────────────────────────────────────── */
 loadIndex();

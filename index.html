@@ -192,6 +192,15 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
   </section>
 
+  <!-- Legenda -->
+  <div class="legend" role="note" aria-label="Legenda acties">
+    <span class="legend-item"><span class="act-dot d-none" aria-hidden="true"></span><strong>Automatisch</strong> — geen actie nodig, Microsoft voert dit door</span>
+    <span class="legend-divider" aria-hidden="true">·</span>
+    <span class="legend-item"><span class="act-dot d-admin" aria-hidden="true"></span><strong>IT-beheerder</strong> — technische actie of beoordeling vereist</span>
+    <span class="legend-divider" aria-hidden="true">·</span>
+    <span class="legend-item"><span class="act-dot d-user" aria-hidden="true"></span><strong>Medewerker</strong> — gebruiker kan dit zelf instellen of kiezen</span>
+  </div>
+
   <div class="stats-bar" id="stats-bar" aria-live="polite" aria-atomic="true" role="status"></div>
 
   <div id="root" role="feed" aria-busy="true" aria-label="Roadmap-updates">
@@ -302,6 +311,16 @@ function appIconHTML(key) {
   if (!uri) return '';
   return '<img class="app-icon" src="' + uri + '" alt="" aria-hidden="true">';
 }
+function copyItemLink(id){
+  var url=window.location.origin+window.location.pathname+'?id='+id;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url).then(function(){
+      var btn=document.querySelector('#item-'+id+' .copy-link-btn');
+      if(btn){btn.setAttribute('aria-label','Link gekopieerd!');setTimeout(function(){btn.setAttribute('aria-label','Kopieer directe link naar dit item');},2000);}
+    });
+  }
+}
+
 var LINK_ICON = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 /* ── State ──────────────────────────────────────────────────────────────── */
 var ALL_ITEMS   = [];
@@ -404,7 +423,17 @@ function highlight(text,query){
 function loadData(){
   try{
     var cached=sessionStorage.getItem(CACHE_KEY);
-    if(cached){var p=JSON.parse(cached);if(Date.now()-p._ts<30*60*1000){handleData(p);return;}}
+    if(cached){
+      var p=JSON.parse(cached);
+      /* Geldig als: jonger dan 30min én de data niet van vóór de meest recente maandag-run (06:00 UTC) */
+      var now=Date.now();
+      var d=new Date(); var dow=d.getUTCDay(); /* 0=zo,1=ma */
+      var msSinceMon=((dow===0?6:dow-1)*86400+(d.getUTCHours()*3600+d.getUTCMinutes()*60+d.getUTCSeconds()-6*3600))*1000;
+      if(msSinceMon<0)msSinceMon+=7*86400*1000; /* vorige maandag */
+      var lastMonRun=now-msSinceMon;
+      var fresh=now-p._ts<30*60*1000 && p._ts>lastMonRun;
+      if(fresh){handleData(p);return;}
+    }
   }catch(e){}
   var ctrl=new AbortController();
   var timer=setTimeout(function(){ctrl.abort();},12000);
@@ -550,7 +579,7 @@ function cardHTML(item,query){
   if(item.added)dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> \uD83D\uDCC5 '+fmtDate(item.added)+'</span>';
   if(item.modified&&item.modified!==item.added)
     dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> \u270F\uFE0F '+fmtDate(item.modified)+'</span>';
-  return '<article class="card act-'+item.action+'" aria-label="'+esc(item.title)+'">' +
+  return '<article class="card act-'+item.action+'" id="item-'+item.id+'" aria-label="'+esc(item.title)+'">' +
     '<div class="card-pills">'+
       '<span class="pill '+meta.cls+'">'+appIconHTML(item.app)+esc(item.prodLabel||meta.label)+'</span>'+
       '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+
@@ -567,7 +596,12 @@ function cardHTML(item,query){
       '<span class="release-badge"><span aria-hidden="true">\uD83D\uDE80</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>'+
       (dateRow?'<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>':'')+
     '</div>'+
+    '<div class="card-foot-right">'+
     '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>'+
+    '<button class="copy-link-btn" onclick="copyItemLink('+item.id+')" aria-label="Kopieer directe link naar dit item" title="Kopieer directe link">'+
+      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'+
+    '</button>'+
+    '</div>'+
     '</div></article>';
 }
 
@@ -620,7 +654,21 @@ function render(){
     (lastUpdatedText?'<span class="stat-updated">'+lastUpdatedText+'</span>':'');
   var emptyEl=document.getElementById('empty-msg');
   var rootEl=document.getElementById('root');
-  if(!filtered.length){rootEl.innerHTML='';emptyEl.classList.add('show');return;}
+  if(!filtered.length){
+    rootEl.innerHTML='';
+    /* Specifieke melding bij periode-filter 'vorige week' */
+    if(fA==='pw'){
+      emptyEl.innerHTML='<p>Geen updates gevonden voor de afgelopen kalenderweek.</p>'+
+        '<p style="margin-top:.75rem"><button class="fb" style="margin:0 auto" onclick="'+
+        'document.querySelectorAll(\"#fp-bar .fb\").forEach(function(b){b.setAttribute(\"aria-pressed\",\"false\")});'+
+        'document.querySelector(\"#fp-bar [data-a=\\\"all\\\"]\").setAttribute(\"aria-pressed\",\"true\");'+
+        'fA=\"all\";render();">Toon alle periodes</button></p>';
+    } else {
+      emptyEl.innerHTML='<p>Geen updates gevonden voor deze filterinstellingen.</p>'+
+        '<p style="margin-top:.5rem;font-size:.875rem;color:var(--faint)">Probeer een andere combinatie of pas de zoekopdracht aan.</p>';
+    }
+    emptyEl.classList.add('show');return;
+  }
   emptyEl.classList.remove('show');
   function sec(items,emoji,lbl){
     if(!items.length)return'';
@@ -630,6 +678,11 @@ function render(){
     rootEl.innerHTML=sec(rolling,'\uD83D\uDFE1','Wordt uitgerold')+sec(dev,'\uD83D\uDD35','In ontwikkeling');
   }else{
     rootEl.innerHTML='<section aria-label="'+filtered.length+' updates">'+filtered.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
+  }
+  /* Scroll naar specifiek item via ?id= */
+  if(idParam){
+    var el=document.getElementById('item-'+parseInt(idParam));
+    if(el){setTimeout(function(){el.scrollIntoView({behavior:'smooth',block:'center'});el.classList.add('item-highlight');},150);}
   }
 }
 
