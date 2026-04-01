@@ -185,6 +185,7 @@ select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
           <button class="fb" data-s="all"     aria-pressed="true">Alles</button>
           <button class="fb" data-s="rolling" aria-pressed="false"><span class="act-dot d-admin" aria-hidden="true"></span>Uitgerold</button>
           <button class="fb" data-s="dev"     aria-pressed="false"><span class="act-dot d-user"  aria-hidden="true"></span>Ontwikkeling</button>
+          <button class="fb" data-s="new"     aria-pressed="false">⭐ Nieuw</button>
         </div>
       </div>
     </div>
@@ -577,7 +578,7 @@ function render(){
   var query=fQ;
 
   var withoutApp=ALL_ITEMS.filter(function(i){
-    if(fS!=='all'&&i.status!==fS)return false;
+    if(fS==='new'){if(!i.isNew)return false;}else if(fS!=='all'&&i.status!==fS)return false;
     if(fAct!=='all'&&i.action!==fAct)return false;
     /* Unified periode filter: added OF modified binnen de periode */
     if(fA!=='all'){
