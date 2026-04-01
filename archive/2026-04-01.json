@@ -1,0 +1,62 @@
+{
+  "generated": "2026-04-01T06:03:52Z",
+  "date": "2026-04-01",
+  "removed": [
+    {
+      "id": 559268,
+      "title": "Microsoft Teams: AI Interpreter Agent op Teams-telefoonapparaten",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 548520,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot kan uw document bewerken in PowerPoint",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516576,
+      "title": "Microsoft Copilot (Microsoft 365): Project Manager-agent in M365 Copilot",
+      "app": "copilot",
+      "prodLabel": "Planner",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 499654,
+      "title": "SharePoint: updates voor de nieuwspagina op SharePoint-sites",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 492615,
+      "title": "Microsoft Copilot (Microsoft 365): Access audio overviews from the top of your Word document",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 485739,
+      "title": "Outlook: Import emails from PST file to mailbox in new Outlook for Windows",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 394274,
+      "title": "Microsoft Teams: app-centrisch beheer voor app-implementatie in Teams Admin Center",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
