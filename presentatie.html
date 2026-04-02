@@ -608,12 +608,8 @@ function doBuild(clientName,consultantName,w,weekLabel,nextSession,footerTxt,fil
   }
   function notesList(items) {
     return items.map(function(it,i){
-      return (i+1)+'. ['+(it.prodLabel||it.app||'').toUpperCase()+' | '+badgeLabel(it.action)+' | '+(it.release||'?')+']
-   '+it.title+'
-   '+(it.benefit||it.desc||'');
-    }).join('
-
-');
+      return (i+1)+'. ['+(it.prodLabel||it.app||'').toUpperCase()+' | '+badgeLabel(it.action)+' | '+(it.release||'?')+']\n   '+it.title+'\n   '+(it.benefit||it.desc||'');
+    }).join('\n\n');
   }
   function addProductSlides(emoji, title, accent, items) {
     if (!items.length) return;
@@ -627,9 +623,7 @@ function doBuild(clientName,consultantName,w,weekLabel,nextSession,footerTxt,fil
       s.addText('+ '+(items.length-4)+' meer items in speakernotes',{x:0.3,y:5.08,w:6,h:0.18,fontSize:8.5,color:C.g3,italic:true,fontFace:F.semi});
     }
     addFooter(s);
-    s.addNotes(title+' — '+items.length+' items
-
-'+notesList(items));
+    s.addNotes(title+' — '+items.length+' items\n\n'+notesList(items));
   }
 
   // SLIDE 1: Titelpagina
@@ -641,8 +635,7 @@ function doBuild(clientName,consultantName,w,weekLabel,nextSession,footerTxt,fil
     s.addShape(SH.rect,{x:0,y:0,w:0.18,h:H,fill:{color:C.main},line:{color:C.main}});
     s.addImage({data:LOGO_WIT,x:W-LW_W-0.25,y:0.24,w:LW_W,h:LW_H});
     s.addText('WEKELIJKSE UPDATE',{x:0.4,y:0.5,w:6,h:0.35,fontSize:11,color:C.main,bold:true,charSpacing:4,fontFace:F.cond});
-    s.addText('Microsoft 365
-Roadmap Update',{x:0.4,y:0.9,w:7.2,h:2.0,fontSize:44,color:C.white,bold:true,fontFace:F.head,valign:'top'});
+    s.addText('Microsoft 365\nRoadmap Update',{x:0.4,y:0.9,w:7.2,h:2.0,fontSize:44,color:C.white,bold:true,fontFace:F.head,valign:'top'});
     s.addShape(SH.rect,{x:0.4,y:3.08,w:4.6,h:0.75,fill:{color:C.main},line:{color:C.main}});
     s.addText(weekLabel,{x:0.4,y:3.08,w:4.6,h:0.75,fontSize:12,color:C.dark,bold:true,fontFace:F.semi,align:'center',valign:'middle',margin:0});
     [{val:String(selItems.length),lbl:'Items deze week'},{val:String(grp.itActie.length),lbl:'IT-actie vereist'},{val:String(grp.uitgerold.length),lbl:'Nu uitgerold'}].forEach(function(st,i){
@@ -671,9 +664,7 @@ Roadmap Update',{x:0.4,y:0.9,w:7.2,h:2.0,fontSize:44,color:C.white,bold:true,fon
       s.addText(trunc(h.benefit||h.desc,130),{x:x+0.18,y:y+0.99,w:cw-0.28,h:0.95,fontSize:9,color:C.sub,fontFace:F.semi,margin:0,valign:'top'});
     });
     addFooter(s);
-    s.addNotes('Highlights — top '+highlights.length+' updates
-
-'+notesList(highlights));
+    s.addNotes('Highlights — top '+highlights.length+' updates\n\n'+notesList(highlights));
   })();
 
   // SLIDES 3-6: Per product
@@ -685,9 +676,7 @@ Roadmap Update',{x:0.4,y:0.9,w:7.2,h:2.0,fontSize:44,color:C.white,bold:true,fon
   // IT-actie slides
   if (grp.itActie.length) {
     var sorted = grp.itActie.slice().sort(function(a,b){return(a.release||'z').localeCompare(b.release||'z');});
-    var allN = 'IT-actie — ALLE '+grp.itActie.length+' items
-
-'+notesList(grp.itActie);
+    var allN = 'IT-actie — ALLE '+grp.itActie.length+' items\n\n'+notesList(grp.itActie);
     for (var ci=0; ci<Math.min(sorted.length,8); ci+=4) {
       var chunk=sorted.slice(ci,ci+4);
       var pl=sorted.length>4?' ('+(Math.floor(ci/4)+1)+'/'+(Math.min(2,Math.ceil(sorted.length/4)))+')':'';
@@ -735,9 +724,7 @@ Roadmap Update',{x:0.4,y:0.9,w:7.2,h:2.0,fontSize:44,color:C.white,bold:true,fon
       });
     });
     addFooter(s);
-    s.addNotes('Binnenkort verwacht
-
-'+notesList(byMonth[0].concat(byMonth[1],byMonth[2])));
+    s.addNotes('Binnenkort verwacht\n\n'+notesList(byMonth[0].concat(byMonth[1],byMonth[2])));
   })();
 
   // Afsluiting
@@ -749,8 +736,7 @@ Roadmap Update',{x:0.4,y:0.9,w:7.2,h:2.0,fontSize:44,color:C.white,bold:true,fon
     s.addShape(SH.rect,{x:0,y:0,w:0.18,h:H,fill:{color:C.main,transparency:15},line:{color:C.main,transparency:15}});
     s.addImage({data:LOGO_ZW,x:W-LZ_W-0.3,y:0.28,w:LZ_W,h:LZ_H});
     s.addText('AFSLUITING',{x:0.4,y:0.48,w:6,h:0.32,fontSize:10,color:C.main,bold:true,charSpacing:3,fontFace:F.cond});
-    s.addText('Vragen &
-Volgende stappen',{x:0.4,y:0.85,w:6.5,h:1.6,fontSize:40,color:C.white,bold:true,fontFace:F.head,valign:'top'});
+    s.addText('Vragen &\nVolgende stappen',{x:0.4,y:0.85,w:6.5,h:1.6,fontSize:40,color:C.white,bold:true,fontFace:F.head,valign:'top'});
     [{label:'📋  Actiepunten vandaag',val:'[Noteer acties uit dit overleg]'},
      {label:'📅  Volgende sessie',val:nextSession},
      {label:'🔗  Dashboard live',val:'Bekijk alle updates via het M365 Roadmap Dashboard'}
