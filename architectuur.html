@@ -15,240 +15,244 @@
 <noscript><p style="background:var(--amber-bg);color:var(--amber-t);padding:.75rem 1.5rem;text-align:center;font-size:.875rem">JavaScript is vereist voor de interactieve diagrammen.</p></noscript>
 <a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
 <header role="banner">
-  <div class="hdr">
-    <div class="hdr-left">
-      <div>
-        <h1>Architectuurkaart</h1>
-        <p class="hdr-sub">C4-model (Simon Brown) · Context · Container · Component · Code</p>
-      </div>
-    </div>
-    <div class="hdr-right">
-      <a href="index.html" class="hdr-archive-link" aria-label="Terug naar de hoofdpagina"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Roadmap</a>
-      <a href="kalender.html" class="hdr-archive-link" aria-label="Bekijk de releasekalender"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Kalender</a>
-      <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van verdwenen items"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Archief</a>
-      <a href="presentatie.html" class="hdr-archive-link" aria-label="Bekijk de presentatiegenerator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Presentatie</a>
-      <a href="architectuur.html" class="hdr-archive-link" aria-current="page" aria-label="Huidige pagina: Architectuur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><line x1="5" y1="9" x2="5" y2="12"/><line x1="19" y1="9" x2="19" y2="12"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="12" x2="12" y2="15"/></svg> Architectuur</a>
-      <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Schakel naar donker thema" title="Thema wisselen">
-        <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-        <svg class="icon-sun"  width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      </button>
+<div class="hdr">
+  <div class="hdr-left">
+    <div>
+      <h1>Architectuurkaart</h1>
+      <p class="hdr-sub">C4-model (Simon Brown) · Context · Container · Component · Code</p>
     </div>
   </div>
+  <div class="hdr-right">
+    <a href="index.html" class="hdr-archive-link" aria-label="Terug naar de hoofdpagina"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Roadmap</a>
+    <a href="kalender.html" class="hdr-archive-link" aria-label="Bekijk de releasekalender"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Kalender</a>
+    <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van verdwenen items"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Archief</a>
+    <a href="presentatie.html" class="hdr-archive-link" aria-label="Bekijk de presentatiegenerator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Presentatie</a>
+    <a href="architectuur.html" class="hdr-archive-link" aria-current="page" aria-label="Huidige pagina: Architectuur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><line x1="5" y1="9" x2="5" y2="12"/><line x1="19" y1="9" x2="19" y2="12"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="12" x2="12" y2="15"/></svg> Architectuur</a>
+    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Schakel naar donker thema" title="Thema wisselen">
+      <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+  </div>
+</div>
 </header>
+
 <main id="main-content">
 <div class="main">
 
-  <div class="view-meta">
-    <div class="level-bar" role="group" aria-label="Selecteer detailniveau">
-      <button class="level-btn active" id="btn-context"   onclick="setView('context')">C1 · Context</button>
-      <button class="level-btn"        id="btn-container" onclick="setView('container')">C2 · Container</button>
-      <button class="level-btn"        id="btn-component" onclick="setView('component')">C3 · Component</button>
-      <button class="level-btn"        id="btn-code"      onclick="setView('code')">C4 · Code</button>
+<div class="view-meta">
+  <div class="level-bar" role="group" aria-label="Selecteer detailniveau">
+    <button class="level-btn active" id="btn-context" onclick="setView('context')">C1 · Context</button>
+    <button class="level-btn" id="btn-container" onclick="setView('container')">C2 · Container</button>
+    <button class="level-btn" id="btn-component" onclick="setView('component')">C3 · Component</button>
+    <button class="level-btn" id="btn-code" onclick="setView('code')">C4 · Code</button>
+  </div>
+  <h2 id="view-title">C1 · Context</h2>
+  <p class="vm-q" id="view-question">Wie gebruikt het systeem? Waarmee communiceert het?</p>
+  <p class="vm-d" id="view-desc">Het dashboard in relatie tot externe systemen en eindgebruikers.</p>
+</div>
+
+<div class="legend" aria-label="Legenda trustgrenzen">
+  <span style="font-size:0.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--faint)">Zones:</span>
+  <div class="leg"><div class="leg-dot" style="background:#b91c1c;opacity:.7"></div>External</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--amber-t);opacity:.7"></div>Processing</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--purple-t);opacity:.7"></div>Storage</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--teal-t);opacity:.7"></div>Frontend</div>
+  <div class="leg"><div class="leg-dot" style="background:var(--green-t);opacity:.7"></div>Users</div>
+  <span style="margin-left:auto;font-size:0.6875rem;color:var(--faint)">↑ Klik op een component voor details</span>
+</div>
+
+<div class="dscroll"><div class="dinner">
+
+<!-- C1 CONTEXT -->
+<div id="view-context" class="view">
+<div style="display:grid;grid-template-columns:180px 76px 260px 76px 180px;grid-template-rows:auto auto;row-gap:10px;align-items:stretch">
+  <div class="zone zone-ext" style="grid-column:1;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">External</span></div>
+  <div class="zone zone-proc" style="grid-column:3;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Systeem (in scope)</span></div>
+  <div class="zone zone-users" style="grid-column:5;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Users</span></div>
+
+  <div class="node" onclick="selectNode('ms-csv')" id="n-ms-csv" style="grid-column:1;grid-row:1;z-index:2;margin:1.75rem 0.5rem 0.35rem">
+    <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern systeem</div>
+    <div class="nicon">🌐</div><div class="ntitle">Microsoft CSV API</div>
+    <div class="nsub">aka.ms/MSRoadmapCSV · publiek · geen auth</div>
+  </div>
+  <div class="arw" style="grid-column:2;grid-row:1;z-index:2;margin-top:1.75rem">
+    <div class="arw-line"></div><div class="arw-lbl">CSV fetch</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
+  </div>
+  <div class="node" onclick="selectNode('sys-dashboard')" id="n-sys-dashboard" style="grid-column:3;grid-row:1/3;z-index:2;margin:1.75rem 0.5rem 0.5rem;display:flex;flex-direction:column;justify-content:center">
+    <div class="nbadge" style="background:var(--blue-bg);color:var(--blue-t)">Softwaresysteem</div>
+    <div class="nicon" style="font-size:1.75rem">📋</div>
+    <div class="ntitle" style="font-size:0.9375rem">M365 Roadmap Dashboard</div>
+    <div class="nsub">Vertaalt en visualiseert Microsoft 365 roadmap-updates voor Nederlandse medewerkers. Gratis gehost op GitHub Pages + Actions. Workflow: maandag 06:00 UTC.</div>
+  </div>
+  <div class="arw" style="grid-column:4;grid-row:1;z-index:2;margin-top:1.75rem">
+    <div class="arw-line"></div><div class="arw-lbl">leest roadmap</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
+  </div>
+  <div class="node" onclick="selectNode('user-employee')" id="n-user-employee" style="grid-column:5;grid-row:1;z-index:2;margin:1.75rem 0.5rem 0.35rem">
+    <div class="nbadge" style="background:var(--green-bg);color:var(--green-t)">Gebruiker</div>
+    <div class="nicon">👤</div><div class="ntitle">Medewerker</div>
+    <div class="nsub">Bekijkt updates · filtert op actie-type</div>
+  </div>
+  <div class="node" onclick="selectNode('google-translate')" id="n-google-translate" style="grid-column:1;grid-row:2;z-index:2;margin:0 0.5rem 0.5rem">
+    <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern systeem</div>
+    <div class="nicon">🔤</div><div class="ntitle">Google Translate</div>
+    <div class="nsub">EN → NL via deep_translator</div>
+  </div>
+  <div class="arw" style="grid-column:2;grid-row:2;z-index:2">
+    <div class="arw-line"></div><div class="arw-lbl">EN→NL</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
+  </div>
+  <div class="arw" style="grid-column:4;grid-row:2;z-index:2">
+    <div class="arw-line"></div><div class="arw-lbl">Teams-tab</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
+  </div>
+  <div class="node" onclick="selectNode('user-it')" id="n-user-it" style="grid-column:5;grid-row:2;z-index:2;margin:0 0.5rem 0.5rem">
+    <div class="nbadge" style="background:var(--green-bg);color:var(--green-t)">Gebruiker</div>
+    <div class="nicon">🔧</div><div class="ntitle">IT-beheerder</div>
+    <div class="nsub">Beoordeelt acties · beheert Teams-tab</div>
+  </div>
+</div>
+</div><!-- /c1 -->
+
+<!-- C2 CONTAINER -->
+<div id="view-container" class="view hidden">
+<div style="display:grid;grid-template-columns:148px 44px 155px 44px 148px 44px 152px 44px 138px;grid-template-rows:auto auto;row-gap:10px;align-items:stretch">
+  <div class="zone zone-ext" style="grid-column:1;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">External</span></div>
+  <div class="zone zone-proc" style="grid-column:3;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Processing</span></div>
+  <div class="zone zone-stor" style="grid-column:5;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Storage</span></div>
+  <div class="zone zone-front" style="grid-column:7;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Frontend</span></div>
+  <div class="zone zone-users" style="grid-column:9;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Users</span></div>
+
+  <div class="node" onclick="selectNode('c-ms-api')" id="n-c-ms-api" style="grid-column:1;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern</div>
+    <div class="nicon">🌐</div><div class="ntitle">Microsoft CSV API</div><div class="nsub">Publiek · geen auth</div>
+  </div>
+  <div class="arw" style="grid-column:2;grid-row:1;z-index:2;margin-top:1.75rem"><div class="arw-line"></div><div class="arw-lbl">CSV</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
+  <div class="node" onclick="selectNode('c-actions')" id="n-c-actions" style="grid-column:3;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--amber-bg);color:var(--amber-t)">CI/CD</div>
+    <div class="nicon">⚙️</div><div class="ntitle">GitHub Actions</div><div class="nsub">Maandag 06:00 UTC</div>
+  </div>
+  <div class="arw" style="grid-column:4;grid-row:1/3;z-index:2"><div class="arw-line"></div><div class="arw-lbl">opslaan</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
+  <div class="node" onclick="selectNode('c-data-json')" id="n-c-data-json" style="grid-column:5;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--purple-bg);color:var(--purple-t)">JSON</div>
+    <div class="nicon">📦</div><div class="ntitle">data.json</div><div class="nsub">Snapshot + cache</div>
+  </div>
+  <div class="arw" style="grid-column:6;grid-row:1;z-index:2;margin-top:1.75rem"><div class="arw-line"></div><div class="arw-lbl">deploy</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
+  <div class="node" onclick="selectNode('c-pages')" id="n-c-pages" style="grid-column:7;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--teal-bg);color:var(--teal-t)">Hosting</div>
+    <div class="nicon">🌍</div><div class="ntitle">GitHub Pages</div><div class="nsub">CDN · HTTPS · gratis</div>
+  </div>
+  <div class="arw" style="grid-column:8;grid-row:1/3;z-index:2"><div class="arw-line"></div><div class="arw-lbl">serveert</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
+  <div class="node" onclick="selectNode('c-browser')" id="n-c-browser" style="grid-column:9;grid-row:1/3;z-index:2;margin:1.75rem 0.35rem 0.35rem;display:flex;flex-direction:column;justify-content:center">
+    <div class="nbadge" style="background:var(--green-bg);color:var(--green-t)">Browser</div>
+    <div class="nicon">🌐</div><div class="ntitle">Browser / Teams</div><div class="nsub">Medewerkers &amp; IT</div>
+  </div>
+  <div class="node" onclick="selectNode('c-google')" id="n-c-google" style="grid-column:1;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern</div>
+    <div class="nicon">🔤</div><div class="ntitle">Google Translate</div><div class="nsub">deep_translator · gratis</div>
+  </div>
+  <div class="arw" style="grid-column:2;grid-row:2;z-index:2"><div class="arw-line"></div><div class="arw-lbl">EN→NL</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
+  <div class="node" onclick="selectNode('c-python')" id="n-c-python" style="grid-column:3;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--amber-bg);color:var(--amber-t)">Script</div>
+    <div class="nicon">🐍</div><div class="ntitle">fetch_roadmap.py</div><div class="nsub">Ophalen · vertalen · opslaan</div>
+  </div>
+  <div class="node" onclick="selectNode('c-archive')" id="n-c-archive" style="grid-column:5;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--purple-bg);color:var(--purple-t)">JSON</div>
+    <div class="nicon">🗄️</div><div class="ntitle">archive/</div><div class="nsub">Weekbestanden · max 3 mnd</div>
+  </div>
+  <div class="arw" style="grid-column:6;grid-row:2;z-index:2"><div class="arw-line"></div><div class="arw-lbl">archief</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
+  <div class="node" onclick="selectNode('c-html')" id="n-c-html" style="grid-column:7;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
+    <div class="nbadge" style="background:var(--teal-bg);color:var(--teal-t)">UI</div>
+    <div class="nicon">🖥️</div><div class="ntitle">HTML-pagina's</div>
+    <div class="nsub">index · kalender · archief · presentatie · architectuur + shared.css</div>
+  </div>
+</div>
+</div><!-- /c2 -->
+
+<!-- C3 COMPONENT -->
+<div id="view-component" class="view hidden">
+<div style="display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
+
+  <div class="zone zone-proc" style="flex:1;min-width:320px">
+    <span class="zone-label">Processing — fetch_roadmap.py (GitHub Actions · maandag 06:00 UTC)</span>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:1rem">
+      <div class="node" onclick="selectNode('comp-fetch')" id="n-comp-fetch">
+        <div class="nicon" style="font-size:1rem">📥</div><div class="ntitle" style="font-size:0.75rem">CSV Fetcher</div>
+        <div class="nsub">curl + browser-headers</div>
+      </div>
+      <div class="node" onclick="selectNode('comp-cache')" id="n-comp-cache">
+        <div class="nicon" style="font-size:1rem">💾</div><div class="ntitle" style="font-size:0.75rem">Vertaalcache</div>
+        <div class="nsub">Hash-vergelijking · delta · opgeslagen in data.json</div>
+      </div>
+      <div class="node" onclick="selectNode('comp-translate')" id="n-comp-translate">
+        <div class="nicon" style="font-size:1rem">🔤</div><div class="ntitle" style="font-size:0.75rem">Vertaalmodule</div>
+        <div class="nsub">deep_translator → Google EN→NL</div>
+      </div>
+      <div class="node" onclick="selectNode('comp-detect')" id="n-comp-detect">
+        <div class="nicon" style="font-size:1rem">🔍</div><div class="ntitle" style="font-size:0.75rem">Product- &amp; statusdetectie</div>
+        <div class="nsub">DETECT_PATTERNS · 16 producten</div>
+      </div>
+      <div class="node" style="grid-column:span 2" onclick="selectNode('comp-writer')" id="n-comp-writer">
+        <div class="nicon" style="font-size:1rem">✍️</div><div class="ntitle" style="font-size:0.75rem">Data Writer</div>
+        <div class="nsub">data.json + archive/ + index.json · removed[] · git push</div>
+      </div>
     </div>
-    <h2 id="view-title">C1 · Context</h2>
-    <p class="vm-q" id="view-question">Wie gebruikt het systeem? Waarmee communiceert het?</p>
-    <p class="vm-d" id="view-desc">Het dashboard in relatie tot externe systemen en eindgebruikers.</p>
   </div>
 
-  <div class="legend" aria-label="Legenda trustgrenzen">
-    <span style="font-size:0.6875rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--faint)">Zones:</span>
-    <div class="leg"><div class="leg-dot" style="background:#b91c1c;opacity:.7"></div>External</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--amber-t);opacity:.7"></div>Processing</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--purple-t);opacity:.7"></div>Storage</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--teal-t);opacity:.7"></div>Frontend</div>
-    <div class="leg"><div class="leg-dot" style="background:var(--green-t);opacity:.7"></div>Users</div>
-    <span style="margin-left:auto;font-size:0.6875rem;color:var(--faint)">↑ Klik op een component voor details</span>
+  <div class="zone zone-stor" style="width:190px;flex-shrink:0">
+    <span class="zone-label">Storage</span>
+    <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:1rem">
+      <div class="node" onclick="selectNode('comp-datajson')" id="n-comp-datajson">
+        <div class="nicon" style="font-size:1rem">📦</div><div class="ntitle" style="font-size:0.75rem">data.json</div>
+        <div class="nsub">items[] · removed[] · count · translation_cache</div>
+      </div>
+      <div class="node" onclick="selectNode('comp-archivejson')" id="n-comp-archivejson">
+        <div class="nicon" style="font-size:1rem">🗄️</div><div class="ntitle" style="font-size:0.75rem">archive/YYYY-MM-DD.json</div>
+        <div class="nsub">Weekarchief · auto · max 3 maanden</div>
+      </div>
+      <div class="node" onclick="selectNode('comp-indexjson')" id="n-comp-indexjson">
+        <div class="nicon" style="font-size:1rem">📇</div><div class="ntitle" style="font-size:0.75rem">archive/index.json</div>
+        <div class="nsub">Gesorteerde lijst van archiefdatums</div>
+      </div>
+    </div>
   </div>
 
-  <div class="dscroll"><div class="dinner">
+</div>
 
-  <!-- C1 CONTEXT -->
-  <div id="view-context" class="view">
-    <div style="display:grid;grid-template-columns:180px 76px 260px 76px 180px;grid-template-rows:auto auto;row-gap:10px;align-items:stretch">
-      <div class="zone zone-ext"   style="grid-column:1;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">External</span></div>
-      <div class="zone zone-proc"  style="grid-column:3;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Systeem (in scope)</span></div>
-      <div class="zone zone-users" style="grid-column:5;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Users</span></div>
-
-      <div class="node" onclick="selectNode('ms-csv')" id="n-ms-csv" style="grid-column:1;grid-row:1;z-index:2;margin:1.75rem 0.5rem 0.35rem">
-        <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern systeem</div>
-        <div class="nicon">🌐</div><div class="ntitle">Microsoft CSV API</div>
-        <div class="nsub">aka.ms/MSRoadmapCSV · publiek · geen auth</div>
-      </div>
-      <div class="arw" style="grid-column:2;grid-row:1;z-index:2;margin-top:1.75rem">
-        <div class="arw-line"></div><div class="arw-lbl">CSV fetch</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
-      </div>
-
-      <div class="node" onclick="selectNode('sys-dashboard')" id="n-sys-dashboard" style="grid-column:3;grid-row:1/3;z-index:2;margin:1.75rem 0.5rem 0.5rem;display:flex;flex-direction:column;justify-content:center">
-        <div class="nbadge" style="background:var(--blue-bg);color:var(--blue-t)">Softwaresysteem</div>
-        <div class="nicon" style="font-size:1.75rem">📋</div>
-        <div class="ntitle" style="font-size:0.9375rem">M365 Roadmap Dashboard</div>
-        <div class="nsub">Vertaalt en visualiseert Microsoft 365 roadmap-updates voor Nederlandse medewerkers. Gratis gehost op GitHub Pages + Actions. Workflow: maandag 06:00 UTC.</div>
-      </div>
-
-      <div class="arw" style="grid-column:4;grid-row:1;z-index:2;margin-top:1.75rem">
-        <div class="arw-line"></div><div class="arw-lbl">leest roadmap</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
-      </div>
-      <div class="node" onclick="selectNode('user-employee')" id="n-user-employee" style="grid-column:5;grid-row:1;z-index:2;margin:1.75rem 0.5rem 0.35rem">
-        <div class="nbadge" style="background:var(--green-bg);color:var(--green-t)">Gebruiker</div>
-        <div class="nicon">👤</div><div class="ntitle">Medewerker</div>
-        <div class="nsub">Bekijkt updates · filtert op actie-type</div>
-      </div>
-
-      <div class="node" onclick="selectNode('google-translate')" id="n-google-translate" style="grid-column:1;grid-row:2;z-index:2;margin:0 0.5rem 0.5rem">
-        <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern systeem</div>
-        <div class="nicon">🔤</div><div class="ntitle">Google Translate</div>
-        <div class="nsub">EN → NL via deep_translator</div>
-      </div>
-      <div class="arw" style="grid-column:2;grid-row:2;z-index:2">
-        <div class="arw-line"></div><div class="arw-lbl">EN→NL</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
-      </div>
-      <div class="arw" style="grid-column:4;grid-row:2;z-index:2">
-        <div class="arw-line"></div><div class="arw-lbl">Teams-tab</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div>
-      </div>
-      <div class="node" onclick="selectNode('user-it')" id="n-user-it" style="grid-column:5;grid-row:2;z-index:2;margin:0 0.5rem 0.5rem">
-        <div class="nbadge" style="background:var(--green-bg);color:var(--green-t)">Gebruiker</div>
-        <div class="nicon">🔧</div><div class="ntitle">IT-beheerder</div>
-        <div class="nsub">Beoordeelt acties · beheert Teams-tab</div>
-      </div>
+<div class="zone zone-front">
+  <span class="zone-label">Frontend — GitHub Pages · Vanilla HTML/CSS/JS · Iconen inline base64 · WCAG 2.2 AA · 5 CSS-bestanden</span>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:1rem">
+    <div class="node" onclick="selectNode('comp-index')" id="n-comp-index">
+      <div class="nicon" style="font-size:1rem">🏠</div><div class="ntitle" style="font-size:0.75rem">index.html</div>
+      <div class="nsub">Filters · statistieken · SessionStorage · URL-params · periode: vorige week standaard</div>
     </div>
-  </div><!-- /c1 -->
-
-  <!-- C2 CONTAINER -->
-  <div id="view-container" class="view hidden">
-    <div style="display:grid;grid-template-columns:148px 44px 155px 44px 148px 44px 152px 44px 138px;grid-template-rows:auto auto;row-gap:10px;align-items:stretch">
-      <div class="zone zone-ext"   style="grid-column:1;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">External</span></div>
-      <div class="zone zone-proc"  style="grid-column:3;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Processing</span></div>
-      <div class="zone zone-stor"  style="grid-column:5;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Storage</span></div>
-      <div class="zone zone-front" style="grid-column:7;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Frontend</span></div>
-      <div class="zone zone-users" style="grid-column:9;grid-row:1/3;z-index:0;pointer-events:none"><span class="zone-label">Users</span></div>
-
-      <div class="node" onclick="selectNode('c-ms-api')" id="n-c-ms-api" style="grid-column:1;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern</div>
-        <div class="nicon">🌐</div><div class="ntitle">Microsoft CSV API</div><div class="nsub">Publiek · geen auth</div>
-      </div>
-      <div class="arw" style="grid-column:2;grid-row:1;z-index:2;margin-top:1.75rem"><div class="arw-line"></div><div class="arw-lbl">CSV</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
-
-      <div class="node" onclick="selectNode('c-actions')" id="n-c-actions" style="grid-column:3;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--amber-bg);color:var(--amber-t)">CI/CD</div>
-        <div class="nicon">⚙️</div><div class="ntitle">GitHub Actions</div><div class="nsub">Maandag 06:00 UTC</div>
-      </div>
-      <div class="arw" style="grid-column:4;grid-row:1/3;z-index:2"><div class="arw-line"></div><div class="arw-lbl">opslaan</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
-
-      <div class="node" onclick="selectNode('c-data-json')" id="n-c-data-json" style="grid-column:5;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--purple-bg);color:var(--purple-t)">JSON</div>
-        <div class="nicon">📦</div><div class="ntitle">data.json</div><div class="nsub">Snapshot + cache</div>
-      </div>
-      <div class="arw" style="grid-column:6;grid-row:1;z-index:2;margin-top:1.75rem"><div class="arw-line"></div><div class="arw-lbl">deploy</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
-
-      <div class="node" onclick="selectNode('c-pages')" id="n-c-pages" style="grid-column:7;grid-row:1;z-index:2;margin:1.75rem 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--teal-bg);color:var(--teal-t)">Hosting</div>
-        <div class="nicon">🌍</div><div class="ntitle">GitHub Pages</div><div class="nsub">CDN · HTTPS · gratis</div>
-      </div>
-      <div class="arw" style="grid-column:8;grid-row:1/3;z-index:2"><div class="arw-line"></div><div class="arw-lbl">serveert</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
-
-      <div class="node" onclick="selectNode('c-browser')" id="n-c-browser" style="grid-column:9;grid-row:1/3;z-index:2;margin:1.75rem 0.35rem 0.35rem;display:flex;flex-direction:column;justify-content:center">
-        <div class="nbadge" style="background:var(--green-bg);color:var(--green-t)">Browser</div>
-        <div class="nicon">🌐</div><div class="ntitle">Browser / Teams</div><div class="nsub">Medewerkers &amp; IT</div>
-      </div>
-
-      <div class="node" onclick="selectNode('c-google')" id="n-c-google" style="grid-column:1;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--red-bg);color:#b91c1c">Extern</div>
-        <div class="nicon">🔤</div><div class="ntitle">Google Translate</div><div class="nsub">deep_translator · gratis</div>
-      </div>
-      <div class="arw" style="grid-column:2;grid-row:2;z-index:2"><div class="arw-line"></div><div class="arw-lbl">EN→NL</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
-
-      <div class="node" onclick="selectNode('c-python')" id="n-c-python" style="grid-column:3;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--amber-bg);color:var(--amber-t)">Script</div>
-        <div class="nicon">🐍</div><div class="ntitle">fetch_roadmap.py</div><div class="nsub">Ophalen · vertalen · opslaan</div>
-      </div>
-
-      <div class="node" onclick="selectNode('c-archive')" id="n-c-archive" style="grid-column:5;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--purple-bg);color:var(--purple-t)">JSON</div>
-        <div class="nicon">🗄️</div><div class="ntitle">archive/</div><div class="nsub">Weekbestanden · max 3 mnd</div>
-      </div>
-      <div class="arw" style="grid-column:6;grid-row:2;z-index:2"><div class="arw-line"></div><div class="arw-lbl">archief</div><div class="arw-line" style="background:var(--blue-t)"></div><div class="arw-head"></div></div>
-
-      <div class="node" onclick="selectNode('c-html')" id="n-c-html" style="grid-column:7;grid-row:2;z-index:2;margin:0 0.35rem 0.35rem">
-        <div class="nbadge" style="background:var(--teal-bg);color:var(--teal-t)">UI</div>
-        <div class="nicon">🖥️</div><div class="ntitle">HTML-pagina's</div><div class="nsub">index · archief · kalender + shared.css</div>
-      </div>
+    <div class="node" onclick="selectNode('comp-kalender')" id="n-comp-kalender">
+      <div class="nicon" style="font-size:1rem">📅</div><div class="ntitle" style="font-size:0.75rem">kalender.html</div>
+      <div class="nsub">Kort (6 mnd) + lang (kwartaal) · periodfilter · ?id= deep-link</div>
     </div>
-  </div><!-- /c2 -->
-
-  <!-- C3 COMPONENT -->
-  <div id="view-component" class="view hidden">
-    <div style="display:flex;gap:1rem;margin-bottom:1rem;flex-wrap:wrap">
-      <div class="zone zone-proc" style="flex:1;min-width:320px">
-        <span class="zone-label">Processing — fetch_roadmap.py (GitHub Actions · maandag 06:00 UTC)</span>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:1rem">
-          <div class="node" onclick="selectNode('comp-fetch')" id="n-comp-fetch">
-            <div class="nicon" style="font-size:1rem">📥</div><div class="ntitle" style="font-size:0.75rem">CSV Fetcher</div>
-            <div class="nsub">curl + browser-headers</div>
-          </div>
-          <div class="node" onclick="selectNode('comp-cache')" id="n-comp-cache">
-            <div class="nicon" style="font-size:1rem">💾</div><div class="ntitle" style="font-size:0.75rem">Vertaalcache</div>
-            <div class="nsub">Hash-vergelijking · delta · opgeslagen in data.json</div>
-          </div>
-          <div class="node" onclick="selectNode('comp-translate')" id="n-comp-translate">
-            <div class="nicon" style="font-size:1rem">🔤</div><div class="ntitle" style="font-size:0.75rem">Vertaalmodule</div>
-            <div class="nsub">deep_translator → Google EN→NL</div>
-          </div>
-          <div class="node" onclick="selectNode('comp-detect')" id="n-comp-detect">
-            <div class="nicon" style="font-size:1rem">🔍</div><div class="ntitle" style="font-size:0.75rem">Product- &amp; statusdetectie</div>
-            <div class="nsub">DETECT_PATTERNS · 16 producten</div>
-          </div>
-          <div class="node" style="grid-column:span 2" onclick="selectNode('comp-writer')" id="n-comp-writer">
-            <div class="nicon" style="font-size:1rem">✍️</div><div class="ntitle" style="font-size:0.75rem">Data Writer</div>
-            <div class="nsub">data.json + archive/ + index.json · removed[] · git push</div>
-          </div>
-        </div>
-      </div>
-      <div class="zone zone-stor" style="width:190px;flex-shrink:0">
-        <span class="zone-label">Storage</span>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:1rem">
-          <div class="node" onclick="selectNode('comp-datajson')" id="n-comp-datajson">
-            <div class="nicon" style="font-size:1rem">📦</div><div class="ntitle" style="font-size:0.75rem">data.json</div>
-            <div class="nsub">items[] · removed[] · count · translation_cache</div>
-          </div>
-          <div class="node" onclick="selectNode('comp-archivejson')" id="n-comp-archivejson">
-            <div class="nicon" style="font-size:1rem">🗄️</div><div class="ntitle" style="font-size:0.75rem">archive/YYYY-MM-DD.json</div>
-            <div class="nsub">Weekarchief · auto · max 3 maanden</div>
-          </div>
-          <div class="node" onclick="selectNode('comp-indexjson')" id="n-comp-indexjson">
-            <div class="nicon" style="font-size:1rem">📇</div><div class="ntitle" style="font-size:0.75rem">archive/index.json</div>
-            <div class="nsub">Gesorteerde lijst van archiefdatums</div>
-          </div>
-        </div>
-      </div>
+    <div class="node" onclick="selectNode('comp-archief')" id="n-comp-archief">
+      <div class="nicon" style="font-size:1rem">📚</div><div class="ntitle" style="font-size:0.75rem">archief.html</div>
+      <div class="nsub">loadIndex() + loadWeek() · lazy loading · productfilter</div>
     </div>
-    <div class="zone zone-front">
-      <span class="zone-label">Frontend — GitHub Pages · Vanilla HTML/CSS/JS · Iconen inline base64 · WCAG 2.2 AA</span>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-top:1rem">
-        <div class="node" onclick="selectNode('comp-index')" id="n-comp-index">
-          <div class="nicon" style="font-size:1rem">🏠</div><div class="ntitle" style="font-size:0.75rem">index.html</div>
-          <div class="nsub">Filters · statistieken · SessionStorage · URL-params · periode: vorige week standaard</div>
-        </div>
-        <div class="node" onclick="selectNode('comp-archief')" id="n-comp-archief">
-          <div class="nicon" style="font-size:1rem">📚</div><div class="ntitle" style="font-size:0.75rem">archief.html</div>
-          <div class="nsub">loadIndex() + loadWeek() · lazy loading · productfilter</div>
-        </div>
-        <div class="node" onclick="selectNode('comp-kalender')" id="n-comp-kalender">
-          <div class="nicon" style="font-size:1rem">📅</div><div class="ntitle" style="font-size:0.75rem">kalender.html</div>
-          <div class="nsub">Kort (6 mnd) + lang (kwartaal) · periodfilter · ?id= deep-link</div>
-        </div>
-        <div class="node" onclick="selectNode('comp-css')" id="n-comp-css">
-          <div class="nicon" style="font-size:1rem">🎨</div><div class="ntitle" style="font-size:0.75rem">shared.css</div>
-          <div class="nsub">Design tokens · WCAG 2.2 AA · dark mode · reduced-motion</div>
-        </div>
-      </div>
+    <div class="node" onclick="selectNode('comp-presentatie')" id="n-comp-presentatie">
+      <div class="nicon" style="font-size:1rem">📊</div><div class="ntitle" style="font-size:0.75rem">presentatie.html</div>
+      <div class="nsub">Klantpresentatie generator · product selectie · .pptx via PptxGenJS</div>
     </div>
-  </div><!-- /c3 -->
+    <div class="node" onclick="selectNode('comp-architectuur')" id="n-comp-architectuur">
+      <div class="nicon" style="font-size:1rem">🗺️</div><div class="ntitle" style="font-size:0.75rem">architectuur.html</div>
+      <div class="nsub">C4-diagram · interactieve nodes · detail panel · C1–C4 niveaus</div>
+    </div>
+    <div class="node" onclick="selectNode('comp-css')" id="n-comp-css">
+      <div class="nicon" style="font-size:1rem">🎨</div><div class="ntitle" style="font-size:0.75rem">CSS-bestanden (5x)</div>
+      <div class="nsub">shared.css + kalender · archief · presentatie · architectuur</div>
+    </div>
+  </div>
+</div>
 
-  <!-- C4 CODE -->
-  <div id="view-code" class="view hidden">
-    <div class="section-lbl">fetch_roadmap.py — Sleutelfuncties</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.25rem">
-      <div class="code-block" onclick="selectNode('code-fetch-fn')" id="n-code-fetch-fn"><div class="cb-title">📥 fetch_csv()</div><span class="cc"># Haalt CSV op van Microsoft</span>
+</div><!-- /c3 -->
+
+<!-- C4 CODE -->
+<div id="view-code" class="view hidden">
+<div class="section-lbl">fetch_roadmap.py — Sleutelfuncties</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:1.25rem">
+  <div class="code-block" onclick="selectNode('code-fetch-fn')" id="n-code-fetch-fn"><div class="cb-title">📥 fetch_csv()</div><span class="cc"># Haalt CSV op van Microsoft</span>
 <span class="cf">def</span> <span class="ck">fetch_csv</span>() → <span class="ct">list[dict]</span>:
   url = <span class="cs">"aka.ms/MSRoadmapCSV"</span>
   headers = {
@@ -258,7 +262,7 @@
   raw = <span class="cf">curl</span>(url, headers)
   <span class="cf">return</span> <span class="cf">csv.DictReader</span>(raw)</div>
 
-      <div class="code-block" onclick="selectNode('code-translate-fn')" id="n-code-translate-fn"><div class="cb-title">🔤 translate_items()</div><span class="cc"># Vertaalt alleen nieuwe/gewijzigde items</span>
+  <div class="code-block" onclick="selectNode('code-translate-fn')" id="n-code-translate-fn"><div class="cb-title">🔤 translate_items()</div><span class="cc"># Vertaalt alleen nieuwe/gewijzigde items</span>
 <span class="cf">def</span> <span class="ck">translate_items</span>(
   items: <span class="ct">list[dict]</span>, cache: <span class="ct">dict</span>
 ) → <span class="ct">list[dict]</span>:
@@ -270,11 +274,11 @@
       item[<span class="cs">"title_nl"</span>] = translator
         .<span class="cf">translate</span>(item[<span class="cs">"Title"</span>])</div>
 
-      <div class="code-block" onclick="selectNode('code-detect-fn')" id="n-code-detect-fn"><div class="cb-title">🔍 detect_product()</div><span class="cc"># Matcht CSV-rij op dashboardproduct</span>
+  <div class="code-block" onclick="selectNode('code-detect-fn')" id="n-code-detect-fn"><div class="cb-title">🔍 detect_product()</div><span class="cc"># Matcht CSV-rij op dashboardproduct</span>
 DETECT_PATTERNS = {
-  <span class="cs">"Teams"</span>:     [<span class="cs">"teams"</span>, <span class="cs">"meeting"</span>],
+  <span class="cs">"Teams"</span>: [<span class="cs">"teams"</span>, <span class="cs">"meeting"</span>],
   <span class="cs">"SharePoint"</span>:[<span class="cs">"sharepoint"</span>],
-  <span class="cc">...  # 16 producten totaal</span>
+  <span class="cc">... # 16 producten totaal</span>
 }
 <span class="cf">def</span> <span class="ck">detect_product</span>(
   row: <span class="ct">dict</span>) → <span class="ct">str</span>:
@@ -282,46 +286,42 @@ DETECT_PATTERNS = {
   <span class="cf">return next</span>(k <span class="cf">for</span> k,v
     <span class="cf">in</span> DETECT_PATTERNS
     <span class="cf">if</span> pf <span class="cf">in</span> v, <span class="cs">"other"</span>)</div>
-    </div>
+</div>
 
-    <div class="section-lbl">data.json — Schema</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem">
-      <div class="code-block" onclick="selectNode('code-item-schema')" id="n-code-item-schema"><div class="cb-title">📦 RoadmapItem (één item in items[])</div>{
-  <span class="ck">"id"</span>:           <span class="ct">string</span>   <span class="cc"># Microsoft ID (uniek)</span>
-  <span class="ck">"title_nl"</span>:     <span class="ct">string</span>   <span class="cc"># Vertaalde titel</span>
-  <span class="ck">"benefit_nl"</span>:   <span class="ct">string</span>   <span class="cc"># Vertaalde beschrijving</span>
-  <span class="ck">"title_en"</span>:     <span class="ct">string</span>   <span class="cc"># Originele Engelse titel</span>
-  <span class="ck">"app"</span>:          <span class="ct">string</span>   <span class="cc"># bijv. "teams", "copilot"</span>
-  <span class="ck">"status"</span>:       <span class="ct">enum</span>     <span class="cc"># "rolling" | "dev"</span>
-  <span class="ck">"action"</span>:       <span class="ct">enum</span>     <span class="cc"># "none" | "admin" | "user"</span>
-  <span class="ck">"release"</span>:      <span class="ct">string</span>   <span class="cc"># bijv. "mei 2026"</span>
-  <span class="ck">"added"</span>:        <span class="ct">string</span>   <span class="cc"># ISO-datum toegevoegd</span>
-  <span class="ck">"modified"</span>:     <span class="ct">string</span>   <span class="cc"># ISO-datum laatste wijziging</span>
-  <span class="ck">"moreInfoLink"</span>: <span class="ct">string</span>   <span class="cc"># URL naar Microsoft docs</span>
+<div class="section-lbl">data.json — Schema</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem">
+  <div class="code-block" onclick="selectNode('code-item-schema')" id="n-code-item-schema"><div class="cb-title">📦 RoadmapItem (één item in items[])</div>{
+  <span class="ck">"id"</span>: <span class="ct">string</span>        <span class="cc"># Microsoft ID (uniek)</span>
+  <span class="ck">"title_nl"</span>: <span class="ct">string</span>   <span class="cc"># Vertaalde titel</span>
+  <span class="ck">"benefit_nl"</span>: <span class="ct">string</span> <span class="cc"># Vertaalde beschrijving</span>
+  <span class="ck">"title_en"</span>: <span class="ct">string</span>   <span class="cc"># Originele Engelse titel</span>
+  <span class="ck">"app"</span>: <span class="ct">string</span>         <span class="cc"># bijv. "teams", "copilot"</span>
+  <span class="ck">"status"</span>: <span class="ct">enum</span>       <span class="cc"># "rolling" | "dev"</span>
+  <span class="ck">"action"</span>: <span class="ct">enum</span>       <span class="cc"># "none" | "admin" | "user"</span>
+  <span class="ck">"release"</span>: <span class="ct">string</span>    <span class="cc"># bijv. "mei 2026"</span>
+  <span class="ck">"added"</span>: <span class="ct">string</span>      <span class="cc"># ISO-datum toegevoegd</span>
+  <span class="ck">"modified"</span>: <span class="ct">string</span>   <span class="cc"># ISO-datum laatste wijziging</span>
+  <span class="ck">"moreInfoLink"</span>: <span class="ct">string</span> <span class="cc"># URL naar Microsoft docs</span>
 }</div>
 
-      <div class="code-block" onclick="selectNode('code-root-schema')" id="n-code-root-schema"><div class="cb-title">🗂️ data.json (root object)</div>{
-  <span class="ck">"generated"</span>:         <span class="ct">string</span>
+  <div class="code-block" onclick="selectNode('code-root-schema')" id="n-code-root-schema"><div class="cb-title">🗂️ data.json (root object)</div>{
+  <span class="ck">"generated"</span>: <span class="ct">string</span>
     <span class="cc"># ISO-timestamp van laatste run</span>
-
-  <span class="ck">"count"</span>:             <span class="ct">number</span>
+  <span class="ck">"count"</span>: <span class="ct">number</span>
     <span class="cc"># Totaal aantal actuele items</span>
-
-  <span class="ck">"items"</span>:             <span class="ct">RoadmapItem[]</span>
+  <span class="ck">"items"</span>: <span class="ct">RoadmapItem[]</span>
     <span class="cc"># Alle actuele roadmap-items</span>
-
-  <span class="ck">"removed"</span>:           <span class="ct">RoadmapItem[]</span>
+  <span class="ck">"removed"</span>: <span class="ct">RoadmapItem[]</span>
     <span class="cc"># Verdwenen/gelanceerde items deze run</span>
-
   <span class="ck">"translation_cache"</span>: {
     <span class="ck">"&lt;id&gt;"</span>: { <span class="ck">"title_nl"</span>, <span class="ck">"benefit_nl"</span>, <span class="ck">"hash"</span> }
   }
 }</div>
-    </div>
+</div>
 
-    <div class="section-lbl">index.html — Sleutel-JavaScript</div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem">
-      <div class="code-block" onclick="selectNode('code-loaddata')" id="n-code-loaddata"><div class="cb-title">📡 loadData()</div><span class="cc"># CACHE_KEY = 'm365_data_v1' · TTL 30 min</span>
+<div class="section-lbl">index.html — Sleutel-JavaScript</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem">
+  <div class="code-block" onclick="selectNode('code-loaddata')" id="n-code-loaddata"><div class="cb-title">📡 loadData()</div><span class="cc"># CACHE_KEY = 'm365_data_v1' · TTL 30 min</span>
 <span class="cf">function</span> <span class="ck">loadData</span>():
   cached = <span class="cf">sessionStorage</span>
     .get(<span class="cs">"m365_data_v1"</span>)
@@ -332,49 +332,50 @@ DETECT_PATTERNS = {
   url = <span class="cs">"data.json?v="</span>+<span class="cf">Date.now</span>()
   <span class="cf">fetch</span>(url, {signal: ctrl.signal})</div>
 
-      <div class="code-block" onclick="selectNode('code-filter')" id="n-code-filter"><div class="cb-title">🔎 render() — Periodefilter</div><span class="cc"># fA: "all" | "pw" | "am"</span>
+  <div class="code-block" onclick="selectNode('code-filter')" id="n-code-filter"><div class="cb-title">🔎 render() — Periodefilter</div><span class="cc"># fA: "all" | "pw" | "am"</span>
 <span class="cc"># pw = vorige kalenderweek (standaard)</span>
 <span class="cc"># am = afgelopen 31 dagen</span>
 <span class="cf">function</span> <span class="ck">matchPeriod</span>(item):
   prevWkStart = weekStart(now) - 7d
-  prevWkEnd   = weekEnd(now) - 7d
+  prevWkEnd   = weekEnd(now)   - 7d
   <span class="cf">if</span> fA === <span class="cs">"pw"</span>:
     <span class="cf">return</span> inRange(item.added,
       prevWkStart, prevWkEnd)
-      || inRange(item.modified, ...)</div>
+    || inRange(item.modified, ...)</div>
 
-      <div class="code-block" onclick="selectNode('code-render')" id="n-code-render"><div class="cb-title">🖼️ appIconHTML() + inline iconen</div><span class="cc"># 16 base64 PNG's in APP_ICONS (~80 KB)</span>
+  <div class="code-block" onclick="selectNode('code-render')" id="n-code-render"><div class="cb-title">🖼️ appIconHTML() + inline iconen</div><span class="cc"># 16 base64 PNG's in APP_ICONS (~80 KB)</span>
 <span class="cc"># Inline in elke pagina — geen extern bestand</span>
 APP_ICONS = {
   copilot: <span class="cs">"data:image/png;base64,..."</span>,
   teams:   <span class="cs">"data:image/png;base64,..."</span>,
-  <span class="cc">...  # 16 producten</span>
+  <span class="cc">... # 16 producten</span>
 }
 <span class="cf">function</span> <span class="ck">appIconHTML</span>(key):
   <span class="cf">return</span> <span class="cs">'&lt;img class="app-icon"'</span>
     + <span class="cs">' src="'</span>+APP_ICONS[key]+<span class="cs">'"'</span>
     + <span class="cs">' aria-hidden="true"&gt;'</span></div>
-    </div>
-  </div><!-- /c4 -->
+</div>
 
-  </div></div><!-- /dinner /dscroll -->
+</div><!-- /c4 -->
 
-  <!-- Detail-panel -->
-  <div id="detail-panel" class="hidden" aria-live="polite">
-    <div class="dp-head">
-      <div>
-        <div id="dp-badge" style="display:inline-block;margin-bottom:0.35rem;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:2px 8px;border-radius:100px"></div>
-        <div class="dp-title" id="dp-title"></div>
-        <div class="dp-sub"   id="dp-sub"></div>
-      </div>
-      <button class="dp-close" onclick="closeDetail()" aria-label="Sluit detail-panel">✕ Sluit</button>
+</div></div><!-- /dinner /dscroll -->
+
+<!-- Detail-panel -->
+<div id="detail-panel" class="hidden" aria-live="polite">
+  <div class="dp-head">
+    <div>
+      <div id="dp-badge" style="display:inline-block;margin-bottom:0.35rem;font-size:0.6rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:2px 8px;border-radius:100px"></div>
+      <div class="dp-title" id="dp-title"></div>
+      <div class="dp-sub" id="dp-sub"></div>
     </div>
-    <div class="dp-grid">
-      <div><div class="dp-slabel">Functie</div><p class="dp-text" id="dp-function"></p></div>
-      <div><div class="dp-slabel">Logica / Werking</div><p class="dp-text" id="dp-logic"></p></div>
-      <div><div class="dp-slabel">Technische details</div><p class="dp-text" id="dp-tech"></p></div>
-    </div>
+    <button class="dp-close" onclick="closeDetail()" aria-label="Sluit detail-panel">✕ Sluit</button>
   </div>
+  <div class="dp-grid">
+    <div><div class="dp-slabel">Functie</div><p class="dp-text" id="dp-function"></p></div>
+    <div><div class="dp-slabel">Logica / Werking</div><p class="dp-text" id="dp-logic"></p></div>
+    <div><div class="dp-slabel">Technische details</div><p class="dp-text" id="dp-tech"></p></div>
+  </div>
+</div>
 
 </div></main>
 
@@ -388,7 +389,6 @@ APP_ICONS = {
 <script>
 'use strict';
 
-/* ── Thema-toggle ───────────────────────────────────────────────────────── */
 (function(){
   var stored = localStorage.getItem('theme');
   if (stored === 'dark' || stored === 'light') {
@@ -397,99 +397,336 @@ APP_ICONS = {
 })();
 
 function toggleTheme() {
-  var html    = document.documentElement;
+  var html = document.documentElement;
   var current = html.getAttribute('data-theme');
-  var sys     = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var isDark  = current === 'dark' || (!current && sys);
-  var next    = isDark ? 'light' : 'dark';
+  var sys = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  var isDark = current === 'dark' || (!current && sys);
+  var next = isDark ? 'light' : 'dark';
   html.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
   var btn = document.getElementById('theme-btn');
   if (btn) btn.setAttribute('aria-label', next === 'dark' ? 'Schakel naar licht thema' : 'Schakel naar donker thema');
 }
 
-
 const VIEWS = {
-  context:   {title:'C1 · Context',    q:'Wie gebruikt het systeem? Waarmee communiceert het?',      d:'Het dashboard in relatie tot externe systemen en eindgebruikers.'},
-  container: {title:'C2 · Container',  q:'Uit welke uitvoerbare onderdelen bestaat het systeem?',     d:'Scripts, bestanden en hosting — van externe bron tot eindgebruiker.'},
-  component: {title:'C3 · Component',  q:'Wat zit er binnen elke container?',                         d:'Interne bouwblokken van de Python-pipeline en de statische frontend.'},
-  code:      {title:'C4 · Code',       q:'Hoe ziet de concrete implementatie eruit?',                 d:'Sleutelfuncties, datastructuren en JSON-schema van het dashboard.'}
+  context:   {title:'C1 · Context',   q:'Wie gebruikt het systeem? Waarmee communiceert het?',       d:'Het dashboard in relatie tot externe systemen en eindgebruikers.'},
+  container: {title:'C2 · Container', q:'Uit welke uitvoerbare onderdelen bestaat het systeem?',      d:'Scripts, bestanden en hosting — van externe bron tot eindgebruiker.'},
+  component: {title:'C3 · Component', q:'Wat zit er binnen elke container?',                          d:'Interne bouwblokken van de Python-pipeline en de statische frontend.'},
+  code:      {title:'C4 · Code',      q:'Hoe ziet de concrete implementatie eruit?',                  d:'Sleutelfuncties, datastructuren en JSON-schema van het dashboard.'}
 };
+
 const ND = {
-  'ms-csv':          {badge:'🌐 Extern systeem',bc:'var(--red-bg)',btc:'#b91c1c',title:'Microsoft CSV API',sub:'Publieke roadmap-feed van Microsoft 365',fn:'Levert de volledige M365 roadmap als CSV. Bevat alle geplande, uitrollende en uitgerolde features.',logic:'Publiek toegankelijk op aka.ms/MSRoadmapCSV. GitHub Actions haalt dit op elke maandag 06:00 UTC.',tech:'HTTP GET met browser-headers. Kolommen: Title, Description, Status, PublicRoadmapStatus, ProductFamily, Product, MoreInfoLink, PublicDisclosureAvailabilityDate.'},
-  'google-translate':{badge:'🔤 Extern systeem',bc:'var(--red-bg)',btc:'#b91c1c',title:'Google Translate',sub:'EN → NL via deep_translator',fn:'Vertaalt Engelstalige roadmap-titels en -beschrijvingen naar Nederlands.',logic:'Alleen nieuwe of gewijzigde items (delta) worden vertaald. Bestaande vertalingen worden uit de cache in data.json geladen.',tech:'pip: deep_translator. Gratis tier. ~50-200 vertalingen/week.'},
-  'sys-dashboard':   {badge:'📋 Softwaresysteem',bc:'var(--blue-bg)',btc:'var(--blue-t)',title:'M365 Roadmap Dashboard',sub:'Gratis, automatisch bijgewerkt',fn:'Verzamelt, vertaalt en visualiseert M365 roadmap-updates in Nederlands voor medewerkers en IT.',logic:'Wekelijks: GitHub Actions → fetch_roadmap.py → data.json → git push → GitHub Pages. Geen server, geen database.',tech:'Python + GitHub Actions + GitHub Pages + Vanilla HTML/CSS/JS. €0/mnd. 16 iconen inline base64.'},
-  'user-employee':   {badge:'👤 Gebruiker',bc:'var(--green-bg)',btc:'var(--green-t)',title:'Medewerker',sub:'Niet-technische eindgebruiker',fn:'Bekijkt aankomende updates voor de dagelijkse werkzaamheden.',logic:'Browser of Teams-tab. Filters: product, actie, periode (vorige week standaard), status. Geen login.',tech:'SessionStorage 30 min. Geen cookies, geen tracking. Werkt als Teams Website-tab.'},
-  'user-it':         {badge:'🔧 Gebruiker',bc:'var(--green-bg)',btc:'var(--green-t)',title:'IT-beheerder',sub:'Technische beheerder',fn:'Beoordeelt wijzigingen die IT-actie vereisen. Beheert repository en optioneel Teams-tabblad.',logic:'Filter "IT-beheerder". Handmatig starten via Actions → Run workflow.',tech:'Producten uitbreiden via DETECT_PATTERNS + APP_META/APP_ORDER/APP_ICONS in HTML + pill in shared.css.'},
-  'c-ms-api':        {badge:'🌐 Extern',bc:'var(--red-bg)',btc:'#b91c1c',title:'Microsoft CSV API',sub:'aka.ms/MSRoadmapCSV',fn:'Publieke Microsoft feed met M365 roadmap in CSV.',logic:'Maandag 06:00 UTC opgehaald. Handmatige run ook mogelijk.',tech:'UTF-8 CSV. Kolommen: Title, Description, MoreInfoLink, PublicDisclosureAvailabilityDate, Status, PublicRoadmapStatus, ProductFamily, Product.'},
-  'c-google':        {badge:'🔤 Extern',bc:'var(--red-bg)',btc:'#b91c1c',title:'Google Translate',sub:'via deep_translator',fn:'Gratis machinale vertaling EN→NL.',logic:'Alleen items zonder cached vertaling worden vertaald.',tech:'pip: deep_translator. Geen API-sleutel voor gratis tier.'},
-  'c-actions':       {badge:'⚙️ CI/CD',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'GitHub Actions',sub:'Maandag 06:00 UTC + handmatig',fn:'Automatiseert: ophalen → vertalen → opslaan → publiceren.',logic:'Workflow: checkout → pip install → fetch_roadmap.py → git add/commit → push → Pages herdeployt.',tech:'.github/workflows/update-roadmap.yml. Trigger: cron "0 6 * * 1". Looptijd ~3-5 min.'},
-  'c-python':        {badge:'🐍 Script',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'fetch_roadmap.py',sub:'Data-pipeline',fn:'Kernscript: haalt CSV op, vertaalt, detecteert, schrijft alle outputbestanden.',logic:'1) CSV ophalen 2) cache laden 3) delta detecteren 4) vertalen 5) producten detecteren 6) data.json + archief wegschrijven.',tech:'Python 3.x. dep: deep_translator. Rest stdlib.'},
-  'c-data-json':     {badge:'📦 JSON',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'data.json',sub:'Actueel snapshot',fn:'Primaire databron: items[], removed[], count, generated, translation_cache.',logic:'Overschreven bij elke run. translation_cache beschermt handmatige correcties.',tech:'Cache-buster ?v=timestamp. SessionStorage 30 min TTL. ~2-4 MB.'},
-  'c-archive':       {badge:'🗄️ JSON',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'archive/',sub:'Verdwenen items + index',fn:'Archiefbestanden per week met verdwenen roadmap-items. Alleen aangemaakt als er items verdwenen zijn.',logic:'Elke run: als removed[] niet leeg → archive/YYYY-MM-DD.json opslaan. Bestanden ouder dan 90 dagen automatisch verwijderd.',tech:'Structuur: {generated, date, removed:[]}. Max ~13 bestanden. archief.html valideert elk bestand via fetch vóór tonen knop.'},
-  'c-pages':         {badge:'🌍 Hosting',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'GitHub Pages',sub:'CDN · HTTPS · gratis',fn:'Host de volledige frontend. Automatisch herdeployment bij git push.',logic:'Serveert vanuit main-branch root. Na elke Actions-run direct beschikbaar.',tech:'https://john-xtrm.github.io/M365-Roadmap/. Gratis voor publieke repos. Koppelbaar als Teams Website-tab.'},
-  'c-html':          {badge:'🖥️ UI',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:"HTML-pagina's",sub:'index · archief · kalender · presentatie + shared.css',fn:"Vijf pagina's plus gedeeld CSS. 16 product-iconen inline base64. Consistente navigatie: Roadmap·Kalender·Archief·Presentatie·Architectuur.",logic:"Elke pagina laadt data.json client-side. innerHTML batch-render. APP_ICONS/APP_META/appIconHTML inline.",tech:'Vanilla HTML5/CSS3/JS. WCAG 2.2 AA. Werkt in sandboxed Teams-tabs.'},
-  'c-browser':       {badge:'🌐 Browser',bc:'var(--green-bg)',btc:'var(--green-t)',title:'Browser / Teams-tab',sub:'Eindgebruikersinterface',fn:'Dashboard in browser of ingesloten Teams Website-tab.',logic:'Haalt HTML op van CDN, voert JS uit, cachet data.json 30 min SessionStorage.',tech:'Alle moderne browsers. Teams: Kanaal → + → Website → URL. Geen cookies, geen login.'},
-  'comp-fetch':      {badge:'📥 Component',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'CSV Fetcher',sub:'fetch_roadmap.py',fn:'Haalt Microsoft CSV op via curl met browser-headers.',logic:'subprocess.run(["curl", "-H", "User-Agent: Mozilla/5.0", url]).',tech:'Retourtype: list[dict]. Geen auth.'},
-  'comp-cache':      {badge:'💾 Component',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'Vertaalcache',sub:'fetch_roadmap.py',fn:'Laadt vertalingen en detecteert wijzigingen via source-hash.',logic:'Hash(Title+Description) per item. Gewijzigd → vertaalmodule aanroepen.',tech:'Dict: {id:{title_nl,benefit_nl,hash}}. Opgeslagen in data.json.translation_cache.'},
-  'comp-translate':  {badge:'🔤 Component',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'Vertaalmodule',sub:'fetch_roadmap.py',fn:'Vertaalt title + benefit van nieuwe/gewijzigde items EN→NL.',logic:'GoogleTranslator(source="en",target="nl").translate().',tech:'deep_translator. Gratis tier. ~50-200/week.'},
-  'comp-detect':     {badge:'🔍 Component',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'Product- & statusdetectie',sub:'fetch_roadmap.py',fn:'Bepaalt dashboardproduct (16 stuks) en status per item.',logic:'DETECT_PATTERNS dict op ProductFamily. Status uit PublicRoadmapStatus.',tech:'Uitbreiden: DETECT_PATTERNS + APP_META/APP_ORDER/APP_ICONS + pill in shared.css.'},
-  'comp-writer':     {badge:'✍️ Component',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'Data Writer',sub:'fetch_roadmap.py',fn:'Schrijft data.json (incl. removed[]), weekarchief en index.json.',logic:'1) data.json 2) archive/YYYY-MM-DD.json 3) verwijder >90d 4) index.json. Dan git commit+push.',tech:'json.dump(ensure_ascii=False). Commit via Actions. Pages herdeployt automatisch.'},
-  'comp-datajson':   {badge:'📦 Storage',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'data.json',sub:'Huidig snapshot',fn:'items[], removed[], count, generated, translation_cache.',logic:'Wekelijks overschreven. translation_cache beschermt handmatige correcties.',tech:'SessionStorage 30 min. Cache-buster ?v=timestamp.'},
-  'comp-archivejson':{badge:'🗄️ Storage',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'archive/YYYY-MM-DD.json',sub:'Verdwenen items per week',fn:'Bevat alleen items die die week van de roadmap verdwenen zijn (Launched/Cancelled). Wordt alleen aangemaakt als removed[] niet leeg is. Lege bestanden worden automatisch verwijderd bij volgende run.',logic:'Aangemaakt door fetch_roadmap.py alleen als removed[] niet leeg is. Automatisch verwijderd na 90 dagen.',tech:'Structuur: {generated, date, removed:[]}. Max ~13 bestanden. archief.html valideert elk bestand vóór het tonen van een knop.'},
-  'comp-indexjson':  {badge:'📇 Storage',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'archive/index.json',sub:'Index van archiefdatums',fn:'Gesorteerde lijst van beschikbare weekdatums voor archief.html.',logic:'Herschreven bij elke run. Meest recent eerst.',tech:'{ dates: ["2026-03-24","2026-03-17",...] }. Max ~13 entries.'},
-  'comp-index':      {badge:'🏠 Frontend',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'index.html',sub:'Hoofdpagina',fn:'Hoofdpagina met alle roadmap-items. Filters: product, actie, periode, status (incl. Nieuw), sortering. Legenda voor actie-types. Directe item-links via ?id=. Slimme SessionStorage-cache met maandag-invalidatie.',logic:'loadData() → handleData() → buildAppFilter() → render(). URL-params: ?id= en ?zoek=. Debounce 200ms.',tech:'SessionStorage-cache (30min + maandag-invalidatie). copyItemLink() voor directe links. item-highlight animatie bij ?id= navigatie. Lege staat met periode-suggestie.'},
-  'comp-archief':    {badge:'📚 Frontend',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'archief.html',sub:'Verdwenen roadmap-items per week',fn:'Toont per week welke items van de roadmap zijn verdwenen (uitgerold of geannuleerd). Zoekbalk filtert op titel binnen de geselecteerde week. Weekknoppen alleen zichtbaar als het bestand verdwenen items bevat.',logic:'loadIndex() haalt index.json op → elk archiefbestand wordt gefetcht en removed.length gecontroleerd → alleen weken mét items krijgen een knop → loadWeek() toont items gegroepeerd per status.',tech:'Promise.allSettled voor parallelle bestandsvalidatie. Zoekfunctie met 250ms debounce. Secties: Uitgerold / Geannuleerd. Productfilter op verdwenen items.'},
-  'comp-presentatie': { badge:'📊 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',title:'presentatie.html', sub:'Presentatiegenerator',fn:'Genereert klantgerichte .pptx-presentaties op maat. Selecteer producten, week en naam. Download direct.',logic:'Haalt data.json op. Filtert op geselecteerde producten en week. Roept generate-pptx.js aan via Node.js HTTP-server of direct.',tech:'PptxGenJS voor .pptx generatie. ProductCard-selectie UI. Week-tabs. Inline preview-statistieken. Dark mode consistent via shared.css.' },
-  'comp-kalender':   {badge:'📅 Frontend',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'kalender.html',sub:'Releasekalender',fn:'Kort (6 mnd per maand) + lang (per kwartaal). Periodfilter + productfilter + actiefilter.',logic:'Details via ?id= naar index.html. Mini-uitsplitsing #IT/#medewerker/#auto per periode.',tech:'setView() wisselt kort/lang. buildPeriodFilter() bouwt jaarknoppen.'},
-  'comp-css':        {badge:'🎨 Frontend',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'shared.css',sub:'WCAG 2.2 AA',fn:'Gedeelde stijlen, design tokens, WCAG-conformiteit, dark mode, reduced-motion.',logic:'CSS custom properties als tokens. :focus-visible, scroll-margin-top, min-height 44px, rem.',tech:'Criteria: 1.1.1,1.3.1,1.4.3,1.4.4,2.4.1,2.4.7,2.4.11,2.5.8,3.1.1,4.1.2,4.1.3. .fb/.arch-fb: inline-flex+gap.'},
-  'code-fetch-fn':   {badge:'📥 Functie',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'fetch_csv()',sub:'fetch_roadmap.py',fn:'Haalt de Microsoft CSV op via curl met browser-headers.',logic:'subprocess.run(["curl","-H",...]) om bot-blokkering te voorkomen.',tech:'Retourtype: list[dict].'},
-  'code-translate-fn':{badge:'🔤 Functie',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'translate_items()',sub:'fetch_roadmap.py',fn:'Vertaalt title+benefit van nieuwe/gewijzigde items (delta).',logic:'Hash van Engelse tekst vs. cache. Bij verschil: GoogleTranslator aanroepen.',tech:'~50-200 API-calls/week.'},
-  'code-detect-fn':  {badge:'🔍 Functie',bc:'var(--amber-bg)',btc:'var(--amber-t)',title:'detect_product()',sub:'fetch_roadmap.py',fn:'Matcht ProductFamily op één van 16 dashboardproducten.',logic:'DETECT_PATTERNS dict, O(1). Onbekend → "other".',tech:'16 producten geconfigureerd.'},
-  'code-item-schema':{badge:'📦 Schema',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'RoadmapItem',sub:'data.json · items[]',fn:'Structuur van één item na verwerking.',logic:'app = product-sleutel (bijv. "teams"). status: "rolling"|"dev". action: "none"|"admin"|"user".',tech:'release: vrije tekst. added/modified: ISO-datumstrings.'},
-  'code-root-schema':{badge:'🗂️ Schema',bc:'var(--purple-bg)',btc:'var(--purple-t)',title:'data.json root',sub:'Volledig outputschema',fn:'generated, count, items[], removed[], translation_cache.',logic:'removed[] bevat items verdwenen of gelanceerd deze run — zichtbaar als "wijzigingen" in header.',tech:'JSON UTF-8. ~2-4 MB. SessionStorage cache 30 min.'},
-  'code-loaddata':   {badge:'📡 Functie',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'loadData()',sub:'index.html',fn:'Laadt data.json met SessionStorage-cache (30 min).',logic:'CACHE_KEY="m365_data_v1". Cache-buster ?v=Date.now(). AbortController timeout 12s.',tech:'sessionStorage.getItem/setItem. Foutmelding bij timeout.'},
-  'code-filter':     {badge:'🔎 Functie',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'render() — periodefilter',sub:'index.html',fn:'fA: "all"|"pw"|"am". pw=vorige kalenderweek (standaard), am=31 dagen.',logic:'prevWkStart = weekStart(now)-7d. inRange(item.added|modified, prevWkStart, prevWkEnd).',tech:'isoWeek() + weekStart() + weekEnd(). Standaard: fA="pw".'},
-  'code-render':     {badge:'🖼️ Functie',bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'appIconHTML() + inline iconen',sub:'alle pagina\'s',fn:'Produceert <img> met base64 data-URI voor pills en filterknoppen.',logic:'APP_ICONS: 16 base64 PNG\'s inline in elke pagina. Geen extern bestand.',tech:'aria-hidden="true". .pill + .fb: inline-flex + gap:0.3rem voor icoon-tekst scheiding.'},
-  'code-cache':      {badge:'📦 Cache', bc:'var(--teal-bg)',btc:'var(--teal-t)',title:'loadData() / Cache', sub:'SessionStorage + maandag-invalidatie',fn:'Laadt data.json met slimme caching. Cache ongeldig na maandag 06:00 UTC of na 30 minuten.',logic:'Vergelijkt cache timestamp met laatste maandag-run. Bij twijfel: verse fetch.',tech:'sessionStorage. _ts timestamp. lastMonRun berekening. CACHE_KEY versie-key.' }
+  /* ── C1 Context ───────────────────────────────────────────────────────── */
+  'ms-csv': {
+    badge:'🌐 Extern systeem', bc:'var(--red-bg)', btc:'#b91c1c',
+    title:'Microsoft CSV API', sub:'Publieke roadmap-feed van Microsoft 365',
+    fn:'Levert de volledige M365 roadmap als CSV-download. Bevat alle features met status Geplanned, In Development, Rolling Out en Launched.',
+    logic:'Publiek toegankelijk op aka.ms/MSRoadmapCSV zonder authenticatie. GitHub Actions haalt de feed op elke maandag 06:00 UTC. De feed bevat ~1.900 actuele features; oudere items verdwijnen automatisch uit de feed.',
+    tech:'HTTP GET met browser-achtige headers (User-Agent, Accept-Language). UTF-8 CSV. Kolommen: Title, Description, Status, PublicRoadmapStatus, ProductFamily, Product, MoreInfoLink, PublicDisclosureAvailabilityDate.'
+  },
+  'google-translate': {
+    badge:'🔤 Extern systeem', bc:'var(--red-bg)', btc:'#b91c1c',
+    title:'Google Translate', sub:'EN → NL via deep_translator',
+    fn:'Verzorgt de machinale vertaling van Engelstalige roadmap-titels en -beschrijvingen naar Nederlands.',
+    logic:'Uitsluitend nieuwe of gewijzigde items (delta-detectie via SHA-hash) worden vertaald. Eerder vertaalde items worden uit de lokale cache in data.json geladen, zodat onnodige API-aanroepen worden vermeden.',
+    tech:'Python-pakket: deep_translator. Gratis tier vereist geen API-sleutel. Gemiddeld 50–200 vertalingen per wekelijkse run. Vertaaltijd: ~1–3 minuten afhankelijk van het aantal wijzigingen.'
+  },
+  'sys-dashboard': {
+    badge:'📋 Softwaresysteem', bc:'var(--blue-bg)', btc:'var(--blue-t)',
+    title:'M365 Roadmap Dashboard', sub:'Gratis, automatisch bijgewerkt',
+    fn:'Verzamelt, vertaalt en visualiseert Microsoft 365 roadmap-updates wekelijks in het Nederlands voor medewerkers en IT-beheerders.',
+    logic:'Elke maandag: GitHub Actions voert fetch_roadmap.py uit → resultaat wordt als data.json opgeslagen → GitHub Pages herdeployt automatisch. Geen server, geen database, geen kosten.',
+    tech:'Python 3 + GitHub Actions + GitHub Pages + Vanilla HTML/CSS/JS. €0/maand. 5 pagina\'s, 16 product-iconen inline base64, WCAG 2.2 AA.'
+  },
+  'user-employee': {
+    badge:'👤 Gebruiker', bc:'var(--green-bg)', btc:'var(--green-t)',
+    title:'Medewerker', sub:'Niet-technische eindgebruiker',
+    fn:'Raadpleegt het dashboard om te zien welke Microsoft 365-updates er aankomen en wat die betekenen voor de dagelijkse werkzaamheden.',
+    logic:'Opent het dashboard in de browser of als Teams Website-tab. Filtert op product, actie-type en periode. Standaard worden items van de vorige kalenderweek getoond. Geen login of installatie vereist.',
+    tech:'SessionStorage 30 min. Geen cookies, geen tracking. Werkt volledig in sandboxed Teams-tab (geen server-side logica vereist).'
+  },
+  'user-it': {
+    badge:'🔧 Gebruiker', bc:'var(--green-bg)', btc:'var(--green-t)',
+    title:'IT-beheerder', sub:'Technische beheerder',
+    fn:'Beoordeelt roadmap-items waarbij IT-actie vereist is, beheert de GitHub-repository en beheert optioneel de Teams-tab voor de organisatie.',
+    logic:'Gebruikt het filter "IT-beheerder" om direct de actiepunten te zien. Kan handmatig een nieuwe datafetch starten via GitHub Actions → Run workflow. Verantwoordelijk voor het uitbreiden van productdetectie bij nieuwe M365-producten.',
+    tech:'Producten uitbreiden: DETECT_PATTERNS in fetch_roadmap.py + APP_META/APP_ORDER/APP_ICONS in HTML + pill-klasse in shared.css. Teams-tab instellen: Kanaal → + → Website → URL van de GitHub Pages.'
+  },
+
+  /* ── C2 Container ──────────────────────────────────────────────────────── */
+  'c-ms-api': {
+    badge:'🌐 Extern', bc:'var(--red-bg)', btc:'#b91c1c',
+    title:'Microsoft CSV API', sub:'aka.ms/MSRoadmapCSV',
+    fn:'Publieke Microsoft feed die de volledige M365 roadmap als CSV-bestand aanbiedt.',
+    logic:'Wordt maandag 06:00 UTC opgehaald door GitHub Actions. Handmatige run ook mogelijk via Actions-tab → Run workflow. De feed is stabiel maar Microsoft past de kolomstructuur incidenteel aan.',
+    tech:'UTF-8 CSV. Relevante kolommen: Title, Description, MoreInfoLink, PublicDisclosureAvailabilityDate, Status, PublicRoadmapStatus, ProductFamily, Product. Geen authenticatie.'
+  },
+  'c-google': {
+    badge:'🔤 Extern', bc:'var(--red-bg)', btc:'#b91c1c',
+    title:'Google Translate', sub:'via deep_translator',
+    fn:'Gratis machinale vertaaldienst voor de EN→NL vertaling van roadmap-inhoud.',
+    logic:'Alleen items zonder geldige cached vertaling worden naar Google gestuurd. De hash van Title+Description bepaalt of een item als gewijzigd wordt beschouwd.',
+    tech:'pip: deep_translator. Gratis tier, geen API-sleutel nodig. Rate limit: ~100 verzoeken per run. Vertaalkwaliteit is voldoende voor professioneel gebruik, soms lichte nabewerking gewenst.'
+  },
+  'c-actions': {
+    badge:'⚙️ CI/CD', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'GitHub Actions', sub:'Maandag 06:00 UTC + handmatig',
+    fn:'Automatiseert de volledige datapipeline: ophalen → vertalen → opslaan → publiceren.',
+    logic:'Workflow-stappen: 1) checkout repo, 2) pip install deep_translator, 3) python fetch_roadmap.py, 4) git add/commit data.json + archive/, 5) git push → GitHub Pages herdeployt automatisch.',
+    tech:'.github/workflows/update-roadmap.yml. Trigger: schedule cron "0 6 * * 1" + workflow_dispatch. Typische looptijd: 3–5 minuten. Gratis voor publieke repositories.'
+  },
+  'c-python': {
+    badge:'🐍 Script', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'fetch_roadmap.py', sub:'Data-pipeline',
+    fn:'Het centrale script dat de CSV ophaalt, vertaalt, producten detecteert en alle outputbestanden schrijft.',
+    logic:'Volgorde: 1) CSV ophalen via curl, 2) bestaande data.json + cache laden, 3) delta detecteren (nieuwe/gewijzigde items), 4) vertalen via Google, 5) producten en status detecteren, 6) data.json + weekarchief + index.json schrijven.',
+    tech:'Python 3.x. Enige externe dependency: deep_translator. Rest gebruikt stdlib (csv, json, subprocess, hashlib, datetime). Eén script, geen framework.'
+  },
+  'c-data-json': {
+    badge:'📦 JSON', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'data.json', sub:'Actueel snapshot + vertaalcache',
+    fn:'De primaire databron voor alle dashboardpagina\'s. Bevat actuele roadmap-items, verdwenen items van de laatste run en de volledige vertaalcache.',
+    logic:'Wordt volledig overschreven bij elke wekelijkse run. De translation_cache blijft bewaard zodat handmatig gecorrigeerde vertalingen niet verloren gaan bij de volgende run.',
+    tech:'Cache-buster bij fetch: ?v=timestamp. SessionStorage TTL: 30 minuten. Bestandsgrootte: ~2–4 MB. Gehost als statisch bestand op GitHub Pages.'
+  },
+  'c-archive': {
+    badge:'🗄️ JSON', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'archive/', sub:'Verdwenen items + index',
+    fn:'Map met weekbestanden van verdwenen roadmap-items (uitgerold of geannuleerd) en een index voor snelle navigatie.',
+    logic:'Elke run: als removed[] niet leeg is → archive/YYYY-MM-DD.json aanmaken. Bestanden ouder dan 90 dagen worden automatisch verwijderd. archief.html valideert elk bestand via fetch vóór het tonen van de weekknop.',
+    tech:'Bestandsstructuur: {generated, date, removed:[RoadmapItem]}. Maximaal ~13 bestanden tegelijk. archive/index.json bevat gesorteerde lijst van beschikbare datums.'
+  },
+  'c-pages': {
+    badge:'🌍 Hosting', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'GitHub Pages', sub:'CDN · HTTPS · gratis',
+    fn:'Serveert de volledige statische frontend via een wereldwijd CDN. Automatisch herdeployment bij elke git push.',
+    logic:'Serveert vanuit de root van de main-branch. Na elke Actions-run is de bijgewerkte versie binnen enkele seconden beschikbaar. Geen buildstap nodig — pure HTML/CSS/JS.',
+    tech:'URL: https://john-xtrm.github.io/M365-Roadmap/. Gratis voor publieke repositories. Koppelbaar als Microsoft Teams Website-tab. HTTPS standaard ingeschakeld.'
+  },
+  'c-html': {
+    badge:'🖥️ UI', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'HTML-pagina\'s (5x) + CSS (5x)', sub:'index · kalender · archief · presentatie · architectuur',
+    fn:'Vijf interactieve pagina\'s plus vijf CSS-bestanden. Alle 16 product-iconen zijn inline base64 opgenomen. Consistente navigatie: Roadmap · Kalender · Archief · Presentatie · Architectuur.',
+    logic:'Elke pagina laadt data.json client-side en rendert via innerHTML batch. APP_ICONS, APP_META en appIconHTML() zijn inline aanwezig op elke pagina die icons nodig heeft. CSS is gesplitst in shared.css (gedeeld) + 4 paginaspecifieke bestanden.',
+    tech:'Vanilla HTML5/CSS3/JS. WCAG 2.2 AA. Werkt in sandboxed Teams-tabs. CSS: shared.css + kalender.css + archief.css + presentatie.css + architectuur.css.'
+  },
+  'c-browser': {
+    badge:'🌐 Browser', bc:'var(--green-bg)', btc:'var(--green-t)',
+    title:'Browser / Teams-tab', sub:'Eindgebruikersinterface',
+    fn:'Het dashboard wordt geopend in een moderne webbrowser of ingesloten als Microsoft Teams Website-tab.',
+    logic:'Browser haalt HTML op van CDN, voert JavaScript uit, cachet data.json 30 minuten in SessionStorage. Bij cache-expiry of pageload wordt data.json opnieuw opgehaald.',
+    tech:'Alle moderne browsers (Chrome, Edge, Firefox, Safari). Teams-tab instellen: Kanaal → + → Website → plak de GitHub Pages URL. Geen cookies, geen login, geen tracking.'
+  },
+
+  /* ── C3 Component — Processing ────────────────────────────────────────── */
+  'comp-fetch': {
+    badge:'📥 Component', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'CSV Fetcher', sub:'fetch_roadmap.py',
+    fn:'Haalt het CSV-bestand van de Microsoft roadmap-feed op via een curl subprocess met browser-achtige headers.',
+    logic:'Gebruikt subprocess.run met curl in plaats van Python requests, omdat Microsoft bepaalde Python user-agents blokkeert. Headers simuleren een gewone browseraanvraag.',
+    tech:'subprocess.run(["curl", "-L", "-H", "User-Agent: Mozilla/5.0", "-H", "Accept-Language: en-US", url]). Retourtype: list[dict] via csv.DictReader. Geen authenticatie vereist.'
+  },
+  'comp-cache': {
+    badge:'💾 Component', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'Vertaalcache', sub:'fetch_roadmap.py',
+    fn:'Laadt bestaande vertalingen uit data.json en detecteert welke items nieuw of gewijzigd zijn via een SHA-256 hash.',
+    logic:'Voor elk item wordt een hash van Title+Description berekend. Als de hash afwijkt van de opgeslagen waarde, wordt het item als gewijzigd gemarkeerd en doorgestuurd naar de vertaalmodule. Ongewijzigde items slaan de vertaalstap over.',
+    tech:'Cache-structuur: {id: {title_nl, benefit_nl, hash}}. Opgeslagen als translation_cache in data.json. Hashing: hashlib.sha256(title+desc).hexdigest().'
+  },
+  'comp-translate': {
+    badge:'🔤 Component', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'Vertaalmodule', sub:'fetch_roadmap.py',
+    fn:'Vertaalt de title en benefit van nieuwe of gewijzigde roadmap-items van Engels naar Nederlands via Google Translate.',
+    logic:'Verwerkt alleen de delta uit de cache-vergelijking. Per item worden twee velden vertaald: Title (→ title_nl) en Description (→ benefit_nl). Vertaalde teksten worden direct teruggekoppeld naar de cache.',
+    tech:'GoogleTranslator(source="en", target="nl").translate(text). Gratis tier. Gemiddeld 50–200 vertalingen per run. Foutafhandeling: bij mislukte vertaling wordt de Engelse tekst als fallback gebruikt.'
+  },
+  'comp-detect': {
+    badge:'🔍 Component', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'Product- & statusdetectie', sub:'fetch_roadmap.py',
+    fn:'Bepaalt voor elk item het dashboardproduct (16 producten) en de weergavestatus op basis van de CSV-velden.',
+    logic:'DETECT_PATTERNS bevat per product een lijst van zoektermen die worden vergeleken met het veld ProductFamily (lowercase). Status wordt afgeleid uit PublicRoadmapStatus: "Rolling out" → "rolling", "In development" → "dev". Actie-type (none/admin/user) is handmatig toegewezen per product.',
+    tech:'Uitbreiden: DETECT_PATTERNS + APP_META/APP_ORDER/APP_ICONS in HTML + pill-klasse in shared.css. 16 producten: Teams, Copilot, SharePoint, Outlook, OneDrive, Exchange, Word, Excel, PowerPoint, Forms, Planner, Viva, Purview, Intune, Entra, Edge.'
+  },
+  'comp-writer': {
+    badge:'✍️ Component', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'Data Writer', sub:'fetch_roadmap.py',
+    fn:'Schrijft alle outputbestanden: data.json met actuele items en removed[], een weekarchief als er items verdwenen zijn, en archive/index.json.',
+    logic:'Volgorde: 1) data.json wegschrijven (overschrijft), 2) als removed[] niet leeg → archive/YYYY-MM-DD.json aanmaken, 3) archiefdatums ouder dan 90 dagen verwijderen, 4) archive/index.json bijwerken, 5) git add/commit/push via Actions.',
+    tech:'json.dump(data, f, ensure_ascii=False, indent=2). Commit-bericht: "Update roadmap data YYYY-MM-DD". GitHub Actions commit als github-actions[bot]. Pages herdeployt automatisch na push.'
+  },
+
+  /* ── C3 Component — Storage ───────────────────────────────────────────── */
+  'comp-datajson': {
+    badge:'📦 Storage', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'data.json', sub:'Huidig roadmap-snapshot',
+    fn:'De centrale databron die door alle vijf pagina\'s client-side wordt ingeladen. Bevat items, verdwenen items, metadata en de volledige vertaalcache.',
+    logic:'Wordt wekelijks volledig overschreven door fetch_roadmap.py. De translation_cache blijft cumulatief groeien en beschermt handmatig gecorrigeerde vertalingen. Pagina\'s cachen dit bestand 30 minuten in SessionStorage.',
+    tech:'Root-velden: generated (ISO-timestamp), count (number), items (RoadmapItem[]), removed (RoadmapItem[]), translation_cache (dict). Grootte: ~2–4 MB. Fetch met cache-buster: data.json?v=Date.now().'
+  },
+  'comp-archivejson': {
+    badge:'🗄️ Storage', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'archive/YYYY-MM-DD.json', sub:'Weekarchief van verdwenen items',
+    fn:'Bevat de roadmap-items die in een specifieke week van de Microsoft-feed zijn verdwenen — uitgerold of geannuleerd.',
+    logic:'Wordt alleen aangemaakt als removed[] niet leeg is na de wekelijkse run. Bestanden ouder dan 90 dagen worden automatisch verwijderd door fetch_roadmap.py. archief.html valideert de aanwezigheid van elk bestand via fetch() vóór de weekknop zichtbaar gemaakt wordt.',
+    tech:'Structuur: {generated: ISO-timestamp, date: "YYYY-MM-DD", removed: RoadmapItem[]}. Maximaal ~13 bestanden tegelijkertijd. Bestandsnaam = datum van de Actions-run.'
+  },
+  'comp-indexjson': {
+    badge:'📇 Storage', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'archive/index.json', sub:'Lijst van beschikbare archiefdatums',
+    fn:'Bevat een gesorteerde lijst van alle beschikbare archiefdatums, zodat archief.html weet welke weekknoppen getoond moeten worden.',
+    logic:'Wordt na elke run bijgewerkt door fetch_roadmap.py. archief.html laadt dit bestand als eerste om de navigatieknoppen op te bouwen, en haalt vervolgens het geselecteerde weekbestand on-demand op (lazy loading).',
+    tech:'Structuur: {dates: ["YYYY-MM-DD", ...]} gesorteerd van nieuw naar oud. Klein bestand (~1 KB). Zorgt voor efficiënte navigatie zonder alle archiefdatums te hoeven laden.'
+  },
+
+  /* ── C3 Component — Frontend ──────────────────────────────────────────── */
+  'comp-index': {
+    badge:'🏠 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'index.html', sub:'Hoofdpagina — roadmap-overzicht',
+    fn:'Toont alle actuele M365 roadmap-items met uitgebreide filter- en zoekmogelijkheden. Standaard worden items van de vorige kalenderweek getoond.',
+    logic:'Laadt data.json client-side (SessionStorage cache 30 min). Filtert op product, actie-type, periode en status. Zoekfunctie markeert trefwoorden. URL-parameters (?id=, ?search=) maken deep-linking mogelijk vanuit de kalender.',
+    tech:'SessionStorage key: m365_data_v1. TTL: 30 min. Renderen via innerHTML met batch-updates. APP_ICONS inline base64. Sorteermogelijkheden: datum toegevoegd, releasedatum, status.'
+  },
+  'comp-kalender': {
+    badge:'📅 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'kalender.html', sub:'Releasekalender — items per periode',
+    fn:'Visualiseert aankomende releases als kalender. Twee weergaven: korte termijn (maanden, ~6 maanden) en lange termijn (kwartalen). Klikbare items linken naar index.html.',
+    logic:'Groepeert items uit data.json op releasemaand of -kwartaal. Items zonder datum komen in een apart uitklapblok. Periodfilter toont selectie van maanden. Deep-link ?id= toont een specifiek item direct.',
+    tech:'kalender.css voor paginaspecifieke stijlen. .view-btn schakelt tussen korte/lange termijn weergave. .period-block per maand/kwartaal. .cal-card per item met actie-indicator.'
+  },
+  'comp-archief': {
+    badge:'📚 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'archief.html', sub:'Archief — verdwenen roadmap-items',
+    fn:'Toont per week welke roadmap-items van de Microsoft-feed zijn verdwenen (uitgerold of geannuleerd). Navigatie via weekknoppen, zoekfunctie en productfilter.',
+    logic:'Laadt eerst archive/index.json om de weekknoppen op te bouwen. Daarna worden archiefdatums on-demand opgehaald (lazy loading) bij klikken op een weekknop. Bestanden worden gevalideerd via fetch() vóór tonen.',
+    tech:'archief.css voor paginaspecifieke stijlen. .week-nav-wrap met .week-btn per beschikbare datum. .changed-block voor gewijzigde items. Promise.allSettled voor robuuste fetch-afhandeling.'
+  },
+  'comp-presentatie': {
+    badge:'📊 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'presentatie.html', sub:'PowerPoint-generator voor klantpresentaties',
+    fn:'Genereert een professionele wekelijkse .pptx-presentatie van de roadmap-updates, op maat voor klantcommunicatie. Productselectie en klantnaam zijn instelbaar.',
+    logic:'Laadt data.json, filtert op de vorige ISO-kalenderweek en groepeert items per product. Pagineert automatisch bij meer dan 4 items per product. PptxGenJS genereert de .pptx in de browser, inclusief speaker notes per slide.',
+    tech:'presentatie.css voor paginaspecifieke stijlen. PptxGenJS (Node.js/browser). .product-card grid voor productselectie. #generate-btn start de generatie. Download via Blob URL.'
+  },
+  'comp-architectuur': {
+    badge:'🗺️ Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'architectuur.html', sub:'C4-architectuurdiagram — interactief',
+    fn:'Visualiseert de systeemarchitectuur op vier detailniveaus (C1–C4) volgens het C4-model van Simon Brown. Klikken op een component toont een gedetailleerd informatiepaneel.',
+    logic:'Vier weergaven (Context, Container, Component, Code) worden geschakeld via level-knoppen. Elke node heeft een onclick handler die het detail-panel vult vanuit het ND-object in JavaScript. Trust-boundaries zijn visueel gemarkeerd als gekleurde zones.',
+    tech:'architectuur.css voor diagramspecifieke stijlen. .zone voor trustboundaries, .node voor klikbare componenten, .arw voor pijlen. ND-object bevat alle detailinhoud. selectNode() vult het detail-panel.'
+  },
+  'comp-css': {
+    badge:'🎨 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'CSS-bestanden (5x)', sub:'shared.css + 4 paginaspecifieke bestanden',
+    fn:'Vijf CSS-bestanden verzorgen de volledige opmaak van het dashboard. shared.css bevat alle design tokens, gedeelde componenten en het uniforme knoppensysteem. Paginaspecifieke bestanden bevatten alleen unieke stijlen per pagina.',
+    logic:'Structuur: shared.css (gedeeld door alle pagina\'s) + kalender.css + archief.css + presentatie.css + architectuur.css. Alle kleuren, radii en typografie zijn gedefinieerd als CSS custom properties in :root. Dark mode wordt automatisch via systeemvoorkeur of handmatig via de maanknop ingeschakeld.',
+    tech:'CSS custom properties voor alle design tokens. Uniforme knopstijlen via .fb, .arch-fb, .week-btn, .level-btn, .pres-week-tab. WCAG 2.2 AA. Dark mode via prefers-color-scheme + [data-theme="dark"]. prefers-reduced-motion ondersteund.'
+  },
+
+  /* ── C4 Code ──────────────────────────────────────────────────────────── */
+  'code-fetch-fn': {
+    badge:'🐍 Functie', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'fetch_csv()', sub:'fetch_roadmap.py',
+    fn:'Haalt het CSV-bestand op van de Microsoft roadmap-feed via een curl subprocess.',
+    logic:'Curl wordt gebruikt in plaats van Python requests omdat Microsoft bepaalde user-agents filtert. De -L vlag volgt redirects automatisch.',
+    tech:'Retourtype: list[dict] via csv.DictReader(StringIO(raw)). Geen authenticatie. Foutafhandeling: subprocess.CalledProcessError wordt opgevangen en opnieuw geprobeerd.'
+  },
+  'code-translate-fn': {
+    badge:'🐍 Functie', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'translate_items()', sub:'fetch_roadmap.py',
+    fn:'Vertaalt uitsluitend nieuwe of gewijzigde items op basis van hash-vergelijking.',
+    logic:'Hash van Title+Description bepaalt of een item als gewijzigd geldt. Bij wijziging worden title_nl en benefit_nl opnieuw vertaald en de hash bijgewerkt in de cache.',
+    tech:'GoogleTranslator(source="en", target="nl").translate(). Fallback bij API-fout: originele Engelse tekst behouden. Cache wordt altijd bijgewerkt, ook bij fallback.'
+  },
+  'code-detect-fn': {
+    badge:'🐍 Functie', bc:'var(--amber-bg)', btc:'var(--amber-t)',
+    title:'detect_product()', sub:'fetch_roadmap.py',
+    fn:'Matcht een CSV-rij op het juiste dashboard-product via patroonherkenning in het ProductFamily-veld.',
+    logic:'DETECT_PATTERNS is een dict met per product een lijst zoektermen. Matching is case-insensitive op ProductFamily (lowercase). Eerste match wint; geen match → "other".',
+    tech:'16 producten gedetecteerd. Uitbreiden: voeg key+lijst toe aan DETECT_PATTERNS, voeg entry toe aan APP_META/APP_ORDER/APP_ICONS in HTML, voeg .p-{product} toe aan shared.css.'
+  },
+  'code-item-schema': {
+    badge:'📦 Schema', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'RoadmapItem', sub:'Structuur van één item in items[]',
+    fn:'Definieert de datavelden van één roadmap-item zoals opgeslagen in data.json en gebruikt door alle pagina\'s.',
+    logic:'Velden worden deels gevuld vanuit de Microsoft CSV (id, title_en, status, release, moreInfoLink), deels door de pipeline (title_nl, benefit_nl, app, action, added, modified).',
+    tech:'Alle velden zijn strings of enums. action is handmatig bepaald per product in fetch_roadmap.py. release is een leesbare Nederlandse maandnaam ("mei 2026"). added/modified zijn ISO-datumstrings.'
+  },
+  'code-root-schema': {
+    badge:'📦 Schema', bc:'var(--purple-bg)', btc:'var(--purple-t)',
+    title:'data.json root', sub:'Toplevelstructuur van het databestand',
+    fn:'Definieert de toplevelstructuur van data.json zoals geschreven door fetch_roadmap.py en gelezen door alle dashboardpagina\'s.',
+    logic:'generated en count zijn metadata voor debugging. items[] bevat alle actuele roadmap-features. removed[] bevat features die in de laatste run verdwenen zijn. translation_cache groeit cumulatief en voorkomt dubbele vertalingen.',
+    tech:'JSON, ensure_ascii=False, indent=2. Grootte: ~2–4 MB. count = len(items). removed[] is leeg als er niets verdwenen is. Cache-buster bij fetch: ?v=Date.now().'
+  },
+  'code-loaddata': {
+    badge:'📡 Functie', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'loadData()', sub:'index.html — data ophalen',
+    fn:'Laadt data.json met SessionStorage-caching (30 min TTL) en een AbortController-timeout van 12 seconden.',
+    logic:'Eerst wordt sessionStorage gecontroleerd op een geldige cache. Bij cache-miss wordt data.json opgehaald met een cache-buster (?v=timestamp). Bij timeout of networkfout toont de pagina een foutmelding.',
+    tech:'CACHE_KEY = "m365_data_v1". TTL-check: Date.now() - cached.ts > 1800000. AbortController met setTimeout(abort, 12000). Bij success: JSON.parse + handleData() aanroepen.'
+  },
+  'code-filter': {
+    badge:'🔎 Functie', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'render() / matchPeriod()', sub:'index.html — filteren en renderen',
+    fn:'Filtert roadmap-items op periode, product, actie-type, status en zoekopdracht, en rendert het resultaat als HTML-kaarten.',
+    logic:'Periodefilter "pw" (vorige week) berekent de ISO-weekgrenzen van de vorige kalenderweek op basis van Date.now(). Items matchen als added of modified binnen die periode valt. Alle filters worden gecombineerd (AND-logica).',
+    tech:'fP = product, fA = periode, fAct = actie, fS = status, fQ = zoekterm. render() bouwt HTML via template-strings en plaatst die via innerHTML op #root. APP_ICONS inline base64 voor snelle weergave.'
+  },
+  'code-render': {
+    badge:'🖼️ Functie', bc:'var(--teal-bg)', btc:'var(--teal-t)',
+    title:'appIconHTML()', sub:'index.html — product-iconen renderen',
+    fn:'Genereert een <img>-tag met het inline base64 product-icoon voor een gegeven productsleutel.',
+    logic:'APP_ICONS bevat 16 base64-gecodeerde PNG\'s (~80 KB totaal) die inline in elke pagina zijn opgenomen. Dit voorkomt externe HTTP-verzoeken en zorgt voor directe weergave zonder laadvertraging, ook in sandboxed Teams-tabs.',
+    tech:'Retourneert HTML-string: \'<img class="app-icon" src="\'+APP_ICONS[key]+\'" aria-hidden="true" alt="">\'. Onbekende sleutel → lege string. Iconen zijn 64x64 px PNG, geoptimaliseerd voor schermresolutie.'
+  }
 };
 
-let currentView='context', selectedNode=null;
-
-function setView(v){
-  ['context','container','component','code'].forEach(id=>{
-    document.getElementById('view-'+id).classList.add('hidden');
-    document.getElementById('btn-'+id).classList.remove('active');
+function setView(v) {
+  ['context','container','component','code'].forEach(function(id) {
+    var el = document.getElementById('view-'+id);
+    var btn = document.getElementById('btn-'+id);
+    if (el) el.classList.toggle('hidden', id !== v);
+    if (btn) btn.classList.toggle('active', id === v);
   });
-  document.getElementById('view-'+v).classList.remove('hidden');
-  document.getElementById('btn-'+v).classList.add('active');
-  const vd=VIEWS[v];
-  document.getElementById('view-title').textContent=vd.title;
-  document.getElementById('view-question').textContent=vd.q;
-  document.getElementById('view-desc').textContent=vd.d;
-  currentView=v; closeDetail();
+  var vd = VIEWS[v];
+  if (vd) {
+    document.getElementById('view-title').textContent = vd.title;
+    document.getElementById('view-question').textContent = vd.q;
+    document.getElementById('view-desc').textContent = vd.d;
+  }
+  closeDetail();
 }
 
-function selectNode(id){
-  if(selectedNode){const p=document.getElementById('n-'+selectedNode);if(p)p.classList.remove('selected');}
-  const d=ND[id]; if(!d)return;
-  selectedNode=id;
-  const el=document.getElementById('n-'+id); if(el)el.classList.add('selected');
-  const b=document.getElementById('dp-badge');
-  b.textContent=d.badge; b.style.background=d.bc; b.style.color=d.btc;
-  document.getElementById('dp-title').textContent=d.title;
-  document.getElementById('dp-sub').textContent=d.sub;
-  document.getElementById('dp-function').textContent=d.fn;
-  document.getElementById('dp-logic').textContent=d.logic;
-  document.getElementById('dp-tech').textContent=d.tech;
-  const panel=document.getElementById('detail-panel');
+function selectNode(id) {
+  var d = ND[id];
+  if (!d) return;
+  // Deselect all nodes
+  document.querySelectorAll('.node.selected, .code-block.selected').forEach(function(n) {
+    n.classList.remove('selected');
+  });
+  // Select clicked node
+  var el = document.getElementById('n-'+id);
+  if (el) el.classList.add('selected');
+  // Fill detail panel
+  var badge = document.getElementById('dp-badge');
+  badge.textContent = d.badge;
+  badge.style.background = d.bc;
+  badge.style.color = d.btc;
+  document.getElementById('dp-title').textContent = d.title;
+  document.getElementById('dp-sub').textContent = d.sub;
+  document.getElementById('dp-function').textContent = d.fn;
+  document.getElementById('dp-logic').textContent = d.logic;
+  document.getElementById('dp-tech').textContent = d.tech;
+  var panel = document.getElementById('detail-panel');
   panel.classList.remove('hidden');
-  setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
+  panel.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
-function closeDetail(){
+function closeDetail() {
   document.getElementById('detail-panel').classList.add('hidden');
-  if(selectedNode){const p=document.getElementById('n-'+selectedNode);if(p)p.classList.remove('selected');selectedNode=null;}
+  document.querySelectorAll('.node.selected, .code-block.selected').forEach(function(n) {
+    n.classList.remove('selected');
+  });
 }
 </script>
 </body>
