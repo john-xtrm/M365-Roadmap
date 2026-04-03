@@ -6,64 +6,7 @@
 <title>Presentatie genereren — M365 Roadmap</title>
 <meta name="description" content="Genereer een wekelijkse Microsoft 365 Roadmap-presentatie op maat voor uw klant.">
 <link rel="stylesheet" href="shared.css">
-<style>
-.pres-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:1.5rem 1.75rem;margin-bottom:1.5rem;display:flex;align-items:flex-start;gap:1rem;}
-.pres-hero-icon{font-size:2rem;flex-shrink:0;line-height:1;}
-.pres-hero h2{margin:0 0 0.25rem;font-size:1.25rem;color:var(--text);}
-.pres-hero p{margin:0;font-size:0.875rem;color:var(--muted);line-height:1.55;}
-.pres-step{background:var(--surface);border:1.5px solid var(--border-s);border-radius:var(--radius-md);margin-bottom:1.25rem;overflow:hidden;}
-.pres-step-header{display:flex;align-items:center;gap:0.75rem;padding:1rem 1.25rem;border-bottom:1px solid var(--border);background:var(--surface2);}
-.pres-step-nr{width:1.75rem;height:1.75rem;border-radius:50%;background:var(--blue-t);color:var(--surface);font-size:0.8125rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.pres-step-title{font-size:0.9375rem;font-weight:700;color:var(--text);margin:0;}
-.pres-step-body{padding:1.25rem;}
-.pres-field{margin-bottom:1.1rem;}
-.pres-field label{display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);margin-bottom:0.35rem;}
-.pres-field input[type="text"]{width:100%;max-width:28rem;padding:0.625rem 0.875rem;font-size:0.9375rem;font-family:var(--font);border:1.5px solid var(--border-s);border-radius:var(--radius-md);background:var(--surface);color:var(--text);transition:border-color 0.15s;box-sizing:border-box;}
-.pres-field input[type="text"]:focus{border-color:var(--blue-t);outline:none;box-shadow:0 0 0 3px rgba(20,61,130,0.13);}
-.pres-product-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.9rem;flex-wrap:wrap;gap:0.5rem;}
-.pres-product-toolbar p{margin:0;font-size:0.8125rem;color:var(--muted);}
-.pres-select-all{font-size:0.8rem;font-weight:600;padding:0.3rem 0.75rem;border:1.5px solid var(--border-s);border-radius:var(--radius-pill);background:var(--surface2);color:var(--muted);cursor:pointer;transition:all 0.15s;}
-.pres-select-all:hover{border-color:var(--blue-t);color:var(--blue-t);}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:0.6rem;}
-.product-card{display:flex;align-items:center;gap:0.55rem;padding:0.55rem 0.75rem;border:1.5px solid var(--border-s);border-radius:var(--radius-md);cursor:pointer;background:var(--surface);transition:border-color 0.15s,background 0.15s;user-select:none;position:relative;}
-.product-card:hover{border-color:var(--blue-t);background:var(--surface2);}
-.product-card.selected{border-color:var(--blue-t);background:rgba(20,61,130,0.07);}
-.product-card input[type="checkbox"]{position:absolute;opacity:0;pointer-events:none;}
-.product-card .app-icon{width:24px;height:24px;flex-shrink:0;}
-.product-card-label{font-size:0.875rem;font-weight:500;color:var(--text);flex:1;}
-.product-card-count{font-size:0.7rem;font-weight:700;background:var(--surface2);color:var(--muted);padding:1px 7px;border-radius:var(--radius-pill);min-width:1.5rem;text-align:center;}
-.product-card.selected .product-card-count{background:var(--blue-t);color:var(--surface);}
-.product-card-check{width:1rem;height:1rem;border:1.5px solid var(--border-s);border-radius:3px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.15s;}
-.product-card.selected .product-card-check{background:var(--blue-t);border-color:var(--blue-t);}
-.product-card-check svg{display:none;}
-.product-card.selected .product-card-check svg{display:block;}
-.pres-preview-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:0.75rem;margin-bottom:1rem;}
-.pres-stat{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-md);padding:0.875rem 1rem;text-align:center;}
-.pres-stat-val{font-size:1.75rem;font-weight:800;color:var(--blue-t);line-height:1;}
-.pres-stat-lbl{font-size:0.75rem;color:var(--muted);margin-top:0.2rem;}
-.pres-stat-week{font-size:0.8125rem;color:var(--muted);padding:0.5rem 0.75rem;background:var(--surface2);border-radius:var(--radius-sm);margin-bottom:1rem;display:flex;align-items:center;gap:0.4rem;}
-.pres-info{display:flex;align-items:flex-start;gap:0.5rem;padding:0.625rem 0.875rem;border-radius:var(--radius-sm);font-size:0.8125rem;margin-bottom:0.875rem;}
-.pres-info.warn{background:#fffbeb;border:1px solid #f6d860;color:#7c5b00;}
-.pres-info.ok{background:#f0fdf4;border:1px solid #86efac;color:#166534;}
-.pres-info.err{background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;}
-[data-theme="dark"] .pres-info.warn{background:#2a2000;border-color:#7c5b00;color:#fde68a;}
-[data-theme="dark"] .pres-info.ok{background:#052e16;border-color:#166534;color:#86efac;}
-[data-theme="dark"] .pres-info.err{background:#2d0000;border-color:#991b1b;color:#fca5a5;}
-.pres-generate-wrap{padding-top:0.5rem;}
-#generate-btn{display:inline-flex;align-items:center;gap:0.6rem;padding:0.875rem 2rem;font-size:1rem;font-weight:700;font-family:var(--font);background:var(--blue-t);color:var(--surface);border:none;border-radius:var(--radius-md);cursor:pointer;transition:opacity 0.15s,transform 0.1s;min-width:14rem;justify-content:center;}
-#generate-btn:hover:not(:disabled){opacity:0.9;transform:translateY(-1px);}
-#generate-btn:disabled{opacity:0.5;cursor:not-allowed;}
-.spinner-sm{width:1rem;height:1rem;border:2px solid rgba(255,255,255,0.35);border-top-color:var(--surface);border-radius:50%;animation:spin 0.7s linear infinite;display:none;}
-#generate-btn.loading .spinner-sm{display:block;}
-#generate-btn.loading .btn-icon{display:none;}
-@keyframes spin{to{transform:rotate(360deg);}}
-#pres-message{margin-top:0.875rem;font-size:0.875rem;padding:0.625rem 0.875rem;border-radius:var(--radius-sm);display:none;}
-#pres-message.success{display:block;background:#f0fdf4;border:1px solid #86efac;color:#166534;}
-#pres-message.error{display:block;background:#fef2f2;border:1px solid #fca5a5;color:#991b1b;}
-[data-theme="dark"] #pres-message.success{background:#052e16;border-color:#166534;color:#86efac;}
-[data-theme="dark"] #pres-message.error{background:#2d0000;border-color:#991b1b;color:#fca5a5;}
-#pres-loading{text-align:center;padding:3rem 1rem;color:var(--muted);}
-</style>
+<link rel="stylesheet" href="presentatie.css">
 <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();</script>
 </head>
 <body>
