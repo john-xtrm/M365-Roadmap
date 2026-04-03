@@ -116,6 +116,7 @@ Interactieve C4-kaart: klik elk component voor details over functie, logica en i
 - C3 Component — interne bouwblokken
 - C4 Code — functies, schema's en datastructuren
 
+---
 
 ### Presentatiepagina — `presentatie.html`
 
