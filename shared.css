@@ -183,7 +183,7 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
 .arch-fb[aria-pressed="true"],
 .pres-week-tab.active,
 .week-btn.active {
-  background: var(--text);
+  background: var(--blue-t);
   color: var(--surface);
   border-color: var(--text);
   font-weight: 600;
