@@ -6,59 +6,7 @@
 <title>Architectuurkaart — M365 Roadmap Dashboard</title>
 <meta name="description" content="C4-architectuurkaart van het Microsoft 365 Roadmap Dashboard.">
 <link rel="stylesheet" href="shared.css">
-<style>
-.main { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem 3rem; }
-.view-meta { margin-bottom: 1.5rem; }
-.view-meta h2 { font-size: 1.375rem; font-weight: 700; margin-bottom: 0.25rem; }
-.view-meta .vm-q { font-size: 0.875rem; font-weight: 600; color: var(--blue-t); margin-bottom: 0.25rem; }
-.view-meta .vm-d { font-size: 0.875rem; color: var(--muted); }
-.level-bar { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.5rem; }
-.level-btn { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.04em; padding: 0.4rem 1rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--muted); cursor: pointer; transition: all 0.15s; font-family: var(--font); min-height: 2.75rem; }
-.level-btn:hover { border-color: var(--surface2); color: var(--text); }
-.level-btn.active { background: var(--blue-t); border-color: var(--text); color: var(--surface); }
-.zone { border: 1.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1rem 1rem; position: relative; overflow: visible; }
-.zone-label { position: absolute; top: -0.65rem; left: 1rem; font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.1rem 0.6rem; background: var(--bg); border-radius: var(--radius-sm); white-space: nowrap; }
-.zone-ext   { border-color: rgba(185,28,28,0.35); } .zone-ext   .zone-label { color: var(--red-t); }
-.zone-proc  { border-color: rgba(146,64,14,0.35); } .zone-proc  .zone-label { color: var(--amber-t); }
-.zone-stor  { border-color: rgba(58,42,138,0.35); } .zone-stor  .zone-label { color: var(--purple-t); }
-.zone-front { border-color: rgba(10,82,72,0.35);  } .zone-front .zone-label { color: var(--teal-t); }
-.zone-users { border-color: rgba(20,82,40,0.35);  } .zone-users .zone-label { color: var(--green-t); }
-.node { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-md); padding: 0.75rem 0.875rem; cursor: pointer; transition: all 0.15s; user-select: none; }
-.node:hover { border-color: var(--blue-t); box-shadow: 0 2px 12px rgba(20,61,130,0.1); transform: translateY(-1px); }
-.node.selected { border-color: var(--blue-t); box-shadow: 0 0 0 3px rgba(20,61,130,0.12); }
-.nbadge { font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; padding: 2px 7px; border-radius: var(--radius-pill); display: inline-block; margin-bottom: 0.35rem; }
-.nicon { font-size: 1.25rem; line-height: 1; margin-bottom: 0.3rem; }
-.ntitle { font-size: 0.8125rem; font-weight: 700; color: var(--text); margin-bottom: 0.2rem; line-height: 1.3; }
-.nsub { font-size: 0.6875rem; color: var(--muted); line-height: 1.4; }
-.arw { display: flex; align-items: center; justify-content: center; gap: 2px; }
-.arw-line { height: 2px; flex: 1; min-width: 8px; background: linear-gradient(to right, transparent, var(--blue-t)); }
-.arw-lbl { font-size: 0.6rem; font-weight: 600; color: var(--blue-t); white-space: nowrap; padding: 0 2px; }
-.arw-head { width:0; height:0; border-top:5px solid transparent; border-bottom:5px solid transparent; border-left:6px solid var(--blue-t); flex-shrink:0; }
-#detail-panel { background: var(--surface); border: 1.5px solid var(--blue-t); border-radius: var(--radius-lg); padding: 1.25rem 1.5rem; margin-top: 1.5rem; animation: fadeIn 0.2s ease; }
-@keyframes fadeIn { from { opacity:0; transform:translateY(4px); } to { opacity:1; transform:none; } }
-.dp-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-.dp-title { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.2rem; }
-.dp-sub { font-size: 0.8125rem; color: var(--muted); }
-.dp-close { background: none; border: 1.5px solid var(--border-s); border-radius: var(--radius-pill); padding: 0.3rem 0.875rem; font-size: 0.75rem; color: var(--muted); cursor: pointer; flex-shrink: 0; font-family: var(--font); min-height: 2.75rem; }
-.dp-close:hover { background: var(--surface2); }
-.dp-grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-.dp-slabel { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.4rem; }
-.dp-text { font-size: 0.8125rem; color: var(--text); line-height: 1.6; }
-.legend { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.25rem; font-size: 0.75rem; color: var(--muted); }
-.leg { display: flex; align-items: center; gap: 5px; }
-.leg-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-.code-block { background: var(--surface); border: 1.5px solid var(--border); border-radius: var(--radius-md); padding: 0.875rem 1rem; font-family: 'Menlo','Monaco','Consolas',monospace; font-size: 0.6875rem; line-height: 1.8; color: var(--muted); cursor: pointer; transition: border-color 0.15s; white-space: pre; overflow-x: auto; }
-.code-block:hover { border-color: var(--blue-t); }
-.code-block.selected { border-color: var(--blue-t); box-shadow: 0 0 0 3px rgba(20,61,130,0.1); }
-.cb-title { font-family: var(--font); font-size: 0.8125rem; font-weight: 700; color: var(--text); margin-bottom: 0.5rem; padding-bottom: 0.4rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.4rem; white-space: normal; }
-.ck { color: var(--blue-t); } .ct { color: var(--purple-t); } .cv { color: var(--green-t); } .cf { color: var(--amber-t); } .cc { color: var(--faint); } .cs { color: var(--amber-t); }
-.dscroll { overflow-x: auto; padding-bottom: 0.5rem; width: 100%; }
-.dinner { min-width: 860px; padding-top: 1.25rem; width: 100%; }
-.view { animation: fadeIn 0.2s ease; }
-.hidden { display: none !important; }
-.section-lbl { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--faint); margin-bottom: 0.75rem; }
-@media (prefers-color-scheme: dark) { .zone-label { background: var(--surface2); } }
-</style>
+<link rel="stylesheet" href="architectuur.css">
 <script>
 (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
 </script>
