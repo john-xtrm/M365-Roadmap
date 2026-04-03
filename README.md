@@ -1,273 +1,213 @@
 # Microsoft 365 Roadmap Dashboard
 
-Automatisch bijgewerkt dashboard dat Microsoft 365 roadmap-updates vertaalt naar begrijpelijk Nederlands. Gebouwd voor medewerkers en IT-beheerders die zonder technische kennis willen weten wat er aankomt en of er actie nodig is.
+Automatisch bijgewerkt dashboard dat Microsoft 365 roadmap-items vertaalt naar begrijpelijk Nederlands, inclusief een uitleg wat elke update betekent voor de organisatie.
 
-**Volledig gratis** — GitHub Pages · GitHub Actions · Microsoft publieke CSV API · Google Translate via `deep_translator`
+**Live:** [john-xtrm.github.io/M365-Roadmap](https://john-xtrm.github.io/M365-Roadmap/)
 
 ---
 
-## Bestanden
+## Pagina-overzicht
 
-| Bestand | Omschrijving |
+| Pagina | Functie |
 |---|---|
-| `index.html` | Hoofdpagina — actuele roadmap met filters |
-| `archief.html` | Weekoverzichten tot 3 maanden terug |
-| `kalender.html` | Releasekalender per maand of kwartaal |
-| `architectuur.html` | Interactieve C4-architectuurkaart |
-| `shared.css` | Gedeelde stijlen voor alle pagina's (WCAG 2.2 AA) |
-| `fetch_roadmap.py` | Python-pipeline: ophalen, vertalen, opslaan |
-| `data.json` | Gegenereerde roadmapdata (niet handmatig bewerken) |
-| `.github/workflows/update-roadmap.yml` | GitHub Actions workflow |
-| `archive/index.json` | Index van beschikbare archiefdatums |
-| `archive/YYYY-MM-DD.json` | Weekarchief (automatisch, max 3 maanden) |
+| `index.html` | Hoofdpagina — alle actieve roadmap-items met filters |
+| `kalender.html` | Releasekalender — kort (6 mnd) en lang (per kwartaal) |
+| `archief.html` | Archief — verdwenen items (uitgerold of geannuleerd) per week |
+| `presentatie.html` | Presentatiegenerator — download klantgerichte .pptx per product/week |
+| `architectuur.html` | Architectuurkaart — C4-model van de volledige oplossing |
+| `shared.css` | Gedeeld design system — kleuren, tokens, componenten |
+| `fetch_roadmap.py` | Data-pipeline — haalt CSV op, vertaalt, schrijft JSON |
 
----
-
-## Installatie
-
-### 1. Repository aanmaken
-Maak een nieuwe **publieke** GitHub-repository aan.
-
-### 2. Bestanden uploaden
-```
-index.html
-archief.html
-kalender.html
-architectuur.html
-shared.css
-fetch_roadmap.py
-.github/workflows/update-roadmap.yml
-```
-
-### 3. GitHub Pages inschakelen
-**Settings → Pages → Source:** Deploy from a branch → `main` / `(root)`
-
-URL: `https://<gebruikersnaam>.github.io/<repository-naam>/`
-
-### 4. Eerste run starten
-**Actions → Ververs Microsoft 365 Roadmap → Run workflow**
-
-### 5. Teams-tabblad instellen (optioneel)
-Kanaal → **+** → **Website** → GitHub Pages URL → Opslaan
+**Navigatievolgorde (alle pagina's):** Roadmap · Kalender · Archief · Presentatie · Architectuur · Thema
 
 ---
 
 ## Architectuur
 
 ```
-Microsoft CSV API (publiek, gratis)
-         │
-         ▼
-  GitHub Actions (maandag 06:00 UTC)
-         │
-         └─ fetch_roadmap.py
-              ├── CSV ophalen (curl + browser-headers)
-              ├── Vertaalcache laden (hash-vergelijking)
-              ├── Alleen nieuw/gewijzigd vertalen
-              ├── Producten detecteren (DETECT_PATTERNS)
-              ├── data.json schrijven
-              └── archive/YYYY-MM-DD.json opslaan (alleen als er verdwenen items zijn)
-                       │
-                       └─ git push → GitHub Pages
+Microsoft CSV API
+    ↓ (maandag 06:00 UTC, GitHub Actions)
+fetch_roadmap.py
+    ↓ vertalen via Google Translate
+data.json + archive/YYYY-MM-DD.json
+    ↓ (GitHub Pages CDN)
+Browser → index.html / kalender.html / archief.html / presentatie.html
 ```
 
-Zie `architectuur.html` voor de interactieve C4-kaart (C1 t/m C4).
+### Stack
+
+| Laag | Technologie |
+|---|---|
+| Hosting | GitHub Pages (gratis, HTTPS) |
+| Automatisering | GitHub Actions (cron maandag 06:00 UTC) |
+| Data-bron | Microsoft publieke CSV feed (`aka.ms/MSRoadmapCSV`) |
+| Vertaling | Google Translate via `deep_translator` (gratis tier) |
+| Presentatie | PptxGenJS (Node.js) |
+| Frontend | Vanilla HTML/CSS/JS — geen framework |
+| Kosten | **€0/maand** |
 
 ---
 
-## Pagina's
+## Functionaliteit
 
 ### Hoofdpagina — `index.html`
-
-| Filter | Standaard | Toelichting |
-|---|---|---|
-| Product | Alle producten | Icoon + naam + live-telling. Toont alleen producten mét items. |
-| Actie nodig? | Alles | Automatisch · IT-beheerder · Medewerker |
-| Sorteren | Toegevoegd: nieuwste eerst | 5 opties |
-| Periode | Vorige week | Items toegevoegd/gewijzigd in de vorige kalenderweek. Consistent met de maandag-workflow. |
-| Status | Alles | Uitgerold · In ontwikkeling |
-
-**URL-parameters:**
-- `?id=123456` — opent item direct; alle datumfilters worden gereset
-- `?zoek=Teams` — vult zoekbalk voor
-
----
+- Standaard filter: **Vorige kalenderweek**
+- Filters: product (16 iconen inline base64), actie, periode, status (incl. ⭐ Nieuw), sortering
+- Legenda voor actie-types direct onder de filterbalk
+- Zoekbalk met trefwoord of `?id=` directe links
+- Directe item-link: kopieer-knop per kaart → `?id=123` URL
+- Bij `?id=` navigatie: scroll naar item met blauwe pulse-animatie
+- Lege staat bij "Vorige week": suggestieknop "Toon alle periodes"
+- Statistiekenbalk: pills links, "Bijgewerkt: datum · items" rechts
+- Slimme SessionStorage-cache: ongeldig na maandag 06:00 UTC of na 30 minuten
 
 ### Releasekalender — `kalender.html`
-
-Korte termijn: per maand, komende 6 maanden, exacte datums.
-Lange termijn: per kwartaal vanaf huidig kwartaal. Periodfilter: huidig+toekomst / jaar / alles.
-Details-knop stuurt via `?id=` naar de hoofdpagina.
-
----
+- **Korte termijn**: per maand, exacte datums, komende 6 maanden
+- **Lange termijn**: per kwartaal, periodfilter (huidig+toekomst / jaar / alles)
+- Details-knop via `?id=` terug naar index.html
 
 ### Archiefpagina — `archief.html`
+- Toont per week welke items van de roadmap zijn **verdwenen** (uitgerold of geannuleerd)
+- Zoekbalk filtert verdwenen items op titel binnen de geselecteerde week
+- Weekknoppen alleen zichtbaar als het bestand daadwerkelijk verdwenen items bevat (gevalideerd via fetch vóór weergave)
+- Kaarten gegroepeerd: ✅ Uitgerold / ❌ Geannuleerd
+- Maximaal 3 maanden terug bewaard
 
-Weekoverzichten tot 3 maanden terug. Meest recente week automatisch geladen.
-Productfilter per week met icoon. Statistiekenbalk en gewijzigde items per week.
-
----
+### Presentatiegenerator — `presentatie.html`
+- Selecteer producten, week en klantnaam
+- Genereert klantgerichte `.pptx` direct in de browser via PptxGenJS
+- Week-tabs voor recente weken
+- Preview-statistieken per selectie
 
 ### Architectuurkaart — `architectuur.html`
-
-Interactieve C4-kaart: klik elk component voor details over functie, logica en implementatie.
-- C1 Context — systeem en externe afhankelijkheden
-- C2 Container — deploybare onderdelen en datastromen
-- C3 Component — interne bouwblokken
-- C4 Code — functies, schema's en datastructuren
+- C4-model (C1–C4): Context · Container · Component · Code
+- Klikbare nodes met detailpanels
+- Trust boundary zones
+- Consistent met design system (dark mode, CSS-variabelen)
 
 ---
 
-### Presentatiepagina — `presentatie.html`
+## Data-pipeline — `fetch_roadmap.py`
 
-Genereert een branded `.pptx`-presentatie in de browser, klaar om te downloaden en te tonen aan klanten.
-
-| Instelling | Opties | Toelichting |
-|---|---|---|
-| Weekkeuze | Week 1–4 terug | Selecteer de ISO-kalenderweek waarover gerapporteerd wordt |
-| Producten | Per product | Selecteer welke M365-producten opgenomen worden |
-| Klantgegevens | Vrij tekstveld | Klantnaam en eventuele notities voor de titelpagina |
-
-**Slides die worden gegenereerd:**
-1. Titelpagina met klantbranding (XTRM-logo, achtergrond)
-2. Overzichtsslide met statistieken van de geselecteerde week
-3–9. Productslides (één per geselecteerd product, automatisch gepagineerd bij >4 items)
-10. Afsluiting met contactgegevens
-
-**Technische details:**
-- PptxGenJS 4.0.1 via CDN (volledig browser-side, geen server nodig)
-- SessionStorage-cache (30 min + maandag-invalidatie) — zelfde mechanisme als index.html
-- Embedded base64 assets (XTRM-logo wit/zwart, Utrecht-achtergrond)
-- Barlow / Barlow Condensed / Barlow SemiCondensed fonts
-- Sprekernotities automatisch gegenereerd per slide
-- Werkt alleen via de GitHub Pages URL (niet als lokaal bestand)
-
-**Functies:**
-- `waitForPptx()` — wacht op PptxGenJS CDN-load (60 × 200 ms)
-- `loadData()` — haalt roadmap-data op (met cache)
-- `buildWeekRanges()` — berekent 4 vorige ISO-kalenderweken
-- `buildProductGrid()` — bouwt productfilter met live-telling
-- `generatePptx()` — construeert alle slides via PptxGenJS API
-
----
-
-## Technische details
-
-### Thema (licht/donker)
-Elke pagina heeft een thema-knop (☀/🌙) in de header. Keuze wordt opgeslagen in `localStorage`. Zonder expliciete keuze volgt het systeem de OS-voorkeur (`prefers-color-scheme`).
-
-### Product-iconen
-16 officiële iconen inline als base64 PNG (64×64 px, ~80 KB totaal). Geen externe HTTP-requests. Werkt offline en in sandboxed Teams-tabs. Gebruik `appIconHTML(key)` om een `<img>` te genereren.
-
-### data.json-schema
-```json
-{
-  "generated": "ISO-timestamp",
-  "count": 819,
-  "items": [{
-    "id": "string",
-    "title_nl": "Vertaalde titel",
-    "benefit_nl": "Vertaald voordeel",
-    "title_en": "Original title",
-    "product": "teams",
-    "status": "rolling | dev",
-    "action": "none | admin | user",
-    "release": "April CY2026",
-    "added": "2026-03-17",
-    "modified": "2026-03-17",
-    "moreInfoLink": "https://..."
-  }],
-  "removed": [{ "...": "Launched/Cancelled items t.o.v. vorige run" }],
-  "translation_cache": {
-    "<id>": { "title_nl": "...", "benefit_nl": "...", "hash": "..." }
-  }
-}
+```
+1. Laad bestaande vertalingen uit data.json als cache
+2. Haal Microsoft CSV op (Accept-Language: en-US voor botdetectie)
+3. Detecteer actie-type: none / admin / user
+4. Vertaal ALLEEN nieuwe/gewijzigde items via Google Translate
+5. Schrijf data.json (alle actieve items + removed[])
+6. Schrijf archive/YYYY-MM-DD.json (alleen als removed[] niet leeg)
+7. Verwijder lege archiefbestanden (removed:[])
+8. Bijwerk archive/index.json (max 3 maanden)
+9. Schrijf GitHub Actions Step Summary
 ```
 
-### Periodefilter — weekberekening
-ISO-kalenderweken (ma–zo). Standaard "Vorige week" is consistent met de maandagse workflow-run.
-
-| Functie | Werking |
-|---|---|
-| `isoWeek(date)` | Weeknummer 1–53 |
-| `weekStart(date)` | Maandag 00:00 van die week |
-| `weekEnd(date)` | Zondag 23:59:59 van die week |
-| `inPrevWeek(d)` | Valt datum in de vorige kalenderweek? |
+### Verdwenen items detectie
+Items die in de vorige `data.json` stonden maar niet meer in de CSV zijn:
+- Status `launched` → Uitgerold
+- Status `cancelled` → Geannuleerd
+- Worden opgeslagen in `removed[]` van het archiefbestand
 
 ### Archief-weekknoppen
-Vóór het tonen van weekknoppen haalt `archief.html` elk archiefbestand op en controleert of `removed.length > 0`. Weken zonder verdwenen items krijgen geen knop. `fetch_roadmap.py` slaat ook alleen een archiefbestand op als er verdwenen items zijn — lege runs produceren geen JSON-bestand.
+Vóór het tonen van weekknoppen haalt `archief.html` elk archiefbestand op en controleert of `removed.length > 0`. Lege weken krijgen geen knop. `fetch_roadmap.py` slaat ook alleen een archiefbestand op als er verdwenen items zijn.
 
 ---
 
-## Nieuwe functies (april 2026)
+## GitHub Actions
+
+**Workflow:** `.github/workflows/update-roadmap.yml`
+
+- **Trigger:** `cron: '0 6 * * 1'` (maandag 06:00 UTC) + `workflow_dispatch`
+- **Stappen:** checkout → pip install → fetch_roadmap.py → git commit → git push
+- **Step Summary:** na elke run een samenvatting in de Actions-tab met item-aantallen en verdwenen items
+
+---
+
+## Navigatie & WCAG
+
+- **WCAG 3.2.3 Consistent Navigation (AA):** identieke volgorde op alle pagina's
+- **aria-current="page":** actieve pagina gemarkeerd voor screenreaders
+- **Actieve stijl:** donkere achtergrond (`var(--text)`) + `color: var(--surface)`
+- **WCAG 2.5.8 Target Size:** alle knoppen minimaal 44×44px
+
+---
+
+## Design system — `shared.css`
+
+| Token | Gebruik |
+|---|---|
+| `--bg`, `--surface`, `--surface2` | Achtergronden |
+| `--text`, `--muted`, `--faint` | Tekstniveaus |
+| `--border`, `--border-s` | Randen |
+| `--blue-t`, `--blue-bg` | Primaire accentkleur |
+| `--green-*`, `--amber-*`, `--red-*` | Status-kleuren |
+| `--c-none`, `--c-admin`, `--c-user` | Actie-indicatoren |
+| `--radius-sm/md/lg/pill` | Afrondingen |
+| `--font` | Inter, systeem-fallback |
+
+**Dark mode:** automatisch via `prefers-color-scheme` + handmatig via `localStorage` toggle.
+
+---
+
+## Terminologie
+
+| Term | Betekenis |
+|---|---|
+| **Automatisch** | Geen actie nodig — Microsoft voert dit door |
+| **IT-beheerder** | Technische actie of beoordeling vereist |
+| **Medewerker** | Medewerker kan dit zelf instellen of kiezen |
+| **Uitgerold** | Item is beschikbaar gekomen (Launched) |
+| **Geannuleerd** | Item is ingetrokken door Microsoft (Cancelled) |
+| **Verdwenen** | Item staat niet meer op de actieve roadmap |
+
+---
+
+## Actuele functies (april 2026)
 
 | Functie | Beschrijving |
 |---|---|
-| Directe item-link | Elke kaart heeft een kopieer-knop die `?id=123` naar het klembord kopieert. Bij het openen scrollt de pagina automatisch naar het item en markeert het. |
-| Slimme cache | SessionStorage-cache wordt automatisch ongeldig na de maandag-run (06:00 UTC), zodat gebruikers altijd verse data zien. |
-| Lege staat periode | Als "Vorige week" geen resultaten geeft, verschijnt een suggestieknop om naar "Alle periodes" te schakelen. |
-| Legenda | Compact overzicht van de drie actie-types direct onder de filterbalk. |
-| Zoeken in archief | Zoekbalk op de archiefpagina filtert verdwenen items op titel binnen de geselecteerde week. |
-| GitHub Step Summary | Na elke workflow-run verschijnt een samenvatting in de Actions-tab met item-aantallen en verdwenen items. |
-| Opschonen lege archieven | `fetch_roadmap.py` verwijdert automatisch archiefbestanden met een lege `removed[]` (aangemaakt vóór de nieuwe logica). |
+| Directe item-link | Kopieer-knop per kaart → `?id=123` URL. Scroll + highlight bij navigatie. |
+| Slimme cache | SessionStorage ongeldig na maandag 06:00 UTC of 30 minuten. |
+| Lege staat periode | Bij geen resultaten voor "Vorige week": suggestieknop voor alle periodes. |
+| Legenda | Compact overzicht van actie-types onder de filterbalk. |
+| Zoeken in archief | Zoekbalk filtert verdwenen items op titel binnen de geselecteerde week. |
+| Status-filter Nieuw | Filter ⭐ Nieuw toont alleen items die deze week zijn toegevoegd/gewijzigd. |
+| GitHub Step Summary | Samenvatting na elke workflow-run in de Actions-tab. |
+| Opschonen archieven | Lege archiefbestanden worden automatisch verwijderd bij volgende run. |
+| Presentatiegenerator | Download klantgerichte .pptx direct vanuit de browser. |
 
 ---
 
-## Performance
+## Lokaal testen
 
+1. Kloon de repository
+2. Open in VS Code
+3. Installeer extensie **Live Server** (Ritwick Dey)
+4. Rechtermuisknop op `index.html` → **Open with Live Server**
 
-| Maatregel | Details |
-|---|---|
-| SessionStorage-cache | `data.json` 30 min gecached (key: `m365_data_v1`) |
-| Cache-buster | `?v=Date.now()` omzeilt CDN-cache |
-| Fetch-timeout | AbortController na 12 seconden |
-| Debounce | Zoekbalk 200ms |
-| Event delegation | Één listener per filtergroep |
-| innerHTML-batch | Één DOM-write per render |
-
----
-
-## Toegankelijkheid (WCAG 2.2 AA)
-
-| Criterium | Oplossing |
-|---|---|
-| 1.1.1 Afbeeldingen | Alle iconen `aria-hidden="true"` + leeg `alt=""` |
-| 1.3.1 Koppen | h1 → h2 → h3, geen gaten |
-| 1.4.3 Contrast ≥4.5:1 | Getest voor licht én donker thema |
-| 1.4.4 Schaalbaar | Alle `font-size` in `rem` |
-| 2.4.1 Skip-link | Op alle pagina's |
-| 2.4.7 Focus | `:focus-visible` overal |
-| 2.4.11 Focus zichtbaar | `scroll-margin-top` via shared.css |
-| 2.5.8 Raakdoel | Min. 44px knoppen |
-| 3.1.1 Taal | `lang="nl"` op elk document |
-| 4.1.2 Naam/rol | `aria-pressed`, `aria-expanded`, `aria-live`, `aria-label` |
-
-Aanvullend: dark mode · `prefers-reduced-motion` · `noscript`-fallback.
+Voor de data-pipeline lokaal draaien:
+```bash
+pip install deep-translator
+python fetch_roadmap.py
+```
 
 ---
 
-## Kosten
+## Repository structuur
 
-**€0 per maand** — GitHub Pages + Actions (gratis tier) + Microsoft CSV + Google Translate.
-
----
-
-## Onderhoud
-
-**Workflow mislukt?** Actions → mislukte run → Re-run.
-
-**Vertaling corrigeren?** Pas `title_nl` of `benefit_nl` aan in `data.json`. De hash-cache bewaart uw correctie zolang Microsoft het item niet wijzigt.
-
-**Nieuw product toevoegen:**
-1. `DETECT_PATTERNS` in `fetch_roadmap.py`
-2. `APP_META`, `APP_ORDER`, `APP_ICONS` in alle HTML-pagina's
-3. Pill-klasse in `shared.css`
-
----
-
-## Privacy en beveiliging
-
-- Geen cookies, geen tracking, geen analytics
-- Geen login vereist
-- Alle data is publiek beschikbaar via Microsoft
-- Werkt in sandboxed Teams-tabs
+```
+/
+├── index.html          # Hoofdpagina
+├── kalender.html       # Releasekalender
+├── archief.html        # Archief verdwenen items
+├── presentatie.html    # Presentatiegenerator
+├── architectuur.html   # C4-architectuurkaart
+├── shared.css          # Gedeeld design system
+├── fetch_roadmap.py    # Data-pipeline
+├── data.json           # Gegenereerde roadmap-data (auto)
+├── archive/
+│   ├── index.json      # Lijst beschikbare archiefweken (auto)
+│   └── YYYY-MM-DD.json # Verdwenen items per week (auto, alleen als niet leeg)
+└── .github/
+    └── workflows/
+        └── update-roadmap.yml
+```

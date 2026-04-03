@@ -649,3 +649,11 @@ html[data-theme="dark"] {
   border-color: var(--blue-t) !important;
   animation: itemPulse 1.2s ease-out;
 }
+
+/* ── Presentatie info-blokken (gedeeld) ─────────────────────────────────── */
+.pres-info { display:flex; align-items:flex-start; gap:0.5rem; padding:0.625rem 0.875rem;
+  border-radius:var(--radius-sm); font-size:0.8125rem; margin-bottom:0.875rem; }
+.pres-info.warn { background:var(--amber-bg); border:1px solid var(--amber-t); color:var(--amber-t); }
+.pres-info.ok   { background:var(--green-bg); border:1px solid var(--green-t); color:var(--green-t); }
+.pres-info.err  { background:var(--red-bg);   border:1px solid var(--red-t);   color:var(--red-t);   }
+
