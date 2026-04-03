@@ -3,9 +3,6 @@
    Maandoverzicht, dag-cellen, kalenderkaarten
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* Ruimere breedte voor kalenderoverzicht */
-.main { max-width: 1200px; }
-
 /* ── Maandraster ─────────────────────────────────────────────────────── */
 .month-block     { margin-bottom: 2.5rem; }
 .month-hdr       { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
