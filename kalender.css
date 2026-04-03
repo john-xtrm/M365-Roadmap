@@ -1,53 +1,202 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Kalender — paginaspecifieke stijlen
-   Maandoverzicht, dag-cellen, kalenderkaarten
+   Periodeblokken, kalenderkaarten, weergave-schakelaar
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Maandraster ─────────────────────────────────────────────────────── */
-.month-block     { margin-bottom: 2.5rem; }
-.month-hdr       { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
-.month-grid      { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+/* ── Weergave-intro tekst ────────────────────────────────────────────── */
+.view-intro { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.75rem; }
 
-/* ── Week-navigatie ──────────────────────────────────────────────────── */
-.week-nav    { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
-.week-label  { font-size: 0.875rem; font-weight: 600; color: var(--text); }
+/* ── Weergave-schakelaar (korte/lange termijn) ───────────────────────── */
+.view-switch { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+
+.view-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--border-s);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  min-height: 2.75rem;
+  text-align: left;
+}
+.view-btn:hover:not([aria-pressed="true"]) {
+  background: var(--surface2);
+  color: var(--text);
+  border-color: var(--border-s);
+}
+.view-btn[aria-pressed="true"] {
+  background: var(--blue-bg);
+  color: var(--blue-t);
+  border-color: var(--blue-t);
+}
+.view-btn-title { font-size: 0.9375rem; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.view-btn-sub   { font-size: 0.75rem; color: var(--faint); margin-top: 2px; }
+.view-btn[aria-pressed="true"] .view-btn-sub { color: var(--blue-t); opacity: 0.8; }
+
+/* ── Filterblok kalender (eigen wrapper-class) ───────────────────────── */
+/* Kalender gebruikt .filter-wrap i.p.v. .filters uit shared.css         */
+.filter-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.filter-wrap .filter-group label {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--faint);
+}
+
+/* ── Kalender-container ──────────────────────────────────────────────── */
+.calendar { display: flex; flex-direction: column; gap: 1.25rem; }
+
+/* ── Periodeblok ─────────────────────────────────────────────────────── */
+.period-block {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.period-block.is-current { border-color: var(--blue-t); border-width: 2px; }
+.period-block.is-empty   { border-style: dashed; opacity: 0.55; }
+.period-block.is-empty .period-hdr {
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  border-bottom: none;
+}
+.period-block.is-empty .period-hdr h2 {
+  font-size: 0.875rem; font-weight: 500; color: var(--faint);
+}
+
+/* ── Periodeheader ───────────────────────────────────────────────────── */
+.period-hdr {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap; gap: 0.5rem;
+}
+.period-hdr h2 {
+  font-size: 1.0625rem; font-weight: 700;
+  display: flex; align-items: center; gap: 10px;
+}
+.period-now {
+  font-size: 0.6875rem; font-weight: 700;
+  background: var(--blue-t); color: var(--surface);
+  padding: 2px 8px; border-radius: var(--radius-pill);
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.period-meta  { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.period-count { font-size: 0.75rem; color: var(--muted); font-weight: 500; }
+
+/* Mini actie-uitsplitsing in periodeheader */
+.period-actions { display: flex; align-items: center; gap: 6px; font-size: 0.6875rem; font-weight: 600; }
+.pact-dot       { display: inline-flex; align-items: center; gap: 3px; }
+.pact-dot .cnt-none  { color: var(--c-none); }
+.pact-dot .cnt-admin { color: var(--c-admin); }
+.pact-dot .cnt-user  { color: var(--c-user); }
+
+/* ── Items-container ─────────────────────────────────────────────────── */
+.period-items { padding: 1rem 1.25rem; display: flex; flex-direction: column; gap: 8px; }
 
 /* ── Kalenderkaart ───────────────────────────────────────────────────── */
 .cal-card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 0.875rem 1rem;
-  cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  display: flex; flex-direction: column; gap: 0.5rem;
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid transparent;
+  transition: background 0.12s;
 }
-.cal-card:hover     { border-color: var(--border-s); box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
-.cal-card.act-none  { border-left: 4px solid var(--c-none); }
-.cal-card.act-admin { border-left: 4px solid var(--c-admin); }
-.cal-card.act-user  { border-left: 4px solid var(--c-user); }
+.cal-card:hover         { background: var(--surface2); }
+.cal-card.act-none      { border-left-color: var(--c-none); }
+.cal-card.act-admin     { border-left-color: var(--c-admin); }
+.cal-card.act-user      { border-left-color: var(--c-user); }
+.cal-card.is-uncertain  { opacity: 0.75; border-left-style: dashed; }
 
-.cal-card-title { font-size: 0.875rem; font-weight: 600; line-height: 1.4; color: var(--text); }
-.cal-card-date  { font-size: 0.75rem; color: var(--faint); display: flex; align-items: center; gap: 5px; }
-.cal-card-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.cal-card-left    { flex: 1; min-width: 0; }
+.cal-card-title   { font-size: 0.9375rem; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 4px; }
+.cal-card-benefit { font-size: 0.8125rem; color: var(--muted); line-height: 1.5; margin-bottom: 6px; }
+.cal-card-pills   { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+.cal-card-right   { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
 
-/* ── Lege dag / leeg maandblok ───────────────────────────────────────── */
-.cal-empty {
-  text-align: center; padding: 2rem 1rem;
-  color: var(--faint); font-size: 0.875rem;
-  border: 1.5px dashed var(--border);
-  border-radius: var(--radius-md);
+/* ── Actie-indicator op kalenderkaart ───────────────────────────────── */
+.action-dot-wrap { display: inline-flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+.action-dot      { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.act-none  .action-dot { background: var(--c-none); }  .act-none  .action-lbl { color: var(--c-none); }
+.act-admin .action-dot { background: var(--c-admin); } .act-admin .action-lbl { color: var(--c-admin); }
+.act-user  .action-dot { background: var(--c-user); }  .act-user  .action-lbl { color: var(--c-user); }
+
+/* ── Link naar hoofdpagina (in kalenderkaart) ────────────────────────── */
+.main-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.75rem; color: var(--blue-t);
+  text-decoration: none;
+  padding: 4px 10px; border-radius: var(--radius-pill);
+  background: var(--blue-bg); font-weight: 500;
+  white-space: nowrap; transition: opacity 0.12s;
+}
+.main-link:hover { opacity: 0.8; }
+
+/* ── Korte-termijn badge ─────────────────────────────────────────────── */
+.short-term-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.6875rem; font-weight: 700;
+  background: var(--blue-bg); color: var(--blue-t);
+  padding: 3px 8px; border-radius: var(--radius-pill);
+  white-space: nowrap; cursor: default;
 }
 
-/* ── Kleurlegenda kalender ───────────────────────────────────────────── */
-.cal-legend {
-  display: flex; flex-wrap: wrap; gap: 0.5rem 1.25rem;
-  font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem;
-  align-items: center;
+/* ── Blok zonder datum (uitklapbaar) ─────────────────────────────────── */
+.no-date-block { border: 1.5px dashed var(--border-s); border-radius: var(--radius-lg); overflow: hidden; }
+.no-date-hdr {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem; font-weight: 600; color: var(--faint);
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  cursor: pointer; gap: 0.5rem;
 }
+.no-date-hdr:hover   { background: var(--surface2); }
+.no-date-inner       { display: none; }
+.no-date-inner.open  { display: block; }
 
-/* ── Scroll naar huidige maand knop ──────────────────────────────────── */
-.today-btn {
+/* ── Periode-filterregel (compacte filterstrook) ─────────────────────── */
+.period-filter-wrap {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 1rem; padding: 0.75rem 1.25rem;
+  background: var(--surface2); border-radius: var(--radius-sm);
   font-size: 0.8125rem;
-  padding: 0.375rem 0.875rem;
+}
+.period-filter-wrap label {
+  color: var(--faint); font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.75rem;
+}
+
+/* Periode-filterknop — compacte variant */
+.pf-btn {
+  padding: 5px 14px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: var(--font); font-size: 0.8125rem; font-weight: 500;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+  min-height: 2.25rem;
+}
+.pf-btn:hover:not([aria-pressed="true"]) {
+  background: var(--surface2); color: var(--text); border-color: var(--border-s);
+}
+.pf-btn[aria-pressed="true"] {
+  background: var(--blue-t); color: var(--surface);
+  border-color: var(--blue-t); font-weight: 600;
 }
