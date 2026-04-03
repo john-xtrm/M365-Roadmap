@@ -17,7 +17,7 @@
   --surface2:  #f0ede8;   /* subtiele vlakken, hover-achtergrond         */
   --text:      #1a1916;   /* primaire tekst                              */
   --muted:     #5a5750;   /* secundaire tekst                            */
-  --faint:     #7a7770;   /* labels, meta-informatie                     */
+  --faint:     #605c58;   /* labels, meta-informatie — 5.0:1 op surface2 */
   --border:    rgba(0,0,0,0.10);
   --border-s:  rgba(0,0,0,0.20);
 
@@ -65,7 +65,7 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg:        #1a1917;  --surface:   #242220;  --surface2:  #2e2c2a;
-    --text:      #f0ede8;  --muted:     #b0ada8;  --faint:     #888480;
+    --text:      #f0ede8;  --muted:     #b0ada8;  --faint:     #9e9a96;
     --border:    rgba(255,255,255,0.10);  --border-s:  rgba(255,255,255,0.20);
     --green-bg:  #1a3d25;  --green-t:  #7dd9a0;
     --amber-bg:  #3a2800;  --amber-t:  #f5c97a;
@@ -89,7 +89,7 @@
 /* DARK MODE — handmatig */
 [data-theme="dark"] {
   --bg:        #1a1917;  --surface:   #242220;  --surface2:  #2e2c2a;
-  --text:      #f0ede8;  --muted:     #b0ada8;  --faint:     #888480;
+  --text:      #f0ede8;  --muted:     #b0ada8;  --faint:     #9e9a96;
   --border:    rgba(255,255,255,0.10);  --border-s:  rgba(255,255,255,0.20);
   --green-bg:  #1a3d25;  --green-t:  #7dd9a0;
   --amber-bg:  #3a2800;  --amber-t:  #f5c97a;
