@@ -6,65 +6,6 @@
 <title>Microsoft 365 Roadmap — Wat staat er aan te komen?</title>
 <meta name="description" content="Overzicht van aankomende Microsoft 365-updates: wat staat er aan te komen, wat betekent het voor uw organisatie en is er actie nodig van IT of medewerkers?">
 <link rel="stylesheet" href="shared.css">
-<style>
-/* ── Zoekbalk ─────────────────────────────────────────────────────────── */
-.search-wrap { position: relative; margin-bottom: 1.25rem; }
-.search-wrap .search-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--faint); pointer-events: none; }
-#search-input { width: 100%; padding: 0.75rem 1rem 0.75rem 2.625rem; font-size: 1rem; font-family: var(--font); border: 1.5px solid var(--border-s); border-radius: var(--radius-md); background: var(--surface); color: var(--text); transition: border-color 0.15s; }
-#search-input:focus { border-color: var(--blue-t); outline: none; box-shadow: 0 0 0 3px rgba(20,61,130,0.15); }
-#search-input::placeholder { color: var(--faint); }
-.search-clear { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--faint); font-size: 1rem; border-radius: 50%; display: none; align-items: center; justify-content: center; }
-.search-clear:hover { background: var(--surface2); color: var(--text); }
-.search-clear
-
-/* ── Info-banner ──────────────────────────────────────────────────────── */
-.info-banner { border: 1px solid var(--border); border-radius: var(--radius-md); background: var(--surface); margin-bottom: 1.25rem; overflow: hidden; }
-.info-banner-toggle { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0.625rem 1rem; background: none; border: none; cursor: pointer; font: inherit; font-size: 0.8125rem; font-weight: 600; color: var(--muted); gap: 0.5rem; min-height: 2.75rem; }
-.info-banner-toggle:hover { background: var(--surface2); }
-.info-banner-body { display: none; padding: 0 1rem 0.875rem; border-top: 1px solid var(--border); }
-.info-banner-body
-.info-list { list-style: none; display: flex; flex-direction: column; gap: 6px; padding-top: 0.75rem; }
-.info-list li { display: flex; align-items: center; gap: 8px; font-size: 0.8125rem; color: var(--muted); }
-.info-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-/* ── Kalender-melding ─────────────────────────────────────────────────── */
-.search-origin-note { display: none; font-size: 0.8125rem; color: var(--muted); background: var(--surface2); border-radius: var(--radius-sm); padding: 8px 14px; margin-bottom: 1rem; align-items: center; gap: 8px; }
-.search-origin-note
-.search-origin-note button { background: none; border: none; color: var(--blue-t); cursor: pointer; font: inherit; font-size: 0.8125rem; padding: 0; text-decoration: underline; }
-
-/* ── Filterblok ───────────────────────────────────────────────────────── */
-
-.filter-group > label {
-  font-size: 0.6875rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--faint);
-  display: flex; align-items: center; gap: 6px;
-}
-
-.filter-row-2 .filter-group { flex: 1; min-width: 160px; }
-
-/* Actie-knoppen met gekleurde dot */
-
-/* Sorteren */
-select { padding: 0.4375rem 0.75rem; border-radius: var(--radius-pill); border: 1.5px solid var(--border-s); background: var(--surface); color: var(--text); font-family: var(--font); font-size: 0.875rem; cursor: pointer; min-height: 2.75rem; }
-select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
-
-/* Weekbadge naast filterlabel */
-.week-mini-badge {
-  font-size: 0.6rem; font-weight: 700;
-  background: var(--new-bg); color: var(--new-t);
-  padding: 1px 7px; border-radius: var(--radius-pill);
-  white-space: nowrap; text-transform: none; letter-spacing: 0;
-}
-
-/* Donkere modus: witte achtergrond blijft — geeft app-icon-uitstraling */
-@media (prefers-color-scheme: dark) {
-  }
-
-/* ── Leeg-melding ─────────────────────────────────────────────────────── */
-#empty-msg { display: none; text-align: center; padding: 3rem 1rem; color: var(--muted); font-size: 0.9375rem; }
-#empty-msg.show { display: block; }
-</style>
 <script>
 (function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
 </script>
