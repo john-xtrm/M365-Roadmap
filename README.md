@@ -116,6 +116,38 @@ Interactieve C4-kaart: klik elk component voor details over functie, logica en i
 - C3 Component — interne bouwblokken
 - C4 Code — functies, schema's en datastructuren
 
+
+### Presentatiepagina — `presentatie.html`
+
+Genereert een branded `.pptx`-presentatie in de browser, klaar om te downloaden en te tonen aan klanten.
+
+| Instelling | Opties | Toelichting |
+|---|---|---|
+| Weekkeuze | Week 1–4 terug | Selecteer de ISO-kalenderweek waarover gerapporteerd wordt |
+| Producten | Per product | Selecteer welke M365-producten opgenomen worden |
+| Klantgegevens | Vrij tekstveld | Klantnaam en eventuele notities voor de titelpagina |
+
+**Slides die worden gegenereerd:**
+1. Titelpagina met klantbranding (XTRM-logo, achtergrond)
+2. Overzichtsslide met statistieken van de geselecteerde week
+3–9. Productslides (één per geselecteerd product, automatisch gepagineerd bij >4 items)
+10. Afsluiting met contactgegevens
+
+**Technische details:**
+- PptxGenJS 4.0.1 via CDN (volledig browser-side, geen server nodig)
+- SessionStorage-cache (30 min + maandag-invalidatie) — zelfde mechanisme als index.html
+- Embedded base64 assets (XTRM-logo wit/zwart, Utrecht-achtergrond)
+- Barlow / Barlow Condensed / Barlow SemiCondensed fonts
+- Sprekernotities automatisch gegenereerd per slide
+- Werkt alleen via de GitHub Pages URL (niet als lokaal bestand)
+
+**Functies:**
+- `waitForPptx()` — wacht op PptxGenJS CDN-load (60 × 200 ms)
+- `loadData()` — haalt roadmap-data op (met cache)
+- `buildWeekRanges()` — berekent 4 vorige ISO-kalenderweken
+- `buildProductGrid()` — bouwt productfilter met live-telling
+- `generatePptx()` — construeert alle slides via PptxGenJS API
+
 ---
 
 ## Technische details
