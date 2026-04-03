@@ -593,8 +593,8 @@ function doBuild(clientName,consultantName,w,weekLabel,nextSession,footerTxt,fil
     addLogoHeader(s);
   }
   function addCounter(s, count) {
-    s.addShape(SH.rRect, {x:2.55,y:0.18,w:1.05,h:0.54,fill:{color:C.darkMid},line:{color:C.g4},rectRadius:0.06});
-    s.addText(count+' items', {x:2.55,y:0.18,w:1.05,h:0.54,fontSize:10,color:C.main,bold:true,align:'center',valign:'middle',fontFace:F.cond,margin:0});
+    s.addShape(SH.rRect, {x:6.55,y:0.18,w:1.05,h:0.54,fill:{color:C.darkMid},line:{color:C.g4},rectRadius:0.06});
+    s.addText(count+' items', {x:6.55,y:0.18,w:1.05,h:0.54,fontSize:10,color:C.main,bold:true,align:'center',valign:'middle',fontFace:F.cond,margin:0});
   }
   function addCard(s, item, y, pc) {
     var bc = badgeColor(item.action);
