@@ -728,6 +728,23 @@ function closeDetail() {
     n.classList.remove('selected');
   });
 }
+
+/* ── WCAG 2.1.1 Keyboard — nodes en code-blokken toetsenbord-toegankelijk */
+document.querySelectorAll('.node, .code-block').forEach(function(el) {
+  if (!el.getAttribute('tabindex')) el.setAttribute('tabindex', '0');
+  el.setAttribute('role', 'button');
+  el.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+/* Escape sluit het detail-panel */
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeDetail();
+});
 </script>
 </body>
 </html>
