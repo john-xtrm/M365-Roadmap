@@ -1,103 +1,217 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Microsoft 365 Roadmap — Gedeelde stijlen
-   WCAG 2.2 AA geoptimaliseerd
+   WCAG 2.2 AA · Één plek voor alle kleuren, vormen en typografie
    ═══════════════════════════════════════════════════════════════════════ */
 
 /* ── Reset ─────────────────────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* ── Design tokens ─────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — pas hier kleuren, vormen en typografie aan
+   ══════════════════════════════════════════════════════════════════════════ */
 :root {
-  /* Kleuren */
-  --bg:       #f5f4f0;
-  --surface:  #ffffff;
-  --surface2: #f0ede8;
-  --text:     #1a1916;
-  --muted:    #5a5750;
-  --faint:    #7a7770;
-  --border:   rgba(0,0,0,0.10);
-  --border-s: rgba(0,0,0,0.20);
 
-  /* App-kleuren — alle combinaties getest op ≥ 4.5:1 contrast (WCAG 1.4.3) */
-  --green-bg:  #e6f4eb; --green-t:  #145228;
-  --amber-bg:  #fef3dc; --amber-t:  #5c3a00;
-  --purple-bg: #eeebfd; --purple-t: #3a2a8a;
-  --gray-bg:   #e8e8e8; --gray-t:   #383838;
-  --blue-bg:   #e6f0fd; --blue-t:   #143d82;
-  --red-bg:    #fdecea; --red-t:    #7a1a1a;
-  --orange-bg: #fff0e6; --orange-t: #6b3200;
-  --teal-bg:   #e0f4f1; --teal-t:   #0a5248;
-  --new-bg:    #fff7e0; --new-t:    #5c3a00;
+  /* ── Basisoppervlakken ─────────────────────────────────────────────── */
+  --bg:        #f5f4f0;   /* paginaachtergrond                           */
+  --surface:   #ffffff;   /* kaarten, header, knoppen                    */
+  --surface2:  #f0ede8;   /* subtiele vlakken, hover-achtergrond         */
+  --text:      #1a1916;   /* primaire tekst                              */
+  --muted:     #5a5750;   /* secundaire tekst                            */
+  --faint:     #7a7770;   /* labels, meta-informatie                     */
+  --border:    rgba(0,0,0,0.10);
+  --border-s:  rgba(0,0,0,0.20);  /* iets sterker voor actieve randen    */
 
-  /* Actiekleuren — ≥ 4.5:1 op wit en surface2 */
-  --c-none:  #1a7a45;
-  --c-admin: #8a5600;  /* Gecorrigeerd van #b07000 (was 3.45:1 → nu 5.1:1) */
-  --c-user:  #1a4fa0;
+  /* ── Statuskleuren (achtergrond + tekst, ≥ 4.5:1 contrast getest) ─── */
+  --green-bg:  #e6f4eb;  --green-t:  #145228;
+  --amber-bg:  #fef3dc;  --amber-t:  #5c3a00;
+  --purple-bg: #eeebfd;  --purple-t: #3a2a8a;
+  --gray-bg:   #e8e8e8;  --gray-t:   #383838;
+  --blue-bg:   #e6f0fd;  --blue-t:   #143d82;
+  --red-bg:    #fdecea;  --red-t:    #7a1a1a;
+  --orange-bg: #fff0e6;  --orange-t: #6b3200;
+  --teal-bg:   #e0f4f1;  --teal-t:   #0a5248;
+  --new-bg:    #fff7e0;  --new-t:    #5c3a00;
 
-  /* Typografie */
+  /* ── Actiekleuren ──────────────────────────────────────────────────── */
+  --c-none:    #1a7a45;   /* Automatisch — groen                         */
+  --c-admin:   #8a5600;   /* IT-beheerder — amber (5.1:1 contrast)       */
+  --c-user:    #1a4fa0;   /* Medewerker — blauw                          */
+
+  /* ── Typografie ────────────────────────────────────────────────────── */
   --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Afmetingen */
-  --hdr-height: 4.5rem;   /* Hoogte sticky header — gebruikt voor scroll-margin */
-  --radius-sm:  0.5rem;
-  --radius-md:  0.875rem;
-  --radius-lg:  0.9375rem;
-  --radius-pill: 100px;
+  /* ── Afmetingen ────────────────────────────────────────────────────── */
+  --hdr-height:   4.5rem;
+  --radius-sm:    0.5rem;
+  --radius-md:    0.875rem;
+  --radius-lg:    0.9375rem;
+  --radius-pill:  100px;
+
+  /* ── Component-tokens voor dark mode (worden hieronder overschreven) ─ */
+  --mark-bg:            #fff3b0;
+  --mark-color:         inherit;
+  --input-color-scheme: light;
+
+  /* Kaart-actiekleuren (anders in dark) */
+  --card-act-none-bg:   #e8f7ee;
+  --card-act-admin-bg:  #fef3dc;
+  --card-act-user-bg:   var(--blue-bg);
+
+  /* Filter-knop actie-varianten (anders in dark) */
+  --fb-act-none-bg:     var(--c-none);   --fb-act-none-border:  var(--c-none);   --fb-act-none-color:   var(--surface);
+  --fb-act-admin-bg:    var(--c-admin);  --fb-act-admin-border: var(--c-admin);  --fb-act-admin-color:  var(--surface);
+  --fb-act-user-bg:     var(--c-user);   --fb-act-user-border:  var(--c-user);   --fb-act-user-color:   var(--surface);
 }
 
-/* ── Basistypografie ────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   DARK MODE — systeem-automatisch
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg:        #1a1917;
+    --surface:   #242220;
+    --surface2:  #2e2c2a;
+    --text:      #f0ede8;
+    --muted:     #b0ada8;
+    --faint:     #888480;
+    --border:    rgba(255,255,255,0.10);
+    --border-s:  rgba(255,255,255,0.20);
+
+    --green-bg:  #1a3d25;  --green-t:  #7dd9a0;
+    --amber-bg:  #3a2800;  --amber-t:  #f5c97a;
+    --purple-bg: #2a2060;  --purple-t: #c4b8f8;
+    --gray-bg:   #333230;  --gray-t:   #c8c6c2;
+    --blue-bg:   #162650;  --blue-t:   #7ab0f5;
+    --red-bg:    #3a1010;  --red-t:    #f5a0a0;
+    --orange-bg: #3a1a00;  --orange-t: #f5b880;
+    --teal-bg:   #0e2e2a;  --teal-t:   #7dd4cc;
+    --new-bg:    #3a2400;  --new-t:    #f5c97a;
+
+    --c-none:    #5dd48a;
+    --c-admin:   #f0a830;
+    --c-user:    #7ab0f5;
+
+    --mark-bg:            #5c4a00;
+    --mark-color:         #f5e6a0;
+    --input-color-scheme: dark;
+
+    --card-act-none-bg:   #1a3d25;
+    --card-act-admin-bg:  #3a2800;
+    --card-act-user-bg:   var(--blue-bg);
+
+    --fb-act-none-bg:     #1a3d25;  --fb-act-none-border:  var(--green-t);  --fb-act-none-color:   var(--green-t);
+    --fb-act-admin-bg:    #3a2800;  --fb-act-admin-border: var(--amber-t);  --fb-act-admin-color:  var(--amber-t);
+    --fb-act-user-bg:     var(--blue-bg); --fb-act-user-border: var(--blue-t); --fb-act-user-color: var(--blue-t);
+  }
+}
+
+/* DARK MODE — handmatig via data-theme knop */
+[data-theme="dark"] {
+  --bg:        #1a1917;
+  --surface:   #242220;
+  --surface2:  #2e2c2a;
+  --text:      #f0ede8;
+  --muted:     #b0ada8;
+  --faint:     #888480;
+  --border:    rgba(255,255,255,0.10);
+  --border-s:  rgba(255,255,255,0.20);
+
+  --green-bg:  #1a3d25;  --green-t:  #7dd9a0;
+  --amber-bg:  #3a2800;  --amber-t:  #f5c97a;
+  --purple-bg: #2a2060;  --purple-t: #c4b8f8;
+  --gray-bg:   #333230;  --gray-t:   #c8c6c2;
+  --blue-bg:   #162650;  --blue-t:   #7ab0f5;
+  --red-bg:    #3a1010;  --red-t:    #f5a0a0;
+  --orange-bg: #3a1a00;  --orange-t: #f5b880;
+  --teal-bg:   #0e2e2a;  --teal-t:   #7dd4cc;
+  --new-bg:    #3a2400;  --new-t:    #f5c97a;
+
+  --c-none:    #5dd48a;
+  --c-admin:   #f0a830;
+  --c-user:    #7ab0f5;
+
+  --mark-bg:            #5c4a00;
+  --mark-color:         #f5e6a0;
+  --input-color-scheme: dark;
+
+  --card-act-none-bg:   #1a3d25;
+  --card-act-admin-bg:  #3a2800;
+  --card-act-user-bg:   var(--blue-bg);
+
+  --fb-act-none-bg:     #1a3d25;  --fb-act-none-border:  var(--green-t);  --fb-act-none-color:   var(--green-t);
+  --fb-act-admin-bg:    #3a2800;  --fb-act-admin-border: var(--amber-t);  --fb-act-admin-color:  var(--amber-t);
+  --fb-act-user-bg:     var(--blue-bg); --fb-act-user-border: var(--blue-t); --fb-act-user-color: var(--blue-t);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   BASISSTIJLEN
+   ══════════════════════════════════════════════════════════════════════════ */
+
 body {
   font-family: var(--font);
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  font-size: 1rem;        /* = 16px, maar schaalt mee met browservoorkeur (WCAG 1.4.4) */
+  font-size: 1rem;
   line-height: 1.5;
-  -webkit-text-size-adjust: 100%;  /* Voorkom auto-schalen op mobiel */
+  -webkit-text-size-adjust: 100%;
 }
 
-/* ── WCAG 2.2 §2.4.11 Focus Not Obscured ─────────────────────────────── */
-/* Sticky header is ~4.5rem hoog. Gefocuste elementen mogen er niet achter
-   verdwijnen. scroll-margin-top zorgt dat de browser voldoende ruimte laat. */
+/* ── Toegankelijkheid: skip-link ────────────────────────────────────────── */
+.skip-link {
+  position: absolute; left: -9999px; top: 1rem;
+  background: var(--text); color: var(--surface);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem; font-weight: 600;
+  z-index: 100; text-decoration: none;
+}
+.skip-link:focus { left: 1rem; }
+
+/* Schermlezer-only tekst */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ── WCAG 2.4.7 Focus Visible + 2.4.11 Focus Not Obscured ───────────────── */
 a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
   scroll-margin-top: calc(var(--hdr-height) + 0.5rem);
 }
-
-/* ── WCAG 2.1 §2.4.7 Focus Visible + WCAG 2.2 §2.4.11 ───────────────── */
 :focus-visible {
   outline: 3px solid var(--blue-t);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }
 
-/* ── Toegankelijkheid: skip-link ─────────────────────────────────────── */
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 1rem;
-  background: var(--text);
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-sm);
+/* ── Selectiemarkering (zoekresultaten) ──────────────────────────────────── */
+mark {
+  background: var(--mark-bg);
+  color: var(--mark-color);
+  border-radius: 2px;
+  padding: 0 1px;
+}
+
+/* ── Formulierelementen ──────────────────────────────────────────────────── */
+input, select { color-scheme: var(--input-color-scheme); }
+
+select {
+  padding: 0.4375rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--border-s);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font);
   font-size: 0.875rem;
-  font-weight: 600;
-  z-index: 100;
-  text-decoration: none;
+  cursor: pointer;
+  min-height: 2.75rem;
 }
-.skip-link:focus { left: 1rem; }
+select:focus-visible { outline: 3px solid var(--blue-t); outline-offset: 2px; }
 
-/* Schermlezer-only tekst */
-.sr-only {
-  position: absolute;
-  width: 1px; height: 1px;
-  padding: 0; margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap;
-  border: 0;
-}
-
-/* ── Header ─────────────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   HEADER
+   ══════════════════════════════════════════════════════════════════════════ */
 .hdr {
   background: var(--surface);
   border-bottom: 2px solid var(--border);
@@ -112,48 +226,73 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
   z-index: 10;
   min-height: var(--hdr-height);
 }
-.hdr h1    { font-size: 1.25rem; font-weight: 700; }
-.hdr-sub   { font-size: 0.875rem; color: var(--muted); margin-top: 3px; }
-.hdr-right { display: flex; align-items: center; gap: 0.625rem; flex-shrink: 0; flex-wrap: wrap; }
-/* ── Header linker kolom ────────────────────────────────────────────────── */
+
+.hdr h1     { font-size: 1.25rem; font-weight: 700; }
+.hdr-sub    { font-size: 0.875rem; color: var(--muted); margin-top: 3px; }
+
 .hdr-left {
-  display: flex;
-  align-items: center;
-  gap: 0.875rem;
-  flex: 1;
-  min-width: 0;
+  display: flex; align-items: center; gap: 0.875rem;
+  flex: 1; min-width: 0;
 }
 .hdr-left > div { min-width: 0; }
 
+.hdr-right {
+  display: flex; align-items: center;
+  gap: 0.625rem; flex-shrink: 0; flex-wrap: wrap;
+}
+
 #last-updated {
-  font-size: 0.75rem;
-  color: var(--faint);
+  font-size: 0.75rem; color: var(--faint);
   background: var(--surface2);
   padding: 5px 12px;
   border-radius: var(--radius-pill);
   white-space: nowrap;
 }
 
-/* ── Hoofd-layout ────────────────────────────────────────────────────────── */
+/* ── Navigatielinks in header ────────────────────────────────────────────── */
+.hdr-archive-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--muted);
+  background: var(--surface2);
+  text-decoration: none;
+  padding: 0.4375rem 0.875rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+  min-height: 2.75rem;
+  transition: background 0.12s, color 0.12s, border-color 0.12s;
+}
+.hdr-archive-link:hover {
+  background: var(--surface2);
+  color: var(--text);
+  border-color: var(--border-s);
+}
+/* Huidige pagina — blauw, niet klikbaar */
+.hdr-archive-link[aria-current="page"] {
+  background: var(--blue-t);
+  color: var(--surface);
+  border-color: var(--blue-t);
+  font-weight: 600;
+  pointer-events: none;
+}
+.hdr-archive-link[aria-current="page"]:hover { opacity: 1; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HOOFD-LAYOUT
+   ══════════════════════════════════════════════════════════════════════════ */
 .main { max-width: 980px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
 
-/* ── WCAG 2.2 §2.5.8 Target Size Minimum (24×24 CSS px) ─────────────── */
-/* Alle interactieve elementen hebben min. 24×24px raakoppervlak          */
-.fb, .back-link, .hdr-archive-link, .week-btn, .arch-fb, .ms-link, .collapsible-toggle {
-  min-height: 2.75rem;   /* 44px — ruim boven minimum voor goede bruikbaarheid */
-}
-/* Kleine knoppen zoals ✕ krijgen expliciet min-formaat */
-.search-clear {
-  min-width: 2.75rem;
-  min-height: 2.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* ══════════════════════════════════════════════════════════════════════════
+   KNOPPENSYSTEEM — geünificeerd
+   Alle pill-knoppen en tab-knoppen op de site delen dezelfde regels:
+     · standaard  → wit/surface, muted tekst
+     · hover      → surface2 achtergrond (grijs), text kleur
+     · actief     → blue-t achtergrond (blauw), wit tekst
+   ══════════════════════════════════════════════════════════════════════════ */
 
-/* ── Filter-knoppen ──────────────────────────────────────────────────────── */
-/* .fb = basis pill-knop · ook gebruikt als .arch-fb en .pres-week-tab */
-.fb, .arch-fb, .pres-week-tab {
+/* Basis — gedeeld door .fb, .arch-fb, .pres-week-tab, .week-btn, .level-btn */
+.fb, .arch-fb, .pres-week-tab, .week-btn, .level-btn {
   padding: 0.4375rem 1rem;
   border-radius: var(--radius-pill);
   border: 1.5px solid var(--border-s);
@@ -168,331 +307,46 @@ a, button, input, select, summary, [tabindex]:not([tabindex="-1"]) {
   gap: 0.375rem;
   transition: background 0.12s, color 0.12s, border-color 0.12s;
   line-height: 1.3;
+  min-height: 2.75rem;
+  white-space: nowrap;
 }
 
+/* Hover — consistente grijze achtergrond op álle knopvarianten */
 .fb:hover:not([aria-pressed="true"]),
 .arch-fb:hover:not([aria-pressed="true"]),
-.pres-week-tab:hover:not(.active) {
+.pres-week-tab:hover:not(.active),
+.week-btn:hover:not(.active),
+.level-btn:hover:not(.active) {
   background: var(--surface2);
   color: var(--text);
-  border-color: var(--border);
+  border-color: var(--border-s);
 }
 
-/* Actieve staat: alle pill-knoppen — donkere achtergrond, lichte tekst */
+/* Actief — consistente blauwe achtergrond op álle knopvarianten */
 .fb[aria-pressed="true"],
 .arch-fb[aria-pressed="true"],
 .pres-week-tab.active,
-.week-btn.active {
+.week-btn.active,
+.level-btn.active {
   background: var(--blue-t);
   color: var(--surface);
-  border-color: var(--text);
+  border-color: var(--blue-t);
   font-weight: 600;
 }
 
-/* Actie-specifieke varianten (filter "Actie nodig?" op index/kalender) */
-.fb[aria-pressed="true"][data-act="none"]  { background: var(--c-none);  border-color: var(--c-none);  color: var(--surface); }
-.fb[aria-pressed="true"][data-act="admin"] { background: var(--c-admin); border-color: var(--c-admin); color: var(--surface); }
-.fb[aria-pressed="true"][data-act="user"]  { background: var(--c-user);  border-color: var(--c-user);  color: var(--surface); }
+/* Actie-specifieke filterknopvarianten (data-act="none/admin/user") */
+.fb[aria-pressed="true"][data-act="none"]  { background: var(--fb-act-none-bg);  border-color: var(--fb-act-none-border);  color: var(--fb-act-none-color);  }
+.fb[aria-pressed="true"][data-act="admin"] { background: var(--fb-act-admin-bg); border-color: var(--fb-act-admin-border); color: var(--fb-act-admin-color); }
+.fb[aria-pressed="true"][data-act="user"]  { background: var(--fb-act-user-bg);  border-color: var(--fb-act-user-border);  color: var(--fb-act-user-color);  }
 
-/* Dark mode overrides voor actie-knoppen */
-html[data-theme="dark"] .fb[aria-pressed="true"][data-act="none"]  { background: #1a3d25; color: var(--green-t);  border-color: var(--green-t); }
-html[data-theme="dark"] .fb[aria-pressed="true"][data-act="admin"] { background: #3a2800; color: var(--amber-t);  border-color: var(--amber-t); }
-html[data-theme="dark"] .fb[aria-pressed="true"][data-act="user"]  { background: #162650; color: var(--blue-t);   border-color: var(--blue-t);  }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .fb[aria-pressed="true"][data-act="none"]  { background: #1a3d25; color: var(--green-t);  border-color: var(--green-t); }
-  :root:not([data-theme="light"]) .fb[aria-pressed="true"][data-act="admin"] { background: #3a2800; color: var(--amber-t);  border-color: var(--amber-t); }
-  :root:not([data-theme="light"]) .fb[aria-pressed="true"][data-act="user"]  { background: #162650; color: var(--blue-t);   border-color: var(--blue-t);  }
-}
+/* WCAG 2.5.8 Target Size Minimum */
+.back-link, .ms-link, .collapsible-toggle { min-height: 2.75rem; }
+.search-clear { min-width: 2.75rem; min-height: 2.75rem; display: flex; align-items: center; justify-content: center; }
 
-/* ── Statistiekenbalk ─────────────────────────────────────────────────── */
-.stats-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; margin-top: 1.25rem; }
-.stat-pill { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 500; }
-.s-total   { background: var(--surface2); color: var(--muted); }
-.s-rolling { background: var(--amber-bg); color: var(--amber-t); }
-.s-dev     { background: var(--blue-bg);  color: var(--blue-t); }
-.s-new     { background: var(--new-bg);   color: var(--new-t); }
-
-/* ── Sectiekoptekst ───────────────────────────────────────────────────── */
-.sec-hdr {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--faint);
-  margin: 2rem 0 0.75rem;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-/* ── Kaart ────────────────────────────────────────────────────────────── */
-.card {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 0.75rem;
-  transition: border-color 0.15s, box-shadow 0.15s;
-}
-.card:hover { border-color: var(--border-s); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-.card.act-none  { border-left: 4px solid var(--c-none); }
-.card.act-admin { border-left: 4px solid var(--c-admin); }
-.card.act-user  { border-left: 4px solid var(--c-user); }
-
-.card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
-
-/* h3 voor kaarttitels — h2 voor sectietitels (WCAG 1.3.1 heading hierarchy) */
-.card-title {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.4;
-  margin-bottom: 10px;
-  color: var(--text);
-}
-
-.card-benefit {
-  font-size: 0.9375rem;
-  color: var(--text);
-  line-height: 1.7;
-  margin-bottom: 0.75rem;
-  padding: 12px 14px;
-  background: var(--surface2);
-  border-radius: var(--radius-sm);
-}
-.card-benefit-label {
-  font-size: 0.6875rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--faint);
-  margin-bottom: 5px;
-  display: block;
-}
-
-.card-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-  margin-bottom: 0.75rem;
-}
-.card-action.act-none  { background: #e8f7ee; color: var(--c-none); }
-.card-action.act-admin { background: #fef3dc; color: var(--c-admin); }
-.card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-
-/* ── Details/summary ─────────────────────────────────────────────────── */
-details { margin-bottom: 0.75rem; }
-summary {
-  font-size: 0.8125rem;
-  color: var(--blue-t);
-  cursor: pointer;
-  user-select: none;
-  list-style: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 2px 0;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  /* WCAG 2.5.8: minimaal 24px raakdoel */
-  min-height: 1.5rem;
-}
-summary:hover { text-decoration-color: var(--blue-t); }
-summary::-webkit-details-marker { display: none; }
-summary::before { content: '▶'; font-size: 0.5625rem; transition: transform 0.15s; }
-details[open] summary::before { transform: rotate(90deg); }
-.card-desc { font-size: 0.8125rem; color: var(--muted); line-height: 1.65; margin-top: 8px; padding: 10px 12px; background: var(--bg); border-radius: var(--radius-sm); }
-
-/* ── Kaartvoet ───────────────────────────────────────────────────────── */
-.card-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-.card-foot-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-.release-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 0.8125rem; font-weight: 600; background: var(--surface2); color: var(--text); padding: 5px 12px; border-radius: var(--radius-pill); }
-.date-info { font-size: 0.75rem; color: var(--faint); }
-
-/* ── Pills ───────────────────────────────────────────────────────────── */
-.pill { font-size: 0.6875rem; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill); white-space: nowrap; flex-shrink: 0; display: inline-flex; align-items: center; gap: 0.3rem; }
-.p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
-.p-teams      { background: var(--blue-bg);   color: var(--blue-t); }
-.p-outlook    { background: var(--blue-bg);   color: var(--blue-t); }
-.p-excel      { background: var(--green-bg);  color: var(--green-t); }
-.p-word       { background: var(--blue-bg);   color: var(--blue-t); }
-.p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
-.p-sharepoint { background: var(--amber-bg);  color: var(--amber-t); }
-.p-purview    { background: var(--red-bg);    color: var(--red-t); }
-.p-viva       { background: var(--purple-bg); color: var(--purple-t); }
-.p-edge       { background: var(--blue-bg);   color: var(--blue-t); }
-.p-onedrive   { background: var(--blue-bg);   color: var(--blue-t); }
-.p-exchange   { background: var(--teal-bg);   color: var(--teal-t); }
-.p-forms      { background: var(--green-bg);  color: var(--green-t); }
-.p-intune     { background: var(--blue-bg);   color: var(--blue-t); }
-.p-entra      { background: var(--teal-bg);   color: var(--teal-t); }
-.p-planner    { background: var(--green-bg);  color: var(--green-t); }
-.p-other      { background: var(--gray-bg);   color: var(--gray-t); }
-.p-rolling    { background: var(--amber-bg);  color: var(--amber-t); }
-.p-dev        { background: var(--blue-bg);   color: var(--blue-t); }
-.new-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 0.6875rem; font-weight: 700; background: var(--new-bg); color: var(--new-t); padding: 4px 9px; border-radius: var(--radius-pill); white-space: nowrap; }
-
-/* ── Links ───────────────────────────────────────────────────────────── */
-.ms-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 0.8125rem;
-  color: var(--blue-t);
-  text-decoration: none;
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--blue-bg);
-  font-weight: 500;
-  transition: opacity 0.12s;
-  white-space: nowrap;
-}
-.ms-link:hover { opacity: 0.8; }
-
-.back-link, .hdr-archive-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--blue-t);
-  background: var(--surface2);
-  text-decoration: none;
-  padding: 0.4375rem 0.875rem;
-  border-radius: var(--radius-pill);
-  white-space: nowrap;
-  transition: opacity 0.12s;
-}
-.back-link:hover, .hdr-archive-link:hover { opacity: 0.8; }
-
-/* Actieve navigatieknop in header (huidige pagina) */
-.hdr-archive-link[aria-current="page"] {
-  background: var(--text);
-  color: var(--surface);
-  opacity: 1;
-  font-weight: 600;
-  pointer-events: none;   /* niet klikbaar op eigen pagina */
-}
-.hdr-archive-link[aria-current="page"]:hover { opacity: 1; }
-
-/* ── Uitklapblokken ───────────────────────────────────────────────────── */
-.collapsible-block { margin-top: 2rem; border: 1.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-.collapsible-toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.5rem;
-  background: var(--surface);
-  border: none;
-  cursor: pointer;
-  font-family: var(--font);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--text);
-  gap: 0.75rem;
-  text-align: left;
-}
-.collapsible-toggle:hover { background: var(--surface2); }
-.collapsible-left { display: flex; align-items: center; gap: 10px; }
-.collapsible-chevron { font-size: 0.625rem; color: var(--faint); transition: transform 0.2s; flex-shrink: 0; }
-.collapsible-chevron.open { transform: rotate(180deg); }
-.collapsible-inner { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
-.collapsible-inner.open { display: block; }
-.collapsible-subtitle { font-size: 0.8125rem; color: var(--muted); margin-bottom: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border); line-height: 1.6; }
-
-/* ── Wijzigingskaartjes ───────────────────────────────────────────────── */
-.rcard { display: flex; align-items: center; gap: 12px; padding: 10px 14px; background: var(--bg); border-radius: var(--radius-sm); margin-bottom: 7px; flex-wrap: wrap; }
-.rcard:last-child { margin-bottom: 0; }
-.rcard-title { font-size: 0.875rem; font-weight: 500; flex: 1; min-width: 180px; }
-.rcard-right { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-
-/* ── Laad- en leegstatus ──────────────────────────────────────────────── */
-.state-box { text-align: center; padding: 4rem 1rem; color: var(--muted); }
-.state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
-.spinner { width: 2rem; height: 2rem; border: 3px solid var(--border); border-top-color: var(--blue-t); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ── Selectie en zoekmarkering ────────────────────────────────────────── */
-mark { background: #fff3b0; color: inherit; border-radius: 2px; padding: 0 1px; }
-
-/* ── Dark mode ────────────────────────────────────────────────────────── */
-/* Alle kleurwaarden opnieuw berekend voor ≥ 4.5:1 contrast op donkere bg */
-/* ── Dark mode — handmatig (data-theme="dark") ──────────────────────── */
-html[data-theme="dark"] {
-    --bg:       #1a1917;
-    --surface:  #242220;
-    --surface2: #2e2c2a;
-    --text:     #f0ede8;
-    --muted:    #b0ada8;
-    --faint:    #888480;
-    --border:   rgba(255,255,255,0.10);
-    --border-s: rgba(255,255,255,0.20);
-    --green-bg:  #1a3d25; --green-t:  #7dd9a0;
-    --amber-bg:  #3a2800; --amber-t:  #f5c97a;
-    --purple-bg: #2a2060; --purple-t: #c4b8f8;
-    --gray-bg:   #333230; --gray-t:   #c8c6c2;
-    --blue-bg:   #162650; --blue-t:   #7ab0f5;
-    --red-bg:    #3a1010; --red-t:    #f5a0a0;
-    --orange-bg: #3a1a00; --orange-t: #f5b880;
-    --teal-bg:   #0e2e2a; --teal-t:   #7dd4cc;
-    --new-bg:    #3a2400; --new-t:    #f5c97a;
-    --c-none:    #5dd48a;
-    --c-admin:   #f0a830;
-    --c-user:    #7ab0f5;
-  mark             { background: #5c4a00; color: #f5e6a0;
-}
-  input, select    { color-scheme: dark; }
-
-  .card-action.act-none  { background: #1a3d25; color: var(--c-none); }
-  .card-action.act-admin { background: #3a2800; color: var(--c-admin); }
-  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user); }
-}
-
-/* ── Dark mode — automatisch via systeemvoorkeur ─────────────────────── */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:       #1a1917;
-    --surface:  #242220;
-    --surface2: #2e2c2a;
-    --text:     #f0ede8;
-    --muted:    #b0ada8;
-    --faint:    #888480;
-    --border:   rgba(255,255,255,0.10);
-    --border-s: rgba(255,255,255,0.20);
-    --green-bg:  #1a3d25; --green-t:  #7dd9a0;
-    --amber-bg:  #3a2800; --amber-t:  #f5c97a;
-    --purple-bg: #2a2060; --purple-t: #c4b8f8;
-    --gray-bg:   #333230; --gray-t:   #c8c6c2;
-    --blue-bg:   #162650; --blue-t:   #7ab0f5;
-    --red-bg:    #3a1010; --red-t:    #f5a0a0;
-    --orange-bg: #3a1a00; --orange-t: #f5b880;
-    --teal-bg:   #0e2e2a; --teal-t:   #7dd4cc;
-    --new-bg:    #3a2400; --new-t:    #f5c97a;
-    --c-none:    #5dd48a;
-    --c-admin:   #f0a830;
-    --c-user:    #7ab0f5;
-  }
-  mark             { background: #5c4a00; color: #f5e6a0; }
-  input, select    { color-scheme: dark; }
-
-  .card-action.act-none  { background: #1a3d25; color: var(--c-none); }
-  .card-action.act-admin { background: #3a2800; color: var(--c-admin); }
-  .card-action.act-user  { background: var(--blue-bg); color: var(--c-user);   }
-
-}
-
-/* ── Thema-wissel knop ───────────────────────────────────────────────── */
+/* ── Thema-wisselsknop ─────────────────────────────────────────────────── */
 .theme-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 2.25rem; height: 2.25rem;
   border-radius: var(--radius-pill);
   border: 1.5px solid var(--border-s);
   background: var(--surface);
@@ -501,20 +355,432 @@ html[data-theme="dark"] {
   transition: background 0.15s, color 0.15s, border-color 0.15s;
   flex-shrink: 0;
 }
-.theme-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--text); }
+.theme-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border-s); }
 .theme-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 .theme-btn svg { pointer-events: none; }
-/* Zon-icoon zichtbaar in dark, maan-icoon in light */
-.theme-btn .icon-sun  { display: none; }
+
+/* Zon-icoon in dark, maan-icoon in light */
+.theme-btn .icon-sun { display: none; }
 .theme-btn .icon-moon { display: block; }
-[data-theme="dark"] .theme-btn .icon-sun  { display: block; }
+[data-theme="dark"] .theme-btn .icon-sun { display: block; }
 [data-theme="dark"] .theme-btn .icon-moon { display: none; }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-btn .icon-sun  { display: block; }
+  :root:not([data-theme="light"]) .theme-btn .icon-sun { display: block; }
   :root:not([data-theme="light"]) .theme-btn .icon-moon { display: none; }
 }
 
-/* ── Verminderde beweging (WCAG 2.3.3) ───────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   FILTERBLOK
+   ══════════════════════════════════════════════════════════════════════════ */
+.filters {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.75rem;
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.filter-group        { display: flex; flex-direction: column; gap: 0.4rem; }
+.filter-group > label,
+.filter-lbl {
+  font-size: 0.6875rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--faint);
+  display: flex; align-items: center; gap: 6px;
+}
+.filter-bar          { display: flex; flex-wrap: wrap; gap: 6px; }
+.filter-divider      { height: 1px; background: var(--border); margin: 0.125rem 0; }
+.filter-row-2        { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+.filter-row-2 .filter-group { flex: 1; min-width: 160px; }
+.filter-note         { font-size: 0.6875rem; color: var(--faint); margin-top: 3px; }
+
+/* Weekbadge naast periodlabel */
+.week-mini-badge {
+  font-size: 0.6rem; font-weight: 700;
+  background: var(--new-bg); color: var(--new-t);
+  padding: 1px 7px; border-radius: var(--radius-pill);
+  white-space: nowrap; text-transform: none; letter-spacing: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   STATISTIEKENBALK
+   ══════════════════════════════════════════════════════════════════════════ */
+.stats-bar   { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; margin-top: 1.25rem; flex-wrap: wrap; }
+.stats-left  { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; flex: 1; }
+.stat-updated{ font-size: 0.75rem; color: var(--faint); margin-left: auto; white-space: nowrap; }
+.stat-pill   { font-size: 0.75rem; padding: 4px 12px; border-radius: var(--radius-pill); font-weight: 500; }
+.s-total  { background: var(--surface2); color: var(--muted); }
+.s-rolling{ background: var(--amber-bg); color: var(--amber-t); }
+.s-dev    { background: var(--blue-bg);  color: var(--blue-t); }
+.s-new    { background: var(--new-bg);   color: var(--new-t); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   SECTIEKOPTEKST
+   ══════════════════════════════════════════════════════════════════════════ */
+.sec-hdr {
+  font-size: 0.6875rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--faint);
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   KAARTEN
+   ══════════════════════════════════════════════════════════════════════════ */
+.card {
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.card:hover      { border-color: var(--border-s); box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card.act-none   { border-left: 4px solid var(--c-none); }
+.card.act-admin  { border-left: 4px solid var(--c-admin); }
+.card.act-user   { border-left: 4px solid var(--c-user); }
+
+.card-pills { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-bottom: 10px; }
+
+.card-title {
+  font-size: 1rem; font-weight: 600; line-height: 1.4;
+  margin-bottom: 10px; color: var(--text);
+}
+
+.card-benefit {
+  font-size: 0.9375rem; color: var(--text); line-height: 1.7;
+  margin-bottom: 0.75rem;
+  padding: 12px 14px;
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+}
+.card-benefit-label {
+  font-size: 0.6875rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--faint); margin-bottom: 5px; display: block;
+}
+
+/* Actieblokje op kaart */
+.card-action {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.875rem; font-weight: 600;
+  padding: 6px 14px; border-radius: var(--radius-pill);
+  margin-bottom: 0.75rem;
+}
+.card-action.act-none  { background: var(--card-act-none-bg);  color: var(--c-none); }
+.card-action.act-admin { background: var(--card-act-admin-bg); color: var(--c-admin); }
+.card-action.act-user  { background: var(--card-act-user-bg);  color: var(--c-user); }
+
+/* ── Details / summary ───────────────────────────────────────────────────── */
+details { margin-bottom: 0.75rem; }
+summary {
+  font-size: 0.8125rem; color: var(--blue-t);
+  cursor: pointer; user-select: none;
+  list-style: none;
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 2px 0; min-height: 1.5rem;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+}
+summary:hover { text-decoration-color: var(--blue-t); }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: '▶'; font-size: 0.5625rem; transition: transform 0.15s; }
+details[open] summary::before { transform: rotate(90deg); }
+
+.card-desc {
+  font-size: 0.8125rem; color: var(--muted); line-height: 1.65;
+  margin-top: 8px; padding: 10px 12px;
+  background: var(--bg); border-radius: var(--radius-sm);
+}
+
+/* ── Kaartvoet ───────────────────────────────────────────────────────────── */
+.card-foot       { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+.card-foot-left  { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.card-foot-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+
+.release-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.8125rem; font-weight: 600;
+  background: var(--surface2); color: var(--text);
+  padding: 5px 12px; border-radius: var(--radius-pill);
+}
+.date-info { font-size: 0.75rem; color: var(--faint); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PILLS (statusindicatoren)
+   ══════════════════════════════════════════════════════════════════════════ */
+.pill {
+  font-size: 0.6875rem; font-weight: 700;
+  padding: 4px 10px; border-radius: var(--radius-pill);
+  white-space: nowrap; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 0.3rem;
+}
+.p-copilot    { background: var(--purple-bg); color: var(--purple-t); }
+.p-teams      { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-outlook    { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-excel      { background: var(--green-bg);  color: var(--green-t);  }
+.p-word       { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-powerpoint { background: var(--orange-bg); color: var(--orange-t); }
+.p-sharepoint { background: var(--amber-bg);  color: var(--amber-t);  }
+.p-purview    { background: var(--red-bg);    color: var(--red-t);    }
+.p-viva       { background: var(--purple-bg); color: var(--purple-t); }
+.p-edge       { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-onedrive   { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-exchange   { background: var(--teal-bg);   color: var(--teal-t);   }
+.p-forms      { background: var(--green-bg);  color: var(--green-t);  }
+.p-intune     { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-entra      { background: var(--teal-bg);   color: var(--teal-t);   }
+.p-planner    { background: var(--green-bg);  color: var(--green-t);  }
+.p-other      { background: var(--gray-bg);   color: var(--gray-t);   }
+.p-rolling    { background: var(--amber-bg);  color: var(--amber-t);  }
+.p-dev        { background: var(--blue-bg);   color: var(--blue-t);   }
+
+.new-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-size: 0.6875rem; font-weight: 700;
+  background: var(--new-bg); color: var(--new-t);
+  padding: 4px 9px; border-radius: var(--radius-pill); white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LINKS
+   ══════════════════════════════════════════════════════════════════════════ */
+.ms-link {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.8125rem; color: var(--blue-t);
+  text-decoration: none;
+  padding: 5px 12px; border-radius: var(--radius-pill);
+  background: var(--blue-bg); font-weight: 500;
+  min-height: 2.75rem;
+  transition: opacity 0.12s; white-space: nowrap;
+}
+.ms-link:hover { opacity: 0.8; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 0.875rem; font-weight: 500;
+  color: var(--blue-t); background: var(--surface2);
+  text-decoration: none;
+  padding: 0.4375rem 0.875rem; border-radius: var(--radius-pill);
+  white-space: nowrap; min-height: 2.75rem;
+  transition: opacity 0.12s;
+}
+.back-link:hover { opacity: 0.8; }
+
+/* ── Kopieer-link knop ───────────────────────────────────────────────────── */
+.copy-link-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 1.75rem; height: 1.75rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border-s);
+  background: transparent; color: var(--faint);
+  cursor: pointer; flex-shrink: 0;
+  transition: all 0.12s;
+}
+.copy-link-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border); }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   UITKLAPBLOKKEN
+   ══════════════════════════════════════════════════════════════════════════ */
+.collapsible-block {
+  margin-top: 2rem;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.collapsible-toggle {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background: var(--surface);
+  border: none; cursor: pointer;
+  font-family: var(--font); font-size: 0.9375rem; font-weight: 600;
+  color: var(--text); gap: 0.75rem; text-align: left;
+}
+.collapsible-toggle:hover   { background: var(--surface2); }
+.collapsible-left           { display: flex; align-items: center; gap: 10px; }
+.collapsible-chevron        { font-size: 0.625rem; color: var(--faint); transition: transform 0.2s; flex-shrink: 0; }
+.collapsible-chevron.open   { transform: rotate(180deg); }
+.collapsible-inner          { display: none; padding: 0 1.5rem 1.5rem; background: var(--surface); }
+.collapsible-inner.open     { display: block; }
+.collapsible-subtitle {
+  font-size: 0.8125rem; color: var(--muted); margin-bottom: 1rem;
+  padding-top: 0.75rem; border-top: 1px solid var(--border); line-height: 1.6;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   WIJZIGINGSKAARTJES (rcard)
+   ══════════════════════════════════════════════════════════════════════════ */
+.rcard {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; background: var(--bg);
+  border-radius: var(--radius-sm); margin-bottom: 7px; flex-wrap: wrap;
+}
+.rcard:last-child   { margin-bottom: 0; }
+.rcard-title        { font-size: 0.875rem; font-weight: 500; flex: 1; min-width: 180px; }
+.rcard-right        { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TOESTANDSBOXEN (laden / leeg)
+   ══════════════════════════════════════════════════════════════════════════ */
+.state-box    { text-align: center; padding: 4rem 1rem; color: var(--muted); }
+.state-box h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+.spinner {
+  width: 2rem; height: 2rem;
+  border: 3px solid var(--border);
+  border-top-color: var(--blue-t);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 1rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ZOEKBALK — gedeeld door index.html en kalender.html
+   ══════════════════════════════════════════════════════════════════════════ */
+.search-wrap { position: relative; margin-bottom: 1.25rem; }
+.search-wrap .search-icon {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  color: var(--faint); pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 0.75rem 1rem 0.75rem 2.625rem;
+  font-size: 1rem; font-family: var(--font);
+  border: 1.5px solid var(--border-s);
+  border-radius: var(--radius-md);
+  background: var(--surface); color: var(--text);
+  transition: border-color 0.15s;
+}
+.search-input:focus {
+  border-color: var(--blue-t); outline: none;
+  box-shadow: 0 0 0 3px rgba(20,61,130,0.15);
+}
+.search-input::placeholder { color: var(--faint); }
+.search-clear {
+  position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; cursor: pointer;
+  color: var(--faint); font-size: 1rem; border-radius: 50%;
+  align-items: center; justify-content: center;
+  display: none;
+}
+.search-clear:hover { background: var(--surface2); color: var(--text); }
+.search-clear.show  { display: flex; }
+
+/* Melding bij gefilterde oorsprong (kalender → index) */
+.search-origin-note {
+  display: none; font-size: 0.8125rem; color: var(--muted);
+  background: var(--surface2); border-radius: var(--radius-sm);
+  padding: 8px 14px; margin-bottom: 1rem;
+  align-items: center; gap: 8px;
+}
+.search-origin-note.show { display: flex; }
+.search-origin-note button {
+  background: none; border: none; color: var(--blue-t);
+  cursor: pointer; font: inherit; font-size: 0.8125rem;
+  padding: 0; text-decoration: underline;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PRODUCT-ICONEN
+   ══════════════════════════════════════════════════════════════════════════ */
+.app-icon {
+  width: 1.125rem; height: 1.125rem;
+  object-fit: contain; flex-shrink: 0;
+  display: inline-block; vertical-align: middle;
+  border-radius: 3px;
+}
+/* Iets kleiner in compacte context */
+.pill .app-icon,
+.rcard .app-icon,
+.cal-card .app-icon { width: 0.9375rem; height: 0.9375rem; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ACTIEDOTS — kleurpuntjes bij actie-type
+   ══════════════════════════════════════════════════════════════════════════ */
+.act-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%; flex-shrink: 0;
+}
+.act-dot.d-none,  .dot-none  { background: var(--c-none); }
+.act-dot.d-admin, .dot-admin { background: var(--c-admin); }
+.act-dot.d-user,  .dot-user  { background: var(--c-user); }
+
+/* Kleine variant (6px) */
+.dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%; flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   LEGENDA
+   ══════════════════════════════════════════════════════════════════════════ */
+.legend {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 0.5rem 1rem; font-size: 0.8rem; color: var(--muted);
+  margin-bottom: 0.75rem;
+}
+.legend-item   { display: inline-flex; align-items: center; gap: 0.4rem; }
+.legend-divider{ color: var(--border-s); font-size: 1rem; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   DISCLAIMER / INFO-NOTE
+   ══════════════════════════════════════════════════════════════════════════ */
+.disclaimer {
+  font-size: 0.8125rem; color: var(--faint);
+  background: var(--surface2);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--border-s);
+  margin-bottom: 1.25rem;
+  display: flex; gap: 0.625rem; align-items: flex-start;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PRESENTATIE-INFOBLOKKEN
+   ══════════════════════════════════════════════════════════════════════════ */
+.pres-info {
+  display: flex; align-items: flex-start; gap: 0.5rem;
+  padding: 0.625rem 0.875rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.8125rem; margin-bottom: 0.875rem;
+}
+.pres-info.warn { background: var(--amber-bg); border: 1px solid var(--amber-t); color: var(--amber-t); }
+.pres-info.ok   { background: var(--green-bg); border: 1px solid var(--green-t); color: var(--green-t); }
+.pres-info.err  { background: var(--red-bg);   border: 1px solid var(--red-t);   color: var(--red-t);   }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   TOESTANDSKLASSEN (JS-helpers)
+   ══════════════════════════════════════════════════════════════════════════ */
+.show { display: flex; }
+.open { display: block; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ITEM HIGHLIGHT (anchor-navigatie)
+   ══════════════════════════════════════════════════════════════════════════ */
+@keyframes itemPulse {
+  0%   { box-shadow: 0 0 0 0   rgba(122,176,245,0.4); }
+  70%  { box-shadow: 0 0 0 8px rgba(122,176,245,0);   }
+  100% { box-shadow: 0 0 0 0   rgba(122,176,245,0);   }
+}
+.item-highlight {
+  border-color: var(--blue-t) !important;
+  animation: itemPulse 1.2s ease-out;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   ANIMATIES
+   ══════════════════════════════════════════════════════════════════════════ */
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes fadeIn  { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   VERMINDERDE BEWEGING (WCAG 2.3.3)
+   ══════════════════════════════════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
@@ -524,152 +790,13 @@ html[data-theme="dark"] {
   .spinner { animation: none; opacity: 0.6; }
 }
 
-/* ── Responsief ───────────────────────────────────────────────────────── */
+/* ══════════════════════════════════════════════════════════════════════════
+   RESPONSIEF
+   ══════════════════════════════════════════════════════════════════════════ */
 @media (max-width: 600px) {
-  .hdr  { padding: 1rem; }
-  .main { padding: 1.25rem 1rem 4rem; }
-  .card { padding: 1rem 1.1rem; }
+  .hdr                { padding: 1rem; }
+  .main               { padding: 1.25rem 1rem 4rem; }
+  .card               { padding: 1rem 1.1rem; }
   .collapsible-toggle { padding: 0.875rem 1rem; }
+  .filters            { padding: 1rem; }
 }
-
-/* ═══════════════════════════════════════════════════════════════════════
-   Product-iconen — gedeeld over alle pagina's
-   ═══════════════════════════════════════════════════════════════════════ */
-
-/* Icoon-wrapper in filterknoppen en pills */
-.app-icon {
-  width: 1.125rem;       /* 18px — schaalt mee met rem (WCAG 1.4.4) */
-  height: 1.125rem;
-  object-fit: contain;
-  flex-shrink: 0;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-/* In kleine pill-context (kaarten, rcard) iets kleiner */
-.pill .app-icon,
-.rcard .app-icon {
-  width: 0.9375rem;      /* 15px */
-  height: 0.9375rem;
-}
-
-/* ═══════════════════════════════════════════════════════════════════════
-   Product-iconen — gedeeld door alle pagina's
-   ═══════════════════════════════════════════════════════════════════════ */
-.app-icon {
-  width: 1.125rem;
-  height: 1.125rem;
-  object-fit: contain;
-  flex-shrink: 0;
-  display: inline-block;
-  vertical-align: middle;
-  border-radius: 3px;
-}
-/* Iets kleiner in compacte context */
-.pill .app-icon,
-.rcard .app-icon,
-.cal-card .app-icon { width: 0.9375rem; height: 0.9375rem; }
-
-/* ── Actie-dots (filterknoppen) ──────────────────────────────────────────── */
-.act-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-.act-dot.d-none  { background: var(--c-none); }
-.act-dot.d-admin { background: var(--c-admin); }
-.act-dot.d-user  { background: var(--c-user); }
-
-/* ── Filterblok ─────────────────────────────────────────────────────────── */
-.filters {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.filter-group   { display: flex; flex-direction: column; gap: 0.4rem; }
-.filter-bar     { display: flex; flex-wrap: wrap; gap: 6px; }
-.filter-divider { height: 1px; background: var(--border); margin: 0.125rem 0; }
-.filter-row-2   { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-.filter-note    { font-size: 0.6875rem; color: var(--faint); margin-top: 3px; }
-.filter-lbl     { font-size: 0.6875rem; font-weight: 700; text-transform: uppercase;
-                  letter-spacing: 0.08em; color: var(--faint); }
-
-/* ── Toestandsklassen ───────────────────────────────────────────────────── */
-.show { display: flex; }
-.open { display: block; }
-
-/* ── Actie-dots (kleurpunt naast actie-type tekst) ──────────────────────── */
-.dot       { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; display: inline-block; }
-.dot-none  { background: var(--c-none); }
-.dot-admin { background: var(--c-admin); }
-.dot-user  { background: var(--c-user); }
-
-/* ── Disclaimer / info-note ─────────────────────────────────────────────── */
-.disclaimer {
-  font-size: 0.8125rem; color: var(--faint);
-  background: var(--surface2);
-  border-radius: var(--radius-sm);
-  padding: 0.75rem 1rem;
-  border-left: 3px solid var(--border-s);
-  margin-bottom: 1.25rem;
-}
-.stat-updated { font-size: 0.75rem; color: var(--faint); margin-left: auto; white-space: nowrap; }
-.stats-left { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; flex: 1; }
-
-/* ── Legenda ─────────────────────────────────────────────────────────────── */
-.legend {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.5rem 1rem;
-  font-size: 0.8rem;
-  color: var(--muted);
-  margin-bottom: 0.75rem;
-}
-.legend-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-.legend-divider {
-  color: var(--border-s);
-  font-size: 1rem;
-}
-
-/* ── Kopieer-link knop ───────────────────────────────────────────────────── */
-.copy-link-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: var(--radius-sm);
-  border: 1.5px solid var(--border-s);
-  background: transparent;
-  color: var(--faint);
-  cursor: pointer;
-  transition: all 0.12s;
-  flex-shrink: 0;
-}
-.copy-link-btn:hover { background: var(--surface2); color: var(--text); border-color: var(--border); }
-.card-foot-right { display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
-
-/* Item highlight na directe link navigatie */
-@keyframes itemPulse {
-  0%   { box-shadow: 0 0 0 0 rgba(var(--blue-t-rgb, 122,176,245), 0.4); }
-  70%  { box-shadow: 0 0 0 8px rgba(var(--blue-t-rgb, 122,176,245), 0); }
-  100% { box-shadow: 0 0 0 0 rgba(var(--blue-t-rgb, 122,176,245), 0); }
-}
-.item-highlight {
-  border-color: var(--blue-t) !important;
-  animation: itemPulse 1.2s ease-out;
-}
-
-/* ── Presentatie info-blokken (gedeeld) ─────────────────────────────────── */
-.pres-info { display:flex; align-items:flex-start; gap:0.5rem; padding:0.625rem 0.875rem;
-  border-radius:var(--radius-sm); font-size:0.8125rem; margin-bottom:0.875rem; }
-.pres-info.warn { background:var(--amber-bg); border:1px solid var(--amber-t); color:var(--amber-t); }
-.pres-info.ok   { background:var(--green-bg); border:1px solid var(--green-t); color:var(--green-t); }
-.pres-info.err  { background:var(--red-bg);   border:1px solid var(--red-t);   color:var(--red-t);   }
-

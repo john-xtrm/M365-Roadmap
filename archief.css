@@ -1,0 +1,34 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Archief — paginaspecifieke stijlen
+   Verdwenen items (launched / cancelled)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Archief-filterknop kleurvarianten ───────────────────────────────── */
+/* .arch-fb erft basis/hover/actief van shared.css (.fb-systeem)         */
+/* Actief: launched → groen, cancelled → rood                           */
+.arch-fb[aria-pressed="true"][data-status="launched"]   { background: var(--green-bg);  color: var(--green-t);  border-color: var(--green-t);  }
+.arch-fb[aria-pressed="true"][data-status="cancelled"]  { background: var(--red-bg);    color: var(--red-t);    border-color: var(--red-t);    }
+
+/* ── Archief-tijdlijn ────────────────────────────────────────────────── */
+.arch-week-hdr {
+  font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--faint); margin: 1.5rem 0 0.5rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--border);
+}
+
+/* ── Statusbadge op archiefkaarten ──────────────────────────────────── */
+.arch-badge {
+  font-size: 0.6875rem; font-weight: 700;
+  padding: 3px 9px; border-radius: var(--radius-pill);
+  display: inline-flex; align-items: center; gap: 4px;
+}
+.arch-badge.launched  { background: var(--green-bg); color: var(--green-t); }
+.arch-badge.cancelled { background: var(--red-bg);   color: var(--red-t);   }
+
+/* ── Lege-archief melding ────────────────────────────────────────────── */
+.arch-empty {
+  text-align: center; padding: 3rem 1rem;
+  color: var(--muted); font-size: 0.9375rem;
+}
+.arch-empty strong { display: block; color: var(--text); font-size: 1rem; margin-bottom: 0.5rem; }
