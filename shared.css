@@ -360,7 +360,7 @@ details[open] summary::before { transform: rotate(90deg); }
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--blue-t);
-  background: var(--blue-bg);
+  background: var(--surface2);
   text-decoration: none;
   padding: 0.4375rem 0.875rem;
   border-radius: var(--radius-pill);
