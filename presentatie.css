@@ -1,66 +1,118 @@
 /* ═══════════════════════════════════════════════════════════════════════
    Presentatie — paginaspecifieke stijlen
-   Weekoverzicht, downloadblok, PowerPoint-generator UI
+   Hero, stappen, productgrid, genereer-knop
    ═══════════════════════════════════════════════════════════════════════ */
 
-/* ── Weektabs-balk ───────────────────────────────────────────────────── */
-/* .pres-week-tab erft basis/hover/actief van shared.css (.fb-systeem)  */
-.pres-week-bar {
-  display: flex; flex-wrap: wrap; gap: 6px;
-  margin-bottom: 1.25rem;
+/* ── Hero-blok bovenaan ──────────────────────────────────────────────── */
+.pres-hero {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-md); padding: 1.5rem 1.75rem;
+  margin-bottom: 1.5rem; display: flex; align-items: flex-start; gap: 1rem;
 }
+.pres-hero-icon  { font-size: 2rem; flex-shrink: 0; line-height: 1; }
+.pres-hero h2    { margin: 0 0 0.25rem; font-size: 1.25rem; color: var(--text); }
+.pres-hero p     { margin: 0; font-size: 0.875rem; color: var(--muted); line-height: 1.55; }
 
-/* ── Downloadblok ────────────────────────────────────────────────────── */
-.pres-download {
-  background: var(--surface);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.5rem;
-  margin-top: 1.5rem;
-  display: flex; flex-direction: column; gap: 1rem;
+/* ── Stappenblokken ──────────────────────────────────────────────────── */
+.pres-step {
+  background: var(--surface); border: 1.5px solid var(--border-s);
+  border-radius: var(--radius-md); margin-bottom: 1.25rem; overflow: hidden;
 }
-.pres-download-title {
-  font-size: 1rem; font-weight: 700; color: var(--text);
-}
-.pres-download-sub {
-  font-size: 0.875rem; color: var(--muted); line-height: 1.6;
-}
-
-/* ── Download-knop ───────────────────────────────────────────────────── */
-.pres-dl-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 0.9375rem; font-weight: 600;
-  color: var(--surface); background: var(--blue-t);
-  border: none; border-radius: var(--radius-pill);
-  padding: 0.625rem 1.5rem;
-  cursor: pointer; min-height: 2.75rem;
-  font-family: var(--font);
-  transition: opacity 0.12s;
-}
-.pres-dl-btn:hover    { opacity: 0.85; }
-.pres-dl-btn:disabled { opacity: 0.45; cursor: not-allowed; }
-
-/* ── Voortgangsbalk ──────────────────────────────────────────────────── */
-.pres-progress {
-  height: 4px; border-radius: 2px;
-  background: var(--border);
-  overflow: hidden;
-}
-.pres-progress-bar {
-  height: 100%; background: var(--blue-t);
-  border-radius: 2px;
-  transition: width 0.3s ease;
-}
-
-/* ── Statistieken samenvatting ───────────────────────────────────────── */
-.pres-stats {
-  display: flex; flex-wrap: wrap; gap: 0.75rem;
-  margin-top: 0.5rem;
-}
-.pres-stat-item {
+.pres-step-header {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
   background: var(--surface2);
-  border-radius: var(--radius-sm);
-  padding: 0.5rem 0.875rem;
-  font-size: 0.8125rem; color: var(--muted);
 }
-.pres-stat-item strong { color: var(--text); }
+.pres-step-nr {
+  width: 1.75rem; height: 1.75rem; border-radius: 50%;
+  background: var(--blue-t); color: var(--surface);
+  font-size: 0.8125rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.pres-step-title { font-size: 0.9375rem; font-weight: 700; color: var(--text); margin: 0; }
+.pres-step-body  { padding: 1.25rem; }
+
+/* ── Formuliervelden ─────────────────────────────────────────────────── */
+.pres-field { margin-bottom: 1.1rem; }
+.pres-field label {
+  display: block; font-size: 0.75rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--muted); margin-bottom: 0.35rem;
+}
+.pres-field input[type="text"] {
+  width: 100%; max-width: 28rem;
+  padding: 0.625rem 0.875rem; font-size: 0.9375rem; font-family: var(--font);
+  border: 1.5px solid var(--border-s); border-radius: var(--radius-md);
+  background: var(--surface); color: var(--text);
+  transition: border-color 0.15s; box-sizing: border-box;
+}
+.pres-field input[type="text"]:focus {
+  border-color: var(--blue-t); outline: none;
+  box-shadow: 0 0 0 3px rgba(20,61,130,0.13);
+}
+
+/* ── Product-toolbar ─────────────────────────────────────────────────── */
+.pres-product-toolbar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 0.9rem; flex-wrap: wrap; gap: 0.5rem;
+}
+.pres-product-toolbar p { margin: 0; font-size: 0.8125rem; color: var(--muted); }
+.pres-select-all {
+  font-size: 0.8rem; font-weight: 600;
+  padding: 0.3rem 0.75rem; border: 1.5px solid var(--border-s);
+  border-radius: var(--radius-pill); background: var(--surface2);
+  color: var(--muted); cursor: pointer; transition: all 0.15s;
+}
+.pres-select-all:hover { border-color: var(--blue-t); color: var(--blue-t); }
+
+/* ── Productgrid ─────────────────────────────────────────────────────── */
+.product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 0.6rem; }
+.product-card {
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.55rem 0.75rem; border: 1.5px solid var(--border-s);
+  border-radius: var(--radius-md); cursor: pointer;
+  background: var(--surface); transition: border-color 0.15s, background 0.15s;
+  user-select: none; position: relative;
+}
+.product-card:hover              { border-color: var(--blue-t); background: var(--surface2); }
+.product-card.selected           { border-color: var(--blue-t); background: rgba(20,61,130,0.07); }
+.product-card input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; }
+.product-card .app-icon          { width: 24px; height: 24px; flex-shrink: 0; }
+.product-card-label              { font-size: 0.875rem; font-weight: 500; color: var(--text); flex: 1; }
+.product-card-count              { font-size: 0.7rem; font-weight: 700; background: var(--surface2); color: var(--muted); padding: 1px 7px; border-radius: var(--radius-pill); min-width: 1.5rem; text-align: center; }
+.product-card.selected .product-card-count { background: var(--blue-t); color: var(--surface); }
+.product-card-check              { width: 1rem; height: 1rem; border: 1.5px solid var(--border-s); border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.15s; }
+.product-card.selected .product-card-check { background: var(--blue-t); border-color: var(--blue-t); }
+.product-card-check svg          { display: none; }
+.product-card.selected .product-card-check svg { display: block; }
+
+/* ── Statistieken preview ────────────────────────────────────────────── */
+.pres-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.75rem; margin-bottom: 1rem; }
+.pres-stat         { background: var(--surface2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 0.875rem 1rem; text-align: center; }
+.pres-stat-val     { font-size: 1.75rem; font-weight: 800; color: var(--blue-t); line-height: 1; }
+.pres-stat-lbl     { font-size: 0.75rem; color: var(--muted); margin-top: 0.2rem; }
+.pres-stat-week    { font-size: 0.8125rem; color: var(--muted); padding: 0.5rem 0.75rem; background: var(--surface2); border-radius: var(--radius-sm); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.4rem; }
+
+/* ── Genereer-knop ───────────────────────────────────────────────────── */
+/* .pres-info blokken (warn/ok/err) worden geleverd door shared.css      */
+.pres-generate-wrap { padding-top: 0.5rem; }
+#generate-btn {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.875rem 2rem; font-size: 1rem; font-weight: 700;
+  font-family: var(--font); background: var(--blue-t); color: var(--surface);
+  border: none; border-radius: var(--radius-md); cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+  min-width: 14rem; justify-content: center;
+}
+#generate-btn:hover:not(:disabled) { opacity: 0.9; transform: translateY(-1px); }
+#generate-btn:disabled             { opacity: 0.5; cursor: not-allowed; }
+
+/* Laad-spinner in genereer-knop */
+.spinner-sm {
+  width: 1rem; height: 1rem;
+  border: 2px solid rgba(255,255,255,0.35);
+  border-top-color: var(--surface);
+  border-radius: 50%; animation: spin 0.7s linear infinite; display: none;
+}
+#generate-btn.loading .spinner-sm { display: block; }
+#generate-btn.loading .btn-icon   { display: none; }
