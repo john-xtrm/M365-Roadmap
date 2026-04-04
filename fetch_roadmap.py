@@ -42,19 +42,57 @@ def is_dutch(text):
 
 # ── App-detectie ──────────────────────────────────────────────────────────
 APP_LABELS = {
-    "copilot": "Copilot", "teams": "Teams", "outlook": "Outlook",
-    "excel": "Excel", "word": "Word", "powerpoint": "PowerPoint",
-    "sharepoint": "SharePoint", "purview": "Purview",
-    "viva": "Viva", "edge": "Edge", "onedrive": "OneDrive",
-    "exchange": "Exchange", "forms": "Forms", "intune": "Intune",
-    "entra": "Entra", "planner": "Planner", "other": "Overig"
+    "copilot":    "Copilot",
+    "teams":      "Teams",
+    "outlook":    "Outlook",
+    "excel":      "Excel",
+    "word":       "Word",
+    "powerpoint": "PowerPoint",
+    "sharepoint": "SharePoint",
+    "purview":    "Purview",
+    "viva":       "Viva",
+    "edge":       "Edge",
+    "onedrive":   "OneDrive",
+    "exchange":   "Exchange",
+    "forms":      "Forms",
+    "intune":     "Intune",
+    "entra":      "Entra",
+    "planner":    "Planner",
+    "loop":       "Loop",
+    "whiteboard": "Whiteboard",
+    "todo":       "To Do",
+    "bookings":   "Bookings",
+    "stream":     "Stream",
+    "automate":   "Power Automate",
+    "powerapps":  "Power Apps",
+    "powerbi":    "Power BI",
+    "yammer":     "Yammer",
+    "defender":   "Defender",
+    "search":     "Microsoft Search",
+    "project":    "Project",
+    "visio":      "Visio",
+    "windows":    "Windows",
+    "other":      "Overig",
 }
 
 def app_key(p):
     p = p.lower()
-    for k in ["copilot","teams","outlook","excel","word","powerpoint","sharepoint",
-              "purview","viva","edge","onedrive","exchange","forms","intune","entra","planner"]:
-        if k in p: return k
+    # Multi-word patronen eerst (volgorde is belangrijk)
+    if "power automate" in p: return "automate"
+    if "power apps"     in p: return "powerapps"
+    if "power bi"       in p: return "powerbi"
+    if "microsoft search" in p: return "search"
+    if "to do"          in p: return "todo"
+    # Enkelvoudige trefwoorden (powerpoint vóór power, sharepoint vóór share)
+    for k in [
+        "copilot", "teams", "outlook", "excel", "word", "powerpoint",
+        "sharepoint", "purview", "viva", "edge", "onedrive", "exchange",
+        "forms", "intune", "entra", "planner", "loop", "whiteboard",
+        "bookings", "stream", "yammer", "defender", "project", "visio",
+        "windows",
+    ]:
+        if k in p:
+            return k
     return "other"
 
 def make_label(product, key):
@@ -138,6 +176,34 @@ BENEFIT_TEMPLATES = {
     ("entra",      "account"):      "Medewerkers die toegang kwijt zijn kunnen veiliger herstellen zonder IT-tussenkomst.",
     ("entra",      "app"):          "IT-beheerders kunnen apps sneller en veiliger beheren, inclusief tijdelijk blokkeren.",
     ("planner",    "task"):         "Taken en projecten zijn beter te overzien en bij te houden voor teams.",
+    ("loop",       "workspace"):    "Teams werken efficiënter samen doordat content en taken op één plek worden bijgehouden in Loop.",
+    ("loop",       "component"):    "Gedeelde Loop-componenten zorgen dat iedereen altijd de actuele versie ziet, zonder kopiëren.",
+    ("whiteboard", "copilot"):      "Brainstormsessies worden productiever doordat Copilot ideeën op het whiteboard samenvat en aanvult.",
+    ("whiteboard", "template"):     "Teams starten sneller met een brainstorm via kant-en-klare whiteboardsjablonen.",
+    ("todo",       "task"):         "Medewerkers houden hun dagelijkse takenlijst overzichtelijk en gesynchroniseerd op alle apparaten.",
+    ("todo",       "planner"):      "Taken uit Planner en To Do zijn op één plek zichtbaar, wat switchen tussen apps vermindert.",
+    ("bookings",   "appointment"):  "Klanten en collega's kunnen zelfstandig een afspraak inplannen, zonder heen-en-weer e-mailen.",
+    ("bookings",   "virtual"):      "Online afspraken zijn eenvoudiger te plannen en beheren via Bookings en Teams.",
+    ("stream",     "video"):        "Interne video's zijn eenvoudiger te vinden, bekijken en delen via Microsoft Stream.",
+    ("stream",     "transcript"):   "Video-opnames worden automatisch voorzien van een doorzoekbare transcriptie.",
+    ("automate",   "flow"):         "Herhalende processen worden geautomatiseerd, waardoor medewerkers tijd overhouden voor waardevoller werk.",
+    ("automate",   "copilot"):      "Medewerkers bouwen sneller automatiseringen doordat Copilot helpt bij het opstellen van flows.",
+    ("powerapps",  "canvas"):       "Teams bouwen zakelijke apps zonder uitgebreide programmeerkennis, afgestemd op eigen processen.",
+    ("powerapps",  "copilot"):      "Apps bouwen gaat sneller doordat Copilot schermen en logica automatisch genereert.",
+    ("powerbi",    "report"):       "Rapporten worden sneller gemaakt en gedeeld, waardoor beslissingen beter worden onderbouwd.",
+    ("powerbi",    "copilot"):      "Medewerkers krijgen direct antwoord op datavragen in natural language via Copilot in Power BI.",
+    ("yammer",     "community"):    "Medewerkers vinden sneller de juiste community voor vragen of kennisdeling.",
+    ("yammer",     "leadership"):   "Leiderschapscommunicatie bereikt medewerkers breder en persoonlijker via Viva Engage.",
+    ("defender",   "threat"):       "Beveiligingsteams detecteren en reageren sneller op cyberdreigingen dankzij verbeterde Defender-functies.",
+    ("defender",   "endpoint"):     "Endpoints worden beter beschermd en beheerd via uitgebreidere Defender-beleidsopties.",
+    ("search",     "result"):       "Medewerkers vinden informatie sneller via verbeterde zoekresultaten in Microsoft 365.",
+    ("search",     "bookmark"):     "Veelgebruikte resources zijn sneller te vinden via beheerde bladwijzers in Microsoft Search.",
+    ("project",    "task"):         "Projectplanning en taakverdeling verlopen overzichtelijker voor projectmanagers en teams.",
+    ("project",    "copilot"):      "Projectplanningen worden sneller opgesteld en bijgehouden doordat Copilot taken en tijdlijnen genereert.",
+    ("visio",      "diagram"):      "Procesdiagrammen en architectuurplaten zijn eenvoudiger te maken en te delen via Visio.",
+    ("visio",      "template"):     "Teams starten sneller met een professioneel diagram via kant-en-klare Visio-sjablonen.",
+    ("windows",    "update"):       "Windows-updates verbeteren prestaties of beveiliging en worden soepeler uitgerold voor IT-beheerders.",
+    ("windows",    "copilot"):      "Medewerkers krijgen AI-hulp direct in Windows zonder van app te wisselen.",
 }
 
 GENERIC_BENEFIT = {
@@ -157,6 +223,20 @@ GENERIC_BENEFIT = {
     "intune":     "Apparaatbeheer en beveiliging worden eenvoudiger en consistenter voor IT-beheerders.",
     "entra":      "Identiteits- en toegangsbeheer wordt veiliger en makkelijker te beheren.",
     "planner":    "Taakoverzicht en samenwerking in projecten worden verbeterd.",
+    "loop":       "Teams werken efficiënter samen via gedeelde werkruimten en componenten in Microsoft Loop.",
+    "whiteboard": "Creatieve samenwerking en brainstormsessies worden eenvoudiger via Microsoft Whiteboard.",
+    "todo":       "Medewerkers beheren hun dagelijkse taken overzichtelijker en gesynchroniseerd via Microsoft To Do.",
+    "bookings":   "Klanten en collega's kunnen eenvoudiger zelfstandig afspraken inplannen via Microsoft Bookings.",
+    "stream":     "Video's delen en bekijken binnen de organisatie wordt eenvoudiger via Microsoft Stream.",
+    "automate":   "Repetitieve taken en processen worden geautomatiseerd, waardoor medewerkers tijd besparen.",
+    "powerapps":  "Medewerkers en teams bouwen eenvoudig zakelijke apps zonder uitgebreide programmeerkennis.",
+    "powerbi":    "Organisaties krijgen beter inzicht in data via interactieve rapporten en dashboards in Power BI.",
+    "yammer":     "Medewerkers blijven beter verbonden met nieuws, communities en discussies via Yammer.",
+    "defender":   "De organisatie is beter beschermd tegen cyberdreigingen via verbeterde Defender-functies.",
+    "search":     "Medewerkers vinden informatie sneller via verbeterde zoekmogelijkheden in Microsoft 365.",
+    "project":    "Projectplanning en -beheer worden overzichtelijker en efficiënter via Microsoft Project.",
+    "visio":      "Procesdiagrammen en visualisaties zijn eenvoudiger te maken en te delen via Visio.",
+    "windows":    "Windows-updates verbeteren prestaties, beveiliging of gebruikerservaring voor alle medewerkers.",
     "other":      "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
 }
 
@@ -319,15 +399,13 @@ with open("data.json", "w", encoding="utf-8") as f:
 print("\ndata.json opgeslagen ✓")
 
 # ── Archief opslaan ───────────────────────────────────────────────────────
-# Sla een kopie op in archive/YYYY-MM-DD.json
-# Archief bevat alleen titels + metadata (geen volledige beschrijvingen) om ruimte te sparen
 archive_dir = "archive"
 os.makedirs(archive_dir, exist_ok=True)
 
 archive_data = {
     "generated": result["generated"],
     "date":      today,
-    "removed":   removed,   # Alleen verdwenen items (Launched of Cancelled)
+    "removed":   removed,
 }
 
 if removed:
@@ -339,9 +417,7 @@ else:
     print("Geen verdwenen items deze run — geen archiefbestand aangemaakt.")
 
 # ── Archiefindex bijwerken ────────────────────────────────────────────────
-# Maak een index van alle beschikbare archiefdatums voor de pagina
 cutoff = (datetime.datetime.utcnow() - datetime.timedelta(days=92)).strftime("%Y-%m-%d")
-# Verwijder archiefbestanden met lege removed[] (aangemaakt voor de nieuwe logica)
 for fname in os.listdir(archive_dir):
     if fname.endswith(".json") and fname != "index.json":
         fpath = os.path.join(archive_dir, fname)
@@ -358,7 +434,7 @@ archive_files = []
 for fname in sorted(os.listdir(archive_dir), reverse=True):
     if fname.endswith(".json") and fname != "index.json":
         date_str = fname.replace(".json", "")
-        if date_str >= cutoff:   # alleen laatste 3 maanden
+        if date_str >= cutoff:
             archive_files.append(date_str)
 
 archive_index = {
