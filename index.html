@@ -88,9 +88,6 @@
         <select id="sort-select" onchange="render()">
           <option value="added-desc">Toegevoegd: nieuwste eerst</option>
           <option value="added-asc">Toegevoegd: oudste eerst</option>
-          <option value="release-asc">Releasedatum: vroegst eerst</option>
-          <option value="release-desc">Releasedatum: latest eerst</option>
-          <option value="status">Status</option>
         </select>
       </div>
     </div>
@@ -393,59 +390,11 @@ function clearSearch(){
 
 
 /* ── Multi-product pills ────────────────────────────────────────────────── */
-/* Eerste pill = primair product (item.app / item.prodLabel).                */
-/* Extra pills = item.tags (array van app-sleutels, gevuld door Python-      */
-/* pipeline). Backward-compatible: als tags ontbreekt → alleen primaire      */
-/* pill, identiek aan het oude gedrag.                                        */
-function buildProductPills(obj) {
-  var meta = APP_META[obj.app] || APP_META.other;
-  var html = '<span class="pill ' + meta.cls + '">' +
-             appIconHTML(obj.app) + esc(obj.prodLabel || meta.label) +
-             '</span>';
-  var seen = {}; seen[obj.app] = true;
-  (obj.tags || []).forEach(function(key) {
-    if (!key || seen[key] || !APP_META[key] || key === 'other') return;
-    seen[key] = true;
-    var m = APP_META[key];
-    html += '<span class="pill ' + m.cls + '">' +
-            appIconHTML(key) + esc(m.label) +
-            '</span>';
-  });
-  return html;
-}
-/* ── Kaart HTML ─────────────────────────────────────────────────────────── */
-function cardHTML(item,query){
-  var cfg={rolling:{label:'Wordt uitgerold',cls:'p-rolling'},dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status];
-  var meta=APP_META[item.app]||APP_META.other;
-  var dateRow='';
-  if(item.added)dateRow+='<span class="date-info"><span class="sr-only">Toegevoegd:</span> \uD83D\uDCC5 '+fmtDate(item.added)+'</span>';
-  if(item.modified&&item.modified!==item.added)
-    dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> \u270F\uFE0F '+fmtDate(item.modified)+'</span>';
-  return '<article class="card act-'+item.action+'" id="item-'+item.id+'" aria-label="'+esc(item.title)+'">' +
-    '<div class="card-pills">'+
-      buildProductPills(item)+
-      '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+
-      (item.isNew?'<span class="new-badge"><span aria-hidden="true">\u2B50</span> Nieuw</span>':'')+
-    '</div>'+
-    '<h3 class="card-title">'+highlight(item.title,query)+'</h3>'+
-    '<div class="card-benefit"><span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>'+highlight(item.benefit,query)+'</div>'+
-    '<div class="card-action act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||item.actionLabel)+'">'+
-      '<span aria-hidden="true">'+ACTION_ICON[item.action]+'</span>'+
-      '<span>'+esc(item.actionLabel)+'</span>'+
-    '</div>'+
-    (item.desc?'<details><summary>Technische details lezen</summary><div class="card-desc">'+esc(item.desc)+'</div></details>':'')+
-    '<div class="card-foot"><div class="card-foot-left">'+
-      '<span class="release-badge"><span aria-hidden="true">\uD83D\uDE80</span> <span class="sr-only">Release:</span>'+esc(nlRelease(item.release))+'</span>'+
-      (dateRow?'<span style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">'+dateRow+'</span>':'')+
-    '</div>'+
-    '<div class="card-foot-right">'+
-    '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op de officiële Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>'+
-    '<button class="copy-link-btn" onclick="copyItemLink('+item.id+')" aria-label="Kopieer directe link naar dit item" title="Kopieer directe link">'+
-      '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>'+
-    '</button>'+
-    '</div>'+
-    '</div></article>';
-}
+/* ── Kaart-opties voor index.html (volledig) ────────────────────────────── */
+var INDEX_CARD_OPTS = {
+  newBadge: true, benefit: true, action: true,
+  details: true,  release: true, dates:  true, copy: true
+};
 
 /* ── Render ─────────────────────────────────────────────────────────────── */
 function render(){
@@ -477,7 +426,6 @@ function render(){
   updateAppCounts(withoutApp);
   var filtered=withoutApp.filter(function(i){return fP==='all'||i.app===fP;});
   filtered=filtered.slice().sort(function(a,b){
-    if(sort==='status')return(a.status==='rolling'?0:1)-(b.status==='rolling'?0:1);
     if(sort==='added-desc'||sort==='added-asc'){
       /* 1. ⭐ Nieuw items (toegevoegd vorige week) altijd eerst bij desc */
       if(sort==='added-desc'&&a.isNew!==b.isNew)return a.isNew?-1:1;
@@ -487,9 +435,7 @@ function render(){
       /* 3. Tiebreaker: modified-datum */
       return new Date(b.modified||0)-new Date(a.modified||0);
     }
-    if(sort==='modified-desc')return new Date(b.modified||0)-new Date(a.modified||0);
-    var da=parseReleaseDate(a.release),db=parseReleaseDate(b.release);
-    return sort==='release-desc'?db-da:da-db;
+
   });
   var rolling=filtered.filter(function(i){return i.status==='rolling';});
   var dev=filtered.filter(function(i){return i.status==='dev';});
@@ -522,13 +468,9 @@ function render(){
   emptyEl.classList.remove('show');
   function sec(items,emoji,lbl){
     if(!items.length)return'';
-    return'<section aria-label="'+lbl+'"><h2 class="sec-hdr">'+emoji+' '+lbl+'</h2>'+items.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
+    return'<section aria-label="'+lbl+'"><h2 class="sec-hdr">'+emoji+' '+lbl+'</h2>'+items.map(function(i){return cardHTML(i,INDEX_CARD_OPTS,query);}).join('')+'</section>';
   }
-  if(sort==='status'){
-    rootEl.innerHTML=sec(rolling,'\uD83D\uDFE1','Wordt uitgerold')+sec(dev,'\uD83D\uDD35','In ontwikkeling');
-  }else{
-    rootEl.innerHTML='<section aria-label="'+filtered.length+' updates">'+filtered.map(function(i){return cardHTML(i,query);}).join('')+'</section>';
-  }
+  rootEl.innerHTML='<section aria-label="'+filtered.length+' updates">'+filtered.map(function(i){return cardHTML(i,INDEX_CARD_OPTS,query);}).join('')+'</section>';
   /* Scroll naar specifiek item via ?id= */
   if(idParam){
     var el=document.getElementById('item-'+parseInt(idParam));

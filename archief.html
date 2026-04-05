@@ -237,23 +237,9 @@ function renderWeek() {
     '</div>';
 
   /* ── Kaarten ── */
-  function removedCard(r) {
-    var meta = APP_META[r.app] || APP_META.other;
-    var statusCls = r.status === 'launched' ? 'p-rolling' : 'p-dev';
-    var statusLbl = r.status === 'launched' ? 'Uitgerold' : 'Geannuleerd';
-    return '<article class="card" aria-label="' + esc(r.title) + '">' +
-      '<div class="card-pills">' +
-        '<span class="pill ' + meta.cls + '">' + appIconHTML(r.app) + esc(r.prodLabel||meta.label) + '</span>' +
-        '<span class="pill ' + statusCls + '">' + statusLbl + '</span>' +
-      '</div>' +
-      '<h3 class="card-title">' + esc(r.title) + '</h3>' +
-      '<div class="card-foot"><div class="card-foot-left">' +
-        '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + r.id + '" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID ' + r.id + ' op Microsoft roadmap (opent in nieuw venster)">' +
-          LINK_ICON + ' ID ' + r.id +
-        '</a>' +
-      '</div></div>' +
-    '</article>';
-  }
+  /* Kaart-opties voor archief: verdwenen items (minimaal + beschrijving) */
+  var ARCHIEF_REMOVED_OPTS = { benefit: true };
+  function removedCard(r) { return cardHTML(r, ARCHIEF_REMOVED_OPTS); }
 
   function sec(items, emoji, lbl) {
     if (!items.length) return '';
@@ -296,37 +282,9 @@ function renderWeek() {
 }
 
 /* ── Kaart HTML ─────────────────────────────────────────────────────────── */
-function itemCard(item) {
-  var cfg  = {rolling:{label:'Werd uitgerold',cls:'p-rolling'}, dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status]
-           || {label:item.status, cls:'p-other'};
-  var meta = APP_META[item.app] || APP_META.other;
-  return '<article class="card act-' + item.action + '" aria-label="' + esc(item.title) + '">' +
-    '<div class="card-pills">' +
-      '<span class="pill ' + meta.cls + '">' + appIconHTML(item.app) + esc(item.prodLabel||meta.label) + '</span>' +
-      '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
-    '</div>' +
-    '<h3 class="card-title">' + esc(item.title) + '</h3>' +
-    '<div class="card-benefit">' +
-      '<span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>' +
-      esc(item.benefit) +
-    '</div>' +
-    '<div class="card-action act-' + item.action + '" aria-label="Actie: ' + (ACTION_LABEL[item.action]||item.actionLabel) + '">' +
-      '<span aria-hidden="true">' + ACTION_ICON[item.action] + '</span>' +
-      '<span>' + esc(item.actionLabel) + '</span>' +
-    '</div>' +
-    (item.desc ? '<details><summary>Technische details lezen</summary><div class="card-desc">' + esc(item.desc) + '</div></details>' : '') +
-    '<div class="card-foot">' +
-      '<span class="release-badge">' +
-        '<span aria-hidden="true">🚀</span> ' +
-        '<span class="sr-only">Verwachte release:</span>' +
-        esc(nlRelease(item.release)) +
-      '</span>' +
-      '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID ' + item.id + ' op Microsoft roadmap (opent in nieuw venster)">' +
-        LINK_ICON + ' ID ' + item.id +
-      '</a>' +
-    '</div>' +
-  '</article>';
-}
+/* Kaart-opties voor archief: actieve items in weekarchief */
+var ARCHIEF_ITEM_OPTS = { benefit: true, action: true, details: true, release: true };
+function itemCard(item) { return cardHTML(item, ARCHIEF_ITEM_OPTS); }
 
 /* ── Archief index laden ────────────────────────────────────────────────── */
 function loadIndex() {

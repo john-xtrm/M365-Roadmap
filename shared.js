@@ -316,3 +316,179 @@ function fetchWithTimeout(url, ms) {
   var timer = setTimeout(function() { ctrl.abort(); }, ms);
   return fetch(url, { signal: ctrl.signal }).finally(function() { clearTimeout(timer); });
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   KAART-COMPONENTEN — gedeeld door index, kalender en archief
+   ══════════════════════════════════════════════════════════════════════════ */
+
+var _STATUS_CFG = {
+  rolling:   { label: 'Wordt uitgerold', cls: 'p-rolling' },
+  dev:       { label: 'In ontwikkeling', cls: 'p-dev'     },
+  launched:  { label: 'Uitgerold',       cls: 'p-rolling' },
+  cancelled: { label: 'Geannuleerd',     cls: 'p-dev'     }
+};
+
+var _COPY_ICON =
+  '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"' +
+  ' stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+  '<rect x="9" y="9" width="13" height="13" rx="2"/>' +
+  '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+
+/**
+ * Bouwt productpillen voor een item. Toont primair product + eventuele tags.
+ * Backward-compatible: als tags ontbreekt → alleen primaire pill.
+ */
+function buildProductPills(item) {
+  var meta = APP_META[item.app] || APP_META.other;
+  var html = '<span class="pill ' + meta.cls + '">' +
+             appIconHTML(item.app) + esc(item.prodLabel || meta.label) +
+             '</span>';
+  var seen = {}; seen[item.app] = true;
+  (item.tags || []).forEach(function(key) {
+    if (!key || seen[key] || !APP_META[key] || key === 'other') return;
+    seen[key] = true;
+    var m = APP_META[key];
+    html += '<span class="pill ' + m.cls + '">' + appIconHTML(key) + esc(m.label) + '</span>';
+  });
+  return html;
+}
+
+/**
+ * Genereert een uniforme kaart-HTML voor index, kalender en archief.
+ *
+ * @param {Object}  item    - roadmap item
+ * @param {Object}  [opts]  - weergave-opties (standaard = minimaal)
+ *   opts.newBadge   {bool}   ⭐ Nieuw badge tonen
+ *   opts.benefit    {bool}   Beschrijving tonen
+ *   opts.action     {bool}   Actieblok tonen
+ *   opts.details    {bool}   Uitklapbare technische details tonen
+ *   opts.release    {bool}   Releasedatum tonen
+ *   opts.dates      {bool}   Toegevoegd/gewijzigd datums tonen
+ *   opts.copy       {bool}   Kopieer-link knop tonen
+ *   opts.detailLink {bool}   "Details"-link naar index.html tonen
+ *   opts.shortTerm  {bool}   📅 Kortetermijn badge tonen (kalender)
+ *   opts.uncertain  {bool}   Onzekere releasedatum styling (kalender)
+ * @param {string}  [query] - zoekterm voor tekst-markering
+ */
+function cardHTML(item, opts, query) {
+  opts  = opts  || {};
+  query = query || '';
+
+  var cfg  = _STATUS_CFG[item.status] || { label: item.status || '', cls: 'p-other' };
+  var actCls = item.action ? ' act-' + item.action : '';
+
+  /* ── Pills ── */
+  var shortTermBadge = opts.shortTerm
+    ? '<span class="short-term-badge" title="Heeft exacte maanddatum">' +
+      '<span aria-hidden="true">📅</span> Ook in maandweergave</span>'
+    : '';
+
+  var pills =
+    '<div class="card-pills">' +
+      buildProductPills(item) +
+      '<span class="pill ' + cfg.cls + '">' + cfg.label + '</span>' +
+      (opts.newBadge && item.isNew
+        ? '<span class="new-badge"><span aria-hidden="true">\u2B50</span> Nieuw</span>'
+        : '') +
+      shortTermBadge +
+    '</div>';
+
+  /* ── Titel ── */
+  var title = '<h3 class="card-title">' +
+    (query ? highlight(item.title, query) : esc(item.title)) +
+    '</h3>';
+
+  /* ── Beschrijving ── */
+  var benefit = '';
+  if (opts.benefit && item.benefit) {
+    benefit =
+      '<div class="card-benefit">' +
+        '<span class="card-benefit-label">Wat betekent dit voor uw organisatie?</span>' +
+        (query ? highlight(item.benefit, query) : esc(item.benefit)) +
+      '</div>';
+  }
+
+  /* ── Actieblok ── */
+  var action = '';
+  if (opts.action && item.action) {
+    action =
+      '<div class="card-action act-' + item.action + '"' +
+        ' aria-label="Actie: ' + esc(item.actionLabel || ACTION_LABEL[item.action] || '') + '">' +
+        '<span aria-hidden="true">' + (ACTION_ICON[item.action] || '') + '</span>' +
+        '<span>' + esc(item.actionLabel || ACTION_LABEL[item.action] || '') + '</span>' +
+      '</div>';
+  }
+
+  /* ── Technische details ── */
+  var details = '';
+  if (opts.details && item.desc) {
+    details =
+      '<details>' +
+        '<summary>Technische details lezen</summary>' +
+        '<div class="card-desc">' + esc(item.desc) + '</div>' +
+      '</details>';
+  }
+
+  /* ── Footer links ── */
+  var footLeft = '';
+  if (opts.release && item.release) {
+    footLeft +=
+      '<span class="release-badge">' +
+        '<span aria-hidden="true">\uD83D\uDE80</span> ' +
+        '<span class="sr-only">Release:</span>' +
+        esc(nlRelease(item.release)) +
+      '</span>';
+  }
+  if (opts.dates) {
+    if (item.added) {
+      footLeft +=
+        '<span class="date-info">' +
+          '<span class="sr-only">Toegevoegd:</span> \uD83D\uDCC5 ' + fmtDate(item.added) +
+        '</span>';
+    }
+    if (item.modified && item.modified !== item.added) {
+      footLeft +=
+        '<span class="date-info" style="margin-left:10px">' +
+          '<span class="sr-only">Gewijzigd:</span> \u270F\uFE0F ' + fmtDate(item.modified) +
+        '</span>';
+    }
+  }
+
+  /* ── Footer rechts ── */
+  var footRight = '';
+  if (opts.detailLink) {
+    footRight +=
+      '<a class="detail-link"' +
+        ' href="index.html?id=' + item.id + '"' +
+        ' aria-label="Bekijk details van \'' + esc(item.title) + '\' op de hoofdpagina">' +
+        DETAIL_ICON + ' Details' +
+      '</a>';
+  }
+  footRight +=
+    '<a class="ms-link"' +
+      ' href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms=' + item.id + '"' +
+      ' target="_blank" rel="noopener noreferrer"' +
+      ' aria-label="Bekijk ID ' + item.id + ' op de offici\u00eble Microsoft roadmap (opent in nieuw venster)">' +
+      LINK_ICON + ' ID ' + item.id +
+    '</a>';
+  if (opts.copy) {
+    footRight +=
+      '<button class="copy-link-btn"' +
+        ' onclick="copyItemLink(' + item.id + ')"' +
+        ' aria-label="Kopieer directe link naar dit item"' +
+        ' title="Kopieer directe link">' +
+        _COPY_ICON +
+      '</button>';
+  }
+
+  /* ── Samenvoegen ── */
+  return '<article class="card' + actCls + '" id="item-' + item.id + '"' +
+    ' aria-label="' + esc(item.title) + '"' +
+    (opts.uncertain ? ' style="opacity:.75;border-left-style:dashed"' : '') + '>' +
+    pills + title + benefit + action + details +
+    '<div class="card-foot">' +
+      '<div class="card-foot-left">' + (footLeft || '') + '</div>' +
+      '<div class="card-foot-right">' + footRight + '</div>' +
+    '</div>' +
+  '</article>';
+}

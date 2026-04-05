@@ -412,36 +412,14 @@ function render() {
 }
 
 /* ── Kalenderkaart HTML ─────────────────────────────────────────────────── */
+/* ── Kaart-opties voor kalender.html ──────────────────────────────────── */
+var KALENDER_CARD_OPTS = { benefit: true, action: true, detailLink: true, release: true };
+
 function calCardHTML(item, isShortTerm, isUncertain) {
-  var meta = APP_META[item.app] || APP_META.other;
-  var shortBadge = isShortTerm
-    ? '<span class="short-term-badge" title="Heeft exacte maanddatum — ook zichtbaar in korte-termijn weergave">' +
-      '<span aria-hidden="true">📅</span> Ook in maandweergave</span>'
-    : '';
-  /* Link naar hoofdpagina met zoekterm vooringevuld */
-  var searchUrl = 'index.html?id=' + item.id;
-  return '<div class="cal-card act-'+item.action+(isUncertain?' is-uncertain':'')+'">' +
-    '<div class="cal-card-left">' +
-      '<div class="cal-card-title">'+esc(item.title)+'</div>' +
-      '<div class="cal-card-benefit">'+esc(item.benefit)+'</div>' +
-      '<div class="cal-card-pills">' +
-        '<span class="pill '+meta.cls+'">'+appIconHTML(item.app)+esc(item.prodLabel||meta.label)+'</span>' +
-        '<span class="pill '+(item.status==='rolling'?'p-rolling':'p-dev')+'">'+
-          (item.status==='rolling'?'Wordt uitgerold':'In ontwikkeling')+'</span>' +
-        shortBadge +
-      '</div>' +
-    '</div>' +
-    '<div class="cal-card-right">' +
-      '<div class="action-dot-wrap act-'+item.action+'" aria-label="Actie: '+(ACTION_LABEL[item.action]||'')+'">' +
-        '<span class="action-dot" aria-hidden="true"></span>' +
-        '<span class="action-lbl">'+esc(ACTION_LABEL[item.action]||item.actionLabel)+'</span>' +
-      '</div>' +
-      '<div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end">' +
-        '<a class="main-link" href="'+searchUrl+'" aria-label="Bekijk details van \''+esc(item.title)+'\' op de hoofdpagina">'+DETAIL_ICON+' Details</a>' +
-        '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+item.id+'" target="_blank" rel="noopener noreferrer" aria-label="Bekijk ID '+item.id+' op Microsoft roadmap (opent in nieuw venster)">'+LINK_ICON+' ID '+item.id+'</a>' +
-      '</div>' +
-    '</div>' +
-  '</div>';
+  return cardHTML(item, Object.assign({}, KALENDER_CARD_OPTS, {
+    shortTerm: !!isShortTerm,
+    uncertain: !!isUncertain
+  }));
 }
 
 function toggleNoDate(hdr) {
