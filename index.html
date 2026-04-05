@@ -287,8 +287,15 @@ function updateWeekLabels(){
 
 /* ── Data verwerken ─────────────────────────────────────────────────────── */
 function handleData(data){
+  /* Vorige kalenderweek — zelfde definitie als periodefilter 'pw' */
+  var _now=new Date();
+  var _ws=weekStart(_now); var _we=weekEnd(_now);
+  var _pwS=new Date(_ws); _pwS.setDate(_pwS.getDate()-7);
+  var _pwE=new Date(_we); _pwE.setDate(_pwE.getDate()-7);
   ALL_ITEMS=data.items.map(function(i){
-    return Object.assign({},i,{isNew: inSameWeek(i.added,new Date())||inSameWeek(i.modified,new Date())});
+    /* isNew = item werd TOEGEVOEGD in de vorige kalenderweek (= laatste run) */
+    var added=i.added?new Date(i.added):null;
+    return Object.assign({},i,{isNew: !!(added&&added>=_pwS&&added<=_pwE)});
   });
   var gen=new Date(data.generated);
   /* Toon vorige kalenderweek in header — data is altijd van maandag-run */
@@ -471,7 +478,15 @@ function render(){
   var filtered=withoutApp.filter(function(i){return fP==='all'||i.app===fP;});
   filtered=filtered.slice().sort(function(a,b){
     if(sort==='status')return(a.status==='rolling'?0:1)-(b.status==='rolling'?0:1);
-    if(sort==='added-desc')return new Date(b.added||0)-new Date(a.added||0);
+    if(sort==='added-desc'||sort==='added-asc'){
+      /* 1. ⭐ Nieuw items (toegevoegd vorige week) altijd eerst bij desc */
+      if(sort==='added-desc'&&a.isNew!==b.isNew)return a.isNew?-1:1;
+      /* 2. Gesorteerd op added-datum */
+      var byAdded=new Date(b.added||0)-new Date(a.added||0);
+      if(byAdded!==0)return sort==='added-desc'?byAdded:-byAdded;
+      /* 3. Tiebreaker: modified-datum */
+      return new Date(b.modified||0)-new Date(a.modified||0);
+    }
     if(sort==='modified-desc')return new Date(b.modified||0)-new Date(a.modified||0);
     var da=parseReleaseDate(a.release),db=parseReleaseDate(b.release);
     return sort==='release-desc'?db-da:da-db;
