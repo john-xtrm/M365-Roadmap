@@ -468,7 +468,7 @@ function handleData(data){
     document.getElementById('changes-cards').innerHTML=removed.map(function(r){
       var meta=APP_META[r.app]||APP_META.other;
       return '<div class="rcard">'+
-        '<span class="pill '+meta.cls+'">'+appIconHTML(r.app)+esc(r.prodLabel||meta.label)+'</span>'+
+        buildProductPills(r)+
         '<span class="rcard-title">'+esc(r.title)+'</span>'+
         '<div class="rcard-right"><span class="pill p-'+r.status+'">'+esc(r.statusNl)+'</span>'+
         '<a class="ms-link" href="https://www.microsoft.com/en-us/microsoft-365/roadmap?searchterms='+r.id+'" target="_blank" rel="noopener noreferrer">'+LINK_ICON+' ID '+r.id+'</a></div></div>';
@@ -542,6 +542,28 @@ function clearSearch(){
   document.getElementById('search-input').focus();
 }
 
+
+/* ── Multi-product pills ────────────────────────────────────────────────── */
+/* Eerste pill = primair product (item.app / item.prodLabel).                */
+/* Extra pills = item.tags (array van app-sleutels, gevuld door Python-      */
+/* pipeline). Backward-compatible: als tags ontbreekt → alleen primaire      */
+/* pill, identiek aan het oude gedrag.                                        */
+function buildProductPills(obj) {
+  var meta = APP_META[obj.app] || APP_META.other;
+  var html = '<span class="pill ' + meta.cls + '">' +
+             appIconHTML(obj.app) + esc(obj.prodLabel || meta.label) +
+             '</span>';
+  var seen = {}; seen[obj.app] = true;
+  (obj.tags || []).forEach(function(key) {
+    if (!key || seen[key] || !APP_META[key] || key === 'other') return;
+    seen[key] = true;
+    var m = APP_META[key];
+    html += '<span class="pill ' + m.cls + '">' +
+            appIconHTML(key) + esc(m.label) +
+            '</span>';
+  });
+  return html;
+}
 /* ── Kaart HTML ─────────────────────────────────────────────────────────── */
 function cardHTML(item,query){
   var cfg={rolling:{label:'Wordt uitgerold',cls:'p-rolling'},dev:{label:'In ontwikkeling',cls:'p-dev'}}[item.status];
@@ -552,7 +574,7 @@ function cardHTML(item,query){
     dateRow+='<span class="date-info" style="margin-left:10px"><span class="sr-only">Gewijzigd:</span> \u270F\uFE0F '+fmtDate(item.modified)+'</span>';
   return '<article class="card act-'+item.action+'" id="item-'+item.id+'" aria-label="'+esc(item.title)+'">' +
     '<div class="card-pills">'+
-      '<span class="pill '+meta.cls+'">'+appIconHTML(item.app)+esc(item.prodLabel||meta.label)+'</span>'+
+      buildProductPills(item)+
       '<span class="pill '+cfg.cls+'">'+cfg.label+'</span>'+
       (item.isNew?'<span class="new-badge"><span aria-hidden="true">\u2B50</span> Nieuw</span>':'')+
     '</div>'+
