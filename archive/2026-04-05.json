@@ -1,0 +1,78 @@
+{
+  "generated": "2026-04-05T07:26:20Z",
+  "date": "2026-04-05",
+  "removed": [
+    {
+      "id": 532734,
+      "title": "Microsoft Teams: werkbalk voor vergaderingen verbergen",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 551147,
+      "title": "Microsoft Purview: Wijzigingen in rollengroepen in Purview",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 537285,
+      "title": "SharePoint: opname van OneNote-gebruik in SharePoint-siteanalyses",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 531758,
+      "title": "Microsoft Copilot (Microsoft 365): nu slimmer met visuals: Declarative Agents maken gebruik van ingebedde afbeeldingen voor rijkere, nauwkeurigere antwoorden",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 519570,
+      "title": "Microsoft Copilot (Microsoft 365): Bestanden gevonden via Chat-zoeken kunnen nu worden geanalyseerd door een code-interpreter",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516568,
+      "title": "Outlook: bereid u voor op uw vergadering met Copilot-chat in Outlook mobiel",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 512430,
+      "title": "Microsoft 365-app: overzichtspagina in Copilot Notebooks",
+      "app": "copilot",
+      "prodLabel": "365",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 501585,
+      "title": "Microsoft Copilot (Microsoft 365): Beheerders kunnen aangepaste Model Context Protocol (MCP)-connectoren maken en implementeren in Microsoft 365.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 481138,
+      "title": "Microsoft Copilot (Microsoft 365): Voicechat in Microsoft 365 Copilot",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
