@@ -480,7 +480,7 @@ const ND = {
   'c-html': {
     badge:'🖥️ UI', bc:'var(--teal-bg)', btc:'var(--teal-t)',
     title:'HTML-pagina\'s (5x) + CSS (5x)', sub:'index · kalender · archief · presentatie · architectuur',
-    fn:'Vijf interactieve pagina\'s, vijf CSS-bestanden, plus app-meta.js en shared.js als gedeelde scripts. Nav en hulpfuncties gecentraliseerd. Consistente navigatie via renderNav(): Roadmap · Kalender · Archief · Presentatie · Architectuur.',
+    fn:'Vijf interactieve pagina\'s, vijf CSS-bestanden, app-meta.js (iconen) en shared.js (nav, hulpfuncties, uniforme kaartcomponent). Eén cardHTML() voor index, kalender en archief.',
     logic:'Elke pagina laadt app-meta.js (APP_ICONS, APP_META) en shared.js (renderNav, toggleTheme, hulpfuncties) als externe scripts. Pagina-specifieke logica blijft inline. CSS is gesplitst in shared.css + 4 paginaspecifieke bestanden.',
     tech:'Vanilla HTML5/CSS3/JS. WCAG 2.2 AA. Werkt in sandboxed Teams-tabs. CSS: shared.css + kalender.css + archief.css + presentatie.css + architectuur.css.'
   },
@@ -558,7 +558,7 @@ const ND = {
     title:'index.html', sub:'Hoofdpagina — roadmap-overzicht',
     fn:'Toont alle actuele M365 roadmap-items met uitgebreide filter- en zoekmogelijkheden. Standaard worden items van de vorige kalenderweek getoond.',
     logic:'Laadt data.json client-side (SessionStorage cache 30 min). Filtert op product, actie-type, periode en status. Zoekfunctie markeert trefwoorden. URL-parameters (?id=, ?search=) maken deep-linking mogelijk vanuit de kalender.',
-    tech:'SessionStorage key: m365_data_v1. TTL: 30 min. Renderen via innerHTML met batch-updates. Iconen via app-meta.js (browser-gecached). Sorteermogelijkheden: datum toegevoegd, releasedatum, status.'
+    tech:'SessionStorage key: m365_data_v1. TTL: 30 min. Renderen via innerHTML. Iconen via app-meta.js. Sorteren: nieuwste of oudste eerst. ⭐ Nieuw = toegevoegd in vorige kalenderweek.'
   },
   'comp-kalender': {
     badge:'📅 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
@@ -649,7 +649,7 @@ const ND = {
   'code-render': {
     badge:'🖼️ Functie', bc:'var(--teal-bg)', btc:'var(--teal-t)',
     title:'appIconHTML()', sub:'index.html — product-iconen renderen',
-    fn:'Genereert een <img>-tag met het product-icoon voor een gegeven sleutel. Gedefinieerd in shared.js, icoondata in app-meta.js.',
+    fn:'appIconHTML(): genereert een img-tag met product-icoon uit app-meta.js. buildProductPills(): bouwt productpillen inclusief tags. cardHTML(item, opts): uniforme kaart voor index, kalender en archief via opts-object.',
     logic:'APP_ICONS bevindt zich in app-meta.js, gedeeld via <script src>. Eén HTTP-verzoek, browser-gecached — geen duplicatie meer over 5 pagina\'s. shared.js biedt appIconHTML(), renderNav() en alle gedeelde hulpfuncties.',
     tech:'appIconHTML(key) retourneert HTML-string: \'<img class="app-icon" src="\'+APP_ICONS[key]+\'" aria-hidden="true" alt="">\'. Onbekende sleutel → lege string. Iconen zijn 64×64 px PNG, geoptimaliseerd voor schermresolutie.'
   }

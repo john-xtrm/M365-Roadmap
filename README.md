@@ -58,7 +58,27 @@ M365-Roadmap/
 | Bestand | Bevat | Geladen door |
 |---|---|---|
 | `app-meta.js` | `APP_ICONS` (base64 product-iconen) | Alle 5 HTML-pagina's |
-| `shared.js` | `renderNav()`, `toggleTheme()`, `APP_META`, `APP_ORDER`, hulpfuncties | Alle 5 HTML-pagina's |
+| `shared.js` | `renderNav()`, `toggleTheme()`, `APP_META`, `APP_ORDER`, `cardHTML()`, `buildProductPills()`, hulpfuncties | Alle 5 HTML-pagina's |
+
+### Uniforme kaartcomponent
+
+`cardHTML(item, opts, query)` in `shared.js` genereert één kaarttype voor index, kalender en archief. Per pagina bepaalt een opts-object wat zichtbaar is:
+
+| Optie | index | kalender | archief |
+|---|---|---|---|
+| ⭐ Nieuw badge | ✅ | — | — |
+| Beschrijving | ✅ | ✅ | ✅ |
+| Actieblok | ✅ | ✅ | — |
+| Releasedatum | ✅ | ✅ | — |
+| Technische details | ✅ | — | — |
+| Toegevoegd/gewijzigd datums | ✅ | — | — |
+| Details-link → index | — | ✅ | — |
+| Kopieer-link | ✅ | — | — |
+| Microsoft roadmap-link | ✅ | ✅ | ✅ |
+
+### Badge "⭐ Nieuw"
+
+Een item krijgt het Nieuw-badge als `added` valt in de **vorige kalenderweek** — dezelfde definitie als de "Vorige week" periodefilter. Na de volgende maandag-run verdwijnt het badge automatisch.
 
 Elke pagina laadt beide bestanden bovenaan het body-script:
 ```html
