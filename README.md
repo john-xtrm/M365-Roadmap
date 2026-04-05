@@ -1,278 +1,194 @@
 # Microsoft 365 Roadmap Dashboard
 
-Een automatisch bijgewerkt dashboard dat Microsoft 365 roadmap-updates vertaalt naar Nederlands en visualiseert voor medewerkers en IT-beheerders. Gratis gehost op GitHub Pages, zonder server of database.
+Een automatisch bijgewerkt overzicht van aankomende Microsoft 365-updates, gebouwd op GitHub Pages met Vanilla HTML/CSS/JS. Gratis gehost, geen server nodig.
 
-🔗 **Live:** https://john-xtrm.github.io/M365-Roadmap/
-
----
-
-## Inhoud
-
-- [Functionaliteit](#functionaliteit)
-- [Pagina-overzicht](#pagina-overzicht)
-- [Architectuur](#architectuur)
-- [Data-pipeline](#data-pipeline)
-- [CSS-structuur](#css-structuur)
-- [Installatie en gebruik](#installatie-en-gebruik)
-- [Producten uitbreiden](#producten-uitbreiden)
-- [Toegankelijkheid](#toegankelijkheid)
-- [Kosten](#kosten)
+🔗 **Live:** `https://john-xtrm.github.io/M365-Roadmap/`
 
 ---
 
-## Functionaliteit
+## Wat het doet
 
-- **Wekelijks automatisch bijgewerkt** — elke maandag 06:00 UTC via GitHub Actions
-- **Nederlandstalig** — titels en beschrijvingen vertaald via Google Translate
-- **Filteren** op product, actie-type, periode en status
-- **Actie-classificatie** per item: Automatisch · IT-beheerder · Medewerker
-- **Releasekalender** — korte termijn (maanden) en lange termijn (kwartalen)
-- **Archief** — verdwenen items (uitgerold of geannuleerd) tot 3 maanden terug
-- **PowerPoint-generator** — wekelijkse klantpresentatie als .pptx downloaden
-- **Dark mode** — automatisch via systeemvoorkeur of handmatig te schakelen
-- **Teams-tab** — werkt als Microsoft Teams Website-tab zonder aanpassingen
-- **WCAG 2.2 AA** — toegankelijk voor alle gebruikers, score 9.2/10
+Elke **maandag om 06:00 UTC** haalt een GitHub Actions workflow de publieke Microsoft 365 roadmap op, vertaalt de items naar het Nederlands en slaat het resultaat op als `data.json`. De vijf HTML-pagina's laden deze data client-side en tonen een gefilterd, doorzoekbaar overzicht.
 
----
-
-## Pagina-overzicht
-
-| Pagina | Beschrijving |
+| Pagina | Doel |
 |---|---|
-| `index.html` | Hoofdpagina — roadmap-overzicht met filters, zoeken en statistieken |
-| `kalender.html` | Releasekalender per maand of kwartaal met deep-link naar items |
-| `archief.html` | Verdwenen items per week, lazy-loaded via archive/index.json |
-| `presentatie.html` | PowerPoint-generator op maat per klant, gegenereerd in de browser |
-| `architectuur.html` | Interactief C4-architectuurdiagram (C1–C4 niveaus, klikbare nodes) |
+| `index.html` | Hoofdoverzicht met filters (product, actie, periode, status) |
+| `kalender.html` | Releasekalender per maand of kwartaal |
+| `archief.html` | Weekarchief van verdwenen roadmap-items |
+| `presentatie.html` | PowerPoint-generator op basis van selectie |
+| `architectuur.html` | C4-architectuurkaart van het dashboard zelf |
+
+---
+
+## Bestandsstructuur
+
+```
+M365-Roadmap/
+├── .github/
+│   └── workflows/
+│       ├── update-roadmap.yml      # Wekelijks: data ophalen + vertalen
+│       └── preview-deploy.yml      # Handmatig: develop-branch testen
+│
+├── archive/                        # Weekbestanden (automatisch, max 3 mnd)
+│   ├── index.json
+│   └── YYYY-MM-DD.json
+│
+├── index.html                      # Hoofdpagina
+├── kalender.html                   # Releasekalender
+├── archief.html                    # Weekarchief
+├── presentatie.html                # PPTX-generator
+├── architectuur.html               # C4-architectuurkaart
+│
+├── shared.css                      # Gedeelde stijlen, design tokens, dark mode
+├── archief.css                     # Paginaspecifieke stijlen
+├── kalender.css
+├── presentatie.css
+├── architectuur.css
+│
+├── app-meta.js                     # Product-iconen (base64) en APP_ICONS object
+├── shared.js                       # Gedeelde JS: renderNav, toggleTheme,
+│                                   # hulpfuncties, APP_META, APP_ORDER
+│
+├── fetch_roadmap.py                # Wekelijks script: CSV → data.json
+└── data.json                       # Actuele roadmap-data (automatisch bijgewerkt)
+```
+
+### Gedeelde JavaScript — twee lagen
+
+| Bestand | Bevat | Geladen door |
+|---|---|---|
+| `app-meta.js` | `APP_ICONS` (base64 product-iconen) | Alle 5 HTML-pagina's |
+| `shared.js` | `renderNav()`, `toggleTheme()`, `APP_META`, `APP_ORDER`, hulpfuncties | Alle 5 HTML-pagina's |
+
+Elke pagina laadt beide bestanden bovenaan het body-script:
+```html
+<script src="app-meta.js"></script>
+<script src="shared.js"></script>
+```
+
+De browser cachet beide bestanden — icons worden dus **één keer** geladen, niet meer per pagina. Navigatie en thema-toggle zijn gecentraliseerd in `shared.js`.
 
 ---
 
 ## Architectuur
 
-Het systeem volgt het **C4-model** (Simon Brown):
-
 ```
-Microsoft CSV API ──► fetch_roadmap.py ──► data.json ──► GitHub Pages ──► Browser
-Google Translate ──►         │               archive/
-                             └──► GitHub Actions (maandag 06:00 UTC)
+Microsoft CSV API (aka.ms/MSRoadmapCSV)
+        │  maandag 06:00 UTC
+        ▼
+GitHub Actions → fetch_roadmap.py
+        │  EN→NL vertaling (Google Translate / deep_translator)
+        ▼
+data.json + archive/
+        │  git push → GitHub Pages
+        ▼
+Browser → index.html / kalender.html / archief.html / ...
+              ├── app-meta.js  (iconen, gecached)
+              └── shared.js    (nav, functies, gecached)
 ```
 
-### C1 · Context
-- **Medewerker** — raadpleegt updates, filtert op actie-type, opent als Teams-tab
-- **IT-beheerder** — beoordeelt actiepunten, beheert repository en Teams-tab
-- **Microsoft CSV API** — publieke roadmap-feed zonder authenticatie
-- **Google Translate** — machinale EN→NL vertaling via deep_translator
-
-### C2 · Container
-| Container | Type | Beschrijving |
-|---|---|---|
-| GitHub Actions | CI/CD | Wekelijkse pipeline: ophalen → vertalen → opslaan → publiceren |
-| fetch_roadmap.py | Script | Data-pipeline in Python |
-| data.json | Storage | Actueel snapshot met items, removed[] en vertaalcache |
-| archive/ | Storage | Weekbestanden van verdwenen items + index.json |
-| GitHub Pages | Hosting | CDN, HTTPS, gratis voor publieke repositories |
-| HTML-pagina's (5x) | Frontend | Vanilla HTML/CSS/JS, geen framework |
-
-### C3 · Component — Pipeline
-| Component | Functie |
-|---|---|
-| CSV Fetcher | Haalt Microsoft CSV op via curl met browser-headers |
-| Vertaalcache | Delta-detectie via SHA-256 hash, voorkomt dubbele vertalingen |
-| Vertaalmodule | Vertaalt gewijzigde items via GoogleTranslator(en→nl) |
-| Product- & statusdetectie | Matcht ProductFamily op 16 producten via DETECT_PATTERNS |
-| Data Writer | Schrijft data.json, weekarchief en index.json, dan git push |
-
-### C3 · Component — Frontend
-| Component | Functie |
-|---|---|
-| index.html | Filters, SessionStorage cache (30 min), URL-params voor deep-linking |
-| kalender.html | Korte/lange termijn weergave, periodfilter, ?id= deep-link |
-| archief.html | loadIndex() + loadWeek() lazy loading, Promise.allSettled validatie |
-| presentatie.html | PptxGenJS in browser, productselectie, automatische paginering |
-| architectuur.html | Interactieve C4-diagram, ND-detaildata per component |
-| CSS (5x) | shared.css + 4 paginaspecifieke bestanden |
+Zie de live [Architectuurkaart](https://john-xtrm.github.io/M365-Roadmap/architectuur.html) voor het volledige C4-model.
 
 ---
 
-## Data-pipeline
+## Producten
 
-### Hoe het werkt
-
-1. GitHub Actions checkt de repository uit
-2. `pip install deep_translator` installeert de enige externe dependency
-3. `python fetch_roadmap.py` voert de volledige pipeline uit:
-   - CSV ophalen van aka.ms/MSRoadmapCSV
-   - Bestaande data.json + vertaalcache laden
-   - Delta detecteren (nieuwe/gewijzigde items via SHA-256 hash)
-   - Gewijzigde items vertalen via Google Translate
-   - Producten en status detecteren
-   - data.json, weekarchief en index.json schrijven
-4. `git add/commit/push` → GitHub Pages herdeployt automatisch
-
-### data.json structuur
-
-```json
-{
-  "generated": "ISO-timestamp",
-  "count": 42,
-  "items": [ RoadmapItem ],
-  "removed": [ RoadmapItem ],
-  "translation_cache": {
-    "<id>": { "title_nl": "...", "benefit_nl": "...", "hash": "..." }
-  }
-}
-```
-
-### RoadmapItem velden
-
-| Veld | Type | Beschrijving |
-|---|---|---|
-| `id` | string | Microsoft roadmap-ID (uniek) |
-| `title_nl` | string | Vertaalde titel |
-| `benefit_nl` | string | Vertaalde beschrijving |
-| `title_en` | string | Originele Engelse titel |
-| `app` | string | Product, bijv. `"teams"`, `"copilot"` |
-| `status` | enum | `"rolling"` of `"dev"` |
-| `action` | enum | `"none"` · `"admin"` · `"user"` |
-| `release` | string | Leesbare releasedatum, bijv. `"mei 2026"` |
-| `added` | string | ISO-datum eerste verschijning |
-| `modified` | string | ISO-datum laatste wijziging |
-| `moreInfoLink` | string | URL naar Microsoft docs |
-
-### Archief
-
-- `archive/YYYY-MM-DD.json` — verdwenen items van die week
-- `archive/index.json` — gesorteerde lijst van beschikbare datums
-- Bestanden ouder dan 90 dagen worden automatisch verwijderd
-- Een weekbestand wordt alleen aangemaakt als `removed[]` niet leeg is
-
----
-
-## CSS-structuur
-
-De stijlen zijn opgesplitst in één gedeeld bestand en vier paginaspecifieke bestanden:
-
-| Bestand | Scope | Inhoud |
-|---|---|---|
-| `shared.css` | Alle pagina's | Design tokens, knoppensysteem, kaarten, header, dark mode, WCAG |
-| `kalender.css` | kalender.html | Periodeblokken, kalenderkaarten, weergave-schakelaar |
-| `archief.css` | archief.html | Weekkiezer, archief-inhoud, gewijzigde-items blok |
-| `presentatie.css` | presentatie.html | Hero, stappenblokken, productgrid, genereer-knop |
-| `architectuur.css` | architectuur.html | Zones, nodes, pijlen, detail-panel, code-blokken |
-
-### Design tokens aanpassen
-
-Alle kleuren, radii en typografie staan als CSS custom properties in `shared.css`:
-
-```css
-:root {
-  --bg:        #f5f4f0;   /* paginaachtergrond */
-  --surface:   #ffffff;   /* kaarten, header */
-  --surface2:  #f0ede8;   /* hover-achtergrond */
-  --text:      #1a1916;   /* primaire tekst */
-  --muted:     #5a5750;   /* secundaire tekst */
-  --faint:     #605c58;   /* labels, meta — 5.0:1 contrast */
-  --blue-t:    #143d82;   /* actiekleur / knoppen actief */
-  --radius-pill: 100px;   /* pill-knoppen */
-  /* ... */
-}
-```
-
-Dark mode tokens staan direct eronder en worden automatisch toegepast via `prefers-color-scheme` of de thema-wisselknop.
-
----
-
-## Installatie en gebruik
-
-### Vereisten
-
-- GitHub-account (gratis)
-- Python 3.x (alleen voor lokale test)
-
-### Opzetten
-
-1. Fork of clone deze repository
-2. Activeer GitHub Pages: **Settings → Pages → Source: main branch, root**
-3. Controleer dat GitHub Actions is ingeschakeld: **Actions → Enable**
-4. Optioneel: pas het cron-schema aan in `.github/workflows/update-roadmap.yml`
-
-### Handmatig bijwerken
-
-Ga naar **Actions → Update Roadmap → Run workflow** om buiten de planning een nieuwe datafetch te starten.
-
-### Lokaal testen
-
-```bash
-pip install deep_translator
-python fetch_roadmap.py
-# Open index.html in een browser (via lokale webserver vanwege fetch-calls)
-python -m http.server 8000
-```
-
-### Als Microsoft Teams-tab
-
-1. Ga naar het gewenste Teams-kanaal
-2. Klik op **+** → **Website**
-3. Plak de GitHub Pages URL: `https://<gebruiker>.github.io/<repo>/`
-
----
-
-## Producten uitbreiden
-
-Om een nieuw M365-product toe te voegen:
-
-1. **`fetch_roadmap.py`** — voeg het product toe aan `DETECT_PATTERNS`:
-   ```python
-   DETECT_PATTERNS = {
-       "NieuwProduct": ["nieuwproduct", "alternatief"],
-       # ...
-   }
-   ```
-
-2. **Alle HTML-pagina's** — voeg het product toe aan `APP_META`, `APP_ORDER` en `APP_ICONS` (base64 PNG).
-
-3. **`shared.css`** — voeg een pill-klasse toe:
-   ```css
-   .p-nieuwproduct { background: var(--teal-bg); color: var(--teal-t); }
-   ```
-
----
-
-## Toegankelijkheid
-
-Het dashboard voldoet aan **WCAG 2.2 AA** (score: 9.2/10 via WAVE).
-
-| Criterium | Status | Implementatie |
-|---|---|---|
-| 1.3.1 Info and Relationships | ✅ | `<article>`, `<section>`, `<h2>`, `<nav>`, ARIA-rollen |
-| 1.4.3 Contrast (Minimum) | ✅ | Alle kleuren ≥ 4.5:1 getest, incl. `--faint` (#605c58) |
-| 1.4.4 Resize Text | ✅ | Rem-gebaseerde typografie, schaalt met browservoorkeur |
-| 2.1.1 Keyboard | ✅ | Alle interactieve elementen bereikbaar via Tab/Enter/Spatie |
-| 2.4.3 Focus Order | ✅ | Logische tabvolgorde, skip-link aanwezig |
-| 2.4.7 Focus Visible | ✅ | `:focus-visible` outline op alle elementen |
-| 2.4.11 Focus Not Obscured | ✅ | `scroll-margin-top` compenseert sticky header |
-| 2.5.3 Label in Name | ✅ | Zichtbare tekst in accessible name |
-| 2.5.8 Target Size | ✅ | Alle knoppen `min-height: 2.75rem` (44px) |
-| 3.1.1 Language of Page | ✅ | `lang="nl"` op alle pagina's |
-| 3.2.3 Consistent Navigation | ✅ | Identieke navigatievolgorde op alle pagina's |
-| 4.1.2 Name, Role, Value | ✅ | `aria-pressed`, `aria-current`, `aria-label`, `aria-live` |
-| Reduced Motion | ✅ | `prefers-reduced-motion` ondersteund |
-| Dark Mode | ✅ | `prefers-color-scheme` + handmatige schakelaar |
+28 producten worden herkend en weergegeven met icoon:
+Copilot · Teams · Outlook · Excel · Word · PowerPoint · SharePoint · Purview · Viva · Edge · OneDrive · Exchange · Forms · Intune · Entra · Planner · Loop · Whiteboard · To Do · Bookings · Stream · Power Automate · Power Apps · Power BI · Yammer · Defender · M365 Search · Project · Visio · Windows
 
 ---
 
 ## Kosten
 
-| Component | Kosten |
-|---|---|
-| GitHub Pages | €0 (gratis voor publieke repos) |
-| GitHub Actions | €0 (gratis tier, ~5 min/week) |
-| Microsoft CSV API | €0 (publiek, geen auth) |
-| Google Translate | €0 (deep_translator gratis tier) |
-| **Totaal** | **€0/maand** |
+**€0/maand** — GitHub Pages (hosting) + GitHub Actions (weekelijkse run) + Microsoft CSV API (geen auth) + Google Translate via `deep_translator` (gratis tier).
 
 ---
 
-## Licentie
+## Ontwikkeling
 
-MIT — vrij te gebruiken, aan te passen en te distribueren.
+Zie [CONTRIBUTING.md](CONTRIBUTING.md) of de sectie hieronder voor het lokale ontwikkelproces.
+
+### Lokaal draaien
+
+```bash
+# Stap 1: clone de repo
+git clone https://github.com/john-xtrm/M365-Roadmap.git
+cd M365-Roadmap
+
+# Stap 2: start een lokale server (vereist omdat fetch() werkt op file://)
+python3 -m http.server 8080
+# of: npx serve .
+
+# Stap 3: open in browser
+# http://localhost:8080
+```
+
+`data.json` is al aanwezig in de repo — je ziet direct echte data.
+
+### Branching
+
+```
+main        ← productie, auto-deploy naar GitHub Pages
+develop     ← ontwikkeling, merge via Pull Request
+feature/*   ← voor grotere losse features
+```
+
+**Werkwijze:**
+1. Maak wijzigingen op `develop` (of een `feature/`-branch)
+2. Test lokaal via `python3 -m http.server 8080`
+3. Open een Pull Request naar `main`
+4. Merge na review → auto-deploy via GitHub Pages
+
+### Nieuwe pagina toevoegen
+
+1. Maak `pagina.html` op basis van een bestaande pagina
+2. Voeg `<script src="app-meta.js"></script>` + `<script src="shared.js"></script>` toe
+3. Roep `renderNav('pagina')` aan als eerste JS-regel
+4. Voeg de pagina toe aan `_NAV_ITEMS` in `shared.js`
+5. Maak eventueel `pagina.css` aan voor paginaspecifieke stijlen
+
+### Nieuw product toevoegen
+
+1. Voeg het icoon (base64 PNG) toe aan `APP_ICONS` in `app-meta.js`
+2. Voeg een entry toe aan `APP_META` in `shared.js`
+3. Voeg de key toe aan `APP_ORDER` in `shared.js`
+4. Voeg een `.p-{product}` klasse toe aan `shared.css` indien nodig
+5. Voeg het product toe aan `APP_LABELS` + `DETECT_PATTERNS` in `fetch_roadmap.py`
+
+### WCAG
+
+Alle pagina's voldoen aan WCAG 2.2 AA. Bij elke wijziging controleren:
+- `aria-current="page"` op actieve nav-link (via `renderNav()`)
+- `aria-label` op interactieve elementen zonder zichtbare tekst
+- Kleurcontrast ≥ 4.5:1 (tokens in `shared.css`)
+- `prefers-reduced-motion` wordt gerespecteerd
+
+---
+
+## Data
+
+`data.json` wordt elke maandag automatisch bijgewerkt via GitHub Actions. Schema:
+
+```json
+{
+  "generated": "2026-04-01T06:12:34Z",
+  "date": "2026-04-01",
+  "count": 142,
+  "items": [
+    {
+      "id": "string",
+      "title_nl": "string",
+      "benefit_nl": "string",
+      "title_en": "string",
+      "app": "teams | copilot | sharepoint | ...",
+      "status": "rolling | dev",
+      "action": "none | admin | user",
+      "release": "April CY2026",
+      "added": "2026-01-15",
+      "modified": "2026-03-22",
+      "moreInfoLink": "https://..."
+    }
+  ],
+  "removed": [ /* items die verdwenen zijn t.o.v. vorige week */ ]
+}
+```

@@ -22,17 +22,7 @@
       <p class="hdr-sub">C4-model (Simon Brown) · Context · Container · Component · Code</p>
     </div>
   </div>
-  <nav class="hdr-right" aria-label="Hoofdnavigatie">
-    <a href="index.html" class="hdr-archive-link" aria-label="Terug naar de hoofdpagina"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Roadmap</a>
-    <a href="kalender.html" class="hdr-archive-link" aria-label="Bekijk de releasekalender"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Kalender</a>
-    <a href="archief.html" class="hdr-archive-link" aria-label="Bekijk het archief van verdwenen items"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="21 8 21 21 3 21 3 8"/><rect x="1" y="3" width="22" height="5"/><line x1="10" y1="12" x2="14" y2="12"/></svg> Archief</a>
-    <a href="presentatie.html" class="hdr-archive-link" aria-label="Bekijk de presentatiegenerator"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Presentatie</a>
-    <a href="architectuur.html" class="hdr-archive-link" aria-current="page" aria-label="Huidige pagina: Architectuur"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="6" height="6" rx="1"/><rect x="16" y="3" width="6" height="6" rx="1"/><rect x="9" y="15" width="6" height="6" rx="1"/><line x1="5" y1="9" x2="5" y2="12"/><line x1="19" y1="9" x2="19" y2="12"/><line x1="5" y1="12" x2="19" y2="12"/><line x1="12" y1="12" x2="12" y2="15"/></svg> Architectuur</a>
-    <button id="theme-btn" class="theme-btn" onclick="toggleTheme()" aria-label="Schakel naar donker thema" title="Thema wisselen">
-      <svg class="icon-moon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-      <svg class="icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </button>
-  </nav>
+  <nav id="main-nav" class="hdr-right" aria-label="Hoofdnavigatie"></nav>
 </div>
 </header>
 
@@ -217,7 +207,7 @@
 </div>
 
 <div class="zone zone-front">
-  <span class="zone-label">Frontend — GitHub Pages · Vanilla HTML/CSS/JS · Iconen inline base64 · WCAG 2.2 AA · 5 CSS-bestanden</span>
+  <span class="zone-label">Frontend — GitHub Pages · Vanilla HTML/CSS/JS · app-meta.js + shared.js · WCAG 2.2 AA · 5 CSS-bestanden</span>
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-top:1rem">
     <div class="node" onclick="selectNode('comp-index')" id="n-comp-index">
       <div class="nicon" style="font-size:1rem">🏠</div><div class="ntitle" style="font-size:0.75rem">index.html</div>
@@ -343,7 +333,7 @@ DETECT_PATTERNS = {
       prevWkStart, prevWkEnd)
     || inRange(item.modified, ...)</div>
 
-  <div class="code-block" onclick="selectNode('code-render')" id="n-code-render"><div class="cb-title">🖼️ appIconHTML() + inline iconen</div><span class="cc"># 16 base64 PNG's in APP_ICONS (~80 KB)</span>
+  <div class="code-block" onclick="selectNode('code-render')" id="n-code-render"><div class="cb-title">🖼️ appIconHTML() — gedeeld via shared.js + app-meta.js</div><span class="cc"># 16 base64 PNG's in APP_ICONS (~80 KB)</span>
 <span class="cc"># Inline in elke pagina — geen extern bestand</span>
 APP_ICONS = {
   copilot: <span class="cs">"data:image/png;base64,..."</span>,
@@ -386,27 +376,11 @@ APP_ICONS = {
   </div>
 </footer>
 
+<script src="app-meta.js"></script>
+<script src="shared.js"></script>
 <script>
 'use strict';
-
-(function(){
-  var stored = localStorage.getItem('theme');
-  if (stored === 'dark' || stored === 'light') {
-    document.documentElement.setAttribute('data-theme', stored);
-  }
-})();
-
-function toggleTheme() {
-  var html = document.documentElement;
-  var current = html.getAttribute('data-theme');
-  var sys = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  var isDark = current === 'dark' || (!current && sys);
-  var next = isDark ? 'light' : 'dark';
-  html.setAttribute('data-theme', next);
-  localStorage.setItem('theme', next);
-  var btn = document.getElementById('theme-btn');
-  if (btn) btn.setAttribute('aria-label', next === 'dark' ? 'Schakel naar licht thema' : 'Schakel naar donker thema');
-}
+renderNav('architectuur');
 
 const VIEWS = {
   context:   {title:'C1 · Context',   q:'Wie gebruikt het systeem? Waarmee communiceert het?',       d:'Het dashboard in relatie tot externe systemen en eindgebruikers.'},
@@ -436,7 +410,7 @@ const ND = {
     title:'M365 Roadmap Dashboard', sub:'Gratis, automatisch bijgewerkt',
     fn:'Verzamelt, vertaalt en visualiseert Microsoft 365 roadmap-updates wekelijks in het Nederlands voor medewerkers en IT-beheerders.',
     logic:'Elke maandag: GitHub Actions voert fetch_roadmap.py uit → resultaat wordt als data.json opgeslagen → GitHub Pages herdeployt automatisch. Geen server, geen database, geen kosten.',
-    tech:'Python 3 + GitHub Actions + GitHub Pages + Vanilla HTML/CSS/JS. €0/maand. 5 pagina\'s, 16 product-iconen inline base64, WCAG 2.2 AA.'
+    tech:'Python 3 + GitHub Actions + GitHub Pages + Vanilla HTML/CSS/JS. €0/maand. 5 pagina\'s, iconen gedeeld via app-meta.js + shared.js, WCAG 2.2 AA.'
   },
   'user-employee': {
     badge:'👤 Gebruiker', bc:'var(--green-bg)', btc:'var(--green-t)',
@@ -506,8 +480,8 @@ const ND = {
   'c-html': {
     badge:'🖥️ UI', bc:'var(--teal-bg)', btc:'var(--teal-t)',
     title:'HTML-pagina\'s (5x) + CSS (5x)', sub:'index · kalender · archief · presentatie · architectuur',
-    fn:'Vijf interactieve pagina\'s plus vijf CSS-bestanden. Alle 16 product-iconen zijn inline base64 opgenomen. Consistente navigatie: Roadmap · Kalender · Archief · Presentatie · Architectuur.',
-    logic:'Elke pagina laadt data.json client-side en rendert via innerHTML batch. APP_ICONS, APP_META en appIconHTML() zijn inline aanwezig op elke pagina die icons nodig heeft. CSS is gesplitst in shared.css (gedeeld) + 4 paginaspecifieke bestanden.',
+    fn:'Vijf interactieve pagina\'s, vijf CSS-bestanden, plus app-meta.js en shared.js als gedeelde scripts. Nav en hulpfuncties gecentraliseerd. Consistente navigatie via renderNav(): Roadmap · Kalender · Archief · Presentatie · Architectuur.',
+    logic:'Elke pagina laadt app-meta.js (APP_ICONS, APP_META) en shared.js (renderNav, toggleTheme, hulpfuncties) als externe scripts. Pagina-specifieke logica blijft inline. CSS is gesplitst in shared.css + 4 paginaspecifieke bestanden.',
     tech:'Vanilla HTML5/CSS3/JS. WCAG 2.2 AA. Werkt in sandboxed Teams-tabs. CSS: shared.css + kalender.css + archief.css + presentatie.css + architectuur.css.'
   },
   'c-browser': {
@@ -584,7 +558,7 @@ const ND = {
     title:'index.html', sub:'Hoofdpagina — roadmap-overzicht',
     fn:'Toont alle actuele M365 roadmap-items met uitgebreide filter- en zoekmogelijkheden. Standaard worden items van de vorige kalenderweek getoond.',
     logic:'Laadt data.json client-side (SessionStorage cache 30 min). Filtert op product, actie-type, periode en status. Zoekfunctie markeert trefwoorden. URL-parameters (?id=, ?search=) maken deep-linking mogelijk vanuit de kalender.',
-    tech:'SessionStorage key: m365_data_v1. TTL: 30 min. Renderen via innerHTML met batch-updates. APP_ICONS inline base64. Sorteermogelijkheden: datum toegevoegd, releasedatum, status.'
+    tech:'SessionStorage key: m365_data_v1. TTL: 30 min. Renderen via innerHTML met batch-updates. Iconen via app-meta.js (browser-gecached). Sorteermogelijkheden: datum toegevoegd, releasedatum, status.'
   },
   'comp-kalender': {
     badge:'📅 Frontend', bc:'var(--teal-bg)', btc:'var(--teal-t)',
@@ -670,14 +644,14 @@ const ND = {
     title:'render() / matchPeriod()', sub:'index.html — filteren en renderen',
     fn:'Filtert roadmap-items op periode, product, actie-type, status en zoekopdracht, en rendert het resultaat als HTML-kaarten.',
     logic:'Periodefilter "pw" (vorige week) berekent de ISO-weekgrenzen van de vorige kalenderweek op basis van Date.now(). Items matchen als added of modified binnen die periode valt. Alle filters worden gecombineerd (AND-logica).',
-    tech:'fP = product, fA = periode, fAct = actie, fS = status, fQ = zoekterm. render() bouwt HTML via template-strings en plaatst die via innerHTML op #root. APP_ICONS inline base64 voor snelle weergave.'
+    tech:'fP = product, fA = periode, fAct = actie, fS = status, fQ = zoekterm. render() bouwt HTML via template-strings en plaatst die via innerHTML op #root. Iconen beschikbaar via gedeeld APP_ICONS object uit app-meta.js.'
   },
   'code-render': {
     badge:'🖼️ Functie', bc:'var(--teal-bg)', btc:'var(--teal-t)',
     title:'appIconHTML()', sub:'index.html — product-iconen renderen',
-    fn:'Genereert een <img>-tag met het inline base64 product-icoon voor een gegeven productsleutel.',
-    logic:'APP_ICONS bevat 16 base64-gecodeerde PNG\'s (~80 KB totaal) die inline in elke pagina zijn opgenomen. Dit voorkomt externe HTTP-verzoeken en zorgt voor directe weergave zonder laadvertraging, ook in sandboxed Teams-tabs.',
-    tech:'Retourneert HTML-string: \'<img class="app-icon" src="\'+APP_ICONS[key]+\'" aria-hidden="true" alt="">\'. Onbekende sleutel → lege string. Iconen zijn 64x64 px PNG, geoptimaliseerd voor schermresolutie.'
+    fn:'Genereert een <img>-tag met het product-icoon voor een gegeven sleutel. Gedefinieerd in shared.js, icoondata in app-meta.js.',
+    logic:'APP_ICONS bevindt zich in app-meta.js, gedeeld via <script src>. Eén HTTP-verzoek, browser-gecached — geen duplicatie meer over 5 pagina\'s. shared.js biedt appIconHTML(), renderNav() en alle gedeelde hulpfuncties.',
+    tech:'appIconHTML(key) retourneert HTML-string: \'<img class="app-icon" src="\'+APP_ICONS[key]+\'" aria-hidden="true" alt="">\'. Onbekende sleutel → lege string. Iconen zijn 64×64 px PNG, geoptimaliseerd voor schermresolutie.'
   }
 };
 
