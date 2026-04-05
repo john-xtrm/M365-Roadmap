@@ -317,7 +317,15 @@ function render() {
 
   var sortItems = function(arr){
     return arr.slice().sort(function(a,b){
-      return ({admin:0,user:1,none:2}[a.action]||2) - ({admin:0,user:1,none:2}[b.action]||2);
+      /* Sorteer op releasedatum — zowel korte als lange termijn weergave */
+      var pa = parseRelease(a.release);
+      var pb = parseRelease(b.release);
+      if (!pa && !pb) return 0;
+      if (!pa) return 1;
+      if (!pb) return -1;
+      if (pa.year !== pb.year) return pa.year - pb.year;
+      if (pa.month !== pb.month) return pa.month - pb.month;
+      return 0;
     });
   };
 

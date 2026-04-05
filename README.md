@@ -27,7 +27,6 @@ M365-Roadmap/
 ├── .github/
 │   └── workflows/
 │       ├── update-roadmap.yml      # Wekelijks: data ophalen + vertalen
-│       └── preview-deploy.yml      # Handmatig: develop-branch testen
 │
 ├── archive/                        # Weekbestanden (automatisch, max 3 mnd)
 │   ├── index.json
@@ -126,8 +125,6 @@ Copilot · Teams · Outlook · Excel · Word · PowerPoint · SharePoint · Purv
 
 ## Ontwikkeling
 
-Zie [CONTRIBUTING.md](CONTRIBUTING.md) of de sectie hieronder voor het lokale ontwikkelproces.
-
 ### Lokaal draaien
 
 ```bash
@@ -145,19 +142,9 @@ python3 -m http.server 8080
 
 `data.json` is al aanwezig in de repo — je ziet direct echte data.
 
-### Branching
+### Wijzigingen deployen
 
-```
-main        ← productie, auto-deploy naar GitHub Pages
-develop     ← ontwikkeling, merge via Pull Request
-feature/*   ← voor grotere losse features
-```
-
-**Werkwijze:**
-1. Maak wijzigingen op `develop` (of een `feature/`-branch)
-2. Test lokaal via `python3 -m http.server 8080`
-3. Open een Pull Request naar `main`
-4. Merge na review → auto-deploy via GitHub Pages
+Push naar `main` → GitHub Pages deployt automatisch binnen ~1 minuut.
 
 ### Nieuwe pagina toevoegen
 

@@ -384,7 +384,35 @@ function clearSearch(){
   document.getElementById('search-input').value='';
   document.getElementById('search-clear').classList.remove('show');
   document.getElementById('search-origin-note').classList.remove('show');
-  fQ='';fromKalender=false;render();
+  fQ='';
+  idParam=null;
+  /* Herstel standaard filterstate als we via kalender/deep-link binnenkwamen */
+  if(fromKalender){
+    fA='pw'; fS='all'; fAct='all'; fP='all';
+    /* Periode-filter buttons terugzetten naar 'Vorige week' */
+    document.querySelectorAll('#fp-bar .fb').forEach(function(b){
+      var v=b.getAttribute('data-a');
+      b.setAttribute('aria-pressed',v==='pw'?'true':'false');
+      b.className='fb';
+    });
+    /* Actie-filter terugzetten naar 'Alles' */
+    document.querySelectorAll('#act-bar .fb').forEach(function(b){
+      b.setAttribute('aria-pressed',b.getAttribute('data-act')==='all'?'true':'false');
+      b.className='fb';
+    });
+    /* Status-filter terugzetten naar 'Alles' */
+    document.querySelectorAll('#sf .fb').forEach(function(b){
+      b.setAttribute('aria-pressed',b.getAttribute('data-s')==='all'?'true':'false');
+      b.className='fb';
+    });
+    /* Product-filter terugzetten naar 'Alle producten' */
+    document.querySelectorAll('#apf .fb').forEach(function(b){
+      b.setAttribute('aria-pressed',b.getAttribute('data-p')==='all'?'true':'false');
+      b.className='fb';
+    });
+  }
+  fromKalender=false;
+  render();
   document.getElementById('search-input').focus();
 }
 

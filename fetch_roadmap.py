@@ -316,12 +316,16 @@ for item_id, prev_item in prev_items.items():
         else:
             new_status = "unknown"
         removed.append({
-            "id":        item_id,
-            "title":     prev_item.get("title", ""),
-            "app":       prev_item.get("app", "other"),
-            "prodLabel": prev_item.get("prodLabel", ""),
-            "status":    new_status,
-            "statusNl":  STATUS_NL[new_status],
+            "id":          item_id,
+            "title":       prev_item.get("title", ""),
+            "benefit":     prev_item.get("benefit", ""),
+            "app":         prev_item.get("app", "other"),
+            "prodLabel":   prev_item.get("prodLabel", ""),
+            "action":      prev_item.get("action", "none"),
+            "actionLabel": prev_item.get("actionLabel", ""),
+            "release":     prev_item.get("release", ""),
+            "status":      new_status,
+            "statusNl":    STATUS_NL[new_status],
         })
         print(f"  → [{STATUS_NL[new_status]}] {prev_item.get('title','')[:70]}")
 
