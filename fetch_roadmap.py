@@ -18,7 +18,7 @@ translator = GoogleTranslator(source="en", target="nl")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={key}"
 
-def gemini_process_item(title_en, desc_en, retries=2):
+def gemini_process_item(title_en, desc_en, retries=3):
     """Vertaalt title+desc naar NL én genereert benefit in één Gemini-aanroep.
     Geeft dict met title_nl, desc_nl en benefit terug, of None bij fout.
     Rate limit gratis tier: 15 req/min — roep aan met time.sleep(4) erna."""
@@ -68,6 +68,15 @@ def gemini_process_item(title_en, desc_en, retries=2):
                 if all(k in parsed for k in ("title_nl", "desc_nl", "benefit")):
                     return parsed
                 print(f"    ⚠ Gemini: onvolledig JSON-antwoord, poging {attempt+1}")
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                wait = 65 if attempt == 0 else 120
+                print(f"    ⏳ Gemini rate limit (429) — {wait}s wachten voor poging {attempt+2}...")
+                time.sleep(wait)
+            elif attempt < retries - 1:
+                time.sleep(5)
+            else:
+                print(f"    ⚠ Gemini mislukt na {retries} pogingen: {e}")
         except Exception as e:
             if attempt < retries - 1:
                 time.sleep(5)
@@ -513,7 +522,7 @@ for i, row in enumerate(active_rows):
             nl_desc  = gemini_result["desc_nl"]
             benefit  = gemini_result["benefit"]
             gemini_count += 1
-            time.sleep(4)   # Respecteer gratis tier: 15 req/min
+            time.sleep(5)   # Respecteer gratis tier: 15 req/min
         else:
             # Fallback: Google Translate + keyword-templates
             nl_title = translate(title_en)
