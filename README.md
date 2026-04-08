@@ -8,7 +8,7 @@ Een automatisch bijgewerkt overzicht van aankomende Microsoft 365-updates, gebou
 
 ## Wat het doet
 
-Elke **maandag om 06:00 UTC** haalt een GitHub Actions workflow de publieke Microsoft 365 roadmap op, vertaalt de items naar het Nederlands en slaat het resultaat op als `data.json`. De vijf HTML-pagina's laden deze data client-side en tonen een gefilterd, doorzoekbaar overzicht.
+Elke **maandag om 06:00 UTC** haalt een GitHub Actions workflow de publieke Microsoft 365 roadmap op, verwerkt de items via Gemini AI (vertaling EN organisatie-impacttekst in één aanroep) en slaat het resultaat op als `data.json`. Google Translate dient als fallback wanneer de Gemini API niet beschikbaar is. De vijf HTML-pagina's laden deze data client-side en tonen een gefilterd, doorzoekbaar overzicht.
 
 | Pagina | Doel |
 |---|---|
@@ -26,7 +26,7 @@ Elke **maandag om 06:00 UTC** haalt een GitHub Actions workflow de publieke Micr
 M365-Roadmap/
 ├── .github/
 │   └── workflows/
-│       ├── update-roadmap.yml      # Wekelijks: data ophalen + vertalen
+│       └── update-roadmap.yml      # Wekelijks: data ophalen + verwerken
 │
 ├── archive/                        # Weekbestanden (automatisch, max 3 mnd)
 │   ├── index.json
@@ -96,7 +96,8 @@ Microsoft CSV API (aka.ms/MSRoadmapCSV)
         │  maandag 06:00 UTC
         ▼
 GitHub Actions → fetch_roadmap.py
-        │  EN→NL vertaling (Google Translate / deep_translator)
+        │  Gemini AI: vertaling EN organisatie-impacttekst (primair)
+        │  Google Translate + keyword-templates (fallback)
         ▼
 data.json + archive/
         │  git push → GitHub Pages
@@ -112,14 +113,14 @@ Zie de live [Architectuurkaart](https://john-xtrm.github.io/M365-Roadmap/archite
 
 ## Producten
 
-28 producten worden herkend en weergegeven met icoon:
+30 producten worden herkend en weergegeven met icoon:
 Copilot · Teams · Outlook · Excel · Word · PowerPoint · SharePoint · Purview · Viva · Edge · OneDrive · Exchange · Forms · Intune · Entra · Planner · Loop · Whiteboard · To Do · Bookings · Stream · Power Automate · Power Apps · Power BI · Yammer · Defender · M365 Search · Project · Visio · Windows
 
 ---
 
 ## Kosten
 
-**€0/maand** — GitHub Pages (hosting) + GitHub Actions (weekelijkse run) + Microsoft CSV API (geen auth) + Google Translate via `deep_translator` (gratis tier).
+**€0/maand** — GitHub Pages (hosting) + GitHub Actions (weekelijkse run) + Microsoft CSV API (geen auth) + Gemini AI gratis tier + Google Translate via `deep_translator` (gratis tier, fallback).
 
 ---
 
@@ -160,7 +161,11 @@ Push naar `main` → GitHub Pages deployt automatisch binnen ~1 minuut.
 2. Voeg een entry toe aan `APP_META` in `shared.js`
 3. Voeg de key toe aan `APP_ORDER` in `shared.js`
 4. Voeg een `.p-{product}` klasse toe aan `shared.css` indien nodig
-5. Voeg het product toe aan `APP_LABELS` + `DETECT_PATTERNS` in `fetch_roadmap.py`
+5. Voeg het product toe aan `APP_LABELS`, `GENERIC_BENEFIT` en `DETECT_PATTERNS` in `fetch_roadmap.py`
+
+### Gemini API configureren
+
+`fetch_roadmap.py` leest de omgevingsvariabele `GEMINI_API_KEY`. Stel deze in via GitHub Actions → Settings → Secrets and variables → Actions. Zonder sleutel valt het script automatisch terug op Google Translate + keyword-templates.
 
 ### WCAG
 
@@ -178,24 +183,55 @@ Alle pagina's voldoen aan WCAG 2.2 AA. Bij elke wijziging controleren:
 
 ```json
 {
-  "generated": "2026-04-01T06:12:34Z",
-  "date": "2026-04-01",
-  "count": 142,
+  "generated": "2026-04-08T06:12:34Z",
+  "date": "2026-04-08",
+  "count": 835,
   "items": [
     {
-      "id": "string",
-      "title_nl": "string",
-      "benefit_nl": "string",
-      "title_en": "string",
+      "id": 559990,
+      "title": "string",
+      "desc": "string",
+      "benefit": "string",
       "app": "teams | copilot | sharepoint | ...",
+      "tags": ["copilot"],
+      "prodLabel": "string",
       "status": "rolling | dev",
       "action": "none | admin | user",
-      "release": "April CY2026",
-      "added": "2026-01-15",
-      "modified": "2026-03-22",
-      "moreInfoLink": "https://..."
+      "actionLabel": "string",
+      "release": "June CY2026",
+      "preview": "May CY2026",
+      "added": "2026-04-07",
+      "modified": "2026-04-07"
     }
   ],
-  "removed": [ /* items die verdwenen zijn t.o.v. vorige week */ ]
+  "removed": [
+    {
+      "id": 123456,
+      "title": "string",
+      "benefit": "string",
+      "app": "string",
+      "prodLabel": "string",
+      "action": "none | admin | user",
+      "actionLabel": "string",
+      "release": "string",
+      "status": "launched | cancelled | unknown",
+      "statusNl": "Beschikbaar | Geannuleerd | Verwijderd uit roadmap"
+    }
+  ]
 }
 ```
+
+### Veldtoelichting
+
+| Veld | Type | Omschrijving |
+|---|---|---|
+| `title` | string | Vertaalde Nederlandse titel |
+| `desc` | string | Vertaalde Nederlandse beschrijving |
+| `benefit` | string | AI-gegenereerde organisatie-impacttekst (1-2 zinnen NL) |
+| `app` | string | Primaire product-key (bijv. `"teams"`) |
+| `tags` | string[] | Aanvullende product-keys als het item meerdere producten raakt |
+| `prodLabel` | string | Leesbaar weergavelabel (bijv. `"OneDrive"`) |
+| `actionLabel` | string | Leesbare actie-omschrijving in het Nederlands |
+| `preview` | string | Preview-datum indien van toepassing (bijv. `"May CY2026"`) |
+| `status` | enum | `"rolling"` = uitrol bezig · `"dev"` = in ontwikkeling |
+| `action` | enum | `"none"` · `"admin"` · `"user"` |
