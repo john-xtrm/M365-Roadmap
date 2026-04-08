@@ -1,0 +1,78 @@
+{
+  "generated": "2026-04-08T06:08:47Z",
+  "date": "2026-04-08",
+  "removed": [
+    {
+      "id": 558109,
+      "title": "Microsoft Purview: Data Security Investigations – Introductie van nieuwe mitigatiemaatregelen voor zachte opschoning",
+      "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557177,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot kan uw document bewerken in PowerPoint",
+      "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 499655,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot kan uw document bewerken in PowerPoint",
+      "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552588,
+      "title": "Microsoft Teams: People Skills op de profielkaart, uitgebreid naar Teams",
+      "benefit": "Medewerkers vinden sneller de juiste collega voor een vraag of samenwerking dankzij zichtbare vaardigheidspagina's.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552593,
+      "title": "SharePoint: Ondersteuning voor donkere modus in SharePoint-beheercentrum",
+      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "app": "sharepoint",
+      "prodLabel": "365 admin center",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 526794,
+      "title": "SharePoint: beheer van sitebranding via PowerShell",
+      "benefit": "De huisstijl van het intranet is consistent en centraal beheerbaar door de IT-afdeling.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
