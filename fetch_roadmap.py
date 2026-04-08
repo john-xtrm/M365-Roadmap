@@ -18,10 +18,24 @@ translator = GoogleTranslator(source="en", target="nl")
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={key}"
 
+# Rate limiter: max 12 requests per minuut (ruim onder gratis tier van 15/min)
+GEMINI_MIN_INTERVAL = 5.0   # seconden tussen aanroepen
+GEMINI_RETRY_WAIT   = 70    # seconden wachten na 429
+_last_gemini_call   = 0.0   # tijdstip van laatste aanroep
+
+def _gemini_rate_limit_wait():
+    """Zorg dat er minimaal GEMINI_MIN_INTERVAL seconden tussen aanroepen zit."""
+    global _last_gemini_call
+    elapsed = time.time() - _last_gemini_call
+    if elapsed < GEMINI_MIN_INTERVAL:
+        wait = GEMINI_MIN_INTERVAL - elapsed
+        print(f"    ⏱ Rate limit wacht: {wait:.1f}s")
+        time.sleep(wait)
+    _last_gemini_call = time.time()
+
 def gemini_process_item(title_en, desc_en, retries=3):
     """Vertaalt title+desc naar NL én genereert benefit in één Gemini-aanroep.
-    Geeft dict met title_nl, desc_nl en benefit terug, of None bij fout.
-    Rate limit gratis tier: 15 req/min — roep aan met time.sleep(4) erna."""
+    Geeft dict met title_nl, desc_nl en benefit terug, of None bij fout."""
     if not GEMINI_API_KEY:
         return None
 
@@ -52,6 +66,7 @@ def gemini_process_item(title_en, desc_en, retries=3):
     }).encode("utf-8")
 
     for attempt in range(retries):
+        _gemini_rate_limit_wait()   # ← altijd wachten VOOR de aanroep
         try:
             req = urllib.request.Request(
                 GEMINI_URL.format(key=GEMINI_API_KEY),
@@ -62,26 +77,32 @@ def gemini_process_item(title_en, desc_en, retries=3):
             with urllib.request.urlopen(req, timeout=15) as resp:
                 result = json.loads(resp.read().decode("utf-8"))
                 text = result["candidates"][0]["content"]["parts"][0]["text"].strip()
-                # Verwijder eventuele markdown code-fences
                 text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
                 parsed = json.loads(text)
                 if all(k in parsed for k in ("title_nl", "desc_nl", "benefit")):
                     return parsed
                 print(f"    ⚠ Gemini: onvolledig JSON-antwoord, poging {attempt+1}")
         except urllib.error.HTTPError as e:
+            body = ""
+            try:
+                body = e.read().decode("utf-8")
+            except Exception:
+                pass
+            print(f"    ✗ HTTP {e.code} (poging {attempt+1}/{retries}): {body[:200]}")
             if e.code == 429:
-                wait = 65 if attempt == 0 else 120
-                print(f"    ⏳ Gemini rate limit (429) — {wait}s wachten voor poging {attempt+2}...")
-                time.sleep(wait)
+                print(f"    ⏳ Rate limit — {GEMINI_RETRY_WAIT}s wachten...")
+                time.sleep(GEMINI_RETRY_WAIT)
+                _last_gemini_call = time.time()  # reset timer na lange pauze
             elif attempt < retries - 1:
                 time.sleep(5)
             else:
-                print(f"    ⚠ Gemini mislukt na {retries} pogingen: {e}")
+                print(f"    ⚠ Gemini mislukt na {retries} pogingen")
         except Exception as e:
+            print(f"    ✗ Fout (poging {attempt+1}/{retries}): {e}")
             if attempt < retries - 1:
                 time.sleep(5)
             else:
-                print(f"    ⚠ Gemini mislukt na {retries} pogingen: {e}")
+                print(f"    ⚠ Gemini mislukt na {retries} pogingen")
     return None
 
 # ── Google Translate fallback ─────────────────────────────────────────────
@@ -112,7 +133,6 @@ def is_dutch(text):
     if not text or len(text) < 10:
         return False
     text_lower = text.lower()
-    # Titels zijn korter dan beschrijvingen — drempel van 1 volstaat
     threshold = 1 if len(text) < 80 else 2
     return sum(1 for w in NL_INDICATORS if w in text_lower) >= threshold
 
@@ -151,7 +171,7 @@ APP_LABELS = {
     "other":      "Overig",
 }
 
-# ── Multi-product slug-mapping (voor tags-array in data.json) ─────────────
+# ── Multi-product slug-mapping ────────────────────────────────────────────
 PRODUCT_SLUG = {
     "microsoft teams": "teams",           "teams": "teams",
     "microsoft outlook": "outlook",       "outlook": "outlook",
@@ -393,8 +413,6 @@ if os.path.exists("data.json"):
             modified = item.get("modified", "")
             prev_items[item_id] = item
             dutch = is_dutch(item.get("title", ""))
-            # Altijd in cache zetten — ook niet-Nederlandse items
-            # retranslate=True zorgt dat ze bij de volgende verwerking worden bijgewerkt
             cache[(item_id, modified)] = {
                 "title":       item["title"],
                 "desc":        item.get("desc", ""),
@@ -490,7 +508,6 @@ for i, row in enumerate(active_rows):
     if cache_key in cache:
         cached_entry = cache[cache_key]
         if cached_entry.get("retranslate", False):
-            # Item staat in cache maar was niet correct Nederlands → hervertalen
             retrans_count += 1
             print(f"  [{i+1}/{len(active_rows)}] ↺ Hervertalen: {title_en[:65]}")
             needs_processing = True
@@ -500,13 +517,12 @@ for i, row in enumerate(active_rows):
             benefit  = cached_entry.get("benefit", "")
             cached_count += 1
             print(f"  [{i+1}/{len(active_rows)}] ✓ {title_en[:65]}")
-            # Benefit ontbreekt in cache (oude entry vóór Gemini) → alsnog genereren
+            # Benefit ontbreekt in cache → alsnog genereren via Gemini
             if not benefit:
                 gemini_result = gemini_process_item(title_en, desc_en)
                 if gemini_result:
                     benefit = gemini_result["benefit"]
                     gemini_count += 1
-                    time.sleep(4)
                 else:
                     benefit = generate_benefit(key, title_en, desc_en)
                     fallback_count += 1
@@ -522,9 +538,7 @@ for i, row in enumerate(active_rows):
             nl_desc  = gemini_result["desc_nl"]
             benefit  = gemini_result["benefit"]
             gemini_count += 1
-            time.sleep(5)   # Respecteer gratis tier: 15 req/min
         else:
-            # Fallback: Google Translate + keyword-templates
             nl_title = translate(title_en)
             nl_desc  = translate(desc_en[:800])
             benefit  = generate_benefit(key, title_en, desc_en)
