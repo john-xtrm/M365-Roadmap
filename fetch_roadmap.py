@@ -392,8 +392,8 @@ cached_count = new_count = retrans_count = 0
 
 for i, row in enumerate(active_rows):
     product  = row.get("Tags - Product", "")
-    key      = app_key_from_title(title_en) if title_en else app_key(product)
     title_en = row.get("Description", "").strip()
+    key      = app_key_from_title(title_en) if title_en else app_key(product)
     desc_en  = row.get("Details", "").strip()
     item_id  = int(row.get("Feature ID", 0) or 0)
     modified = row.get("Last Modified", "").strip()
