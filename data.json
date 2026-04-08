@@ -1,12 +1,12 @@
 {
-  "generated": "2026-04-08T10:24:01Z",
+  "generated": "2026-04-08T11:21:13Z",
   "date": "2026-04-08",
   "count": 835,
   "items": [
     {
       "id": 559990,
       "title": "Outlook: Copilot-zoeksuggesties voor Outlook",
-      "desc": "Ontvang Copilot-suggesties in het zoekmenu van Outlook, zodat u uw inbox en agenda op de hoogte kunt houden, kunt vinden wat u zoekt en meer gedaan kunt krijgen in Outlook.",
+      "desc": "Ontvang Copilot-suggesties in het zoekmenu van Outlook, zodat u uw inbox en agenda onder controle kunt houden, kunt vinden wat u zoekt en meer gedaan kunt krijgen in Outlook.",
       "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
       "status": "dev",
       "app": "outlook",
@@ -23,10 +23,12 @@
       "id": 559996,
       "title": "Microsoft Viva: Nieuwe overzichtservaring en agentcategorieën in Agent Dashboard",
       "desc": "Klanten kunnen nu hun agentlandschap bekijken en begrijpen via de nieuwe overzichtspagina die zal worden opgenomen als onderdeel van het Agent Dashboard in Microsoft Viva. Deze ervaring biedt klanten in één oogopslag belangrijke inzichten over de adoptie in hun organisaties, inzicht in wie agents aanmaakt die in hun organisatie worden gebruikt, en details over voor welke bedrijfsprocescategorieën deze agents worden gebruikt.",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-04-07",
       "modified": "2026-04-07",
@@ -39,10 +41,12 @@
       "id": 559995,
       "title": "Microsoft Viva: diepere copilot-inzichten ontsluiten met verbeterde Power BI-filtering",
       "desc": "Zorg ervoor dat globale en Insights-beheerders aanvullende kenmerken kunnen inschakelen als filters in Power BI-rapporten, inclusief gereserveerde kenmerken en de aangepaste kenmerken van uw organisatie. Gebruikers die toegang hebben tot Power BI-rapporten kunnen deze nieuw ingeschakelde filters vervolgens gebruiken om rapporten af ​​te stemmen op hun zakelijke behoeften.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-04-07",
       "modified": "2026-04-07",
@@ -71,10 +75,12 @@
       "id": 559606,
       "title": "Microsoft Teams: Samenvattingstoegang delen",
       "desc": "Eigenaren van opnames en transcripties kunnen nu toegang tot opnames en transcripties verlenen aan bepaalde mensen bij het kopiëren of delen van de samenvattingslink, en de opgegeven mensen hebben toegang tot de samenvatting zonder dat ze om toegang hoeven te vragen.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers die een vergadering gemist hebben, lezen de samenvatting in plaats van de volledige opname terug te kijken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-04-03",
       "modified": "2026-04-06",
@@ -86,7 +92,7 @@
     {
       "id": 559611,
       "title": "Microsoft Teams: Annotaties in Teams Single Window Sharing op macOS",
-      "desc": "Presentatoren kunnen nu één enkel toepassingsvenster delen en deelnemers in staat stellen rechtstreeks aantekeningen over de inhoud te maken, zonder hun hele bureaublad bloot te leggen. Dit betekent schonere presentaties, beschermde privacy en boeiendere discussies tijdens trainingssessies, workshops en klantbijeenkomsten.",
+      "desc": "Presentatoren kunnen nu één enkel toepassingsvenster delen en deelnemers in staat stellen rechtstreeks aantekeningen over die inhoud te maken, zonder hun hele bureaublad bloot te leggen. Dit betekent schonere presentaties, beschermde privacy en boeiendere discussies tijdens trainingssessies, workshops en klantbijeenkomsten.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
       "app": "teams",
@@ -182,7 +188,7 @@
     {
       "id": 559482,
       "title": "Microsoft Viva: feed volgen in Viva Engage",
-      "desc": "Een nieuw feedtype dat beschikbaar is voor gebruikers om op de hoogte te blijven van berichten van mensen en communities die ze volgen, met aanbevolen updates, leiderschapsupdates en bedrijfsupdates.",
+      "desc": "Een nieuw feedtype dat beschikbaar is voor gebruikers om op de hoogte te blijven van berichten van mensen en communities die ze volgen, met uitgelichte, leiderschaps- en bedrijfsupdates.",
       "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "dev",
       "app": "viva",
@@ -215,10 +221,12 @@
       "id": 558341,
       "title": "Microsoft Teams: Facilitator detecteert en beantwoordt vragen",
       "desc": "Facilitator detecteert nu automatisch open vragen die tijdens een Teams-vergadering worden gesteld en biedt aan om deze te helpen beantwoorden met behulp van internetzoekopdrachten. Wanneer een deelnemer een vraag stelt (bijvoorbeeld: \"Wat is een LLM?\") en niemand antwoordt, plaatst de Facilitator een prompt aanbod om een ​​antwoord te vinden. Deelnemers kunnen 'Ja' selecteren om de agent de informatie te laten ophalen en delen.",
-      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-04-01",
       "modified": "2026-04-02",
@@ -327,10 +335,12 @@
       "id": 559418,
       "title": "Outlook: Copilot biedt coachingfeedback in de chat terwijl u e-mails opstelt, bewerkt en opmaakt",
       "desc": "Copilot geeft nu coachingfeedback op e-mailconcepten via chat en kan suggesties direct toepassen op uw bericht in Outlook. Gebruikers hebben de mogelijkheid om te kiezen welke suggesties worden toegepast, en Copilot werkt uw e-mail ter plekke bij.",
-      "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "outlook",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Outlook",
       "added": "2026-03-30",
       "modified": "2026-03-30",
@@ -390,7 +400,7 @@
     {
       "id": 558538,
       "title": "Microsoft Copilot (Microsoft 365): kritiek in onderzoeker",
-      "desc": "Reacties worden gegenereerd doordat GPT en Claude samenwerken, waarbij GPT een eerste reactie opstelt en Claude de reactie beoordeelt op grotere nauwkeurigheid, volledigheid en citatie-integriteit.",
+      "desc": "Reacties worden gegenereerd doordat GPT en Claude samenwerken, waarbij GPT een eerste reactie opstelt en Claude de reactie beoordeelt op een grotere nauwkeurigheid, volledigheid en citatie-integriteit.",
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "dev",
       "app": "copilot",
@@ -423,10 +433,12 @@
       "id": 559477,
       "title": "PowerPoint: maak en bewerk afbeeldingen met het model van uw keuze",
       "desc": "U kunt nu het afbeeldingsmodel van uw voorkeur kiezen, inclusief OpenAI's GPT Image, Flux of Auto, voor slimme, dynamische selectie bij het maken of bewerken van afbeeldingen met Copilot in PowerPoint, of bij het genereren van een nieuwe presentatie of pagina.",
-      "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+      "benefit": "Medewerkers maken sneller aansprekende presentaties, ook zonder uitgebreide presentatievaardigheden.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "powerpoint",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-03-27",
       "modified": "2026-03-27",
@@ -438,11 +450,13 @@
     {
       "id": 559475,
       "title": "Microsoft Viva: Copilot Analytics: \"Alle\" - gelicentieerde gebruikerspagina Copilot-dashboard",
-      "desc": "De landingspagina voor de adoptie van Copilot Dashboard wordt bijgewerkt om een ​​uniform beeld te tonen van de adoptie van Copilot in de hele organisatie. In plaats van dat de standaardpagina alleen het gebruik van Microsoft 365 Copilot (gelicentieerd) weergeeft, bevat de pagina alle gebruikersacceptatie van Copilot, met betrekking tot zowel M365 Copilot- als Copilot Chat-gebruik waarvoor geen licentie vereist is. Met een licentiefilter kunnen gebruikers schakelen tussen de weergaven Alles, M365 Copilot (gelicentieerd) en Copilot Chat (zonder licentie).",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "desc": "De landingspagina voor de adoptie van Copilot Dashboard wordt bijgewerkt om een ​​uniform beeld te tonen van de adoptie van Copilot in de hele organisatie. In plaats van dat de standaardpagina alleen het gebruik van Microsoft 365 Copilot (gelicentieerd) weergeeft, bevat de pagina alle gebruikersacceptatie van Copilot, inclusief zowel M365 Copilot- als Copilot Chat-gebruik waarvoor geen licentie vereist is. Met een licentiefilter kunnen gebruikers schakelen tussen de weergaven Alle, M365 Copilot (gelicentieerd) en Copilot Chat (zonder licentie).",
+      "benefit": "Managers en HR krijgen AI-inzichten over Copilot-adoptie en medewerkerservaringen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-03-27",
       "modified": "2026-03-27",
@@ -490,7 +504,9 @@
       "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
       "status": "dev",
       "app": "sharepoint",
-      "tags": [],
+      "tags": [
+        "onedrive"
+      ],
       "prodLabel": "OneDrive",
       "added": "2026-03-27",
       "modified": "2026-04-01",
@@ -519,10 +535,12 @@
       "id": 559481,
       "title": "OneDrive: Ontdek Copilot-acties in Bestandsvoorbeeld",
       "desc": "Ontdek wat Copilot kan doen op het moment dat u een voorbeeld van een bestand bekijkt in OneDrive of SharePoint. Naast de Copilot-knop verschijnen kant-en-klare aanwijzingen, waarmee u documenten kunt samenvatten, veelgestelde vragen kunt genereren en meer, allemaal zonder ook maar één vraag te hoeven schrijven.",
-      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "benefit": "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder en gebruiksvriendelijker.",
       "status": "dev",
-      "app": "sharepoint",
-      "tags": [],
+      "app": "onedrive",
+      "tags": [
+        "sharepoint"
+      ],
       "prodLabel": "OneDrive",
       "added": "2026-03-26",
       "modified": "2026-03-26",
@@ -566,7 +584,7 @@
     {
       "id": 558680,
       "title": "Microsoft Teams: begeleidende agent",
-      "desc": "Voeg conversatie-intelligentie toe aan uw telefooncommunicatie om ervoor te zorgen dat elke klant wordt bediend, ongeacht het tijdstip van de dag, zelfs buiten kantooruren en op feestdagen. Microsoft Teams Phone Attendant Agent begroet bellers, beantwoordt veelgestelde vragen, plant afspraken en stuurt oproepen door naar de juiste persoon of afdeling met context. Door naadloze integratie met Microsoft Copilot Studio kunnen bedrijven aangepaste stemagenten insluiten in Attendant Agent om gespecialiseerde workflows zoals facturering, bestelstatus of voorraadcontroles af te handelen.",
+      "desc": "Voeg conversatie-intelligentie toe aan uw telefooncommunicatie om ervoor te zorgen dat elke klant wordt geholpen, ongeacht het tijdstip van de dag, zelfs buiten kantooruren en op feestdagen. Microsoft Teams Phone Attendant Agent begroet bellers, beantwoordt veelgestelde vragen, plant afspraken en stuurt oproepen door naar de juiste persoon of afdeling met context. Door naadloze integratie met Microsoft Copilot Studio kunnen bedrijven aangepaste stemagenten insluiten in Attendant Agent om gespecialiseerde workflows zoals facturering, bestelstatus of voorraadcontroles af te handelen.",
       "benefit": "Medewerkers met meerdere rollen of regio's zijn makkelijker bereikbaar via meerdere telefoonnummers.",
       "status": "dev",
       "app": "teams",
@@ -599,10 +617,12 @@
       "id": 558286,
       "title": "Microsoft Teams: Intelligente samenvatting van vergaderingen beschikbaar zonder transcriptie op te slaan",
       "desc": "Er kan nu een intelligente samenvatting worden gegenereerd zonder dat er na de vergadering een transcriptie wordt bewaard. Organisatoren van vergaderingen kunnen deze instelling kiezen uit de vergaderopties vóór de vergadering, of organisatoren en in aanmerking komende deelnemers kunnen deze tijdens de vergadering inschakelen. Na de bijeenkomst zal de AI-samenvatting beschikbaar zijn, maar andere elementen van de samenvatting zijn mogelijk niet beschikbaar (hoofdstukken, onderwerpen, vermeldingen, audiosamenvatting).",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-03-25",
       "modified": "2026-03-27",
@@ -618,7 +638,9 @@
       "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
       "status": "dev",
       "app": "sharepoint",
-      "tags": [],
+      "tags": [
+        "onedrive"
+      ],
       "prodLabel": "OneDrive",
       "added": "2026-03-25",
       "modified": "2026-03-25",
@@ -663,10 +685,12 @@
       "id": 559095,
       "title": "OneNote: Multimodale opname in Copilot Notebooks (iPhone)",
       "desc": "Met multimodale opname kunnen gebruikers audio transcriberen, afbeeldingen maken en aantekeningen typen in één sessie. Copilot maakt vervolgens een gestructureerde Copilot-pagina met inzichten en door de gebruiker vastgelegde inhoud, opgeslagen in een door de gebruiker geselecteerd Copilot Notebook. Ontworpen voor het vastleggen van offline werkmomenten, inclusief persoonlijke gesprekken, whiteboardsessies en persoonlijke notities. Andere eindpunten volgen binnenkort.",
-      "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneNote",
       "added": "2026-03-24",
       "modified": "2026-03-24",
@@ -775,10 +799,12 @@
       "id": 558928,
       "title": "Planner: Microsoft Planner-tabbladondersteuning voor gedeelde en privékanalen in Microsoft Teams",
       "desc": "Nu kun je Microsoft Planner toevoegen als tabblad in gedeelde en privékanalen in Microsoft Teams, waardoor je taken direct binnen het kanaal kunt aanmaken en beheren.",
-      "benefit": "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
+      "benefit": "Taken en projecten zijn beter te overzien en bij te houden voor teams.",
       "status": "dev",
-      "app": "teams",
-      "tags": [],
+      "app": "planner",
+      "tags": [
+        "teams"
+      ],
       "prodLabel": "Teams",
       "added": "2026-03-23",
       "modified": "2026-03-23",
@@ -1062,7 +1088,7 @@
     {
       "id": 558685,
       "title": "Microsoft Purview: Informatiebeveiliging - Moderne groepen uitsluiten/ondersteuning voor dynamische beveiligingsgroepen opnemen voor beleid voor gevoeligheidslabels",
-      "desc": "Om meer flexibiliteit te bieden, kunnen beheerders nu moderne Microsoft 365-groepen uitsluiten en het gevoeligheidslabelbeleid instellen op dynamische beveiligingsgroepen en niet voor e-mail geschikte beveiligingsgroepen, waardoor de beleidstargeting wordt uitgebreid tot voorbij individuele gebruikers en e-mailgroepen.",
+      "desc": "Om meer flexibiliteit te bieden, kunnen beheerders nu moderne Microsoft 365-groepen uitsluiten en het gevoeligheidslabelbeleid instellen op dynamische en niet-e-mail ingeschakelde beveiligingsgroepen, waardoor de beleidstargeting wordt uitgebreid tot voorbij individuele gebruikers en e-mailgroepen.",
       "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
       "status": "dev",
       "app": "purview",
@@ -1082,7 +1108,9 @@
       "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "viva"
+      ],
       "prodLabel": "Viva",
       "added": "2026-03-16",
       "modified": "2026-03-16",
@@ -1191,10 +1219,12 @@
       "id": 558543,
       "title": "Microsoft Teams: Gesproken taaldetectie is nu automatisch",
       "desc": "Gesproken taaldetectie is nu volledig automatisch. Teams detecteren automatisch de gesproken taal van elke spreker en werken deze in realtime bij naarmate het gesprek evolueert. Handmatige gesproken taalselectie is niet langer beschikbaar. Dit is van toepassing op zowel live ondertiteling als transcripties wanneer Tolk is ingeschakeld of wanneer meertalige spraakherkenning is ingeschakeld in vergaderopties, waardoor een nauwkeurigere taalherkenning en een meer consistente meertalige vergaderervaring wordt gerealiseerd.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-03-12",
       "modified": "2026-04-06",
@@ -1207,10 +1237,12 @@
       "id": 558540,
       "title": "Microsoft Teams: videooverzicht in Teams",
       "desc": "De intelligente samenvatting van de vergadering bevat nu samenvattingen op videobasis. Videooverzicht creëert gesproken videohoogtepunten van opgenomen vergaderingen, met belangrijke inzichten en korte clips die belangrijke momenten laten zien.",
-      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-03-12",
       "modified": "2026-04-07",
@@ -1354,7 +1386,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2026-03-10",
       "modified": "2026-03-10",
@@ -1434,7 +1468,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-03-09",
       "modified": "2026-03-09",
@@ -1479,10 +1515,12 @@
       "id": 552595,
       "title": "Outlook: e-mails conversatie opstellen, bewerken en opmaken met Copilot in Outlook",
       "desc": "In Outlook werkt Copilot nu zij aan zij met gebruikers om e-mails conversatie op te stellen, te verfijnen en op te maken, mogelijk gemaakt door dezelfde agentische mogelijkheden die beschikbaar zijn in Word, Excel en PowerPoint.",
-      "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "outlook",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Outlook",
       "added": "2026-03-09",
       "modified": "2026-03-09",
@@ -1751,10 +1789,12 @@
       "id": 557170,
       "title": "Microsoft Teams: Door de vergadering gegenereerde inhoud verwijderen in de samenvatting",
       "desc": "Organisatoren van vergaderingen kunnen nu eenvoudig door de vergadering gegenereerde inhoud verwijderen, inclusief opname, transcriptie, AI-samenvatting en notities, via de nieuwe verwijderknop op de samenvattingspagina. Gedeelde bestanden in de vergadering worden niet verwijderd.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-03-04",
       "modified": "2026-03-17",
@@ -1767,10 +1807,12 @@
       "id": 557981,
       "title": "Microsoft Viva: Insights - Nieuwe Copilot-statistieken beschikbaar",
       "desc": "We brengen een reeks nieuwe Copilot-statistieken, waaronder acties die zijn ondernomen in de Microsoft 365 Copilot-app, Edge en OneNote, en meer belangrijke gebruiksscenario's in Outlook, Word, Excel en PowerPoint, waaronder voorgesteld antwoord, vertaling, coach, opschoning van gegevens en meer. Hierdoor krijgen klanten een beter inzicht in de belangrijkste gevallen van Copilot-adoptie in Copilot Dashboard en Advanced Analysis in Viva Insights.",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-03-02",
       "modified": "2026-04-02",
@@ -1786,7 +1828,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-03-02",
       "modified": "2026-03-02",
@@ -1802,7 +1846,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-03-02",
       "modified": "2026-03-02",
@@ -1978,7 +2024,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-26",
       "modified": "2026-03-31",
@@ -1994,7 +2042,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-26",
       "modified": "2026-03-31",
@@ -2042,7 +2092,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2026-02-25",
       "modified": "2026-02-25",
@@ -2218,7 +2270,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-21",
       "modified": "2026-02-21",
@@ -2245,12 +2299,14 @@
     },
     {
       "id": 557674,
-      "title": "Microsoft Viva: Copilot Analytics: Copilot-adoptie PBI-versie-update inclusief inzichten in krachtige gebruikers.",
+      "title": "Microsoft Viva: Copilot Analytics: Copilot-acceptatie PBI-versie-update inclusief inzichten in krachtige gebruikers.",
       "desc": "Het bijgewerkte Power BI-rapport over de adoptie van Copilot wordt geleverd met een gestroomlijnde UX en nieuwe Power-gebruikersinzichten.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-02-20",
       "modified": "2026-03-17",
@@ -2282,7 +2338,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "excel"
+      ],
       "prodLabel": "Excel",
       "added": "2026-02-20",
       "modified": "2026-02-20",
@@ -2294,7 +2352,7 @@
     {
       "id": 557559,
       "title": "Microsoft Purview: Data Lifecycle Management- Azure PST-import",
-      "desc": "Azure PST Import is een migratiemethode waarmee PST-bestanden die zijn opgeslagen in Azure Blob Storage rechtstreeks in Exchange Online-postvakken kunnen worden geïmporteerd. Het volgt het standaard tweestaps Exchange Migration Service-patroon: een eerste analysefase om PST-gegevens te valideren en beoordelen, gevolgd door de uitvoering van de daadwerkelijke migratie. Het proces omvat ook het maken van een migratie-eindpunt, het uitvoeren van een migratiebatch die uitsluitend bedoeld is voor analyse, het gebruiken van de analyseresultaten om de laatste batch te configureren en het vervolgens starten van de batch om PST-inhoud in de doelmailboxen te importeren.",
+      "desc": "Azure PST Import is een migratiemethode waarmee PST-bestanden die zijn opgeslagen in Azure Blob Storage rechtstreeks in Exchange Online-postvakken kunnen worden geïmporteerd. Het volgt het standaard tweestaps Exchange Migration Service-patroon: een eerste analysefase om PST-gegevens te valideren en beoordelen, gevolgd door de uitvoering van de daadwerkelijke migratie. Het proces omvat ook het maken van een migratie-eindpunt, het uitvoeren van een migratiebatch die uitsluitend bedoeld is voor analyse, het gebruiken van de analyseresultaten om de laatste batch te configureren en vervolgens het starten van de batch om PST-inhoud in de doelmailboxen te importeren.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
       "app": "purview",
@@ -2407,10 +2465,12 @@
       "id": 557175,
       "title": "Microsoft 365-beheercentrum: Copilot - Facturering en gebruik - Zelfstandig verbruik van prepaid capaciteitspakketcredits",
       "desc": "Gebruik een prepaid capaciteitspakket als enige factureringsmethode voor ondersteunde Copilot-ervaringen. Beheerders kunnen het factureringsbeleid met prepaid-capaciteit zo configureren dat het gebruik voor gebruikers in het beleid uitsluitend wordt afgetrokken van prepaid-capaciteitskredieten, zonder dat er 'pay-as-you-go'-kosten in rekening worden gebracht.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365 admin center",
       "added": "2026-02-19",
       "modified": "2026-02-19",
@@ -2506,7 +2566,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-18",
       "modified": "2026-02-18",
@@ -2522,7 +2584,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-18",
       "modified": "2026-02-18",
@@ -2538,7 +2602,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-18",
       "modified": "2026-02-18",
@@ -2647,10 +2713,12 @@
       "id": 557176,
       "title": "Microsoft 365-beheercentrum: Copilot - Facturering en gebruik: gebruikers met veel gebruik",
       "desc": "Bekijk een lijst met gebruikers met een hoog Copilot-gebruik voor betalen per gebruik (d.w.z. meer dan 2000 credits). U kunt Copilot-licenties rechtstreeks op deze pagina kopen en toewijzen aan de gebruikers met een hoog gebruik.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365 admin center",
       "added": "2026-02-13",
       "modified": "2026-02-13",
@@ -2679,10 +2747,15 @@
       "id": 557255,
       "title": "Microsoft Purview: Data Loss Prevention om te voorkomen dat Microsoft 365 Copilot inhoud met gevoeligheidslabels verwerkt, ondersteunt alle opslaglocaties",
       "desc": "Het Microsoft Purview Data Loss Prevention-beleid om de verwerking van gevoelige bestanden in Word, Excel en PowerPoint door Microsoft 365 Copilot te beperken, is nu van toepassing, ongeacht de bestandsopslaglocatie.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "purview",
+      "tags": [
+        "excel",
+        "powerpoint",
+        "word",
+        "copilot"
+      ],
       "prodLabel": "Excel",
       "added": "2026-02-13",
       "modified": "2026-03-26",
@@ -2727,10 +2800,12 @@
       "id": 557180,
       "title": "Microsoft Teams: Consecutief tolken in Tolk",
       "desc": "Consecutief tolken maakt turn-based tolken voor iedereen in de vergadering mogelijk. De vertolking vindt plaats nadat elke spreker klaar is met praten, waardoor een turn-based stroom ontstaat die interactieve discussies in twee talen ondersteunt.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2026-02-13",
       "modified": "2026-03-31",
@@ -2839,10 +2914,12 @@
       "id": 557174,
       "title": "OneDrive: Microsoft 365 Copilot in OneDrive",
       "desc": "We zijn verheugd om M365 Copilot in OneDrive te introduceren, een nieuwe uniforme Copilot-chatervaring die is ontworpen om het werken met uw bestanden eenvoudiger, slimmer en naadlooser te maken in Microsoft 365.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder en gebruiksvriendelijker.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "onedrive",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneDrive",
       "added": "2026-02-12",
       "modified": "2026-02-12",
@@ -2874,7 +2951,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-12",
       "modified": "2026-02-12",
@@ -2890,7 +2969,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -2906,7 +2987,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -2922,7 +3005,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -2938,7 +3023,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -2954,7 +3041,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -2970,7 +3059,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -2986,7 +3077,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3002,7 +3095,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3018,7 +3113,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3034,7 +3131,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3050,7 +3149,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3066,7 +3167,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3082,7 +3185,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3098,7 +3203,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3114,7 +3221,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3130,7 +3239,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3146,7 +3257,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3162,7 +3275,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3178,7 +3293,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3194,7 +3311,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3210,7 +3329,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-02-11",
       "modified": "2026-02-11",
@@ -3399,10 +3520,12 @@
       "id": 550513,
       "title": "Microsoft Clipchamp: Verbeterde audio voor door Copilot AI gegenereerde videoprojecten",
       "desc": "Met een Microsoft365 Copilot-licentie hebben door Copilot AI gegenereerde videoprojecten de audio verbeterd met realistische AI-voice-over, professionele geluidseffecten en verbeterde audiomixing.",
-      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Clipchamp",
       "added": "2026-02-06",
       "modified": "2026-02-06",
@@ -3482,7 +3605,9 @@
       "benefit": "Beheerders houden beter overzicht over toegang en beveiliging van SharePoint-inhoud.",
       "status": "rolling",
       "app": "sharepoint",
-      "tags": [],
+      "tags": [
+        "onedrive"
+      ],
       "prodLabel": "OneDrive",
       "added": "2026-02-06",
       "modified": "2026-03-19",
@@ -3622,7 +3747,7 @@
     {
       "id": 554940,
       "title": "Microsoft Purview: Insider Risk Management – ​​Mogelijkheid om cases te maken zonder inhoud in IRM",
-      "desc": "Insider Risk Management biedt de mogelijkheid om een ​​casus zonder inhoud te creëren. Hiermee introduceren we een nieuwe actieve casuslimiet (2000). Met deze nieuwe functionaliteit kunnen klanten meer cases maken, vooral wanneer het downloaden van inhoud niet nodig is. Als een casus wordt aangemaakt zonder dat er inhoud wordt gedownload, kan het downloaden van inhoud op elk gewenst moment worden gestart wanneer de zaak actief is, in afwachting van de beschikbare limieten voor het downloaden van inhoud. Er is geen wijziging in de downloadlimiet voor actieve inhoud (100). \n\nMicrosoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management stelt klanten in staat beleid te creëren op basis van hun eigen interne beleid, governance en organisatorische vereisten",
+      "desc": "Insider Risk Management biedt de mogelijkheid om een ​​casus zonder inhoud te creëren. Hiermee introduceren we een nieuwe actieve casuslimiet (2000). Met deze nieuwe functionaliteit kunnen klanten meer cases maken, vooral wanneer het downloaden van inhoud niet nodig is. Als een aanvraag wordt aangemaakt zonder dat er inhoud wordt gedownload, kan het downloaden van de inhoud op elk gewenst moment worden gestart als de aanvraag actief is, in afwachting van de beschikbare limieten voor het downloaden van inhoud. Er is geen wijziging in de downloadlimiet voor actieve inhoud (100). \n\nMicrosoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management stelt klanten in staat beleid te creëren op basis van hun eigen interne beleid, governance en organisatorische vereisten",
       "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
       "status": "dev",
       "app": "purview",
@@ -3718,7 +3843,7 @@
     {
       "id": 552596,
       "title": "Microsoft Copilot (Microsoft 365): Unified Plus-menu (+)",
-      "desc": "We vereenvoudigen het invoervak ​​in Copilot Chat door verschillende gebruikersacties samen te brengen onder het Plus-menu (+). Via het uniforme Plus-menu (+) kunnen gebruikers inhoud aan prompts toevoegen, terwijl ze ook toegang krijgen tot tools/agents en gegevensbronnen kunnen beheren die worden gebruikt om Copilot te aarden.",
+      "desc": "We vereenvoudigen het invoervak ​​in Copilot Chat door verschillende gebruikersacties samen te brengen onder het Plus-menu (+). Met het uniforme Plus-menu (+) kunnen gebruikers inhoud aan prompts toevoegen, terwijl ze ook toegang krijgen tot tools/agents en gegevensbronnen kunnen beheren die worden gebruikt om Copilot te aarden.",
       "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
       "status": "dev",
       "app": "copilot",
@@ -3750,7 +3875,7 @@
     {
       "id": 553225,
       "title": "Microsoft 365: Nieuwe kaartgebaseerde kamerboekingservaring in Places Finder",
-      "desc": "We verbeteren de ervaring voor het boeken van kamers in de nieuwe agenda-ervaring in Outlook voor Windows, Outlook voor het web en Teams door een kaartweergave te introduceren in Places Finder. Deze update vervangt het bestaande zijpaneel door een gebruiksvriendelijkere interface op volledig scherm waarmee mensen snel de juiste ruimte kunnen vinden en boeken.",
+      "desc": "We verbeteren de ervaring voor het boeken van kamers in de nieuwe agenda-ervaring in Outlook voor Windows, Outlook voor het web en Teams door een kaartweergave te introduceren in Places Finder. Deze update vervangt het bestaande zijpaneel door een volledig scherm, gemakkelijker te gebruiken interface waarmee mensen snel de juiste ruimte kunnen vinden en boeken.",
       "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
       "app": "other",
@@ -3767,10 +3892,12 @@
       "id": 553219,
       "title": "Microsoft 365: Nieuwe profielkaarten voor gebouwen, kamers en bureaus",
       "desc": "Gebouwen, kamers en bureaus die aan de Places-map worden toegevoegd, krijgen nieuwe profielkaarten, toegankelijk via Copilot Chat en via andere Microsoft 365-toegangspunten.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365",
       "added": "2026-01-30",
       "modified": "2026-01-30",
@@ -3782,7 +3909,7 @@
     {
       "id": 548641,
       "title": "Microsoft Copilot (Microsoft 365): Microsoft Copilot (Microsoft 365): Open Word-, Excel- en PowerPoint-bestanden in Copilot Chat",
-      "desc": "Momenteel opent het klikken op geciteerde inhoud in Copilot bestanden buiten Copilot. Met deze nieuwe functie kan inhoud rechtstreeks in Copilot Chat worden geopend, zodat het bekijken van documenten naast de chat gestroomlijnder wordt. Deze wijziging is niet beschikbaar in de mobiele app Microsfot 365 Copilot of bij gebruik van Copilot in Edge, Copilot in Excel, Copilot in Word en Copilot PowerPoint.",
+      "desc": "Momenteel opent het klikken op geciteerde inhoud in Copilot bestanden buiten Copilot. Met deze nieuwe functie kan inhoud rechtstreeks in Copilot Chat worden geopend, zodat het bekijken van documenten naast de chat gestroomlijnder wordt. Deze wijziging is niet beschikbaar in de mobiele Microsfot 365 Copilot-app of bij gebruik van Copilot in Edge, Copilot in Excel, Copilot in Word en Copilot PowerPoint.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -3814,7 +3941,7 @@
     {
       "id": 553222,
       "title": "Microsoft Intune: aangepaste macOS-naleving",
-      "desc": "Met deze functie kunnen gebruikers het detectiescript en het JSON-bestand gebruiken om nalevingsbeleid te definiëren voor specifieke organisatorische behoeften. De ervaring weerspiegelt de aangepaste compliance-ervaring van Windows en Linux.",
+      "desc": "Met deze functie kunnen gebruikers het detectiescript en json-bestand gebruiken om nalevingsbeleid te definiëren voor specifieke organisatorische behoeften. De ervaring weerspiegelt de aangepaste compliance-ervaring van Windows en Linux.",
       "benefit": "IT-beheerders kunnen apparaten beter en consistenter beveiligen via centrale beleidsregels.",
       "status": "dev",
       "app": "intune",
@@ -3846,7 +3973,7 @@
     {
       "id": 551199,
       "title": "Outlook: agenda-afspraken afdrukken in nieuwe Outlook en Teams",
-      "desc": "Gebruikers hebben nu basisopties voor het afdrukken van agenda-evenementen in de #newoutlookforwindows- en Teams-agenda, inclusief het kiezen of ze de deelnemerslijst op de afdruk willen tonen of verbergen.",
+      "desc": "Gebruikers hebben nu basisopties voor het afdrukken van agenda-evenementen in de #newoutlookforwindows- en Teams-agenda, inclusief het kiezen of ze de deelnemerslijst op de afdruk willen weergeven of verbergen.",
       "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
       "status": "rolling",
       "app": "outlook",
@@ -3863,10 +3990,13 @@
       "id": 553214,
       "title": "Microsoft 365: gemoderniseerde webervaring met toegang geweigerd",
       "desc": "We introduceren een visuele vernieuwing van de webervaring Toegang geweigerd in Microsoft 365, waar gebruikers toegang kunnen aanvragen tot bestanden, sites en opnames van vergaderingen. Deze update heeft een modern Fluent-ontwerp met nieuwe illustraties, animaties en duidelijkere berichten om gebruikers te helpen snel vertrouwen te winnen en hun samenwerking naadloos voort te zetten.",
-      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "sharepoint",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "onedrive",
+        "sharepoint"
+      ],
       "prodLabel": "365",
       "added": "2026-01-29",
       "modified": "2026-03-26",
@@ -3878,11 +4008,13 @@
     {
       "id": 553136,
       "title": "Microsoft Copilot (Microsoft 365): Surveys Agent en Copilot Chat in Microsoft Forms",
-      "desc": "Microsoft 365 Copilot Chat is nu geïntegreerd in Microsoft Forms, inclusief het inschakelen van de Surveys Agent vanuit Forms. Surveys Agent biedt gespecialiseerde mogelijkheden om u te helpen met uw formulier: van het aanbevelen en toepassen van verbeteringen aan uw formulier of toets, tot het helpen opstellen en verzenden van uitnodigingen, tot het analyseren van uw resultaten. Surveys Agent is beschikbaar voor gebruikers met een Microsoft 365 Copilot-licentie en is toegankelijk door op het pictogram \"Copilot\" in Formulieren te klikken.",
+      "desc": "Microsoft 365 Copilot Chat is nu geïntegreerd in Microsoft Forms, inclusief het inschakelen van de Surveys Agent vanuit Forms. Surveys Agent biedt gespecialiseerde mogelijkheden om u te helpen met uw formulier - van het aanbevelen en toepassen van verbeteringen aan uw formulier of toets, tot het helpen opstellen en verzenden van uitnodigingen, tot het analyseren van uw resultaten. Surveys Agent is beschikbaar voor gebruikers met een Microsoft 365 Copilot-licentie en is toegankelijk door op het pictogram \"Copilot\" in Formulieren te klikken.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "forms"
+      ],
       "prodLabel": "Forms",
       "added": "2026-01-29",
       "modified": "2026-02-11",
@@ -3959,10 +4091,12 @@
       "id": 551196,
       "title": "Microsoft Viva: Copilot Analytics - Copilot-configuratie-inzichten op de Copilot Dashboard Readiness-pagina",
       "desc": "De bijgewerkte Readiness-pagina van het Copilot Dashboard biedt IT-leiders op maat gemaakte Copilot-configuratie-aanbevelingen. De voorgestelde instellingen zijn bedoeld om de implementatie te stroomlijnen, de gebruikerservaring te verbeteren en gebruikers te helpen het meeste uit Microsoft 365 Copilot, Copilot Chat en agents te halen. #copilootcontrolesysteem",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-01-28",
       "modified": "2026-03-27",
@@ -4150,7 +4284,7 @@
     {
       "id": 547731,
       "title": "Microsoft Copilot (Microsoft 365): Zakelijke rechtvaardiging voor Copilot-licentieaanvragen",
-      "desc": "Bij het aanvragen van een Microsoft 365 Copilot-licentie kunnen gebruikers nu een zakelijke rechtvaardiging geven waarin wordt uitgelegd waarom ze Copilot nodig hebben. Deze context wordt tijdens de beoordeling aan beheerders getoond, waardoor ze snellere, beter geïnformeerde goedkeuringsbeslissingen kunnen nemen en de behoeften op het gebied van governance en audit kunnen worden ondersteund.",
+      "desc": "Bij het aanvragen van een Microsoft 365 Copilot-licentie kunnen gebruikers nu een zakelijke rechtvaardiging geven waarin wordt uitgelegd waarom ze Copilot nodig hebben. Deze context wordt tijdens de beoordeling aan beheerders getoond, waardoor ze snellere, beter geïnformeerde goedkeuringsbeslissingen kunnen nemen en de governance- en auditbehoeften kunnen worden ondersteund.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -4215,10 +4349,13 @@
       "id": 548670,
       "title": "Microsoft 365: elektronische handtekeningen tekenen met eSignature voor Microsoft 365",
       "desc": "Ondertekenaars kunnen hun elektronische handtekening aan PDF's toevoegen met behulp van een stylus, aanraking of muis, naast de bestaande optie voor getypte handtekeningen.",
-      "benefit": "Documenten maken en bewerken in Word gaat sneller en gemakkelijker.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "rolling",
-      "app": "word",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "sharepoint",
+        "word"
+      ],
       "prodLabel": "365",
       "added": "2026-01-16",
       "modified": "2026-03-23",
@@ -4234,7 +4371,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2026-01-16",
       "modified": "2026-03-31",
@@ -4279,10 +4418,12 @@
       "id": 547749,
       "title": "Microsoft Viva: Copilot Analytics - Exporteer statistieken in het Copilot Dashboard op dagniveau",
       "desc": "Met deze functie kunnen gebruikers nieuwere Copilot-statistieken op rijniveau exporteren vanuit het Copilot Dashboard voor rapportage en diepgaandere analyse op dagniveau. #copilootcontrolesysteem",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en HR krijgen AI-inzichten over Copilot-adoptie en medewerkerservaringen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2026-01-14",
       "modified": "2026-04-06",
@@ -4326,11 +4467,13 @@
     {
       "id": 545012,
       "title": "Microsoft Copilot (Microsoft 365): Wanneer u de Agent-modus in Word gebruikt, kunt u handmatig selecteren welk model u wilt gebruiken",
-      "desc": "Met de Agent-modus in Word kunt u uit meerdere modellen kiezen, waardoor u de flexibiliteit heeft om het juiste model voor uw taak te selecteren.",
+      "desc": "In de Agent-modus in Word kunt u kiezen uit meerdere modellen, waardoor u de flexibiliteit heeft om het juiste model voor uw taak te selecteren.",
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2026-01-13",
       "modified": "2026-01-13",
@@ -4346,7 +4489,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "sharepoint"
+      ],
       "prodLabel": "SharePoint",
       "added": "2026-01-09",
       "modified": "2026-02-06",
@@ -4522,7 +4667,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "excel"
+      ],
       "prodLabel": "Excel",
       "added": "2025-12-19",
       "modified": "2026-03-11",
@@ -4538,7 +4685,9 @@
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-12-19",
       "modified": "2026-03-11",
@@ -4554,7 +4703,9 @@
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-12-19",
       "modified": "2026-02-20",
@@ -4570,7 +4721,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-12-19",
       "modified": "2025-12-19",
@@ -4614,7 +4767,7 @@
     {
       "id": 529842,
       "title": "Microsoft Copilot (Microsoft 365): Aanbevolen notebooks in Copilot Notebooks",
-      "desc": "Gebruikers kunnen snel nieuwe Copilot Notebooks maken via Aanbevolen Notebooks op basis van recente gebruikerswerkactiviteit.",
+      "desc": "Gebruikers kunnen snel nieuwe Copilot Notebooks maken via Aanbevolen Notebooks op basis van recente gebruikerswerkactiviteiten.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -4647,10 +4800,12 @@
       "id": 537270,
       "title": "Microsoft Viva: experts en geverifieerde antwoorden in communities in Engage en Teams voor iOS en Android",
       "desc": "In de Engage-app voor Android en Engage-app in Teams voor iOS en Android introduceren we de Community Expert. Experts kunnen nauwkeurige en geloofwaardige antwoorden onderschrijven en worden erkend als community-experts met een speciaal label naast hun naam.  Ook kunnen experts en communitybeheerders antwoorden op vragen markeren als geverifieerde antwoorden om een ​​geloofwaardig en accuraat antwoord aan te geven. Geverifieerde antwoorden krijgen een eigen speciaal label.",
-      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "rolling",
-      "app": "teams",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "teams"
+      ],
       "prodLabel": "Teams",
       "added": "2025-12-19",
       "modified": "2026-04-01",
@@ -4727,10 +4882,12 @@
       "id": 499659,
       "title": "Excel: = COPILOT-functie",
       "desc": "Gebruik de nieuwe =COPILOT-functie rechtstreeks in Excel-formules om tekst en gegevens te genereren, classificeren en samen te vatten.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Spreadsheetanalyses die vroeger uren kostten, zijn straks een kwestie van minuten.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "excel",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Excel",
       "added": "2025-12-17",
       "modified": "2026-02-27",
@@ -4790,7 +4947,7 @@
     {
       "id": 541830,
       "title": "Microsoft Teams: Branded Meeting-reacties",
-      "desc": "Met nieuwe merkreacties kunnen organisaties hun visuele identiteit nu rechtstreeks doortrekken naar vergaderingen. IT-beheerders uploaden eenvoudigweg aangepaste reactiepictogrammen die merkelementen of evenementthema's weerspiegelen, en deze zijn onmiddellijk beschikbaar voor deelnemers aan de vergadering.  Een eenvoudige manier om meer samenhangende, merkgebonden vergaderervaringen te creëren.",
+      "desc": "Met nieuwe merkreacties kunnen organisaties hun visuele identiteit nu rechtstreeks doortrekken in vergaderingen. IT-beheerders uploaden eenvoudigweg aangepaste reactiepictogrammen die merkelementen of evenementthema's weerspiegelen, en deze zijn onmiddellijk beschikbaar voor deelnemers aan de vergadering.  Een eenvoudige manier om meer samenhangende, merkgebonden vergaderervaringen te creëren.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
       "app": "teams",
@@ -4807,10 +4964,12 @@
       "id": 537284,
       "title": "Microsoft Edge: contextuele duwtjes toevoegen aan het Microsoft 365 Copilot Chat-pictogram",
       "desc": "Edge for Business zal gebruikers binnenkort helpen snel contextuele actie te ondernemen op hun geopende pagina's met behulp van contextuele duwtjes die zijn gekoppeld aan het Copilot-pictogram in de werkbalk",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "edge",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Edge",
       "added": "2025-12-16",
       "modified": "2026-03-16",
@@ -4903,10 +5062,12 @@
       "id": 537269,
       "title": "Microsoft Teams: Express-spraakinschrijving in Microsoft Teams",
       "desc": "Dankzij de snelle stemregistratie kunt u uw stem snel en eenvoudig in Teams registreren. Uw profiel maakt functies mogelijk zoals stemisolatie, sprekerherkenning, identificatie in een vergaderruimte en transcripties, en verbeterde samenvattingen en inzichten van vergaderingen uit Microsoft 365 Copilot. Als u zich niet heeft ingeschreven, ontvangt u in het product een prompt om u aan te melden en uw stemprofiel in te schrijven door eenvoudigweg in een vergadering te spreken. Beheerders kunnen deze functie voor hun organisatie in- of uitschakelen.",
-      "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2025-12-11",
       "modified": "2026-03-26",
@@ -4919,10 +5080,12 @@
       "id": 532722,
       "title": "Microsoft Viva: schakel communitylidmaatschapsbeheer in Teams voor iOS en Android in",
       "desc": "Communitybeheerders kunnen leden toevoegen aan en verwijderen uit hun community's.",
-      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "rolling",
-      "app": "teams",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "teams"
+      ],
       "prodLabel": "Teams",
       "added": "2025-12-11",
       "modified": "2026-04-01",
@@ -4934,7 +5097,7 @@
     {
       "id": 516032,
       "title": "Microsoft Purview: Insider Risk Management-Insider risicobeheer voor agenten",
-      "desc": "Naarmate AI-agenten diep ingebed raken in de ecosystemen van ondernemingen, evolueren ze van eenvoudige tools of workflows naar een digitaal personeelsbestand. Deze agenten kunnen de bedoelingen interpreteren, toegang krijgen tot bedrijfsgegevens en deze manipuleren, acties uitvoeren en zelfs realtime beslissingen nemen. In veel opzichten opereren ze als menselijke insiders, maar dan met gegevensverwerkingsmogelijkheden op machinesnelheid. Om deze agenten effectief te kunnen beheren en beschermen, wordt Microsoft Purview Insider Risk Management uitgebreid naar agenten, met specifieke indicatoren en insider-risicoscores die zijn gebouwd voor agenten op basis van agentactiviteiten. Microsoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management maakt cu",
+      "desc": "Naarmate AI-agenten diep ingebed raken in de ecosystemen van ondernemingen, evolueren ze van eenvoudige tools of workflows naar een digitaal personeelsbestand. Deze agenten kunnen de bedoelingen interpreteren, toegang krijgen tot bedrijfsgegevens en deze manipuleren, acties uitvoeren en zelfs realtime beslissingen nemen. In veel opzichten opereren ze als menselijke insiders, maar dan met gegevensverwerkingsmogelijkheden op machinesnelheid. Om deze agenten effectief te beheren en te beschermen, wordt Microsoft Purview Insider Risk Management uitgebreid naar agenten, met specifieke indicatoren en een insider-risicoscore voor agenten op basis van agentactiviteiten. Microsoft Purview Insider Risk Management correleert verschillende signalen om potentiële kwaadwillige of onbedoelde insiderrisico's te identificeren, zoals IP-diefstal, gegevenslekken en beveiligingsschendingen. Insider Risk Management maakt cu",
       "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
       "status": "dev",
       "app": "purview",
@@ -5015,10 +5178,12 @@
       "id": 537283,
       "title": "Microsoft Edge: Microsoft Edge kan nu werkgerelateerde browsegeschiedenis naar Copilot verzenden voor relevantere werkresultaten bij zoeken met M365 Copilot Search",
       "desc": "Microsoft Edge kan nu door de IT-beheerder geselecteerde werkgerelateerde browsegeschiedenis naar Copilot sturen om de zoekrelevantie te verbeteren. Wanneer een gebruiker naar iets zoekt in de Copilot-zoekopdracht, toont Copilot indien relevant ook resultaten uit de browsergeschiedenis.",
-      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "benefit": "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "edge",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Edge",
       "added": "2025-12-09",
       "modified": "2026-01-16",
@@ -5030,7 +5195,7 @@
     {
       "id": 537279,
       "title": "Microsoft Teams: Kies uw Enter Key-gedrag in Teams Chat",
-      "desc": "Microsoft Teams geeft je nu controle over hoe de Enter-toets werkt bij het opstellen van berichten. U kunt kiezen of u door op Enter te drukken uw bericht verzendt of een nieuwe regel begint, zodat u gemakkelijker langere berichten kunt schrijven zonder dat deze per ongeluk worden verzonden.",
+      "desc": "Microsoft Teams geeft je nu controle over hoe de Enter-toets werkt bij het opstellen van berichten. U kunt kiezen of u door op Enter te drukken uw bericht verzendt of een nieuwe regel begint, zodat u gemakkelijker langere berichten kunt schrijven zonder dat u ze per ongeluk verzendt.",
       "benefit": "Communiceren in Teams gaat soepeler door verbeterde berichtopties en slimmere weergaven.",
       "status": "rolling",
       "app": "teams",
@@ -5174,7 +5339,7 @@
     {
       "id": 536578,
       "title": "Microsoft Entra: Microsoft Security Copilot App Lifecycle Management-agent in Microsoft Entra",
-      "desc": "Application Lifecycle Management Agent: Deze agent verenigt de volledige levenscyclus van applicaties in één intelligente workflow, die meerdere vervangt\nlosgekoppelde beheertaken met één enkele, begeleide ervaring. Het ontdekt automatisch onbeheerde privé-apps met behulp van Global Secure Access-telemetrie, raadt aan om ze aan Microsoft Entra toe te voegen, en regelt de installatie met geautomatiseerde naamgeving, tagging en scoping met de minste bevoegdheden. Na de onboarding bewaakt de agent voortdurend het app-gebruik en de machtigingen, markeert ongebruikte apps met hoge bevoegdheden en informeert eigenaren proactief met duidelijke volgende stappen via Teams of e-mail. Op basis van de gegevens die de agent heeft verzameld, wordt een plan voor gefaseerde uitschakeling voorgesteld dat beheerders kunnen aanpassen aan hun voorkeuren voor risicoprioriteit.",
+      "desc": "Application Lifecycle Management Agent: Deze agent verenigt de gehele levenscyclus van applicaties in één intelligente workflow, die meerdere vervangt\nlosgekoppelde beheertaken met één enkele, begeleide ervaring. Het ontdekt automatisch onbeheerde privé-apps met behulp van Global Secure Access-telemetrie, raadt aan om ze aan Microsoft Entra toe te voegen, en regelt de installatie met geautomatiseerde naamgeving, tagging en scoping met de minste bevoegdheden. Na de onboarding bewaakt de agent voortdurend het app-gebruik en de machtigingen, markeert ongebruikte apps met hoge bevoegdheden en informeert eigenaren proactief met duidelijke volgende stappen via Teams of e-mail. Op basis van de gegevens die de agent heeft verzameld, wordt een plan voor gefaseerde uitschakeling voorgesteld dat beheerders kunnen aanpassen aan hun voorkeuren voor risicoprioriteit.",
       "benefit": "IT-beheerders kunnen apps sneller en veiliger beheren, inclusief tijdelijk blokkeren.",
       "status": "dev",
       "app": "entra",
@@ -5226,7 +5391,9 @@
       "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
       "status": "rolling",
       "app": "teams",
-      "tags": [],
+      "tags": [
+        "defender"
+      ],
       "prodLabel": "Teams",
       "added": "2025-12-04",
       "modified": "2026-03-17",
@@ -5370,7 +5537,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "outlook"
+      ],
       "prodLabel": "Outlook",
       "added": "2025-11-26",
       "modified": "2026-01-06",
@@ -5413,7 +5582,7 @@
     },
     {
       "id": 532728,
-      "title": "Microsoft Purview: Nieuwe Microsoft Purview Data Security Posture Management-ervaring",
+      "title": "Microsoft Purview: nieuwe Microsoft Purview-ervaring voor gegevensbeveiligingsbeheer",
       "desc": "Tijdens Ignite introduceert Microsoft een belangrijke evolutie van Purview Data Security Posture Management (DSPM) om organisaties te helpen de gegevensbeveiliging te versterken en AI vol vertrouwen te omarmen. De nieuwe DSPM-ervaring verenigt zichtbaarheid en controle over traditionele data- en AI-gestuurde omgevingen en levert op resultaten gebaseerde begeleide workflows die inzichten omzetten in bruikbare stappen, zodat teams risico's kunnen prioriteren en sneller kunnen herstellen. Het biedt AI-waarneembaarheid, verbeterde postuurrapportage en intelligente Security Copilot-agents om taken zoals triage en beleidsbeheer te automatiseren. Bovendien breidt Purview nu de dekking uit tot buiten Microsoft-gegevens met signalen van derden van partners als BigID, Cyera, OneTrust en Varonis, waardoor beveiligingsteams één gestroomlijnd overzicht krijgen van gevoelige gegevens in clouds en platforms.",
       "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
       "status": "dev",
@@ -5434,7 +5603,11 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "excel",
+        "powerpoint",
+        "word"
+      ],
       "prodLabel": "Excel",
       "added": "2025-11-21",
       "modified": "2025-12-05",
@@ -5478,7 +5651,7 @@
     {
       "id": 530577,
       "title": "Microsoft Copilot (Microsoft 365): Microsoft 365 Copilot – Chat- en zoekbrowserextensie voor Chrome",
-      "desc": "De Microsoft 365 Copilot-browserextensie voor Chrome brengt Copilot Chat en Zoeken rechtstreeks in de browser, waardoor gebruikers vragen kunnen stellen, webpagina's kunnen samenvatten en bedrijfsinhoud kunnen doorzoeken zonder van tabblad te hoeven wisselen. Dit verbetert de productiviteit, vermindert het wisselen van context en biedt veilige, compatibele AI-ondersteuning in de browser voor Microsoft 365-gebruikers.",
+      "desc": "De Microsoft 365 Copilot-browserextensie voor Chrome brengt Copilot Chat en Zoeken rechtstreeks naar de browser, waardoor gebruikers vragen kunnen stellen, webpagina's kunnen samenvatten en bedrijfsinhoud kunnen doorzoeken zonder van tabblad te hoeven wisselen. Dit verbetert de productiviteit, vermindert het wisselen van context en biedt veilige, compatibele AI-ondersteuning in de browser voor Microsoft 365-gebruikers.",
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "dev",
       "app": "copilot",
@@ -5514,7 +5687,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "outlook"
+      ],
       "prodLabel": "Outlook",
       "added": "2025-11-19",
       "modified": "2026-01-22",
@@ -5623,10 +5798,12 @@
       "id": 527837,
       "title": "SharePoint: haal relevante informatie op uit lijsten in Knowledge Agent",
       "desc": "Gebruikers kunnen relevante informatie vinden, items matchen en antwoorden krijgen uit Microsoft Lists met behulp van Knowledge Agent.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "sharepoint",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "SharePoint",
       "added": "2025-11-18",
       "modified": "2025-11-18",
@@ -5638,7 +5815,7 @@
     {
       "id": 527829,
       "title": "Microsoft Teams: Verbeteringen aan channel-agents",
-      "desc": "Elk kanaal kan een speciale agent hebben die gebruik maakt van de kennis van het kanaal en als domeinexpert voor het team kan optreden. Dankzij nieuwe verbeteringen kan de agent bestanden uit de SharePoint van het kanaal gebruiken bij het reageren op vragen, ad-hocstatusrapporten maken die in natuurlijke taal zijn geconfigureerd en nieuwe workback-plannen genereren die aan Planner kunnen worden toegevoegd. Bovendien kunnen beheerders met nieuwe bedieningselementen in het Teams-beheercentrum het automatisch maken van agenten uitschakelen.",
+      "desc": "Elk kanaal kan een speciale agent hebben die gebruik maakt van de kennis van het kanaal en als domeinexpert voor het team kan optreden. Dankzij nieuwe verbeteringen kan de agent bestanden uit de SharePoint van het kanaal gebruiken bij het reageren op vragen, ad-hocstatusrapporten maken die zijn geconfigureerd via natuurlijke taal en nieuwe workback-plannen genereren die aan Planner kunnen worden toegevoegd. Bovendien kunnen beheerders met nieuwe bedieningselementen in het Teams-beheercentrum het automatisch maken van agenten uitschakelen.",
       "benefit": "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
       "status": "rolling",
       "app": "teams",
@@ -5722,7 +5899,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "planner"
+      ],
       "prodLabel": "Planner",
       "added": "2025-11-18",
       "modified": "2026-01-30",
@@ -5735,10 +5914,12 @@
       "id": 516575,
       "title": "Outlook: Triageer uw inbox onderweg met Copilot Voice voor Outlook Mobile",
       "desc": "Blijf op de hoogte van uw inbox met de nieuwe Copilot-spraakervaring in de mobiele Outlook-app. Copilot begint met het samenvatten van uw meest recente ongelezen e-mails en stelt vervolgens acties voor zoals markeren, vastzetten, archiveren, verwijderen of een antwoord opstellen – allemaal zonder het gedoe van handmatig door uw inbox navigeren. U kunt Copilot op elk moment in het gesprek onderbreken of omleiden.",
-      "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "outlook",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Outlook",
       "added": "2025-11-18",
       "modified": "2026-04-02",
@@ -5783,10 +5964,12 @@
       "id": 511820,
       "title": "Planner: Planner Agent in groepsgebaseerde basisplannen",
       "desc": "Planner Agent zal nu beschikbaar zijn voor gebruikers met een M365 Copilot-licentie in alle op groepen gebaseerde Planner-abonnementen, inclusief basisabonnementen.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Taakoverzicht en samenwerking in projecten worden verbeterd.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "planner",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Planner",
       "added": "2025-11-18",
       "modified": "2026-04-02",
@@ -5814,7 +5997,7 @@
     {
       "id": 529851,
       "title": "Outlook: Profielkaarten verrijken met aangepaste, organisatiespecifieke eigenschappen",
-      "desc": "Klanten kunnen hun M365-profielkaarten nu aanpassen door aangepaste eigenschappen toe te voegen die uniek zijn voor hun organisatie. Deze eigenschappen kunnen afkomstig zijn van externe systemen zoals HR-platforms, waardoor gebruikersprofielen worden verrijkt met relevante organisatorische details. Tenantbeheerders kunnen deze eigenschappen configureren met een weergavenaam en een pictogram, dat wordt weergegeven in het gedeelte Contactgegevens van de profielkaarten.",
+      "desc": "Klanten kunnen hun M365-profielkaarten nu aanpassen door aangepaste eigenschappen toe te voegen die uniek zijn voor hun organisatie. Deze eigenschappen kunnen afkomstig zijn van externe systemen zoals HR-platforms, waardoor gebruikersprofielen worden verrijkt met relevante organisatorische details. Tenantbeheerders kunnen deze eigenschappen configureren met een weergavenaam en pictogram, die verschijnen in het gedeelte Contactgegevens van de profielkaarten.",
       "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
       "status": "dev",
       "app": "outlook",
@@ -5926,7 +6109,7 @@
     {
       "id": 523209,
       "title": "Microsoft Purview: Compliance Manager - AI-aangedreven regelgevingssjablonen",
-      "desc": "Deze functie in Purview Compliance Manager stelt klanten in staat complexe regelgeving van PDF-documenten om te zetten naar bruikbare controles en acties in een multi-cloudomgeving. Klanten kunnen de geconverteerde regelgevingssjablonen gebruiken om beoordelingen te maken en lacunes in de naleving te identificeren, controles te begrijpen en te implementeren om hun nalevingshouding te verbeteren.",
+      "desc": "Deze functie in Purview Compliance Manager stelt klanten in staat complexe regelgeving van PDF-documenten om te zetten naar bruikbare controles en acties in een multi-cloudomgeving. Klanten kunnen de geconverteerde regelgevingssjablonen gebruiken om beoordelingen te maken en lacunes in de naleving te identificeren, controles te begrijpen en te implementeren om hun nalevingspositie te verbeteren.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
       "app": "purview",
@@ -5942,7 +6125,7 @@
     {
       "id": 523201,
       "title": "Microsoft Purview: Purview-informatiebescherming | Classifier-simulatiemodus (gezondheidsmonitoring)",
-      "desc": "Microsoft Purview introduceert de Classifier Simulation Mode, de eerste fase van het bredere Classifier Health Monitoring Platform. \n \nMet deze mogelijkheid kunt u aangepaste classificatoren op productiegegevens testen, analyseren en optimaliseren voordat u deze publiceert, waardoor u een betrouwbare manier krijgt om de effectiviteit van classificatoren te verifiëren voordat u ze in live-omgevingen plaatst.  \n\nAangepaste classificaties zijn krachtige hulpmiddelen, maar kunnen soms inefficiënte regex-patronen of te brede logica bevatten, wat leidt tot een luidruchtige classificatie vanwege hoge overeenkomsten, valse positieven en hoge scanlatentie \n\nDe Simulatiemodus beperkt deze risico's doordat u de kwaliteit en prestaties van de classificatie kunt valideren voordat u deze publiceert, waardoor gezonde, performante en nauwkeurigere classificatieresultaten worden gegarandeerd.",
+      "desc": "Microsoft Purview introduceert de Classifier Simulation Mode, de eerste fase van het bredere Classifier Health Monitoring Platform. \n \nMet deze mogelijkheid kunt u aangepaste classificaties op productiegegevens testen, analyseren en optimaliseren voordat u deze publiceert, waardoor u een betrouwbare manier krijgt om de effectiviteit van classificaties te verifiëren voordat u ze in een live-omgeving plaatst.  \n\nAangepaste classificaties zijn krachtige tools, maar kunnen soms inefficiënte regex-patronen of te brede logica bevatten, wat leidt tot een luidruchtige classificatie vanwege hoge overeenkomsten, valse positieven en hoge scanlatentie \n\nDe Simulatiemodus beperkt deze risico's doordat u de kwaliteit en prestaties van de classificatie kunt valideren voordat u deze publiceert, waardoor gezonde, performante en nauwkeurigere classificatieresultaten worden gegarandeerd.",
       "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
       "status": "dev",
       "app": "purview",
@@ -5957,12 +6140,14 @@
     },
     {
       "id": 515144,
-      "title": "Microsoft Copilot (Microsoft 365): maak gebruik van privé-inhoud in M365 Copilot",
+      "title": "Microsoft Copilot (Microsoft 365): Maak gebruik van privé-inhoud in M365 Copilot",
       "desc": "Engage-inhoud van privégemeenschappen en evenementen zal worden gebruikt als basisbron voor M365 Copilot. Wanneer een gebruiker een query uitvoert in M365 Copilot, kan deze alleen de inhoud zien waartoe hij toegang heeft.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "viva"
+      ],
       "prodLabel": "Viva",
       "added": "2025-11-05",
       "modified": "2026-03-31",
@@ -6087,10 +6272,12 @@
       "id": 511813,
       "title": "Microsoft Viva: Copilot Analytics - Hoogtepunten over de adoptie van Copilot door Viva Engage",
       "desc": "Ontdek hoe Copilot een verschil maakt in uw organisatie via Viva Engage-berichten die gebruikers hebben gedeeld. Het Copilot Dashboard toont succesverhalen uit de echte wereld, door gebruikers gedeeld enthousiasme over nieuwe Copilot-functies en levendige communitydiscussies. Deze voorbeelden bieden een kwalitatief inzicht in hoe Copilot de productiviteit en betrokkenheid van uw tenant stimuleert, rechtstreeks in het Copilot Dashboard. #CopilotControlSysteem",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2025-11-04",
       "modified": "2026-01-29",
@@ -6117,7 +6304,7 @@
     },
     {
       "id": 501448,
-      "title": "Microsoft Copilot (Microsoft 365): Ontdek grafiekconnectorprompts in de Prompt Gallery wanneer u Copilot Chat gebruikt",
+      "title": "Microsoft Copilot (Microsoft 365): Ontdek grafiekconnectorprompts in de Promptgalerij wanneer u Copilot Chat gebruikt",
       "desc": "Populaire prompts voor grafiekconnectors zijn nu beschikbaar in de Prompt Gallery voor gebruik in Copilot Chat.",
       "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
       "status": "dev",
@@ -6214,7 +6401,7 @@
     {
       "id": 506751,
       "title": "Microsoft Copilot (Microsoft 365): Copilot chatgesprekken",
-      "desc": "Copilot-gesprekken als zoekresultaten: gebruikers kunnen nu historische Copilot-interactie ophalen, inclusief chats van notebooks, agenten en de belangrijkste Copilot-chatinterface, rechtstreeks in de zoekresultaten (SERP). Toegewijde gegevensbron in rechterrail: een nieuw item met de naam “Copilot Chats” verschijnt in de rechterrail, waardoor gebruikers hun zoekopdracht specifiek kunnen richten op door Copilot gegenereerde inhoud. Scoped Query Formulation (QF) Suggesties: Wanneer gebruikers “Copilot Chats” als de actieve gegevensbron selecteren, biedt het zoekvak dynamisch bereikbare QF-suggesties die zijn afgestemd op die bron. Deze suggesties helpen onderscheid te maken tussen het terugroepen van sessies en het direct uitvoeren ervan, zodat ze aansluiten bij de intentie van de gebruiker.",
+      "desc": "Copilot-gesprekken als zoekresultaten: gebruikers kunnen nu historische Copilot-interactie ophalen, inclusief chats van notebooks, agenten en de belangrijkste Copilot-chatinterface, rechtstreeks in de zoekresultaten (SERP). Toegewijde gegevensbron in rechterrail: een nieuw item met de naam “Copilot Chats” verschijnt in de rechterrail, waardoor gebruikers hun zoekopdracht specifiek kunnen richten op door Copilot gegenereerde inhoud. Scoped Query Formulation (QF) Suggesties: Wanneer gebruikers “Copilot Chats” selecteren als de actieve gegevensbron, biedt het zoekvak dynamisch bereikbare QF-suggesties die zijn afgestemd op die bron. Deze suggesties helpen onderscheid te maken tussen het terugroepen van sessies en het direct uitvoeren ervan, zodat ze aansluiten bij de intentie van de gebruiker.",
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "rolling",
       "app": "copilot",
@@ -6266,7 +6453,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-10-30",
       "modified": "2026-03-16",
@@ -6282,7 +6471,9 @@
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-10-30",
       "modified": "2026-02-10",
@@ -6314,7 +6505,9 @@
       "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
       "status": "rolling",
       "app": "sharepoint",
-      "tags": [],
+      "tags": [
+        "onedrive"
+      ],
       "prodLabel": "OneDrive",
       "added": "2025-10-30",
       "modified": "2025-11-27",
@@ -6391,10 +6584,12 @@
       "id": 519571,
       "title": "Microsoft 365-beheercentrum: Gebruiksrapporten – Microsoft 365 Copilot Connectors",
       "desc": "Er zal een nieuw gebruiksrapport beschikbaar zijn in het Microsoft 365-beheercentrum voor Copilot Connectors in Microsoft 365 Copilot, ontworpen om organisaties een gedetailleerd beeld te geven van hoe connectoren worden gebruikt binnen Microsoft 365 Copilot. Dit rapport biedt inzicht in de algehele connectoractiviteit, trends op uitgeversniveau en door connectoren aangedreven reactiepatronen in de loop van de tijd, samen met gedetailleerde gegevens over de adoptie van connectoren op gebruikersniveau. Met deze analyses kunnen beheerders de acceptatie monitoren, gebruikspatronen identificeren en Copilot-ervaringen optimaliseren om meer waarde binnen hun organisatie te genereren. #copilootcontrolesysteem",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-10-27",
       "modified": "2026-03-24",
@@ -6567,10 +6762,12 @@
       "id": 499658,
       "title": "Excel: = COPILOT-functie",
       "desc": "Gebruik de nieuwe =COPILOT-functie rechtstreeks in Excel-formules om tekst en gegevens te genereren, classificeren en samen te vatten",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Spreadsheetanalyses die vroeger uren kostten, zijn straks een kwestie van minuten.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "excel",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Excel",
       "added": "2025-10-24",
       "modified": "2026-02-27",
@@ -6698,7 +6895,10 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint",
+        "word"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-22",
       "modified": "2026-02-26",
@@ -6727,10 +6927,12 @@
       "id": 510099,
       "title": "Microsoft 365-app: verwijzingen toevoegen aan uw Copilot-notitieblokken vanuit de sectie Snelle toegang in Zoeken in de M365 Copilot-app",
       "desc": "Gebruikers kunnen snel referenties toevoegen aan een Copilot Notebook via de sectie Snelle toegang in Zoeken in de M365 Copilot-app.",
-      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365 app",
       "added": "2025-10-22",
       "modified": "2025-10-22",
@@ -6778,7 +6980,9 @@
       "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "teams"
+      ],
       "prodLabel": "Teams",
       "added": "2025-10-22",
       "modified": "2025-12-12",
@@ -6858,7 +7062,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "sharepoint"
+      ],
       "prodLabel": "SharePoint",
       "added": "2025-10-17",
       "modified": "2026-02-26",
@@ -6906,7 +7112,9 @@
       "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-16",
       "modified": "2026-03-31",
@@ -6922,7 +7130,9 @@
       "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-16",
       "modified": "2026-03-31",
@@ -6938,7 +7148,9 @@
       "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-16",
       "modified": "2026-03-31",
@@ -6951,10 +7163,12 @@
       "id": 515945,
       "title": "Microsoft Purview: Preventie van gegevensverlies voor Microsoft 365 Copilot om aanwijzingen te beveiligen",
       "desc": "We breiden Microsoft Purview Data Loss Prevention voor Microsoft 365 Copilot uit om aanwijzingen met gevoelige gegevens te beveiligen. Deze realtime controle helpt organisaties het lekken van gegevens en het overmatig delen van risico's te beperken door te voorkomen dat Microsoft 365 Copilot, inclusief vooraf gebouwde agenten in Microsoft 365 Copilot, een antwoord retourneert wanneer aanwijzingen gevoelige gegevens bevatten of die gevoelige gegevens gebruikt voor basis in Microsoft 365 of het web.",
-      "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+      "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "purview",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Purview",
       "added": "2025-10-16",
       "modified": "2026-03-31",
@@ -6986,7 +7200,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-16",
       "modified": "2026-02-26",
@@ -7002,7 +7218,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-16",
       "modified": "2026-02-26",
@@ -7018,7 +7236,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint"
+      ],
       "prodLabel": "PowerPoint",
       "added": "2025-10-16",
       "modified": "2026-02-26",
@@ -7031,10 +7251,12 @@
       "id": 513274,
       "title": "Microsoft Viva: betrek gemeenschappen in Microsoft Teams",
       "desc": "Uw Viva Engage-communities zijn nu beschikbaar in Teams naast zijteams, chats en kanalen. Betrek community's in Microsoft Teams en maak het eenvoudig om verbinding te maken, te delen en te leren binnen uw organisatie. Deze nieuwe ervaring brengt vindbare, asynchrone gesprekken en leiderschapsbetrokkenheid naar Teams, waardoor werknemers ideeën en perspectieven kunnen verkennen die verder gaan dan projectgebaseerde samenwerking.",
-      "benefit": "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "dev",
-      "app": "teams",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "teams"
+      ],
       "prodLabel": "Teams",
       "added": "2025-10-16",
       "modified": "2026-03-26",
@@ -7114,7 +7336,9 @@
       "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "viva"
+      ],
       "prodLabel": "Viva",
       "added": "2025-10-16",
       "modified": "2026-03-25",
@@ -7222,7 +7446,7 @@
     {
       "id": 501452,
       "title": "Microsoft Copilot (Microsoft 365): Videooverzicht in Copilot Chat",
-      "desc": "Videooverzichten in Copilot Chat maken het eenvoudig om opgenomen vergaderingen rechtstreeks in Copilot Chat bij te houden. Het identificeert en haalt belangrijke onderwerpen uit transcripties, biedt door AI gegenereerde vertelling om discussies samen te vatten, en koppelt deze aan videofragmenten van 20 tot 40 seconden die impactvolle momenten van uw vergadering benadrukken.",
+      "desc": "Videooverzichten in Copilot Chat maken het gemakkelijk om opgenomen vergaderingen rechtstreeks in Copilot Chat bij te houden. Het identificeert en haalt belangrijke onderwerpen uit transcripties, biedt door AI gegenereerde vertelling om discussies samen te vatten, en koppelt deze aan videofragmenten van 20 tot 40 seconden die impactvolle momenten van uw vergadering benadrukken.",
       "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
       "status": "rolling",
       "app": "copilot",
@@ -7350,7 +7574,7 @@
     {
       "id": 503562,
       "title": "Microsoft 365-beheercentrum: Organisatieberichten ondersteunen nu e-mailberichten",
-      "desc": "Organisatieberichten omvatten nu e-mail als bezorgingskanaal en breiden zich uit buiten bestaande oppervlakken zoals de Windows-taakbalk, Windows-meldingen, Windows Spotlight en Teams-popovers.",
+      "desc": "Organisatorische berichten omvatten nu e-mail als bezorgingskanaal en breiden zich uit buiten bestaande oppervlakken zoals de Windows-taakbalk, Windows-meldingen, Windows Spotlight en Teams-popovers.",
       "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
       "app": "other",
@@ -7447,10 +7671,12 @@
       "id": 506749,
       "title": "Microsoft Viva: Copilot Analytics - Agentdashboard.",
       "desc": "Viva Insights creëert een Agent Dashboard, ontworpen als centrale plek voor leiders, afgevaardigden en analisten om te begrijpen hoe uw organisatie agenten adopteert. #copilootcontrolesysteem",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2025-10-01",
       "modified": "2026-02-24",
@@ -7511,10 +7737,12 @@
       "id": 499660,
       "title": "Excel: = COPILOT-functie",
       "desc": "Gebruik de nieuwe =COPILOT-functie rechtstreeks in Excel-formules om tekst en gegevens te genereren, classificeren en samen te vatten.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Spreadsheetanalyses die vroeger uren kostten, zijn straks een kwestie van minuten.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "excel",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Excel",
       "added": "2025-10-01",
       "modified": "2026-02-27",
@@ -7751,10 +7979,12 @@
       "id": 502526,
       "title": "Microsoft Teams: Kanaalagent",
       "desc": "Channel Agent werkt samen met u en uw team om u te helpen projecten te beheren. Het kan statusrapporten maken, e-mails verzenden, vergaderingen plannen, co-auteur zijn van documenten en vragen beantwoorden. Channel Agent begrijpt de context van vergaderingen, chats en bestanden en gebruikt die kennis om u te helpen uw werk vooruit te helpen. Het is ontworpen om tijd te besparen, handmatige inspanningen te verminderen en de samenwerking intelligenter te maken.",
-      "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2025-09-18",
       "modified": "2025-09-24",
@@ -7786,7 +8016,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "sharepoint"
+      ],
       "prodLabel": "SharePoint",
       "added": "2025-09-18",
       "modified": "2026-03-11",
@@ -7802,7 +8034,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "viva"
+      ],
       "prodLabel": "Viva",
       "added": "2025-09-18",
       "modified": "2026-02-18",
@@ -7846,7 +8080,7 @@
     {
       "id": 503316,
       "title": "Outlook: Vat e-mail samen met Copilot-chat in Outlook",
-      "desc": "Vat eenvoudig uw e-mail en bijlagen samen met Copilot-chat met één klik. Dit zal beschikbaar zijn voor gebruikers met een Microsoft 365 Copilot-licentie waarvoor vastzetten is ingeschakeld. Deze wijziging komt voor zowel de klassieke als de nieuwe Outlook voor Windows #newoutlookforwindows Bijgewerkt op 13 februari 2026: We hebben dit eerder gemarkeerd als Gelanceerd, maar deze functie wordt nog steeds uitgerold. Onze excuses voor het ongemak.",
+      "desc": "Vat eenvoudig uw e-mail en bijlagen samen met Copilot-chat met één enkele klik. Dit zal beschikbaar zijn voor gebruikers met een Microsoft 365 Copilot-licentie waarvoor vastzetten is ingeschakeld. Deze wijziging komt voor zowel de klassieke als de nieuwe Outlook voor Windows #newoutlookforwindows Bijgewerkt op 13 februari 2026: We hebben dit eerder gemarkeerd als Gelanceerd, maar deze functie wordt nog steeds uitgerold. Onze excuses voor het ongemak.",
       "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
       "status": "rolling",
       "app": "outlook",
@@ -7895,10 +8129,13 @@
       "id": 503105,
       "title": "Microsoft Teams: Unified Agent- en App-beschikbaarheidsbeheer in Microsoft 365 en Teams Admin Center",
       "desc": "Beheerders die het Microsoft 365-beheercentrum en Teams-beheercentrum gebruiken en agenten en apps beheren die in Teams, Outlook en de Microsoft 365-copiloot werken, kunnen hun wijzigingen consistent op al deze oppervlakken toepassen. Vóór deze update hadden wijzigingen die via de sectie Geïntegreerde apps in het Microsoft 365-beheercentrum werden aangebracht alleen invloed op deze apps in Outlook en de Microsoft 365-copilot; Op dezelfde manier zouden wijzigingen die in het Teams-beheercentrum worden aangebracht, uitsluitend van invloed zijn op Teams. Met deze wijziging wordt de beschikbaarheid van apps en agenten verenigd in Teams, Outlook en Microsoft 365 copilot.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot",
+        "outlook"
+      ],
       "prodLabel": "Teams",
       "added": "2025-09-10",
       "modified": "2025-11-13",
@@ -7927,10 +8164,12 @@
       "id": 501201,
       "title": "Microsoft Teams: Verbeterd Copilot-chatoverzicht",
       "desc": "Veel berichten gemist? Copilot genereert automatisch een samenvatting van de nieuwe berichten in een chatgesprek, zodat u snel bij kunt praten zonder elk bericht te lezen.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Communiceren in Teams gaat soepeler door verbeterde berichtopties en slimmere weergaven.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2025-09-10",
       "modified": "2026-03-30",
@@ -8134,7 +8373,7 @@
     {
       "id": 496370,
       "title": "Excel: Formuleaanvulling met Copilot in Excel",
-      "desc": "Deze functie maakt gebruik van AI om de formule van de gebruiker automatisch aan te vullen na het typen van het '='-teken. Het biedt contextgebaseerde suggesties, waardoor het proces voor het maken van formules wordt gestroomlijnd door intelligente en relevante aanvullingen aan te bieden.",
+      "desc": "Deze functie maakt gebruik van AI om de formule van de gebruiker automatisch aan te vullen na het typen van het '='-teken. Het biedt op context gebaseerde suggesties, waardoor het proces voor het maken van formules wordt gestroomlijnd door intelligente en relevante aanvullingen aan te bieden.",
       "benefit": "Spreadsheetanalyses die vroeger uren kostten, zijn straks een kwestie van minuten.",
       "status": "rolling",
       "app": "excel",
@@ -8151,10 +8390,12 @@
       "id": 501581,
       "title": "Microsoft Viva: Copilot Dashboard - Bredere toegang tot M365 Copilot Chat-inzichten",
       "desc": "Microsoft Viva breidt de toegang tot M365 Copilot Chat Insights in Microsoft Copilot Dashboard uit door tenants met 1-49 M365 Copilot-licenties in te schakelen, waardoor meer tenants, inclusief degenen met minder licenties, adoptietrends kunnen volgen. Inzichten omvatten gebruik in de loop van de tijd, adoptie op groepsniveau, retentie, uitsplitsingen op app-niveau, retentie en meer. Gebruikers kunnen filteren op organisatiekenmerken om gebruikspatronen bloot te leggen.",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2025-08-27",
       "modified": "2026-03-12",
@@ -8471,10 +8712,13 @@
       "id": 498914,
       "title": "Outlook: nieuwe ervaring voor het plannen en maken van evenementen",
       "desc": "De Outlook- en Teams-agenda's ontvangen een update voor de planning en het maken van evenementen. Bovendien zullen er in deze nieuwe ervaring nieuwe mogelijkheden beschikbaar zijn om de planning met Copilot te helpen stroomlijnen en verbeteren. #nieuweoutlookforwindows",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "outlook",
+      "tags": [
+        "teams",
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2025-08-04",
       "modified": "2025-10-27",
@@ -8490,7 +8734,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-08-04",
       "modified": "2025-08-04",
@@ -8501,12 +8747,14 @@
     },
     {
       "id": 499424,
-      "title": "Microsoft Edge: Gebruik Microsoft 365 Copilot Chat in Edge for Business in uw geopende YouTube-video's",
+      "title": "Microsoft Edge: Zet Microsoft 365 Copilot Chat in Edge for Business in uw geopende YouTube-video's",
       "desc": "Krijg relevante antwoorden en inzichten over uw open YouTube-video's in Copilot Chat in Edge.",
-      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "benefit": "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "edge",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Edge",
       "added": "2025-08-01",
       "modified": "2026-02-19",
@@ -8519,10 +8767,12 @@
       "id": 499423,
       "title": "Microsoft Edge: Ground Microsoft 365 Copilot Chat in Edge for Business in uw geopende OneDrive- en SharePoint-documenten",
       "desc": "Krijg relevante antwoorden en inzichten over uw open clouddocumenten in Copilot Chat in Edge.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "edge",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Edge",
       "added": "2025-08-01",
       "modified": "2026-03-09",
@@ -8538,7 +8788,9 @@
       "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-08-01",
       "modified": "2025-11-18",
@@ -8694,7 +8946,7 @@
     {
       "id": 498910,
       "title": "Microsoft Copilot (Microsoft 365): [Copilot-uitbreidbaarheid] Volledige vernieuwing van aangepaste connectorgegevensbron",
-      "desc": "Beheerders en ontwikkelaars kunnen hun gegevensbron voor aangepaste connectors volledig vernieuwen of synchroniseren met behulp van Graph API's. Dit zorgt er ook voor dat alle items die in de bron worden verwijderd, automatisch worden verwijderd tijdens deze volledige synchronisatie en dat beheerders hiervoor geen afzonderlijke verwijder-API's hoeven te gebruiken.",
+      "desc": "Beheerders en ontwikkelaars kunnen hun gegevensbron voor aangepaste connectoren volledig vernieuwen of synchroniseren met behulp van Graph API's. Dit zorgt er ook voor dat alle items die in de bron worden verwijderd, automatisch worden verwijderd tijdens deze volledige synchronisatie en dat beheerders hiervoor geen afzonderlijke verwijder-API's hoeven te gebruiken.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
@@ -8746,7 +8998,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-07-21",
       "modified": "2025-07-21",
@@ -8762,7 +9016,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-07-21",
       "modified": "2025-07-21",
@@ -8806,7 +9062,7 @@
     {
       "id": 498639,
       "title": "Microsoft Viva: Viva Pulse - Nieuwe aanpassingsopties voor Pulse",
-      "desc": "Auteurs krijgen nieuwe opties bij het starten van enquêtes, waaronder de keuze om te verzenden zonder vooraf een doelgroep te definiëren. In plaats daarvan kan feedback worden verzameld door een link te delen waarmee mensen toegang kunnen krijgen tot de enquête en kunnen reageren, door een enquête te verzenden zonder een specifieke einddatum, waardoor het verzamelen van gegevens op langere termijn en meerdere reacties van ontvangers in de loop van de tijd mogelijk wordt, en door het verzamelen van geïdentificeerde antwoorden, waarbij de antwoorden worden toegeschreven aan de persoon die ze heeft ingediend.",
+      "desc": "Auteurs krijgen nieuwe opties bij het starten van enquêtes, waaronder de keuze om te verzenden zonder vooraf een doelgroep te definiëren. In plaats daarvan kan feedback worden verzameld door een link te delen waarmee mensen toegang hebben tot de enquête en kunnen reageren, door een enquête te verzenden zonder een specifieke einddatum, waardoor het verzamelen van gegevens op langere termijn en meerdere reacties van ontvangers in de loop van de tijd mogelijk wordt, en door het verzamelen van geïdentificeerde antwoorden, waarbij de antwoorden worden toegeschreven aan de persoon die ze heeft ingediend.",
       "benefit": "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
       "status": "rolling",
       "app": "viva",
@@ -8838,7 +9094,7 @@
     {
       "id": 498323,
       "title": "Microsoft Viva: ongelezen nieuwsmeldingen in Connections",
-      "desc": "Na nader onderzoek is dit uitgesteld naar een latere datum. Onze excuses voor eventueel ongemak. Gebruikers ontvangen wekelijks een melding in de Connections-apps in Microsoft Teams op mobiel en desktop, waarin ze worden gekoppeld aan relevant SharePoint-nieuws dat ze de week ervoor misschien hebben gemist. Dit ongelezen nieuws zal beschikbaar zijn op het tabblad \"Nieuws\" in de Connections-app onder de pil \"ongelezen\".",
+      "desc": "Na nader onderzoek is dit uitgesteld naar een latere datum. Onze excuses voor eventueel ongemak. Gebruikers ontvangen wekelijks een melding in de Connections-apps in Microsoft Teams op mobiel en desktop, waarin ze worden gekoppeld aan relevant SharePoint-nieuws dat ze de afgelopen week mogelijk hebben gemist. Dit ongelezen nieuws zal beschikbaar zijn op het tabblad \"Nieuws\" in de Connections-app onder de pil \"ongelezen\".",
       "benefit": "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
       "status": "rolling",
       "app": "viva",
@@ -8874,7 +9130,9 @@
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-07-10",
       "modified": "2025-07-10",
@@ -8938,7 +9196,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-07-08",
       "modified": "2025-07-08",
@@ -8954,7 +9214,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-07-08",
       "modified": "2025-07-08",
@@ -8982,7 +9244,7 @@
     {
       "id": 497944,
       "title": "Microsoft Purview Compliance Portal: servicestatusdashboard",
-      "desc": "Als Microsoft Purview-gebruiker kunt u storingen, serviceproblemen en adviezen bekijken die van invloed kunnen zijn op uw services. Dit nieuwe dashboard combineert de services en oplossingenstatus van Purview, Microsoft 365-services en Azure Cloud Services op één centrale plek in het Purview-portaal, waardoor het niet meer nodig is om naar verschillende plaatsen te gaan om deze informatie te vinden.",
+      "desc": "Als Microsoft Purview-gebruiker kunt u storingen, serviceproblemen en adviezen bekijken die van invloed kunnen zijn op uw services. Dit nieuwe dashboard combineert de services en oplossingenstatus van Purview, Microsoft 365-services en Azure Cloud Services op één centrale plek in de Purview-portal, waardoor het niet meer nodig is om naar verschillende plaatsen te gaan om deze informatie te vinden.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
       "app": "purview",
@@ -8999,10 +9261,12 @@
       "id": 497999,
       "title": "Microsoft 365-beheercentrum: Agentengebruiksrapport",
       "desc": "Er zal een nieuw agentengebruiksrapport beschikbaar zijn in het Microsoft 365-beheercentrum. Het rapport zal zich richten op het opnemen van agenten in M365 Copilot en Copilot Chat met gebruik door zowel M365 Copilot-gelicentieerde als niet-gelicentieerde gebruikers. Het rapport bevat het totale aantal actieve agentengebruikers, het totale aantal actieve agenten, de segmentatie van actieve gebruikers op basis van gelicentieerde en niet-gelicentieerde gebruikers, en de segmentatie van actieve gebruikers en actieve agenten op uitgeverstype (dat wil zeggen door de gebruiker gemaakte agenten, agenten die door uw organisatie zijn gebouwd, agenten die door Microsoft zijn gebouwd, agenten die door Microsoft-partners zijn gebouwd). Het rapport bevat ook gebruiksgegevens per gebruiker, agent en gebruiker-agentpaar. #copilootcontrolesysteem",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365 admin center",
       "added": "2025-07-02",
       "modified": "2026-03-23",
@@ -9030,7 +9294,7 @@
     {
       "id": 497836,
       "title": "Vooruitzichten: speel een geluidsregel",
-      "desc": "Gebruikers kunnen Outlook-regels instellen om een ​​geluid af te spelen of een bureaubladwaarschuwing weer te geven wanneer een e-mail binnenkomt die aan de door u gekozen voorwaarden voldoet, of deze nu van een specifieke persoon is, bepaalde woorden bevat of voldoet aan andere regelcriteria die u definieert. Met deze functies blijft u op de hoogte van de e-mails die er het meest toe doen. #nieuweoutlookforwindows",
+      "desc": "Gebruikers kunnen Outlook-regels instellen om een ​​geluid af te spelen of een bureaubladwaarschuwing weer te geven wanneer er een e-mail binnenkomt die aan de door u gekozen voorwaarden voldoet, of deze nu van een specifieke persoon is, bepaalde woorden bevat of voldoet aan andere regelcriteria die u definieert. Met deze functies blijft u op de hoogte van de e-mails die er het meest toe doen. #nieuweoutlookforwindows",
       "benefit": "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
       "status": "rolling",
       "app": "outlook",
@@ -9066,7 +9330,9 @@
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-07-01",
       "modified": "2025-07-17",
@@ -9078,7 +9344,7 @@
     {
       "id": 496590,
       "title": "Microsoft Teams: SQL-achtige opdrachten in de zoekbalk",
-      "desc": "Beperk uw zoekresultaten efficiënt door SQL-achtige opdrachten in de zoekbalk te gebruiken. Gebruikers kunnen snel berichten, bestanden of gesprekken filteren met nauwkeurige zoekopdrachten zoals from:username, with:username of in:channel.",
+      "desc": "Verfijn uw zoekresultaten efficiënt door SQL-achtige opdrachten in de zoekbalk te gebruiken. Gebruikers kunnen snel berichten, bestanden of gesprekken filteren met nauwkeurige zoekopdrachten zoals from:username, with:username of in:channel.",
       "benefit": "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
       "status": "rolling",
       "app": "teams",
@@ -9098,7 +9364,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-06-30",
       "modified": "2025-06-30",
@@ -9109,12 +9377,14 @@
     },
     {
       "id": 495828,
-      "title": "Microsoft Copilot (Microsoft 365): Inhoudsuggesties in Word",
+      "title": "Microsoft Copilot (Microsoft 365): Inhoudssuggesties in Word",
       "desc": "Selecteer het tabblad Suggesties in het Copilot-samenvatting bovenaan een Word-document voor suggesties voor het verbeteren van de inhoud van het document.",
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-06-30",
       "modified": "2025-06-30",
@@ -9207,10 +9477,12 @@
       "id": 497135,
       "title": "Microsoft Edge: samenvatting, vertaling en citatie worden binnenkort ondersteund door Microsoft Copilot en Microsoft 365 Copilot Chat in onze menu's",
       "desc": "Menu's in Edge waarbij de gebruiker inhoud in de browser heeft gemarkeerd, ondersteunen binnenkort een samenvatting, vertaling en citatie met Microsoft Copilot en Microsoft 365 Copilot Chat.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "edge",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Edge",
       "added": "2025-06-23",
       "modified": "2026-02-19",
@@ -9270,7 +9542,7 @@
     {
       "id": 496374,
       "title": "SharePoint: ondersteuning voor klikfrequentiestatistieken in paginaanalyse",
-      "desc": "Deze release verbetert de analyse van SharePoint-pagina's door het toevoegen van klikfrequentiestatistieken. Een nieuwe kaart toont het percentage unieke kijkers dat op een link uit het nieuwsbericht heeft geklikt, waardoor inzicht wordt verkregen in de betrokkenheid van gebruikers bij het bericht.",
+      "desc": "Deze release verbetert de SharePoint-paginaanalyse door het toevoegen van klikfrequentiestatistieken. Een nieuwe kaart toont het percentage unieke kijkers dat op een link uit het nieuwsbericht heeft geklikt, waardoor inzicht wordt verkregen in de betrokkenheid van gebruikers bij het bericht.",
       "benefit": "Organisatienieuws delen via het intranet gaat sneller en eenvoudiger.",
       "status": "dev",
       "app": "sharepoint",
@@ -9290,7 +9562,12 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "excel",
+        "word",
+        "powerpoint",
+        "outlook"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-06-16",
       "modified": "2025-10-29",
@@ -9335,10 +9612,12 @@
       "id": 496364,
       "title": "Microsoft Edge: Microsoft 365 Copilot Chat-toegang tot pagina-inhoud wordt binnenkort uitgebreid naar meerdere geopende tabbladen",
       "desc": "Microsoft 365 Copilot Chat in Edge kan binnenkort contextuele vragen over het open venster van een gebruiker beantwoorden. Dit breidt de bestaande mogelijkheid uit die alleen toegang heeft tot de geopende pagina. Alle bestaande gebruikersinstellingen, het beleid en de DLP-overwegingen blijven gerespecteerd.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers krijgen Copilot-hulp direct in de browser, zonder van tabblad te wisselen.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "edge",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Edge",
       "added": "2025-06-10",
       "modified": "2026-02-19",
@@ -9402,7 +9681,11 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "excel",
+        "word",
+        "powerpoint"
+      ],
       "prodLabel": "Excel",
       "added": "2025-06-10",
       "modified": "2025-07-29",
@@ -9429,7 +9712,7 @@
     },
     {
       "id": 495454,
-      "title": "Microsoft Teams: Verbeteringen in bruikbaarheid en privacy voor live ondertiteling en live transcriptie tijdens vergaderingen",
+      "title": "Microsoft Teams: verbeteringen in bruikbaarheid en privacy voor live ondertiteling en live transcriptie tijdens vergaderingen",
       "desc": "Introductie van verbeteringen aan live ondertiteling en live transcripties in Microsoft Teams om vergaderingen intuïtiever, toegankelijker en privacygerichter te maken. Live ondertiteling is nu scrollbaar, waardoor gebruikers eerdere gesprekken met meer flexibiliteit en over een groter oppervlak kunnen bekijken. Vervolgens is het kopiëren van ondertitels standaard uitgeschakeld om gevoelige informatie te beschermen en naleving te ondersteunen. Bovendien wordt het live transcriptiepaneel niet automatisch geopend met functies die transcriptie-achtige opname activeren, waardoor gebruikers meer controle over hun lay-out krijgen. Als ten slotte transcriptie is ingeschakeld, zien gebruikers die proberen het live transcriptiepaneel te openen een banner die suggereert dat ze overschakelen naar live ondertiteling voor realtime begrip. Deze updates stroomlijnen de ervaring en ondersteunen tegelijkertijd de toegankelijkheid",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
@@ -9494,7 +9777,7 @@
     {
       "id": 495834,
       "title": "Microsoft Edge: door AI aangedreven geschiedeniszoekopdracht",
-      "desc": "Verbeterd zoeken vindt sites in uw geschiedenis, zelfs als u een synoniem, woordgroep of typefout gebruikt. Nadat deze functie is ingeschakeld, worden de sites die u bezoekt weergegeven in de uitgebreide zoekresultaten met geschiedenis. Een model op het apparaat wordt getraind met behulp van uw gegevens, die uw apparaat nooit verlaten en nooit naar Microsoft worden verzonden. Beheerders kunnen het EdgeHistoryAISearchEnabled-beleid gebruiken om deze functie uit te schakelen.",
+      "desc": "Verbeterd zoeken vindt sites in uw geschiedenis, zelfs als u een synoniem, woordgroep of typefout gebruikt. Nadat deze functie is ingeschakeld, worden sites die u bezoekt weergegeven in de uitgebreide zoekresultaten met geschiedenis. Een model op het apparaat wordt getraind met behulp van uw gegevens, die uw apparaat nooit verlaten en nooit naar Microsoft worden verzonden. Beheerders kunnen het EdgeHistoryAISearchEnabled-beleid gebruiken om deze functie uit te schakelen.",
       "benefit": "Browsen wordt veiliger en productiever met nieuwe Edge-functies.",
       "status": "dev",
       "app": "edge",
@@ -9526,7 +9809,7 @@
     {
       "id": 495467,
       "title": "Outlook: Afbeelding invoegen",
-      "desc": "Wanneer u een bericht opstelt in de nieuwe Outlook voor Windows en de webversie van Outlook, is er een nieuwe knop Grafisch onder het linttabblad Invoegen. Hierdoor wordt een paneel geopend waarin gebruikers kunnen zoeken en kiezen uit een grote selectie emoji, stockfoto's en stickers, die bij selectie in het bericht worden ingevoegd. #nieuweoutlookforwindows",
+      "desc": "Wanneer u een bericht opstelt in de nieuwe Outlook voor Windows en de webversie van Outlook, is er een nieuwe knop Grafisch onder het linttabblad Invoegen. Hierdoor wordt een paneel geopend waarin gebruikers kunnen zoeken en kiezen uit een grote selectie emoji's, stockfoto's en stickers, die in het bericht worden ingevoegd wanneer ze worden geselecteerd. #nieuweoutlookforwindows",
       "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
       "status": "rolling",
       "app": "outlook",
@@ -9543,10 +9826,12 @@
       "id": 495463,
       "title": "Microsoft Viva: Copilot Dashboard - Verbeterd overzicht van het bereik",
       "desc": "Leiders en managers kunnen gegevens in Copilot Dashboard doorzoeken en verkennen door indirecte groepen, waardoor een nieuwe laag van inzicht in de adoptie en impact van Copilot wordt ontgrendeld. #copilootcontrolesysteem",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en HR krijgen AI-inzichten over Copilot-adoptie en medewerkerservaringen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2025-05-29",
       "modified": "2025-09-30",
@@ -9575,10 +9860,12 @@
       "id": 492616,
       "title": "Microsoft 365-beheercentrum: M365 Copilot - Facturering en gebruik - Gebruiksinzichten",
       "desc": "Wanneer u M365 Copilot Chat pay-as-you-go-facturering inschakelt, kunnen AI-beheerders gebruiksinzichten bekijken om beslissingen over agentbeheer te onderbouwen. Deze functie toont de kosten en het aantal berichten in totaal en per agent. Kosten- en gebruiksgegevens kunnen worden gefilterd op factureringsbeleid en datumbereik.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365 Admin Center",
       "added": "2025-05-28",
       "modified": "2026-03-16",
@@ -9687,10 +9974,12 @@
       "id": 491022,
       "title": "Microsoft Viva: Viva Insights - Vaardighedenlandschapsrapport voor organisaties",
       "desc": "Een Power BI-rapport dat een overzicht geeft van de verdeling van vaardigheden in de organisatie en gebruikers ondersteunt bij het identificeren van lacunes in vaardigheden en het nemen van weloverwogen beslissingen over personeelsplanning, toewijzing van middelen en vaardigheidsinitiatieven.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-05-15",
       "modified": "2025-11-06",
@@ -9702,7 +9991,7 @@
     {
       "id": 493949,
       "title": "Microsoft Viva: Organisatoren antwoorden privé op individuele personen",
-      "desc": "Hiermee kunnen organisatoren van Engage-evenementen vragen van specifieke deelnemers beantwoorden zonder het antwoord aan de andere deelnemers weer te geven. Deze mogelijkheid kan handig zijn bij gevoelige vragen, persoonlijke vragen of vervolggesprekken die niet bedoeld zijn om aan het hele publiek te worden uitgezonden.",
+      "desc": "Hiermee kunnen organisatoren van Engage-evenementen vragen van specifieke deelnemers beantwoorden zonder het antwoord aan de andere deelnemers weer te geven. Deze mogelijkheid kan handig zijn bij gevoelige vragen, persoonlijke vragen of vervolggesprekken die niet bedoeld zijn om voor het hele publiek te worden uitgezonden.",
       "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "dev",
       "app": "viva",
@@ -9754,7 +10043,10 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "powerpoint",
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-05-13",
       "modified": "2025-09-29",
@@ -9786,7 +10078,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-05-13",
       "modified": "2025-07-29",
@@ -9847,10 +10141,16 @@
       "id": 492622,
       "title": "Microsoft 365: de volgende generatie bestands- en mapdeling",
       "desc": "We introduceren nu de derde generatie van de Microsoft 365-deelervaring die is ontworpen om samenwerking standaard eenvoudiger, slimmer en veiliger te maken. De kern van deze update is de nieuwe hero-link, een enkele, krachtige link die de toegang tot uw bestanden regelt. Of u nu een link kopieert, via e-mail deelt of de URL vanuit uw browser verzendt, u beschikt nu over een naadloze en consistente manier om uw bestanden te delen en er de controle over te behouden.",
-      "benefit": "Werken met data in Excel wordt slimmer en toegankelijker voor alle medewerkers.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "excel",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "excel",
+        "onedrive",
+        "powerpoint",
+        "sharepoint",
+        "word"
+      ],
       "prodLabel": "Excel",
       "added": "2025-05-08",
       "modified": "2025-09-09",
@@ -9863,10 +10163,12 @@
       "id": 482198,
       "title": "Microsoft SharePoint: Nieuw webonderdeel voor veelgestelde vragen",
       "desc": "Na verdere beoordeling hebben we de routekaart ten onrechte gemarkeerd als 'gelanceerd'. De juiste status is In ontwikkeling. Onze excuses voor het ongemak. Het SharePoint FAQ-webonderdeel helpt inhoudeigenaren hun inhoud actueel en relevant te houden. Dit nieuwe webonderdeel, mogelijk gemaakt door Microsoft 365 Copilot, kan de eigenaar van de inhoud helpen bij het eenvoudig beheren van veelgestelde vragen door te werken met agenten en verbonden aardingsgegevens. Met een Human-in-the-Loop-aanpak zorgt het voor hoogwaardige, betrouwbare veelgestelde vragen, zonder gedoe. Het resultaat? Een levende FAQ die mee evolueert met de behoeften van uw organisatie. Bijgewerkt op 24 februari 2026: We hebben dit item eerder gemarkeerd als gelanceerd terwijl het nog in Preview stond. We verwachten later dit jaar naar GA te verhuizen. Onze excuses voor dit ongemak.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "sharepoint",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-05-08",
       "modified": "2026-04-01",
@@ -9909,8 +10211,8 @@
     },
     {
       "id": 490564,
-      "title": "Microsoft Teams: interactieve agenten voor teamvergaderingen en -gesprekken",
-      "desc": "Na verdere beoordeling kunnen we dit momenteel niet verder uitrollen.  Onze excuses voor eventueel ongemak. Introductie van een nieuwe functie die interactieve agenten naar uw Teams-vergaderingen en 1-op-1-gesprekken brengt. Communiceer met agenten als groep of privé, zonder statusmeldingen en geschiedenisondersteuning voor naadloze interacties. Momenteel bouwen alleen agenten voort op Copilot-ondersteuningssessies, wat betekent dat ze de context van eerdere interacties binnen dezelfde sessie kunnen onthouden voor relevantere antwoorden. Aangepaste agenten hebben nog geen sessieondersteuning. Alle agenten van BizChat/Copilot Studio zijn nu beschikbaar voor gebruik in uw vergaderingen en gesprekken. Deze functie maakt veilig testen en iteratie mogelijk, waarbij collega's worden uitgenodigd voor feedback zonder dat gevoelige gegevens of productiekanalen worden beïnvloed.",
+      "title": "Microsoft Teams: interactieve agenten voor teamsvergaderingen en -gesprekken",
+      "desc": "Na verdere beoordeling kunnen we dit momenteel niet verder uitrollen.  Onze excuses voor eventueel ongemak. Introductie van een nieuwe functie die interactieve agenten naar uw Teams-vergaderingen en 1-op-1-gesprekken brengt. Communiceer met agenten als groep of privé, zonder statusmeldingen en geschiedenisondersteuning voor naadloze interacties. Momenteel bouwen alleen agenten voort op Copilot-ondersteuningssessies, wat betekent dat ze de context van eerdere interacties binnen dezelfde sessie kunnen onthouden voor relevantere reacties. Aangepaste agenten hebben nog geen sessieondersteuning. Alle agenten van BizChat/Copilot Studio zijn nu beschikbaar voor gebruik in uw vergaderingen en gesprekken. Deze functie maakt veilig testen en iteratie mogelijk, waarbij collega's worden uitgenodigd voor feedback zonder dat gevoelige gegevens of productiekanalen worden beïnvloed.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
       "app": "teams",
@@ -10055,10 +10357,12 @@
       "id": 490738,
       "title": "Microsoft 365-beheercentrum: Gebruiksrapporten - Berichtverbruik voor Pay-as-you-go-ervaringen in Copilot Chat.",
       "desc": "Een nieuw rapport waarmee IT-beheerders de kosten kunnen beheren voor gefactureerde berichten waarvoor Pay-as-you-go is ingeschakeld voor Copilot Chat. De rapportage omvat een gedetailleerd overzicht van gefactureerde berichten per gebruiker, per factureringsbeleid, per agentniveau en per agent-gebruikerniveau. #copilootcontrolesysteem",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365 Admin Center",
       "added": "2025-04-23",
       "modified": "2026-03-23",
@@ -10090,7 +10394,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-23",
       "modified": "2025-07-16",
@@ -10122,7 +10428,9 @@
       "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-18",
       "modified": "2025-04-18",
@@ -10154,7 +10462,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "sharepoint"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-17",
       "modified": "2025-07-22",
@@ -10202,7 +10512,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-15",
       "modified": "2025-05-29",
@@ -10247,10 +10559,12 @@
       "id": 489220,
       "title": "Microsoft Viva: zoekvaardigheid (copiloot in Engage)",
       "desc": "Engage Copilot maakt nu gebruik van zoekvaardigheden om relevante berichten te vinden en samen te vatten, met citaten en directe links.",
-      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Viva",
       "added": "2025-04-14",
       "modified": "2025-04-25",
@@ -10342,11 +10656,13 @@
     {
       "id": 486698,
       "title": "Microsoft Viva: Copilot Analytics - Promptcategoriestatistieken voor Microsoft 365 Copilot Chat",
-      "desc": "Viva Insights Copilot Dashboard toont Microsoft 365 Copilot Chat-promptcategoriestatistieken binnen Copilot Chat (werk)-inzichten. #copilootcontrolesysteem",
-      "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+      "desc": "Viva Insights Copilot Dashboard begint met het tonen van Microsoft 365 Copilot Chat-promptcategoriestatistieken binnen Copilot Chat (werk)-inzichten. #copilootcontrolesysteem",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-09",
       "modified": "2026-02-24",
@@ -10362,7 +10678,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "viva"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-09",
       "modified": "2025-04-25",
@@ -10394,7 +10712,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-08",
       "modified": "2025-04-08",
@@ -10410,7 +10730,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-08",
       "modified": "2025-04-08",
@@ -10426,7 +10748,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-08",
       "modified": "2025-04-08",
@@ -10458,7 +10782,9 @@
       "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-05",
       "modified": "2025-04-05",
@@ -10474,7 +10800,9 @@
       "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-04-05",
       "modified": "2025-04-05",
@@ -10490,7 +10818,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2025-04-05",
       "modified": "2025-04-05",
@@ -10613,7 +10943,7 @@
     },
     {
       "id": 485713,
-      "title": "Microsoft Teams: Selecteer de camera vóór deelname en tijdens de vergadering",
+      "title": "Microsoft Teams: Selecteer camera vóór deelname en tijdens vergadering",
       "desc": "Gebruikers kunnen een interne of externe camera selecteren of uitgeschakeld houden voordat ze deelnemen aan of tijdens Teams-vergaderingen.",
       "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
@@ -10730,7 +11060,11 @@
       "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "excel",
+        "powerpoint",
+        "word"
+      ],
       "prodLabel": "Excel",
       "added": "2025-03-24",
       "modified": "2026-03-11",
@@ -10791,10 +11125,12 @@
       "id": 485727,
       "title": "Microsoft Viva: Copilot Dashboard Trendline-toevoegingen",
       "desc": "Copilot Dashboard-gebruikers kunnen nu trends in aanvullende belangrijke adoptie- en impactstatistieken in de loop van de tijd visualiseren om sneller patronen en kansen in de adoptie door werknemers te identificeren voor betere licentiebeslissingen. Gebruikers kunnen nu adoptiestatistieken bekijken op een maandelijks of wekelijks tijdsbestek voor specifieke interessegroepen, en diep duiken in impactstatistieken zoals door de copiloot ondersteunde uren, ondernomen acties en functiespecifieke dimensies.",
-      "benefit": "Beheerders en managers krijgen beter inzicht in hoe Copilot wordt gebruikt binnen de organisatie.",
+      "benefit": "Managers en HR krijgen AI-inzichten over Copilot-adoptie en medewerkerservaringen.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-03-19",
       "modified": "2025-05-02",
@@ -10821,7 +11157,7 @@
     },
     {
       "id": 483884,
-      "title": "Microsoft Purview-complianceportal: nieuwe personalisatie-instellingen",
+      "title": "Microsoft Purview-nalevingsportal: nieuwe personalisatie-instellingen",
       "desc": "Microsoft Purview lanceert een nieuwe personalisatiepagina waarmee gebruikers hun individuele ervaring op Purview kunnen personaliseren.",
       "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
@@ -10855,10 +11191,12 @@
       "id": 484123,
       "title": "Microsoft Teams: Copilot-samenvatting voor doorverbonden gesprekken",
       "desc": "Wanneer een oproep wordt doorgeschakeld/doorverbonden naar een andere collega, kunnen gebruikers Copilot vragen om automatisch de context, open vragen etc. voor de oproep samen te vatten als briefing voor de ontvangende collega. Deze functie zorgt ervoor dat de ontvanger goed op de hoogte is van de eerdere gesprekken die betrekking hebben op het doorverbonden gesprek, waardoor zijn begrip en voorbereiding worden vergroot.",
-      "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-03-07",
       "modified": "2025-06-05",
@@ -10902,7 +11240,7 @@
     {
       "id": 484053,
       "title": "SharePoint: Ontwerpideeën suggereren afbeeldingen van organisatiemiddelen",
-      "desc": "SharePoint-ontwerpideeën kunnen nu uit uw organisatie-activa-afbeeldingen worden gehaald om binnen ontwerpideeën te gebruiken. Indien beschikbaar bij het uitvoeren van afbeeldingssuggesties, tonen de eerste drie ideeën suggesties met afbeeldingen uit organisatiemiddelen, terwijl de rest van de ideeën stockfoto's zullen gebruiken.",
+      "desc": "SharePoint-ontwerpideeën kunnen nu uit uw organisatieactiva-afbeeldingen worden gehaald en in ontwerpideeën worden gebruikt. Indien beschikbaar bij het uitvoeren van afbeeldingssuggesties, tonen de eerste drie ideeën suggesties met afbeeldingen uit organisatiemiddelen, terwijl de rest van de ideeën stockfoto's zullen gebruiken.",
       "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
       "status": "dev",
       "app": "sharepoint",
@@ -10919,10 +11257,12 @@
       "id": 325948,
       "title": "Microsoft Teams: Mogelijkheid om Copilot te stoppen terwijl deze een reactie genereert",
       "desc": "Copilot in Teams heeft nu een 'stop'-knop na het verzenden van een prompt. Hierdoor kan de gebruiker de reactie van Copilot stoppen voordat de reactie is begonnen te genereren, of zelfs nadat de reactie is gegenereerd. De gebruiker kan dan desgewenst een nieuwe prompt starten.",
-      "benefit": "Medewerkers werken efficiënter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-03-06",
       "modified": "2025-05-16",
@@ -11015,10 +11355,12 @@
       "id": 481352,
       "title": "Microsoft Teams: Copilot in Teams-vergaderingsreacties kunnen worden geëxporteerd naar Word en Excel",
       "desc": "Nu zullen bepaalde reacties van Copilot in Teams-vergaderingen een optie hebben om te ‘bewerken’ in Word of Excel. De ‘bewerken’-optie voor Word zal beschikbaar zijn voor Copilot-antwoorden die lang zijn (meer dan 1300 tekens) en zal automatisch een Word-document openen met het geschreven antwoord. De optie ‘bewerken in’ voor Excel zal beschikbaar zijn voor Copilot-antwoorden die in een tabel zijn opgemaakt, en zal automatisch een Excel-bestand openen waaraan het opgemaakte antwoord is toegevoegd. Copilot-reacties kunnen alleen worden geëxporteerd als het vergaderbeleid voor de vergadering zo is ingesteld dat het kopiëren of doorsturen van vergaderingschat, live ondertiteling, transcripties en Copilot-reacties is toegestaan. De exportmogelijkheid neemt ook het gevoeligheidslabel van de vergadering over (gevoeligheidslabels zijn beschikbaar voor Teams Premium-gebruikers).",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2025-02-26",
       "modified": "2025-05-01",
@@ -11050,7 +11392,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2025-02-25",
       "modified": "2025-06-05",
@@ -11127,10 +11471,13 @@
       "id": 481825,
       "title": "SharePoint: Chat één-op-één met SharePoint-agenten in Teams",
       "desc": "Gebruikers kunnen rechtstreeks binnen Teams-chat één-op-één chatten met een SharePoint-agent.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "sharepoint",
+      "tags": [
+        "teams",
+        "copilot"
+      ],
       "prodLabel": "Teams",
       "added": "2025-02-19",
       "modified": "2026-03-26",
@@ -11175,10 +11522,12 @@
       "id": 481823,
       "title": "SharePoint: SharePoint-agenten in Teams Mobile",
       "desc": "Gebruik SharePoint-agents in Teams Mobile-groepschats en -vergaderingen.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "sharepoint",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "SharePoint",
       "added": "2025-02-14",
       "modified": "2025-04-01",
@@ -11191,10 +11540,12 @@
       "id": 480726,
       "title": "Microsoft Viva: SharePoint-agentanalyse op Viva Insights",
       "desc": "Ontdek hoe uw medewerkers gedurende een bepaalde periode de belangrijkste SharePoint-agentfuncties hebben gebruikt en krijg inzicht in de ROI. #copilootcontrolesysteem",
-      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
       "status": "dev",
-      "app": "sharepoint",
-      "tags": [],
+      "app": "viva",
+      "tags": [
+        "sharepoint"
+      ],
       "prodLabel": "SharePoint",
       "added": "2025-02-14",
       "modified": "2026-01-06",
@@ -11319,10 +11670,12 @@
       "id": 422325,
       "title": "OneNote: Copilot op OneNote brengt notities van video en afbeeldingen binnen (iPhone)",
       "desc": "Met deze nieuwe functie in OneNote Mobile kunt u video's en afbeeldingen delen in OneNote en zien hoe de magie zich ontvouwt. Alle belangrijke inzichten uit de video en afbeeldingen worden moeiteloos vastgelegd in notities, zodat u ze niet handmatig hoeft te maken.",
-      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneNote",
       "added": "2025-01-31",
       "modified": "2025-02-06",
@@ -11463,10 +11816,12 @@
       "id": 470140,
       "title": "Microsoft 365-beheercentrum: Nieuwe gebruikersinterface voor functietoegangsbeheer in het Beheercentrum",
       "desc": "Via de nieuwe gebruikersinterface voor het beheer van functietoegang kunnen beheerders de instellingen voor functietoegang rechtstreeks in het Microsoft 365-beheercentrum beheren. Functietoegangsbeheer stelt beheerders in staat toegangsbeleid te gebruiken om te beheren welke gebruikers toegang hebben tot specifieke functies in Viva-apps, zodat u uw implementaties kunt afstemmen op uw lokale wettelijke of zakelijke vereisten. Voorheen kon dit beleid alleen worden beheerd met Microsoft PowerShell-cmdlets. Na deze implementatie kunnen beheerders ervoor kiezen om het Microsoft 365-beheercentrum of PowerShell te gebruiken om de toegang tot functies te beheren. Bestaand beleid dat voor een organisatie is ingesteld, blijft bestaan ​​en kan op beide plaatsen worden beheerd.",
-      "benefit": "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "viva",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "viva"
+      ],
       "prodLabel": "Viva",
       "added": "2025-01-08",
       "modified": "2025-01-08",
@@ -11591,10 +11946,12 @@
       "id": 325873,
       "title": "Microsoft Teams: Copilot in Teams kan inhoud analyseren die tijdens een vergadering op het scherm wordt gedeeld",
       "desc": "Copilot in Teams kan inhoud analyseren die tijdens een vergadering op het scherm wordt gedeeld wanneer opnemen is ingeschakeld. Dit, samen met het transcript van de vergadering en de chat, stelt gebruikers in staat om Copilot te vragen om specifieke informatie uit op het scherm gedeelde inhoud samen te vatten of te vinden (bijvoorbeeld 'Welke producten hadden de hoogste omzet?'), inzichten uit zowel het gesprek als de presentatie te consolideren (bijvoorbeeld 'Wat was de feedback per dia?') en nieuwe inhoud op te stellen op basis van de hele vergadering (bijvoorbeeld 'Herschrijf de paragraaf die op het scherm wordt gedeeld en neem de feedback uit de chat op'). Dit werkt voor alle inhoud die wordt gedeeld terwijl u uw bureaubladscherm deelt (inclusief maar niet beperkt tot documenten, dia's, spreadsheets en websites, ongeacht platform of app). Ondersteuning voor PowerPoint Live en Whiteboard in Teams zal beschikbaar zijn",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "teams",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-11-20",
       "modified": "2025-10-15",
@@ -11626,7 +11983,9 @@
       "benefit": "Medewerkers houden hun inbox sneller bij doordat Copilot de meest urgente e-mails automatisch naar voren brengt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-07-09",
       "modified": "2025-03-04",
@@ -11834,7 +12193,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-12-06",
       "modified": "2025-08-15",
@@ -11850,7 +12211,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-12-06",
       "modified": "2025-08-15",
@@ -11879,10 +12242,12 @@
       "id": 471004,
       "title": "Microsoft 365: Bijgewerkte instellingen voor de Microsoft 365-app op Windows",
       "desc": "De Microsoft 365-app op Windows heeft instellingen toegevoegd om de app aan de taakbalk vast te zetten.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "365",
       "added": "2024-12-13",
       "modified": "2025-01-10",
@@ -11895,10 +12260,12 @@
       "id": 422324,
       "title": "OneNote: samenvatting en vragen en antwoorden in OneNote Mobile met Copilot (Iphone)",
       "desc": "Met deze nieuwe samenvattingsfunctie in OneNote Mobile kunt u een korte en vloeiende samenvatting van uw langere pagina's maken, waardoor u relevante informatie sneller kunt verwerken. Met de Vraag en het Antwoord binnen handbereik kunt u direct in uw aantekeningen realtime antwoorden op uw vragen krijgen, waardoor u sneller en effectiever toegang krijgt tot informatie en deze kunt gebruiken.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-10-22",
       "modified": "2026-01-16",
@@ -11911,10 +12278,12 @@
       "id": 422323,
       "title": "OneNote: samenvatting en vragen en antwoorden in OneNote Mobile met Copilot (Android)",
       "desc": "Met deze nieuwe samenvattingsfunctie in OneNote Mobile kunt u een korte en vloeiende samenvatting van uw langere pagina's maken, waardoor u relevante informatie sneller kunt verwerken. Met de Vraag en het Antwoord binnen handbereik kunt u direct in uw aantekeningen realtime antwoorden op uw vragen krijgen, waardoor u sneller en effectiever toegang krijgt tot informatie en deze kunt gebruiken.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-10-22",
       "modified": "2026-01-16",
@@ -11927,10 +12296,12 @@
       "id": 422322,
       "title": "OneNote: Copilot op OneNote brengt notities uit video en afbeeldingen binnen (Android)",
       "desc": "Met deze nieuwe functie in OneNote Mobile kunt u video's en afbeeldingen delen in OneNote en zien hoe de magie zich ontvouwt. Alle belangrijke inzichten uit de video en afbeeldingen worden moeiteloos vastgelegd in notities, zodat u ze niet handmatig hoeft te maken.",
-      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneNote",
       "added": "2024-10-22",
       "modified": "2025-02-06",
@@ -11943,10 +12314,12 @@
       "id": 422321,
       "title": "OneNote: Verhoog de productiviteit via spraak met Copilot op OneNote Mobile (Android)",
       "desc": "Copilot in OneNote transformeert gefragmenteerde stemgedachten en gespreksopnamen in duidelijke, bruikbare inzichten. Het verhoogt de productiviteit door mondelinge aantekeningen nauwkeurig vast te leggen en te ordenen, hiaten op te vullen en gestructureerde samenvattingen te bieden, waardoor het gemakkelijker wordt om informatie effectief te beoordelen en te gebruiken.  Spannend nieuws! Copilot in OneNote heeft nu toegang tot verbale notities en kan deze begrijpen, gesprekken synthetiseren en gefragmenteerde gedachten omzetten in duidelijke, bruikbare inzichten, waardoor de productiviteit wordt verhoogd.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneNote",
       "added": "2024-10-22",
       "modified": "2025-02-06",
@@ -11959,10 +12332,12 @@
       "id": 422320,
       "title": "OneNote: Verhoog de productiviteit via spraak met Copilot op OneNote Mobile (iPhone)",
       "desc": "Copilot in OneNote transformeert gefragmenteerde stemgedachten en gespreksopnamen in duidelijke, bruikbare inzichten. Het verhoogt de productiviteit door mondelinge aantekeningen nauwkeurig vast te leggen en te ordenen, hiaten op te vullen en gestructureerde samenvattingen te bieden, waardoor het gemakkelijker wordt om informatie effectief te beoordelen en te gebruiken.  Spannend nieuws! Copilot in OneNote heeft nu toegang tot verbale notities en kan deze begrijpen, gesprekken synthetiseren en gefragmenteerde gedachten omzetten in duidelijke, bruikbare inzichten, waardoor de productiviteit wordt verhoogd.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneNote",
       "added": "2024-10-22",
       "modified": "2025-02-06",
@@ -12010,7 +12385,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "rolling",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-12-13",
       "modified": "2025-07-24",
@@ -12023,10 +12400,12 @@
       "id": 472030,
       "title": "Microsoft Purview-nalevingsportal: Data Lifecycle Management - Bewaring op basis van Laatst geopend voor bestanden in OneDrive en SharePoint",
       "desc": "Hierdoor ontstaat de mogelijkheid om retentie toe te passen op elk SharePoint- of OneDrive-item op basis van wanneer het voor het laatst door een gebruiker is geopend. #copilootcontrolesysteem",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "purview",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-12-11",
       "modified": "2026-02-05",
@@ -12090,7 +12469,9 @@
       "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-07-09",
       "modified": "2025-04-30",
@@ -12106,7 +12487,9 @@
       "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
       "status": "dev",
       "app": "copilot",
-      "tags": [],
+      "tags": [
+        "word"
+      ],
       "prodLabel": "Word",
       "added": "2024-12-05",
       "modified": "2025-03-04",
@@ -12215,10 +12598,12 @@
       "id": 411302,
       "title": "Outlook: Geef prioriteit aan mijn inbox door Copilot",
       "desc": "Prioriteit geven aan mijn inbox door Copilot markeert e-mails met hoge prioriteit in uw inbox en geeft een korte samenvatting van het belang van de e-mail in de berichtenlijst en het leesvenster. E-mails kunnen worden gesorteerd en gefilterd op de prioriteit van Copilot. In Web en New Outlook voor Windows kunt u er ook voor kiezen om Copilot e-mails met lage prioriteit te laten markeren. #nieuweoutlookforwindows",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
       "status": "rolling",
-      "app": "copilot",
-      "tags": [],
+      "app": "outlook",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Outlook",
       "added": "2024-09-16",
       "modified": "2025-04-21",
@@ -12343,10 +12728,12 @@
       "id": 470023,
       "title": "Microsoft 365-beheercentrum: Google naar Entra Identity Sync-service",
       "desc": "Google naar Entra Identity Sync-service is een cloud-2-cloud-gebruikersidentiteits-onboarding en eenrichtingssynchronisatietool van Google-werkruimte naar Entra ID. Dit zal beschikbaar zijn als onderdeel van het M365-beheercentrum voor concurrerende klanten van Google die naar M365 verhuizen om de identiteiten in de M365-farm te creëren en Drive- en Mail-inhoud naar Onedrive en Exchange online te verplaatsen",
-      "benefit": "Identiteits- en toegangsbeheer wordt veiliger en makkelijker te beheren.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "entra",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "entra"
+      ],
       "prodLabel": "365",
       "added": "2024-11-22",
       "modified": "2024-11-22",
@@ -12455,10 +12842,12 @@
       "id": 469502,
       "title": "OneDrive: Converteer het antwoord van Copilot naar een Word-bestand",
       "desc": "Wilt u een samenvatting of FAQ die Copilot voor u heeft gegenereerd? Nu kunt u met één klik elk antwoord van Copilot omzetten in een Word-document. Deze functie vereist een Microsoft Copilot voor Microsoft 365-licentie en zal beschikbaar zijn voor commerciële klanten op OneDrive Web.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder en gebruiksvriendelijker.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "onedrive",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "Copilot",
       "added": "2024-11-20",
       "modified": "2024-11-20",
@@ -12471,10 +12860,12 @@
       "id": 469501,
       "title": "OneDrive: maak een presentatie van een Word-bestand",
       "desc": "Met Copilot kunt u met slechts één klik de eerste versie van uw presentatie maken met behulp van een Word-bestand. Deze functie vereist een Microsoft Copilot voor Microsoft 365-licentie en zal beschikbaar zijn voor commerciële klanten op OneDrive Web.",
-      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "benefit": "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder en gebruiksvriendelijker.",
       "status": "dev",
-      "app": "copilot",
-      "tags": [],
+      "app": "onedrive",
+      "tags": [
+        "copilot"
+      ],
       "prodLabel": "OneDrive",
       "added": "2024-11-20",
       "modified": "2024-11-20",
@@ -12487,10 +12878,14 @@
       "id": 468888,
       "title": "Microsoft Purview: Pas gevoeligheidslabels toe met door de gebruiker gedefinieerde machtigingen in Office voor het web in Microsoft 365",
       "desc": "Office voor het web in Microsoft 365 ondersteunt de toepassing van gevoeligheidslabels met door de gebruiker gedefinieerde machtigingen.",
-      "benefit": "Werken met data in Excel wordt slimmer en toegankelijker voor alle medewerkers.",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
       "status": "rolling",
-      "app": "excel",
-      "tags": [],
+      "app": "purview",
+      "tags": [
+        "excel",
+        "powerpoint",
+        "word"
+      ],
       "prodLabel": "Excel",
       "added": "2024-11-19",
       "modified": "2026-04-01",
@@ -13254,7 +13649,7 @@
     {
       "id": 117394,
       "title": "Whiteboard: bestaande Azure Board-migratie",
-      "desc": "Met deze functie worden boards die aanwezig zijn in de Azure-opslag van uw tenant gemigreerd naar OneDrive voor Bedrijven-opslag. Meer informatie volgt zodra we de release naderen.",
+      "desc": "Met deze functie worden boards die in de Azure-opslag van uw tenant aanwezig zijn, gemigreerd naar OneDrive voor Bedrijven-opslag. Meer informatie volgt zodra we de release naderen.",
       "benefit": "Creatieve samenwerking en brainstormsessies worden eenvoudiger via Microsoft Whiteboard.",
       "status": "rolling",
       "app": "whiteboard",
@@ -13271,10 +13666,15 @@
       "id": 115482,
       "title": "Microsoft 365: Informatiebarrières (IB) upgraden van IB v1 naar IB v2 met nieuwe mogelijkheden",
       "desc": "Information Barriers (IB) V2 biedt nieuwe mogelijkheden, waaronder ondersteuning op grotere segmentschaal, ondersteuning voor meerdere segmenten en flexibele vindbaarheid van mensen, enz. Bestaande IB v1-tenants hebben een upgrade naar IB v2 nodig om van deze nieuwe mogelijkheden te kunnen profiteren. Dit roadmapitem is alleen bedoeld voor alle IB v1-klanten. Alle andere klanten krijgen IB v2-mogelijkheden wanneer ze IB in hun tenants inschakelen. IB v2-upgrade is opt-in.",
-      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
       "status": "dev",
-      "app": "teams",
-      "tags": [],
+      "app": "other",
+      "tags": [
+        "exchange",
+        "teams",
+        "onedrive",
+        "sharepoint"
+      ],
       "prodLabel": "Exchange",
       "added": "2023-01-31",
       "modified": "2026-03-03",
