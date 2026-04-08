@@ -177,7 +177,7 @@
       </div>
       <div class="node" onclick="selectNode('comp-detect')" id="n-comp-detect">
         <div class="nicon" style="font-size:1rem">🔍</div><div class="ntitle" style="font-size:0.75rem">Product- &amp; statusdetectie</div>
-        <div class="nsub">DETECT_PATTERNS · 16 producten</div>
+        <div class="nsub">DETECT_PATTERNS · 30 producten</div>
       </div>
       <div class="node" style="grid-column:span 2" onclick="selectNode('comp-writer')" id="n-comp-writer">
         <div class="nicon" style="font-size:1rem">✍️</div><div class="ntitle" style="font-size:0.75rem">Data Writer</div>
@@ -191,7 +191,7 @@
     <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:1rem">
       <div class="node" onclick="selectNode('comp-datajson')" id="n-comp-datajson">
         <div class="nicon" style="font-size:1rem">📦</div><div class="ntitle" style="font-size:0.75rem">data.json</div>
-        <div class="nsub">items[] · removed[] · count · translation_cache</div>
+        <div class="nsub">items[] · removed[] · count</div>
       </div>
       <div class="node" onclick="selectNode('comp-archivejson')" id="n-comp-archivejson">
         <div class="nicon" style="font-size:1rem">🗄️</div><div class="ntitle" style="font-size:0.75rem">archive/YYYY-MM-DD.json</div>
@@ -268,7 +268,7 @@
 DETECT_PATTERNS = {
   <span class="cs">"Teams"</span>: [<span class="cs">"teams"</span>, <span class="cs">"meeting"</span>],
   <span class="cs">"SharePoint"</span>:[<span class="cs">"sharepoint"</span>],
-  <span class="cc">... # 16 producten totaal</span>
+  <span class="cc">... # 30 producten totaal</span>
 }
 <span class="cf">def</span> <span class="ck">detect_product</span>(
   row: <span class="ct">dict</span>) → <span class="ct">str</span>:
@@ -281,17 +281,20 @@ DETECT_PATTERNS = {
 <div class="section-lbl">data.json — Schema</div>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-bottom:1.25rem">
   <div class="code-block" onclick="selectNode('code-item-schema')" id="n-code-item-schema"><div class="cb-title">📦 RoadmapItem (één item in items[])</div>{
-  <span class="ck">"id"</span>: <span class="ct">string</span>        <span class="cc"># Microsoft ID (uniek)</span>
-  <span class="ck">"title_nl"</span>: <span class="ct">string</span>   <span class="cc"># Vertaalde titel</span>
-  <span class="ck">"benefit_nl"</span>: <span class="ct">string</span> <span class="cc"># Vertaalde beschrijving</span>
-  <span class="ck">"title_en"</span>: <span class="ct">string</span>   <span class="cc"># Originele Engelse titel</span>
-  <span class="ck">"app"</span>: <span class="ct">string</span>         <span class="cc"># bijv. "teams", "copilot"</span>
+  <span class="ck">"id"</span>: <span class="ct">number</span>        <span class="cc"># Microsoft ID (uniek)</span>
+  <span class="ck">"title"</span>: <span class="ct">string</span>      <span class="cc"># Vertaalde Nederlandse titel</span>
+  <span class="ck">"desc"</span>: <span class="ct">string</span>       <span class="cc"># Vertaalde Nederlandse beschrijving</span>
+  <span class="ck">"benefit"</span>: <span class="ct">string</span>    <span class="cc"># AI-gegenereerde organisatie-impact (NL)</span>
+  <span class="ck">"app"</span>: <span class="ct">string</span>        <span class="cc"># bijv. "teams", "copilot"</span>
+  <span class="ck">"tags"</span>: <span class="ct">string[]</span>     <span class="cc"># aanvullende product-keys</span>
+  <span class="ck">"prodLabel"</span>: <span class="ct">string</span>  <span class="cc"># weergavelabel bijv. "OneDrive"</span>
   <span class="ck">"status"</span>: <span class="ct">enum</span>       <span class="cc"># "rolling" | "dev"</span>
   <span class="ck">"action"</span>: <span class="ct">enum</span>       <span class="cc"># "none" | "admin" | "user"</span>
-  <span class="ck">"release"</span>: <span class="ct">string</span>    <span class="cc"># bijv. "mei 2026"</span>
+  <span class="ck">"actionLabel"</span>: <span class="ct">string</span> <span class="cc"># leesbare actie-omschrijving (NL)</span>
+  <span class="ck">"release"</span>: <span class="ct">string</span>    <span class="cc"># bijv. "June CY2026"</span>
+  <span class="ck">"preview"</span>: <span class="ct">string</span>    <span class="cc"># preview-datum indien van toepassing</span>
   <span class="ck">"added"</span>: <span class="ct">string</span>      <span class="cc"># ISO-datum toegevoegd</span>
   <span class="ck">"modified"</span>: <span class="ct">string</span>   <span class="cc"># ISO-datum laatste wijziging</span>
-  <span class="ck">"moreInfoLink"</span>: <span class="ct">string</span> <span class="cc"># URL naar Microsoft docs</span>
 }</div>
 
   <div class="code-block" onclick="selectNode('code-root-schema')" id="n-code-root-schema"><div class="cb-title">🗂️ data.json (root object)</div>{
@@ -303,9 +306,7 @@ DETECT_PATTERNS = {
     <span class="cc"># Alle actuele roadmap-items</span>
   <span class="ck">"removed"</span>: <span class="ct">RoadmapItem[]</span>
     <span class="cc"># Verdwenen/gelanceerde items deze run</span>
-  <span class="ck">"translation_cache"</span>: {
-    <span class="ck">"&lt;id&gt;"</span>: { <span class="ck">"title_nl"</span>, <span class="ck">"benefit_nl"</span>, <span class="ck">"hash"</span> }
-  }
+    <span class="cc"># bevat ook: statusNl ("Beschikbaar" | "Geannuleerd" | ...)</span>
 }</div>
 </div>
 
@@ -333,7 +334,7 @@ DETECT_PATTERNS = {
       prevWkStart, prevWkEnd)
     || inRange(item.modified, ...)</div>
 
-  <div class="code-block" onclick="selectNode('code-render')" id="n-code-render"><div class="cb-title">🖼️ appIconHTML() — gedeeld via shared.js + app-meta.js</div><span class="cc"># 16 base64 PNG's in APP_ICONS (~80 KB)</span>
+  <div class="code-block" onclick="selectNode('code-render')" id="n-code-render"><div class="cb-title">🖼️ appIconHTML() — gedeeld via shared.js + app-meta.js</div><span class="cc"># base64 PNG's in APP_ICONS (per product)</span>
 <span class="cc"># Inline in elke pagina — geen extern bestand</span>
 APP_ICONS = {
   copilot: <span class="cs">"data:image/png;base64,..."</span>,
@@ -525,7 +526,7 @@ const ND = {
     badge:'✍️ Component', bc:'var(--amber-bg)', btc:'var(--amber-t)',
     title:'Data Writer', sub:'fetch_roadmap.py',
     fn:'Schrijft alle outputbestanden: data.json met actuele items en removed[], een weekarchief als er items verdwenen zijn, en archive/index.json.',
-    logic:'Volgorde: 1) data.json wegschrijven (overschrijft), 2) als removed[] niet leeg → archive/YYYY-MM-DD.json aanmaken, 3) archiefdatums ouder dan 90 dagen verwijderen, 4) archive/index.json bijwerken, 5) git add/commit/push via Actions.',
+    logic:'Volgorde: 1) data.json wegschrijven (overschrijft; geen translation_cache meer), 2) als removed[] niet leeg → archive/YYYY-MM-DD.json aanmaken, 3) archiefdatums ouder dan 90 dagen verwijderen, 4) archive/index.json bijwerken, 5) git add/commit/push via Actions.',
     tech:'json.dump(data, f, ensure_ascii=False, indent=2). Commit-bericht: "Update roadmap data YYYY-MM-DD". GitHub Actions commit als github-actions[bot]. Pages herdeployt automatisch na push.'
   },
 
