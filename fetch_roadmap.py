@@ -130,6 +130,24 @@ def app_key(p):
             return k
     return "other"
 
+def app_key_from_title(title):
+    """Leidt de primaire app-sleutel af uit de titelprefix (voor de ':')."""
+    if ':' in title:
+        prefix = title.split(':', 1)[0].strip()
+        return app_key(prefix)
+    return app_key(title)
+
+def extra_tags(product_field, primary_key):
+    """Alle herkende app-sleutels uit Tags-Product, behalve de primaire."""
+    seen = {primary_key}
+    tags = []
+    for part in product_field.replace(';', ',').split(','):
+        k = app_key(part.strip())
+        if k and k != 'other' and k not in seen:
+            seen.add(k)
+            tags.append(k)
+    return tags
+
 def make_label(product, key):
     label = product.split(",")[0].strip().replace("Microsoft ", "").split("(")[0].strip()
     return label if label and len(label) <= 30 else APP_LABELS.get(key, "Overig")
@@ -374,7 +392,7 @@ cached_count = new_count = retrans_count = 0
 
 for i, row in enumerate(active_rows):
     product  = row.get("Tags - Product", "")
-    key      = app_key(product)
+    key      = app_key_from_title(title_en) if title_en else app_key(product)
     title_en = row.get("Description", "").strip()
     desc_en  = row.get("Details", "").strip()
     item_id  = int(row.get("Feature ID", 0) or 0)
@@ -407,12 +425,7 @@ for i, row in enumerate(active_rows):
         "benefit":     benefit,
         "status":      "rolling" if "rolling" in row.get("Status", "").lower() else "dev",
         "app":         key,
-        "tags":        [
-            s for s in (
-                PRODUCT_SLUG.get(p.get("tagName", "").lower().strip())
-                for p in item.get("tagsContainer", {}).get("products", [])
-            ) if s and s != key
-        ],
+        "tags":        extra_tags(product, key),
         "prodLabel":   make_label(product, key),
         "added":       row.get("Added to Roadmap", "").strip(),
         "modified":    modified,
