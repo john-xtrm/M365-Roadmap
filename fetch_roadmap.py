@@ -95,6 +95,7 @@ NL_INDICATORS = [
     "de ", "het ", "een ", "van ", "voor ", "naar ", "met ", "zijn ", "worden ",
     "kunnen ", "wordt ", "door ", "dat ", "dit ", "ook ", "heeft ", "niet ",
     "maar ", "meer ", "om ", "als ", "bij ", "over ", "aan ", "uit ", "op ",
+    "in ", "en ", "te ", "is ", "worden ", "wordt ",
     "waardoor", "waarmee", "waarbij", "hierdoor", "hiermee"
 ]
 
@@ -102,7 +103,9 @@ def is_dutch(text):
     if not text or len(text) < 10:
         return False
     text_lower = text.lower()
-    return sum(1 for w in NL_INDICATORS if w in text_lower) >= 2
+    # Titels zijn korter dan beschrijvingen — drempel van 1 volstaat
+    threshold = 1 if len(text) < 80 else 2
+    return sum(1 for w in NL_INDICATORS if w in text_lower) >= threshold
 
 # ── App-detectie ──────────────────────────────────────────────────────────
 APP_LABELS = {
@@ -375,21 +378,25 @@ if os.path.exists("data.json"):
     try:
         with open("data.json", encoding="utf-8") as f:
             existing = json.load(f)
-        loaded = skipped = 0
+        loaded = needs_retrans = 0
         for item in existing.get("items", []):
             item_id  = item["id"]
             modified = item.get("modified", "")
             prev_items[item_id] = item
-            if is_dutch(item.get("title", "")):
-                cache[(item_id, modified)] = {
-                    "title":   item["title"],
-                    "desc":    item.get("desc", ""),
-                    "benefit": item.get("benefit", ""),
-                }
+            dutch = is_dutch(item.get("title", ""))
+            # Altijd in cache zetten — ook niet-Nederlandse items
+            # retranslate=True zorgt dat ze bij de volgende verwerking worden bijgewerkt
+            cache[(item_id, modified)] = {
+                "title":       item["title"],
+                "desc":        item.get("desc", ""),
+                "benefit":     item.get("benefit", ""),
+                "retranslate": not dutch,
+            }
+            if dutch:
                 loaded += 1
             else:
-                skipped += 1
-        print(f"Cache geladen: {loaded} Nederlandse items, {skipped} overgeslagen")
+                needs_retrans += 1
+        print(f"Cache geladen: {loaded} Nederlandse items, {needs_retrans} gemarkeerd voor hervertaling")
     except Exception as e:
         print(f"Cache kon niet worden geladen: {e}")
 else:
@@ -470,31 +477,36 @@ for i, row in enumerate(active_rows):
     modified = row.get("Last Modified", "").strip()
     cache_key = (item_id, modified)
 
+    needs_processing = False
     if cache_key in cache:
-        nl_title = cache[cache_key]["title"]
-        nl_desc  = cache[cache_key]["desc"]
-        benefit  = cache[cache_key].get("benefit", "")
-        cached_count += 1
-        print(f"  [{i+1}/{len(active_rows)}] ✓ {title_en[:65]}")
-
-        # Benefit ontbreekt in cache (oude entry vóór Gemini) → alsnog genereren
-        if not benefit:
-            gemini_result = gemini_process_item(title_en, desc_en)
-            if gemini_result:
-                benefit = gemini_result["benefit"]
-                gemini_count += 1
-                time.sleep(4)
-            else:
-                benefit = generate_benefit(key, title_en, desc_en)
-                fallback_count += 1
-    else:
-        if any(k[0] == item_id for k in cache):
+        cached_entry = cache[cache_key]
+        if cached_entry.get("retranslate", False):
+            # Item staat in cache maar was niet correct Nederlands → hervertalen
             retrans_count += 1
-            print(f"  [{i+1}/{len(active_rows)}] ↺ Gewijzigd: {title_en[:65]}")
+            print(f"  [{i+1}/{len(active_rows)}] ↺ Hervertalen: {title_en[:65]}")
+            needs_processing = True
         else:
-            new_count += 1
-            print(f"  [{i+1}/{len(active_rows)}] ↻ Nieuw:     {title_en[:65]}")
+            nl_title = cached_entry["title"]
+            nl_desc  = cached_entry["desc"]
+            benefit  = cached_entry.get("benefit", "")
+            cached_count += 1
+            print(f"  [{i+1}/{len(active_rows)}] ✓ {title_en[:65]}")
+            # Benefit ontbreekt in cache (oude entry vóór Gemini) → alsnog genereren
+            if not benefit:
+                gemini_result = gemini_process_item(title_en, desc_en)
+                if gemini_result:
+                    benefit = gemini_result["benefit"]
+                    gemini_count += 1
+                    time.sleep(4)
+                else:
+                    benefit = generate_benefit(key, title_en, desc_en)
+                    fallback_count += 1
+    else:
+        new_count += 1
+        print(f"  [{i+1}/{len(active_rows)}] ↻ Nieuw:       {title_en[:65]}")
+        needs_processing = True
 
+    if needs_processing:
         gemini_result = gemini_process_item(title_en, desc_en)
         if gemini_result:
             nl_title = gemini_result["title_nl"]
