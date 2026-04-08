@@ -75,6 +75,41 @@ APP_LABELS = {
     "other":      "Overig",
 }
 
+
+# ── Multi-product slug-mapping (voor tags-array in data.json) ─────────────
+PRODUCT_SLUG = {
+    "microsoft teams": "teams",           "teams": "teams",
+    "microsoft outlook": "outlook",       "outlook": "outlook",
+    "microsoft excel": "excel",           "excel": "excel",
+    "microsoft word": "word",             "word": "word",
+    "microsoft powerpoint": "powerpoint", "powerpoint": "powerpoint",
+    "microsoft sharepoint": "sharepoint", "sharepoint": "sharepoint",
+    "microsoft 365 copilot": "copilot",   "microsoft copilot": "copilot",
+    "copilot": "copilot",
+    "microsoft viva": "viva",             "viva": "viva",
+    "microsoft purview": "purview",       "purview": "purview",
+    "microsoft edge": "edge",             "edge": "edge",
+    "microsoft onedrive": "onedrive",     "onedrive": "onedrive",
+    "microsoft exchange": "exchange",     "exchange": "exchange",
+    "microsoft forms": "forms",           "forms": "forms",
+    "microsoft intune": "intune",         "intune": "intune",
+    "microsoft entra": "entra",           "entra id": "entra",
+    "microsoft planner": "planner",       "planner": "planner",
+    "microsoft loop": "loop",             "loop": "loop",
+    "microsoft whiteboard": "whiteboard", "whiteboard": "whiteboard",
+    "microsoft to do": "todo",            "to do": "todo",
+    "microsoft bookings": "bookings",     "bookings": "bookings",
+    "microsoft stream": "stream",         "stream": "stream",
+    "power automate": "automate",         "microsoft power automate": "automate",
+    "power apps": "powerapps",            "microsoft power apps": "powerapps",
+    "power bi": "powerbi",                "microsoft power bi": "powerbi",
+    "yammer": "yammer",                   "viva engage": "yammer",
+    "microsoft defender": "defender",     "defender": "defender",
+    "microsoft search": "search",
+    "microsoft project": "project",       "project": "project",
+    "microsoft visio": "visio",           "visio": "visio",
+    "windows": "windows",
+}
 def app_key(p):
     p = p.lower()
     # Multi-word patronen eerst (volgorde is belangrijk)
@@ -372,6 +407,12 @@ for i, row in enumerate(active_rows):
         "benefit":     benefit,
         "status":      "rolling" if "rolling" in row.get("Status", "").lower() else "dev",
         "app":         key,
+        "tags":        [
+            s for s in (
+                PRODUCT_SLUG.get(p.get("tagName", "").lower().strip())
+                for p in item.get("tagsContainer", {}).get("products", [])
+            ) if s and s != key
+        ],
         "prodLabel":   make_label(product, key),
         "added":       row.get("Added to Roadmap", "").strip(),
         "modified":    modified,
