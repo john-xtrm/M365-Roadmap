@@ -16,7 +16,7 @@ translator = GoogleTranslator(source="en", target="nl")
 
 # ── Gemini API ────────────────────────────────────────────────────────────
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={key}"
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={key}"
 
 # Rate limiter: max 12 requests per minuut (ruim onder gratis tier van 15/min)
 GEMINI_MIN_INTERVAL = 5.0   # seconden tussen aanroepen
