@@ -16,94 +16,93 @@ translator = GoogleTranslator(source="en", target="nl")
 
 # ── Gemini API ────────────────────────────────────────────────────────────
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
-GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={key}"
+GEMINI_URL = (
+    "https://generativelanguage.googleapis.com/v1beta"
+    "/models/gemini-2.0-flash-lite:generateContent?key={key}"
+)
 
 # Rate limiter: max 12 requests per minuut (ruim onder gratis tier van 15/min)
-GEMINI_MIN_INTERVAL = 5.0   # seconden tussen aanroepen
-GEMINI_RETRY_WAIT   = 70    # seconden wachten na 429
-_last_gemini_call   = 0.0   # tijdstip van laatste aanroep
+GEMINI_MIN_INTERVAL    = 5.0   # seconden tussen aanroepen
+_last_gemini_call      = 0.0
+_gemini_quota_exhausted = False  # True na eerste 429 → rest van run via fallback
 
 def _gemini_rate_limit_wait():
-    """Zorg dat er minimaal GEMINI_MIN_INTERVAL seconden tussen aanroepen zit."""
     global _last_gemini_call
     elapsed = time.time() - _last_gemini_call
     if elapsed < GEMINI_MIN_INTERVAL:
-        wait = GEMINI_MIN_INTERVAL - elapsed
-        print(f"    ⏱ Rate limit wacht: {wait:.1f}s")
-        time.sleep(wait)
+        time.sleep(GEMINI_MIN_INTERVAL - elapsed)
     _last_gemini_call = time.time()
 
-def gemini_process_item(title_en, desc_en, retries=3):
-    """Vertaalt title+desc naar NL én genereert benefit in één Gemini-aanroep.
-    Geeft dict met title_nl, desc_nl en benefit terug, of None bij fout."""
-    if not GEMINI_API_KEY:
+def gemini_process_item(title_en, desc_en):
+    """Vertaalt title+desc naar NL en genereert benefit in één aanroep.
+    Bij quota-uitputting (429) schakelt de hele run direct over op Google Translate."""
+    global _gemini_quota_exhausted
+    if not GEMINI_API_KEY or _gemini_quota_exhausted:
         return None
 
-    prompt = (
-        "Je verwerkt een Microsoft 365 roadmap-item voor een Nederlands zakelijk dashboard.\n\n"
-        "Voer twee taken uit op basis van de onderstaande Engelse tekst:\n\n"
-        "1. VERTALING: Vertaal de titel en beschrijving nauwkeurig naar het Nederlands.\n"
-        "   - Behoud technische termen zoals 'tenant', 'admin center', 'DLP', 'rollout',\n"
-        "     'policy', 'compliance', 'PowerShell' — vertaal deze NIET\n"
-        "   - Vertaal alleen wat er staat, voeg niets toe en laat niets weg\n"
-        "   - Schrijf lopende, professionele zinnen\n\n"
-        "2. ORGANISATIE-IMPACT: Schrijf maximaal 2 korte Nederlandse zinnen die concreet\n"
-        "   uitleggen wat deze update betekent voor de organisatie.\n"
-        "   - Beantwoord: wie merkt dit, en wat gaat er concreet beter of makkelijker?\n"
-        "   - Geen IT-jargon — gewone taal voor niet-technische medewerkers\n"
-        "   - Strikt gebaseerd op de aangeleverde tekst, niets verzinnen of toevoegen\n"
-        "   - Begin NIET met 'Met deze update', 'Microsoft introduceert' of 'Deze functie'\n"
-        "   - Schrijf vanuit de medewerker of organisatie, niet vanuit Microsoft\n\n"
-        "Geef je antwoord UITSLUITEND als geldig JSON zonder extra tekst of markdown:\n"
-        '{"title_nl": "...", "desc_nl": "...", "benefit": "..."}\n\n'
-        f"Engelse titel: {title_en}\n"
-        f"Engelse beschrijving: {desc_en[:800]}"
-    )
+    prompt = "\n".join([
+        "Je verwerkt een Microsoft 365 roadmap-item voor een Nederlands zakelijk dashboard.",
+        "",
+        "Voer twee taken uit op basis van de onderstaande Engelse tekst:",
+        "",
+        "1. VERTALING: Vertaal de titel en beschrijving nauwkeurig naar het Nederlands.",
+        "   - Behoud technische termen zoals tenant, admin center, DLP, rollout,",
+        "     policy, compliance, PowerShell - vertaal deze NIET",
+        "   - Vertaal alleen wat er staat, voeg niets toe en laat niets weg",
+        "   - Schrijf lopende, professionele zinnen",
+        "",
+        "2. ORGANISATIE-IMPACT: Schrijf maximaal 2 korte Nederlandse zinnen die concreet",
+        "   uitleggen wat deze update betekent voor de organisatie.",
+        "   - Beantwoord: wie merkt dit, en wat gaat er concreet beter of makkelijker?",
+        "   - Geen IT-jargon, gewone taal voor niet-technische medewerkers",
+        "   - Strikt gebaseerd op de aangeleverde tekst, niets verzinnen of toevoegen",
+        "   - Begin NIET met Met deze update, Microsoft introduceert of Deze functie",
+        "   - Schrijf vanuit de medewerker of organisatie, niet vanuit Microsoft",
+        "",
+        'Geef je antwoord UITSLUITEND als geldig JSON: {"title_nl": "...", "desc_nl": "...", "benefit": "..."}',
+        "",
+        f"Engelse titel: {title_en}",
+        f"Engelse beschrijving: {desc_en[:800]}",
+    ])
 
     payload = json.dumps({
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"maxOutputTokens": 400, "temperature": 0.2}
     }).encode("utf-8")
 
-    for attempt in range(retries):
-        _gemini_rate_limit_wait()   # ← altijd wachten VOOR de aanroep
+    _gemini_rate_limit_wait()
+    try:
+        req = urllib.request.Request(
+            GEMINI_URL.format(key=GEMINI_API_KEY),
+            data=payload,
+            headers={"Content-Type": "application/json"},
+            method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            result = json.loads(resp.read().decode("utf-8"))
+            text = result["candidates"][0]["content"]["parts"][0]["text"].strip()
+            # Verwijder eventuele markdown code-fences
+            text = re.sub(r"^```[a-z]*\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
+            parsed = json.loads(text)
+            if all(k in parsed for k in ("title_nl", "desc_nl", "benefit")):
+                return parsed
+            print("    ⚠ Gemini: onvolledig antwoord — fallback")
+            return None
+    except urllib.error.HTTPError as e:
+        if e.code == 429:
+            # Quota uitgeput: niet wachten, direct permanent naar fallback
+            print("    ⚠ Gemini quota uitgeput (429) — rest van de run via Google Translate")
+            _gemini_quota_exhausted = True
+            return None
         try:
-            req = urllib.request.Request(
-                GEMINI_URL.format(key=GEMINI_API_KEY),
-                data=payload,
-                headers={"Content-Type": "application/json"},
-                method="POST"
-            )
-            with urllib.request.urlopen(req, timeout=15) as resp:
-                result = json.loads(resp.read().decode("utf-8"))
-                text = result["candidates"][0]["content"]["parts"][0]["text"].strip()
-                text = re.sub(r"^```(?:json)?\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
-                parsed = json.loads(text)
-                if all(k in parsed for k in ("title_nl", "desc_nl", "benefit")):
-                    return parsed
-                print(f"    ⚠ Gemini: onvolledig JSON-antwoord, poging {attempt+1}")
-        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8")[:150]
+        except Exception:
             body = ""
-            try:
-                body = e.read().decode("utf-8")
-            except Exception:
-                pass
-            print(f"    ✗ HTTP {e.code} (poging {attempt+1}/{retries}): {body[:200]}")
-            if e.code == 429:
-                print(f"    ⏳ Rate limit — {GEMINI_RETRY_WAIT}s wachten...")
-                time.sleep(GEMINI_RETRY_WAIT)
-                _last_gemini_call = time.time()  # reset timer na lange pauze
-            elif attempt < retries - 1:
-                time.sleep(5)
-            else:
-                print(f"    ⚠ Gemini mislukt na {retries} pogingen")
-        except Exception as e:
-            print(f"    ✗ Fout (poging {attempt+1}/{retries}): {e}")
-            if attempt < retries - 1:
-                time.sleep(5)
-            else:
-                print(f"    ⚠ Gemini mislukt na {retries} pogingen")
-    return None
+        print(f"    ⚠ Gemini HTTP {e.code} — fallback: {body}")
+        return None
+    except Exception as e:
+        print(f"    ⚠ Gemini fout — fallback: {e}")
+        return None
 
 # ── Google Translate fallback ─────────────────────────────────────────────
 def translate(text, retries=3):
@@ -125,7 +124,7 @@ NL_INDICATORS = [
     "de ", "het ", "een ", "van ", "voor ", "naar ", "met ", "zijn ", "worden ",
     "kunnen ", "wordt ", "door ", "dat ", "dit ", "ook ", "heeft ", "niet ",
     "maar ", "meer ", "om ", "als ", "bij ", "over ", "aan ", "uit ", "op ",
-    "in ", "en ", "te ", "is ", "worden ", "wordt ",
+    "in ", "en ", "te ", "is ",
     "waardoor", "waarmee", "waarbij", "hierdoor", "hiermee"
 ]
 
@@ -138,40 +137,24 @@ def is_dutch(text):
 
 # ── App-detectie ──────────────────────────────────────────────────────────
 APP_LABELS = {
-    "copilot":    "Copilot",
-    "teams":      "Teams",
-    "outlook":    "Outlook",
-    "excel":      "Excel",
-    "word":       "Word",
-    "powerpoint": "PowerPoint",
-    "sharepoint": "SharePoint",
-    "purview":    "Purview",
-    "viva":       "Viva",
-    "edge":       "Edge",
-    "onedrive":   "OneDrive",
-    "exchange":   "Exchange",
-    "forms":      "Forms",
-    "intune":     "Intune",
-    "entra":      "Entra",
-    "planner":    "Planner",
-    "loop":       "Loop",
-    "whiteboard": "Whiteboard",
-    "todo":       "To Do",
-    "bookings":   "Bookings",
-    "stream":     "Stream",
-    "automate":   "Power Automate",
-    "powerapps":  "Power Apps",
-    "powerbi":    "Power BI",
-    "yammer":     "Yammer",
-    "defender":   "Defender",
+    "copilot":    "Copilot",    "teams":      "Teams",
+    "outlook":    "Outlook",    "excel":      "Excel",
+    "word":       "Word",       "powerpoint": "PowerPoint",
+    "sharepoint": "SharePoint", "purview":    "Purview",
+    "viva":       "Viva",       "edge":       "Edge",
+    "onedrive":   "OneDrive",   "exchange":   "Exchange",
+    "forms":      "Forms",      "intune":     "Intune",
+    "entra":      "Entra",      "planner":    "Planner",
+    "loop":       "Loop",       "whiteboard": "Whiteboard",
+    "todo":       "To Do",      "bookings":   "Bookings",
+    "stream":     "Stream",     "automate":   "Power Automate",
+    "powerapps":  "Power Apps", "powerbi":    "Power BI",
+    "yammer":     "Yammer",     "defender":   "Defender",
     "search":     "Microsoft Search",
-    "project":    "Project",
-    "visio":      "Visio",
-    "windows":    "Windows",
-    "other":      "Overig",
+    "project":    "Project",    "visio":      "Visio",
+    "windows":    "Windows",    "other":      "Overig",
 }
 
-# ── Multi-product slug-mapping ────────────────────────────────────────────
 PRODUCT_SLUG = {
     "microsoft teams": "teams",           "teams": "teams",
     "microsoft outlook": "outlook",       "outlook": "outlook",
@@ -225,17 +208,17 @@ def app_key(p):
     return "other"
 
 def app_key_from_title(title):
-    if ':' in title:
-        prefix = title.split(':', 1)[0].strip()
+    if ":" in title:
+        prefix = title.split(":", 1)[0].strip()
         return app_key(prefix)
     return app_key(title)
 
 def extra_tags(product_field, primary_key):
     seen = {primary_key}
     tags = []
-    for part in product_field.replace(';', ',').split(','):
+    for part in product_field.replace(";", ",").split(","):
         k = app_key(part.strip())
-        if k and k != 'other' and k not in seen:
+        if k and k != "other" and k not in seen:
             seen.add(k)
             tags.append(k)
     return tags
@@ -386,7 +369,6 @@ GENERIC_BENEFIT = {
 }
 
 def generate_benefit(app, title, desc):
-    """Keyword-gebaseerde fallback als Gemini niet beschikbaar is."""
     text = (title + " " + desc).lower()
     for (a, keyword), benefit in BENEFIT_TEMPLATES.items():
         if a == app and keyword in text:
@@ -430,7 +412,7 @@ else:
     print("Geen bestaande data.json — alles wordt verwerkt")
 
 if GEMINI_API_KEY:
-    print("Gemini API: actief — vertaling + benefit via Gemini Flash")
+    print("Gemini API: actief — vertaling + benefit via gemini-2.0-flash-lite")
 else:
     print("Gemini API: niet geconfigureerd — Google Translate + templates als fallback")
 
@@ -484,13 +466,13 @@ for item_id, prev_item in prev_items.items():
             "status":      new_status,
             "statusNl":    STATUS_NL[new_status],
         })
-        print(f"  → [{STATUS_NL[new_status]}] {prev_item.get('title','')[:70]}")
+        print(f"  -> [{STATUS_NL[new_status]}] {prev_item.get('title','')[:70]}")
 
 if not removed:
     print("Geen items verwijderd")
 
 # ── Verwerken, vertalen en benefit genereren ──────────────────────────────
-print(f"\nVerwerken...")
+print("\nVerwerken...")
 items = []
 cached_count = new_count = retrans_count = 0
 gemini_count = fallback_count = 0
@@ -509,15 +491,14 @@ for i, row in enumerate(active_rows):
         cached_entry = cache[cache_key]
         if cached_entry.get("retranslate", False):
             retrans_count += 1
-            print(f"  [{i+1}/{len(active_rows)}] ↺ Hervertalen: {title_en[:65]}")
+            print(f"  [{i+1}/{len(active_rows)}] Hervertalen: {title_en[:65]}")
             needs_processing = True
         else:
             nl_title = cached_entry["title"]
             nl_desc  = cached_entry["desc"]
             benefit  = cached_entry.get("benefit", "")
             cached_count += 1
-            print(f"  [{i+1}/{len(active_rows)}] ✓ {title_en[:65]}")
-            # Benefit ontbreekt in cache → alsnog genereren via Gemini
+            print(f"  [{i+1}/{len(active_rows)}] OK {title_en[:65]}")
             if not benefit:
                 gemini_result = gemini_process_item(title_en, desc_en)
                 if gemini_result:
@@ -528,7 +509,7 @@ for i, row in enumerate(active_rows):
                     fallback_count += 1
     else:
         new_count += 1
-        print(f"  [{i+1}/{len(active_rows)}] ↻ Nieuw:       {title_en[:65]}")
+        print(f"  [{i+1}/{len(active_rows)}] Nieuw: {title_en[:65]}")
         needs_processing = True
 
     if needs_processing:
@@ -565,12 +546,12 @@ for i, row in enumerate(active_rows):
     })
 
 print(f"\nResultaat: {len(items)} actieve items")
-print(f"  ✓ Uit cache:        {cached_count}")
-print(f"  ↻ Nieuw verwerkt:   {new_count}")
-print(f"  ↺ Herverwerkt:      {retrans_count}")
-print(f"  🤖 Via Gemini:       {gemini_count}")
-print(f"  ⚙ Via fallback:      {fallback_count}")
-print(f"  ⚑ Verwijderd:       {len(removed)}")
+print(f"  OK Uit cache:        {cached_count}")
+print(f"  ++ Nieuw verwerkt:   {new_count}")
+print(f"  ~~ Herverwerkt:      {retrans_count}")
+print(f"  AI Via Gemini:       {gemini_count}")
+print(f"  FB Via fallback:     {fallback_count}")
+print(f"  -- Verwijderd:       {len(removed)}")
 
 today = datetime.datetime.utcnow().strftime("%Y-%m-%d")
 
@@ -585,7 +566,7 @@ result = {
 # ── data.json opslaan ─────────────────────────────────────────────────────
 with open("data.json", "w", encoding="utf-8") as f:
     json.dump(result, f, ensure_ascii=False, indent=2)
-print("\ndata.json opgeslagen ✓")
+print("\ndata.json opgeslagen OK")
 
 # ── Archief opslaan ───────────────────────────────────────────────────────
 archive_dir = "archive"
@@ -601,7 +582,7 @@ if removed:
     archive_path = os.path.join(archive_dir, f"{today}.json")
     with open(archive_path, "w", encoding="utf-8") as f:
         json.dump(archive_data, f, ensure_ascii=False, indent=2)
-    print(f"Archief opgeslagen: {archive_path} ({len(removed)} verdwenen items) ✓")
+    print(f"Archief opgeslagen: {archive_path} ({len(removed)} verdwenen items) OK")
 else:
     print("Geen verdwenen items deze run — geen archiefbestand aangemaakt.")
 
@@ -632,23 +613,23 @@ archive_index = {
 }
 with open(os.path.join(archive_dir, "index.json"), "w", encoding="utf-8") as f:
     json.dump(archive_index, f, ensure_ascii=False, indent=2)
-print(f"Archiefindex bijgewerkt: {len(archive_files)} weken beschikbaar ✓")
+print(f"Archiefindex bijgewerkt: {len(archive_files)} weken beschikbaar OK")
 
 # ── GitHub Actions Step Summary ──────────────────────────────────────────
 summary_path = os.environ.get("GITHUB_STEP_SUMMARY")
 if summary_path:
     with open(summary_path, "a", encoding="utf-8") as sf:
-        sf.write("## 📊 Microsoft 365 Roadmap — Run samenvatting\n\n")
+        sf.write("## Microsoft 365 Roadmap - Run samenvatting\n\n")
         sf.write("| | |\n|---|---|\n")
-        sf.write(f"| 🗓️ Bijgewerkt | {result['generated']} |\n")
-        sf.write(f"| 📋 Actieve items | {len(items)} |\n")
-        sf.write(f"| 🤖 Via Gemini | {gemini_count} |\n")
-        sf.write(f"| ⚙ Via fallback | {fallback_count} |\n")
-        sf.write(f"| ✓ Uit cache | {cached_count} |\n")
-        sf.write(f"| ⚑ Verdwenen items | {len(removed)} |\n")
-        sf.write(f"| 🗄️ Archiefweken | {len(archive_files)} |\n")
+        sf.write(f"| Bijgewerkt | {result['generated']} |\n")
+        sf.write(f"| Actieve items | {len(items)} |\n")
+        sf.write(f"| Via Gemini | {gemini_count} |\n")
+        sf.write(f"| Via fallback | {fallback_count} |\n")
+        sf.write(f"| Uit cache | {cached_count} |\n")
+        sf.write(f"| Verdwenen items | {len(removed)} |\n")
+        sf.write(f"| Archiefweken | {len(archive_files)} |\n")
         if removed:
             sf.write("\n### Verdwenen items deze run\n\n")
             for r in removed:
                 sf.write(f"- **{r['title']}** ({r['statusNl']})\n")
-    print("GitHub Step Summary geschreven ✓")
+    print("GitHub Step Summary geschreven OK")
