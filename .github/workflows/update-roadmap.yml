@@ -34,7 +34,7 @@ jobs:
       - name: Data verwerken en vertalen
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python3 fetch_roadmap.py
+        run: python3 -u fetch_roadmap.py
 
       - name: Archief opruimen (ouder dan 3 maanden)
         run: |
