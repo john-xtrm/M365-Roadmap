@@ -325,7 +325,7 @@ function handleData(data){
 
 /* ── Productfilter opbouwen met iconen ───────────────────────────────────── */
 function buildAppFilter(items){
-  var present=new Set(items.map(function(i){return i.app;}));
+  var present=new Set();items.forEach(function(i){present.add(i.app);(i.tags||[]).forEach(function(k){if(k)present.add(k);});});
   var bar=document.getElementById('apf');
   while(bar.children.length>1)bar.removeChild(bar.lastChild);
   APP_ORDER.forEach(function(key){
@@ -352,7 +352,7 @@ function buildAppFilter(items){
 }
 
 function updateAppCounts(items){
-  var counts={};items.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;});
+  var counts={};items.forEach(function(i){counts[i.app]=(counts[i.app]||0)+1;(i.tags||[]).forEach(function(k){if(k&&k!=='other')counts[k]=(counts[k]||0)+1;});});
   var allBtn=document.querySelector('#apf [data-p="all"]');
   if(allBtn)allBtn.textContent='Alle producten ('+items.length+')';
   document.querySelectorAll('#apf [data-p]').forEach(function(btn){
@@ -452,7 +452,7 @@ function render(){
   });
 
   updateAppCounts(withoutApp);
-  var filtered=withoutApp.filter(function(i){return fP==='all'||i.app===fP;});
+  var filtered=withoutApp.filter(function(i){if(fP==='all')return true;if(i.app===fP)return true;return (i.tags||[]).indexOf(fP)!==-1;});
   filtered=filtered.slice().sort(function(a,b){
     if(sort==='added-desc'||sort==='added-asc'){
       /* 1. ⭐ Nieuw items (toegevoegd vorige week) altijd eerst bij desc */
@@ -463,7 +463,19 @@ function render(){
       /* 3. Tiebreaker: modified-datum */
       return new Date(b.modified||0)-new Date(a.modified||0);
     }
-
+    if(sort==='release-asc'||sort==='release-desc'){
+      var ra=parseReleaseDate(a.release);
+      var rb=parseReleaseDate(b.release);
+      var diff=ra-rb;
+      return sort==='release-asc'?diff:-diff;
+    }
+    if(sort==='status'){
+      var order={rolling:0,dev:1};
+      var sa=order[a.status]!==undefined?order[a.status]:2;
+      var sb=order[b.status]!==undefined?order[b.status]:2;
+      return sa-sb;
+    }
+    return 0;
   });
   var rolling=filtered.filter(function(i){return i.status==='rolling';});
   var dev=filtered.filter(function(i){return i.status==='dev';});
@@ -494,10 +506,6 @@ function render(){
     emptyEl.classList.add('show');return;
   }
   emptyEl.classList.remove('show');
-  function sec(items,emoji,lbl){
-    if(!items.length)return'';
-    return'<section aria-label="'+lbl+'"><h2 class="sec-hdr">'+emoji+' '+lbl+'</h2>'+items.map(function(i){return cardHTML(i,INDEX_CARD_OPTS,query);}).join('')+'</section>';
-  }
   rootEl.innerHTML='<section aria-label="'+filtered.length+' updates">'+filtered.map(function(i){return cardHTML(i,INDEX_CARD_OPTS,query);}).join('')+'</section>';
   /* Scroll naar specifiek item via ?id= */
   if(idParam){
