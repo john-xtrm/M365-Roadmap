@@ -31,6 +31,16 @@ jobs:
             -o roadmap.csv
           echo "Opgehaald: $(wc -l < roadmap.csv) regels"
 
+      - name: Test Gemini API key
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          curl -s -X POST \
+            "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=$GEMINI_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{"contents":[{"parts":[{"text":"Zeg hallo"}]}]}' \
+            | head -c 500
+
       - name: Data verwerken en vertalen
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
