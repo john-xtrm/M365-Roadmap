@@ -1,0 +1,30 @@
+{
+  "generated": "2026-04-09T07:40:03Z",
+  "date": "2026-04-09",
+  "removed": [
+    {
+      "id": 557188,
+      "title": "Microsoft Purview: Data Lifecycle Management - Mogelijkheid tot harde verwijdering voor OneDrive en SharePoint via veilige opschoningsworkflows met prioriteit",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 487412,
+      "title": "Vooruitzichten: Copilot geeft aan hoe u moet reageren op vergaderverzoeken",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "October CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
