@@ -1,0 +1,42 @@
+{
+  "generated": "2026-04-10T10:26:00Z",
+  "date": "2026-04-10",
+  "removed": [
+    {
+      "id": 557548,
+      "title": "Microsoft Purview: Insider Risk Management – ​​Pay-as-you-go-model voor indicatoren voor andere generatieve AI-apps",
+      "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 554935,
+      "title": "Microsoft Purview: Data Catalog – Geavanceerde bronnensets",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 384092,
+      "title": "Microsoft Purview-complianceportal: Audit - Nieuwe filters in Audit Search",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
