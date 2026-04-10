@@ -489,6 +489,7 @@ for i, row in enumerate(active_rows):
     cache_key = (item_id, modified)
 
     needs_processing = False
+    needs_benefit    = False
     if cache_key in cache:
         cached_entry = cache[cache_key]
         if cached_entry.get("retranslate", False):
@@ -502,13 +503,7 @@ for i, row in enumerate(active_rows):
             cached_count += 1
             print("  [" + str(i+1) + "/" + str(len(active_rows)) + "] OK " + title_en[:65])
             if not benefit:
-                ai_result = ai_process_item(title_en, desc_en)
-                if ai_result:
-                    benefit   = ai_result["benefit"]
-                    ai_count += 1
-                else:
-                    benefit        = generate_benefit(key, title_en, desc_en)
-                    fallback_count += 1
+                needs_benefit = True
     else:
         new_count += 1
         print("  [" + str(i+1) + "/" + str(len(active_rows)) + "] Nieuw: " + title_en[:65])
@@ -522,8 +517,17 @@ for i, row in enumerate(active_rows):
             benefit   = ai_result["benefit"]
             ai_count += 1
         else:
-            nl_title       = translate(title_en)
-            nl_desc        = translate(desc_en[:800])
+            nl_title      = translate(title_en)
+            nl_desc       = translate(desc_en[:800])
+            needs_benefit = True
+            time.sleep(0.3)
+
+    if needs_benefit:
+        ai_result = ai_process_item(title_en, desc_en)
+        if ai_result:
+            benefit   = ai_result["benefit"]
+            ai_count += 1
+        else:
             benefit        = generate_benefit(key, title_en, desc_en)
             fallback_count += 1
             time.sleep(0.3)

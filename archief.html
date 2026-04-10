@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="shared.css">
 <link rel="stylesheet" href="archief.css">
 <script>
-(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
+(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
 </head>
 <body>
@@ -83,17 +83,6 @@
 'use strict';
 renderNav('archief');
 
-/* ── Constanten ─────────────────────────────────────────────────────────── */
-/* ── State ──────────────────────────────────────────────────────────────── */
-var ALL_ITEMS   = [];
-var fS  = 'all';
-var fA  = 'aw';      /* Standaard: huidige kalenderweek */
-var fP  = 'all';
-var fAct= 'all';
-var fQ  = '';
-var searchTimer = null;
-var fromKalender = false;
-var idParam = null;
 /* ── State ──────────────────────────────────────────────────────────────── */
 var currentData   = null;   /* Geladen weekdata */
 var currentDate   = null;   /* ISO datumstring van geladen week */
@@ -107,39 +96,6 @@ function fmtDateLong(s) {
   var d = new Date(s);
   return isNaN(d) ? s : d.toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 }
-
-/* ── Archief-index laden ────────────────────────────────────────────────── */
-fetchWithTimeout('archive/index.json', 10000)
-  .then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
-  .then(function(idx) {
-    var nav = document.getElementById('week-nav');
-    nav.innerHTML = '';
-
-    if (!idx.dates || idx.dates.length === 0) {
-      nav.innerHTML = '<p class="archive-empty">Nog geen archief beschikbaar. Na de volgende workflow-run verschijnt het hier automatisch.</p>';
-      return;
-    }
-
-    idx.dates.forEach(function(dateStr, i) {
-      var d   = new Date(dateStr);
-      var btn = document.createElement('button');
-      btn.className = 'week-btn';
-      btn.setAttribute('data-date', dateStr);
-      btn.setAttribute('aria-label', 'Week van ' + fmtDateLong(dateStr) + ' bekijken');
-      btn.innerHTML =
-        d.toLocaleDateString('nl-NL',{weekday:'short',day:'numeric',month:'short'}) +
-        '<span class="week-btn-year">' + d.getFullYear() + '</span>';
-      btn.addEventListener('click', function(){ loadWeek(dateStr, btn); });
-      nav.appendChild(btn);
-
-      /* Laad automatisch de meest recente week */
-      if (i === 0) loadWeek(dateStr, btn);
-    });
-  })
-  .catch(function(err) {
-    document.getElementById('week-nav').innerHTML =
-      '<p class="archive-empty">Archief kon niet worden geladen: ' + esc(String(err)) + '</p>';
-  });
 
 /* ── Week laden ─────────────────────────────────────────────────────────── */
 function loadWeek(dateStr, activeBtn) {

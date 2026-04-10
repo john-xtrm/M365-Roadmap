@@ -60,33 +60,11 @@
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   DARK MODE — systeemvoorkeur
+   DARK MODE — systeemvoorkeur én handmatig
+   Het inline theme-script zet data-theme="dark" zodra de systeemvoorkeur
+   donker is (zonder opgeslagen voorkeur). shared.js luistert naar wijzigingen
+   via matchMedia zodat één CSS-regel volstaat.
    ══════════════════════════════════════════════════════════════════════════ */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg:        #1a1917;  --surface:   #242220;  --surface2:  #2e2c2a;
-    --text:      #f0ede8;  --muted:     #b0ada8;  --faint:     #9e9a96;
-    --border:    rgba(255,255,255,0.10);  --border-s:  rgba(255,255,255,0.20);
-    --green-bg:  #1a3d25;  --green-t:  #7dd9a0;
-    --amber-bg:  #3a2800;  --amber-t:  #f5c97a;
-    --purple-bg: #2a2060;  --purple-t: #c4b8f8;
-    --gray-bg:   #333230;  --gray-t:   #c8c6c2;
-    --blue-bg:   #162650;  --blue-t:   #7ab0f5;
-    --red-bg:    #3a1010;  --red-t:    #f5a0a0;
-    --orange-bg: #3a1a00;  --orange-t: #f5b880;
-    --teal-bg:   #0e2e2a;  --teal-t:   #7dd4cc;
-    --new-bg:    #3a2400;  --new-t:    #f5c97a;
-    --c-none:    #5dd48a;  --c-admin:  #f0a830;  --c-user:    #7ab0f5;
-    --mark-bg:            #5c4a00;  --mark-color:         #f5e6a0;
-    --input-color-scheme: dark;
-    --card-act-none-bg:   #1a3d25;  --card-act-admin-bg:  #3a2800;
-    --fb-act-none-bg:     #1a3d25;  --fb-act-none-border:  var(--green-t);  --fb-act-none-color:   var(--green-t);
-    --fb-act-admin-bg:    #3a2800;  --fb-act-admin-border: var(--amber-t);  --fb-act-admin-color:  var(--amber-t);
-    --fb-act-user-bg:     var(--blue-bg); --fb-act-user-border: var(--blue-t); --fb-act-user-color: var(--blue-t);
-  }
-}
-
-/* DARK MODE — handmatig */
 [data-theme="dark"] {
   --bg:        #1a1917;  --surface:   #242220;  --surface2:  #2e2c2a;
   --text:      #f0ede8;  --muted:     #b0ada8;  --faint:     #9e9a96;
@@ -365,6 +343,20 @@ details[open] summary::before { transform: rotate(90deg); }
 .p-intune     { background: var(--blue-bg);   color: var(--blue-t);   }
 .p-entra      { background: var(--teal-bg);   color: var(--teal-t);   }
 .p-planner    { background: var(--green-bg);  color: var(--green-t);  }
+.p-loop       { background: var(--purple-bg); color: var(--purple-t); }
+.p-whiteboard { background: var(--teal-bg);   color: var(--teal-t);   }
+.p-todo       { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-bookings   { background: var(--teal-bg);   color: var(--teal-t);   }
+.p-stream     { background: var(--red-bg);    color: var(--red-t);    }
+.p-automate   { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-powerapps  { background: var(--purple-bg); color: var(--purple-t); }
+.p-powerbi    { background: var(--amber-bg);  color: var(--amber-t);  }
+.p-yammer     { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-defender   { background: var(--red-bg);    color: var(--red-t);    }
+.p-search     { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-project    { background: var(--green-bg);  color: var(--green-t);  }
+.p-visio      { background: var(--blue-bg);   color: var(--blue-t);   }
+.p-windows    { background: var(--blue-bg);   color: var(--blue-t);   }
 .p-other      { background: var(--gray-bg);   color: var(--gray-t);   }
 .p-rolling    { background: var(--amber-bg);  color: var(--amber-t);  }
 .p-dev        { background: var(--blue-bg);   color: var(--blue-t);   }

@@ -25,34 +25,8 @@ var APP_ICONS = {
   other: null
 };
 
-/* ── Product-metadata ────────────────────────────────────────────────── */
-var APP_META = {
-  copilot     : { label: 'Copilot', cls: 'p-copilot' },
-  teams       : { label: 'Teams', cls: 'p-teams' },
-  outlook     : { label: 'Outlook', cls: 'p-outlook' },
-  excel       : { label: 'Excel', cls: 'p-excel' },
-  word        : { label: 'Word', cls: 'p-word' },
-  powerpoint  : { label: 'PowerPoint', cls: 'p-powerpoint' },
-  sharepoint  : { label: 'SharePoint', cls: 'p-sharepoint' },
-  purview     : { label: 'Purview', cls: 'p-purview' },
-  viva        : { label: 'Viva', cls: 'p-viva' },
-  edge        : { label: 'Edge', cls: 'p-edge' },
-  onedrive    : { label: 'OneDrive', cls: 'p-onedrive' },
-  exchange    : { label: 'Exchange', cls: 'p-exchange' },
-  forms       : { label: 'Forms', cls: 'p-forms' },
-  intune      : { label: 'Intune', cls: 'p-intune' },
-  entra       : { label: 'Entra', cls: 'p-entra' },
-  planner     : { label: 'Planner', cls: 'p-planner' },
-  other       : { label: 'Overig', cls: 'p-other' },
-};
-
-var APP_ORDER = [
-  'copilot','teams','outlook','excel','word','powerpoint',
-  'sharepoint','purview','viva','edge','onedrive','exchange',
-  'forms','intune','entra','planner','other'
-];
-
 /* ── Hulpfuncties ─────────────────────────────────────────────────────── */
+/* APP_META en APP_ORDER worden volledig gedefinieerd in shared.js        */
 
 /**
  * Geeft <img> terug voor het product-icoon (base64 embedded).

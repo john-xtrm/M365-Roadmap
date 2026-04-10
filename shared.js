@@ -309,6 +309,23 @@ function highlight(text, query) {
   );
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   SYSTEEM-THEMA LUISTERAAR
+   Reageert op OS-thema wijzigingen als de gebruiker geen voorkeur heeft
+   opgeslagen. Vereist omdat de @media CSS-regel vervangen is door data-theme.
+   ══════════════════════════════════════════════════════════════════════════ */
+(function() {
+  if (!window.matchMedia) return;
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+  function onSystemThemeChange(e) {
+    if (localStorage.getItem('theme')) return; /* handmatige voorkeur heeft prioriteit */
+    document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : '');
+    var btn = document.getElementById('theme-btn');
+    if (btn) btn.setAttribute('aria-label', e.matches ? 'Schakel naar licht thema' : 'Schakel naar donker thema');
+  }
+  mq.addEventListener('change', onSystemThemeChange);
+})();
+
 /** fetch met AbortController-timeout */
 function fetchWithTimeout(url, ms) {
   ms = ms || 10000;

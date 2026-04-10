@@ -7,7 +7,7 @@
 <meta name="description" content="Overzicht van aankomende Microsoft 365-updates: wat staat er aan te komen, wat betekent het voor uw organisatie en is er actie nodig van IT of medewerkers?">
 <link rel="stylesheet" href="shared.css">
 <script>
-(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);})();
+(function(){var t=localStorage.getItem('theme');if(t==='dark'||t==='light'){document.documentElement.setAttribute('data-theme',t);}else if(window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches){document.documentElement.setAttribute('data-theme','dark');}})();
 </script>
 </head>
 <body>
@@ -295,12 +295,6 @@ function handleData(data){
     return Object.assign({},i,{isNew: !!(added&&added>=_pwS&&added<=_pwE)});
   });
   var gen=new Date(data.generated);
-  /* Toon vorige kalenderweek in header — data is altijd van maandag-run */
-  var ws=weekStart(new Date()); var we=weekEnd(new Date());
-  var pwS=new Date(ws); pwS.setDate(pwS.getDate()-7);
-  var pwE=new Date(we); pwE.setDate(pwE.getDate()-7);
-  var pwn=isoWeek(pwS);
-  var fmtS=function(d){return d.toLocaleDateString('nl-NL',{day:'numeric',month:'short'});};
   lastUpdatedText = 'Bijgewerkt\u00a0' + gen.toLocaleDateString('nl-NL',{day:'numeric',month:'long'}) + '\u00a0\u00b7\u00a0' + data.count + '\u00a0items';
 
   document.getElementById('root').setAttribute('aria-busy','false');

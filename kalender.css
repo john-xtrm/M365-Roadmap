@@ -39,22 +39,7 @@
 .view-btn[aria-pressed="true"] .view-btn-sub { color: var(--blue-t); opacity: 0.8; }
 
 /* ── Filterblok kalender (eigen wrapper-class) ───────────────────────── */
-/* Kalender gebruikt .filter-wrap i.p.v. .filters uit shared.css         */
-.filter-wrap {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1.75rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.filter-wrap .filter-group label {
-  font-size: 0.75rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.06em;
-  color: var(--faint);
-}
+/* .filter-wrap basisstijlen staan in shared.css (.filters, .filter-wrap) */
 
 /* ── Kalender-container ──────────────────────────────────────────────── */
 .calendar { display: flex; flex-direction: column; gap: 1.25rem; }
