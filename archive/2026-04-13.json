@@ -1,0 +1,138 @@
+{
+  "generated": "2026-04-13T06:30:09Z",
+  "date": "2026-04-13",
+  "removed": [
+    {
+      "id": 557947,
+      "title": "Microsoft Copilot (Microsoft 365): deel agenten met Teams",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 554939,
+      "title": "Outlook: uitbreiden naar volledige evenementdetails op iPad",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 537270,
+      "title": "Microsoft Viva: experts en geverifieerde antwoorden in communities in Engage en Teams voor iOS en Android",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 532722,
+      "title": "Microsoft Viva: schakel communitylidmaatschapsbeheer in Teams voor iOS en Android in",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 500395,
+      "title": "Outlook: bekijk de voortgang bij het handmatig uitvoeren van regels in de nieuwe Outlook voor Windows en Web",
+      "benefit": "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 501451,
+      "title": "Microsoft Copilot (Microsoft 365): Kennisagent",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "SharePoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503104,
+      "title": "Microsoft Teams: wisselen van cameraweergave in Teams Rooms met meerdere camera's op Windows",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 497418,
+      "title": "Outlook: mappen uit- en samenvouwen bij het verplaatsen van e-mails",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "November CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 493949,
+      "title": "Microsoft Viva: Organisatoren antwoorden privé op individuele personen",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 492983,
+      "title": "Microsoft Viva: Reacties in Engage-gebeurtenissen toestaan/uitschakelen",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 492626,
+      "title": "Microsoft Viva: anonieme opmerkingen in Engage-evenementen",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
