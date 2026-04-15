@@ -1,0 +1,114 @@
+{
+  "generated": "2026-04-15T06:10:52Z",
+  "date": "2026-04-15",
+  "removed": [
+    {
+      "id": 558342,
+      "title": "Microsoft Purview: Informatiebeveiliging – Handmatig aangebrachte labels overschrijven en labels verwijderen met automatische labeling",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557674,
+      "title": "Microsoft Viva: Copilot Analytics: Copilot-acceptatie PBI-versie-update inclusief inzichten in krachtige gebruikers.",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557349,
+      "title": "Outlook: Verbeterde resultaten bij het filteren van uw berichtenlijst",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552591,
+      "title": "Microsoft Copilot (Microsoft 365): Upload lokale bestanden ondersteunt nu .eml en .msg bestandstypen",
+      "benefit": "Medewerkers kunnen nu eenvoudiger e-mailbestanden delen in gesprekken, wat de samenwerking en communicatie verbetert.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516042,
+      "title": "Microsoft Copilot (Microsoft 365): Bijgewerkte Copilot Notebooks UX",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 500865,
+      "title": "Microsoft Copilot (Microsoft 365): Rich Bing-webantwoordkaarten op M365 Copilot",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 498323,
+      "title": "Microsoft Viva: ongelezen nieuwsmeldingen in Connections",
+      "benefit": "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 490052,
+      "title": "Microsoft Copilot (Microsoft 365): Intelligente samenvattingen van vergaderingen kunnen de inhoud samenvatten die op het scherm wordt gedeeld",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 406948,
+      "title": "Outlook: Vervang de pop-up voor snel opstellen door het inline maken van afspraken in de nieuwe Outlook voor Windows en internet",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
