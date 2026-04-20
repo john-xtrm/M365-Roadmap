@@ -1,0 +1,66 @@
+{
+  "generated": "2026-04-20T06:32:21Z",
+  "date": "2026-04-20",
+  "removed": [
+    {
+      "id": 558680,
+      "title": "Microsoft Teams: Teams Telefoonagent",
+      "benefit": "Klantenservice medewerkers merken dat ze beter bereikbaar zijn, omdat bellers altijd een antwoord krijgen of geholpen worden, zelfs buiten kantooruren.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 553217,
+      "title": "Microsoft Purview: Data Security Posture Management voor AI: Fabric-integratie in datarisicobeoordeling",
+      "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 542185,
+      "title": "Outlook: Plannen met Copilot-chat in de klassieke Outlook voor Windows",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 542186,
+      "title": "Outlook: bereid u voor op vergaderingen met Copilot in de klassieke Outlook voor Windows",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 501581,
+      "title": "Microsoft Viva: Copilot Dashboard - Bredere toegang tot M365 Copilot Chat-inzichten",
+      "benefit": "Managers krijgen beter inzicht in werkpatronen, waardoor samenwerking verbetert.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
