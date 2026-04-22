@@ -1,0 +1,162 @@
+{
+  "generated": "2026-04-22T06:11:05Z",
+  "date": "2026-04-22",
+  "removed": [
+    {
+      "id": 555880,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar de stijl van een bijgevoegd PowerPoint-deck bij het maken van een nieuwe presentatie met Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555879,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar de stijl van een bijgevoegd PowerPoint-deck bij het maken van een nieuwe presentatie met Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555878,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar de stijl van een bijgevoegd PowerPoint-deck bij het maken van een nieuwe presentatie met Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555876,
+      "title": "Microsoft Copilot (Microsoft 365): Maak samenvattingsdia's met de Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555877,
+      "title": "Microsoft Copilot (Microsoft 365): Maak samenvattingsdia's met de Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555875,
+      "title": "Microsoft Copilot (Microsoft 365): Maak samenvattingsdia's met de Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555874,
+      "title": "Microsoft Copilot (Microsoft 365): Maak presentaties met Work IQ met behulp van Agent Mode in Copilot in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555873,
+      "title": "Microsoft Copilot (Microsoft 365): ): Maak presentaties met Work IQ met behulp van Agent Mode in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555872,
+      "title": "Microsoft Copilot (Microsoft 365): Maak presentaties met Work IQ met behulp van Agent Mode in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555239,
+      "title": "Microsoft Teams: annotaties bij het delen van één venster in Teams op Windows OS",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 528930,
+      "title": "Microsoft Teams: aanpasbare galerij in Teams-vergaderingen",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 506750,
+      "title": "Microsoft Teams: dashboard voor stem- en gezichtsinschrijving voor beheerders",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 382633,
+      "title": "Exchange: e-mail met hoog volume voor Microsoft 365",
+      "benefit": "E-mailbeheer en -beveiliging wordt verbeterd voor de hele organisatie.",
+      "app": "exchange",
+      "prodLabel": "Exchange",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
