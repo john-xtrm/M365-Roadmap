@@ -1,0 +1,102 @@
+{
+  "generated": "2026-04-27T06:44:25Z",
+  "date": "2026-04-27",
+  "removed": [
+    {
+      "id": 558257,
+      "title": "Microsoft Viva: uitgebreide gepubliceerde rapportontvangers",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558111,
+      "title": "Microsoft Viva: Glint: AI-gegenereerde enquête-inzichten met Copilot Highlights",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557348,
+      "title": "Microsoft Copilot (Microsoft 365): Chatgeschiedenis met oneindig scrollen",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552596,
+      "title": "Microsoft Copilot (Microsoft 365): Unified Plus-menu (+)",
+      "benefit": "Medewerkers werken efficienter met toegang tot kant-en-klare prompts die aansluiten bij dagelijkse taken.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 494149,
+      "title": "Microsoft Teams: Teams-knop op gecertificeerd voor Microsoft Teams persoonlijke randapparatuur met één klik toegang tot spraak in Microsoft 365 Copilot binnen de mobiele Teams-app (iOS).",
+      "benefit": "Medewerkers met meerdere rollen of regio's zijn makkelijker bereikbaar via meerdere telefoonnummers.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 531910,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot Chat in Outlook expands to reason over inbox, calendar, and enterprise data",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503316,
+      "title": "Outlook: Vat e-mail samen met Copilot-chat in Outlook",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 497848,
+      "title": "Microsoft Copilot (Microsoft 365): Zeg \"Hey Copilot\" om spraakgesprekken te activeren met de Microsoft 365 Copilot-app op Windows",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
