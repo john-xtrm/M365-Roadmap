@@ -1,0 +1,114 @@
+{
+  "generated": "2026-04-29T06:35:04Z",
+  "date": "2026-04-29",
+  "removed": [
+    {
+      "id": 557976,
+      "title": "Microsoft Purview: preventie van gegevensverlies - Nieuwe beleidsconfiguratieopties beschikbaar voor inline netwerk- en Edge for Business-beleid",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557716,
+      "title": "Microsoft Teams: Teams Phone gebruiker multi-lijn",
+      "benefit": "Collega's kunnen nu gemakkelijker bellen en gebeld worden vanaf verschillende nummers zonder te wisselen van account, wat de communicatie binnen teams en met klanten verbetert.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557371,
+      "title": "Microsoft Copilot (Microsoft 365): [Copilot Extensibility] IT-beheerders kunnen Anthropic-modellen inschakelen voor specifieke gebruikers en groepen in de tenant",
+      "benefit": "IT-beheerders kunnen nu beter bepalen wie toegang heeft tot bepaalde modellen, waardoor medewerkers gerichter ondersteuning krijgen.",
+      "app": "copilot",
+      "prodLabel": "365",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557187,
+      "title": "Microsoft Edge: Cross Tenant-ondersteuning met Intune MAM",
+      "benefit": "Browsen wordt veiliger en productiever met nieuwe Edge-functies.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 547831,
+      "title": "Microsoft Copilot (Microsoft 365): Watermerken inschakelen voor door AI gegenereerde inhoud voor M365 Copilot",
+      "benefit": "Organisaties kunnen AI-gegenereerde inhoud herkennen en traceren, wat bijdraagt aan transparantie en naleving.",
+      "app": "copilot",
+      "prodLabel": "Clipchamp",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 542792,
+      "title": "Microsoft Purview: Endpoint Data Loss Prevention - Endpoint DLP Apparaatstatus API",
+      "benefit": "Medewerkers krijgen eenvoudig toegang tot belangrijke apparaatgegevens, waardoor rapportages sneller en efficiënter kunnen worden gemaakt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 506751,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot chats gesprekken",
+      "benefit": "Medewerkers kunnen nu gemakkelijk eerdere gesprekken met Copilot terugvinden. Dit maakt het eenvoudiger om relevante informatie snel op te zoeken.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516578,
+      "title": "Microsoft Purview: eDiscovery - Voorbeeld toevoegen aan beoordelingsset",
+      "benefit": "Juridische onderzoeken verlopen sneller door beter overzicht over bewaard materiaal.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 501452,
+      "title": "Microsoft Copilot (Microsoft 365): Videooverzicht in Copilot Chat",
+      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
