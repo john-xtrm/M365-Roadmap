@@ -1,0 +1,114 @@
+{
+  "generated": "2026-05-04T06:55:37Z",
+  "date": "2026-05-04",
+  "removed": [
+    {
+      "id": 558858,
+      "title": "Microsoft Purview: eDiscovery - verhoging van de limiet voor reviewsets",
+      "benefit": "Medewerkers die met eDiscovery werken, kunnen nu meer documenten per zaak tegelijk beoordelen, wat het proces efficiënter maakt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558443,
+      "title": "Microsoft Copilot (Microsoft 365): Bewerken met het model van jouw keuze in PowerPoint",
+      "benefit": "Medewerkers kunnen nu eenvoudiger en flexibeler presentaties maken door te kiezen uit verschillende modellen. Dit maakt het creëren van inhoud sneller en beter afgestemd op hun behoeften.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557977,
+      "title": "Microsoft Purview: Data Loss Prevention - Security Store nu beschikbaar binnen Purview DLP om partnerintegraties te doorbladeren, aan te schaffen en in te schakelen",
+      "benefit": "Admins kunnen nu gemakkelijker partnerintegraties vinden en aanschaffen, wat de beveiliging van gegevens binnen de organisatie verbetert.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557277,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot kan je document in PowerPoint bewerken",
+      "benefit": "Medewerkers kunnen eenvoudiger en sneller presentaties maken en aanpassen, waardoor ze meer tijd overhouden voor andere taken.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557276,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot kan uw document bewerken in PowerPoint",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 548641,
+      "title": "Microsoft Copilot (Microsoft 365): Microsoft Copilot (Microsoft 365): Open Word-, Excel- en PowerPoint-bestanden in Copilot Chat",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 551196,
+      "title": "Microsoft Viva: Copilot Analytics - Copilot-configuratie-inzichten op de Copilot Dashboard Readiness-pagina",
+      "benefit": "Managers en medewerkers krijgen beter inzicht in werkpatronen, waardoor samenwerking en welzijn verbeteren.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 548646,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot kan uw document bewerken in PowerPoint",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 511794,
+      "title": "OneNote: Copilot Notebook in OneNote iPhone en iPad",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "OneNote",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
