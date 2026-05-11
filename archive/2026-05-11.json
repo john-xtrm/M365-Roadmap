@@ -1,0 +1,102 @@
+{
+  "generated": "2026-05-11T08:00:06Z",
+  "date": "2026-05-11",
+  "removed": [
+    {
+      "id": 559478,
+      "title": "PowerPoint: Maak en bewerk afbeeldingen met het model van jouw keuze",
+      "benefit": "Medewerkers kunnen nu gemakkelijker afbeeldingen maken en bewerken in PowerPoint, wat de creativiteit en efficiëntie vergroot. Dit maakt het eenvoudiger om presentaties visueel aantrekkelijker te maken.",
+      "app": "powerpoint",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559261,
+      "title": "Microsoft Purview: Data Lifecycle Management - DLM Retentieondersteuning voor Microsoft Teams bellogs",
+      "benefit": "Medewerkers merken dat bellogs nu beter voldoen aan wettelijke eisen, waardoor de organisatie minder risico loopt op boetes. Ook kan de gebruikerservaring verbeteren doordat gegevens langer beschikbaar blijven.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558438,
+      "title": "Microsoft Viva: Bied gesprekken aan voor alle netwerkleden",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 513271,
+      "title": "Microsoft Teams: Chat met iedereen die een e-mailadres heeft",
+      "benefit": "Communiceren in Teams gaat soepeler door verbeterde berichtopties en slimmere weergaven.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 502875,
+      "title": "Microsoft Copilot (Microsoft 365): Microsoft Graph API's voor inventaris en details van apps en agenten.",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 482198,
+      "title": "Microsoft SharePoint: Nieuw webonderdeel voor veelgestelde vragen",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
+      "app": "sharepoint",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 476487,
+      "title": "Microsoft Teams: CVI-ondersteuning voor Townhall- en Webinar-presentatoren",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 422725,
+      "title": "Microsoft 365-app: Microsoft Loop – Bestaande Microsoft 365-groep vereisen voor nieuwe Loop-werkruimten",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365 app",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
