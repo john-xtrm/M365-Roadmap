@@ -1,0 +1,114 @@
+{
+  "generated": "2026-05-18T08:20:40Z",
+  "date": "2026-05-18",
+  "removed": [
+    {
+      "id": 557552,
+      "title": "Microsoft Purview: Preventie van gegevensverlies – Verbeteringen aan de Triage Agent voor gegevensbeveiliging",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 508527,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot-zoekresultaten op de afdeling People",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 547833,
+      "title": "Microsoft Purview: Preventie van gegevensverlies - Aanvullende diagnostiek voor preventie van gegevensverlies en informatiebescherming",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 542187,
+      "title": "Microsoft Purview: Data Security Triage-agent in DLP is algemeen wereldwijd beschikbaar",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 515945,
+      "title": "Microsoft Purview: Preventie van gegevensverlies voor Microsoft 365 Copilot om aanwijzingen te beveiligen",
+      "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd en centraal beheerd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 511798,
+      "title": "Microsoft Purview Compliance Portal: Verbeteringen aan variantlimieten en detectiegroepen",
+      "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata, zonder de privacy van medewerkers te schaden.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 502519,
+      "title": "Microsoft Purview-nalevingsportal: Preventie van gegevensverlies op eindpunten: breid de bescherming uit naar Copilot- en pc-apparaten voor terugroepmomentopnamen via aangepast beleid",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 398711,
+      "title": "Microsoft Purview compliance portal: Priva Privacy Management – ​​Multicloud-omgevingen",
+      "benefit": "Risicovol gedrag rondom bedrijfsdata wordt eerder gesignaleerd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 421615,
+      "title": "Microsoft 365-app: Microsoft Loop - Door gebruiker toegankelijke prullenbak voor Loop-werkruimten",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
