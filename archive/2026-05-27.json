@@ -1,0 +1,18 @@
+{
+  "generated": "2026-05-27T08:13:43Z",
+  "date": "2026-05-27",
+  "removed": [
+    {
+      "id": 557553,
+      "title": "Microsoft Purview: Data Loss Prevention – Exporteren van DLP- en Labelbeleidconfiguraties",
+      "benefit": "Medewerkers kunnen nu eenvoudig hun DLP-instellingen en labelbeleid exporteren, wat het oplossen van problemen met ondersteuning versnelt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
