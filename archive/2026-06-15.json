@@ -1,0 +1,114 @@
+{
+  "generated": "2026-06-15T10:37:54Z",
+  "date": "2026-06-15",
+  "removed": [
+    {
+      "id": 565218,
+      "title": "Microsoft Teams: Queues-app voor Microsoft Teams in GCC High",
+      "benefit": "Medewerkers die klantcontact hebben, merken dat ze gesprekken beter kunnen beheren. Dit maakt het makkelijker om klanten snel en efficiënt te helpen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "unknown",
+      "statusNl": "Verwijderd uit roadmap"
+    },
+    {
+      "id": 561329,
+      "title": "Microsoft Edge: Downgrade van Enterprise WebView2-runtime via Downgrade Version policy",
+      "benefit": "Medewerkers merken dat sommige applicaties tijdelijk beter functioneren door terug te schakelen naar een eerdere versie. Dit maakt het makkelijker om problemen met nieuwe versies op te lossen.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559475,
+      "title": "Microsoft Viva: Copilot Analytics: Copilot-dashboard voor 'Alle'-geautoriseerde gebruikers",
+      "benefit": "Medewerkers krijgen een beter overzicht van het gebruik van Copilot binnen de organisatie. Dit maakt het makkelijker om te zien wie de tools gebruikt en hoe ze worden toegepast.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559029,
+      "title": "Microsoft Copilot (Microsoft 365): Mindmaps in Copilot Notebooks",
+      "benefit": "Medewerkers kunnen nu gemakkelijker de inhoud van notitieboeken begrijpen en belangrijke informatie sneller vinden. Dit maakt het samenwerken en het delen van kennis binnen de organisatie efficiënter.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 548671,
+      "title": "Microsoft Purview: Preventie van gegevensverlies - Preventie van gegevensverlies om gevoelige internetzoekopdrachten in Microsoft 356 Copilot en Copilot Chat te beschermen",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557549,
+      "title": "Microsoft Defender voor Office 365: introductie van een nieuwe URL-klikwaarschuwing in Teams via Microsoft Defender voor Office 365",
+      "benefit": "De organisatie is beter beschermd tegen cyberdreigingen via verbeterde Defender-functies.",
+      "app": "defender",
+      "prodLabel": "Defender for Office 365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 554940,
+      "title": "Microsoft Purview: Insider Risk Management – Mogelijkheid om zaken te creëren zonder inhoud in IRM",
+      "benefit": "Medewerkers kunnen nu meer zaken aanmaken zonder dat er inhoud gedownload hoeft te worden, wat het proces versnelt. Dit maakt het makkelijker om risico's te beheren zonder onnodige downloads.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 497546,
+      "title": "Outlook: Accountmanager",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 485724,
+      "title": "Microsoft Copilot (Microsoft 365): Start snel de Microsoft 365 Copilot-app op uw iOS-apparaat",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
