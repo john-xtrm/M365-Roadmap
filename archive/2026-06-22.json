@@ -1,0 +1,126 @@
+{
+  "generated": "2026-06-22T09:59:56Z",
+  "date": "2026-06-22",
+  "removed": [
+    {
+      "id": 561028,
+      "title": "Microsoft Teams: Verbeteringen in het Overdragen van Telefoongesprekken",
+      "benefit": "Medewerkers merken dat het overdragen van telefoongesprekken eenvoudiger en sneller gaat, waardoor ze efficiënter kunnen werken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559800,
+      "title": "SharePoint: AI in SharePoint uitbreiden met behulp van aangepaste vaardigheden",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een Copilot-agent in SharePoint of Teams.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559480,
+      "title": "Microsoft Copilot (Microsoft 365): Maak Excel-spreadsheets vanuit Copilot Notebooks",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "OneNote",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559418,
+      "title": "Outlook: Copilot biedt coachingfeedback in chat terwijl je e-mails opstelt, bewerkt en opmaakt",
+      "benefit": "Medewerkers krijgen directe feedback op hun e-mails, waardoor het schrijven en opmaken van berichten eenvoudiger en efficiënter wordt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558938,
+      "title": "Microsoft Copilot (Microsoft 365): Maak PowerPoint-presentaties vanuit Copilot Notebooks",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "365",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558544,
+      "title": "Microsoft Teams: Maak workflows met slash-commando's",
+      "benefit": "Iedereen die met Teams werkt, kan nu sneller en eenvoudiger workflows opzetten, wat de samenwerking verbetert.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557981,
+      "title": "Microsoft Viva: Insights - Nieuwe Copilot-statistieken beschikbaar",
+      "benefit": "Managers krijgen beter inzicht in werkpatronen, waardoor samenwerking verbetert.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 546245,
+      "title": "Windows 365: Windows 365 Link - Aanpassing van het inlogscherm",
+      "benefit": "Windows-updates verbeteren prestaties, beveiliging of gebruikerservaring voor alle medewerkers.",
+      "app": "windows",
+      "prodLabel": "Windows 365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 554936,
+      "title": "Outlook: Copilot Chat beschikbaar in gedeelde mailboxen en mailboxen van gedelegeerden",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 543421,
+      "title": "Microsoft Copilot (Microsoft 365): PowerPoint-agent",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
