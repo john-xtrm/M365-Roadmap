@@ -1,0 +1,90 @@
+{
+  "generated": "2026-06-24T07:55:00Z",
+  "date": "2026-06-24",
+  "removed": [
+    {
+      "id": 561549,
+      "title": "Microsoft Teams: Teams room builder in het Pro Management portal",
+      "benefit": "IT-managers kunnen eenvoudiger en sneller vergaderruimtes inrichten, wat tijd bespaart en de samenwerking verbetert.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559992,
+      "title": "Microsoft Purview: Selectie van AI-apps voor indicatoren van Insider Risk Management",
+      "benefit": "Medewerkers kunnen beter inschatten welke AI-apps veilig zijn om te gebruiken. Dit maakt het eenvoudiger om risico's te vermijden en de veiligheid van gevoelige informatie te waarborgen.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557256,
+      "title": "Microsoft Copilot (Microsoft 365): Leg de selectie van dia's uit tijdens PowerPoint Live",
+      "benefit": "Deelnemers aan vergaderingen kunnen nu gemakkelijker begrijpen wat er op de dia's staat, wat de samenwerking en communicatie verbetert.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557185,
+      "title": "Microsoft Edge: Valideer Edge-builds vroegtijdig met enterprise preview",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552597,
+      "title": "Microsoft Edge: Extensiebewaking in de Edge-beheerservice",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 468888,
+      "title": "Microsoft Purview: Pas gevoeligheidslabels toe met door de gebruiker gedefinieerde machtigingen in Office voor het web in Microsoft 365",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
+      "app": "purview",
+      "prodLabel": "Excel",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 98186,
+      "title": "Microsoft Purview | Communicatie Compliance: Ondersteuning voor adaptieve beleidsomvang",
+      "benefit": "Medewerkers merken dat het makkelijker wordt om te voldoen aan regelgeving, omdat de juiste gebruikers automatisch worden opgenomen in de beleidsregels. Dit vermindert de administratieve last en verhoogt de effectiviteit van compliance-controles.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
