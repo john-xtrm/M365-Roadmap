@@ -1,0 +1,126 @@
+{
+  "generated": "2026-06-29T09:11:41Z",
+  "date": "2026-06-29",
+  "removed": [
+    {
+      "id": 559991,
+      "title": "Outlook: Accountselector in de Outlook Copilot-zijdbalk",
+      "benefit": "Medewerkers met meerdere accounts merken dat ze eenvoudiger kunnen wisselen tussen hun accounts in de Agenda. Dit maakt het gebruik van Outlook efficiënter en overzichtelijker.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559995,
+      "title": "Microsoft Viva: Diepere Copilot-inzichten ontgrendelen met verbeterde Power BI-filtering",
+      "benefit": "Medewerkers met toegang tot Power BI-rapporten kunnen nu rapporten beter afstemmen op hun specifieke behoeften, wat de efficiëntie en relevantie van de rapportages vergroot.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558934,
+      "title": "Microsoft Copilot (Microsoft 365): Maak Word-documenten vanuit Copilot Notebooks",
+      "benefit": "Medewerkers kunnen eenvoudiger en sneller documenten maken vanuit hun notities, waardoor ze minder tijd kwijt zijn aan het opstellen van teksten.",
+      "app": "copilot",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557556,
+      "title": "Microsoft Purview: Data Security Investigations – Verbeteringen in AI-analyse",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 537271,
+      "title": "Microsoft Purview: Azure AI Foundry-integratie met Microsoft Purview voor AI",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 511796,
+      "title": "Microsoft Copilot (Microsoft 365): computergebruik in onderzoeker",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "November CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 518215,
+      "title": "Microsoft Teams: Apps in privékanalen voor Microsoft Teams",
+      "benefit": "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken en vergaderingen sneller terug.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 495834,
+      "title": "Microsoft Edge: door AI aangedreven geschiedeniszoekopdracht",
+      "benefit": "Browsen wordt veiliger en productiever met nieuwe Edge-functies.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 492618,
+      "title": "Microsoft Purview-nalevingsportal: Copilot Prompt Gallery in Data Security Posture Management",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 488800,
+      "title": "Microsoft Teams: Werkplek inchecken via Wi-Fi maakt eenvoudige coördinatie op kantoor mogelijk",
+      "benefit": "Collega's kunnen gemakkelijker hun werkplek delen en coördineren waar ze zich bevinden. Dit maakt het eenvoudiger om samen te werken, vooral als je op kantoor bent.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
