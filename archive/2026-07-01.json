@@ -1,0 +1,90 @@
+{
+  "generated": "2026-07-01T08:22:31Z",
+  "date": "2026-07-01",
+  "removed": [
+    {
+      "id": 559020,
+      "title": "Microsoft Copilot (Microsoft 365): Work IQ API's – Ondersteuning voor externe MCP-servers",
+      "benefit": "Medewerkers kunnen nu eenvoudiger en veiliger gebruikmaken van externe tools, wat de samenwerking en efficiëntie verbetert.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560532,
+      "title": "Planner: Planner Agent chat",
+      "benefit": "Medewerkers kunnen nu eenvoudig vragen stellen en taken vinden binnen Planner, wat het werkproces versnelt en vergemakkelijkt.",
+      "app": "planner",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555234,
+      "title": "Microsoft Teams: Live transcriptie in Teams Rooms op Android",
+      "benefit": "Medewerkers in de zaal kunnen nu gemakkelijk volgen wat er gezegd wordt, zelfs als ze de taal niet goed beheersen. Dit maakt vergaderingen toegankelijker en effectiever voor iedereen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516576,
+      "title": "Microsoft Copilot (Microsoft 365): Planner Agent in Microsoft 365 Copilot",
+      "benefit": "Medewerkers kunnen hun taken en projecten beter organiseren, waardoor het werk efficiënter verloopt. Dit maakt het makkelijker om projecten te volgen en te beheren.",
+      "app": "copilot",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 523214,
+      "title": "Microsoft Teams: Herstart je Town hall-evenement",
+      "benefit": "De organisatoren van evenementen kunnen technische problemen sneller oplossen, waardoor de ervaring voor deelnemers verbetert. Dit maakt het makkelijker om een soepel verloop van het evenement te waarborgen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516040,
+      "title": "Microsoft Copilot (Microsoft 365): Weblink als referentie in Copilot Notebooks",
+      "benefit": "Medewerkers kunnen nu eenvoudig weblinks toevoegen aan hun notities, wat het makkelijker maakt om informatie te delen en te verwijzen naar bronnen.",
+      "app": "copilot",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 408533,
+      "title": "Microsoft Purview-complianceportal: Communicatiecompliance - Pas het communicatiecompliancebeleid aan met taalspecifieke trainbare classificatievoorwaarden",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
