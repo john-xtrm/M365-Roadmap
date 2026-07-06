@@ -1,0 +1,78 @@
+{
+  "generated": "2026-07-06T08:35:28Z",
+  "date": "2026-07-06",
+  "removed": [
+    {
+      "id": 560598,
+      "title": "Microsoft Purview: Gegevensbeveiligingsonderzoeken – Nieuwe aangepaste onderzoeksfocusgebieden introduceren",
+      "benefit": "Beheerders kunnen nu gerichter onderzoek doen naar gegevensbeveiliging, wat leidt tot betere bescherming van belangrijke informatie.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559387,
+      "title": "Microsoft Teams: Bulktoewijzing van deelnemers aan breakout rooms met CSV",
+      "benefit": "Organisatoren kunnen nu sneller deelnemers aan breakout rooms toewijzen, wat tijd bespaart en de efficiëntie verhoogt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557566,
+      "title": "SharePoint: maak SharePoint-nieuwsberichten van Copilot-pagina's",
+      "benefit": "Organisatienieuws delen via het intranet gaat sneller en eenvoudiger.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 557184,
+      "title": "Microsoft Teams: Contextbehoud in Teams",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 502529,
+      "title": "Microsoft Copilot (Microsoft 365): [Copilot-uitbreidbaarheid] [AdminX] Handleidingen vóór installatie, bewerkbaarheid, bruikbare fouten en ondersteuning voor waarschuwingen beschikbaar voor Connector-beheerders",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 501576,
+      "title": "Microsoft Copilot (Microsoft 365): Toon meer resultaten in Copilot Chat",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "October CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
