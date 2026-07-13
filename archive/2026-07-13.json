@@ -1,0 +1,54 @@
+{
+  "generated": "2026-07-13T07:32:55Z",
+  "date": "2026-07-13",
+  "removed": [
+    {
+      "id": 559996,
+      "title": "Microsoft Viva: Nieuwe Overzichtservaring in Agent Dashboard",
+      "benefit": "Medewerkers krijgen beter inzicht in het gebruik van agents binnen de organisatie, waardoor ze makkelijker kunnen zien wie deze agents maakt.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 499428,
+      "title": "Microsoft Copilot (Microsoft 365): Agentmodus in Word voor verbeterde documentbewerking",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "Word",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "November CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 494809,
+      "title": "Microsoft Copilot (Microsoft 365): goedkeuringsstroom voor Frontier- en Microsoft-agentgebruikersaanvragen in het Microsoft 365-beheercentrum",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 486839,
+      "title": "Outlook: Import calendars and contacts from PST file to mailbox in new Outlook for Windows",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
