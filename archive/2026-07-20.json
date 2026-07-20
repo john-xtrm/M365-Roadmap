@@ -1,0 +1,78 @@
+{
+  "generated": "2026-07-20T07:02:40Z",
+  "date": "2026-07-20",
+  "removed": [
+    {
+      "id": 563806,
+      "title": "Outlook: E-mails gemarkeerd met Extern worden ondersteund als voorwaarden voor Regels",
+      "benefit": "Medewerkers kunnen nu eenvoudiger e-mails filteren en beheren op basis van externe afzenders, wat de organisatie helpt om beter om te gaan met communicatie van buitenaf.",
+      "app": "outlook",
+      "prodLabel": "Exchange",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561920,
+      "title": "Microsoft Copilot (Microsoft 365): Ondersteuning voor SharePoint-lijsten in Agent Builder",
+      "benefit": "Medewerkers kunnen nu eenvoudig informatie uit SharePoint-lijsten opvragen via de agent, wat het vinden van antwoorden versnelt en vergemakkelijkt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559110,
+      "title": "Microsoft Copilot (Microsoft 365): Vind vergaderingen op basis van onderwerpen en trefwoorden",
+      "benefit": "Medewerkers kunnen sneller de juiste vergaderingen vinden door te zoeken op onderwerpen of trefwoorden. Dit maakt het makkelijker om relevante informatie te vinden en bij te dragen aan discussies.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557255,
+      "title": "Microsoft Purview: Dataverliespreventie om te voorkomen dat Microsoft 365 Copilot inhoud met gevoeligheidslabels verwerkt, ondersteunt alle opslaglocaties",
+      "benefit": "Medewerkers die met gevoelige informatie werken, kunnen nu beter vertrouwen op de bescherming van hun bestanden, ongeacht waar deze zijn opgeslagen.",
+      "app": "purview",
+      "prodLabel": "Excel",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 477371,
+      "title": "SharePoint: Microsoft 365 Archive archivering op bestandsniveau",
+      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 325873,
+      "title": "Microsoft Teams: Copilot in Teams kan inhoud analyseren die tijdens een vergadering op het scherm wordt gedeeld",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
