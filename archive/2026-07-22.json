@@ -1,0 +1,162 @@
+{
+  "generated": "2026-07-22T06:39:28Z",
+  "date": "2026-07-22",
+  "removed": [
+    {
+      "id": 561912,
+      "title": "Microsoft Teams: Gedeelde en gedelegeerde mailboxplanning voor evenementen",
+      "benefit": "Leiders en teams kunnen nu gemakkelijker evenementen plannen, omdat uitnodigingen vanuit een vertrouwde mailbox worden verstuurd. Dit zorgt voor meer vertrouwen en een efficiëntere organisatie van evenementen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561915,
+      "title": "Microsoft Teams: Sla je evenement op als sjabloon om evenementconfiguraties opnieuw te gebruiken",
+      "benefit": "Organisatoren kunnen sneller evenementen plannen door eerder gebruikte instellingen opnieuw te gebruiken, wat tijd bespaart.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561647,
+      "title": "Microsoft Teams: Beschikbaarheidssignaal voor Teams-evenementen",
+      "benefit": "Organisatoren van evenementen kunnen nu eenvoudig controleren of de ruimte beschikbaar is, wat het plannen van evenementen vergemakkelijkt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561550,
+      "title": "Microsoft Teams: Ondersteuning voor nabijheidsverbinding voor presentatoren in Teams-evenementen vanuit Teams Rooms op Windows en Android",
+      "benefit": "Presentatoren kunnen eenvoudiger verbinding maken met vergaderruimtes, wat de samenwerking tijdens evenementen verbetert. Dit zorgt voor een soepelere ervaring tijdens presentaties en vergaderingen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558681,
+      "title": "Microsoft Purview: Preventie van gegevensverlies – Verrijk Defender waarschuwt Graph API met DLP-gebeurtenisgegevens",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 553220,
+      "title": "SharePoint: beheerdersbeleid voor verlopende koppelingen naar 'Mensen in uw organisatie'",
+      "benefit": "Beheerders houden beter overzicht over toegang en beveiliging van SharePoint-inhoud.",
+      "app": "sharepoint",
+      "prodLabel": "OneDrive",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 547731,
+      "title": "Microsoft Copilot (Microsoft 365): Zakelijke rechtvaardiging voor aanvragen van Copilot-licenties",
+      "benefit": "Beheerders krijgen meer inzicht in de aanvragen, waardoor goedkeuringen sneller kunnen plaatsvinden. Dit maakt het voor medewerkers eenvoudiger om de benodigde tools te krijgen voor hun werk.",
+      "app": "copilot",
+      "prodLabel": "365 admin center",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 541830,
+      "title": "Microsoft Teams: Gepersonaliseerde Vergaderreacties",
+      "benefit": "Deelnemers aan vergaderingen merken dat de reacties beter aansluiten bij de organisatie. Dit maakt vergaderingen herkenbaarder en versterkt de merkidentiteit.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 537281,
+      "title": "Microsoft Copilot (Microsoft 365): [Copilot Search] [Copilot Search] Copilot Chat beschikbaar bij gebruik van Copilot Search",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 523213,
+      "title": "Microsoft Teams: BYOD-onboardingwizard voor teams",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 512429,
+      "title": "Microsoft Copilot (Microsoft 365): naadloze zoek- en chatintegratie",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503144,
+      "title": "Microsoft Copilot (Microsoft 365): Domeinuitsluiting voor webgronding",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 480722,
+      "title": "Microsoft Viva: introductie van de nieuwe herpublicatiefunctie in Viva Amplify",
+      "benefit": "Medewerkers blijven beter verbonden met de organisatie via nieuws, communities en evenementen.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
