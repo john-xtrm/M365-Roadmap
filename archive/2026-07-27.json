@@ -1,0 +1,78 @@
+{
+  "generated": "2026-07-27T07:42:12Z",
+  "date": "2026-07-27",
+  "removed": [
+    {
+      "id": 566470,
+      "title": "Microsoft Viva: Inzichten in uitgaven en gebruik van GitHub Copilot",
+      "benefit": "Managers en analisten kunnen nu eenvoudig de uitgaven voor GitHub Copilot volgen, waardoor ze betere beslissingen kunnen nemen over het gebruik van AI binnen de organisatie.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 564612,
+      "title": "Microsoft Teams: Inline zoeken in het compose-venster",
+      "benefit": "Medewerkers kunnen nu sneller bestanden en gesprekken vinden terwijl ze een bericht schrijven, wat de communicatie vergemakkelijkt. Dit maakt het eenvoudiger om relevante informatie te delen zonder onderbrekingen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 560707,
+      "title": "Microsoft Purview: Informatiebeveiliging – Simulatie-evaluatie van automatische labeling",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 559990,
+      "title": "Outlook: Copilot-zoeksuggesties voor Outlook",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agenda's van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 553219,
+      "title": "Microsoft 365: Nieuwe profielkaarten voor gebouwen, kamers en bureaus",
+      "benefit": "Medewerkers kunnen gemakkelijker informatie vinden over beschikbare ruimtes en bureaus, wat de samenwerking en planning verbetert.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503590,
+      "title": "Microsoft Copilot (Microsoft 365): beheerders kunnen nu gebruikerstoewijzingen en queryfilters voor ServiceNow Connector bewerken",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
