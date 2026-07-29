@@ -1,0 +1,126 @@
+{
+  "generated": "2026-07-29T06:44:37Z",
+  "date": "2026-07-29",
+  "removed": [
+    {
+      "id": 564766,
+      "title": "Microsoft Teams: Beheer ingebouwde Teams-agenten in het Teams admin center",
+      "benefit": "Beheerders kunnen nu eenvoudiger de beschikbaarheid van Teams-agenten regelen, wat de samenwerking voor medewerkers in chats en vergaderingen verbetert.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562051,
+      "title": "Microsoft Purview: Data Loss Prevention - Verrijkte Auditgegevens voor Gekoppelde Regels",
+      "benefit": "Beheerders krijgen nu meer gedetailleerde informatie over beleidsinbreuken, waardoor ze beter kunnen reageren op problemen. Dit maakt het voor iedereen in de organisatie eenvoudiger om te voldoen aan de compliance-eisen.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561206,
+      "title": "Microsoft 365 admin center: Nieuwe speciale pagina voor Licentieverzoeken in het Microsoft 365 Admin Center",
+      "benefit": "Admins kunnen nu eenvoudiger licentieverzoeken van medewerkers beheren, wat het proces sneller en overzichtelijker maakt.",
+      "app": "other",
+      "prodLabel": "365 admin center",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557683,
+      "title": "Microsoft Purview: Insider Risk Management - Data Security Triage Agent in IRM-verbeteringen",
+      "benefit": "De organisatie detecteert sneller risicovol gedrag rondom bedrijfsdata.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557676,
+      "title": "Outlook: Instelling scheidingsteken admin beleid",
+      "benefit": "Beheerders kunnen nu gemakkelijker een standaardinstelling voor e-mailontvangers instellen, wat het voor medewerkers eenvoudiger maakt om e-mails te versturen zonder fouten in de ontvangerslijst.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 553224,
+      "title": "Microsoft Viva: Verbeterde Onderwerptoewijzing met Copilot",
+      "benefit": "Medewerkers merken dat reacties op enquêtes beter worden ingedeeld, waardoor het makkelijker wordt om inzichten te verkrijgen uit feedback.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555858,
+      "title": "Microsoft Teams: Admin-instelling voor eenvoudigere vergaderwachtwoorden (alleen cijfers)",
+      "benefit": "Beheerders kunnen nu eenvoudigere wachtwoorden instellen voor vergaderingen. Dit maakt het voor medewerkers gemakkelijker om deel te nemen aan vergaderingen, maar het verhoogt ook de aandacht voor beveiliging.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 513274,
+      "title": "Microsoft Viva: betrek gemeenschappen in Microsoft Teams",
+      "benefit": "Medewerkers blijven beter verbonden via nieuws en communities.",
+      "app": "viva",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 494999,
+      "title": "Microsoft 365: M365-archief zoeken",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 380842,
+      "title": "Microsoft Copilot (Microsoft 365): Bronnen waarnaar wordt verwezen, worden geciteerd in de conceptinhoud",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
