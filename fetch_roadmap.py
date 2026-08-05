@@ -3,109 +3,17 @@ Microsoft 365 Roadmap - fetch & verwerk
 - Laadt bestaande vertalingen uit data.json als cache
 - Controleert of gecachede items daadwerkelijk Nederlands zijn
 - Vertaalt ALLEEN items die nieuw, gewijzigd, of nog niet correct vertaald zijn
-- Genereert organisatie-impacttekst (benefit) via GitHub Models (gpt-4o-mini)
-- Valt terug op Google Translate + keyword-templates als GITHUB_TOKEN niet beschikbaar is
+- Vertaalt via Google Translate en genereert organisatie-impacttekst via keyword-templates
+  (GitHub Models is per 30 juli 2026 definitief uitgefaseerd door GitHub, zie
+  https://github.blog/changelog/2026-07-30-github-models-is-now-retired/)
 - Slaat items op die deze week Launched of Cancelled zijn geworden
 - Slaat een archief op in archive/YYYY-MM-DD.json (max 3 maanden bewaard)
 """
 
-import csv, json, io, datetime, re, time, os, urllib.request, urllib.error
+import csv, json, io, datetime, re, time, os
 from deep_translator import GoogleTranslator
 
 translator = GoogleTranslator(source="en", target="nl")
-
-# -- GitHub Models API --------------------------------------------------------
-# Gebruikt het automatisch beschikbare GITHUB_TOKEN in GitHub Actions.
-# Gratis: 15 requests/min, 150 requests/dag voor gpt-4o-mini.
-GITHUB_TOKEN    = os.environ.get("GITHUB_TOKEN", "")
-GH_MODELS_URL   = "https://models.github.ai/inference/chat/completions"
-GH_MODEL        = "openai/gpt-4o-mini"
-
-AI_MIN_INTERVAL     = 6.0   # seconden tussen aanroepen (max 10/min, ruim onder 15/min)
-_last_ai_call       = 0.0
-_ai_quota_exhausted = False  # True na eerste 429 => rest van run via fallback
-
-def _ai_rate_limit_wait():
-    global _last_ai_call
-    elapsed = time.time() - _last_ai_call
-    if elapsed < AI_MIN_INTERVAL:
-        time.sleep(AI_MIN_INTERVAL - elapsed)
-    _last_ai_call = time.time()
-
-def ai_process_item(title_en, desc_en):
-    """Vertaalt title+desc naar NL en genereert benefit via GitHub Models.
-    Bij 429 schakelt de hele run direct over op Google Translate."""
-    global _ai_quota_exhausted
-    if not GITHUB_TOKEN or _ai_quota_exhausted:
-        return None
-
-    lines = [
-        "Je verwerkt een Microsoft 365 roadmap-item voor een Nederlands zakelijk dashboard.",
-        "",
-        "Voer twee taken uit op basis van de onderstaande Engelse tekst:",
-        "",
-        "1. VERTALING: Vertaal de titel en beschrijving nauwkeurig naar het Nederlands.",
-        "   - Behoud technische termen zoals tenant, admin center, DLP, rollout,",
-        "     policy, compliance, PowerShell - vertaal deze NIET",
-        "   - Vertaal alleen wat er staat, voeg niets toe en laat niets weg",
-        "   - Schrijf lopende, professionele zinnen",
-        "",
-        "2. ORGANISATIE-IMPACT: Schrijf maximaal 2 korte Nederlandse zinnen die concreet",
-        "   uitleggen wat deze update betekent voor de organisatie.",
-        "   - Beantwoord: wie merkt dit, en wat gaat er concreet beter of makkelijker?",
-        "   - Geen IT-jargon, gewone taal voor niet-technische medewerkers",
-        "   - Strikt gebaseerd op de aangeleverde tekst, niets verzinnen of toevoegen",
-        "   - Begin NIET met: Met deze update / Microsoft introduceert / Deze functie",
-        "   - Schrijf vanuit de medewerker of organisatie, niet vanuit Microsoft",
-        "",
-        'Geef je antwoord UITSLUITEND als geldig JSON: {"title_nl": "...", "desc_nl": "...", "benefit": "..."}',
-        "",
-        "Engelse titel: " + title_en,
-        "Engelse beschrijving: " + desc_en[:800],
-    ]
-    prompt = "\n".join(lines)
-
-    payload = json.dumps({
-        "model": GH_MODEL,
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 400,
-        "temperature": 0.2
-    }).encode("utf-8")
-
-    _ai_rate_limit_wait()
-    try:
-        req = urllib.request.Request(
-            GH_MODELS_URL,
-            data=payload,
-            headers={
-                "Content-Type":  "application/json",
-                "Authorization": "Bearer " + GITHUB_TOKEN,
-            },
-            method="POST"
-        )
-        with urllib.request.urlopen(req, timeout=20) as resp:
-            result  = json.loads(resp.read().decode("utf-8"))
-            text    = result["choices"][0]["message"]["content"].strip()
-            text    = re.sub(r"^```[a-z]*\s*|\s*```$", "", text, flags=re.MULTILINE).strip()
-            parsed  = json.loads(text)
-            if all(k in parsed for k in ("title_nl", "desc_nl", "benefit")):
-                return parsed
-            print("    Onvolledig AI-antwoord -- fallback")
-            return None
-    except urllib.error.HTTPError as e:
-        if e.code == 429:
-            print("    AI quota bereikt (429) -- rest van de run via Google Translate")
-            _ai_quota_exhausted = True
-            return None
-        try:
-            body = e.read().decode("utf-8")[:150]
-        except Exception:
-            body = ""
-        print("    AI HTTP " + str(e.code) + " -- fallback: " + body)
-        return None
-    except Exception as e:
-        print("    AI fout -- fallback: " + str(e))
-        return None
 
 # -- Google Translate fallback -------------------------------------------------
 def translate(text, retries=3):
@@ -413,10 +321,7 @@ if os.path.exists("data.json"):
 else:
     print("Geen bestaande data.json -- alles wordt verwerkt")
 
-if GITHUB_TOKEN:
-    print("AI vertaling: actief -- GitHub Models (gpt-4o-mini)")
-else:
-    print("AI vertaling: niet geconfigureerd -- Google Translate + templates als fallback")
+print("Vertaling: Google Translate + keyword-templates")
 
 # -- CSV inlezen ---------------------------------------------------------------
 print("\nCSV inlezen...")
@@ -485,7 +390,7 @@ if not removed:
 print("\nVerwerken...")
 items = []
 cached_count = new_count = retrans_count = 0
-ai_count = fallback_count = 0
+fallback_count = 0
 
 for i, row in enumerate(active_rows):
     product  = cell(row, "Tags - Product")
@@ -518,27 +423,14 @@ for i, row in enumerate(active_rows):
         needs_processing = True
 
     if needs_processing:
-        ai_result = ai_process_item(title_en, desc_en)
-        if ai_result:
-            nl_title  = ai_result["title_nl"]
-            nl_desc   = ai_result["desc_nl"]
-            benefit   = ai_result["benefit"]
-            ai_count += 1
-        else:
-            nl_title      = translate(title_en)
-            nl_desc       = translate(desc_en[:800])
-            needs_benefit = True
-            time.sleep(0.3)
+        nl_title      = translate(title_en)
+        nl_desc       = translate(desc_en[:800])
+        needs_benefit = True
+        time.sleep(0.3)
 
     if needs_benefit:
-        ai_result = ai_process_item(title_en, desc_en)
-        if ai_result:
-            benefit   = ai_result["benefit"]
-            ai_count += 1
-        else:
-            benefit        = generate_benefit(key, title_en, desc_en)
-            fallback_count += 1
-            time.sleep(0.3)
+        benefit        = generate_benefit(key, title_en, desc_en)
+        fallback_count += 1
 
     action_key, action_label = classify_action(title_en, desc_en)
 
@@ -563,7 +455,6 @@ print("\nResultaat: " + str(len(items)) + " actieve items")
 print("  OK Uit cache:          " + str(cached_count))
 print("  ++ Nieuw verwerkt:     " + str(new_count))
 print("  ~~ Herverwerkt:        " + str(retrans_count))
-print("  AI Via GitHub Models:  " + str(ai_count))
 print("  FB Via fallback:       " + str(fallback_count))
 print("  -- Verwijderd:         " + str(len(removed)))
 
@@ -627,7 +518,6 @@ if summary_path:
         sf.write("| | |\n|---|---|\n")
         sf.write("| Bijgewerkt | " + result["generated"] + " |\n")
         sf.write("| Actieve items | " + str(len(items)) + " |\n")
-        sf.write("| Via GitHub Models | " + str(ai_count) + " |\n")
         sf.write("| Via fallback | " + str(fallback_count) + " |\n")
         sf.write("| Uit cache | " + str(cached_count) + " |\n")
         sf.write("| Verdwenen items | " + str(len(removed)) + " |\n")
