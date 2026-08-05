@@ -426,23 +426,31 @@ with open("roadmap.csv", encoding="utf-8-sig") as f:
 reader       = csv.DictReader(io.StringIO(raw))
 all_csv_rows = list(reader)
 
+def cell(row, key, default=""):
+    """Haalt een CSV-veld veilig op.
+    csv.DictReader vult ontbrekende kolommen (rij korter dan header) met None
+    in plaats van de default van .get(), dus .strip()/.lower() op zo'n veld
+    crasht anders met AttributeError/TypeError."""
+    val = row.get(key, default)
+    return val if val is not None else default
+
 csv_status_by_id = {}
 for row in all_csv_rows:
-    fid = int(row.get("Feature ID", 0) or 0)
+    fid = int(cell(row, "Feature ID", 0) or 0)
     if fid:
-        csv_status_by_id[fid] = row.get("Status", "").strip()
+        csv_status_by_id[fid] = cell(row, "Status").strip()
 
 active_rows = []
 for row in all_csv_rows:
-    status = row.get("Status", "").strip().lower()
-    cloud  = row.get("Tags - Cloud instance", "")
+    status = cell(row, "Status").strip().lower()
+    cloud  = cell(row, "Tags - Cloud instance")
     if status not in ("in development", "rolling out"):
         continue
     if "Worldwide (Standard Multi-Tenant)" not in cloud:
         continue
     active_rows.append(row)
 
-active_ids = {int(r.get("Feature ID", 0) or 0) for r in active_rows}
+active_ids = {int(cell(r, "Feature ID", 0) or 0) for r in active_rows}
 print(str(len(active_rows)) + " actieve items gevonden")
 
 # -- Verwijderde items detecteren ----------------------------------------------
@@ -480,12 +488,12 @@ cached_count = new_count = retrans_count = 0
 ai_count = fallback_count = 0
 
 for i, row in enumerate(active_rows):
-    product  = row.get("Tags - Product", "")
-    title_en = row.get("Description", "").strip()
+    product  = cell(row, "Tags - Product")
+    title_en = cell(row, "Description").strip()
     key      = app_key_from_title(title_en) if title_en else app_key(product)
-    desc_en  = row.get("Details", "").strip()
-    item_id  = int(row.get("Feature ID", 0) or 0)
-    modified = row.get("Last Modified", "").strip()
+    desc_en  = cell(row, "Details").strip()
+    item_id  = int(cell(row, "Feature ID", 0) or 0)
+    modified = cell(row, "Last Modified").strip()
     cache_key = (item_id, modified)
 
     needs_processing = False
@@ -539,14 +547,14 @@ for i, row in enumerate(active_rows):
         "title":       nl_title,
         "desc":        nl_desc,
         "benefit":     benefit,
-        "status":      "rolling" if "rolling" in row.get("Status", "").lower() else "dev",
+        "status":      "rolling" if "rolling" in cell(row, "Status").lower() else "dev",
         "app":         key,
         "tags":        extra_tags(product, key),
         "prodLabel":   make_label(product, key),
-        "added":       row.get("Added to Roadmap", "").strip(),
+        "added":       cell(row, "Added to Roadmap").strip(),
         "modified":    modified,
-        "release":     row.get("Release", "").strip(),
-        "preview":     row.get("Preview", "").strip(),
+        "release":     cell(row, "Release").strip(),
+        "preview":     cell(row, "Preview").strip(),
         "action":      action_key,
         "actionLabel": action_label,
     })
