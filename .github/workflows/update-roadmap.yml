@@ -1,26 +1,19 @@
 name: Ververs Microsoft 365 Roadmap
-
 on:
   schedule:
     - cron: '0 4 * * 1'   # Elke maandag om 04:00 UTC (05:00 NL wintertijd; 06:00 NL zomertijd)
     - cron: '0 4 * * 3'   # Elke woensdag als fallback bij mislukte maandagrun
   workflow_dispatch:
-
 permissions:
   contents: write
-  models: read
-
 jobs:
   update-roadmap:
     runs-on: ubuntu-latest
-
     steps:
       - name: Repository ophalen
         uses: actions/checkout@v4
-
       - name: Python-afhankelijkheden installeren
         run: pip install deep-translator
-
       - name: CSV ophalen via curl
         run: |
           curl -s -L \
@@ -31,17 +24,12 @@ jobs:
             "https://www.microsoft.com/releasecommunications/api/v2/m365?responseFormat=csv" \
             -o roadmap.csv
           echo "Opgehaald: $(wc -l < roadmap.csv) regels"
-
       - name: Data verwerken en vertalen
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python3 -u fetch_roadmap.py
-
       - name: Archief opruimen (ouder dan 3 maanden)
         run: |
           find archive/ -name "*.json" -mtime +92 -delete 2>/dev/null || true
           echo "Archief opgeruimd"
-
       - name: Wijzigingen committen en pushen
         run: |
           git config user.name  "github-actions[bot]"
