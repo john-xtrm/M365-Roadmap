@@ -1,0 +1,102 @@
+{
+  "generated": "2026-08-05T07:32:00Z",
+  "date": "2026-08-05",
+  "removed": [
+    {
+      "id": 561652,
+      "title": "Microsoft Edge: Synchronisatie van Passkeys voor Zakelijke Gebruikers",
+      "benefit": "Medewerkers merken dat ze gemakkelijker en veiliger kunnen inloggen op verschillende apparaten zonder wachtwoorden te hoeven onthouden. Dit maakt het dagelijkse werk efficiënter en vermindert de kans op beveiligingsproblemen.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561488,
+      "title": "Microsoft Copilot (Microsoft 365): Vereenvoudigd ontwerp voor de Microsoft 365 Copilot-app",
+      "benefit": "Medewerkers ervaren een gebruiksvriendelijkere interface, waardoor het makkelijker wordt om met Copilot te werken en sneller antwoorden te vinden.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558255,
+      "title": "Microsoft Teams: Voer SMB-beheer taken sneller uit met Microsoft 365 Admin Agent in Microsoft Teams",
+      "benefit": "Beheerders kunnen nu sneller en eenvoudiger hun taken uitvoeren, waardoor ze meer tijd hebben voor andere belangrijke werkzaamheden.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 547834,
+      "title": "Microsoft Teams: Evenementen in de Meet-app in Teams",
+      "benefit": "Medewerkers kunnen eenvoudig belangrijke evenementen vinden en hun eigen evenementen beter organiseren, wat de samenwerking binnen de organisatie vergemakkelijkt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 543425,
+      "title": "Outlook: Acties wissen en markeren in nieuwe Outlook",
+      "benefit": "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503551,
+      "title": "Outlook: uitgebreide voorwaarden voor voorwaardelijke opmaak in de nieuwe Outlook voor web en Windows",
+      "benefit": "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 410366,
+      "title": "Microsoft Teams: gebruiker heeft aangepaste achtergrondafbeeldingen geüpload voor de nieuwe VDI-oplossing voor Microsoft Teams",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "April CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 117569,
+      "title": "Microsoft Purview-nalevingsportal: eDiscovery (Premium) - CMK-versleutelingsondersteuning (Customer Managed Keys) voor gegevens in rust in beoordelingssets",
+      "benefit": "Juridische onderzoeken verlopen sneller door beter overzicht over bewaard materiaal.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2027",
+      "status": "unknown",
+      "statusNl": "Verwijderd uit roadmap"
+    }
+  ]
+}
