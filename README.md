@@ -8,7 +8,7 @@ Een automatisch bijgewerkt overzicht van aankomende Microsoft 365-updates, gebou
 
 ## Wat het doet
 
-Elke **maandag om 06:00 UTC** haalt een GitHub Actions workflow de publieke Microsoft 365 roadmap op, verwerkt de items via Gemini AI (vertaling EN organisatie-impacttekst in één aanroep) en slaat het resultaat op als `data.json`. Google Translate dient als fallback wanneer de Gemini API niet beschikbaar is. De vijf HTML-pagina's laden deze data client-side en tonen een gefilterd, doorzoekbaar overzicht.
+Elke **maandag om 06:00 UTC** haalt een GitHub Actions workflow de publieke Microsoft 365 roadmap op, vertaalt de items via Google Translate en genereert een organisatie-impacttekst op basis van keyword-templates, en slaat het resultaat op als `data.json`. De vijf HTML-pagina's laden deze data client-side en tonen een gefilterd, doorzoekbaar overzicht.
 
 | Pagina | Doel |
 |---|---|
@@ -96,8 +96,8 @@ Microsoft CSV API (aka.ms/MSRoadmapCSV)
         │  maandag 06:00 UTC
         ▼
 GitHub Actions → fetch_roadmap.py
-        │  Gemini AI: vertaling EN organisatie-impacttekst (primair)
-        │  Google Translate + keyword-templates (fallback)
+        │  Google Translate: EN → NL vertaling
+        │  Keyword-templates: organisatie-impacttekst
         ▼
 data.json + archive/
         │  git push → GitHub Pages
@@ -120,7 +120,10 @@ Copilot · Teams · Outlook · Excel · Word · PowerPoint · SharePoint · Purv
 
 ## Kosten
 
-**€0/maand** — GitHub Pages (hosting) + GitHub Actions (weekelijkse run) + Microsoft CSV API (geen auth) + Gemini AI gratis tier + Google Translate via `deep_translator` (gratis tier, fallback).
+**€0/maand** — GitHub Pages (hosting) + GitHub Actions (wekelijkse run) + Microsoft CSV API (geen auth) + Google Translate via `deep_translator` (gratis tier).
+
+> **Let op:** het project gebruikte eerder GitHub Models (gpt-4o-mini) voor AI-vertaling en impacttekst. GitHub heeft deze dienst per 30 juli 2026 definitief uitgefaseerd
+> ([changelog](https://github.blog/changelog/2026-07-30-github-models-is-now-retired/)). Het script draait sindsdien volledig op Google Translate + keyword-templates, zonder externe AI-afhankelijkheid.
 
 ---
 
@@ -162,10 +165,6 @@ Push naar `main` → GitHub Pages deployt automatisch binnen ~1 minuut.
 3. Voeg de key toe aan `APP_ORDER` in `shared.js`
 4. Voeg een `.p-{product}` klasse toe aan `shared.css` indien nodig
 5. Voeg het product toe aan `APP_LABELS`, `GENERIC_BENEFIT` en `DETECT_PATTERNS` in `fetch_roadmap.py`
-
-### Gemini API configureren
-
-`fetch_roadmap.py` leest de omgevingsvariabele `GEMINI_API_KEY`. Stel deze in via GitHub Actions → Settings → Secrets and variables → Actions. Zonder sleutel valt het script automatisch terug op Google Translate + keyword-templates.
 
 ### WCAG
 
@@ -227,7 +226,7 @@ Alle pagina's voldoen aan WCAG 2.2 AA. Bij elke wijziging controleren:
 |---|---|---|
 | `title` | string | Vertaalde Nederlandse titel |
 | `desc` | string | Vertaalde Nederlandse beschrijving |
-| `benefit` | string | AI-gegenereerde organisatie-impacttekst (1-2 zinnen NL) |
+| `benefit` | string | Organisatie-impacttekst op basis van keyword-templates (1-2 zinnen NL) |
 | `app` | string | Primaire product-key (bijv. `"teams"`) |
 | `tags` | string[] | Aanvullende product-keys als het item meerdere producten raakt |
 | `prodLabel` | string | Leesbaar weergavelabel (bijv. `"OneDrive"`) |
