@@ -1,0 +1,150 @@
+{
+  "generated": "2026-08-10T05:41:39Z",
+  "date": "2026-08-10",
+  "removed": [
+    {
+      "id": 566872,
+      "title": "Microsoft Copilot (Microsoft 365): Complexe webzoekopdracht met Copilot in Excel",
+      "benefit": "Medewerkers die met Excel werken, merken dat ze sneller en vollediger informatie kunnen vinden. Dit maakt het makkelijker om beslissingen te nemen op basis van betrouwbare gegevens.",
+      "app": "copilot",
+      "prodLabel": "Excel",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 562413,
+      "title": "Microsoft Teams: Doorzoekbare sneltoetsen vanuit de dialoog in Teams",
+      "benefit": "Medewerkers kunnen nu sneller de juiste sneltoetsen vinden, wat het werken in Teams efficiënter maakt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562035,
+      "title": "Microsoft Teams: Interpreter - Verbeteringen in de gelijktijdige modus",
+      "benefit": "Medewerkers houden zelf controle over welke meldingen ze ontvangen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558683,
+      "title": "Microsoft Purview: Data Catalog – Migratietool in Unified Catalog om klassieke woordenlijsttermen naar Unified Catalog te migreren",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 559386,
+      "title": "Microsoft Teams: Queues-app op Teams mobiel",
+      "benefit": "Medewerkers die klantoproepen afhandelen, kunnen nu gemakkelijker en sneller reageren. Dit zorgt voor een betere communicatie met klanten, ongeacht waar ze zich bevinden.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557172,
+      "title": "Microsoft Teams: Klanten in staat stellen om afspraken te boeken vanuit een live chat-widget op uw website",
+      "benefit": "Klanten kunnen nu eenvoudig afspraken maken via de website, wat het contact met ons vergemakkelijkt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 555880,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar de stijl van een bijgevoegd PowerPoint-deck bij het maken van een nieuwe presentatie met Agent Mode in PowerPoint",
+      "benefit": "Collega's kunnen eenvoudiger en sneller presentaties maken die er professioneel uitzien, omdat de stijl automatisch wordt overgenomen van bestaande presentaties.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555879,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar de stijl van een bijgevoegd PowerPoint-deck bij het maken van een nieuwe presentatie met Agent Mode in PowerPoint",
+      "benefit": "Medewerkers kunnen eenvoudiger nieuwe presentaties maken die er professioneel uitzien, omdat de stijl van bestaande presentaties automatisch wordt toegepast. Dit bespaart tijd en zorgt voor consistentie in de opmaak.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555878,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar de stijl van een bijgevoegd PowerPoint-deck bij het maken van een nieuwe presentatie met Agent Mode in PowerPoint",
+      "benefit": "Collega's die presentaties maken, kunnen eenvoudiger en sneller nieuwe presentaties creëren met een consistente opmaak. Dit bespaart tijd en zorgt voor een professionelere uitstraling.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 553223,
+      "title": "Microsoft Teams: Voice-tethering",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 523205,
+      "title": "Microsoft Copilot (Microsoft 365): Gebruik uw stem voor vragen en antwoorden tijdens het voorlezen in Word",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Word",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 502524,
+      "title": "Microsoft Teams: Nieuwe SlimCore-gebaseerde optimalisatie voor Microsoft Teams in VDI - ondersteuning voor MacOS op Citrix en Azure Virtual Desktops/Windows 365",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
