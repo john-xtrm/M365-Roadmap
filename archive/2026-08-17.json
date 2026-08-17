@@ -1,0 +1,114 @@
+{
+  "generated": "2026-08-17T04:53:32Z",
+  "date": "2026-08-17",
+  "removed": [
+    {
+      "id": 561916,
+      "title": "Microsoft Purview: Preventie van gegevensverlies - Gedetailleerde controle op classificatiefouten (Exchange online)",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559801,
+      "title": "Outlook: Ga Direct naar Elke Map met Ga naar Map",
+      "benefit": "Iedereen die Outlook gebruikt, kan nu sneller de juiste map vinden zonder te hoeven scrollen. Dit maakt het werken met e-mails efficiënter en bespaart tijd.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559614,
+      "title": "Microsoft Copilot (Microsoft 365): Verbeterde navigatie in lange bestanden met behulp van documentstructuur, wat zorgt voor nauwkeurigere antwoorden en duidelijkere citaten.",
+      "benefit": "Medewerkers merken dat ze sneller en eenvoudiger antwoorden kunnen vinden in lange documenten, waardoor ze efficiënter kunnen werken.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "unknown",
+      "statusNl": "Verwijderd uit roadmap"
+    },
+    {
+      "id": 548652,
+      "title": "Microsoft Teams: Ad-hoc kamerreservering vanuit Teams Rooms op Android-console",
+      "benefit": "Medewerkers kunnen nu eenvoudig een vergaderruimte reserveren wanneer dat nodig is, waardoor spontane vergaderingen gemakkelijker kunnen plaatsvinden.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 499659,
+      "title": "Excel: = COPILOT-functie",
+      "benefit": "Spreadsheetanalyses die vroeger uren kostten zijn straks een kwestie van minuten.",
+      "app": "excel",
+      "prodLabel": "Excel",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 499658,
+      "title": "Excel: = COPILOT-functie",
+      "benefit": "Spreadsheetanalyses die vroeger uren kostten zijn straks een kwestie van minuten.",
+      "app": "excel",
+      "prodLabel": "Excel",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 499660,
+      "title": "Excel: = COPILOT-functie",
+      "benefit": "Spreadsheetanalyses die vroeger uren kostten zijn straks een kwestie van minuten.",
+      "app": "excel",
+      "prodLabel": "Excel",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 464996,
+      "title": "Microsoft Purview-complianceportal: Preventie van gegevensverlies - Bruikbare e-mailmeldingen voor verbeterd herstel van incidenten",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 88537,
+      "title": "Outlook: Ondersteuning voor AppleScript in de nieuwe Outlook voor Mac",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
