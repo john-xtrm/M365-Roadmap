@@ -1,0 +1,126 @@
+{
+  "generated": "2026-08-19T04:45:23Z",
+  "date": "2026-08-19",
+  "removed": [
+    {
+      "id": 569421,
+      "title": "Microsoft Teams: bescherming tegen schadelijke URL's voor Teams Chat en kanalen voor Gov-clouds",
+      "benefit": "Teams-kanalen worden overzichtelijker en medewerkers vinden gesprekken sneller terug.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "unknown",
+      "statusNl": "Verwijderd uit roadmap"
+    },
+    {
+      "id": 565221,
+      "title": "Microsoft Teams: Zichtbaarheid van het assistentveld in de Organisatieweergave",
+      "benefit": "Medewerkers kunnen nu sneller de juiste contactpersoon vinden voor ondersteuning bij coördinatie en planning. Dit maakt samenwerking met leidinggevenden eenvoudiger.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 564805,
+      "title": "Microsoft 365 admin center: Organisatorische Gegevens – Granulaire toegangsbeleidcontroles voor aangepaste attributen",
+      "benefit": "Medewerkers krijgen gerichter toegang tot belangrijke gegevens, wat de bescherming van gevoelige informatie vergemakkelijkt. Dit maakt het voor teams makkelijker om samen te werken zonder onnodige risico's.",
+      "app": "other",
+      "prodLabel": "365 admin center",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562662,
+      "title": "Microsoft 365-app: Nieuw Copilot Notebooks-ontwerp in de Microsoft 365 Copilot-app",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561321,
+      "title": "Microsoft Teams: Voorvertoningen van SharePoint-miniaturen",
+      "benefit": "Collega's kunnen nu sneller en eenvoudiger informatie uit SharePoint bekijken en begrijpen zonder Teams te verlaten.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557190,
+      "title": "Microsoft Purview: Preventie van gegevensverlies – Actie voor bestandsquarantaine in DLP voor SharePoint/OneDrive",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 490564,
+      "title": "Microsoft Teams: interactieve agenten voor teamsvergaderingen en -gesprekken",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 481834,
+      "title": "Microsoft 365: Bewaartermijn voor de lange termijn voor M365 Backup",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 394279,
+      "title": "Microsoft Purview compliance portal: Data Loss Prevention - Ontkoppeling van beleidsadviezen en e-mailmeldingen bij het configureren van regels voor Data Loss Prevention voor SharePoint en OneDrive",
+      "benefit": "Beheerders kunnen nu flexibeler instellen welke meldingen ze willen gebruiken. Dit maakt het voor medewerkers makkelijker om relevante informatie te ontvangen zonder overbodige meldingen.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 117569,
+      "title": "Microsoft Purview-nalevingsportal: eDiscovery (Premium) - CMK-versleutelingsondersteuning (Customer Managed Keys) voor gegevens in rust in beoordelingssets",
+      "benefit": "Juridische onderzoeken verlopen sneller door beter overzicht over bewaard materiaal.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2027",
+      "status": "unknown",
+      "statusNl": "Verwijderd uit roadmap"
+    }
+  ]
+}
