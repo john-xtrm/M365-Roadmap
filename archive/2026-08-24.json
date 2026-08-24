@@ -1,0 +1,102 @@
+{
+  "generated": "2026-08-24T04:55:27Z",
+  "date": "2026-08-24",
+  "removed": [
+    {
+      "id": 559021,
+      "title": "Microsoft Copilot (Microsoft 365): Work IQ API's – Geünificeerd REST-eindpunt voor Agents en Workflows",
+      "benefit": "Medewerkers merken dat het aanroepen van agents en workflows eenvoudiger en efficiënter wordt, wat de dagelijkse werkzaamheden vergemakkelijkt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559019,
+      "title": "Microsoft Copilot (Microsoft 365): Work IQ API's - Eindpunten: Declaratieve agenttoegang",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560815,
+      "title": "Microsoft Teams: Verbeterde zichtbaarheid en controle voor downloads",
+      "benefit": "Medewerkers kunnen nu eenvoudiger downloads volgen zonder dat dit de communicatie in Teams verstoort. Dit maakt het werken met bestanden efficiënter en minder frustrerend.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555888,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar een e-mail met Work IQ bij het gebruik van Bewerken met Copilot in PowerPoint om een presentatie te maken",
+      "benefit": "Medewerkers kunnen nu eenvoudiger informatie uit e-mails gebruiken bij het maken van presentaties, wat tijd bespaart en de efficiëntie verhoogt.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555882,
+      "title": "Microsoft Copilot (Microsoft 365): Een afbeelding toevoegen en verwijzen naar een afbeelding bij het maken van een presentatie met Copilot in PowerPoint met Agent Mode.",
+      "benefit": "Medewerkers kunnen eenvoudiger en sneller afbeeldingen toevoegen aan presentaties, wat de kwaliteit en efficiëntie van hun werk verbetert.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 547829,
+      "title": "Microsoft 365: Verbeteringen aan de kamerboekingservaring in de Places-app",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 533043,
+      "title": "Microsoft Copilot (Microsoft 365): bijgewerkte gebruikersinterface voor Copilot Chat-invoerpunt in Word-, Excel- en PowerPoint-apps",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Excel",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 513278,
+      "title": "Planner: beschikbaar in Outlook",
+      "benefit": "Taken en projecten zijn beter te overzien voor teams.",
+      "app": "planner",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
