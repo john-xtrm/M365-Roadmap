@@ -1,0 +1,90 @@
+{
+  "generated": "2026-08-26T04:53:54Z",
+  "date": "2026-08-26",
+  "removed": [
+    {
+      "id": 565905,
+      "title": "Microsoft Copilot (Microsoft 365): People Skills - beheer van verwijdering en verwijdering door beheerder",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 565220,
+      "title": "Microsoft Teams: Open berichtlinks in een nieuw venster",
+      "benefit": "Medewerkers kunnen nu gemakkelijker informatie vergelijken zonder hun gesprekken te onderbreken, wat de samenwerking verbetert.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 550514,
+      "title": "Microsoft Copilot (Microsoft 365): Nieuw gemaakte Declarative Agents begrijpen nu gescande PDF's waarnaar wordt verwezen",
+      "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 512431,
+      "title": "Planner: Aangepaste Sjablonen",
+      "benefit": "Medewerkers kunnen sneller en consistenter werken met sjablonen die zijn afgestemd op onze organisatie, wat de efficiëntie verhoogt.",
+      "app": "planner",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503564,
+      "title": "Microsoft 365 admin center: Organisatorische Berichten ondersteunen nu Hybride-verbonden Apparaten",
+      "benefit": "Medewerkers met hybride apparaten kunnen nu gemakkelijker belangrijke berichten ontvangen, wat de communicatie binnen de organisatie verbetert.",
+      "app": "other",
+      "prodLabel": "365 admin center",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 498491,
+      "title": "Microsoft Purview-complianceportal: Tipondersteuning in Outlook voor Mac",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 491016,
+      "title": "Microsoft Purview Compliance Portal: Ondersteuning voor DLP-beleidstips in Outlook Mobile",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
