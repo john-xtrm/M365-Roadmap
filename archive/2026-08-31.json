@@ -1,0 +1,66 @@
+{
+  "generated": "2026-08-31T10:47:26Z",
+  "date": "2026-08-31",
+  "removed": [
+    {
+      "id": 567317,
+      "title": "Minecraft Education: Learning Cubed Update met Cross-Tenant Multiplayer en de Laatste Bedrock Functies",
+      "benefit": "Medewerkers kunnen nu samen spelen met collega's van andere tenants, wat de samenwerking en interactie vergemakkelijkt. Dit maakt het leren en gamen met anderen eenvoudiger en leuker.",
+      "app": "other",
+      "prodLabel": "Minecraft Education",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560540,
+      "title": "Microsoft Copilot (Microsoft 365): Nu slimmer met visuals: Copilot Chat maakt gebruik van ingesloten afbeeldingen voor rijkere, nauwkeurigere antwoorden.",
+      "benefit": "Medewerkers kunnen nu sneller en nauwkeuriger antwoorden krijgen op complexe vragen door gebruik te maken van afbeeldingen in documenten. Dit maakt het eenvoudiger om inzichten te verkrijgen uit visuele informatie.",
+      "app": "copilot",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558448,
+      "title": "Microsoft Agent 365: het besturingsvlak voor agenten",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "Agent 365",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557189,
+      "title": "Microsoft Purview: Insider Risk Management – Mogelijkheid om inhoud te bekijken in Insider Risk Management Alerts",
+      "benefit": "Medewerkers met de juiste machtigingen kunnen nu sneller en eenvoudiger relevante bestanden bekijken zonder extra stappen. Dit maakt het identificeren van risico's binnen de organisatie efficiënter.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 415168,
+      "title": "Outlook: Automatisch toegewezen agenda's weergeven",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agendas van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
