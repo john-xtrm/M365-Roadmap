@@ -1,0 +1,90 @@
+{
+  "generated": "2026-09-02T08:44:36Z",
+  "date": "2026-09-02",
+  "removed": [
+    {
+      "id": 566866,
+      "title": "Planner: Task Details Side Pane experience",
+      "benefit": "Taken en projecten zijn beter te overzien voor teams.",
+      "app": "planner",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 564765,
+      "title": "Microsoft Purview: preventie van gegevensverlies - op gebruikers gebaseerde aggregatie van DLP-waarschuwingen",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559601,
+      "title": "Microsoft Copilot (Microsoft 365): Chatgeschiedenisfiltering op basis van Copilot-ervaring",
+      "benefit": "Medewerkers kunnen gemakkelijker relevante gesprekken terugvinden, wat de samenwerking en communicatie verbetert.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 561038,
+      "title": "SharePoint: Beheercentrum - gedetailleerd rapport over Iedereen behalve externe gebruikersmachtigingen",
+      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560702,
+      "title": "Microsoft Teams: beveiligingsdetectierapport in Teams-beheercentrum",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558539,
+      "title": "Microsoft Teams: Verbeterde cross-platform deelname via SIP voor Teams Rooms op Android",
+      "benefit": "Medewerkers kunnen nu eenvoudig deelnemen aan externe vergaderingen vanuit Teams Rooms, wat de samenwerking met externe partners vergemakkelijkt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 487836,
+      "title": "Microsoft Copilot (Microsoft 365): Selfserviceagent voor werknemers in M365 Copilot",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "November CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
