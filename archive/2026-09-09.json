@@ -1,0 +1,30 @@
+{
+  "generated": "2026-09-09T08:55:33Z",
+  "date": "2026-09-09",
+  "removed": [
+    {
+      "id": 557560,
+      "title": "Microsoft Copilot (Microsoft 365): AI-gegenereerde videoconcepten bevatten tekstanimaties en nieuwe lay-outopties",
+      "benefit": "Medewerkers maken snel professionele video's via Copilot — geen video-ervaring vereist.",
+      "app": "copilot",
+      "prodLabel": "Clipchamp",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 550513,
+      "title": "Microsoft Clipchamp: Verbeterde audio voor door Copilot AI gegenereerde videoprojecten",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "Clipchamp",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
