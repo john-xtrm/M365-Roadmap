@@ -1,0 +1,162 @@
+{
+  "generated": "2026-09-16T09:39:40Z",
+  "date": "2026-09-16",
+  "removed": [
+    {
+      "id": 568787,
+      "title": "Microsoft Edge: Wijzigingen in de detectie van lokale IP-adressen voor proxy auto-config (PAC)-scripts",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566697,
+      "title": "OneDrive: PDF-annotatie voor met gevoelige labels beveiligde PDF's in de OneDrive-apps (iOS en Android)",
+      "benefit": "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder.",
+      "app": "onedrive",
+      "prodLabel": "OneDrive",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567470,
+      "title": "OneDrive: sluit specifieke mappen uit van synchronisatie",
+      "benefit": "Bestanden synchroniseren betrouwbaarder.",
+      "app": "onedrive",
+      "prodLabel": "OneDrive",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561856,
+      "title": "Toegang: Inzoomen voor Continue Formulieren en Meerdere Items Formulieren",
+      "benefit": "Medewerkers kunnen nu gemakkelijker inzoomen op formulieren, waardoor het bekijken van details eenvoudiger wordt. Dit maakt het werk efficiënter en vermindert de kans op fouten.",
+      "app": "other",
+      "prodLabel": "Access",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561491,
+      "title": "Outlook: Copilot-instellingen in klassieke Outlook voor Windows",
+      "benefit": "Medewerkers werken efficienter in Outlook doordat AI e-mails samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561325,
+      "title": "Microsoft Viva: Copilot Analytics: Copilot gebruiksrapport PBI op dagniveau met actuele gegevens",
+      "benefit": "Medewerkers krijgen inzicht in het gebruik van Copilot, waardoor ze beter kunnen begrijpen hoe en wanneer het wordt gebruikt. Dit maakt het makkelijker om de effectiviteit van Copilot in hun dagelijkse werkzaamheden te evalueren.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "November CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561330,
+      "title": "Microsoft 365: Introductie van Exchange Online Cross-tenant berichtherinnering",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 537269,
+      "title": "Microsoft Teams: Express-spraakinschrijving in Microsoft Teams",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 530578,
+      "title": "Microsoft Edge: trackingpreventie tijdens het browsen in InPrivate",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 530577,
+      "title": "Microsoft Copilot (Microsoft 365): Microsoft 365 Copilot – Chat- en zoekbrowserextensie voor Chrome",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 529864,
+      "title": "Microsoft Copilot (Microsoft 365): Semantisch afscheidswoord voor stem in Microsoft 365 Copilot",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "365",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 502533,
+      "title": "Microsoft Copilot (Microsoft 365): [Copilot-uitbreidbaarheid][Search UX] Rijke entiteitsrepresentatie voor connectoren in zoekresultaten",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 489227,
+      "title": "Toegang: Schakel zoomvergroting in voor Microsoft Access voor formulieren, tabellen en query's",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "Access",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
