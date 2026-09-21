@@ -1,0 +1,114 @@
+{
+  "generated": "2026-09-21T10:19:48Z",
+  "date": "2026-09-21",
+  "removed": [
+    {
+      "id": 566351,
+      "title": "PowerPoint: Maak presentaties in lijn met het merk met extra merkmiddelen",
+      "benefit": "Medewerkers kunnen nu eenvoudiger en sneller presentaties maken die passen bij de huisstijl, zonder te zoeken naar merkmaterialen.",
+      "app": "powerpoint",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561209,
+      "title": "Microsoft Purview: Gegevenslevenscyclusbeheer – Inzichten en beleidsaanbevelingen over interacties van Microsoft Copilot en AI-apps voor betere gegevensbeveiliging en compliance",
+      "benefit": "Medewerkers krijgen beter inzicht in hoe ze Copilots en AI-apps gebruiken, wat helpt om gegevens beter te beveiligen en te voldoen aan de regels.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 560705,
+      "title": "Microsoft Viva: Copilot Analytics - Inzichten voor power users in het Copilot-dashboard",
+      "benefit": "Medewerkers die regelmatig met Copilot werken, krijgen beter inzicht in hun gebruik. Dit maakt het makkelijker om gewoonten te ontwikkelen en effectiever te werken.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 510099,
+      "title": "Microsoft 365-app: verwijzingen toevoegen aan uw Copilot-notitieblokken vanuit de sectie Snelle toegang in Zoeken in de M365 Copilot-app",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365 app",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "November CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516044,
+      "title": "Microsoft Copilot (Microsoft 365): Ondersteuning voor het begrijpen van metagegevens voor query's die zijn gericht op SharePoint-documentbibliotheken of -mappen",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "November CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 500638,
+      "title": "Microsoft Copilot (Microsoft 365): Verbetering van de sessiecontinuïteit voor Copilot Chat",
+      "benefit": "Medewerkers kunnen gesprekken gemakkelijk verlaten en later terugkeren zonder informatie te verliezen, wat de efficiëntie van het werk verhoogt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 500396,
+      "title": "Microsoft Purview Compliance Portal: uitbreiding van de toegang tot diagnostiek naar compliancebeheerder, beveiligingsbeheerder en organisatiebeheer",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 496596,
+      "title": "Microsoft Copilot (Microsoft 365): Inhoudsbronnen in Copilot Chat",
+      "benefit": "Medewerkers kunnen gerichter informatie vinden, omdat antwoorden nu alleen uit de gekozen bronnen komen.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 491918,
+      "title": "Microsoft Purview Compliance Portal: Informatiebescherming - Ondersteuning voor gevoeligheidslabels in Engage",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
