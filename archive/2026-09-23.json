@@ -1,0 +1,102 @@
+{
+  "generated": "2026-09-23T09:46:21Z",
+  "date": "2026-09-23",
+  "removed": [
+    {
+      "id": 559017,
+      "title": "Microsoft Copilot (Microsoft 365): Work IQ API's: Betalen per gebruik",
+      "benefit": "Ontwikkelaars kunnen nu flexibeler werken zonder dat ze vooraf licenties hoeven aan te vragen. Dit maakt het eenvoudiger om nieuwe functies te testen en te implementeren.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562017,
+      "title": "Microsoft Viva: Verse Copilot-metrics in Aangepaste Persoonlijke Vragen en Rapporten - Viva Geavanceerde Analyse",
+      "benefit": "Analisten kunnen nu sneller en nauwkeuriger inzicht krijgen in het gebruik van Copilot. Dit maakt het eenvoudiger om beslissingen te nemen op basis van actuele gegevens.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560076,
+      "title": "SharePoint: Maak grafieken op pagina's met AI",
+      "benefit": "Auteurs kunnen nu eenvoudig grafieken maken zonder technische kennis, wat het werkproces versnelt en de samenwerking verbetert.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558254,
+      "title": "Microsoft Teams: Verbeterde ondersteuning voor kopiëren en plakken van @mentions en gedeelde contacten",
+      "benefit": "Medewerkers kunnen nu gemakkelijker en sneller communiceren, omdat @mentions en gedeelde contacten automatisch worden behouden bij het kopiëren en plakken van berichten.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555890,
+      "title": "Microsoft Copilot (Microsoft 365): Voeg een afbeelding toe en verwijs ernaar wanneer u een presentatie maakt met Copilot in PowerPoint met behulp van de Agent-modus.",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren — zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555881,
+      "title": "Microsoft Copilot (Microsoft 365): Een afbeelding bijvoegen en verwijzen naar een afbeelding bij het maken van een presentatie met Copilot in PowerPoint met Agent Mode.",
+      "benefit": "Medewerkers kunnen eenvoudiger en sneller presentaties maken door afbeeldingen direct toe te voegen en te verwijzen, wat de kwaliteit van de presentaties verbetert.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 553594,
+      "title": "Ingebouwde AI-tolk voor gesprekken op Teams-telefoonapparaten",
+      "benefit": "Medewerkers met meerdere rollen zijn makkelijker bereikbaar via meerdere telefoonnummers.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "October CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 503553,
+      "title": "Microsoft 365 Admin Center: Autoritatief contentbeheer voor Microsoft 365 Copilot Search",
+      "benefit": "Medewerkers kunnen sneller de juiste informatie vinden, omdat belangrijke SharePoint-sites beter zichtbaar worden in de zoekresultaten.",
+      "app": "other",
+      "prodLabel": "365 admin center",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
