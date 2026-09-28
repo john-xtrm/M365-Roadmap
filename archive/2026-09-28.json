@@ -1,0 +1,42 @@
+{
+  "generated": "2026-09-28T11:27:49Z",
+  "date": "2026-09-28",
+  "removed": [
+    {
+      "id": 558547,
+      "title": "Microsoft Purview: Data Security Investigations – analyseer bestanden die zijn gekoppeld aan eindpunt-DLP-waarschuwingen",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555897,
+      "title": "Microsoft Copilot (Microsoft 365): Referentiebestanden opgeslagen in SharePoint-bibliotheken en OneDrive-mappen bij het maken van een presentatie met Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 429876,
+      "title": "Microsoft Purview-complianceportal: informatiebeveiliging - automatische MIP-labeling voor Azure SQL en opslag",
+      "benefit": "Gevoelige documenten worden automatisch geclassificeerd, waardoor naleving van databeleid eenvoudiger wordt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "April CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
