@@ -1,0 +1,102 @@
+{
+  "generated": "2026-09-30T11:09:24Z",
+  "date": "2026-09-30",
+  "removed": [
+    {
+      "id": 568933,
+      "title": "Microsoft Teams: Gebruik Copilot Chat na een gesprek in de Queues-app",
+      "benefit": "Medewerkers die een vergadering gemist hebben lezen de samenvatting in plaats van de volledige opname terug te kijken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567895,
+      "title": "OneNote: Multimodal capture in Copilot Notebooks (Android)",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "OneNote",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567003,
+      "title": "Microsoft Copilot (Microsoft 365): Verrijk de voorbereiding van vergaderingen van verkoopagenten met meer gegevensbronnen",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2027",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 567002,
+      "title": "Microsoft Copilot (Microsoft 365): Voeg aangepaste inzichten toe aan het vastleggen van samenvattingen in Verkoopagent",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2027",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 567000,
+      "title": "Microsoft Copilot (Microsoft 365): Betrek potentiële klanten sneller met met Sales Agent verrijkte leads",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 554937,
+      "title": "Microsoft 365: Wijzig de vergaderorganisator via PowerShell Cmdlet in Exchange Online",
+      "benefit": "De nieuwe vergaderorganisator kan nu eenvoudig de vergadering beheren, zonder dat deelnemers opnieuw hoeven te bevestigen. Dit zorgt voor een soepelere overgang en minder verwarring bij het wijzigen van de organisator.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 543422,
+      "title": "Microsoft Copilot (Microsoft 365): Excel Agent",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Excel",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 502858,
+      "title": "Microsoft Copilot (Microsoft 365): Live ondertiteling tijdens voicechat in Copilot bij gebruik van de snelle componist",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
