@@ -1,0 +1,150 @@
+{
+  "generated": "2026-10-05T12:12:28Z",
+  "date": "2026-10-05",
+  "removed": [
+    {
+      "id": 568762,
+      "title": "Microsoft Copilot Studio: Agentgereedheid in Microsoft Copilot Studio",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot Studio",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 568760,
+      "title": "Outlook: berichten filteren op gebeurtenissen",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agendas van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 568369,
+      "title": "Microsoft 365: [Onderwijs] Wijs in één opdracht verschillende inhoud toe aan leergroepen",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 568367,
+      "title": "Vooruitzichten: slepen en neerzetten",
+      "benefit": "Vergaderingen plannen gaat sneller doordat agendas van collega's direct zichtbaar zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566865,
+      "title": "Microsoft Purview compliance portal: Tijdslimiet voor admin-toewijzing",
+      "benefit": "Admins kunnen nu makkelijker tijdelijke rechten toekennen, waardoor het beheer van toegang eenvoudiger en veiliger wordt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566529,
+      "title": "Microsoft Purview: Verbeteringen in het beheer van alleen-weergave rollen",
+      "benefit": "Beheerders kunnen nu eenvoudig alle lidmaatschapsassignaties bekijken, wat het beheer van rollen vergemakkelijkt. Dit zorgt ervoor dat medewerkers beter inzicht hebben in wie toegang heeft tot welke informatie.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560548,
+      "title": "Microsoft Viva: Viva Glint - Configureer het bewaren van gebruikers- en enquêtegegevens voor verwijderde gebruikers in Viva Glint",
+      "benefit": "Medewerkersfeedback wordt sneller verzameld en geanalyseerd.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557347,
+      "title": "Outlook: Volg vergaderingen in Outlook mobiel",
+      "benefit": "Collega's die niet kunnen deelnemen aan vergaderingen blijven beter geïnformeerd over wat er besproken is en wat de volgende stappen zijn.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559795,
+      "title": "Outlook: Werkweekweergave voor Outlook iOS en iPad",
+      "benefit": "Medewerkers kunnen nu gemakkelijker hun werkweek plannen en zich beter concentreren op hun werkdagen.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 559794,
+      "title": "Outlook: Bewaar Uitnodigingen Na Beantwoorden in Outlook Mobiel",
+      "benefit": "Iedereen die Outlook gebruikt, kan nu zelf kiezen of uitnodigingen blijven staan na het beantwoorden. Dit maakt het makkelijker om je vergaderingen te beheren.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 526791,
+      "title": "Microsoft Purview: preventie van gegevensverlies - Toon informatie over externe machines bij het kopiëren van bestanden naar extern bureaublad",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd met minder handmatig werk.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 515465,
+      "title": "Microsoft Teams: Adaptive card-gebaseerde app & copilot agent link uitvouwen in Teams",
+      "benefit": "Medewerkers kunnen gemakkelijker samenwerken door SharePoint-agenten direct aan gesprekken toe te voegen. Dit maakt het eenvoudiger om informatie te delen en samen te werken binnen teams.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
