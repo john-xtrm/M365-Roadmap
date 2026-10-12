@@ -1,0 +1,150 @@
+{
+  "generated": "2026-10-12T12:45:06Z",
+  "date": "2026-10-12",
+  "removed": [
+    {
+      "id": 568793,
+      "title": "Microsoft Edge: bijgewerkte weergave van horizontale tabbladen",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 566699,
+      "title": "Microsoft Viva: Discussion Post Previews",
+      "benefit": "Medewerkersbetrokkenheid en werkpatronen worden beter inzichtelijk via Viva.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 565217,
+      "title": "Microsoft Teams: Dashboard op tenant-niveau voor Interpreter",
+      "benefit": "Beheerders kunnen nu eenvoudig het gebruik van Interpreter volgen, wat helpt om de adoptie binnen de organisatie te verbeteren.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "November CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 561922,
+      "title": "Universal Print: Universal Print Portal",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "Universal Print",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562018,
+      "title": "SharePoint: AI-overzicht voor SharePoint Nieuwsberichten in de SharePoint-app voor Teams",
+      "benefit": "Organisatienieuws delen via het intranet gaat sneller en eenvoudiger.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 560338,
+      "title": "Excel: Planningsmodus voor Copilot in Excel",
+      "benefit": "Medewerkers kunnen nu gemakkelijker complexe taken uitvoeren in Excel, omdat ze vooraf kunnen zien wat er gaat gebeuren en hun plannen kunnen aanpassen.",
+      "app": "excel",
+      "prodLabel": "Excel",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557170,
+      "title": "Microsoft Teams: Door de vergadering gegenereerde inhoud verwijderen in de samenvatting",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555886,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar een e-mail met Work IQ bij het gebruik van Bewerken met Copilot in PowerPoint om een presentatie te maken",
+      "benefit": "Medewerkers kunnen eenvoudiger informatie uit e-mails gebruiken bij het maken van presentaties, wat tijd bespaart en de kwaliteit verbetert.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552592,
+      "title": "Microsoft Copilot (Microsoft 365): Vereenvoudigen van Inhoud in het Invoerveld",
+      "benefit": "Medewerkers merken dat het invoeren van prompts eenvoudiger wordt, omdat de inhoud niet meer dubbel wordt weergegeven. Dit maakt het makkelijker om duidelijke en gerichte prompts te creëren.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 502541,
+      "title": "Microsoft Copilot (Microsoft 365): [Copilot-uitbreidbaarheid] Verbeterde detectie van Copilot-connectorbronnen in Microsoft 365 Copilot (optioneel chat toevoegen) met Content Source-filter(s)",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 489825,
+      "title": "Microsoft Copilot (Microsoft 365): Overzicht van recente opmerkingen en wijzigingen in Word, Excel, PowerPoint",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Word",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 486696,
+      "title": "Outlook: Agents voor Microsoft 365 Copilot beschikbaar in Copilot Chat in Outlook voor Mac",
+      "benefit": "Medewerkers werken efficiënter in Outlook doordat Copilot e-mails en agenda's samenvat en acties voorstelt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "December CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
