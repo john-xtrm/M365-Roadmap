@@ -1,0 +1,126 @@
+{
+  "generated": "2026-10-14T10:27:24Z",
+  "date": "2026-10-14",
+  "removed": [
+    {
+      "id": 570429,
+      "title": "Microsoft Viva: Viva Glint - Onderzoek naar verfijningen van ervaringen",
+      "benefit": "Medewerkersfeedback wordt sneller verzameld en geanalyseerd.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 570443,
+      "title": "Microsoft Edge: verbeteringen in de organisatie van tabbladen",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569209,
+      "title": "Microsoft Teams: voeg meerdere stappen toe wanneer u een geheel nieuwe workflow opbouwt",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 568364,
+      "title": "Microsoft Viva: Rolling out Custom branding in Engage",
+      "benefit": "Medewerkers blijven beter verbonden via nieuws en communities.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558435,
+      "title": "Microsoft Edge: Security Update Alerts in the Edge management service",
+      "benefit": "Organisaties kunnen browsersessies beter beveiligen.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 547732,
+      "title": "SharePoint: New SharePoint Experience",
+      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 498640,
+      "title": "Microsoft Copilot (Microsoft 365): Leg spraaknotities vast in de mobiele Microsoft 365 Copilot-app",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 501292,
+      "title": "Microsoft Copilot (Microsoft 365): Gebruiker kan HubSpot-connector gebruiken in Researcher",
+      "benefit": "Medewerkers kunnen nu eenvoudig informatie uit HubSpot gebruiken om hun antwoorden te verbeteren, wat het werk efficiënter maakt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "November CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 485731,
+      "title": "Microsoft 365: gebruik Copilot op uw zoektabblad in de mobiele app Microsoft 365 Copilot",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 480725,
+      "title": "SharePoint: AI citations analytics for documents and pages",
+      "benefit": "Medewerkers vinden intranetinformatie sneller via een AI-agent in SharePoint of Teams.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
