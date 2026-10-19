@@ -1,0 +1,54 @@
+{
+  "generated": "2026-10-19T11:09:39Z",
+  "date": "2026-10-19",
+  "removed": [
+    {
+      "id": 565860,
+      "title": "Microsoft Edge: Meld u aan bij Edge met een Google-account",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 532720,
+      "title": "Microsoft Teams: Organisatie-evaluatiescore voor apps en agenten",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger of uitgebreider met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 516041,
+      "title": "Microsoft Copilot (Microsoft 365): uitgebreide agentondersteuning in Copilot Notebooks",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "unknown",
+      "statusNl": "Verwijderd uit roadmap"
+    },
+    {
+      "id": 168524,
+      "title": "Microsoft Teams: Updates voor medeorganisatoren in webinars",
+      "benefit": "Grote online evenementen zijn beter te organiseren en bij te wonen via Teams.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
