@@ -1,0 +1,162 @@
+{
+  "generated": "2026-10-26T11:37:26Z",
+  "date": "2026-10-26",
+  "removed": [
+    {
+      "id": 569211,
+      "title": "Microsoft Copilot (Microsoft 365): JPG- en PNG-referenties in Copilot Notebooks",
+      "benefit": "Afbeeldingen bewerken of aanmaken gaat sneller doordat Copilot dit rechtstreeks in de app ondersteunt.",
+      "app": "copilot",
+      "prodLabel": "OneNote",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569210,
+      "title": "Microsoft Copilot (Microsoft 365): CSV- en TSV-referenties in Copilot Notebooks",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "OneNote",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 568078,
+      "title": "Microsoft Teams: Badges in Profile Card in Teams",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567302,
+      "title": "Microsoft Teams: Mogelijkheid voor IT-beheerders om de gebruikersmeldingsberichten aan te passen voor opname en transcriptie van gesprekken",
+      "benefit": "Vergaderingen worden automatisch getranscribeerd, wat terugzoeken eenvoudiger maakt.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566528,
+      "title": "Microsoft Purview: Data Loss Prevention - Extend Purview data security to the network layer via Entra GSA integration",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566316,
+      "title": "OneDrive: Refreshed file browsing and filtering experience in OneDrive Web",
+      "benefit": "Bestanden opslaan en delen via OneDrive wordt betrouwbaarder.",
+      "app": "onedrive",
+      "prodLabel": "OneDrive",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562351,
+      "title": "Microsoft Copilot (Microsoft 365): ontvang bruikbare suggesties van Copilot op uw Copilot-pagina",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "365 app",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 559482,
+      "title": "Microsoft Viva: Recente feed in Viva Engage",
+      "benefit": "Medewerkers blijven beter verbonden via nieuws en communities.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555895,
+      "title": "Microsoft Copilot (Microsoft 365): Referentiebestanden opgeslagen in SharePoint-bibliotheken en OneDrive-mappen bij het maken van een presentatie met Agent-modus in PowerPoint",
+      "benefit": "Medewerkers kunnen Copilot via een gesprek meerdere stappen achter elkaar laten uitvoeren zonder elke stap zelf te hoeven aansturen.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 555891,
+      "title": "Microsoft Copilot (Microsoft 365): Verwijs naar een e-mail met Work IQ bij het gebruik van Bewerken met Copilot in PowerPoint om een presentatie te maken",
+      "benefit": "Medewerkers kunnen eenvoudiger informatie uit e-mails gebruiken bij het maken van presentaties, wat tijd bespaart en de efficiëntie verhoogt.",
+      "app": "copilot",
+      "prodLabel": "PowerPoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "March CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 522096,
+      "title": "Microsoft Purview: Integration with Entra GSA Internet Access to enable sensitive file filtering at the network layer",
+      "benefit": "Gevoelige informatie wordt automatisch beschermd, waardoor het risico op datalekken afneemt.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 488301,
+      "title": "Microsoft Teams: Sprekertoewijzing is nu standaard 'Aan' in BYOD-ruimten met verbeterde beheeropties",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "July CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 482539,
+      "title": "Microsoft Teams: Teams-ruimtes met standaard- en basislicentie op Windows in de Pro Management-portal",
+      "benefit": "Vergaderzalen worden beter benut en medewerkers reserveren ruimtes eenvoudiger.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "May CY2025",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
