@@ -1,0 +1,138 @@
+{
+  "generated": "2026-10-28T12:07:38Z",
+  "date": "2026-10-28",
+  "removed": [
+    {
+      "id": 569476,
+      "title": "Planner: Conditional Coloring",
+      "benefit": "Taken en projecten zijn beter te overzien voor teams.",
+      "app": "planner",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 568932,
+      "title": "Microsoft Teams: Verzamel informatie met lijstformulier in Workflows",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569022,
+      "title": "Outlook: Microsoft Purview-labelovername van e-mailbijlagen",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569021,
+      "title": "Outlook: Purview-labelovername van e-mailbijlage voor iOS en Android",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566998,
+      "title": "Microsoft Copilot Studio: Roep agenten aan als workflow-stappen met de agentnode",
+      "benefit": "Teams ervaren minder handmatige taken en kunnen sneller beslissingen nemen, wat de efficiëntie van hun werk verbetert.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 566317,
+      "title": "Microsoft Viva: Create and customize PBI reports",
+      "benefit": "Managers krijgen beter inzicht in werkpatronen, waardoor samenwerking verbetert.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562220,
+      "title": "Microsoft Copilot Studio: Versnel je workflows met computergebruik",
+      "benefit": "Medewerkers kunnen efficiënter werken door automatiseringen die zich aanpassen aan veranderingen, terwijl beheerders beter toezicht houden op toegang en gebruik.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 558595,
+      "title": "Microsoft 365: Companion-apps - Copilot-prompts in de app Bestanden zijn nu beschikbaar voor Copilot Chat-gebruikers",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "May CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    },
+    {
+      "id": 555240,
+      "title": "Microsoft Copilot (Microsoft 365): Copilot Search helpt u mensen te ontdekken",
+      "benefit": "Medewerkers vinden informatie en collega's sneller doordat Copilot slimmer zoekt in bedrijfsdata.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "February CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 545896,
+      "title": "Microsoft Copilot (Microsoft 365): Structured Document Generation with Forms",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "SharePoint",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 529843,
+      "title": "Microsoft Copilot (Microsoft 365): aanbevolen verwijzingen in Copilot Notebooks",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "365 app",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "January CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
