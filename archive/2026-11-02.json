@@ -1,0 +1,102 @@
+{
+  "generated": "2026-11-02T13:51:45Z",
+  "date": "2026-11-02",
+  "removed": [
+    {
+      "id": 570964,
+      "title": "Microsoft Copilot (Microsoft 365): Federated Copilot Connectors will support write, update and delete actions",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569475,
+      "title": "Microsoft Copilot Studio: Agent delen tussen makers",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot Studio",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567888,
+      "title": "Outlook: Hele dag evenementen duidelijker zichtbaar in de Mail module Agenda Voorbeeld",
+      "benefit": "Medewerkers zien nu beter wanneer vergaderingen overlappen met hun afwezigheid of drukke dagen, waardoor ze gemakkelijker hun agenda kunnen beheren.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 564803,
+      "title": "Outlook: Verbeteringen in sorteren van de berichtenlijst",
+      "benefit": "Medewerkers kunnen nu gemakkelijker berichten sorteren op verschillende criteria, waardoor het vinden van belangrijke e-mails eenvoudiger wordt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 564610,
+      "title": "Outlook: Variabel aantal regels voor berichtvoorbeelden",
+      "benefit": "Medewerkers kunnen nu zelf bepalen hoeveel tekst ze van een e-mail in de lijst willen zien, wat het makkelijker maakt om snel door berichten te scrollen.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "July CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 552598,
+      "title": "Microsoft Edge: Improvements to site permissions user interfaces",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 554938,
+      "title": "Microsoft Edge: Enhanced Autofill",
+      "benefit": "Browsen wordt veiliger en productiever.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 499423,
+      "title": "Microsoft Edge: Ground Microsoft 365 Copilot Chat in Edge for Business in your open OneDrive and SharePoint documents",
+      "benefit": "Medewerkers krijgen AI-hulp direct in de browser.",
+      "app": "edge",
+      "prodLabel": "Edge",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
