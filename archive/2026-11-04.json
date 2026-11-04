@@ -1,0 +1,138 @@
+{
+  "generated": "2026-11-04T13:47:53Z",
+  "date": "2026-11-04",
+  "removed": [
+    {
+      "id": 569612,
+      "title": "Microsoft Purview: Data Lifecycle Management – ​​Bewaring voor Copilot-geheugen",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569207,
+      "title": "Microsoft Teams: Report a Security Concern in Meetings",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567306,
+      "title": "Microsoft Teams: Verbeterd gedelegeerd bellen met toegangsbeperkingen voor gedelegeerde oproepen en deelnamemeldingen",
+      "benefit": "Medewerkers houden zelf controle over welke meldingen ze ontvangen.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "August CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 565425,
+      "title": "Microsoft Teams: Language selection by users in Teams Rooms on Android",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 562535,
+      "title": "Microsoft Teams: Open Shifts Toewijzen",
+      "benefit": "Managers kunnen nu eenvoudiger open diensten toewijzen aan medewerkers, waardoor de planning sneller en efficiënter verloopt. Medewerkers merken dat ze beter worden ingedeeld op basis van hun beschikbaarheid.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 561026,
+      "title": "Microsoft Copilot (Microsoft 365): Genereer documenten met behulp van formulieren in SharePoint met Power Automate",
+      "benefit": "Medewerkers werken efficienter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Power Automate",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558286,
+      "title": "Microsoft Teams: Intelligent meeting recap available without saving transcript",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 558935,
+      "title": "Microsoft Viva: Nieuwe Postcreatie-ervaring in Viva Engage",
+      "benefit": "Medewerkers merken dat het eenvoudiger is om berichten te maken en te delen. Dit bespaart tijd en maakt het delen van informatie efficiënter.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 553591,
+      "title": "Microsoft Teams: Inzichten op niveau opbouwen op de pagina met aanbevolen acties van de Pro Management-portal",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "June CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 503571,
+      "title": "Microsoft Copilot (Microsoft 365): Ondersteuning voor het verfijnen van queryfilters voor Confluence Copilot-connectors",
+      "benefit": "Medewerkers werken efficiënter doordat Copilot een nieuwe AI-functie krijgt die dagelijkse taken vereenvoudigt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 526796,
+      "title": "Microsoft Purview: Informatiebeveiliging - Nieuwe samenvattingsstatistieken in Content Explorer voor niet-geëvalueerde bestanden en classificatiegeschiedenis details",
+      "benefit": "Medewerkers krijgen beter inzicht in welke bestanden nog niet zijn beoordeeld, waardoor we sneller kunnen reageren op mogelijke risico's.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "November CY2026",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
