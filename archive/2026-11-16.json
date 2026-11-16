@@ -1,0 +1,54 @@
+{
+  "generated": "2026-11-16T14:31:07Z",
+  "date": "2026-11-16",
+  "removed": [
+    {
+      "id": 576286,
+      "title": "Microsoft 365 app: Inventory - Update Repair",
+      "benefit": "Deze update brengt een verbetering die medewerkers of beheerders direct ten goede komt.",
+      "app": "other",
+      "prodLabel": "365",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "November CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569363,
+      "title": "Microsoft Purview: Permissions audit log improvements",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "admin",
+      "actionLabel": "IT-beheerder actie vereist",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569206,
+      "title": "Microsoft Teams: Pop out calls into a new browser window",
+      "benefit": "Samenwerken en communiceren via Teams wordt eenvoudiger met deze update.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 486825,
+      "title": "Word: Contextvoorbeelden van e-mailmeldingen voor bestanden die zijn beveiligd met Microsoft Purview",
+      "benefit": "Documenten maken en bewerken in Word gaat sneller en gemakkelijker.",
+      "app": "word",
+      "prodLabel": "Word",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "April CY2025",
+      "status": "cancelled",
+      "statusNl": "Geannuleerd"
+    }
+  ]
+}
