@@ -1,0 +1,18 @@
+{
+  "generated": "2026-11-18T15:06:07Z",
+  "date": "2026-11-18",
+  "removed": [
+    {
+      "id": 562222,
+      "title": "Microsoft Copilot Studio: Roep agenten aan als workflow-stappen met de agentnode",
+      "benefit": "Medewerkers ervaren minder handmatige taken en snellere processen, wat het werk efficiënter maakt.",
+      "app": "copilot",
+      "prodLabel": "Copilot",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "September CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
