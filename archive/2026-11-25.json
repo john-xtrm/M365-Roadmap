@@ -1,0 +1,126 @@
+{
+  "generated": "2026-11-25T16:21:42Z",
+  "date": "2026-11-25",
+  "removed": [
+    {
+      "id": 578870,
+      "title": "Microsoft Viva: Engage - Improved shared messages end-user experience",
+      "benefit": "Medewerkers blijven beter verbonden via nieuws en communities.",
+      "app": "viva",
+      "prodLabel": "Viva",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "November CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 576195,
+      "title": "Microsoft Teams: PowerPoint Live support for webinars and structured meetings on Teams Rooms on Android",
+      "benefit": "Vergaderingen verlopen gestructureerder en medewerkers besteden minder tijd aan notuleren of terugzoeken.",
+      "app": "teams",
+      "prodLabel": "Teams",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "November CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 570647,
+      "title": "SharePoint: Changes to the FAQ web part authoring experience",
+      "benefit": "Het intranet in SharePoint wordt toegankelijker of makkelijker te beheren.",
+      "app": "sharepoint",
+      "prodLabel": "SharePoint",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 569733,
+      "title": "Planner: Capacity view",
+      "benefit": "Taakoverzicht en samenwerking in projecten worden verbeterd.",
+      "app": "planner",
+      "prodLabel": "Planner",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567319,
+      "title": "Outlook: categoriseer e-mails door ze naar een favoriete categorie te slepen",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 567313,
+      "title": "Microsoft Purview: Data Lifecycle Management - Graph API Support for Archive Mailboxes",
+      "benefit": "De beveiliging en naleving van bedrijfsdata wordt verbeterd.",
+      "app": "purview",
+      "prodLabel": "Purview",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "October CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 557678,
+      "title": "Outlook: Vind direct Regels, Snelle Stappen en meer op naam",
+      "benefit": "Medewerkers kunnen sneller en eenvoudiger hun e-mailinstellingen vinden en aanpassen, wat tijd bespaart en de productiviteit verhoogt.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 543208,
+      "title": "Outlook: Sorteer op vlag",
+      "benefit": "E-mail en agendabeheer in Outlook wordt overzichtelijker en minder tijdrovend.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "May CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 497836,
+      "title": "Vooruitzichten: speel een geluidsregel",
+      "benefit": "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "user",
+      "actionLabel": "Medewerker kan instellen",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    },
+    {
+      "id": 496141,
+      "title": "Outlook: Regel om bureaubladwaarschuwing weer te geven",
+      "benefit": "E-mailbeheer wordt eenvoudiger door uitgebreidere regelopties in Outlook.",
+      "app": "outlook",
+      "prodLabel": "Outlook",
+      "action": "none",
+      "actionLabel": "Automatisch beschikbaar",
+      "release": "January CY2026",
+      "status": "launched",
+      "statusNl": "Beschikbaar"
+    }
+  ]
+}
